@@ -1,0 +1,12 @@
+{
+  "name": "leonida-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Guide GTA 6 visuel : astuces, véhicules, lieux et carte interactive (site statique).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && python3 -m http.server 8080 --directory docs"
+  },
+  "engines": { "node": ">=18" }
+}

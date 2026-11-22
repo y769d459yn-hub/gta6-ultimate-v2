@@ -1,0 +1,333 @@
+{
+  "marque": "Leonida Guide",
+  "url": "https://y769d459yn-hub.github.io/gta6-ultimate-v2",
+  "lang": "fr",
+  "majLe": "2026-11-22",
+  "categories": {
+    "astuces": [
+      {
+        "id": "missions",
+        "nom": "Missions",
+        "icon": "flag",
+        "color": "#ff3d6e"
+      },
+      {
+        "id": "argent",
+        "nom": "Argent",
+        "icon": "money",
+        "color": "#3ddc84"
+      },
+      {
+        "id": "vehicules",
+        "nom": "Véhicules",
+        "icon": "car",
+        "color": "#ff9a1f"
+      },
+      {
+        "id": "exploration",
+        "nom": "Exploration",
+        "icon": "compass",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "gameplay",
+        "nom": "Gameplay",
+        "icon": "gamepad",
+        "color": "#9b6bff"
+      },
+      {
+        "id": "debuter",
+        "nom": "Débuter",
+        "icon": "sprout",
+        "color": "#ffd23f"
+      }
+    ],
+    "vehicules": [
+      {
+        "id": "voitures",
+        "nom": "Voitures",
+        "icon": "car",
+        "color": "#ff9a1f"
+      },
+      {
+        "id": "motos",
+        "nom": "Motos",
+        "icon": "moto",
+        "color": "#ff7a3d"
+      },
+      {
+        "id": "bateaux",
+        "nom": "Bateaux",
+        "icon": "boat",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "avions",
+        "nom": "Avions",
+        "icon": "plane",
+        "color": "#9b6bff"
+      },
+      {
+        "id": "autres",
+        "nom": "Autres",
+        "icon": "sparkle",
+        "color": "#3ddc84"
+      }
+    ],
+    "lieux": [
+      {
+        "id": "region",
+        "nom": "Régions",
+        "icon": "map",
+        "color": "#ff2d87"
+      },
+      {
+        "id": "quartier",
+        "nom": "Quartiers",
+        "icon": "city",
+        "color": "#ff9a1f"
+      },
+      {
+        "id": "batiment",
+        "nom": "Bâtiments",
+        "icon": "building",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "poi",
+        "nom": "Points d'intérêt",
+        "icon": "pin",
+        "color": "#ffd23f"
+      }
+    ],
+    "encyclopedie": [
+      {
+        "id": "personnages",
+        "nom": "Personnages",
+        "icon": "person",
+        "color": "#ff2d87"
+      },
+      {
+        "id": "lieux",
+        "nom": "Lieux",
+        "icon": "map",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "vehicules",
+        "nom": "Véhicules",
+        "icon": "car",
+        "color": "#ff9a1f"
+      },
+      {
+        "id": "gameplay",
+        "nom": "Gameplay",
+        "icon": "gamepad",
+        "color": "#9b6bff"
+      },
+      {
+        "id": "histoire",
+        "nom": "Histoire",
+        "icon": "book",
+        "color": "#ffd23f"
+      },
+      {
+        "id": "le-jeu",
+        "nom": "Le jeu",
+        "icon": "console",
+        "color": "#3ddc84"
+      }
+    ],
+    "carte": [
+      {
+        "id": "vehicules",
+        "nom": "Véhicules",
+        "icon": "car",
+        "color": "#ff9a1f"
+      },
+      {
+        "id": "lieux",
+        "nom": "Lieux",
+        "icon": "pin",
+        "color": "#ff2d87"
+      },
+      {
+        "id": "activites",
+        "nom": "Activités",
+        "icon": "wave",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "points-utiles",
+        "nom": "Points utiles",
+        "icon": "info",
+        "color": "#ffd23f"
+      }
+    ],
+    "actualites": [
+      {
+        "id": "officiel",
+        "nom": "Annonces officielles",
+        "icon": "badge",
+        "color": "#3ddc84"
+      },
+      {
+        "id": "maj",
+        "nom": "Mises à jour",
+        "icon": "refresh",
+        "color": "#19d3e3"
+      },
+      {
+        "id": "a-verifier",
+        "nom": "À vérifier",
+        "icon": "question",
+        "color": "#ffd23f"
+      }
+    ]
+  },
+  "statuts": {
+    "confirme": {
+      "nom": "Confirmé",
+      "desc": "Vérifié et validé humainement."
+    },
+    "a-verifier": {
+      "nom": "À vérifier",
+      "desc": "Information non démontrée."
+    },
+    "provisoire": {
+      "nom": "Provisoire",
+      "desc": "Information partielle."
+    }
+  },
+  "synonymes": {
+    "argent": [
+      "thune",
+      "fric",
+      "money",
+      "cash",
+      "oseille",
+      "blé",
+      "dollars",
+      "dollar",
+      "riche",
+      "pognon"
+    ],
+    "police": [
+      "flic",
+      "flics",
+      "cops",
+      "keufs",
+      "poulets",
+      "etoiles",
+      "étoiles",
+      "wanted",
+      "recherche",
+      "recherché",
+      "heat"
+    ],
+    "voiture": [
+      "caisse",
+      "bagnole",
+      "car",
+      "auto",
+      "vehicule",
+      "véhicule",
+      "supercar",
+      "tire"
+    ],
+    "moto": [
+      "bike",
+      "deux roues",
+      "scooter"
+    ],
+    "bateau": [
+      "boat",
+      "jetski",
+      "jet-ski",
+      "airboat",
+      "hydroglisseur",
+      "vedette"
+    ],
+    "avion": [
+      "plane",
+      "jet",
+      "helico",
+      "hélico",
+      "hélicoptère",
+      "helicoptere"
+    ],
+    "sauvegarder": [
+      "save",
+      "sauvegarde",
+      "enregistrer",
+      "sauver"
+    ],
+    "triche": [
+      "cheat",
+      "cheats",
+      "code",
+      "codes",
+      "astuce"
+    ],
+    "voyage rapide": [
+      "fast travel",
+      "teleporter",
+      "téléporter",
+      "taxi",
+      "rydeme",
+      "aller vite"
+    ],
+    "arme": [
+      "armes",
+      "gun",
+      "flingue",
+      "fusil",
+      "pistolet",
+      "weapon"
+    ],
+    "carte": [
+      "map",
+      "plan",
+      "emplacement",
+      "localisation",
+      "position"
+    ],
+    "personnage": [
+      "perso",
+      "jason",
+      "lucia",
+      "heros",
+      "héros",
+      "switch"
+    ],
+    "telephone": [
+      "phone",
+      "portable",
+      "tel",
+      "appli",
+      "app",
+      "smartphone"
+    ],
+    "mission": [
+      "missions",
+      "quete",
+      "quête",
+      "histoire",
+      "chapitre"
+    ],
+    "garage": [
+      "ranger",
+      "stocker",
+      "parking"
+    ],
+    "debuter": [
+      "debut",
+      "début",
+      "commencer",
+      "noob",
+      "nouveau",
+      "premiers pas",
+      "bases"
+    ]
+  }
+}
