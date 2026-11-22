@@ -64,9 +64,19 @@ function ref(slug) {
 const TUILES = read('tuiles.json');
 const VIGN = new Set(fs.existsSync(path.join(ROOT, 'data', 'vignettes.json')) ? read('vignettes.json').ids : []);
 // url() dans une variable CSS est résolue par rapport à la feuille de style (assets/) : chemin relatif à assets/
-// Photos des véhicules : déposer src/photos/<slug>.webp (ou .jpg/.png) — tes propres captures uniquement
-const PHOTOS = Object.fromEntries((fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync(path.join(ROOT, 'src', 'photos')) : []).map((f) => [f.replace(/\.(webp|jpe?g|png)$/i, ''), f]));
-const vehVisuel = (v, R, cls = '') => (PHOTOS[v.slug] ? `<img class="veh-photo" src="${R}photos/${PHOTOS[v.slug]}" alt="${esc(v.nom)}" loading="lazy">` : silhouette(v, cls));
+// Photos des véhicules : src/photos/<slug>.webp, origine et note dans data/photos.json (préparées par tools/photos.py)
+const PHOTOS = fs.existsSync(path.join(ROOT, 'data', 'photos.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'photos.json'), 'utf8')) : {};
+for (const f of fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync(path.join(ROOT, 'src', 'photos')) : []) {
+  const k = f.replace(/\.(webp|jpe?g|png)$/i, '');
+  if (k !== f && !PHOTOS[k]) PHOTOS[k] = { fichier: f, note: '', credit: '', url: '' };
+}
+const vehVisuel = (v, R, cls = '') => (PHOTOS[v.slug] ? `<img class="veh-photo" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}" loading="lazy" decoding="async">` : silhouette(v, cls));
+const vehCredit = (v) => {
+  const ph = PHOTOS[v.slug];
+  if (!ph) return '';
+  const cr = ph.credit ? `Image : ${ph.url ? `<a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.credit)}</a>` : esc(ph.credit)}` : '';
+  return `<p class="veh-credit">${ph.note ? `<strong>${esc(ph.note)}</strong>` : ''}${ph.note && cr ? ' · ' : ''}${cr}</p>`;
+};
 const vign = (id) => (VIGN.has(id) ? `../vignettes/${id}.webp` : null);
 const GTADB_RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'gtadb', 'landmarks.json'), 'utf8'));
 // Lieux communautaires : [adresse, [x, y], …, tags (index 6)]
@@ -527,6 +537,7 @@ for (const v of VEHICULES) {
   const body = `<article class="wrap fiche" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
     <div class="veh-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</div>
+    ${vehCredit(v)}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a>${badge(v.dispo)}</div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
   </header>

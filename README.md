@@ -42,7 +42,7 @@ Statuts de fiabilité : `confirme` (vérifié humainement), `a-verifier`, `provi
 - Mettre à jour la carte : `git clone https://github.com/rolux/gtadb.org`, puis `python3 tools/tuiles.py ../gtadb.org` et copier `map/data/6/landmarks.json` dans `vendor/gtadb/`.
 
 ## Images des véhicules
-Chaque véhicule a une silhouette néon originale (`scripts/silhouettes.mjs`). Pour afficher une vraie image à la place, dépose **ta propre capture** dans `src/photos/<slug>.webp` (ou `.jpg` / `.png`), par exemple `src/photos/pegassi-infernus.webp`, puis relance `npm run build`. N'utilise pas d'images officielles de Rockstar sans autorisation.
+Les véhicules affichent une image du jeu quand elle est disponible (`src/photos/<slug>.webp`, 26 sur 31). Elles sont préparées par `python3 tools/photos.py <dépôt gta6-hq>` à partir du dépôt public xpbeats00-sudo/gta6-hq, et `data/photos.json` garde l'origine de chacune (Rockstar Games, via GTABase, Tracker.gg ou GTA Wiki), affichée sous l'image de la fiche. Ces images appartiennent à Rockstar Games : elles ne sont pas sous licence libre. Les véhicules sans image fiable gardent leur silhouette néon (`scripts/silhouettes.mjs`).
 
 ## SEO (discret)
 Title et description par page, URL propres, canonical, Open Graph, JSON-LD (WebSite + SearchAction, FAQPage, HowTo, BreadcrumbList, Article, NewsArticle), sitemap.xml, robots.txt. Le texte complémentaire est rangé dans des blocs repliables (« Questions fréquentes », « En savoir plus »).
