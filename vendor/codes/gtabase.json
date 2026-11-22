@@ -1,0 +1,627 @@
+[
+ {
+  "cat": "Player Cheats",
+  "nom": "$250,000 Money Cheat",
+  "desc": "Instantly gives you $250,000.",
+  "unlock": "Finish the story.",
+  "keys": [
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "UP",
+   "LEFT",
+   "DOWN",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Drunk Cheat",
+  "desc": "Instantly makes you and your partner drunk.",
+  "unlock": "Spend $2,500 on alcohol.",
+  "keys": [
+   "UP",
+   "LEFT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "LEFT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Raise Heat Level Cheat",
+  "desc": "Raises your heat level across the map.",
+  "unlock": "Lose a 3-star wanted level 25 times.",
+  "keys": [
+   "LEFT",
+   "DOWN",
+   "RIGHT",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Raise Wanted Level Cheat",
+  "desc": "Raises your wanted level across the map.",
+  "unlock": "Lose a 3-star wanted level 50 times.",
+  "keys": [
+   "LEFT",
+   "DOWN",
+   "RIGHT",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "UP"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Unlimited Focus Cheat",
+  "desc": "Your Focus never runs out.",
+  "unlock": "Finish the story.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "UP",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "No Fall Damage Cheat",
+  "desc": "Makes you immune to fall damage.",
+  "unlock": "Survive a freefall from 40 feet 20 times.",
+  "keys": []
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Parachute Cheat",
+  "desc": "Adds a parachute to your loadout.",
+  "unlock": "Complete 50 skydives or BASE jumps from 300 feet or higher.",
+  "keys": []
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Body Armor Cheat",
+  "desc": "Adds body armor to your loadout.",
+  "unlock": "Complete 100 workouts.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Repair Vehicle Cheat",
+  "desc": "Fully repairs the vehicle you're in.",
+  "unlock": "Get 1st place in 10 races at Gellhorn Raceway, Thrillbilly Mud Club and Boone Speedway.",
+  "keys": []
+ },
+ {
+  "cat": "Player Cheats",
+  "nom": "Unlimited Nitrous Cheat",
+  "desc": "Your vehicle never runs out of nitrous or fuel.",
+  "unlock": "Complete 50 Stunt Jumps.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Max Ammo Cheat",
+  "desc": "Fills up the ammo of all your weapons.",
+  "unlock": "Win 25 bronze medals or better at Shooting Ranges.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "DOWN",
+   "LEFT"
+  ]
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Infinite Ammo Cheat",
+  "desc": "Your ammo never runs out.",
+  "unlock": "Win 25 silver medals or better at Shooting Ranges.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "No Reload Cheat",
+  "desc": "Your ammo never runs out, and you never need to reload.",
+  "unlock": "Win 25 gold medals at Shooting Ranges.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP"
+  ]
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "All Explosive Weapons Cheat",
+  "desc": "Adds every explosive weapon to your loadout, with full ammo.",
+  "unlock": "Throw 100 grenades.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Incendiary Ammo Cheat",
+  "desc": "All your ammo becomes incendiary, setting targets on fire.",
+  "unlock": "Burn 100 enemies with fire damage.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Exploding Bottles Cheat",
+  "desc": "Bottles explode when they're damaged.",
+  "unlock": "Throw 100 Molotovs.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Explosive Shotgun Cheat",
+  "desc": "Adds a Mason & Keen Shortstraw to your loadout, which fires explosive shells.",
+  "unlock": "Hit 100 enemies with explosive damage.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Hauners H-AT Cheat",
+  "desc": "Adds a Hauners H-AT to your loadout.",
+  "unlock": "Blow up 100 vehicles.",
+  "keys": []
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Attack Force Cheat",
+  "desc": "Your bullets and melee attacks send targets flying on impact.",
+  "unlock": "Finish the story.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Exploding Balls Cheat",
+  "desc": "Sports balls explode on impact.",
+  "unlock": "Hit 20 enemies with explosive damage.",
+  "keys": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Combat Cheats",
+  "nom": "Vehicle Force Cheat",
+  "desc": "Hitting people with a vehicle launches them into the air.",
+  "unlock": "Kill 25 enemies with a vehicle (running over civilians counts too).",
+  "keys": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "UP",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Interstate Ambulance Cheat",
+  "desc": "Spawns an Interstate Ambulance.",
+  "unlock": "Discover the Interstate Ambulance in the Progress menu.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Airboat 09 Cheat",
+  "desc": "Spawns an Airboat 09.",
+  "unlock": "Complete 5 Survival challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Bravado Banshee Cheat",
+  "desc": "Spawns a Bravado Banshee.",
+  "unlock": "Complete all Combat challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Tuff BMX Cheat",
+  "desc": "Spawns a Tuff BMX.",
+  "unlock": "Complete 5 Fitness challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Maibatsu Boomazoom Cheat",
+  "desc": "Spawns a Maibatsu Boomazoom.",
+  "unlock": "Complete 5 Shopping challenges.",
+  "keys": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "LEFT"
+  ]
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Nagasaki Carbon RS Cheat",
+  "desc": "Spawns a Nagasaki Carbon RS.",
+  "unlock": "Complete all Exploration challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn '65 Vapid Dominator Cheat",
+  "desc": "Spawns a '65 Vapid Dominator.",
+  "unlock": "Complete all Fitness challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Progen Emerus Cheat",
+  "desc": "Spawns a Progen Emerus.",
+  "unlock": "Complete all Vehicle challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Inflatable Flamingo Cheat",
+  "desc": "Spawns an Inflatable Flamingo.",
+  "unlock": "Destroy 50 cocaine flamingos.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn MTL Pumper Cheat",
+  "desc": "Spawns an MTL Pumper fire truck.",
+  "unlock": "Discover the MTL Pumper in the Progress menu.",
+  "keys": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "UP"
+  ]
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Vapid Stanier G2 Taxi Cheat",
+  "desc": "Spawns a Vapid Stanier G2 Taxi.",
+  "unlock": "Complete 5 Sports challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Hauners P-996 Lazer Cheat",
+  "desc": "Spawns a Hauners P-996 Lazer.",
+  "unlock": "Complete all challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn HVY Bulldozer Cheat",
+  "desc": "Spawns an HVY Bulldozer.",
+  "unlock": "Discover the HVY Bulldozer in the Progress menu.",
+  "keys": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Lapwing Mallard Cheat",
+  "desc": "Spawns a Lapwing Mallard.",
+  "unlock": "Complete 5 Vehicle challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Brimstone Golfer Cheat",
+  "desc": "Spawns a Brimstone Golfer.",
+  "unlock": "Complete all Sports challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Hauners Rhino Tank Cheat",
+  "desc": "Spawns a Hauners Rhino Tank.",
+  "unlock": "Complete all Survival challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Maibatsu Sanchez Cheat",
+  "desc": "Spawns a Maibatsu Sanchez.",
+  "unlock": "Complete 5 Criminal challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Nagasaki Sea Sparrow Cheat",
+  "desc": "Spawns a Nagasaki Sea Sparrow.",
+  "unlock": "Complete 5 Exploration challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Speeder 700 GT Cheat",
+  "desc": "Spawns a Speeder 700 GT.",
+  "unlock": "Complete 5 Combat challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Truffade Thrax Cheat",
+  "desc": "Spawns a Truffade Thrax.",
+  "unlock": "Complete all Shopping challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Vehicle Spawn Cheats",
+  "nom": "Spawn Western Zombie Bobber Cheat",
+  "desc": "Spawns a Western Zombie Bobber.",
+  "unlock": "Complete all Criminal challenges.",
+  "keys": []
+ },
+ {
+  "cat": "Environment Cheats",
+  "nom": "Move Time Forward Cheat",
+  "desc": "Moves the time of day forward.",
+  "unlock": "Find 10 collectible Watches.",
+  "keys": []
+ },
+ {
+  "cat": "Environment Cheats",
+  "nom": "Pause Time of Day Cheat",
+  "desc": "Freezes the time of day.",
+  "unlock": "Find 20 collectible Watches.",
+  "keys": []
+ },
+ {
+  "cat": "Environment Cheats",
+  "nom": "Cycle Weather Cheat",
+  "desc": "Changes the weather, cycling through the different weather types.",
+  "unlock": "Finish the story.",
+  "keys": [
+   "DOWN",
+   "RIGHT",
+   "UP",
+   "DOWN",
+   "RIGHT",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Golden Hour Cheat",
+  "desc": "Gives the game a golden tint and a widescreen aspect ratio.",
+  "unlock": "Spend 4 hours holding hands.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Powdered Sugar Cheat",
+  "desc": "Turns the world white, with sparkling highlights.",
+  "unlock": "Scan all space debris with WAiNK.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Pinhole Cheat",
+  "desc": "Applies a pinhole camera filter.",
+  "unlock": "Clear 25 gang operations with your partner.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Neon Jungle Cheat",
+  "desc": "Adds neon highlights to the world.",
+  "unlock": "Discover all 16 Girlypop Vehicles.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Yesteryear Cheat",
+  "desc": "Makes the game look like an old black & white CRT TV.",
+  "unlock": "Discover the Ridgeway.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Cataclysm Cheat",
+  "desc": "Fills the world with murky smoke.",
+  "unlock": "Discover Martha's Vamos in the Progress menu.",
+  "keys": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Videotape Cheat",
+  "desc": "Makes the game look like an old videotape recording.",
+  "unlock": "Complete 50 activities with your partner.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Dark Mirror Cheat",
+  "desc": "Turns the world black and flips it upside down.",
+  "unlock": "Make $500,000 selling vehicles.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Migraine Cheat",
+  "desc": "Blurs and distorts the screen.",
+  "unlock": "Survive for 6 minutes with a 6-star wanted level.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Dollhouse Cheat",
+  "desc": "Applies vivid colors and a narrow aspect ratio.",
+  "unlock": "Spend 8 hours with your partner.",
+  "keys": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "DOWN",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Bubblegum Cheat",
+  "desc": "Turns the world purple and yellow, with sparkling highlights.",
+  "unlock": "Find all 24 Vice City Flamingos collectible cards.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Fast Forward Cheat",
+  "desc": "Adds motion blur and makes the clouds move faster.",
+  "unlock": "Complete 50 meditations.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Fisheye Cheat",
+  "desc": "Applies a fisheye lens effect.",
+  "unlock": "Catch 100 fish.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Faded Glory Cheat",
+  "desc": "Makes the game look like an old color CRT TV.",
+  "unlock": "Rob 50 stores with your partner.",
+  "keys": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Pixel Art Cheat",
+  "desc": "Pixelates the screen.",
+  "unlock": "Make $250,000 selling collectibles.",
+  "keys": []
+ },
+ {
+  "cat": "Screen Filter Cheats",
+  "nom": "Hellscape Cheat",
+  "desc": "Turns the world red and orange, with a heat haze.",
+  "unlock": "Steal 100 cop vehicles.",
+  "keys": [
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "UP",
+   "LEFT",
+   "DOWN",
+   "RIGHT"
+  ]
+ }
+]

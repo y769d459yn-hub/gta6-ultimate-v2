@@ -597,20 +597,20 @@
   "icon": "code",
   "titre": "Comment entrer un code de triche dans GTA 6 ?",
   "court": "Entrer un code de triche",
-  "reponse": "Sors le téléphone (haut sur la croix), maintiens L1 + R1 (PS5) ou LB + RB (Xbox), puis tape la suite de flèches.",
+  "reponse": "Sors le téléphone, maintiens L1 et appuie sur R1 (PS5) ou maintiens LB et appuie sur RB (Xbox), puis tape la suite de flèches avec la croix directionnelle.",
   "etapes": [
-   "Haut sur la croix directionnelle pour sortir le téléphone.",
-   "Maintiens L1 + R1 ou LB + RB.",
-   "Tape la suite de flèches du code."
+   "Termine l'histoire : la liste « Triches » apparaît dans le menu Progression.",
+   "Débloque le code voulu en réussissant son défi.",
+   "Sors le téléphone, maintiens L1 + appuie sur R1 (ou LB + RB) et tape les flèches."
   ],
-  "asavoir": "Les codes se débloquent après la fin de l'histoire. Un code actif bloque la sauvegarde et les trophées : sauvegarde avant.",
+  "asavoir": "Un code pas encore débloqué ne fait rien, même bien tapé. Un code actif bloque la sauvegarde et les trophées jusqu'à ce que tu quittes le jeu.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "redbull-cheats",
-   "pcguide-cheats",
-   "gtacheatcodes"
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
   ],
   "kw": [
    "triche",
@@ -640,12 +640,14 @@
    "Sauvegarde ta partie.",
    "Saisis : ↑ → ↓ ← ↑ ← ↓ →"
   ],
-  "asavoir": "Code donné par un seul site et pas encore vérifié. Les trophées et la sauvegarde sont bloqués.",
+  "asavoir": "Combinaison confirmée par GTABase, GTA Wiki et gta6guide.fr. Les trophées et la sauvegarde sont bloqués jusqu'à ce que tu quittes le jeu.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
-   "cheatcc"
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
   ],
   "kw": [
    "argent",
@@ -674,12 +676,14 @@
    "Sauvegarde ta partie.",
    "Saisis : ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ →"
   ],
-  "asavoir": "Code non vérifié. Recoupe-le avec une deuxième source.",
+  "asavoir": "Combinaison confirmée par GTABase, GTA Wiki et gta6guide.fr. La sauvegarde est bloquée tant que le code est actif.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
-   "cheatcc"
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
   ],
   "kw": [
    "focus",
@@ -1256,22 +1260,21 @@
   "icon": "code",
   "titre": "Quels sont tous les codes de triche connus ?",
   "court": "Tous les codes connus",
-  "reponse": "Sur 61 codes, une vingtaine ont été trouvés. Chaque code se débloque par un défi, puis se tape au téléphone en maintenant L1 + R1 (PS5) ou LB + RB (Xbox).",
+  "reponse": "GTA 6 compte 61 codes de triche. 19 combinaisons sont connues pour l'instant, dont 17 confirmées par plusieurs guides. Chaque code se débloque d'abord par un défi, puis se tape au téléphone.",
   "etapes": [
    "250 000 $ : ↑ → ↓ ← ↑ ← ↓ → (après l'histoire).",
-   "Focus infini : ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ → (après l'histoire).",
+   "Focus illimité : ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ → (après l'histoire).",
    "Gilet pare-balles : ↓ ↑ ← ↑ ↑ ↑ ↑ ↑ ↓ ↓ (après 100 séances de sport).",
-   "Monter les étoiles : ← ↓ → ↓ ↑ → ↑ (après avoir semé 50 fois 3 étoiles).",
-   "Munitions max, infinies, sans rechargement : gagne 25 médailles de bronze, d'argent ou d'or au stand de tir."
+   "Tous les autres, avec leurs défis : page « Codes de triche »."
   ],
-  "asavoir": "Un code actif bloque la sauvegarde et les trophées. Les sites ne donnent pas tous les mêmes suites : vérifie en jeu.",
+  "asavoir": "Un code actif bloque la sauvegarde et les trophées jusqu'à ce que tu quittes le jeu : sauvegarde avant.",
   "duree": 2,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "gamesradar-cheats",
-   "vice-cheats",
-   "gtacheatcodes"
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
   ],
   "kw": [
    "triche",

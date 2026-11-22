@@ -20,7 +20,7 @@
         "kicker": { "type": "string" },
         "titre": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["texte", "style"], "properties": { "texte": { "type": "string" }, "style": { "enum": ["plein", "neon"] } } } },
         "recherche": { "type": "object", "required": ["label", "placeholder", "suggestionsAnimees"], "properties": { "label": { "type": "string" }, "placeholder": { "type": "string" }, "suggestionsAnimees": { "type": "array", "items": { "type": "string" } } } },
-        "raccourcis": { "type": "array", "maxItems": 6, "items": { "type": "object", "required": ["label", "q", "icon"], "properties": { "label": { "type": "string" }, "q": { "type": "string" }, "icon": { "type": "string" } } } }
+        "raccourcis": { "type": "array", "maxItems": 6, "items": { "type": "object", "required": ["label", "q", "icon"], "properties": { "label": { "type": "string" }, "q": { "type": "string" }, "icon": { "type": "string" }, "href": { "type": "string", "pattern": "^[a-z-]+/$" } } } }
       }
     },
     "tuiles": {

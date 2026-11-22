@@ -18,6 +18,7 @@ const VEHICULES = read('vehicules.json');
 // Vérification de présence dans GTA 6 (tools/verification.py : site officiel, GTA Wiki, GTABase, gta6guide.fr)
 const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'verification.json'), 'utf8')).vehicules : {};
 const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.statut === 'confirme' ? (v.preuves.length ? `Confirmé par ${v.preuves.join(' et ')}` : 'Type de véhicule confirmé') : v.statut === 'non-confirme' ? 'Non confirmé' : 'À confirmer : vu seulement sur GTABase ou gta6guide.fr'; };
+const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes.json') : { categories: [], codes: [] };
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
@@ -245,7 +246,7 @@ ${body}
   <div class="foot-in">
     <a class="brand brand--foot" href="${R}">${v2 ? BRAND_MARK.replace(/mk-g/g, 'mk-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
     <nav aria-label="Pied de page">
-      <a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
+      <a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes de triche</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
     </nav>
     <p class="disclaimer">Site indépendant, non affilié à Rockstar Games ni Take-Two. Grand Theft Auto est une marque de Take-Two Interactive. Mis à jour le ${fmtDate(site.majLe)}.</p>
   </div>
@@ -367,7 +368,7 @@ function homePalms() {
       <kbd>/</kbd>
       <span class="h-search-go">${icon('arrow-right')}</span>
     </button>
-    <nav class="h-quick h-anim" aria-label="Recherches rapides">${H.hero.raccourcis.map((r) => `<a href="${R}recherche/?q=${encodeURIComponent(r.q)}" data-q="${esc(r.q)}">${icon(r.icon)}${esc(r.label)}</a>`).join('')}</nav>
+    <nav class="h-quick h-anim" aria-label="Recherches rapides">${H.hero.raccourcis.map((r) => r.href ? `<a href="${R}${r.href}">${icon(r.icon)}${esc(r.label)}</a>` : `<a href="${R}recherche/?q=${encodeURIComponent(r.q)}" data-q="${esc(r.q)}">${icon(r.icon)}${esc(r.label)}</a>`).join('')}</nav>
     <nav class="h-tiles" aria-label="Catégories">${tilesHtml}</nav>
     <p class="h-help h-anim">${icon('info')}${esc(H.aide)}</p>
   </div>
@@ -613,6 +614,50 @@ for (const v of VEHICULES) {
   ${sourcesBlock(v.sources)}
 </article>`;
   emit(p, layout({ p, title: `${v.nom} GTA 6 : emplacement et comment l'obtenir`, desc: `Localisation, informations et méthode d'obtention de ${v.nom} dans GTA 6, selon les sources disponibles.`, body, cls: 'p-fiche', ogType: 'article', scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
+}
+
+// ---------- CODES DE TRICHE ----------
+{
+  const p = 'codes/', R = R_(p);
+  const FL = { haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' };
+  const fleches = (seq) => `<div class="code-seq" role="img" aria-label="Combinaison : ${seq.map((d) => FL[d]).join(', ')}">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i aria-hidden="true"></i>' : ''}`).join('')}</div>`;
+  const C = CODES.codes, cats = CODES.categories;
+  const connus = C.filter((c) => c.sequence.length).length;
+  const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
+    <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3><small>${esc(c.nomEn)}</small></div></header>
+    <p class="code-effet">${esc(c.effet)}</p>
+    ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
+    <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
+    ${c.sequence.length ? `<p class="code-src ${c.confirme ? 'is-ok' : 'is-warn'}">${icon(c.confirme ? 'check' : 'alert')}${c.confirme ? `Combinaison confirmée par ${c.sources.length} guides` : `Combinaison donnée par un seul guide (${esc(c.sources.join(', '))}) : à vérifier`}</p>` : ''}
+  </article>`;
+  const body = `<section class="wrap section codes" data-codes>
+  <h1 class="h1">Codes de triche GTA 6</h1>
+  <p class="lead">GTA 6 compte <b>${C.length} codes</b>. On connaît pour l'instant <b>${connus} combinaisons</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper.</p>
+  <ol class="howto">
+    <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste « Triches » apparaît dans le menu Progression.</span></li>
+    <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
+    <li><span class="howto-n">3</span><span>${icon('phone')}<b>Tape-le au téléphone</b> Sors le téléphone, maintiens L1 et appuie sur R1 (PS5) ou LB + RB (Xbox), puis tape les flèches avec la croix.</span></li>
+  </ol>
+  <p class="note note--warn">${icon('alert')}<span>Un code actif <b>bloque la sauvegarde et les trophées</b> jusqu'à ce que tu quittes le jeu. Sauvegarde avant de tricher. Les codes sont les mêmes sur PS5 et Xbox ; il n'y a pas encore de version PC.</span></p>
+  ${fieldFilter('Chercher un code : argent, munitions, tank…')}
+  <div class="filterbar" role="group" aria-label="Filtrer les codes">
+    <button class="chip" type="button" data-ccat="" aria-pressed="true">Tous <small>${C.length}</small></button>
+    ${cats.map((k) => `<button class="chip" type="button" data-ccat="${k.id}" aria-pressed="false" style="--c:${k.color}">${icon(k.icon)}${esc(k.nom)} <small>${C.filter((c) => c.cat === k.id).length}</small></button>`).join('')}
+    <button class="chip chip--toggle" type="button" data-cseq aria-pressed="false">${icon('check')}Combinaison connue</button>
+  </div>
+  <p class="count-line" data-ccount aria-live="polite"></p>
+  ${cats.map((k) => `<section class="code-grp" data-cgrp="${k.id}" aria-labelledby="cg-${k.id}"><h2 class="vgrp-h" id="cg-${k.id}">${esc(k.nom)} <small>${C.filter((c) => c.cat === k.id).length}</small></h2>
+    <div class="code-grid">${C.filter((c) => c.cat === k.id).sort((a, b) => (b.sequence.length ? 1 : 0) - (a.sequence.length ? 1 : 0)).map((c) => carte(c, k)).join('')}</div></section>`).join('')}
+  <p class="empty" data-cempty hidden>${icon('search')}Aucun code ne correspond. Essaie un autre mot.</p>
+  <section class="faq" aria-labelledby="faq-t"><h2 class="h3" id="faq-t">${icon('question')}Questions fréquentes</h2>
+    <details><summary>Pourquoi mon code ne marche pas ?</summary><p>Un code ne fonctionne que s'il est débloqué : termine d'abord l'histoire, puis réussis son défi (indiqué sous chaque code). Vérifie aussi que tu maintiens bien L1 (ou LB) en appuyant sur R1 (ou RB) avant de taper les flèches.</p></details>
+    <details><summary>Est-ce que les codes bloquent les trophées ?</summary><p>Oui, mais seulement pendant la session : tant qu'un code est actif, tu ne peux ni sauvegarder ni gagner de trophées. Quitte le jeu et recharge ta sauvegarde pour revenir à la normale. Ce que tu as fait pendant la triche n'est pas gardé.</p></details>
+    <details><summary>Y a-t-il un code d'invincibilité ou de santé ?</summary><p>Non. Aucun des 61 codes ne rend invincible et il n'y a pas de code de santé.</p></details>
+    <details><summary>Et sur PC ?</summary><p>GTA 6 n'est sorti que sur PS5 et Xbox Series. Les combinaisons utilisent seulement la croix directionnelle : elles sont identiques sur les deux consoles.</p></details>
+  </section>
+  <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
+</section>`;
+  emit(p, layout({ p, title: `Codes de triche GTA 6 : les ${C.length} codes, combinaisons et déblocage`, desc: `Tous les codes de triche de GTA 6 : ce que fait chaque code, comment le débloquer et la combinaison de flèches à taper (${connus} connues).`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes de triche', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -913,6 +958,8 @@ for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat ==
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 for (const f of features.filter((f) => f.properties.service)) { const p = f.properties; push({ t: p.nom, q: p.service, k: norm(`${p.service} service carte ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: '#ffd23f', g: 'lieu', s: 'service', l: 'Point utile · ' + p.service, m: 1, f: p.id }); }
+push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
+for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: c.nomEn, k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code de triche', m: 0 });
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
 

@@ -1,0 +1,1029 @@
+{
+ "info": "Codes de triche de GTA 6 (relevé du 22/11/2026). Sources : GTABase, GTA Wiki, gta6guide.fr. Généré par tools/codes.py.",
+ "categories": [
+  {
+   "id": "joueur",
+   "nom": "Joueur",
+   "icon": "user",
+   "color": "#ff2d87"
+  },
+  {
+   "id": "combat",
+   "nom": "Combat",
+   "icon": "gun",
+   "color": "#ff5a3c"
+  },
+  {
+   "id": "vehicules",
+   "nom": "Véhicules",
+   "icon": "car",
+   "color": "#ff9a1f"
+  },
+  {
+   "id": "environnement",
+   "nom": "Météo et heure",
+   "icon": "sun",
+   "color": "#19d3e3"
+  },
+  {
+   "id": "filtres",
+   "nom": "Filtres d'écran",
+   "icon": "eye",
+   "color": "#9b6bff"
+  }
+ ],
+ "codes": [
+  {
+   "id": "joueur-01",
+   "cat": "joueur",
+   "nom": "250 000 $",
+   "effet": "Donne 250 000 $ tout de suite.",
+   "deblocage": "Terminer l'histoire.",
+   "nomEn": "$250,000 Money",
+   "sequence": [
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "haut",
+    "gauche",
+    "bas",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": true
+  },
+  {
+   "id": "joueur-02",
+   "cat": "joueur",
+   "nom": "Ivresse",
+   "effet": "Rend ton personnage et ton partenaire ivres.",
+   "deblocage": "Dépenser 2 500 $ en alcool.",
+   "nomEn": "Drunk",
+   "sequence": [
+    "haut",
+    "gauche",
+    "droite",
+    "haut",
+    "haut",
+    "gauche",
+    "droite",
+    "haut",
+    "gauche",
+    "droite"
+   ],
+   "confirme": false,
+   "sources": [
+    "GTABase"
+   ],
+   "argent": false
+  },
+  {
+   "id": "joueur-03",
+   "cat": "joueur",
+   "nom": "Augmenter la pression policière",
+   "effet": "Augmente le niveau de pression (« heat ») dans toute la carte.",
+   "deblocage": "Semer 25 fois un avis de recherche à 3 étoiles.",
+   "nomEn": "Raise Heat Level",
+   "sequence": [
+    "gauche",
+    "bas",
+    "droite",
+    "bas",
+    "haut",
+    "bas",
+    "haut"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "joueur-04",
+   "cat": "joueur",
+   "nom": "Augmenter l'avis de recherche",
+   "effet": "Augmente ton niveau de recherche partout sur la carte.",
+   "deblocage": "Semer 50 fois un avis de recherche à 3 étoiles.",
+   "nomEn": "Raise Wanted Level",
+   "sequence": [
+    "gauche",
+    "bas",
+    "droite",
+    "bas",
+    "haut",
+    "droite",
+    "haut"
+   ],
+   "confirme": false,
+   "sources": [
+    "GTABase"
+   ],
+   "argent": false
+  },
+  {
+   "id": "joueur-05",
+   "cat": "joueur",
+   "nom": "Focus illimité",
+   "effet": "Ta jauge de Focus ne se vide plus.",
+   "deblocage": "Terminer l'histoire.",
+   "nomEn": "Unlimited Focus",
+   "sequence": [
+    "bas",
+    "haut",
+    "haut",
+    "bas",
+    "haut",
+    "bas",
+    "haut",
+    "bas",
+    "haut",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "joueur-06",
+   "cat": "joueur",
+   "nom": "Aucun dégât de chute",
+   "effet": "Tu ne prends plus de dégâts en tombant.",
+   "deblocage": "Survivre 20 fois à une chute libre de 12 mètres (40 pieds).",
+   "nomEn": "No Fall Damage",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "joueur-07",
+   "cat": "joueur",
+   "nom": "Parachute",
+   "effet": "Ajoute un parachute à ton équipement.",
+   "deblocage": "Faire 50 sauts en parachute ou BASE jumps depuis au moins 90 mètres (300 pieds).",
+   "nomEn": "Parachute",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "joueur-08",
+   "cat": "joueur",
+   "nom": "Gilet pare-balles",
+   "effet": "Ajoute un gilet pare-balles à ton équipement.",
+   "deblocage": "Faire 100 séances de sport.",
+   "nomEn": "Body Armor",
+   "sequence": [
+    "bas",
+    "haut",
+    "gauche",
+    "haut",
+    "haut",
+    "haut",
+    "haut",
+    "haut",
+    "bas",
+    "bas"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "joueur-09",
+   "cat": "joueur",
+   "nom": "Réparer le véhicule",
+   "effet": "Répare entièrement le véhicule dans lequel tu es.",
+   "deblocage": "Finir 1er de 10 courses à Gellhorn Raceway, Thrillbilly Mud Club et Boone Speedway.",
+   "nomEn": "Repair Vehicle",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "joueur-10",
+   "cat": "joueur",
+   "nom": "Nitro illimitée",
+   "effet": "Ton véhicule ne tombe plus à court de nitro ni de carburant.",
+   "deblocage": "Réussir 50 sauts acrobatiques.",
+   "nomEn": "Unlimited Nitrous",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-11",
+   "cat": "combat",
+   "nom": "Munitions au maximum",
+   "effet": "Remplit les munitions de toutes tes armes.",
+   "deblocage": "Gagner 25 médailles de bronze (ou mieux) aux stands de tir.",
+   "nomEn": "Max Ammo",
+   "sequence": [
+    "bas",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "gauche",
+    "haut",
+    "haut",
+    "bas",
+    "gauche"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "combat-12",
+   "cat": "combat",
+   "nom": "Munitions infinies",
+   "effet": "Tes munitions ne s’épuisent plus.",
+   "deblocage": "Gagner 25 médailles d'argent (ou mieux) aux stands de tir.",
+   "nomEn": "Infinite Ammo",
+   "sequence": [
+    "bas",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "gauche",
+    "haut",
+    "bas",
+    "bas",
+    "bas"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "combat-13",
+   "cat": "combat",
+   "nom": "Sans rechargement",
+   "effet": "Munitions infinies et plus besoin de recharger.",
+   "deblocage": "Gagner 25 médailles d'or aux stands de tir.",
+   "nomEn": "No Reload",
+   "sequence": [
+    "bas",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "gauche",
+    "haut",
+    "bas",
+    "bas",
+    "haut"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "combat-14",
+   "cat": "combat",
+   "nom": "Toutes les armes explosives",
+   "effet": "Ajoute toutes les armes explosives, avec le plein de munitions.",
+   "deblocage": "Lancer 100 grenades.",
+   "nomEn": "All Explosive Weapons",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-15",
+   "cat": "combat",
+   "nom": "Munitions incendiaires",
+   "effet": "Tes munitions mettent le feu aux cibles.",
+   "deblocage": "Brûler 100 ennemis.",
+   "nomEn": "Incendiary Ammo",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-16",
+   "cat": "combat",
+   "nom": "Bouteilles explosives",
+   "effet": "Les bouteilles explosent quand on les touche.",
+   "deblocage": "Lancer 100 cocktails Molotov.",
+   "nomEn": "Exploding Bottles",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-17",
+   "cat": "combat",
+   "nom": "Fusil à pompe explosif",
+   "effet": "Ajoute un Mason & Keen Shortstraw qui tire des cartouches explosives.",
+   "deblocage": "Toucher 100 ennemis avec des explosions.",
+   "nomEn": "Explosive Shotgun",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-18",
+   "cat": "combat",
+   "nom": "Hauners H-AT",
+   "effet": "Ajoute un lance-roquettes Hauners H-AT à ton équipement.",
+   "deblocage": "Faire exploser 100 véhicules.",
+   "nomEn": "Hauners H-AT",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "combat-19",
+   "cat": "combat",
+   "nom": "Force des attaques",
+   "effet": "Tes balles et tes coups envoient les cibles voler.",
+   "deblocage": "Terminer l'histoire.",
+   "nomEn": "Attack Force",
+   "sequence": [
+    "bas",
+    "haut",
+    "gauche",
+    "gauche",
+    "droite",
+    "bas",
+    "bas",
+    "haut",
+    "bas"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ],
+   "argent": false
+  },
+  {
+   "id": "combat-20",
+   "cat": "combat",
+   "nom": "Ballons explosifs",
+   "effet": "Les ballons de sport explosent à l’impact.",
+   "deblocage": "Toucher 20 ennemis avec des explosions.",
+   "nomEn": "Exploding Balls",
+   "sequence": [
+    "bas",
+    "haut",
+    "gauche",
+    "gauche",
+    "droite",
+    "bas",
+    "bas",
+    "haut",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "combat-21",
+   "cat": "combat",
+   "nom": "Force des véhicules",
+   "effet": "Les piétons percutés par un véhicule s’envolent.",
+   "deblocage": "Tuer 25 ennemis avec un véhicule (écraser des passants compte aussi).",
+   "nomEn": "Vehicle Force",
+   "sequence": [
+    "bas",
+    "haut",
+    "gauche",
+    "gauche",
+    "droite",
+    "bas",
+    "gauche",
+    "haut",
+    "bas"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "vehicules-22",
+   "cat": "vehicules",
+   "nom": "Interstate Ambulance",
+   "effet": "Fait apparaître une ambulance.",
+   "deblocage": "Découvrir l'Interstate Ambulance dans le menu Progression.",
+   "nomEn": "Spawn Interstate Ambulance",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-23",
+   "cat": "vehicules",
+   "nom": "Airboat 09",
+   "effet": "Fait apparaître un hydroglisseur Airboat 09.",
+   "deblocage": "Réussir 5 défis Survie.",
+   "nomEn": "Spawn Airboat 09",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-24",
+   "cat": "vehicules",
+   "nom": "Bravado Banshee",
+   "effet": "Fait apparaître une Bravado Banshee.",
+   "deblocage": "Réussir tous les défis Combat.",
+   "nomEn": "Spawn Bravado Banshee",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-25",
+   "cat": "vehicules",
+   "nom": "Tuff BMX",
+   "effet": "Fait apparaître un vélo BMX.",
+   "deblocage": "Réussir 5 défis Forme.",
+   "nomEn": "Spawn Tuff BMX",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-26",
+   "cat": "vehicules",
+   "nom": "Maibatsu Boomazoom",
+   "effet": "Fait apparaître une Maibatsu Boomazoom.",
+   "deblocage": "Réussir 5 défis Shopping.",
+   "nomEn": "Spawn Maibatsu Boomazoom",
+   "sequence": [
+    "gauche",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "gauche",
+    "haut",
+    "gauche"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "vehicules-27",
+   "cat": "vehicules",
+   "nom": "Nagasaki Carbon RS",
+   "effet": "Fait apparaître une moto Nagasaki Carbon RS.",
+   "deblocage": "Réussir tous les défis Exploration.",
+   "nomEn": "Spawn Nagasaki Carbon RS",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-28",
+   "cat": "vehicules",
+   "nom": "Vapid Dominator '65",
+   "effet": "Fait apparaître une Vapid Dominator de 1965.",
+   "deblocage": "Réussir tous les défis Forme.",
+   "nomEn": "Spawn '65 Vapid Dominator",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-29",
+   "cat": "vehicules",
+   "nom": "Progen Emerus",
+   "effet": "Fait apparaître une hypercar Progen Emerus.",
+   "deblocage": "Réussir tous les défis Véhicules.",
+   "nomEn": "Spawn Progen Emerus",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-30",
+   "cat": "vehicules",
+   "nom": "Flamant rose gonflable",
+   "effet": "Fait apparaître une bouée flamant rose.",
+   "deblocage": "Détruire 50 flamants à cocaïne.",
+   "nomEn": "Spawn Inflatable Flamingo",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-31",
+   "cat": "vehicules",
+   "nom": "MTL Pumper",
+   "effet": "Fait apparaître un camion de pompiers.",
+   "deblocage": "Découvrir le MTL Pumper dans le menu Progression.",
+   "nomEn": "Spawn MTL Pumper",
+   "sequence": [
+    "gauche",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "droite",
+    "droite",
+    "haut"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "vehicules-32",
+   "cat": "vehicules",
+   "nom": "Taxi Vapid Stanier G2",
+   "effet": "Fait apparaître un taxi.",
+   "deblocage": "Réussir 5 défis Sport.",
+   "nomEn": "Spawn Vapid Stanier G2 Taxi",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-33",
+   "cat": "vehicules",
+   "nom": "Hauners P-996 Lazer",
+   "effet": "Fait apparaître un avion de chasse.",
+   "deblocage": "Réussir tous les défis.",
+   "nomEn": "Spawn Hauners P-996 Lazer",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-34",
+   "cat": "vehicules",
+   "nom": "HVY Bulldozer",
+   "effet": "Fait apparaître un bulldozer.",
+   "deblocage": "Découvrir le HVY Bulldozer dans le menu Progression.",
+   "nomEn": "Spawn HVY Bulldozer",
+   "sequence": [
+    "gauche",
+    "haut",
+    "droite",
+    "bas",
+    "gauche",
+    "droite",
+    "droite",
+    "bas"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "vehicules-35",
+   "cat": "vehicules",
+   "nom": "Lapwing Mallard",
+   "effet": "Fait apparaître un avion de voltige.",
+   "deblocage": "Réussir 5 défis Véhicules.",
+   "nomEn": "Spawn Lapwing Mallard",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-36",
+   "cat": "vehicules",
+   "nom": "Brimstone Golfer",
+   "effet": "Fait apparaître une voiturette de golf.",
+   "deblocage": "Réussir tous les défis Sport.",
+   "nomEn": "Spawn Brimstone Golfer",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-37",
+   "cat": "vehicules",
+   "nom": "Hauners Rhino (tank)",
+   "effet": "Fait apparaître un tank.",
+   "deblocage": "Réussir tous les défis Survie.",
+   "nomEn": "Spawn Hauners Rhino Tank",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-38",
+   "cat": "vehicules",
+   "nom": "Maibatsu Sanchez",
+   "effet": "Fait apparaître une moto tout-terrain.",
+   "deblocage": "Réussir 5 défis Criminels.",
+   "nomEn": "Spawn Maibatsu Sanchez",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-39",
+   "cat": "vehicules",
+   "nom": "Nagasaki Sea Sparrow",
+   "effet": "Fait apparaître un petit hélicoptère amphibie.",
+   "deblocage": "Réussir 5 défis Exploration.",
+   "nomEn": "Spawn Nagasaki Sea Sparrow",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-40",
+   "cat": "vehicules",
+   "nom": "Speeder 700 GT",
+   "effet": "Fait apparaître un hors-bord.",
+   "deblocage": "Réussir 5 défis Combat.",
+   "nomEn": "Spawn Speeder 700 GT",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-41",
+   "cat": "vehicules",
+   "nom": "Truffade Thrax",
+   "effet": "Fait apparaître une hypercar Truffade Thrax.",
+   "deblocage": "Réussir tous les défis Shopping.",
+   "nomEn": "Spawn Truffade Thrax",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "vehicules-42",
+   "cat": "vehicules",
+   "nom": "Western Zombie Bobber",
+   "effet": "Fait apparaître une moto Western Zombie Bobber.",
+   "deblocage": "Réussir tous les défis Criminels.",
+   "nomEn": "Spawn Western Zombie Bobber",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "environnement-43",
+   "cat": "environnement",
+   "nom": "Avancer l'heure",
+   "effet": "Fait avancer l'heure de la journée.",
+   "deblocage": "Trouver 10 montres à collectionner.",
+   "nomEn": "Move Time Forward",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "environnement-44",
+   "cat": "environnement",
+   "nom": "Figer l'heure",
+   "effet": "Bloque l'heure de la journée.",
+   "deblocage": "Trouver 20 montres à collectionner.",
+   "nomEn": "Pause Time of Day",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "environnement-45",
+   "cat": "environnement",
+   "nom": "Changer la météo",
+   "effet": "Fait défiler les différentes météos.",
+   "deblocage": "Terminer l'histoire.",
+   "nomEn": "Cycle Weather",
+   "sequence": [
+    "bas",
+    "droite",
+    "haut",
+    "bas",
+    "droite",
+    "haut",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "filtres-46",
+   "cat": "filtres",
+   "nom": "Golden Hour",
+   "effet": "Teinte dorée et image en format cinéma.",
+   "deblocage": "Passer 4 heures à se tenir la main.",
+   "nomEn": "Golden Hour",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-47",
+   "cat": "filtres",
+   "nom": "Powdered Sugar",
+   "effet": "Le monde devient blanc, avec des reflets scintillants.",
+   "deblocage": "Scanner tous les débris spatiaux avec WAiNK.",
+   "nomEn": "Powdered Sugar",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-48",
+   "cat": "filtres",
+   "nom": "Pinhole",
+   "effet": "Effet d'appareil photo sténopé.",
+   "deblocage": "Nettoyer 25 opérations de gangs avec ton partenaire.",
+   "nomEn": "Pinhole",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-49",
+   "cat": "filtres",
+   "nom": "Neon Jungle",
+   "effet": "Ajoute des reflets néon partout.",
+   "deblocage": "Découvrir les 16 véhicules Girlypop.",
+   "nomEn": "Neon Jungle",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-50",
+   "cat": "filtres",
+   "nom": "Yesteryear",
+   "effet": "Image de vieille télé en noir et blanc.",
+   "deblocage": "Découvrir la Ridgeway.",
+   "nomEn": "Yesteryear",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-51",
+   "cat": "filtres",
+   "nom": "Cataclysm",
+   "effet": "Remplit le monde de fumée sombre.",
+   "deblocage": "Découvrir la Vamos de Martha dans le menu Progression.",
+   "nomEn": "Cataclysm",
+   "sequence": [
+    "bas",
+    "bas",
+    "haut",
+    "droite",
+    "droite",
+    "haut",
+    "gauche",
+    "gauche",
+    "droite",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "filtres-52",
+   "cat": "filtres",
+   "nom": "Videotape",
+   "effet": "Image de vieille cassette vidéo.",
+   "deblocage": "Faire 50 activités avec ton partenaire.",
+   "nomEn": "Videotape",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-53",
+   "cat": "filtres",
+   "nom": "Dark Mirror",
+   "effet": "Le monde devient noir et à l’envers.",
+   "deblocage": "Gagner 500 000 $ en vendant des véhicules.",
+   "nomEn": "Dark Mirror",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-54",
+   "cat": "filtres",
+   "nom": "Migraine",
+   "effet": "Image floue et déformée.",
+   "deblocage": "Survivre 6 minutes avec un avis de recherche à 6 étoiles.",
+   "nomEn": "Migraine",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-55",
+   "cat": "filtres",
+   "nom": "Dollhouse",
+   "effet": "Couleurs vives et image étroite.",
+   "deblocage": "Passer 8 heures avec ton partenaire.",
+   "nomEn": "Dollhouse",
+   "sequence": [
+    "bas",
+    "bas",
+    "haut",
+    "droite",
+    "droite",
+    "haut",
+    "gauche",
+    "gauche",
+    "bas",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "filtres-56",
+   "cat": "filtres",
+   "nom": "Bubblegum",
+   "effet": "Le monde devient violet et jaune, avec des reflets scintillants.",
+   "deblocage": "Trouver les 24 cartes Vice City Flamingos.",
+   "nomEn": "Bubblegum",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-57",
+   "cat": "filtres",
+   "nom": "Fast Forward",
+   "effet": "Flou de mouvement et nuages accélérés.",
+   "deblocage": "Faire 50 méditations.",
+   "nomEn": "Fast Forward",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-58",
+   "cat": "filtres",
+   "nom": "Fisheye",
+   "effet": "Effet d'objectif fisheye.",
+   "deblocage": "Pêcher 100 poissons.",
+   "nomEn": "Fisheye",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-59",
+   "cat": "filtres",
+   "nom": "Faded Glory",
+   "effet": "Image de vieille télé couleur.",
+   "deblocage": "Braquer 50 magasins avec ton partenaire.",
+   "nomEn": "Faded Glory",
+   "sequence": [
+    "bas",
+    "bas",
+    "haut",
+    "droite",
+    "droite",
+    "haut",
+    "gauche",
+    "gauche",
+    "gauche",
+    "droite"
+   ],
+   "confirme": true,
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ],
+   "argent": false
+  },
+  {
+   "id": "filtres-60",
+   "cat": "filtres",
+   "nom": "Pixel Art",
+   "effet": "Pixelise l'image.",
+   "deblocage": "Gagner 250 000 $ en vendant des objets de collection.",
+   "nomEn": "Pixel Art",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  },
+  {
+   "id": "filtres-61",
+   "cat": "filtres",
+   "nom": "Hellscape",
+   "effet": "Le monde devient rouge et orange, avec un effet de chaleur.",
+   "deblocage": "Voler 100 véhicules de police.",
+   "nomEn": "Hellscape",
+   "sequence": [],
+   "confirme": false,
+   "sources": [],
+   "argent": false
+  }
+ ]
+}

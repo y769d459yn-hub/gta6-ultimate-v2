@@ -419,22 +419,25 @@
   "cat": "gameplay",
   "icon": "code",
   "nom": "Codes de triche",
-  "bref": "On les saisit au téléphone avec une suite de flèches.",
+  "bref": "61 codes, qui se tapent au téléphone avec une suite de flèches.",
   "sait": [
-   "Ils se débloquent après l'histoire.",
-   "Ils bloquent la sauvegarde et les trophées."
+   "Ils apparaissent dans le menu Progression après l'histoire.",
+   "Chacun se débloque par un défi (sport, stands de tir, collection…).",
+   "Ils bloquent la sauvegarde et les trophées jusqu'à ce que tu quittes le jeu.",
+   "Il n'y a pas de code d'invincibilité ni de santé."
   ],
   "incertain": [
-   "Il y aurait 61 codes, dont seulement une partie est connue."
+   "42 combinaisons n'ont pas encore été trouvées par la communauté."
   ],
   "liens": [
    "entrer-code-triche",
    "code-argent"
   ],
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "redbull-cheats",
-   "gtacheatcodes"
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
   ]
  },
  {

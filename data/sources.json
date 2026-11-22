@@ -284,5 +284,20 @@
  "sportskeeda-cars": {
   "n": "Sportskeeda",
   "u": "https://www.sportskeeda.com/esports/7-best-early-game-cars-gta-6-get"
+ },
+ "gtabase-cheats": {
+  "n": "GTABase — codes de triche GTA 6",
+  "u": "https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes",
+  "official": false
+ },
+ "gtawiki-cheats": {
+  "n": "GTA Wiki — Cheats in GTA VI",
+  "u": "https://gta.wiki/w/Cheats_in_GTA_VI",
+  "official": false
+ },
+ "gta6guide-cheats": {
+  "n": "gta6guide.fr — codes de triche",
+  "u": "https://gta6guide.fr/gta-6/codes-triche",
+  "official": false
  }
 }
