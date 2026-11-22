@@ -199,7 +199,7 @@
     const quoi = t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
     const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
     const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
-    const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${f.missions.map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/#${escH(m.id)}">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
+    const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/#${escH(m.id)}">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
     const prox = BESOINS.map(([lab, icn, court]) => {
       let best = null, bd = Infinity;
       atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && x.service === lab) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
@@ -221,12 +221,13 @@
       try { if (navigator.share && innerWidth < 900) await navigator.share({ title: f.nom, url: u.href }); else { await navigator.clipboard.writeText(u.href); LG.toast && LG.toast('Lien copié', 'check'); } } catch (err) { /* annulé */ }
     });
     panel.classList.toggle('pn-peek', !!state.spot && innerWidth < 900);
-    const cur = $('.pn-mis li.is-cur', panel); if (cur) panel.scrollTop = Math.max(0, cur.offsetTop - 60);
+    // la fiche s'ouvre en haut, titre visible ; ta mission est en tête de liste
+    panel.scrollTop = 0;
     if (innerWidth < 900) {
       // le point se place au milieu de l'espace libre entre la barre du haut et la fiche
       const ts = Math.max(atlas.cam.s, state.spot ? .45 : .3), sr = stage.getBoundingClientRect();
       const y0 = top.getBoundingClientRect().bottom - sr.top, y1 = panel.getBoundingClientRect().top - sr.top;
-      atlas.flyTo(f.x, f.y - (sr.height / 2 - (y0 + y1) / 2) / ts, ts);
+      atlas.flyTo(f.x, f.y - (sr.height / 2 - ((y0 + y1) / 2 - (state.spot ? 16 : 0))) / ts, ts); // un peu plus haut : le nom du lieu tient sous le point
     }
   }
   function openCommu(p) {
