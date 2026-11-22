@@ -59,19 +59,19 @@
           let im = imgs.get(id);
           if (!im) {
             im = new Image(); im.decoding = 'async'; im.alt = ''; im.draggable = false; im.className = 'at-tile';
-            im.style.zIndex = L; im.style.opacity = 0;
+            im.style.zIndex = L; im.style.opacity = 0; im.style.width = im.style.height = T.tileSize + 'px';
             im.onload = () => { im.style.opacity = 1; };
             im.src = `${ROOT}tiles/${L}/${key}.webp`;
             tilesEl.appendChild(im); imgs.set(id, im);
           }
           const [sx, sy] = toScreen(tx * span - T.zero, T.zero - ty * span);
           const size = span * cam.s;
-          im.style.display = '';
-          im.style.transform = `translate3d(${sx}px,${sy}px,0)`;
-          im.style.width = im.style.height = (size + .6) + 'px';
+          if (im._h) { im.style.display = ''; im._h = 0; }
+          const tr = `translate3d(${sx.toFixed(1)}px,${sy.toFixed(1)}px,0) scale(${((size + .6) / T.tileSize).toFixed(5)})`;
+          if (im._t !== tr) { im.style.transform = tr; im._t = tr; }
         }
       }
-      imgs.forEach((im, id) => { if (!seen.has(id)) im.style.display = 'none'; });
+      imgs.forEach((im, id) => { if (!seen.has(id) && !im._h) { im.style.display = 'none'; im._h = 1; } });
     }
 
     // ---------- repères ----------
@@ -124,7 +124,14 @@
           el.dataset.id = f.id;
           el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); select(f); });
         } else {
-          el.className = 'at-cl'; el.textContent = c.m.length; el.setAttribute('aria-label', `${c.m.length} repères : zoomer`);
+          const by = {}; c.m.forEach((f) => { by[f.cat] = (by[f.cat] || 0) + 1; });
+          const parts = Object.entries(by).sort((a, b) => b[1] - a[1]);
+          let acc = 0; const stops = parts.map(([k, n]) => { const a0 = acc; acc += n / c.m.length * 360; return `${(cats[k] || {}).color || '#ff2bd6'} ${a0}deg ${acc}deg`; });
+          el.className = 'at-cl'; el.innerHTML = `<b>${c.m.length}</b>`;
+          el.style.setProperty('--ring', `conic-gradient(${stops.join(',')})`);
+          el.style.setProperty('--c', (cats[parts[0][0]] || {}).color || '#ff2bd6');
+          el.style.setProperty('--sz', Math.min(52, 38 + Math.sqrt(c.m.length) * 2.2) + 'px');
+          el.setAttribute('aria-label', `${c.m.length} repères ici (${parts.map(([k, n]) => `${n} ${((cats[k] || {}).nom || k).toLowerCase()}`).join(', ')}) : toucher pour zoomer`);
           el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); fit(c.m, 2.6); });
         }
         add(el, x, y);
@@ -137,19 +144,23 @@
     function render(force) {
       clamp(); drawTiles();
       const key = st.showCommu && cam.s >= .07 ? Math.round(cam.x / (W / cam.s / 3)) + ':' + Math.round(cam.y / (H / cam.s / 3)) : '';
-      if (force || !builtS || Math.abs(Math.log(cam.s / builtS)) > .1 || key !== lastCenter) { lastCenter = key; build(); } else place();
+      const busy = pts.size > 0 || wheeling || anim > 0;
+      if (force || !builtS || (!busy && (Math.abs(Math.log(cam.s / builtS)) > .1 || key !== lastCenter))) { lastCenter = key; build(); } else place();
       o.onView && o.onView(cam);
     }
     let raf = 0; const req = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); };
 
     // ---------- caméra ----------
+    let tw = null, anim = 0;
+    function stop() { const k = !!tw; if (tw) tw.kill(); tw = null; anim = 0; return k; }
     function flyTo(x, y, s = cam.s, dur = .9) {
       s = Math.min(Math.max(s, sMin * .8), sMax);
       if (!g || reduce()) { Object.assign(cam, { x, y, s }); return render(true); }
-      g.killTweensOf(cam);
+      stop();
       const s0 = cam.s;
       const p = { t: 0 }, x0 = cam.x, y0 = cam.y;
-      g.to(p, { t: 1, duration: dur, ease: 'expo.out', onUpdate: () => { cam.x = x0 + (x - x0) * p.t; cam.y = y0 + (y - y0) * p.t; cam.s = s0 * Math.pow(s / s0, p.t); render(); }, onComplete: () => render(true) });
+      anim++;
+      tw = g.to(p, { t: 1, duration: dur, ease: 'expo.out', onUpdate: () => { cam.x = x0 + (x - x0) * p.t; cam.y = y0 + (y - y0) * p.t; cam.s = s0 * Math.pow(s / s0, p.t); render(); }, onComplete: () => { anim = 0; tw = null; render(true); } });
     }
     function zoomAt(sx, sy, f) {
       const [mx, my] = toWorld(sx, sy); const ns = Math.min(Math.max(cam.s * f, sMin * .8), sMax);
@@ -170,11 +181,11 @@
     }
 
     // ---------- gestes ----------
-    let moved = false, armed = false;
+    let moved = false, armed = false, wheeling = false, stopped = false;
     const pts = new Map(); let start = null, pinch = null, vel = { x: 0, y: 0, t: 0, px: 0, py: 0 };
     stage.addEventListener('pointerdown', (e) => {
       if (e.pointerType === 'mouse' && e.button !== 0) return;
-      g && g.killTweensOf(cam); armed = true; moved = false;
+      if (stop()) stopped = true; armed = true; moved = false;
       pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
       if (pts.size === 1) { start = { x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y, id: e.pointerId }; vel = { x: 0, y: 0, t: performance.now(), px: e.clientX, py: e.clientY }; }
       if (pts.size === 2) {
@@ -208,8 +219,11 @@
         stage.classList.remove('is-drag');
         if (pan && g && !reduce() && performance.now() - vel.t < 80) {
           const p = { t: 0 }, x0 = cam.x, y0 = cam.y, tx = -vel.x * 280 / cam.s, ty = vel.y * 280 / cam.s;
-          g.to(p, { t: 1, duration: 1, ease: 'power3.out', onUpdate: () => { cam.x = x0 + tx * p.t; cam.y = y0 + ty * p.t; render(); }, onComplete: () => render(true) });
+          anim++;
+          tw = g.to(p, { t: 1, duration: 1, ease: 'power3.out', onUpdate: () => { cam.x = x0 + tx * p.t; cam.y = y0 + ty * p.t; render(); }, onComplete: () => { anim = 0; tw = null; render(true); } });
         } else if (moved) render(true);
+        else if (stopped) setTimeout(() => render(true), 0); // après le clic éventuel sur un repère
+        stopped = false;
         start = null; setTimeout(() => { moved = false; }, 0);
       } else if (pts.size === 1) { const [id, p] = [...pts.entries()][0]; start = { x: p.x, y: p.y, cx: cam.x, cy: cam.y, id }; }
     };
@@ -218,12 +232,12 @@
     stage.addEventListener('pointerleave', () => { if (!pts.size && o.wheelNeedsArm) armed = false; });
     stage.addEventListener('wheel', (e) => {
       if (o.wheelNeedsArm && !(e.ctrlKey || e.metaKey || armed)) { o.onWheelHint && o.onWheelHint(); return; }
-      e.preventDefault(); g && g.killTweensOf(cam);
+      e.preventDefault(); stop(); wheeling = true;
       const r = stage.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
       const [mx, my] = toWorld(sx, sy);
       cam.s = Math.min(Math.max(cam.s * Math.exp(-e.deltaY * (e.ctrlKey ? .012 : .0022)), sMin * .8), sMax);
       cam.x = mx - (sx - fx()) / cam.s; cam.y = my + (sy - fy()) / cam.s; req();
-      clearTimeout(stage._wt); stage._wt = setTimeout(() => render(true), 160);
+      clearTimeout(stage._wt); stage._wt = setTimeout(() => { wheeling = false; render(true); }, 160);
     }, { passive: false });
     stage.addEventListener('dblclick', (e) => { const r = stage.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, 2.2); });
     stage.addEventListener('keydown', (e) => {
@@ -248,6 +262,11 @@
       setCommuFilter(fn) { st.commuFilter = fn; render(true); },
       clearActive() { st.active = null; render(true); },
       feats: () => st.feats, nodes: () => nodes, layer, stage, toScreen,
+      inView() {
+        const [x0, y1] = toWorld(pad.left, pad.top), [x1, y0] = toWorld(W - pad.right, H - pad.bottom);
+        return st.feats.filter((f) => !f.label && st.filter(f) && f.x >= x0 && f.x <= x1 && f.y >= y0 && f.y <= y1);
+      },
+      active: () => st.active,
       measure() { measure(); render(true); }
     };
   }

@@ -15,7 +15,16 @@
   const stage = $('.atp-stage'), panel = $('[data-panel]'), top = $('.atp-top');
   const params = new URLSearchParams(location.search);
   let atlas, D, commu = [], commuCats = {}, cats = {}, regions = {};
-  const shown = new Set(), state = { commu: false };
+  const shown = new Set(), state = { commu: false, fromList: false };
+  // Ce que veut dire chaque couleur, en mots simples
+  const SENS = {
+    argent: "Où gagner de l'argent",
+    vehicules: 'Où trouver une voiture, une moto, un bateau ou un avion',
+    lieux: 'Les endroits importants à connaître',
+    activites: 'Des choses à faire : sport, loisirs, défis',
+    'points-utiles': 'Magasins, garages, hôpitaux, armureries…'
+  };
+  const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
 
   Promise.all([fetch(ROOT + 'data/carte.json').then((r) => r.json()), fetch(ROOT + 'data/communaute.json').then((r) => r.json()).catch(() => ({ lieux: [], categories: [] }))]).then(([d, c]) => {
     D = d; commu = c.lieux; c.categories.forEach((k) => { commuCats[k.id] = k; });
@@ -25,7 +34,7 @@
     atlas = window.Atlas(stage, {
       root: ROOT, tuiles: d.tuiles, carte: d, pad: padding(),
       onSelect: (f) => (f.commu ? openCommu(f) : openFeature(f)),
-      onRegion: openRegion, onBlank: closePanel
+      onRegion: openRegion, onBlank: closePanel, onView: countView
     });
     atlas.setCommu(commu);
     syncChips(); applyFilter();
@@ -37,12 +46,13 @@
     if (f) setTimeout(() => { f.label ? openRegion(regions[f.id]) : atlas.select(f, { fly: innerWidth >= 900, s: .32 }); }, 250);
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     bind();
+    if (!f && !params.get('region') && !store.get('lg-carte-aide')) setTimeout(openHelp, 600);
     if (g && !reduce) g.from('.atp-top > *, .atp-ctrl > *, .atp-regions > *', { opacity: 0, y: -10, duration: .6, stagger: .03, ease: 'expo.out' });
   }).catch(() => { stage.textContent = 'Carte indisponible pour le moment.'; });
 
   function padding() {
     const mob = innerWidth < 900;
-    return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mob ? 140 : 70, left: 10, right: mob ? 10 : 70 };
+    return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mob ? 140 : 70, left: 10, right: mob ? 10 : (panel.hidden ? 70 : 430) };
   }
   function syncChips() {
     $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', shown.has(b.dataset.cat)));
@@ -55,12 +65,71 @@
 
   // ---------- panneau de détail ----------
   function showPanel(html) {
-    panel.innerHTML = html; panel.hidden = false; page.classList.add('has-panel');
+    panel.innerHTML = html; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
+    if (innerWidth >= 900 && atlas) atlas.setPad(padding());
     $('[data-x]', panel).addEventListener('click', closePanel);
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { panel.hidden = true; page.classList.remove('has-panel'); atlas && atlas.clearActive(); }
+  function closePanel() { panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); atlas.clearActive(); } }
+  // Téléphone : glisser la fiche vers le bas pour la fermer
+  let sw = null;
+  panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
+  panel.addEventListener('touchmove', (e) => { if (!sw) return; sw.d = Math.max(0, e.touches[0].clientY - sw.y); panel.style.transform = `translateY(${sw.d}px)`; }, { passive: true });
+  panel.addEventListener('touchend', () => { if (!sw) return; const d = sw.d; sw = null; panel.style.transform = ''; if (d > 90) closePanel(); });
+
+  // ---------- nombre de repères visibles (bouton Liste) ----------
+  let cvT = 0;
+  function countView() { if (cvT) return; cvT = setTimeout(() => { cvT = 0; const el = $('[data-n="vue"]'); if (el && atlas) el.textContent = atlas.inView().length; }, 200); }
+
+  // ---------- précédent / suivant dans la même catégorie ----------
+  function sameCat(f) { return atlas.feats().filter((x) => !x.label && x.cat === f.cat && shown.has(x.cat)).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')); }
+  function nav(f) {
+    const list = sameCat(f), i = list.findIndex((x) => x.id === f.id), c = cats[f.cat] || {};
+    if (list.length < 2 && !state.fromList) return '';
+    const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length];
+    return `<div class="pn-nav">${state.fromList ? `<button type="button" class="pn-navb pn-navb--txt" data-back>${ic('list')}<span>Liste</span></button>` : ''}
+      ${list.length > 1 ? `<button type="button" class="pn-navb" data-go="${escH(prev.id)}" aria-label="Précédent : ${escH(prev.nom)}">${ic('arrow-left')}</button>
+      <span class="pn-navn">${i + 1} / ${list.length} <small>${escH((c.nom || '').toLowerCase())}</small></span>
+      <button type="button" class="pn-navb" data-go="${escH(next.id)}" aria-label="Suivant : ${escH(next.nom)}">${ic('arrow-right')}</button>` : ''}</div>`;
+  }
+  function go(id) { const f = atlas.feats().find((x) => x.id === id); if (f) atlas.select(f, { fly: innerWidth >= 900, s: Math.max(atlas.cam.s, .3) }); }
+  function bindNav() {
+    $$('[data-go]', panel).forEach((b) => b.addEventListener('click', () => go(b.dataset.go)));
+    const bk = $('[data-back]', panel); if (bk) bk.addEventListener('click', openList);
+  }
+
+  // ---------- liste des repères visibles ----------
+  function openList() {
+    const list = atlas.inView();
+    const by = {}; list.forEach((f) => { (by[f.cat] ||= []).push(f); });
+    const groups = Object.keys(cats).filter((k) => by[k]).map((k) => {
+      const c = cats[k];
+      return `<section class="pn-lg" style="--c:${c.color}"><h3><i></i>${escH(c.nom)} <small>${by[k].length}</small></h3>
+        <ul>${by[k].sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map((f) => `<li><button type="button" data-pick="${escH(f.id)}"><span class="pn-li-i">${ic(f.icon)}</span><span><b>${escH(f.nom)}</b><small>${escH(f.tip ? f.tip.titre : (f.service || (regions[f.region] || {}).nom || ''))}</small></span>${ic('arrow-right')}</button></li>`).join('')}</ul></section>`;
+    }).join('');
+    showPanel(`${head('list', '#ff2bd6', 'Dans cette partie de la carte', list.length ? `${list.length} point${list.length > 1 ? 's' : ''} à voir` : 'Aucun point ici')}
+      ${list.length ? `<p class="pn-hint">Touche un nom pour voir ce que c'est et où aller.</p>${groups}` : '<p>Déplace la carte ou dézoome pour trouver des points.</p>'}`);
+    $$('[data-pick]', panel).forEach((b) => b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = true; atlas.select(f, { fly: innerWidth >= 900, s: Math.max(atlas.cam.s, .3) }); }));
+  }
+
+  // ---------- aide : comment utiliser la carte + légende ----------
+  function openHelp() {
+    store.set('lg-carte-aide', '1');
+    const dot = (c, icn, cls = '') => `<span class="hl-dot ${cls}" style="--c:${c}">${ic(icn)}</span>`;
+    showPanel(`${head('question', '#19d3e3', "Mode d'emploi", 'Comment utiliser la carte')}
+      <ol class="hl-steps">
+        <li>${dot('#ff9a1f', 'car')}<span><b>Touche un rond coloré</b>Tu vois ce que c'est, où aller et quoi faire.</span></li>
+        <li><span class="hl-dot hl-cl" style="--ring:conic-gradient(#39ff88 0 40%,#ff9a1f 40% 70%,#ffd23f 70%)"><b>12</b></span><span><b>Un rond avec un chiffre ?</b>Il regroupe plusieurs points. Touche-le pour zoomer dessus.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('expand')}</span><span><b>Zoome et déplace-toi</b>Pince avec deux doigts (ou molette, ou + et −). Glisse pour te déplacer.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('list')}</span><span><b>Tu préfères une liste ?</b>Le bouton « Liste » montre tous les points visibles à l'écran.</span></li>
+      </ol>
+      <h3 class="hl-h">Les couleurs</h3>
+      <ul class="hl-leg">${Object.values(cats).map((c) => `<li>${dot(c.color, c.icon)}<span><b>${escH(c.nom)}</b>${escH(SENS[c.id] || '')}</span></li>`).join('')}
+        <li>${dot('#ff9a1f', 'pin', 'hl-dash')}<span><b>Bord en pointillés</b>Position approximative : cherche dans le coin.</span></li></ul>
+      <div class="pn-act"><button type="button" class="nbtn nbtn--primary" data-ok><span>C'est parti</span><i>${ic('arrow-right')}</i></button></div>`);
+    $('[data-ok]', panel).addEventListener('click', closePanel);
+  }
   const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
   function openFeature(f) {
     const c = cats[f.cat] || {}; const r = regions[f.region]; const st = STAT[f.statut] || STAT['a-verifier'];
@@ -79,7 +148,9 @@
       : `${where}<p>${escH(f.desc || '')}</p>
          <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
     const quoi = t ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
-    showPanel(`${head(f.icon, c.color, quoi, t ? t.titre : f.nom)}${body}`);
+    const img = f.img ? `<figure class="pn-img"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}" decoding="async">${f.imgNote || f.imgCredit ? `<figcaption>${f.imgNote ? `<b>${escH(f.imgNote)}</b> · ` : ''}${f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''}</figcaption>` : ''}</figure>` : '';
+    showPanel(`${head(f.icon, c.color, quoi, t ? t.titre : f.nom)}${img}${body}${nav(f)}`);
+    bindNav();
     if (innerWidth < 900) {
       const ts = Math.max(atlas.cam.s, .3); const ph = panel.offsetHeight;
       atlas.flyTo(f.x, f.y - (ph / 2 + 10) / ts, ts);
@@ -158,6 +229,10 @@
     });
     $$('[data-z]').forEach((b) => b.addEventListener('click', () => { const z = b.dataset.z; if (z === 'in') atlas.zoomIn(); else if (z === 'out') atlas.zoomOut(); else { closePanel(); atlas.reset(); } }));
     $$('[data-reg]').forEach((b) => b.addEventListener('click', () => openRegion(regions[b.dataset.reg])));
+    $('[data-list]').addEventListener('click', () => { state.fromList = false; openList(); });
+    $('[data-help]').addEventListener('click', openHelp);
+    const src = $('.at-attrib--page'); if (src && innerWidth >= 900) src.open = true;
+    countView();
     addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
     let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => atlas.setPad(padding()), 150); });
   }
