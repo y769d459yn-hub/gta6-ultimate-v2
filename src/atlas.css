@@ -275,3 +275,12 @@
 .atp-panel .pn-mis li.is-cur a { border-color: #ff3d6e; background: rgba(255, 61, 110, .18); box-shadow: 0 0 0 1px #ff3d6e, 0 0 22px -8px #ff3d6e; position: relative; padding-top: 22px; }
 .atp-panel .pn-mis-cur { position: absolute; left: 10px; top: 6px; font: 700 .66rem/1 var(--fm, monospace); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: #ff8fab; }
 @media (max-width: 899px) { .atp-panel.pn-peek { max-height: 40vh; } }
+.atp-solo { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 8px 8px 12px; border-radius: 14px; background: rgba(9, 8, 15, .96); border: 1px solid #ff3d6e; box-shadow: 0 0 22px -8px #ff3d6e; font: 500 .84rem/1.35 var(--fd, sans-serif); color: var(--tx2, #d3cdea); pointer-events: auto; }
+.atp-solo[hidden] { display: none; }
+.atp-solo > .ic { width: 18px; height: 18px; flex: none; color: #ff3d6e; }
+.atp-solo b { color: #fff; }
+.atp-solo button { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border-radius: 999px; background: #ff3d6e; color: #0b0614; font: 600 .84rem/1 var(--fd, sans-serif); }
+.atp-solo button .ic { width: 15px; height: 15px; }
+@media (max-width: 899px) { .atp-solo span { font-size: .8rem; } }
+.atp-solo-more { font-style: normal; }
+@media (max-width: 899px) { .atp-solo-more { display: none; } }

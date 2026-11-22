@@ -48,7 +48,7 @@
     const f = focus && atlas.feats().find((x) => x.id === focus);
     if (only && cats[only] && !focus) setTimeout(() => openAnswer(only), 300);
     // arrivée par un lien (mission, lieu…) : le point est mis en avant, le reste s'efface
-    if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); atlas.select(f, { fly: true, s: .45 }); }, 250);
+    if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); if (params.get('mission')) solo(f); atlas.select(f, { fly: true, s: .45 }); }, 250);
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     bind();
     if (!f && !only && !params.get('region') && !store.get('lg-carte-aide')) setTimeout(openHelp, 600);
@@ -60,20 +60,28 @@
     return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mob ? 140 : 70, left: 10, right: mob ? 10 : (panel.hidden ? 70 : 430) };
   }
   function syncChips() {
-    $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', state.sel === b.dataset.cat));
-    $('[data-all]').setAttribute('aria-pressed', !state.sel);
+    $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', !state.solo && state.sel === b.dataset.cat));
+    $('[data-all]').setAttribute('aria-pressed', !state.sel && !state.solo);
     $('[data-commu]').setAttribute('aria-pressed', state.commu);
     const u = new URL(location.href);
     state.sel ? u.searchParams.set('cat', state.sel) : u.searchParams.delete('cat');
     u.searchParams.delete('focus'); history.replaceState(null, '', u);
   }
-  function applyFilter() { atlas.setFilter((f) => shown.has(f.cat)); atlas.showCommu(state.commu); countView(); }
+  function applyFilter() { atlas.setFilter((f) => (state.solo ? f.id === state.solo : shown.has(f.cat))); atlas.showCommu(state.commu && !state.solo); countView(); }
+  // depuis une mission : on ne garde que son lieu ; le reste revient quand on choisit une catégorie
+  function solo(f) {
+    state.solo = f.id;
+    $('[data-solo-nom]').textContent = f.nom; $('[data-solo]').hidden = false;
+    syncChips(); applyFilter();
+  }
+  function unsolo() { if (!state.solo) return; state.solo = ''; state.spot = ''; $('[data-solo]').hidden = true; atlas.spot(false); }
   function choose(id) {
+    unsolo();
     state.sel = id || ''; shown.clear();
     if (id) shown.add(id); else Object.keys(cats).forEach((k) => shown.add(k));
     syncChips(); applyFilter();
   }
-  function ensureShown(f) { if (!shown.has(f.cat)) choose(''); }
+  function ensureShown(f) { if (state.solo ? f.id !== state.solo : !shown.has(f.cat)) choose(''); }
 
   // ---------- panneau de détail ----------
   function showPanel(html) {
@@ -83,7 +91,7 @@
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { if (atlas) atlas.spot(false); state.spot = ''; panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); atlas.clearActive(); } }
+  function closePanel() { if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
   // Téléphone : glisser la fiche vers le bas pour la fermer
   let sw = null;
   panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
@@ -290,7 +298,9 @@
       b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
     }));
     $('[data-all]').addEventListener('click', () => { choose(''); closePanel(); atlas.reset(); });
+    $('[data-solo-off]').addEventListener('click', () => { choose(''); closePanel(); });
     $('[data-commu]').addEventListener('click', () => {
+      if (state.solo) { unsolo(); choose(''); }
       state.commu = !state.commu; syncChips(); applyFilter();
       if (state.commu && atlas.cam.s < .07) { atlas.flyTo(-900, 600, .14); LG.toast && LG.toast('Zoome pour voir les lieux de la communauté', 'info'); }
     });

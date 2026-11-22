@@ -786,6 +786,7 @@ for (const v of VEHICULES) {
       ${site.categories.carte.map((c) => `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.sens)}">${icon(c.icon)}${esc(c.q)}<small data-n="${c.id}"></small></button>`).join('')}
       <button type="button" class="atp-chip atp-chip--commu" data-commu aria-pressed="false" style="--c:#c7c2e0"><i></i>Lieux de la communauté<small data-n="commu"></small></button>
     </div>
+    <div class="atp-solo" data-solo hidden role="status">${icon('flag')}<span>Seul le lieu de ta mission est affiché : <b data-solo-nom></b>.<i class="atp-solo-more"> Choisis ce que tu cherches pour voir le reste.</i></span><button type="button" data-solo-off>${icon('map')}Tout afficher</button></div>
   </div>
   <div class="atp-ctrl">
     <button type="button" class="hm-btn hm-btn--help" data-help aria-label="Comment utiliser la carte">${icon('question')}</button>
