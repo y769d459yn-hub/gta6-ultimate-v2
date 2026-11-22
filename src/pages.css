@@ -240,3 +240,9 @@
 .v2 .vgrp .card[hidden] { display: none; }
 .v2 .pill--ok { color: #7dffb3; border-color: rgba(57, 255, 136, .45); }
 .vdlg-d { margin: -4px 0 12px; font: 400 .95rem/1.5 var(--fd); color: var(--tx2); }
+.vdlg-verif { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 12px; padding: 10px 12px; border-radius: 12px; font: 500 .88rem/1.4 var(--fd); background: rgba(57, 255, 136, .06); border: 1px solid rgba(57, 255, 136, .35); color: var(--tx); }
+.vdlg-verif .ic { width: 16px; height: 16px; flex: none; margin-top: 2px; color: #7dffb3; }
+.vdlg-verif--a-confirmer, .vdlg-verif--non-confirme { background: rgba(255, 224, 122, .05); border-color: rgba(255, 224, 122, .4); }
+.vdlg-verif--a-confirmer .ic, .vdlg-verif--non-confirme .ic { color: #ffe07a; }
+.v2 .fact-verif dd small { display: block; margin-top: 4px; color: var(--tx2); font-size: .82rem; }
+.v2 .fact-verif--non-confirme dd, .v2 .fact-verif--a-confirmer dd { color: #ffe07a; }

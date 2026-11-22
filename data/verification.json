@@ -1,0 +1,2432 @@
+{
+ "info": "Vérification de présence dans GTA 6 (22/11/2026) : site officiel Rockstar, GTA Wiki, GTABase, gta6guide.fr. Généré par tools/verification.py.",
+ "vehicules": {
+  "obey-8f-drafter": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "8F Drafter",
+   "note": null
+  },
+  "hauners-apc": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "APC",
+   "note": null
+  },
+  "airgator-airboat-09": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Airboat 09",
+   "note": null
+  },
+  "whiffler-airport-bus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Airport Bus",
+   "note": null
+  },
+  "hvy-airtug": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Airtug",
+   "note": null
+  },
+  "declasse-akane": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Akane",
+   "note": null
+  },
+  "vapid-aleutian": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Aleutian",
+   "note": null
+  },
+  "karin-allander": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Allander",
+   "note": null
+  },
+  "albany-alpha": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Alpha",
+   "note": null
+  },
+  "principe-alvino-v1": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Alvino V1",
+   "note": null
+  },
+  "interstate-ambulance": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ambulance",
+   "note": null
+  },
+  "declasse-ambulance-90s": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ambulance",
+   "note": null
+  },
+  "amloco": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Unnamed GTA VI GE Genesis-inspired locomotive",
+   "note": null
+  },
+  "obey-animus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Animus",
+   "note": null
+  },
+  "ubermacht-apoc": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "ubermacht-apoc-cabrio": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "dundreary-arcturus-93": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Arcturus",
+   "note": null
+  },
+  "karin-asterope-gz": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Asterope GZ",
+   "note": null
+  },
+  "pfister-astron": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Astron",
+   "note": null
+  },
+  "lcc-avarus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Avarus",
+   "note": null
+  },
+  "dinka-b3000-excavator": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "B3000 Excavator",
+   "note": null
+  },
+  "tuff-bmx": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "BMX",
+   "note": null
+  },
+  "gallivanter-baller-ii": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "gallivanter-baller-st-d": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Baller ST-D",
+   "note": null
+  },
+  "bravado-banshee": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Banshee",
+   "note": null
+  },
+  "pegassi-bati-801": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "interstate-benson-97": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Benson",
+   "note": null
+  },
+  "grotti-bestia-gts": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "cartwright-biff": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Biff",
+   "note": null
+  },
+  "bravado-bison": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison",
+   "note": null
+  },
+  "bravado-bison-1800": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison 1800",
+   "note": null
+  },
+  "bravado-bison-1800-police": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison 1800",
+   "note": null
+  },
+  "bravado-bison-3800": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison 3800",
+   "note": null
+  },
+  "bravado-bison-900-95": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison 900",
+   "note": null
+  },
+  "bravado-bison-900-95-lifted": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bison 900",
+   "note": null
+  },
+  "mer-can-blast": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Blast",
+   "note": null
+  },
+  "nagasaki-blazer": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Blazer",
+   "note": null
+  },
+  "blimp": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "dinka-blista-85": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Blista Compact",
+   "note": null
+  },
+  "declasse-bobcat-xl-84": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bobcat XL",
+   "note": null
+  },
+  "bravado-bogan": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bogan",
+   "note": null
+  },
+  "maibatsu-boomazoom": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Boomazoom",
+   "note": null
+  },
+  "brute-boxville": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Boxville",
+   "note": null
+  },
+  "albany-buccaneer-65": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buccaneer",
+   "note": null
+  },
+  "albany-buccaneer-custom": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buccaneer",
+   "note": null
+  },
+  "bravado-buffalo-07": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buffalo",
+   "note": null
+  },
+  "bravado-buffalo-19": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buffalo",
+   "note": null
+  },
+  "hvy-bulldozer": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "declasse-burrito-98": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Burrito",
+   "note": null
+  },
+  "whiffler-bus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Bus",
+   "note": null
+  },
+  "bottcher-buzzard-attack-chopper": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buzzard Attack Chopper",
+   "note": null
+  },
+  "calder-cb69": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "CB69",
+   "note": null
+  },
+  "maibatsu-caddy-82": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Caddy",
+   "note": null
+  },
+  "brute-camper": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "vapid-caracara": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "vapid-caracara-4x4": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Caracara 4x4",
+   "note": null
+  },
+  "nagasaki-carbon-rs": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Carbon RS",
+   "note": null
+  },
+  "grotti-carbonizzare": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Carbonizzare",
+   "note": null
+  },
+  "albany-cavalcade-xl": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Cavalcade XL",
+   "note": null
+  },
+  "dinka-chavos-xs": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Chavos XS",
+   "note": null
+  },
+  "dundreary-chino-65": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Chino",
+   "note": null
+  },
+  "clarion": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Clarion",
+   "note": null
+  },
+  "western-cliffhanger": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Cliffhanger",
+   "note": null
+  },
+  "pfister-comet-88": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Comet Retro Custom",
+   "note": null
+  },
+  "dingus-como": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "karin-contender": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Contender",
+   "note": null
+  },
+  "invetero-coquette": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Coquette",
+   "note": null
+  },
+  "invetero-coquette-64": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Coquette",
+   "note": null
+  },
+  "invetero-coquette-d10": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Coquette D10",
+   "note": null
+  },
+  "canis-crawler-82": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Crawler",
+   "note": null
+  },
+  "cruise-ship": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "walter-cruiser": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Cruiser (bike)",
+   "note": null
+  },
+  "ubermacht-cypher": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Cypher",
+   "note": null
+  },
+  "declasse-d7700": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "D7700",
+   "note": null
+  },
+  "imponte-df8-90": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "DF8-90",
+   "note": null
+  },
+  "whiffler-dashound": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dashound",
+   "note": null
+  },
+  "albany-devanity-59": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Devanity",
+   "note": null
+  },
+  "schyster-deviant-72": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Deviant",
+   "note": null
+  },
+  "vapid-dominator": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dominator",
+   "note": null
+  },
+  "vapid-dominator-65": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dominator",
+   "note": null
+  },
+  "vapid-dominator-asp": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dominator ASP",
+   "note": null
+  },
+  "vapid-dominator-gt": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dominator GT",
+   "note": null
+  },
+  "vapid-dominator-gtx": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "bravado-dorado": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dorado",
+   "note": null
+  },
+  "dinka-double-t": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Double T",
+   "note": null
+  },
+  "benefactor-dubsta": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dubsta",
+   "note": null
+  },
+  "western-company-duster": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Duster",
+   "note": null
+  },
+  "annis-elegy-90": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Elegy Retro Custom",
+   "note": null
+  },
+  "albany-emperor-85": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Emperor",
+   "note": null
+  },
+  "endurex-race-bike": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Endurex Race Bike",
+   "note": null
+  },
+  "principe-esskey": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Esskey",
+   "note": null
+  },
+  "ubermacht-fcr-1000": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "FCR 1000",
+   "note": null
+  },
+  "fathom-fr36": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "FR36",
+   "note": null
+  },
+  "willard-faction-custom-donk": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Faction",
+   "note": null
+  },
+  "karin-feroci-98": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Feroci",
+   "note": null
+  },
+  "ferry": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Unnamed GTA VI ferry",
+   "note": null
+  },
+  "jacksheepe-fieldmaster-99": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Fieldmaster",
+   "note": null
+  },
+  "fishing-boat": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "jobuilt-flatbed": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "freight-train": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Freight Train",
+   "note": null
+  },
+  "piccia-furia": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Furia",
+   "note": null
+  },
+  "karin-futo-85": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Futo",
+   "note": null
+  },
+  "bravado-gauntlet-custom-69": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Gauntlet Classic Custom",
+   "note": null
+  },
+  "vapid-golfer": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Golfer",
+   "note": null
+  },
+  "declasse-granger": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Granger",
+   "note": null
+  },
+  "declasse-granger-3600lx": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Granger 3600LX",
+   "note": null
+  },
+  "declasse-granger-police": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Granger (police)",
+   "note": null
+  },
+  "declasse-granger-taxi": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Granger (taxi)",
+   "note": null
+  },
+  "bravado-gresley-xt": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Gresley XT",
+   "note": null
+  },
+  "bf-greta": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Greta",
+   "note": null
+  },
+  "willard-grouse-92": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Grouse",
+   "note": null
+  },
+  "pfister-growler": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Growler",
+   "note": null
+  },
+  "annis-hellion-95": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Hellion",
+   "note": null
+  },
+  "albany-hermes-50": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Hermes",
+   "note": null
+  },
+  "vapid-hustler-32": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Hustler",
+   "note": null
+  },
+  "seashark-hydroblast": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "declasse-impaler-20": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Impaler",
+   "note": null
+  },
+  "declasse-impaler-80": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Impaler",
+   "note": null
+  },
+  "declasse-impaler-sz-95": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Impaler SZ",
+   "note": null
+  },
+  "vulcar-ingot": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ingot",
+   "note": null
+  },
+  "bf-injection-73": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Injection",
+   "note": null
+  },
+  "karin-intruder": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Intruder",
+   "note": null
+  },
+  "maibatsu-iota": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Iota",
+   "note": null
+  },
+  "grotti-itali-gto": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Itali GTO",
+   "note": null
+  },
+  "grotti-itali-rsx": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Itali RSX",
+   "note": null
+  },
+  "jet": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Jet",
+   "note": null
+  },
+  "osprey-journey-78": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Journey",
+   "note": null
+  },
+  "buckingham-jubilee": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Jubilee",
+   "note": null
+  },
+  "ocelot-jugular": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Jugular",
+   "note": null
+  },
+  "canis-kamacho": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Kamacho",
+   "note": null
+  },
+  "kellison-j4": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "lure-predator-l35p": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "L35P",
+   "note": null
+  },
+  "lure-predator-l35p-police-boat": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "L35P (police)",
+   "note": null
+  },
+  "dundreary-landstalker-xl": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Landstalker XL",
+   "note": null
+  },
+  "willard-lasso-90": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Lasso",
+   "note": null
+  },
+  "principe-lectro": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Lectro",
+   "note": null
+  },
+  "vapid-liberator": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "hvy-lifta": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "ocelot-locust": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Locust",
+   "note": null
+  },
+  "lombike": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "LomBike",
+   "note": null
+  },
+  "vapid-lowline": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Lowline",
+   "note": null
+  },
+  "buckingham-luxor": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Luxor",
+   "note": null
+  },
+  "declasse-mamba-gt": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mamba GT",
+   "note": null
+  },
+  "lapwing-mammatus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mammatus",
+   "note": null
+  },
+  "albany-manana-77": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Manana",
+   "note": null
+  },
+  "maibatsu-manchez": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Manchez",
+   "note": null
+  },
+  "dinka-marquis": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Marquis",
+   "note": null
+  },
+  "vapid-marshall": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Marshall",
+   "note": null
+  },
+  "buckingham-maverick": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Maverick",
+   "note": null
+  },
+  "canis-mesa": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mesa",
+   "note": null
+  },
+  "metromule": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "vapid-minivan": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Minivan",
+   "note": null
+  },
+  "hvy-mixer": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mixer (4-axle)",
+   "note": null
+  },
+  "vapid-montagne": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Montagne",
+   "note": null
+  },
+  "vapid-montagne-pickup": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Montagne Pickup",
+   "note": null
+  },
+  "vapid-montagne-pickup-lifeguard": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Montagne Pickup",
+   "note": null
+  },
+  "vapid-montagne-xl": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Montagne XL",
+   "note": null
+  },
+  "willard-moocher-83": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Moocher",
+   "note": null
+  },
+  "declasse-moonbeam": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Moonbeam",
+   "note": null
+  },
+  "maibatsu-mule": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mule",
+   "note": null
+  },
+  "vysser-neo": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "pfister-neon": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Neon",
+   "note": null
+  },
+  "western-nightblade": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Nightblade",
+   "note": null
+  },
+  "nagasaki-nimbe": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Nimbe",
+   "note": null
+  },
+  "lapwing-nimbus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Nimbus",
+   "note": null
+  },
+  "lampadati-novak": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Novak",
+   "note": null
+  },
+  "obey-omnis-e-gt": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "mer-can-outlaw": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Outlaw",
+   "note": null
+  },
+  "schyster-pmp-700": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "PMP 700",
+   "note": null
+  },
+  "mtl-packer": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Packer",
+   "note": null
+  },
+  "ascot-paragon": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Paragon R",
+   "note": null
+  },
+  "declasse-parkland-71": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Parkland",
+   "note": null
+  },
+  "mammoth-patriot-92": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "jobuilt-phantom": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Phantom Custom",
+   "note": null
+  },
+  "jobuilt-phantom-custom-81": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Phantom Custom",
+   "note": null
+  },
+  "bravado-police-buffalo-stx-pursuit": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buffalo STX Pursuit",
+   "note": null
+  },
+  "bottcher-police-buzzard": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buzzard (police)",
+   "note": null
+  },
+  "bravado-police-cruiser-buffalo": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Buffalo (police)",
+   "note": null
+  },
+  "vapid-police-cruiser-stanier-le": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Stanier G2 (police)",
+   "note": null
+  },
+  "bravado-police-gauntlet-interceptor": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Gauntlet Interceptor",
+   "note": null
+  },
+  "vapid-police-ghost-stanier-le": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Police Stanier G2",
+   "note": null
+  },
+  "dundreary-police-landstalker-xl": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Landstalker XL (police)",
+   "note": null
+  },
+  "vapid-police-lowline-interceptor": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Police Lowline",
+   "note": null
+  },
+  "buckingham-police-maverick": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Police Maverick",
+   "note": null
+  },
+  "vapid-police-montagne": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Police Montagne",
+   "note": null
+  },
+  "brute-police-riot": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Police Riot",
+   "note": null
+  },
+  "albany-primo": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Primo",
+   "note": null
+  },
+  "mtl-pumper": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Pumper",
+   "note": null
+  },
+  "rb-s": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "rb-s-ii": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Unnamed GTA VI RB-S II-inspired coast guard boat",
+   "note": null
+  },
+  "taci-ragno": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ragno",
+   "note": null
+  },
+  "coil-raiden": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Raiden",
+   "note": null
+  },
+  "declasse-rancher-86": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rancher",
+   "note": null
+  },
+  "karin-rebel-84": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rebel",
+   "note": null
+  },
+  "ubermacht-rebla-gts": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rebla GTS",
+   "note": null
+  },
+  "vapid-reclaimer": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Reclaimer",
+   "note": null
+  },
+  "dundreary-regina": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Regina",
+   "note": null
+  },
+  "brute-rental-bus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rental Shuttle Bus",
+   "note": null
+  },
+  "hauners-rhino-tank": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rhino Tank",
+   "note": null
+  },
+  "rugger-rhode": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rhode",
+   "note": null
+  },
+  "rugger-rhode-police": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rhode (police)",
+   "note": null
+  },
+  "vapid-riata-classic": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Riata",
+   "note": null
+  },
+  "jobuilt-rubble": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rubble",
+   "note": null
+  },
+  "vapid-rumpo": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rumpo",
+   "note": null
+  },
+  "bravado-rumpo-custom": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Rumpo",
+   "note": null
+  },
+  "declasse-sabre-turbo": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "vapid-sadler": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sadler",
+   "note": null
+  },
+  "maibatsu-sanchez": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sanchez",
+   "note": null
+  },
+  "vapid-sandking-xl": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sandking XL",
+   "note": null
+  },
+  "vapid-sandking-xt": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sandking XT",
+   "note": null
+  },
+  "benefactor-schafter": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "benefactor-schafter-v12": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Schafter V12",
+   "note": null
+  },
+  "ped-scorcher": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Scorcher",
+   "note": null
+  },
+  "sea-sparrow": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sea Sparrow",
+   "note": null
+  },
+  "seashark-sedna": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sedna",
+   "note": null
+  },
+  "canis-seminole-frontier": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "ubermacht-sentinel-85": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sentinel (1985)",
+   "note": null
+  },
+  "ubermacht-sentinel-xs": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "buckingham-shamal": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Shamal",
+   "note": null
+  },
+  "shasa": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Shasa",
+   "note": null
+  },
+  "shifter": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Shifter",
+   "note": null
+  },
+  "vapid-shuttle": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Shuttle",
+   "note": null
+  },
+  "vapid-slamvan-56": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Slamvan",
+   "note": null
+  },
+  "bravado-sojourn": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sojourn",
+   "note": null
+  },
+  "bravado-sojourn-taxi": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sojourn (taxi)",
+   "note": null
+  },
+  "western-sovereign-107": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sovereign",
+   "note": null
+  },
+  "western-sovereign-107-police": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "pegassi-speeder": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "vapid-speedo": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Speedo",
+   "note": null
+  },
+  "benefactor-spritz": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Spritz",
+   "note": null
+  },
+  "classique-stallion-68": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Stallion",
+   "note": null
+  },
+  "vapid-stanier-98": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Stanier",
+   "note": null
+  },
+  "vapid-stanier-taxi": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Stanier G2 (taxi)",
+   "note": null
+  },
+  "interstate-stockade-99": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "zirconium-stratum": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Stratum",
+   "note": null
+  },
+  "mammoth-streamer216": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Streamer216",
+   "note": null
+  },
+  "dinka-sugoi": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sugoi",
+   "note": null
+  },
+  "emperor-sultan": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sultan",
+   "note": null
+  },
+  "sirius-sungrazer-61": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Sungrazer",
+   "note": null
+  },
+  "buckingham-supervolito": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "SuperVolito",
+   "note": null
+  },
+  "bf-surfer": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "swamp-blaster": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Swamp Blaster",
+   "note": null
+  },
+  "buckingham-swift": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Swift",
+   "note": null
+  },
+  "obey-tailgater": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tailgater",
+   "note": null
+  },
+  "nagasaki-tao": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tao",
+   "note": null
+  },
+  "canis-terminus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Terminus",
+   "note": null
+  },
+  "truffade-thrax": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Thrax",
+   "note": null
+  },
+  "brute-tipper-6-wheels": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "declasse-tornado": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "pegassi-toros": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Toros",
+   "note": null
+  },
+  "vapid-tow-truck": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Reclaimer (tow truck)",
+   "note": null
+  },
+  "sirius-transgressor-67": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Transgressor",
+   "note": null
+  },
+  "willard-transient": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Transient",
+   "note": null
+  },
+  "shitzu-tropic": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "willard-trotter-95": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Trotter",
+   "note": null
+  },
+  "declasse-tulip-72": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tulip",
+   "note": null
+  },
+  "declasse-tulip-m-100-78": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tulip M-100",
+   "note": null
+  },
+  "brute-utility-truck": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Utility Truck",
+   "note": null
+  },
+  "albany-v-str": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "V-STR",
+   "note": null
+  },
+  "buckingham-valkyrie": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Valkyrie",
+   "note": null
+  },
+  "emperor-vectre": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Vectre",
+   "note": null
+  },
+  "annis-venturas-blvd-elegy-90": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "dinka-verus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Verus",
+   "note": null
+  },
+  "declasse-vigero-zx-convertible": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Vigero ZX Convertible",
+   "note": null
+  },
+  "pegassi-vitello": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Vitello",
+   "note": null
+  },
+  "karin-vivanite": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Vivanite",
+   "note": null
+  },
+  "declasse-walton-81": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "mtl-wastelander": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Wastelander",
+   "note": null
+  },
+  "water-taxi": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "buckingham-windsor": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "buckingham-windsor-drop": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Windsor Drop",
+   "note": null
+  },
+  "schyster-woodland-85": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Woodland",
+   "note": null
+  },
+  "benefactor-xls": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "XLS",
+   "note": null
+  },
+  "calder-yakuruna": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Yakuruna",
+   "note": null
+  },
+  "interstate-yankee-80": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Yankee",
+   "note": null
+  },
+  "declasse-yosemite-67": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Yosemite",
+   "note": null
+  },
+  "declasse-yosemite-1500": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Yosemite 1500",
+   "note": null
+  },
+  "bravado-youga": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Youga",
+   "note": null
+  },
+  "bravado-youga-74": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Youga",
+   "note": null
+  },
+  "bravado-youga-xl-79": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Youga XL",
+   "note": null
+  },
+  "western-zombie-chopper": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Zombie",
+   "note": null
+  },
+  "zoot": {
+   "statut": "a-confirmer",
+   "preuves": [],
+   "wiki": null,
+   "note": null
+  },
+  "pegassi-infernus": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Infernus Classic",
+   "note": null
+  },
+  "bravado-gauntlet-hellfire": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Gauntlet Hellfire",
+   "note": null
+  },
+  "maibatsu-penumbra-ff": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Penumbra FF",
+   "note": null
+  },
+  "progen-emerus-royal-ruby": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Emerus",
+   "note": "L'Emerus existe bien ; la version « Royal Ruby » vient des guides, pas encore du wiki."
+  },
+  "imponte-phoenix-bloodbath": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Phoenix",
+   "note": "La Phoenix existe bien ; la version « Bloodbath » vient des guides, pas encore du wiki."
+  },
+  "pegassi-torus-doree": {
+   "statut": "non-confirme",
+   "preuves": [],
+   "wiki": null,
+   "note": "Introuvable sur GTA Wiki, GTABase et le site officiel : ce véhicule n'est confirmé par aucune source fiable."
+  },
+  "mallard-flammes": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Mallard",
+   "note": null
+  },
+  "lapwing-stolen-valor": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Duster 300-H",
+   "note": "Le Lapwing Duster 300-H existe bien dans GTA 6 ; la livrée « Stolen Valor » n'est pas confirmée."
+  },
+  "hauners-ridgway": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ridgway",
+   "note": null
+  },
+  "hydroglisseur": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Airboat 09",
+   "note": null
+  },
+  "jet-ski": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Seashark",
+   "note": null
+  },
+  "vedette": {
+   "statut": "confirme",
+   "preuves": [],
+   "wiki": null,
+   "note": "Type de bateau générique : plusieurs hors-bords sont confirmés."
+  },
+  "moto-sportive": {
+   "statut": "confirme",
+   "preuves": [],
+   "wiki": null,
+   "note": "Type de moto générique : plusieurs motos sportives sont confirmées."
+  },
+  "dinka-enduro": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Enduro",
+   "note": null
+  },
+  "kayak-crest": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Kayak",
+   "note": null
+  },
+  "mammoth-dodo": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Dodo",
+   "note": null
+  },
+  "jets-militaires": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "P-996 LAZER",
+   "note": null
+  },
+  "helicoptere-toits": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Maverick",
+   "note": null
+  },
+  "shitzu-squalo": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Squalo",
+   "note": null
+  },
+  "bombora-s23": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "S23 CCS",
+   "note": null
+  },
+  "vapid-stanier-55": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Stanier (1955)",
+   "note": null
+  },
+  "grotti-cheetah-95": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Cheetah Classic",
+   "note": null
+  },
+  "vapid-dominator-buggy": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Dominator Buggy",
+   "note": null
+  },
+  "vapid-ganado": {
+   "statut": "confirme",
+   "preuves": [
+    "Rockstar (site officiel)",
+    "GTA Wiki"
+   ],
+   "wiki": "Ganado",
+   "note": null
+  },
+  "pfister-comet-s2": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Comet S2 Cabrio",
+   "note": null
+  },
+  "jobuilt-hauler": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Hauler",
+   "note": null
+  },
+  "obey-tailgater-s": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tailgater S",
+   "note": null
+  },
+  "imponte-ruiner": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Ruiner",
+   "note": null
+  },
+  "maibatsu-penumbra-shirley": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Penumbra",
+   "note": null
+  },
+  "pegassi-tempesta": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Tempesta",
+   "note": null
+  },
+  "granforma-zorrusso": {
+   "statut": "confirme",
+   "preuves": [
+    "GTA Wiki"
+   ],
+   "wiki": "Zorrusso",
+   "note": null
+  }
+ }
+}

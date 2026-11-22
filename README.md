@@ -58,3 +58,8 @@ La page Véhicules range les 313 véhicules confirmés de GTA 6 en 19 catégorie
 
 - Sources : fiches GTABase (`vendor/catalogue/gtabase-fiches.json`) et gta6guide.fr (`vendor/catalogue/gta6guide.json`), relevées le 22/11/2026.
 - `python3 tools/catalogue.py <dépôt gta6-hq> <cache images> [--images]` fusionne les sources, range chaque véhicule dans sa catégorie, compare toutes les photos disponibles (GTABase, gta6-hq, gta6guide.fr) et garde la plus nette. Les photos floues, trop sombres ou où le véhicule est masqué sont écartées à la main (`PHOTOS_REJETEES`) : le véhicule garde alors sa silhouette.
+
+## Vérification : les véhicules sont-ils dans GTA 6 ?
+
+`python3 tools/verification.py` écrit `data/verification.json` : un véhicule est « confirmé » si GTA Wiki (page et catégorie « Vehicles in GTA VI », `vendor/catalogue/gtawiki-vehicules-gta6.json`) ou le site officiel de Rockstar le recensent ; sinon il est « à confirmer » (vu seulement sur GTABase ou gta6guide.fr). Relevé du 22/11/2026 : 273 confirmés, 39 à confirmer, 1 non confirmé (Pegassi Torus dorée). Le site affiche ce statut sur chaque carte, dans la fenêtre d'infos et sur les fiches, avec un filtre « Confirmés seulement ».
+

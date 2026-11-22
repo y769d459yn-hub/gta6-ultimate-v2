@@ -39,6 +39,7 @@
         if (st.type && c.dataset.cat !== st.type) return false;
         if (st.t.known && c.dataset.known !== '1') return false;
         if (st.t.photo && c.dataset.photo !== '1') return false;
+        if (st.t.sur && c.dataset.sur !== '1') return false;
         if (st.t.map && c.dataset.map !== '1') return false;
         if (toks.length) { const t = c.dataset.text || ''; const w = t.split(' '); if (!toks.every((k) => t.includes(k) || (LG.tokMatch && LG.tokMatch(k, w) >= .5))) return false; }
         return true;
@@ -90,6 +91,7 @@
         <h2 id="vdlg-t" class="vdlg-t">${esc(x.n)}</h2>
         ${x.d ? `<p class="vdlg-d">${esc(x.d)}</p>` : ''}
         <dl class="vdlg-facts">${lignes.map(([i, k, v]) => `<div><dt>${ic(i)}${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+        ${x.vt ? `<p class="vdlg-verif vdlg-verif--${esc(x.vf)}">${ic(x.vf === 'confirme' ? 'check' : 'alert')}<span><b>Présence dans GTA 6 :</b> ${esc(x.vt)}${x.vn ? ` ${esc(x.vn)}` : ''}</span></p>` : ''}
         <div class="vdlg-how ${x.o ? '' : 'is-unknown'}"><h3>${ic('pin')}Comment l'obtenir</h3>
           <p>${x.o ? esc(x.o) : "Pas encore documenté. Le véhicule est bien confirmé dans GTA 6, mais personne n'a encore indiqué où le trouver à coup sûr. On complète dès que c'est vérifié."}</p></div>
         <p class="vdlg-src">Sources : ${(x.src || []).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.nom)}</a>`).join(' · ')}</p>

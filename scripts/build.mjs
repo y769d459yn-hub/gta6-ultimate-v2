@@ -15,6 +15,9 @@ const SRC = read('sources.json');
 const ASTUCES = read('astuces.json');
 const VEHICULES = read('vehicules.json');
 // Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
+// Vérification de présence dans GTA 6 (tools/verification.py : site officiel, GTA Wiki, GTABase, gta6guide.fr)
+const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'verification.json'), 'utf8')).vehicules : {};
+const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.statut === 'confirme' ? (v.preuves.length ? `Confirmé par ${v.preuves.join(' et ')}` : 'Type de véhicule confirmé') : v.statut === 'non-confirme' ? 'Non confirmé' : 'À confirmer : vu seulement sur GTABase ou gta6guide.fr'; };
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
@@ -526,10 +529,10 @@ function catCard(x, R) {
   const c = cat('vehicules', x.type);
   const txt = norm([x.nom, x.classe, c.nom, x.inspiration || '', x.fabricant || ''].join(' '));
   const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}" loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
-  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-map="0" data-text="${esc(txt)}" aria-haspopup="dialog">
+  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-sur="${(VERIF[x.slug] || {}).statut === 'confirme' ? 1 : 0}" data-map="0" data-text="${esc(txt)}" aria-haspopup="dialog">
   <span class="veh-art">${visu}<span class="veh-type">${esc(UN[x.classe] || x.classe)}</span></span>
   <span class="card-body"><span class="card-kicker">${esc(x.fabricant || c.nom)}</span><b class="card-title">${esc(x.modele || x.nom)}</b>
-  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}${x.obtenir ? `<span class="pill pill--ok">${icon('pin')}Où l'obtenir</span>` : ''}</span></span>
+  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}${x.obtenir ? `<span class="pill pill--ok">${icon('pin')}Où l'obtenir</span>` : ''}${(VERIF[x.slug] || {}).statut !== 'confirme' ? `<span class="pill pill--warn">${icon('question')}À confirmer</span>` : ''}</span></span>
   <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></button>`;
 }
 {
@@ -538,20 +541,21 @@ function catCard(x, R) {
   const grpDe = (v) => (CATALOGUE.fiches[v.slug] || {}).groupe || 'service';
   // une carte par véhicule, rangée dans sa catégorie : nos fiches (emplacement connu) d'abord, puis les photos nettes, puis le reste
   const cartes = {};
-  for (const v of VEHICULES) (cartes[grpDe(v)] ||= []).push({ o: 0, n: v.nom, html: vehCard(v, R).replace('class="card card--veh"', `class="card card--veh card--fiche" data-grp="${grpDe(v)}" data-photo="1" data-known="1"`) });
-  for (const x of CATALOGUE.vehicules) (cartes[x.groupe] ||= []).push({ o: x.obtenir ? 1 : x.img ? 2 : 3, n: x.nom, html: catCard(x, R) });
+  for (const v of VEHICULES) (cartes[grpDe(v)] ||= []).push({ o: 0, n: v.nom, o: (VERIF[v.slug] || {}).statut === 'non-confirme' ? 9 : 0, html: vehCard(v, R).replace('class="card card--veh"', `class="card card--veh card--fiche" data-grp="${grpDe(v)}" data-photo="1" data-known="1" data-sur="${(VERIF[v.slug] || {}).statut === 'confirme' ? 1 : 0}"`) });
+  for (const x of CATALOGUE.vehicules) (cartes[x.groupe] ||= []).push({ o: ((VERIF[x.slug] || {}).statut !== 'confirme' ? 10 : 0) + (x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: catCard(x, R) });
   const groupes = GRP.filter((g) => cartes[g.id]);
   const total = VEHICULES.length + CATALOGUE.vehicules.length;
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
   const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead"><b>${total} véhicules</b> rangés par catégorie. Dans chaque catégorie, ceux dont on sait où les trouver passent en premier. Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
+  <p class="lead veh-lead"><b>${total} véhicules</b> rangés par catégorie. Dans chaque catégorie, ceux dont on sait où les trouver passent en premier. Chaque véhicule a été vérifié : ${Object.values(VERIF).filter((v) => v.statut === 'confirme').length} sont confirmés par GTA Wiki ou le site officiel de Rockstar, les autres portent l'étiquette « À confirmer ». Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
     ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
   </div>
   <div class="filterbar">
     <button class="chip chip--toggle" type="button" data-vtoggle="known" aria-pressed="false">${icon('pin')}Emplacement connu</button>
+    <button class="chip chip--toggle" type="button" data-vtoggle="sur" aria-pressed="false">${icon('check')}Confirmés seulement</button>
     <button class="chip chip--toggle" type="button" data-vtoggle="photo" aria-pressed="false">${icon('eye')}Avec photo</button>
     <button class="chip chip--toggle" type="button" data-vtoggle="map" aria-pressed="false">${icon('map')}Sur la carte</button>
   </div>
@@ -564,7 +568,7 @@ function catCard(x, R) {
   </section>`).join('')}
   <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
   <dialog class="vdlg" aria-labelledby="vdlg-t"><div class="vdlg-in" data-vdlg></div></dialog>
-  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
+  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, vf: (VERIF[x.slug] || {}).statut, vt: verifTexte(x.slug), vn: (VERIF[x.slug] || {}).note, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
   <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
 </section>`;
@@ -595,6 +599,7 @@ for (const v of VEHICULES) {
   <dl class="facts">
     <div><dt>${icon(c.icon)}Type</dt><dd>${esc(c.nom)} · ${esc(v.sous)}</dd></div>
     <div><dt>${icon('shield')}Disponibilité</dt><dd>${esc(statut(v.dispo).nom)}</dd></div>
+    ${VERIF[v.slug] ? `<div class="fact-verif fact-verif--${VERIF[v.slug].statut}"><dt>${icon(VERIF[v.slug].statut === 'confirme' ? 'check' : 'alert')}Présence dans GTA 6</dt><dd>${esc(verifTexte(v.slug))}${VERIF[v.slug].note ? ` <small>${esc(VERIF[v.slug].note)}</small>` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].fabricant ? `<div><dt>${icon('badge')}Marque</dt><dd>${esc(CATALOGUE.fiches[v.slug].fabricant)}${CATALOGUE.fiches[v.slug].classe ? ' · ' + esc(CATALOGUE.fiches[v.slug].classe) : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
