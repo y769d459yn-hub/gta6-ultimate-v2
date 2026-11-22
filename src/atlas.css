@@ -212,3 +212,6 @@
 .atp-panel .hl-cl b { width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%; background: #07060c; font: 700 .78rem/1 var(--fm, monospace); color: #fff; }
 .atp-panel .hl-h { margin: 18px 0 0; font: 600 .78rem/1 var(--fm, monospace); letter-spacing: .12em; text-transform: uppercase; color: var(--tx2, #d3cdea); }
 @media (max-width: 899px) { .atp-panel .pn-img img { aspect-ratio: 21 / 9; } }
+.atp-panel .pn-img--3d { background: radial-gradient(70% 70% at 50% 66%, color-mix(in srgb, var(--c) 26%, #0e0c1a), #07060c 80%); }
+.atp-panel .pn-img--3d img { object-fit: contain; aspect-ratio: 16 / 9; }
+.atp-panel .pn-img figcaption a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }

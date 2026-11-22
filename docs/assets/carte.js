@@ -148,7 +148,8 @@
       : `${where}<p>${escH(f.desc || '')}</p>
          <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
     const quoi = t ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
-    const img = f.img ? `<figure class="pn-img"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}" decoding="async">${f.imgNote || f.imgCredit ? `<figcaption>${f.imgNote ? `<b>${escH(f.imgNote)}</b> · ` : ''}${f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''}</figcaption>` : ''}</figure>` : '';
+    const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
+    const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
     showPanel(`${head(f.icon, c.color, quoi, t ? t.titre : f.nom)}${img}${body}${nav(f)}`);
     bindNav();
     if (innerWidth < 900) {
