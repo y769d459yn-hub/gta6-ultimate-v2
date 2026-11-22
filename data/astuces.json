@@ -592,14 +592,14 @@
   ]
  },
  {
-  "slug": "entrer-code-triche",
+  "slug": "entrer-un-code",
   "cat": "gameplay",
   "icon": "code",
-  "titre": "Comment entrer un code de triche dans GTA 6 ?",
-  "court": "Entrer un code de triche",
+  "titre": "Comment entrer un code dans GTA 6 ?",
+  "court": "Entrer un code",
   "reponse": "Sors le téléphone, maintiens L1 et appuie sur R1 (PS5) ou maintiens LB et appuie sur RB (Xbox), puis tape la suite de flèches avec la croix directionnelle.",
   "etapes": [
-   "Termine l'histoire : la liste « Triches » apparaît dans le menu Progression.",
+   "Termine l'histoire : la liste des codes apparaît dans le menu Progression.",
    "Débloque le code voulu en réussissant son défi.",
    "Sors le téléphone, maintiens L1 + appuie sur R1 (ou LB + RB) et tape les flèches."
   ],
@@ -632,7 +632,7 @@
   "slug": "code-argent",
   "cat": "argent",
   "icon": "money",
-  "titre": "Quel est le code de triche pour l'argent ?",
+  "titre": "Quel est le code pour l'argent ?",
   "court": "Code 250 000 $",
   "reponse": "Haut, Droite, Bas, Gauche, Haut, Gauche, Bas, Droite donne 250 000 $, une fois l'histoire terminée.",
   "etapes": [
@@ -660,7 +660,7 @@
    "thune"
   ],
   "voir": [
-   "entrer-code-triche",
+   "entrer-un-code",
    "argent-debut"
   ]
  },
@@ -694,7 +694,7 @@
    "infini"
   ],
   "voir": [
-   "entrer-code-triche",
+   "entrer-un-code",
    "code-argent"
   ]
  },
@@ -1258,14 +1258,14 @@
   "slug": "codes-connus",
   "cat": "gameplay",
   "icon": "code",
-  "titre": "Quels sont tous les codes de triche connus ?",
+  "titre": "Quels sont tous les codes connus ?",
   "court": "Tous les codes connus",
-  "reponse": "GTA 6 compte 61 codes de triche. 19 combinaisons sont connues pour l'instant, dont 17 confirmées par plusieurs guides. Chaque code se débloque d'abord par un défi, puis se tape au téléphone.",
+  "reponse": "GTA 6 compte 61 codes. 19 combinaisons sont connues pour l'instant, dont 17 confirmées par plusieurs guides. Chaque code se débloque d'abord par un défi, puis se tape au téléphone.",
   "etapes": [
    "250 000 $ : ↑ → ↓ ← ↑ ← ↓ → (après l'histoire).",
    "Focus illimité : ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ → (après l'histoire).",
    "Gilet pare-balles : ↓ ↑ ← ↑ ↑ ↑ ↑ ↑ ↓ ↓ (après 100 séances de sport).",
-   "Tous les autres, avec leurs défis : page « Codes de triche »."
+   "Tous les autres, avec leurs défis : page « Codes »."
   ],
   "asavoir": "Un code actif bloque la sauvegarde et les trophées jusqu'à ce que tu quittes le jeu : sauvegarde avant.",
   "duree": 2,
@@ -1288,7 +1288,7 @@
    "focus"
   ],
   "voir": [
-   "entrer-code-triche",
+   "entrer-un-code",
    "code-argent"
   ]
  },

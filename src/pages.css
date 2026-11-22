@@ -247,7 +247,7 @@
 .v2 .fact-verif dd small { display: block; margin-top: 4px; color: var(--tx2); font-size: .82rem; }
 .v2 .fact-verif--non-confirme dd, .v2 .fact-verif--a-confirmer dd { color: #ffe07a; }
 
-/* ---------- Codes de triche ---------- */
+/* ---------- Codes ---------- */
 .v2 .codes .lead b { color: var(--tx); }
 .v2 .howto { list-style: none; margin: 16px 0; padding: 0; display: grid; gap: 10px; }
 @media (min-width: 760px) { .v2 .howto { grid-template-columns: repeat(3, 1fr); } }

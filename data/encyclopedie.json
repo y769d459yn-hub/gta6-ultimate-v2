@@ -415,10 +415,10 @@
   ]
  },
  {
-  "slug": "codes-de-triche",
+  "slug": "liste-des-codes",
   "cat": "gameplay",
   "icon": "code",
-  "nom": "Codes de triche",
+  "nom": "Codes",
   "bref": "61 codes, qui se tapent au téléphone avec une suite de flèches.",
   "sait": [
    "Ils apparaissent dans le menu Progression après l'histoire.",
@@ -430,7 +430,7 @@
    "42 combinaisons n'ont pas encore été trouvées par la communauté."
   ],
   "liens": [
-   "entrer-code-triche",
+   "entrer-un-code",
    "code-argent"
   ],
   "statut": "confirme",
@@ -554,14 +554,14 @@
   "nom": "Plateformes",
   "bref": "PS5 et Xbox Series X|S.",
   "sait": [
-   "Les codes de triche sont identiques sur PS5 et Xbox."
+   "Les codes sont identiques sur PS5 et Xbox."
   ],
   "incertain": [
    "Version PC : pas de date officielle."
   ],
   "liens": [
    "gta-vi",
-   "entrer-code-triche"
+   "entrer-un-code"
   ],
   "statut": "confirme",
   "sources": [

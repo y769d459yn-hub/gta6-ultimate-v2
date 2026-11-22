@@ -1,4 +1,4 @@
-/* Leonida Guide — page des codes de triche : recherche et filtres */
+/* Leonida Guide — page des codes : recherche et filtres */
 (() => {
   'use strict';
   const root = document.querySelector('[data-codes]'); if (!root) return;

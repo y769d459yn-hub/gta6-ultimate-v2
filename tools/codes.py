@@ -1,6 +1,6 @@
-"""Codes de triche de GTA 6 : écrit data/codes.json à partir des relevés du 22/11/2026 (vendor/codes/).
+"""Codes de GTA 6 : écrit data/codes.json à partir des relevés du 22/11/2026 (vendor/codes/).
 
-Sources : GTABase (liste PS5/Xbox), GTA Wiki (« Cheats in GTA VI »), gta6guide.fr (« Codes de triche »).
+Sources : GTABase (liste PS5/Xbox), GTA Wiki (« Cheats in GTA VI »), gta6guide.fr (« Codes »).
 Textes français rédigés par le site. Une combinaison est « confirmée » quand au moins deux sources donnent la même."""
 import json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,7 +95,7 @@ for i, (g, f6, fr) in enumerate(zip(GB, G6, FR)):
     if len(accord) < 2 and any(list(c2['sequence']) == [DIR[k] for k in seq] for c2 in codes): seq, accord = [], []
     codes.append({'id': f'{cid}-{i + 1:02d}', 'cat': cid, 'nom': fr[0], 'effet': fr[1], 'deblocage': fr[2], 'nomEn': g['nom'].replace(' Cheat', ''),
                   'sequence': [DIR[k] for k in seq], 'confirme': len(accord) >= 2, 'sources': accord or [], 'argent': i == 0})
-json.dump({'info': 'Codes de triche de GTA 6 (relevé du 22/11/2026). Sources : GTABase, GTA Wiki, gta6guide.fr. Généré par tools/codes.py.',
+json.dump({'info': 'Codes de GTA 6 (relevé du 22/11/2026). Sources : GTABase, GTA Wiki, gta6guide.fr. Généré par tools/codes.py.',
            'categories': [{'id': c[0], 'nom': c[1], 'icon': c[2], 'color': c[3]} for c in CATS.values()], 'codes': codes},
           open(os.path.join(ROOT, 'data', 'codes.json'), 'w'), ensure_ascii=False, indent=1)
 print(len(codes), 'codes ·', sum(1 for c in codes if c['sequence']), 'combinaisons connues ·', sum(1 for c in codes if c['confirme']), 'confirmées par 2 sources ou plus')
