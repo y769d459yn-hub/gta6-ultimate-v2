@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actualités - GTA 6 Ultimate</title>
+  <style>
+    body { margin:0; font-family:-apple-system,Helvetica,sans-serif;
+           background:#0b0b12; color:#fff; }
+    header { padding:32px 20px; background:linear-gradient(135deg,#ff2e93,#7b2ff7); }
+    h1 { margin:0; font-size:1.6rem; }
+    .regle { margin:20px 20px 0; padding:12px; border-radius:12px;
+             background:#1a1a26; font-size:.85rem; opacity:.9; }
+    main { padding:20px; display:grid; gap:12px; }
+    .actu { background:#1a1a26; border-radius:12px; padding:16px; }
+    .actu h2 { margin:8px 0; font-size:1.05rem; }
+    .date { font-size:.8rem; opacity:.6; }
+    .statut { display:inline-block; padding:4px 10px; border-radius:20px;
+              font-size:.75rem; background:#2a6b3c; }
+    .statut.rumeur { background:#8a6d1a; }
+    .source { font-size:.8rem; margin-top:8px; }
+    .source a { color:#ff7ac0; }
+    a.retour { display:inline-block; margin:0 20px 20px; color:#ff7ac0; }
+  </style>
+</head>
+<body>
+  <header><h1>📰 Actualités</h1></header>
+  <div class="regle">
+    Règle du site : une info n'est marquée « Officiel » que si elle vient
+    d'une source Rockstar Games et a été vérifiée par un humain.
+  </div>
+  <main>
+    <div class="actu">
+      <span class="statut">✅ Officiel</span>
+      <h2>Exemple d'actualité officielle</h2>
+      <div class="date">Date : à remplir</div>
+      <p>Résumé écrit et vérifié par l'équipe.</p>
+      <div class="source">Source : <a href="https://www.rockstargames.com">rockstargames.com</a></div>
+    </div>
+    <div class="actu">
+      <span class="statut rumeur">⚠️ Non confirmé</span>
+      <h2>Exemple de rumeur</h2>
+      <div class="date">Date : à remplir</div>
+      <p>Les rumeurs sont clairement signalées et ne sont jamais présentées comme des faits.</p>
+    </div>
+  </main>
+  <a class="retour" href="index.html">← Retour à l'accueil</a>
+</body>
+</html>
