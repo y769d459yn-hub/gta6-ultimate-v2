@@ -307,5 +307,349 @@
    "rockstar"
   ],
   "color": "#ff7a3d"
+ },
+ {
+  "slug": "dinka-enduro",
+  "nom": "Dinka Enduro",
+  "type": "motos",
+  "sous": "Tout-terrain",
+  "dispo": "a-verifier",
+  "lieu": "planque-jason",
+  "emplacement": "Devant la maison de Jason à Key Lento, après le début de l'histoire (édition Ultimate).",
+  "obtenir": [
+   "Possède l'édition Ultimate.",
+   "Termine la première mission.",
+   "Récupère la moto devant la maison de Jason."
+  ],
+  "kw": [
+   "moto",
+   "enduro",
+   "ultimate",
+   "jason"
+  ],
+  "sources": [
+   "redbull-ultimate",
+   "mobalytics-ultimate"
+  ],
+  "color": "#ff7a3d"
+ },
+ {
+  "slug": "kayak-crest",
+  "nom": "Kayak Crest",
+  "type": "bateaux",
+  "sous": "Kayak",
+  "dispo": "confirme",
+  "lieu": "planque-jason",
+  "emplacement": "Derrière la maison de Jason, à Key Lento (édition Ultimate). Le fabricant Crest apparaît dans le matériel officiel.",
+  "obtenir": [
+   "Va derrière la maison de Jason.",
+   "Monte dans le kayak.",
+   "Pagaie : ça entraîne aussi ton Cardio."
+  ],
+  "kw": [
+   "kayak",
+   "crest",
+   "pagaie",
+   "ultimate"
+  ],
+  "sources": [
+   "redbull-ultimate",
+   "thegamer-vehicles"
+  ],
+  "color": "#19d3e3"
+ },
+ {
+  "slug": "mammoth-dodo",
+  "nom": "Mammoth Dodo",
+  "type": "avions",
+  "sous": "Hydravion",
+  "dispo": "a-verifier",
+  "lieu": "southwind",
+  "emplacement": "Dans et autour du hangar de la piste de Southwind.",
+  "obtenir": [
+   "Va au hangar de Southwind.",
+   "Monte dans un Dodo.",
+   "Décolle depuis l'eau ou la piste."
+  ],
+  "kw": [
+   "hydravion",
+   "avion",
+   "dodo",
+   "southwind"
+  ],
+  "sources": [
+   "powerpyx-aircraft",
+   "pcgamer-plane"
+  ],
+  "color": "#9d7bff"
+ },
+ {
+  "slug": "jets-militaires",
+  "nom": "Jets militaires",
+  "type": "avions",
+  "sous": "Militaire",
+  "dispo": "a-verifier",
+  "lieu": "mile-zero",
+  "emplacement": "Base aérienne de Mile Zero, à Goose Key. Zone très surveillée.",
+  "obtenir": [
+   "Prépare-toi : la base est gardée.",
+   "Entre dans le hangar le plus proche.",
+   "Décolle vite avant l'arrivée des renforts."
+  ],
+  "kw": [
+   "jet",
+   "militaire",
+   "chasseur",
+   "mile zero"
+  ],
+  "sources": [
+   "powerpyx-aircraft"
+  ],
+  "color": "#9d7bff"
+ },
+ {
+  "slug": "helicoptere-toits",
+  "nom": "Hélicoptères des toits",
+  "type": "autres",
+  "sous": "Hélicoptère",
+  "dispo": "a-verifier",
+  "lieu": "vice-city",
+  "emplacement": "Sur les toits des gratte-ciel de Vice City marqués d'un « H ».",
+  "obtenir": [
+   "Repère un toit marqué « H ».",
+   "Entre dans le hall et prends l'ascenseur.",
+   "Décolle depuis le toit."
+  ],
+  "kw": [
+   "helicoptere",
+   "toit",
+   "helico"
+  ],
+  "sources": [
+   "powerpyx-aircraft",
+   "pcgamer-plane"
+  ],
+  "color": "#3ddc84"
+ },
+ {
+  "slug": "shitzu-squalo",
+  "nom": "Shitzu Squalo",
+  "type": "bateaux",
+  "sous": "Bateau de pêche",
+  "dispo": "a-verifier",
+  "lieu": "washington-beach",
+  "emplacement": "Au ponton de Washington Beach, au chapitre 4 (édition Ultimate).",
+  "obtenir": [
+   "Atteins le chapitre 4.",
+   "Va au ponton de Washington Beach.",
+   "Monte à bord."
+  ],
+  "kw": [
+   "bateau",
+   "squalo",
+   "shitzu",
+   "ultimate",
+   "peche"
+  ],
+  "sources": [
+   "redbull-ultimate",
+   "thegamer-vehicles"
+  ],
+  "color": "#19d3e3"
+ },
+ {
+  "slug": "bombora-s23",
+  "nom": "Bombora S23 CS",
+  "type": "bateaux",
+  "sous": "Bateau",
+  "dispo": "provisoire",
+  "lieu": "capri",
+  "emplacement": "Sur le rivage de Capri, près d'un couple assis autour d'un feu.",
+  "obtenir": [
+   "Va sur la côte de Capri.",
+   "Cherche le couple près d'un feu.",
+   "Le bateau est sur le rivage."
+  ],
+  "kw": [
+   "bateau",
+   "bombora",
+   "capri"
+  ],
+  "sources": [
+   "powerpyx-aircraft"
+  ],
+  "color": "#19d3e3"
+ },
+ {
+  "slug": "vapid-stanier-55",
+  "nom": "Vapid Stanier '55",
+  "type": "voitures",
+  "sous": "Classique",
+  "dispo": "a-verifier",
+  "lieu": "ocean-beach",
+  "emplacement": "À l'Ocean View Hotel d'Ocean Beach, au chapitre 3 (édition Ultimate).",
+  "obtenir": [
+   "Atteins le chapitre 3.",
+   "Suis la tâche « Exploration » vers l'Ocean View Hotel.",
+   "Récupère la voiture : le garage de Bonita Court se débloque aussi."
+  ],
+  "kw": [
+   "stanier",
+   "classique",
+   "ultimate",
+   "vintage"
+  ],
+  "sources": [
+   "redbull-ultimate",
+   "mobalytics-ultimate"
+  ],
+  "color": "#ffd23f",
+  "gtadb": "Ocean View Hotel"
+ },
+ {
+  "slug": "grotti-cheetah-95",
+  "nom": "Grotti Cheetah '95",
+  "type": "voitures",
+  "sous": "Supercar",
+  "dispo": "a-verifier",
+  "lieu": "tequesta",
+  "emplacement": "Au chapitre 5, vers les Pegassi Residences de Tequesta Retreat (édition Ultimate).",
+  "obtenir": [
+   "Atteins le chapitre 5.",
+   "Suis la tâche dans la section Exploration de la carte.",
+   "Récupère la voiture."
+  ],
+  "kw": [
+   "cheetah",
+   "grotti",
+   "supercar",
+   "ultimate"
+  ],
+  "sources": [
+   "redbull-ultimate",
+   "mobalytics-ultimate"
+  ],
+  "color": "#ff2bd6",
+  "gtadb": "Pegassi Residences"
+ },
+ {
+  "slug": "vapid-dominator-buggy",
+  "nom": "Vapid Dominator Buggy '67",
+  "type": "voitures",
+  "sous": "Buggy",
+  "dispo": "a-verifier",
+  "lieu": null,
+  "emplacement": "Débloqué au chapitre 2 en terminant l'activité avec Wyman (édition Ultimate).",
+  "obtenir": [
+   "Atteins le chapitre 2.",
+   "Fais l'activité de restauration avec Wyman.",
+   "Le buggy est ajouté à ta collection."
+  ],
+  "kw": [
+   "buggy",
+   "dominator",
+   "wyman",
+   "ultimate"
+  ],
+  "sources": [
+   "redbull-ultimate"
+  ],
+  "color": "#ff9a1f"
+ },
+ {
+  "slug": "vapid-ganado",
+  "nom": "Vapid Ganado",
+  "type": "voitures",
+  "sous": "Pick-up",
+  "dispo": "confirme",
+  "lieu": null,
+  "emplacement": "Version « Retro Build » offerte avec l'édition Ultimate, au chapitre 1.",
+  "obtenir": [
+   "Possède l'édition Ultimate.",
+   "Avance dans le chapitre 1.",
+   "Récupère-la au garage indiqué."
+  ],
+  "kw": [
+   "ganado",
+   "vapid",
+   "pickup",
+   "ultimate"
+  ],
+  "sources": [
+   "thegamer-vehicles",
+   "redbull-ultimate"
+  ],
+  "color": "#ff9a1f"
+ },
+ {
+  "slug": "pfister-comet-s2",
+  "nom": "Pfister Comet S2 Cabrio",
+  "type": "voitures",
+  "sous": "Sportive",
+  "dispo": "confirme",
+  "lieu": null,
+  "emplacement": "Vue dans la première bande-annonce. En circulation, pas d'emplacement fixe connu.",
+  "obtenir": [
+   "Attends près des grands axes de Vice City.",
+   "Repère le cabriolet dans la circulation.",
+   "Prends-le quand il s'arrête."
+  ],
+  "kw": [
+   "comet",
+   "pfister",
+   "cabriolet",
+   "sportive"
+  ],
+  "sources": [
+   "thegamer-vehicles"
+  ],
+  "color": "#ff2bd6"
+ },
+ {
+  "slug": "jobuilt-hauler",
+  "nom": "JoBuilt Hauler",
+  "type": "autres",
+  "sous": "Camion",
+  "dispo": "confirme",
+  "lieu": null,
+  "emplacement": "Vu sur les captures officielles. En circulation sur les routes de l'État.",
+  "obtenir": [
+   "Suis une grande route hors de la ville.",
+   "Repère le camion.",
+   "Prends-le à l'arrêt."
+  ],
+  "kw": [
+   "camion",
+   "jobuilt",
+   "hauler",
+   "poids lourd"
+  ],
+  "sources": [
+   "thegamer-vehicles"
+  ],
+  "color": "#3ddc84"
+ },
+ {
+  "slug": "obey-tailgater-s",
+  "nom": "Obey Tailgater S",
+  "type": "voitures",
+  "sous": "Berline",
+  "dispo": "confirme",
+  "lieu": null,
+  "emplacement": "Vue sur les captures officielles. Courante en ville.",
+  "obtenir": [
+   "Attends dans un quartier aisé.",
+   "Repère la berline.",
+   "Prends-la."
+  ],
+  "kw": [
+   "tailgater",
+   "obey",
+   "berline"
+  ],
+  "sources": [
+   "thegamer-vehicles"
+  ],
+  "color": "#19d3e3"
  }
 ]

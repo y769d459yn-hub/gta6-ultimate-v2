@@ -651,5 +651,606 @@
    "gamesradar-activities"
   ],
   "astuce": "chasse"
+ },
+ {
+  "id": "planque-jason",
+  "nom": "Maison de Jason",
+  "type": "batiment",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "confirme",
+  "icon": "home",
+  "desc": "Planque du chapitre 1, sur pilotis. Haltères sur la terrasse, ponton de pêche.",
+  "kw": [
+   "planque",
+   "maison",
+   "jason",
+   "key lento"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Jason's House, Key Lento",
+  "mapcat": "points-utiles",
+  "astuce": "planques"
+ },
+ {
+  "id": "planque-starlet",
+  "nom": "Starlet Motel",
+  "type": "batiment",
+  "region": "port-gellhorn",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "home",
+  "desc": "Planque de l'histoire, au bord de la Route 628.",
+  "kw": [
+   "planque",
+   "motel",
+   "starlet"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Starlet Motel, Historic Route 628",
+  "mapcat": "points-utiles",
+  "astuce": "planques"
+ },
+ {
+  "id": "planque-lucia",
+  "nom": "Appartement de Lucia",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "home",
+  "desc": "Planque de l'histoire à Vice City.",
+  "kw": [
+   "planque",
+   "appartement",
+   "lucia"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Lucia's Apartment, Crosstown",
+  "mapcat": "points-utiles",
+  "astuce": "planques"
+ },
+ {
+  "id": "planque-y",
+  "nom": "Hôtel Y Vice City",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "home",
+  "desc": "Suite d'hôtel servant de planque, à Washington Beach.",
+  "kw": [
+   "planque",
+   "hotel",
+   "y",
+   "washington beach"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Y Vice City, Washington Beach",
+  "mapcat": "points-utiles",
+  "astuce": "planques"
+ },
+ {
+  "id": "mile-zero",
+  "nom": "Base aérienne de Mile Zero",
+  "type": "batiment",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "plane",
+  "desc": "Base militaire avec jets et hélicoptères d'attaque. Très surveillée.",
+  "kw": [
+   "base",
+   "militaire",
+   "jets",
+   "avion",
+   "goose key"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Mile Zero Air Station, Goose Key",
+  "astuce": "premier-avion"
+ },
+ {
+  "id": "southwind",
+  "nom": "Piste de Southwind",
+  "type": "poi",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "provisoire",
+  "icon": "plane",
+  "desc": "Petite piste avec un hangar d'hydravions Mammoth Dodo.",
+  "kw": [
+   "piste",
+   "hangar",
+   "hydravion",
+   "dodo"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Southwind",
+  "astuce": "premier-avion"
+ },
+ {
+  "id": "gellhorn-raceway",
+  "nom": "Circuit de Gellhorn",
+  "type": "poi",
+  "region": "port-gellhorn",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "flag",
+  "desc": "Grand circuit automobile de Port Gellhorn.",
+  "kw": [
+   "circuit",
+   "course",
+   "raceway",
+   "voiture"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Gellhorn International Raceway, Port Gellhorn",
+  "mapcat": "activites"
+ },
+ {
+  "id": "boone-speedway",
+  "nom": "Boone Speedway",
+  "type": "poi",
+  "region": null,
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "flag",
+  "desc": "Circuit de Hamlet. Une Gauntlet Hellfire serait garée dans la casse voisine.",
+  "kw": [
+   "circuit",
+   "speedway",
+   "hamlet"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Boone Speedway, Hamlet",
+  "mapcat": "activites"
+ },
+ {
+  "id": "manifest-canyon",
+  "nom": "Manifest Canyon",
+  "type": "poi",
+  "region": null,
+  "precision": "zone",
+  "statut": "provisoire",
+  "icon": "mountain",
+  "desc": "Canyon du nord-ouest. Des joueurs y signalent une statue qui bipe en morse, mystère non résolu.",
+  "kw": [
+   "canyon",
+   "statue",
+   "morse",
+   "secret",
+   "mystere"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Manifest Canyon, Kelly County"
+ },
+ {
+  "id": "visitor-center",
+  "nom": "Centre d'accueil de Grassrivers",
+  "type": "batiment",
+  "region": "grassrivers",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "info",
+  "desc": "Porte d'entrée des marais.",
+  "kw": [
+   "marais",
+   "accueil",
+   "visiteurs"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Grassrivers Visitor Center"
+ },
+ {
+  "id": "vice-beach-marina",
+  "nom": "Marina de Vice Beach",
+  "type": "poi",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "anchor",
+  "desc": "Marina d'Ocean Beach : bateaux et jet-skis.",
+  "kw": [
+   "marina",
+   "bateau",
+   "port"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Vice Beach Marina, Ocean Beach",
+  "mapcat": "points-utiles"
+ },
+ {
+  "id": "brian-marina",
+  "nom": "Marina de Brian",
+  "type": "batiment",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "anchor",
+  "desc": "Chantier naval et marina de Brian, à Key Lento.",
+  "kw": [
+   "brian",
+   "marina",
+   "bateau"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Brian's Boat Works & Marina, Key Lento",
+  "mapcat": "points-utiles"
+ },
+ {
+  "id": "panos-plaza",
+  "nom": "Panos Plaza",
+  "type": "poi",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "city",
+  "desc": "Place de Bayside, entre La Perle et le centre.",
+  "kw": [
+   "place",
+   "bayside"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Panos Plaza, Bayside"
+ },
+ {
+  "id": "prison-hamlet",
+  "nom": "Prison de Hamlet",
+  "type": "batiment",
+  "region": null,
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "badge",
+  "desc": "Grande prison au sud de l'État.",
+  "kw": [
+   "prison",
+   "penitencier",
+   "hamlet"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Main Prison Building, Hamlet"
+ },
+ {
+  "id": "kalaga-reservoir",
+  "nom": "Réservoir de Kalaga",
+  "type": "poi",
+  "region": "mount-kalaga",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "wave",
+  "desc": "Lac du parc de Mount Kalaga, zone de chasse.",
+  "kw": [
+   "lac",
+   "reservoir",
+   "chasse",
+   "kalaga"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Kalaga Reservoir",
+  "mapcat": "activites",
+  "astuce": "chasse"
+ },
+ {
+  "id": "wonder-whale",
+  "nom": "Wonder Whale",
+  "type": "batiment",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "user",
+  "desc": "Boutique souvenirs de Key Lento : premiers vêtements du jeu.",
+  "kw": [
+   "vetements",
+   "boutique",
+   "souvenirs"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Wonder Whale, Key Lento",
+  "mapcat": "points-utiles",
+  "astuce": "changer-de-look"
+ },
+ {
+  "id": "rideout-customs",
+  "nom": "Rideout Customs",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "spray",
+  "desc": "Atelier de personnalisation : jantes, intérieurs, style « donk ».",
+  "kw": [
+   "atelier",
+   "tuning",
+   "personnaliser",
+   "jantes"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Rideout Customs, Crosstown",
+  "mapcat": "points-utiles",
+  "astuce": "personnaliser-voiture"
+ },
+ {
+  "id": "euroform",
+  "nom": "Euroform Automotive",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "spray",
+  "desc": "Atelier de personnalisation à Little Cuba.",
+  "kw": [
+   "atelier",
+   "tuning",
+   "personnaliser"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Euroform Automotive, Little Cuba",
+  "mapcat": "points-utiles",
+  "astuce": "personnaliser-voiture"
+ },
+ {
+  "id": "wasteland-offroad",
+  "nom": "Wasteland Off-Road",
+  "type": "batiment",
+  "region": "port-gellhorn",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "spray",
+  "desc": "Atelier tout-terrain : 4x4, suspensions, peintures à la main.",
+  "kw": [
+   "atelier",
+   "4x4",
+   "tout-terrain"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Wasteland Off-Road, Port Gellhorn",
+  "mapcat": "points-utiles",
+  "astuce": "personnaliser-voiture"
+ },
+ {
+  "id": "ajax-gym",
+  "nom": "Ajax Gym",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "trophy",
+  "desc": "Salle de sport de Vice Beach pour monter Force et Cardio.",
+  "kw": [
+   "salle",
+   "sport",
+   "gym",
+   "muscu"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Ajax Gym, SW 4th St",
+  "mapcat": "points-utiles",
+  "astuce": "augmenter-stats"
+ },
+ {
+  "id": "grand-majestic",
+  "nom": "Grand Majestic",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "provisoire",
+  "icon": "trophy",
+  "desc": "Salle de sport citée par les guides (abonnement autour de 250 $).",
+  "kw": [
+   "salle",
+   "sport",
+   "gym"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Grand Majestic, Tequesta",
+  "mapcat": "points-utiles",
+  "astuce": "augmenter-stats"
+ },
+ {
+  "id": "stock-305",
+  "nom": "Stock 305",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "user",
+  "desc": "Boutique de streetwear (édition Ultimate).",
+  "kw": [
+   "vetements",
+   "boutique",
+   "ultimate"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Stock 305, Stockyard",
+  "mapcat": "points-utiles",
+  "astuce": "changer-de-look"
+ },
+ {
+  "id": "electric-fang",
+  "nom": "Electric Fang Tattoo",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "spray",
+  "desc": "Salon de tatouage éphémère (édition Ultimate), plus de 50 motifs.",
+  "kw": [
+   "tatouage",
+   "tattoo",
+   "ultimate"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Electric Fang Tattoo, Stockyard",
+  "mapcat": "points-utiles",
+  "astuce": "changer-de-look"
+ },
+ {
+  "id": "sara-salon",
+  "nom": "Sara's Unisex Salon",
+  "type": "batiment",
+  "region": null,
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "user",
+  "desc": "Salon de coiffure à Hamlet (coupes exclusives de l'édition Ultimate).",
+  "kw": [
+   "coiffeur",
+   "salon",
+   "coiffure"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Sara's Unisex Salon, Hamlet",
+  "mapcat": "points-utiles",
+  "astuce": "changer-de-look"
+ },
+ {
+  "id": "ammu-phil",
+  "nom": "Phil's Ammu-Nation",
+  "type": "batiment",
+  "region": null,
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "gun",
+  "desc": "Armurerie : armes, munitions, silencieux, gilets.",
+  "kw": [
+   "armurerie",
+   "ammu-nation",
+   "armes",
+   "munitions"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Phil's Ammu-Nation, Leonida",
+  "mapcat": "points-utiles",
+  "astuce": "acheter-silencieux"
+ },
+ {
+  "id": "pawn-gun",
+  "nom": "Pawn & Gun",
+  "type": "batiment",
+  "region": "port-gellhorn",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "gun",
+  "desc": "Prêteur sur gages et armurerie de Port Gellhorn.",
+  "kw": [
+   "armurerie",
+   "armes",
+   "pawn"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Pawn & Gun, Port Gellhorn",
+  "mapcat": "points-utiles",
+  "astuce": "acheter-silencieux"
+ },
+ {
+  "id": "hopital-vc",
+  "nom": "Hôpital de Vice City",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "heart",
+  "desc": "Hôpital de Rockridge.",
+  "kw": [
+   "hopital",
+   "soins"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Vice City Hospital, Rockridge",
+  "mapcat": "points-utiles",
+  "astuce": "se-soigner"
+ },
+ {
+  "id": "capri",
+  "nom": "Capri",
+  "type": "quartier",
+  "region": null,
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "palm",
+  "desc": "Petite ville côtière de l'ouest de l'État.",
+  "kw": [
+   "capri",
+   "ville",
+   "cote"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Capri"
+ },
+ {
+  "id": "washington-beach",
+  "nom": "Washington Beach",
+  "type": "quartier",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "palm",
+  "desc": "Nord de Vice Beach : grands hôtels et docks.",
+  "kw": [
+   "plage",
+   "hotel",
+   "vice beach"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Washington Beach, Vice Beach"
  }
 ]

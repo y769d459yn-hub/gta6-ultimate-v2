@@ -67,10 +67,12 @@ const vign = (id) => (VIGN.has(id) ? `../vignettes/${id}.webp` : null);
 const GTADB_RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'gtadb', 'landmarks.json'), 'utf8'));
 // Lieux communautaires : [adresse, [x, y], …, tags (index 6)]
 const GTADB = Object.entries(GTADB_RAW).filter(([, v]) => v[1] && v[1].length === 2).map(([id, v]) => ({ id, adr: v[0] || '', x: v[1][0], y: v[1][1], tags: v[6] || [] }));
+const GTADB_UTILISES = new Set(); // lieux GTADB déjà repris tels quels dans le guide
 function gtadbCentre(motif) {
   const m = motif.toLowerCase();
   const hits = GTADB.filter((g) => g.adr.toLowerCase().split(', ').some((_, i, a) => a.slice(i).join(', ').startsWith(m)));
   if (!hits.length) throw new Error(`GTADB : aucun lieu pour « ${motif} »`);
+  if (hits.length <= 2) hits.forEach((h) => GTADB_UTILISES.add(h.id));
   // médiane (robuste aux lieux mal placés)
   const med = (arr) => { const s = [...arr].sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
   return [Math.round(med(hits.map((h) => h.x))), Math.round(med(hits.map((h) => h.y)))];
@@ -105,6 +107,24 @@ for (const v of VEHICULES) {
   if (!pos) continue;
   const precision = l.type === 'region' ? 'region' : 'zone';
   features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/` } });
+}
+// Services repérés par la communauté (étiquettes « # » de GTADB) → catégorie « Points utiles »
+const SERVICES = {
+  '#guns': ['Armurerie', 'gun'], '#fence': ['Receleur', 'money'], '#modshop': ['Atelier auto', 'spray'], "#pay'n'spray": ["Pay 'n' Spray", 'spray'],
+  '#hospital': ['Hôpital', 'heart'], '#supermarket': ['Épicerie', 'heart'], '#gas': ['Station-service', 'bolt'], '#hair': ['Coiffeur', 'user'],
+  '#tattoos': ['Tatoueur', 'spray'], '#clothes': ['Vêtements', 'user'], '#gym': ['Salle de sport', 'trophy'], '#police': ['Police', 'badge'],
+  '#marina': ['Marina', 'anchor'], '#airport': ['Aéroport', 'plane']
+};
+const SERVICE_ASTUCE = { '#guns': 'acheter-silencieux', '#fence': 'braquer-magasin', '#modshop': 'personnaliser-voiture', "#pay'n'spray": 'pay-n-spray', '#hospital': 'se-soigner', '#supermarket': 'se-soigner', '#hair': 'changer-de-look', '#tattoos': 'changer-de-look', '#clothes': 'changer-de-look', '#gym': 'augmenter-stats', '#police': 'semer-la-police', '#marina': 'activites-eau', '#airport': 'premier-avion' };
+for (const g of GTADB) {
+  if (GTADB_UTILISES.has(g.id)) continue;
+  const tag = Object.keys(SERVICES).find((t) => g.tags.includes(t)); if (!tag) continue;
+  const [label, ic] = SERVICES[tag];
+  const parts = g.adr.split(', ');
+  const nomBrut = parts[0].replace(/\?$/, '');
+  const zone = parts.slice(1).join(', ') || 'Leonida';
+  const nom = !nomBrut || nomBrut === '?' ? `${label} · ${parts[1] || 'Leonida'}` : nomBrut;
+  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [Math.round(g.x), Math.round(g.y)] }, properties: { id: 's-' + g.id, nom, cat: 'points-utiles', sous: label, region: null, statut: 'a-verifier', precision: 'zone', icon: ic, desc: `${label} · ${zone}. Repéré par la communauté GTADB.`, url: SERVICE_ASTUCE[tag] ? `astuces/${SERVICE_ASTUCE[tag]}/` : null, service: label } });
 }
 // Couche communautaire : lieux nommés et positionnés de GTADB
 const COMMU_CATS = CARTE.communaute.categories;
@@ -819,6 +839,7 @@ for (const v of VEHICULES) { const c = cat('vehicules', v.type); const l = L[v.l
 for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: l.desc.slice(0, 90), u: onMap(l.id) ? `carte/?focus=${l.id}` : `lieux/#${l.id}`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
+for (const f of features.filter((f) => f.properties.service)) { const p = f.properties; push({ t: p.nom, q: p.service, k: norm(`${p.service} service carte ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: '#ffd23f', g: 'lieu', s: 'service', l: 'Point utile · ' + p.service, m: 1, f: p.id }); }
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
 

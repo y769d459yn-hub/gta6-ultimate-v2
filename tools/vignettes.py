@@ -37,6 +37,7 @@ def vignette(x, y, z):
 ids = []
 for f in C['features']:
     p = f['properties']; x, y = f['geometry']['coordinates']
+    if p.get('service'): continue
     z = 2 if p.get('label') else (3 if p.get('precision') == 'region' else 4)
     vignette(x, y, z).save(os.path.join(OUT, f"{p['id']}.webp"), 'WEBP', quality=70, method=6)
     ids.append(p['id'])
