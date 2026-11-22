@@ -45,7 +45,7 @@
     // Néon : allumage avec scintillement
     tl.fromTo('.h-line--neon', { opacity: 0, filter: 'drop-shadow(0 0 0 rgba(255,43,214,0))' }, {
       keyframes: [{ opacity: .9, duration: .06 }, { opacity: .1, duration: .08 }, { opacity: 1, duration: .05 }, { opacity: .3, duration: .1 }, { opacity: 1, duration: .25 }],
-      filter: 'drop-shadow(0 0 6px rgba(255,43,214,.85)) drop-shadow(0 0 22px rgba(255,43,214,.45))', ease: 'none'
+      filter: 'drop-shadow(0 0 8px rgba(255,43,214,.7)) drop-shadow(0 0 24px rgba(255,43,214,.35))', ease: 'none'
     }, .55);
     tl.to('.h-kicker.h-anim', { opacity: 1, duration: .6 }, .1);
     tl.fromTo('.h-search', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .9 }, .65);
@@ -62,7 +62,7 @@
       tl.from('.sun-line', { drawSVG: '50% 50%', duration: 1.4, stagger: .08, ease: 'power3.inOut' }, .3);
       tl.from('.palm-l', { drawSVG: '0%', duration: 2, stagger: .05, ease: 'power2.inOut' }, .4);
     }
-    g.set('.h-sun', { opacity: .75 }); g.set('.h-palms', { opacity: .5 });
+    g.set('.h-sun', { opacity: innerWidth < 900 ? .4 : .55 }); g.set('.h-palms', { opacity: .3 });
     tl.from('.h-glow', { opacity: 0, scale: .6, duration: 2.4, ease: 'power2.out' }, 0);
     // Parallaxe au pointeur (desktop)
     if (matchMedia('(pointer:fine)').matches) {
