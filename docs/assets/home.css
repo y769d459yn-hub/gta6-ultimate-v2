@@ -6,8 +6,11 @@
 @font-face { font-family: "Inter Tight Variable"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(inter-tight-latin-var.woff2) format("woff2"); }
 @font-face { font-family: "JetBrains Mono Variable"; font-style: normal; font-weight: 100 800; font-display: swap; src: url(jetbrains-mono-latin-var.woff2) format("woff2"); }
 
-.v2 {
+:root.v2, :root.v2[data-theme] {
   color-scheme: dark;
+  /* jetons hérités de app.css, redéfinis pour que le mode clair du téléphone ne s'applique pas */
+  --bg: #040309; --bg2: #09080f; --card: #0f0d18; --card2: #161323; --line: rgba(255, 255, 255, .1); --line2: rgba(255, 255, 255, .2);
+  --tx2: #d3cdea; --muted: #b3acd0; --glass: rgba(9, 8, 15, .8); --shadow: 0 10px 30px -12px rgba(0, 0, 0, .8);
   --k0: #040309; --k1: #09080f; --k2: #0f0d18; --k3: #161323;
   --hair: rgba(255, 255, 255, .075); --hair2: rgba(255, 255, 255, .14); --hair3: rgba(255, 255, 255, .24);
   --tx: #f6f3ff; --tx2: #d3cdea; --mut: #a29cbf;
