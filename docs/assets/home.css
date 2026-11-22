@@ -336,3 +336,11 @@
 /* Tuiles avec aperçu de la carte */
 .v2 .ht--img { background: linear-gradient(180deg, rgba(9, 8, 15, .5), rgba(9, 8, 15, .92) 75%), #050610 var(--img) center / cover; }
 .v2 .ht--img:hover { background: linear-gradient(180deg, rgba(9, 8, 15, .3), rgba(9, 8, 15, .88) 75%), #050610 var(--img) center / cover; }
+
+/* tuile large secondaire (Missions) : pleine largeur sur mobile et tablette, 2 colonnes sur ordinateur */
+.v2 .ht--wide { grid-column: 1 / -1; }
+@media (min-width: 900px) {
+  .v2 .h-tiles:has(.ht--wide) { grid-template-rows: 150px 150px 150px; }
+  .v2 .h-tiles:has(.ht--wide) .ht--large { grid-row: span 3; }
+  .v2 .ht--wide { grid-column: span 2; }
+}

@@ -63,6 +63,16 @@ La page Véhicules range les 312 véhicules confirmés de GTA 6 en 19 catégorie
 
 `python3 tools/verification.py` écrit `data/verification.json` : un véhicule est « confirmé » si GTA Wiki (page et catégorie « Vehicles in GTA VI », `vendor/catalogue/gtawiki-vehicules-gta6.json`) ou le site officiel de Rockstar le recensent ; sinon il est « à confirmer » (vu seulement sur GTABase ou gta6guide.fr). Relevé du 22/11/2026 : 273 confirmés, 39 à confirmer. La « Pegassi Torus dorée », introuvable dans toutes les sources, a été retirée du guide. Le site affiche ce statut sur chaque carte, dans la fenêtre d'infos et sur les fiches, avec un filtre « Confirmés seulement ».
 
+## Missions et solutions
+
+La page `missions/` (onglet « Missions » du menu et de la barre du bas) liste les 134 missions de GTA 6 : 107 de l'histoire (prologue et 5 chapitres) et 27 facultatives.
+Pour chaque mission : nom français et nom du jeu, résumé, donneur, personnage joué, récompense, étapes courtes et conseils « si tu es bloqué ».
+Le bloc « Que faire maintenant ? » garde la progression sur l'appareil (`localStorage`, clé `lg:missions`) : « J'en suis là » coche les missions précédentes et affiche la suivante.
+
+- Liste, ordre, chapitres, donneurs et récompenses : relevé GTABase du 22/11/2026 (`vendor/missions/gtabase-*.json`), recoupé avec gta6guide.fr et GTA Wiki (`vendor/missions/*-liste.txt`) ; 132 missions sur 134 sont confirmées par au moins deux sources.
+- Textes français : `tools/missions_fr/` (rédigés par le site).
+- Régénérer : `python3 tools/missions.py` puis `npm run build`.
+
 ## Codes
 
 La page `codes/` liste les 61 codes de GTA 6 en 5 groupes (joueur, combat, véhicules, météo et heure, filtres d'écran) : effet, défi pour le débloquer et combinaison de flèches quand elle est connue (19 sur 61). `python3 tools/codes.py` écrit `data/codes.json` à partir des relevés de GTABase, GTA Wiki et gta6guide.fr (`vendor/codes/`, 22/11/2026). Une combinaison est « confirmée » quand au moins deux sources donnent la même ; une combinaison donnée par une seule source et identique à celle d'un autre code est écartée (erreur probable).

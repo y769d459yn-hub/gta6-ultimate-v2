@@ -30,6 +30,12 @@
     },
     "raccourcis": [
       {
+        "label": "Missions",
+        "q": "missions",
+        "icon": "flag",
+        "href": "missions/"
+      },
+      {
         "label": "Police",
         "q": "semer la police",
         "icon": "siren"
@@ -62,6 +68,16 @@
       "icon": "bolt",
       "couleur": "#ff2bd6",
       "taille": "large"
+    },
+    {
+      "id": "missions",
+      "label": "Missions et solutions",
+      "sousTitre": "{n} missions",
+      "compteur": "missions",
+      "href": "missions/",
+      "icon": "flag",
+      "couleur": "#ff3d6e",
+      "taille": "large2"
     },
     {
       "id": "vehicules",

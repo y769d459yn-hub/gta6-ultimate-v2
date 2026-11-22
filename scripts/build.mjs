@@ -18,6 +18,7 @@ const VEHICULES = read('vehicules.json');
 // Vérification de présence dans GTA 6 (tools/verification.py : site officiel, GTA Wiki, GTABase, gta6guide.fr)
 const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'verification.json'), 'utf8')).vehicules : {};
 const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.statut === 'confirme' ? (v.preuves.length ? `Confirmé par ${v.preuves.join(' et ')}` : 'Type de véhicule confirmé') : v.statut === 'non-confirme' ? 'Non confirmé' : 'À confirmer : vu seulement sur GTABase ou gta6guide.fr'; };
+const MISSIONS = fs.existsSync(path.join(ROOT, 'data', 'missions.json')) ? read('missions.json') : { chapitres: [], missions: [] };
 const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes.json') : { categories: [], codes: [] };
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 const LIEUX = read('lieux.json');
@@ -187,11 +188,11 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
   const R = depth ? '../'.repeat(depth) : './';
   const canon = `${site.url}/${p}`;
   const nav = [
-    ['astuces/', 'Astuces', 'bolt'], ['vehicules/', 'Véhicules', 'car'], ['carte/', 'Carte', 'map'],
+    ['missions/', 'Missions', 'flag'], ['astuces/', 'Astuces', 'bolt'], ['vehicules/', 'Véhicules', 'car'], ['carte/', 'Carte', 'map'],
     ['lieux/', 'Lieux', 'pin'], ['encyclopedie/', 'Encyclopédie', 'book'], ['actualites/', 'Actus', 'news']
   ];
   const cur = (u) => (p.startsWith(u) ? ' aria-current="page"' : '');
-  const tabs = [['', 'Accueil', 'home'], ['astuces/', 'Astuces', 'bolt'], ['#search', 'Chercher', 'search'], ['carte/', 'Carte', 'map'], ['favoris/', 'Favoris', 'heart']];
+  const tabs = [['', 'Accueil', 'home'], ['astuces/', 'Astuces', 'bolt'], ['#search', 'Chercher', 'search'], ['carte/', 'Carte', 'map'], ['missions/', 'Missions', 'flag']];
   if (crumbs) schema = [...schema, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: `${site.url}/${c[1]}` })) }];
   const crumbHtml = crumbs ? `<nav class="crumbs" aria-label="Fil d'Ariane">${crumbs.map((c, i) => i < crumbs.length - 1 ? `<a href="${R}${c[1]}">${esc(c[0])}</a>${icon('arrow-right')}` : `<span aria-current="page">${esc(c[0])}</span>`).join('')}</nav>` : '';
   return `<!doctype html>
@@ -246,7 +247,7 @@ ${body}
   <div class="foot-in">
     <a class="brand brand--foot" href="${R}">${v2 ? BRAND_MARK.replace(/mk-g/g, 'mk-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
     <nav aria-label="Pied de page">
-      <a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
+      <a href="${R}missions/">Missions et solutions</a><a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
     </nav>
     <p class="disclaimer">Site indépendant, non affilié à Rockstar Games ni Take-Two. Grand Theft Auto est une marque de Take-Two Interactive. Mis à jour le ${fmtDate(site.majLe)}.</p>
   </div>
@@ -340,12 +341,12 @@ function homePalms() {
 {
   const p = '', R = R_(p);
   const H = ACCUEIL;
-  const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length + CATALOGUE.vehicules.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length };
+  const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length + CATALOGUE.vehicules.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length, missions: MISSIONS.missions.length };
   const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
   const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
   const maj = site.majLe.split('-').reverse().join('.');
   const tileImg = { carte: vign('vice-city', R), vehicules: vign('v-pegassi-infernus', R) };
-  const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : ''}${tileImg[t.id] ? ' ht--img' : ''}" href="${R}${t.href}" style="--c:${t.couleur}${tileImg[t.id] ? `;--img:url(${tileImg[t.id]})` : ''}" data-h="tile">
+  const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : t.taille === 'large2' ? ' ht--wide' : ''}${tileImg[t.id] ? ' ht--img' : ''}" href="${R}${t.href}" style="--c:${t.couleur}${tileImg[t.id] ? `;--img:url(${tileImg[t.id]})` : ''}" data-h="tile">
       <span class="ht-idx">0${i + 1}</span>
       <span class="ht-ico">${icon(t.icon)}</span>
       <span class="ht-txt"><b>${esc(t.label)}</b><small>${esc(fill(t.sousTitre, t.compteur))}</small></span>
@@ -614,6 +615,65 @@ for (const v of VEHICULES) {
   ${sourcesBlock(v.sources)}
 </article>`;
   emit(p, layout({ p, title: `${v.nom} GTA 6 : emplacement et comment l'obtenir`, desc: `Localisation, informations et méthode d'obtention de ${v.nom} dans GTA 6, selon les sources disponibles.`, body, cls: 'p-fiche', ogType: 'article', scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
+}
+
+// ---------- MISSIONS ET SOLUTIONS ----------
+{
+  const p = 'missions/', R = R_(p);
+  const MS = MISSIONS.missions, CH = MISSIONS.chapitres;
+  const princ = MS.filter((m) => !m.facultative).length, fac = MS.length - princ;
+  const chNom = (c) => (c.id === 'prologue' ? 'Prologue' : `Chapitre ${c.id}`);
+  const PERS = { jason: 'Jason', lucia: 'Lucia' };
+  const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
+    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b><small>${esc(m.nomEn)}${m.facultative ? ' · facultative' : ''}${m.manquable ? ' · <em>peut être manquée</em>' : ''}</small></span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
+    <div class="mis-b">
+      <p class="mis-r">${esc(m.resume)}</p>
+      <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
+      <h3 class="mis-h">${icon('list')}Étape par étape</h3>
+      <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
+      ${m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
+      <div class="mis-act"><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
+      <p class="mis-src">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.join(', ')}.` : `Mission listée par ${m.sources[0]} seulement.`}</p>
+    </div>
+  </details>`;
+  const body = `<section class="wrap section missions" data-missions>
+  <h1 class="h1">Missions et solutions</h1>
+  <p class="lead">Les <b>${princ} missions de l'histoire</b>, dans l'ordre et par chapitre, plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <div class="mis-now" data-mnow>
+    <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
+    <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>
+    <p class="mis-now-c"><span data-mcount>0 / ${princ} missions de l'histoire faites</span><button class="lnk" type="button" data-mreset hidden>Tout effacer</button></p>
+    <a class="btn-s" href="#" data-mnext hidden>${icon('arrow-right')}<span>Voir la solution</span></a>
+  </div>
+  <section class="faq mis-stuck" aria-labelledby="stuck-t"><h2 class="h3" id="stuck-t">${icon('question')}Bloqué ? Les réponses rapides</h2>
+    <details><summary>Je ne trouve pas la mission suivante</summary><p>1. Ouvre la carte et touche l'icône en forme de livre : c'est la liste des missions. 2. Si rien n'est marqué, la suite arrive souvent par un appel ou un SMS : fais autre chose quelques heures de jeu ou dors dans ta planque. 3. Certaines missions demandent d'en finir d'autres avant (c'est indiqué dans « Si tu es bloqué »).</p></details>
+    <details><summary>Il me faut de l'argent pour continuer</summary><p>Certaines missions ne s'ouvrent qu'avec assez d'argent : par exemple 15 000 $ à la fin du chapitre 2. Braque des magasins, vends des voitures à Moses ou à Randy, ou fais les missions facultatives. Mets ton argent à la banque (BuckMe) : l'argent liquide est perdu si tu meurs.</p></details>
+    <details><summary>La mission est trop dure</summary><p>1. Utilise le Focus : il ralentit le temps pour viser. 2. Soigne-toi avec des Zombix (5 maximum). 3. Change d'approche : en discrétion (accroupi, par derrière) ou à couvert avec une arme plus puissante. 4. Si tu échoues, tu reprends au dernier point de passage.</p></details>
+    <details><summary>Peut-on rejouer une mission ?</summary><p>Non : GTA 6 n'a ni rejouer de mission ni médaille d'or. Sauvegarde avant les grosses missions pour pouvoir revenir en arrière.</p></details>
+    <details><summary>J'ai raté une mission facultative</summary><p>Les missions marquées « peut être manquée » disparaissent au bout d'un moment. Ce n'est pas grave : elles ne comptent ni pour les trophées ni pour les 100 %.</p></details>
+    <details><summary>Comment changer de personnage ?</summary><p>À partir de la mission « Pause café » (chapitre 2), maintiens droite sur la croix directionnelle pour passer de Jason à Lucia et donner des ordres à ton partenaire.</p></details>
+  </section>
+  <h2 class="h3 mis-list-t">${icon('list')}Toutes les missions</h2>
+  ${fieldFilter('Chercher une mission : banque, Raul, bateau…')}
+  <div class="filterbar" role="group" aria-label="Filtrer par chapitre">
+    <button class="chip" type="button" data-mch="" aria-pressed="true">Tous</button>
+    ${CH.map((c) => `<button class="chip" type="button" data-mch="${c.id}" aria-pressed="false">${c.id === 'prologue' ? 'Prologue' : `Chap. ${c.id}`}</button>`).join('')}
+  </div>
+  <div class="filterbar" role="group" aria-label="Options d'affichage">
+    <button class="chip chip--toggle" type="button" data-mopt aria-pressed="true">${icon('plus')}Facultatives</button>
+    <button class="chip chip--toggle" type="button" data-mhide aria-pressed="false">${icon('eye')}Masquer les missions faites</button>
+  </div>
+  <p class="count-line" data-mcountline aria-live="polite"></p>
+  ${CH.map((c) => {
+    const L = MS.filter((m) => m.chapitre === c.id);
+    return `<section class="mis-ch" data-mchap="${c.id}" aria-labelledby="ch-${c.id}"><h2 class="vgrp-h" id="ch-${c.id}">${chNom(c)}${c.id === 'prologue' ? '' : ` · ${esc(c.titre)}`} <small>${L.filter((m) => !m.facultative).length} missions${L.some((m) => m.facultative) ? ` + ${L.filter((m) => m.facultative).length} facultatives` : ''}</small></h2>
+    <p class="mis-ch-r">${esc(c.resume)}</p>
+    <div class="mis-list">${L.map(carte).join('')}</div></section>`;
+  }).join('')}
+  <p class="empty" data-mempty hidden>${icon('search')}Aucune mission ne correspond. Essaie un autre mot.</p>
+  <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide. Noms anglais : ceux du jeu.</span></p>
+</section>`;
+  emit(p, layout({ p, title: `Missions GTA 6 : les ${MS.length} missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (${princ} de l'histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
 
 // ---------- CODES ----------
@@ -958,6 +1018,8 @@ for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat ==
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 for (const f of features.filter((f) => f.properties.service)) { const p = f.properties; push({ t: p.nom, q: p.service, k: norm(`${p.service} service carte ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: '#ffd23f', g: 'lieu', s: 'service', l: 'Point utile · ' + p.service, m: 1, f: p.id }); }
+push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Les ${MISSIONS.missions.length} missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
+for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: m.nomEn, k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: c.nomEn, k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });

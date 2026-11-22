@@ -1,0 +1,1930 @@
+[
+ {
+  "chap": "Prologue",
+  "num": 1,
+  "name": "Prologue",
+  "url": "/missions/gta-6/prologue",
+  "badges": [],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/igallery/gta-6-screens/resized/lucia-caminos-05-468_320x180.jpg",
+  "desc": "Lucia meets with a prison counselor to talk about her arrest and her chances of early release."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 2,
+  "name": "Gone Fishing",
+  "url": "/gta-6/missions/gone-fishing",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "https://www.gtabase.com/images/jch-optimize/ng/igallery_gta-6-screens_resized_jason-duval-03-468__320x180.avif",
+  "desc": "A smuggling run with Cal and Donnie goes wrong, and Jason has to head into Kingfishers territory in Pelican Valley."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 3,
+  "name": "Gear Up",
+  "url": "/gta-6/missions/gear-up",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/gear-up_320x180.jpg",
+  "desc": "Jason visits the local Ammu-Nation to pick up a new longarm."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 4,
+  "name": "Unwanted Attention",
+  "url": "/gta-6/missions/unwanted-attention",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/unwanted-attention_320x180.jpg",
+  "desc": "Cal and Jason head to Hamlet to recover a payment owed to Brian from the police impound."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 5,
+  "name": "Lab Fees",
+  "url": "/gta-6/missions/lab-fees",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/lab-fees_320x180.jpg",
+  "desc": "Jason collects Brian's rent from a gift shop that hides more than souvenirs."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 6,
+  "name": "Pipework",
+  "url": "/gta-6/missions/pipework",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/characters/resized/mandy_320x180.png",
+  "desc": "While collecting rent from Mandy, one of Brian's tenants, Jason ends up doing some home repairs."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 7,
+  "name": "Just a Scratch",
+  "url": "/gta-6/missions/just-a-scratch",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/just-a-scratch_320x180.jpg",
+  "desc": "Jason takes his battered Ganado to Joey at Coastal Auto Care for some much-needed repairs."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Get Shirley's Rum",
+  "url": "/gta-6/missions/get-shirleys-rum",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/get-shirleys-rum_320x180.jpg",
+  "desc": "Jason's neighbor Shirley is thirsty for rum and asks him to pick some up from the store."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Steal the Scooter",
+  "url": "/gta-6/missions/steal-the-scooter",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/steal-the-scooter_320x180.jpg",
+  "desc": "Shirley has an unusual plan involving her neighbor's mobility scooter."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 8,
+  "name": "Hey Arnold!",
+  "url": "/gta-6/missions/hey-arnold",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/hey-arnold_320x180.jpg",
+  "desc": "Brian's long-time broker Arnold has stopped answering, and Jason and Cal help track him down."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 9,
+  "name": "Island Dreams",
+  "url": "/gta-6/missions/island-dreams",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/island-dreams_320x180.jpg",
+  "desc": "Kenton needs Jason to lead a bachelor party on a dive to a shipwreck, with some treasure hunting on the side."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 10,
+  "name": "Feng Shui",
+  "url": "/gta-6/missions/feng-shui",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/feng-shui_320x180.jpg",
+  "desc": "Jason and Cal hang out at home and rearrange the furniture before Lucia arrives."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Pick Up Groceries",
+  "url": "/gta-6/missions/pick-up-groceries",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/pick-up-groceries_320x180.jpg",
+  "desc": "Buy some groceries and bring them home before Lucia arrives."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Buy Flowers",
+  "url": "/gta-6/missions/buy-flowers",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/buy-flowers_320x180.jpg",
+  "desc": "Order some flowers for Lucia and have them delivered to the house."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Buy Lucia a Necklace",
+  "url": "/gta-6/missions/buy-lucia-a-necklace",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/buy-lucia-a-necklace_320x180.jpg",
+  "desc": "Buy Lucia a necklace from The Siren's Chest jewelry store as a gift."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Get The Chop",
+  "url": "/gta-6/missions/get-the-chop",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/get-the-chop_320x180.jpg",
+  "desc": "Visit Barnacle Beauties to get a new haircut or tidy up your beard."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Get Lucia's Clothes",
+  "url": "/gta-6/missions/get-lucias-clothes",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/get-lucias-clothes_320x180.jpg",
+  "desc": "Lucia asks Jason to collect some clothes from her friend Andy at the Manatee's Rest bar."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Catch a Bigger Fish",
+  "url": "/gta-6/missions/catch-a-bigger-fish",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/catch-a-bigger-fish_320x180.jpg",
+  "desc": "Cal bets Jason he can't land a stoplight parrotfish heavier than 2 lbs."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 11,
+  "name": "Coming Home",
+  "url": "/gta-6/missions/coming-home",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/coming-home-2_320x180.jpg",
+  "desc": "Lucia is getting out of Hamlet Correctional and needs a ride home."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 12,
+  "name": "Clean Up After Donnie",
+  "url": "/gta-6/missions/clean-up-after-donnie",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/clean-up-after-donnie_320x180.jpg",
+  "desc": "A lost package from Donnie's botched delivery is sending a signal near a fishing spot in Hamlet."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 13,
+  "name": "Buck Me",
+  "url": "/gta-6/missions/buck-me",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/buck-me_320x180.jpg",
+  "desc": "Lucia needs a bank account for her community service pay, so Jason meets her at the Fleeca bank."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 14,
+  "name": "Down to Earth",
+  "url": "/gta-6/missions/down-to-earth",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/down-to-earth_320x180.jpg",
+  "desc": "Brian wants Jason at the marina for a new job, and Lucia decides to come along."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Meditate with Lucia",
+  "url": "/gta-6/missions/meditate-with-lucia",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/meditate-with-lucia_320x180.jpg",
+  "desc": "Lucia invites Jason to take a moment and meditate with her at his house."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Find the Lost Drugs",
+  "url": "/gta-6/missions/find-the-lost-drugs",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/find-the-lost-drugs_320x180.jpg",
+  "desc": "Follow the signals and search four areas of the swamp for lost drug packages."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 15,
+  "name": "Deposit Cash Into BuckMe",
+  "url": "/gta-6/missions/deposit-cash-into-buckme",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/deposit-cash-into-buckme_320x180.jpg",
+  "desc": "Deposit some cash into your BuckMe checking account at any ATM."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 16,
+  "name": "Save for the Future",
+  "url": "/gta-6/missions/save-for-the-future",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/save-for-the-future_320x180.jpg",
+  "desc": "Keep adding money to your Family Savings to reach the next goal and unlock new BuckMe perks."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 17,
+  "name": "Day Release",
+  "url": "/gta-6/missions/day-release",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/day-release_320x180.jpg",
+  "desc": "Kat and Mattia invite Jason and Lucia out for a day of partying, starting at the Rusty Anchor."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Clock Out",
+  "url": "/gta-6/missions/clock-out",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/clock-out_320x180.jpg",
+  "desc": "Lucia finished work early and needs a ride home before 4pm."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 18,
+  "name": "Clear Skies",
+  "url": "/gta-6/missions/clear-skies",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/clear-skies_320x180.jpg",
+  "desc": "Brian has a job for Jason and Donnie that starts in Southwind."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 19,
+  "name": "Building a Life",
+  "url": "/gta-6/missions/building-a-life",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/building-a-life_320x180.jpg",
+  "desc": "Jason and Lucia work on their new home together, and Jason gives Lucia a lesson with a gun."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Ring the Bell!",
+  "url": "/gta-6/missions/ring-the-bell",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/ring-the-bell_320x180.jpg",
+  "desc": "Cal talks Jason into a few drinks at the Rusty Anchor, and the night ends with Jason making sure his friend gets home in one piece."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 20,
+  "name": "Swamped",
+  "url": "/gta-6/missions/swamped",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/swamped_320x180.jpg",
+  "desc": "Brian asks Jason to meet him at the marina before heading out to see the Kingfishers."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 21,
+  "name": "Don Gone",
+  "url": "/gta-6/missions/don-gone",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/don-gone_320x180.jpg",
+  "desc": "Brian sends Jason to clear out Donnie's trailer in Key Lento."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": null,
+  "name": "Donnie's Lost Drugs",
+  "url": "/gta-6/missions/donnies-lost-drugs",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/donnies-lost-drugs_320x180.jpg",
+  "desc": "Donnie's boat sank off Corsair Key with drugs still on board, and Brian wants them back."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 22,
+  "name": "Recalibration",
+  "url": "/gta-6/missions/recalibration",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/recalibration_320x180.jpg",
+  "desc": "Cal is going through a hard time, so Jason and Lucia try to cheer him up."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 23,
+  "name": "Tourist Trap",
+  "url": "/gta-6/missions/tourist-trap",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/tourist-trap_320x180.jpg",
+  "desc": "Mattia offers Jason and Lucia a simple job that could lead to well-paid work."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 24,
+  "name": "Home Sweet Home",
+  "url": "/gta-6/missions/home-sweet-home",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/home-sweet-home_320x180.jpg",
+  "desc": "Lucia goes back to Jason's house to collect some of his things before the two of them skip town."
+ },
+ {
+  "chap": "Chapter 1",
+  "num": 25,
+  "name": "Discharge Time",
+  "url": "/gta-6/missions/discharge-time",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/discharge-time_320x180.jpg",
+  "desc": "Lucia heads to Vice City Hospital, but trouble is waiting for her there."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 26,
+  "name": "What's in the Bag?",
+  "url": "/gta-6/missions/whats-in-the-bag",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/whats-in-the-bag_320x180.jpg",
+  "desc": "Jason and Lucia wake up in a Port Gellhorn motel and finally take a look inside the bag."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 27,
+  "name": "Ambulance Chaser",
+  "url": "/gta-6/missions/ambulance-chaser",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/ambulance-chaser_320x180.jpg",
+  "desc": "The ambulance from the hospital escape is still nearby, and Lucia needs to get rid of it before the cops find it."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 28,
+  "name": "Play Nurse",
+  "url": "/gta-6/missions/take-care-of-jason",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/take-care-of-jason-2_320x180.jpg",
+  "desc": "Keep checking in on Jason at the motel until he's back on his feet."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 29,
+  "name": "Overnight Charges",
+  "url": "/gta-6/missions/overnight-charges",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/overnight-charges_320x180.jpg",
+  "desc": "Go to the motel's front desk and find out how much is owed for the room."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 30,
+  "name": "Just Moved In",
+  "url": "/gta-6/missions/just-moved-in",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/just-moved-in_320x180.jpg",
+  "desc": "Pick up some supplies from the Alpha convenience store near the motel."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 31,
+  "name": "Girls' Trip",
+  "url": "/gta-6/missions/girls-trip",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/girls-trip_320x180.jpg",
+  "desc": "Jason needs painkillers to recover from his surgery, so Lucia asks around the motel."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Pick Up a Gun",
+  "url": "/gta-6/missions/pick-up-a-gun",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/pick-up-a-gun-2_320x180.jpg",
+  "desc": "Head to Gellhorn Outfitters to buy a gun or grab one of your weapons from the locker."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 32,
+  "name": "Moses",
+  "url": "/gta-6/missions/moses",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/moses_320x180.jpg",
+  "desc": "Vicki said a mechanic named Moses could set Lucia up with a ride, so take a low-key car to his shop."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 33,
+  "name": "New Look",
+  "url": "/gta-6/missions/new-look",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/new-look_320x180.jpg",
+  "desc": "Visit the Pearl House Hair Salon to give Lucia a new hairstyle."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 34,
+  "name": "How Do I Look?",
+  "url": "/gta-6/missions/how-do-i-look",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/how-do-i-look_320x180.jpg",
+  "desc": "Buy Lucia some new clothes, or pick them up cheap at Bargain World."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 35,
+  "name": "Got Pills?",
+  "url": "/gta-6/missions/painkiller-supplier",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/painkiller-supplier_320x180.jpg",
+  "desc": "Dunk will call when he has a lead on some painkillers for Jason."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 36,
+  "name": "Daily Driver",
+  "url": "/gta-6/missions/daily-driver",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/daily-driver_320x180.jpg",
+  "desc": "Moses wants an '82 Canis Crawler taken back from some clients who didn't pay."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 37,
+  "name": "Behind on Payments",
+  "url": "/gta-6/missions/behind-on-payments",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/behind-on-payments_320x180.jpg",
+  "desc": "Linda is holding the necklace as collateral until the $900 owed for the motel room is paid."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 38,
+  "name": "Slam Dunk",
+  "url": "/gta-6/missions/slam-dunk",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/slam-dunk_320x180.jpg",
+  "desc": "Go to Dunk's trailer and find out how he plans to get stronger painkillers for Jason."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 39,
+  "name": "Breakfast Run",
+  "url": "/gta-6/missions/breakfast-run",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/breakfast-run_320x180.jpg",
+  "desc": "Head back to the motel to check how Jason's doing."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 40,
+  "name": "Coffee Break",
+  "url": "/gta-6/missions/coffee-break",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/coffee-break_320x180.jpg",
+  "desc": "After their string of stick-ups, Jason and Lucia sit down over coffee to plan their next move."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Thrillbillies",
+  "url": "/gta-6/missions/thrillbillies",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/thrillbillies_320x180.jpg",
+  "desc": "There's prize money to be won at the Thrillbilly Mud Club for anyone willing to get dirty."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Twist Wrist, Smash, Grab",
+  "url": "/gta-6/missions/twist-wrist-smash-grab",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/twist-wrist-smash-grab_320x180.jpg",
+  "desc": "Billy is planning a job and needs one more rider to join his crew."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Hit Avery Pawn",
+  "url": "/gta-6/missions/hit-avery-pawn",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/hit-avery-pawn_320x180.jpg",
+  "desc": "Lucia suggests hitting Avery Pawn in Port Gellhorn together, a shop full of valuables."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Hit Kingpin Bowling",
+  "url": "/gta-6/missions/hit-kingpin-bowling",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/hit-kingpin-bowling_320x180.jpg",
+  "desc": "The bowling alley has been taken over by Kolt & Associates and looks like a good next target."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": null,
+  "name": "Impounded Vehicle",
+  "url": "/gta-6/missions/impounded-vehicle",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/tba_320x180.jpg",
+  "desc": "Lucia's car has been impounded and she needs to get it back."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 41,
+  "name": "Prepare for Vice City",
+  "url": "/gta-6/missions/prepare-for-vice-city",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/prepare-for-vice-city_320x180.jpg",
+  "desc": "Make at least $15,000 while Dre'Quan sorts out a place to stay in Vice City."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 42,
+  "name": "Afternoon Delight",
+  "url": "/gta-6/missions/afternoon-delight",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/afternoon-delight_320x180.jpg",
+  "desc": "Vicki wants to rob her boss at Delights and split the cash."
+ },
+ {
+  "chap": "Chapter 2",
+  "num": 43,
+  "name": "Checking Out",
+  "url": "/gta-6/missions/checking-out",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/checking-out_320x180.jpg",
+  "desc": "When they're ready, Jason and Lucia pack up and leave the motel to meet Dre'Quan in Vice City."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 44,
+  "name": "Welcome to Vice City",
+  "url": "/gta-6/missions/welcome-to-vice-city",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/welcome-to-vice-city_320x180.jpg",
+  "desc": "Jason and Lucia arrive in Vice City and look up Jason's old friend Dre'Quan."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 45,
+  "name": "Dealer's Choice",
+  "url": "/gta-6/missions/dealers-choice",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/dealers-choice_320x180.jpg",
+  "desc": "Boobie says Jason owes him a favor for the apartment and sends him on a drug deal with Dre'Quan."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 46,
+  "name": "Meet the Heders",
+  "url": "/gta-6/missions/meet-the-heders",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/igallery/gta-6-screenshots-trailer/resized/gta6-extendedlook-screen-38-468_320x180.jpg",
+  "desc": "Jason and Lucia go on a double date with Brian and Lori Heder."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 47,
+  "name": "Dubious Provenance",
+  "url": "/gta-6/missions/dubious-provenance",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/dubious-provenance_320x180.jpg",
+  "desc": "Jason and Lucia take the statue to an antique store in Capri to find out what it really is."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 48,
+  "name": "Mami Knows Best",
+  "url": "/gta-6/missions/mami-knows-best",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/mami-knows-best_320x180.jpg",
+  "desc": "Lucia catches up with her mom, Mia, who has just opened her own real estate business."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": null,
+  "name": "Get Your Wheels",
+  "url": "/gta-6/missions/get-your-wheels",
+  "badges": [
+   "opt"
+  ],
+  "prot": [],
+  "img": "/images/gta-6/missions/resized/tba_320x180.jpg",
+  "desc": "Get yourself a set of wheels in Vice City."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 49,
+  "name": "South Leonida Real Estate",
+  "url": "/gta-6/missions/south-leonida-real-estate",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/south-leonida-real-estate_320x180.jpg",
+  "desc": "Lucia meets up with Mia again and has another run-in with the M7 gang."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 50,
+  "name": "Here, Kitty Kitty",
+  "url": "/gta-6/missions/here-kitty-kitty",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/characters/resized/tyrone_320x180.jpg",
+  "desc": "Jason goes to see Tyrone and ends up looking for a man named Charles."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 51,
+  "name": "Send Money to Lorena",
+  "url": "/gta-6/missions/send-money-to-lorena",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [],
+  "img": "/images/gta-6/missions/resized/send-money-to-lorena_320x180.jpg",
+  "desc": "Send some money to Lorena."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 52,
+  "name": "Car Service",
+  "url": "/gta-6/missions/car-service",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/car-service_320x180.jpg",
+  "desc": "Lucia steals a car for Raul."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 53,
+  "name": "Send More Money to Lorena",
+  "url": "/gta-6/missions/send-more-money-to-lorena",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [],
+  "img": "/images/gta-6/missions/resized/send-more-money-to-lorena_320x180.jpg",
+  "desc": "Send another payment to Lorena."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 54,
+  "name": "Top Billing",
+  "url": "/gta-6/missions/top-billing",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/top-billing_320x180.jpg",
+  "desc": "Jason, Lucia and Dre'Quan go to see the Real Dimez in concert."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 55,
+  "name": "Boobie Time",
+  "url": "/gta-6/missions/boobie-time",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/boobie-time_320x180.jpg",
+  "desc": "Jason spends some time driving Boobie around Vice City."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": null,
+  "name": "Yasmani's Jewelry Jobs",
+  "url": "/gta-6/missions/yasmanis-jewelry-jobs",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/yasmanis-jewelry-jobs_320x180.jpg",
+  "desc": "Hit a series of jewelry stores around Vice City and sell the loot to Yasmani."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 56,
+  "name": "First Impressions",
+  "url": "/gta-6/missions/first-impressions",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/first-impressions_320x180.jpg",
+  "desc": "Jason and Lucia meet Raul for the first time."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 57,
+  "name": "Caught Slipping",
+  "url": "/gta-6/missions/caught-slipping",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/caught-slipping_320x180.jpg",
+  "desc": "Jason and Lucia have to stop a burglary."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 58,
+  "name": "Crosstown Traffic",
+  "url": "/gta-6/missions/crosstown-traffic",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/crosstown-traffic_320x180.jpg",
+  "desc": "Lucia tails a gang member for Raul, while Jason goes to meet Karim."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 59,
+  "name": "Credit Check",
+  "url": "/gta-6/missions/credit-check",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/credit-check_320x180.jpg",
+  "desc": "Raul invites Jason and Lucia to his base to meet his crew."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 60,
+  "name": "Steal the Zorrusso for Randy",
+  "url": "/gta-6/missions/steal-the-zorrusso-for-randy",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/steal-the-zorrusso-for-randy_320x180.jpg",
+  "desc": "Jason and Lucia steal a high-end Zorrusso for Randy."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": null,
+  "name": "Race Against Yago",
+  "url": "/gta-6/missions/race-against-yago",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/race-against-yago_320x180.jpg",
+  "desc": "Take on Yago in a race. Time-sensitive and missable."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 61,
+  "name": "Sinfrontera National Bank",
+  "url": "/gta-6/missions/sinfrontera-national-bank",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/sinfrontera-national-bank_320x180.jpg",
+  "desc": "Jason and Lucia scope out a bank as preparations for a big heist begin."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 62,
+  "name": "Security Expert",
+  "url": "/gta-6/missions/security-expert",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/security-expert_320x180.jpg",
+  "desc": "Jason and Lucia meet a security expert who could help with the heist."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 63,
+  "name": "Heist Planning",
+  "url": "/gta-6/missions/heist-planning",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [],
+  "img": "/igallery/gta-6-screens/resized/raul-bautista-01-468_320x180.jpg",
+  "desc": "Raul is assembling a crew to rob the Sinfrontera National Bank, and there’s plenty of prep work to do first."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 64,
+  "name": "Ride or Die",
+  "url": "/gta-6/missions/ride-or-die",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/ride-or-die_320x180.jpg",
+  "desc": "Jason helps out Dre'Quan."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 65,
+  "name": "Company Property",
+  "url": "/gta-6/missions/company-property",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/company-property_320x180.jpg",
+  "desc": "Jason and Lucia meet Brian and help with a weapons shipment."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 66,
+  "name": "The Missing Link",
+  "url": "/gta-6/missions/the-missing-link",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/the-missing-link_320x180.jpg",
+  "desc": "Lucia meets Andrea, and the trail leads her to a cockfight."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 67,
+  "name": "Safe Word",
+  "url": "/gta-6/missions/safe-word",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/safe-word_320x180.jpg",
+  "desc": "Lucia steals a practice safe and learns a new skill."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 68,
+  "name": "Cooties",
+  "url": "/gta-6/missions/cooties",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/cooties_320x180.jpg",
+  "desc": "Lucia helps shoot a music video."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": null,
+  "name": "Pick Up Shayna",
+  "url": "/gta-6/missions/this-is-a-free-call-from",
+  "badges": [
+   "opt",
+   "miss"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/pick-up-shayna_320x180.jpg",
+  "desc": "Someone needs Lucia to pick them up. Time-sensitive and missable."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 69,
+  "name": "Bricked Up",
+  "url": "/gta-6/missions/bricked-up",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/bricked-up_320x180.jpg",
+  "desc": "Jason and Lucia do some work for Boobie."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 70,
+  "name": "Hidden Charges",
+  "url": "/gta-6/missions/hidden-charges",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/hidden-charges_320x180.jpg",
+  "desc": "Jason and Lucia get the explosives ready for the heist."
+ },
+ {
+  "chap": "Chapter 3",
+  "num": 71,
+  "name": "The Cartel Heist",
+  "url": "/gta-6/missions/the-cartel-heist",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/the-cartel-heist_320x180.jpg",
+  "desc": "The plan is set and it is time to hit the bank."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 72,
+  "name": "Ocean Beach",
+  "url": "/gta-6/missions/ocean-beach",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/ocean-beach-2_320x180.jpg",
+  "desc": "Jason and Lucia set up shop in Ocean Beach."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 73,
+  "name": "Another Life",
+  "url": "/gta-6/missions/another-life",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/another-life_320x180.jpg",
+  "desc": "Lucia thinks back on her past."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 74,
+  "name": "Pool Day",
+  "url": "/gta-6/missions/pool-day",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/pool-day_320x180.jpg",
+  "desc": "Time for a day at the pool."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": null,
+  "name": "Attend Eddie Acosta's Party",
+  "url": "/gta-6/missions/attend-eddie-acostas-party",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/attend-eddie-acostas-party_320x180.jpg",
+  "desc": "Eddie Acosta is throwing a party, and you're invited."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 75,
+  "name": "Company Cars",
+  "url": "/gta-6/missions/company-cars",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/company-cars_320x180.jpg",
+  "desc": "Jason and Lucia pick up some new wheels."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 76,
+  "name": "Lawyer Up",
+  "url": "/gta-6/missions/lawyer-up",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/lawyer-up_320x180.jpg",
+  "desc": "Jason and Lucia meet a lawyer, Abe Gonzalez."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 77,
+  "name": "Party Hard",
+  "url": "/gta-6/missions/party-hard",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "https://www.gtabase.com/images/jch-optimize/ng/igallery_gta-6-screenshots-trailer_resized_gta6-extendedlook-screen-85-468__320x180.avif",
+  "desc": "Jason and Lucia work personal security for a celebrity."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 78,
+  "name": "Heavy Lifting",
+  "url": "/gta-6/missions/heavy-lifting",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/heavy-lifting_320x180.jpg",
+  "desc": "Jason and Lucia have a delivery to make."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": null,
+  "name": "It's a Date!",
+  "url": "/gta-6/missions/its-a-date",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/tba_320x180.jpg",
+  "desc": "Time for a date night."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 79,
+  "name": "Photo/Shoot",
+  "url": "/gta-6/missions/photo-shoot",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/photo-shoot_320x180.jpg",
+  "desc": "Jason, Lucia and Dre'Quan shoot a promo."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": null,
+  "name": "Bad Driver!",
+  "url": "/gta-6/missions/bad-driver",
+  "badges": [
+   "opt"
+  ],
+  "prot": [],
+  "img": "/images/gta-6/missions/resized/bad-driver_320x180.jpg",
+  "desc": "Track down Felipe."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 80,
+  "name": "Making Gainz",
+  "url": "/gta-6/missions/making-gainz",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/making-gainz_320x180.jpg",
+  "desc": "Raul has a plan, and Lucia hits the gym to get to know someone new."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 81,
+  "name": "Too Much Baggage",
+  "url": "/gta-6/missions/too-much-baggage",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/too-much-baggage_320x180.jpg",
+  "desc": "Jason scopes out the airport and does some baggage handling."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 82,
+  "name": "Watch It",
+  "url": "/gta-6/missions/watch-it",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/watch-it_320x180.jpg",
+  "desc": "Jason and Dre'Quan meet a club owner."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 83,
+  "name": "Cash Injections",
+  "url": "/gta-6/missions/cash-injections",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/cash-injections_320x180.jpg",
+  "desc": "Lucia hangs out with Nate and helps out an associate."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 84,
+  "name": "Amateur Hour",
+  "url": "/gta-6/missions/amateur-hour",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/amateur-hour_320x180.jpg",
+  "desc": "Lucia helps Cisco confront a director."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 85,
+  "name": "Dirty Work",
+  "url": "/gta-6/missions/dirty-work",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/dirty-work_320x180.jpg",
+  "desc": "Jason and Lucia deal with Raina and make some new inroads."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 86,
+  "name": "Adventures in Babysitting",
+  "url": "/gta-6/missions/adventures-in-babysitting",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/adventures-in-babysitting_320x180.jpg",
+  "desc": "Jason works nightclub security for Andrés."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 87,
+  "name": "Fresh Evidence",
+  "url": "/gta-6/missions/fresh-evidence",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/fresh-evidence_320x180.jpg",
+  "desc": "Jason and Dre'Quan go after some blackmail material."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 88,
+  "name": "Power Play",
+  "url": "/gta-6/missions/power-play",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/power-play_320x180.jpg",
+  "desc": "Help out Kordell's crew and gather some intel."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 89,
+  "name": "Child's Play",
+  "url": "/gta-6/missions/childs-play",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/rafas-kidnapping_320x180.jpg",
+  "desc": "Something comes up involving Rafa, and Jason and Lucia step in to help out an acquaintance."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 90,
+  "name": "Headliners",
+  "url": "/gta-6/missions/headliners",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/headliners_320x180.jpg",
+  "desc": "The Dimez perform at VYB, and Jason and Lucia help with the launch party."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 91,
+  "name": "Close Surveillance",
+  "url": "/gta-6/missions/close-surveillance",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/close-surveillance_320x180.jpg",
+  "desc": "Jason uses a spy drone to keep an eye on some bodybuilders."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 92,
+  "name": "Delivery Method",
+  "url": "/gta-6/missions/delivery-method",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/delivery-method_320x180.jpg",
+  "desc": "Jason goes undercover to help Andrea."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 93,
+  "name": "Team Building",
+  "url": "/gta-6/missions/team-building",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia"
+  ],
+  "img": "/images/gta-6/missions/resized/team-building_320x180.jpg",
+  "desc": "Lucia meets Kordell and has to prove herself."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 94,
+  "name": "Fully Catered",
+  "url": "/gta-6/missions/fully-catered",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/fully-catered_320x180.jpg",
+  "desc": "Jason and Lucia steal a catering truck."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 95,
+  "name": "VCIA Takedown",
+  "url": "/gta-6/missions/vcia-takedown",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/vcia-takedown_320x180.jpg",
+  "desc": "The airport heist is a go."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 96,
+  "name": "Tie Up Loose Ends",
+  "url": "/gta-6/missions/tie-up-loose-ends",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/tie-up-loose-ends_320x180.jpg",
+  "desc": "After the heist, Jason and Lucia wait to hear from Raul about the hard drive."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": null,
+  "name": "That's Where the Money Is…",
+  "url": "/gta-6/missions/thats-where-the-money-is",
+  "badges": [
+   "opt"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/thats-where-the-money-is_320x180.jpg",
+  "desc": "Yasmani has a tip about a security van that could lead you straight to a bank vault."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 97,
+  "name": "Sunset",
+  "url": "/gta-6/missions/sunset",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/sunset_320x180.jpg",
+  "desc": "Jason and Lucia go looking for answers."
+ },
+ {
+  "chap": "Chapter 4",
+  "num": 98,
+  "name": "Starting From Zero",
+  "url": "/gta-6/missions/starting-from-zero",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/starting-from-zero_320x180.jpg",
+  "desc": "The final mission of Chapter 4."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 99,
+  "name": "Bird in the Hand",
+  "url": "/gta-6/missions/bird-in-the-hand",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/bird-in-the-hand_320x180.jpg",
+  "desc": "Jason and Lucia boost a new ride."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 100,
+  "name": "Taking Liberties",
+  "url": "/gta-6/missions/taking-liberties",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/taking-liberties_320x180.jpg",
+  "desc": "A new plan comes together."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 101,
+  "name": "Doggie Bag",
+  "url": "/gta-6/missions/doggie-bag",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/doggie-bag_320x180.jpg",
+  "desc": "Meet Vinny and go hunting for some contraband."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 102,
+  "name": "VC Baby",
+  "url": "/gta-6/missions/vc-baby",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/vc-baby_320x180.jpg",
+  "desc": "Mattia gets in touch and asks for help."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 103,
+  "name": "Operation Savage Glory",
+  "url": "/gta-6/missions/operation-savage-glory",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/operation-savage-glory_320x180.jpg",
+  "desc": "A valuable shipment needs to be recovered."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 104,
+  "name": "Honest Abe",
+  "url": "/gta-6/missions/honest-abe",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/honest-abe_320x180.jpg",
+  "desc": "Time to negotiate a deal with Abe."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 105,
+  "name": "Unfinished Business",
+  "url": "/gta-6/missions/unfinished-business",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/images/gta-6/missions/resized/unfinished-business-2_320x180.jpg",
+  "desc": "The hard drive deal is almost done: tie up loose ends or move ahead with Abe’s offer."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 106,
+  "name": "Protective Custody",
+  "url": "/gta-6/missions/protective-custody",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "https://www.gtabase.com/images/jch-optimize/ng/igallery_gta-6-screens_resized_gta-6-edge-preview-screen-2-468__320x180.avif",
+  "desc": "The couple work together."
+ },
+ {
+  "chap": "Chapter 5",
+  "num": 107,
+  "name": "The End of the Road",
+  "url": "/gta-6/missions/the-end-of-the-road",
+  "badges": [
+   "ponr"
+  ],
+  "prot": [
+   "lucia",
+   "jason"
+  ],
+  "img": "/igallery/gta-6-screens/resized/gta-6-jason-and-lucia-17-468_320x180.jpg",
+  "desc": "The final mission of the GTA 6 story."
+ }
+]

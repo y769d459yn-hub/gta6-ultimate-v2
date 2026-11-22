@@ -1,0 +1,3874 @@
+{
+ "info": "Missions de GTA 6 (relevé du 22/11/2026). Liste : GTABase, recoupée avec gta6guide.fr et GTA Wiki. Textes rédigés par le site. Généré par tools/missions.py.",
+ "chapitres": [
+  {
+   "id": "prologue",
+   "titre": "Prologue",
+   "resume": "Lucia en prison, juste avant le début de l'histoire."
+  },
+  {
+   "id": "1",
+   "titre": "Just Like Paradise",
+   "resume": "Jason dans les Keys, puis la sortie de prison de Lucia."
+  },
+  {
+   "id": "2",
+   "titre": "Paradise Lost",
+   "resume": "En fuite, le couple se cache à Port Gellhorn."
+  },
+  {
+   "id": "3",
+   "titre": "Tits Ass Drug Money",
+   "resume": "Arrivée à Vice City et braquage de la banque du cartel."
+  },
+  {
+   "id": "4",
+   "titre": "Vice City, Baby",
+   "resume": "La vie à Ocean Beach et le braquage de l'aéroport."
+  },
+  {
+   "id": "5",
+   "titre": "Top of the World, Ma",
+   "resume": "Le final : cinq fins possibles."
+  }
+ ],
+ "missions": [
+  {
+   "id": "prologue",
+   "num": 1,
+   "chapitre": "prologue",
+   "nom": "Prologue",
+   "nomEn": "Prologue",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Lucia, en prison, raconte son arrestation à une conseillère.",
+   "etapes": [
+    "Parle à tes codétenues, puis suis le gardien.",
+    "Dans le flash-back, braque la boutique de prêts : vise la caissière.",
+    "Sème la police : sors du cercle bleu et rouge de la mini-carte.",
+    "Retourne au café marqué sur la carte."
+   ],
+   "bloque": [
+    "Pour semer la police, cache-toi dans une ruelle hors du cercle et attends qu'il disparaisse."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "gone-fishing",
+   "num": 2,
+   "chapitre": "1",
+   "nom": "Partie de pêche",
+   "nomEn": "Gone Fishing",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "100 $–220 $ (selon le déroulement) · 1 déblocage",
+   "resume": "Jason doit sauver Donnie, capturé par le gang des Kingfishers.",
+   "etapes": [
+    "Suis l'avion en bateau et ralentis près de chaque colis pour que Cal le repêche.",
+    "Va au marais et observe l'échange aux jumelles.",
+    "Fouille le camp accroupi et étrangle les gardes par derrière.",
+    "Entre dans la cabane, détache Donnie et assomme la brute.",
+    "Rejoins l'hydravion, décolle et pose-toi à la marina de Brian.",
+    "Ramène Cal chez lui, puis rentre chez toi."
+   ],
+   "bloque": [
+    "La cabane est dans le coin du camp, près de la grande éolienne : maintiens le stick droit pour la regarder.",
+    "Facultatif : l'argent est dans la caravane sur le chemin de l'avion."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "gear-up",
+   "num": 3,
+   "chapitre": "1",
+   "nom": "Bien équipé",
+   "nomEn": "Gear Up",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Jason Duval",
+   "recompense": "1 déblocage",
+   "resume": "Jason achète une arme longue à l'Ammu-Nation.",
+   "etapes": [
+    "Prends la voiture devant la maison et va à l'Ammu-Nation.",
+    "Parle au vendeur, Andrew, et choisis un fusil à pompe ou un fusil tactique.",
+    "En sortant, abats les trois Kingfishers qui t'attaquent."
+   ],
+   "bloque": [
+    "Mets-toi à couvert derrière une voiture avant de tirer."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "unwanted-attention",
+   "num": 4,
+   "chapitre": "1",
+   "nom": "Attention indésirable",
+   "nomEn": "Unwanted Attention",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "150 $ · 1 déblocage",
+   "resume": "Récupérer à la fourrière de Hamlet une voiture qui cache l'argent de Brian.",
+   "etapes": [
+    "Retrouve Cal sur la plage au nord de Key Lento.",
+    "Conduis jusqu'à la fourrière de Hamlet.",
+    "Escalade la clôture puis les conteneurs du fond et trouve l'Imponte Phoenix.",
+    "Sors par la grille et sème la police (c'est prévu par la mission).",
+    "Repeins la voiture au Pay 'n' Spray de Hamlet.",
+    "Gare-la dans le garage de Brian et prends les 150 $ dans l'arrière-salle."
+   ],
+   "bloque": [
+    "La police te repère toujours à la sortie : ce n'est pas une erreur.",
+    "Change de chapeau ou de lunettes pour que la police ne te reconnaisse plus."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "lab-fees",
+   "num": 5,
+   "chapitre": "1",
+   "nom": "Frais de labo",
+   "nomEn": "Lab Fees",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "600 $",
+   "resume": "Encaisser le loyer d'une boutique de souvenirs qui cache un labo d'acide.",
+   "etapes": [
+    "Va à la boutique : elle est fermée, appelle Brian.",
+    "Ouvre la porte du coin avec le code 0420 et prends l'acide.",
+    "Rappelle Brian.",
+    "Range l'acide dans son local (icône verte), code de la porte : 7700."
+   ],
+   "bloque": [
+    "Code du labo : 0420. Code du local de Brian : 7700."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "pipework",
+   "num": 6,
+   "chapitre": "1",
+   "nom": "Plomberie",
+   "nomEn": "Pipework",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder, Mandy",
+   "recompense": "2 déblocages",
+   "resume": "Mandy refuse de payer son loyer tant que son évier est bouché.",
+   "etapes": [
+    "Parle à Mandy devant chez elle et suis-la.",
+    "Prends la ventouse dans la salle de bain, en face de la chambre.",
+    "Débouche l'évier de la cuisine avec le stick droit, puis serre le tuyau à la clé."
+   ],
+   "bloque": [
+    "La ventouse est par terre dans la salle de bain."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "just-a-scratch",
+   "num": 7,
+   "chapitre": "1",
+   "nom": "Juste une éraflure",
+   "nomEn": "Just a Scratch",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Jason Duval",
+   "recompense": "2 déblocages",
+   "resume": "Jason fait réparer sa Ganado chez Coastal Auto Care.",
+   "etapes": [
+    "Conduis la Ganado de 1970 jusqu'au garage.",
+    "Parle à Joey puis entre dans l'atelier.",
+    "Choisis « Moteur complet » (gratuit), puis une nouvelle peinture."
+   ],
+   "bloque": [
+    "Si la Ganado est détruite, appelle ton véhicule perso avec le téléphone."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "get-shirleys-rum",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Le rhum de Shirley",
+   "nomEn": "Get Shirley's Rum",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Shirley",
+   "recompense": "2 déblocages",
+   "resume": "Mission facultative : la voisine de Jason veut du rhum. Elle peut être manquée.",
+   "etapes": [
+    "Parle à Shirley, ta voisine de Key Lento.",
+    "Achète son rhum au magasin Three Sheets Liquor, au sud.",
+    "Rapporte-le-lui."
+   ],
+   "bloque": [
+    "Elle t'appelle seulement après Plomberie, quand tu passes devant chez elle."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "steal-the-scooter",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Voler le scooter",
+   "nomEn": "Steal the Scooter",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Shirley",
+   "recompense": "",
+   "resume": "Mission facultative : voler le scooter de la voisine de Shirley. Elle peut être manquée.",
+   "etapes": [
+    "Environ un jour après Le rhum de Shirley, parle à Shirley.",
+    "Traverse l'eau jusque chez Peggy et prends le scooter garé dans l'allée.",
+    "Ramène-le et entre avec sur le porche de Shirley."
+   ],
+   "bloque": [
+    "Peggy te poursuit mais tombe à mi-chemin : continue simplement."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "hey-arnold",
+   "num": 8,
+   "chapitre": "1",
+   "nom": "Hé, Arnold !",
+   "nomEn": "Hey Arnold!",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "1 200 $",
+   "resume": "Retrouver Arnold, le courtier qui ne répond plus à Brian.",
+   "etapes": [
+    "Parle à Brian au bar de la piscine, au sud de Key Lento.",
+    "Prends Cal devant le magasin d'alcool.",
+    "Va à Maroon Key : prends la première route à gauche.",
+    "Poursuis Arnold et tire sur les motards (le ralenti aide).",
+    "Sur les quais, choisis le sort d'Arnold."
+   ],
+   "bloque": [
+    "Pour tirer en conduisant, sors ton arme puis vise : le ralenti rend la poursuite bien plus simple."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "island-dreams",
+   "num": 9,
+   "chapitre": "1",
+   "nom": "Rêves d'îles",
+   "nomEn": "Island Dreams",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Kenton",
+   "recompense": "400 $ · 1 déblocage",
+   "resume": "Kenton utilise une plongée d'enterrement de vie de garçon pour chercher un trésor.",
+   "etapes": [
+    "Parle à Kenton dans sa boutique sur la plage.",
+    "Va en bateau au point de plongée et mets la bouteille.",
+    "Guide le groupe dans la tranchée jusqu'à l'épave.",
+    "Avec le détecteur de métaux, trouve les 3 trésors dans la zone rose.",
+    "Soulève la grille pour libérer Dobbs, puis remonte au bateau."
+   ],
+   "bloque": [
+    "Le détecteur est dans la roue des armes ; sa lumière clignote plus vite près d'un trésor."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "feng-shui",
+   "num": 10,
+   "chapitre": "1",
+   "nom": "Feng shui",
+   "nomEn": "Feng Shui",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "1 déblocage",
+   "resume": "Jason et Cal préparent la maison avant l'arrivée de Lucia.",
+   "etapes": [
+    "Va chez Jason après le SMS de Cal.",
+    "Déplace les meubles avec Cal.",
+    "Joue aux deux mini-jeux de la console."
+   ],
+   "bloque": [
+    "Les mini-jeux ne peuvent pas être gagnés : tu peux perdre tout de suite."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "pick-up-groceries",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Faire les courses",
+   "nomEn": "Pick Up Groceries",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : remplir le frigo avant le retour de Lucia.",
+   "etapes": [
+    "Entre dans l'épicerie marquée à Key Lento et prends les produits marqués en rose.",
+    "Mets-les dans le coffre, rentre et porte les sacs dans la maison."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "buy-flowers",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Acheter des fleurs",
+   "nomEn": "Buy Flowers",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : des fleurs pour Lucia.",
+   "etapes": [
+    "Parle au fleuriste au sud de Key Lento.",
+    "Choisis un grand bouquet (10 $) ou des roses (25 $)."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "buy-lucia-a-necklace",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Un collier pour Lucia",
+   "nomEn": "Buy Lucia a Necklace",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : un collier gravé pour Lucia.",
+   "etapes": [
+    "Va à la bijouterie The Siren's Chest, au sud de Key Lento, à côté du coiffeur.",
+    "Parle au vendeur : le collier coûte 475 $."
+   ],
+   "bloque": [
+    "Pas assez d'argent ? Fais d'abord d'autres missions ou braque une boutique."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "get-the-chop",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Chez le coiffeur",
+   "nomEn": "Get The Chop",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : une nouvelle coupe pour Jason.",
+   "etapes": [
+    "Va au salon Barnacle Beauties, à côté de la bijouterie.",
+    "Paie n'importe quelle coupe ou taille de barbe."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "get-lucias-clothes",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Les vêtements de Lucia",
+   "nomEn": "Get Lucia's Clothes",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : récupérer des habits pour la sortie de prison de Lucia.",
+   "etapes": [
+    "Réponds à l'appel d'Andy après Feng shui.",
+    "Va au bar Manatee's Rest et parle à la femme qui nettoie les tables.",
+    "Suis-la à sa voiture et mets le sac dans la tienne."
+   ],
+   "bloque": [
+    "Garde le sac dans le coffre : Lucia s'en servira dans Retour à la maison."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "catch-a-bigger-fish",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Un plus gros poisson",
+   "nomEn": "Catch a Bigger Fish",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : battre Cal à la pêche.",
+   "etapes": [
+    "Accepte le défi de Cal après Feng shui.",
+    "Prends un bateau (celui de Jason pendant le chapitre 1).",
+    "Va au point marqué, jette l'ancre et pêche.",
+    "Attrape un poisson-perroquet de plus de 2 livres et envoie-le à Cal."
+   ],
+   "bloque": [
+    "L'ancre se trouve dans le menu du véhicule ; la canne, dans la roue des armes."
+   ],
+   "sources": [
+    "GTABase",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "coming-home",
+   "num": 11,
+   "chapitre": "1",
+   "nom": "Retour à la maison",
+   "nomEn": "Coming Home",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Jason va chercher Lucia à sa sortie de prison.",
+   "etapes": [
+    "Dors chez Jason jusqu'à l'appel de Lucia.",
+    "Va à la prison de Hamlet et parle au gardien.",
+    "Fête sa sortie au Rusty Anchor : bois un verre et parle à tout le monde.",
+    "Danse avec Lucia, puis joue au billard.",
+    "Bats-toi avec les Aviators, puis fuis la police avec Lucia."
+   ],
+   "bloque": [
+    "Si Lucia n'appelle pas, dors encore une fois ou roule un peu en attendant."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "clean-up-after-donnie",
+   "num": 12,
+   "chapitre": "1",
+   "nom": "Ménage après Donnie",
+   "nomEn": "Clean Up After Donnie",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Donnie",
+   "recompense": "600 $",
+   "resume": "Retrouver un colis perdu par Donnie dans les marais.",
+   "etapes": [
+    "Va au point de pêche marqué et inspecte le colis.",
+    "Prends le bateau et descends la rivière jusqu'à la cabane.",
+    "Élimine les trois Kingfishers et prends la cocaïne.",
+    "Dépose-la dans le conteneur de la caravane de Donnie à Key Lento."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "buck-me",
+   "num": 13,
+   "chapitre": "1",
+   "nom": "Buck Me",
+   "nomEn": "Buck Me",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Ouvrir un compte bancaire pour Lucia… qui finit sur une appli.",
+   "etapes": [
+    "Va à la banque Fleeca et parle au guichetier, puis au directeur.",
+    "Chez toi, ouvre l'appli BuckMe (icône « B » violette).",
+    "Mets les 100 $ dans l'Épargne familiale."
+   ],
+   "bloque": [
+    "L'argent de l'Épargne familiale ne se perd jamais, même si tu meurs."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "down-to-earth",
+   "num": 14,
+   "chapitre": "1",
+   "nom": "Retour sur terre",
+   "nomEn": "Down to Earth",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "500 $ · 800 $ de plus si tu vends le reste de cocaïne à Donnie · 1 déblocage",
+   "resume": "Un vol de contrebande en hydravion avec Lucia.",
+   "etapes": [
+    "Parle à Brian à la marina.",
+    "Nettoie le bateau au nettoyeur haute pression.",
+    "Vole jusqu'à Bobcat Bay, au nord-ouest.",
+    "Élimine les contrebandiers.",
+    "Fais les 3 largages (pose-toi sur l'eau), puis rentre vite à la maison."
+   ],
+   "bloque": [
+    "Tirer dans les bras et les jambes neutralise sans tuer.",
+    "Facultatif : vends le reste de la cocaïne à Donnie pour 800 $."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "meditate-with-lucia",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Méditer avec Lucia",
+   "nomEn": "Meditate with Lucia",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Activité facultative, à ne pas manquer : elle n'a pas de marqueur.",
+   "etapes": [
+    "Le matin après Retour sur terre, parle à Lucia dans la cuisine.",
+    "Suis-la sur le balcon.",
+    "Accepte et médite avec elle."
+   ],
+   "bloque": [
+    "Elle compte pour les 18 méditations des 100 %."
+   ],
+   "sources": [
+    "GTABase"
+   ]
+  },
+  {
+   "id": "find-the-lost-drugs",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Retrouver la drogue perdue",
+   "nomEn": "Find the Lost Drugs",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder, Donnie",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : retrouver des colis dans quatre zones du marais.",
+   "etapes": [
+    "Suis les bips dans chaque zone de recherche.",
+    "Zone sud : un colis dans un arbre, abats-le.",
+    "Maisons brûlées : trois colis.",
+    "Pelican Valley : fais fuir les alligators.",
+    "Thorpe Adventures : élimine deux ennemis dans la remise."
+   ],
+   "bloque": [
+    "Les colis bipent plus vite quand tu t'approches."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "deposit-cash-into-buckme",
+   "num": 15,
+   "chapitre": "1",
+   "nom": "Déposer de l'argent sur BuckMe",
+   "nomEn": "Deposit Cash Into BuckMe",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "Petite tâche sans marqueur sur la carte.",
+   "etapes": [
+    "Trouve un distributeur.",
+    "Dépose une partie de ton argent liquide."
+   ],
+   "bloque": [
+    "Elle est dans la liste des missions (icône livre sur la carte)."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "save-for-the-future",
+   "num": 16,
+   "chapitre": "1",
+   "nom": "Épargner pour l'avenir",
+   "nomEn": "Save for the Future",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "",
+   "recompense": "1 déblocage",
+   "resume": "Tâche de fond qui dure toute l'histoire.",
+   "etapes": [
+    "Mets régulièrement de l'argent dans l'Épargne familiale via BuckMe.",
+    "Chaque palier débloque un avantage."
+   ],
+   "bloque": [
+    "Aie au moins 5 000 $ d'épargne avant Recalibrage et Piège à touristes : tu perds ton argent liquide juste après."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "day-release",
+   "num": 17,
+   "chapitre": "1",
+   "nom": "Journée de sortie",
+   "nomEn": "Day Release",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Mattia Tauro",
+   "recompense": "1 déblocage",
+   "resume": "Une journée de fête avec Kat et Mattia.",
+   "etapes": [
+    "Commande un verre au Rusty Anchor.",
+    "Prends le hors-bord jusqu'au yacht.",
+    "Fais la course de jet-skis contre Mattia.",
+    "En Lucia, tire sur les bouteilles de champagne (ralenti).",
+    "Trouve Mattia au pont inférieur, puis suis-le en voiture.",
+    "Danse au Nine1Nine, puis trouve Jason à l'hôtel."
+   ],
+   "bloque": [
+    "Mattia est dans la pièce au milieu du pont le plus bas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "clock-out",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Fin de service",
+   "nomEn": "Clock Out",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : aller chercher Lucia au travail.",
+   "etapes": [
+    "Accepte l'appel de Lucia.",
+    "Va au centre communautaire de Key Lento en voiture.",
+    "Ramène-la chez Jason."
+   ],
+   "bloque": [
+    "Viens en voiture : à pied, ça ne marche pas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "clear-skies",
+   "num": 18,
+   "chapitre": "1",
+   "nom": "Ciel dégagé",
+   "nomEn": "Clear Skies",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder, Donnie",
+   "recompense": "1 400 $",
+   "resume": "Escorter un avion de contrebande, puis sauver Donnie des motards.",
+   "etapes": [
+    "Parle à Brian à Southwind.",
+    "Décolle depuis l'eau et rejoins l'avion de Pilot Pete.",
+    "Pose-toi sur la piste suivante et suis Donnie.",
+    "Nettoie le bâtiment et détache Donnie.",
+    "Retiens les motards, puis fuis à moto."
+   ],
+   "bloque": [
+    "Décolle depuis l'eau plutôt que depuis la route : c'est plus sûr."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "building-a-life",
+   "num": 19,
+   "chapitre": "1",
+   "nom": "Construire une vie",
+   "nomEn": "Building a Life",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Monter une table basse avec Lucia.",
+   "etapes": [
+    "Aide Lucia à monter la table.",
+    "Prends le plateau en verre dans le carton et pose-le."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "ring-the-bell",
+   "num": null,
+   "chapitre": "1",
+   "nom": "Sonne la cloche !",
+   "nomEn": "Ring the Bell!",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "2 déblocages",
+   "resume": "Mission facultative : boire un verre avec Cal. Elle peut être manquée.",
+   "etapes": [
+    "Réponds au SMS de Cal en allant à Submergé.",
+    "Bois un verre avec lui au Rusty Anchor.",
+    "Ramène-le à sa voiture, puis chez lui."
+   ],
+   "bloque": [
+    "Si tu as bu, la voiture est dure à tenir : roule doucement."
+   ],
+   "sources": [
+    "GTABase",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "swamped",
+   "num": 20,
+   "chapitre": "1",
+   "nom": "Submergé",
+   "nomEn": "Swamped",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "1 000 $",
+   "resume": "Une rencontre avec les Kingfishers tourne au piège.",
+   "etapes": [
+    "Démarre dans l'arrière-salle de la marina.",
+    "Suis Brian et inspecte l'enclos à cochons.",
+    "Élimine les Kingfishers et suis Brian (point vert).",
+    "Prends l'hélicoptère et poursuis le bateau pour sauver Lori."
+   ],
+   "bloque": [
+    "La mission ne s'ouvre qu'après Journée de sortie, Ciel dégagé et Construire une vie."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "don-gone",
+   "num": 21,
+   "chapitre": "1",
+   "nom": "Donnie est parti",
+   "nomEn": "Don Gone",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "200 $ · 2 déblocages",
+   "resume": "Faire croire que Donnie a quitté la ville.",
+   "etapes": [
+    "Prends le sac de Donnie dans sa caravane.",
+    "Emballe ses affaires (le ralenti les montre).",
+    "Pars dans la voiture de Donnie.",
+    "Détruis-la : essence du coffre et un briquet, ou dans l'eau."
+   ],
+   "bloque": [
+    "Une des affaires est la photo au-dessus du lit, près de la télé."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "donnies-lost-drugs",
+   "num": null,
+   "chapitre": "1",
+   "nom": "La drogue perdue de Donnie",
+   "nomEn": "Donnie's Lost Drugs",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "1 200 $ (si tu vends la drogue à Brian)",
+   "resume": "Mission facultative : récupérer la drogue d'un bateau coulé.",
+   "etapes": [
+    "Prends un bateau jusqu'au large de Corsair Key.",
+    "Plonge dans le sud-est de la zone rose et ouvre le compartiment arrière.",
+    "Vends le sac à Brian pour 1 200 $."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "recalibration",
+   "num": 22,
+   "chapitre": "1",
+   "nom": "Recalibrage",
+   "nomEn": "Recalibration",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Remonter le moral de Cal après la mort de Donnie.",
+   "etapes": [
+    "Achète un pack de bières.",
+    "Retrouve Cal derrière sa maison.",
+    "Va pêcher au point marqué.",
+    "Grille les trois morceaux de poisson.",
+    "Ramène Lucia à la maison."
+   ],
+   "bloque": [
+    "Pêche : tourne le stick droit et appuie au moment où ça mord."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "tourist-trap",
+   "num": 23,
+   "chapitre": "1",
+   "nom": "Piège à touristes",
+   "nomEn": "Tourist Trap",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos, Mattia Tauro",
+   "recompense": "",
+   "resume": "Le travail « simple » de Mattia au centre des visiteurs tourne mal.",
+   "etapes": [
+    "Parle à Lucia sur la plage de Key Lento.",
+    "Prends le sac dans le dernier casier.",
+    "Après l'arrestation, suis le policier.",
+    "En Lucia, abats les policiers corrompus et fuis avec Jason.",
+    "Prends le bateau et va chez Cal."
+   ],
+   "bloque": [
+    "Tuer des policiers ici ne nuit pas à ton profil : c'est l'histoire.",
+    "Mets ton argent liquide à la banque avant : tu le perds ensuite."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "home-sweet-home",
+   "num": 24,
+   "chapitre": "1",
+   "nom": "Douce maison",
+   "nomEn": "Home Sweet Home",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Lucia récupère les affaires de Jason avant de fuir.",
+   "etapes": [
+    "Entre dans la maison et récupère la cachette.",
+    "Échappe à la chasse à l'homme : reste accroupie dans le noir.",
+    "Vole une voiture sur la route principale et pars."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "discharge-time",
+   "num": 25,
+   "chapitre": "1",
+   "nom": "Heure de sortie",
+   "nomEn": "Discharge Time",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Lucia fait sortir Jason de l'hôpital de Vice City.",
+   "etapes": [
+    "Monte au 2e étage pour trouver la chambre de Jason.",
+    "Défends-toi en poussant le fauteuil roulant.",
+    "En Jason, rampe jusqu'au fusil.",
+    "Dans l'ambulance, tire sur les voitures de police."
+   ],
+   "bloque": [
+    "Tu peux demander le numéro de chambre à l'accueil."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "whats-in-the-bag",
+   "num": 26,
+   "chapitre": "2",
+   "nom": "Qu'y a-t-il dans le sac ?",
+   "nomEn": "What's in the Bag?",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Au motel de Port Gellhorn, Lucia découvre ce que contient le sac.",
+   "etapes": [
+    "Réveille-toi au motel avec Jason blessé.",
+    "Examine la statuette (retourne-la et lis la note), puis le reste du sac."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "ambulance-chaser",
+   "num": 27,
+   "chapitre": "2",
+   "nom": "Chasseur d'ambulance",
+   "nomEn": "Ambulance Chaser",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Se débarrasser de l'ambulance volée avant que la police la trouve.",
+   "etapes": [
+    "Trouve l'ambulance dans la grange juste à l'est du motel.",
+    "Poursuis-la en quad : elle finit par percuter un arbre.",
+    "Verse l'essence du bidon rouge dessus et mets le feu."
+   ],
+   "bloque": [
+    "Reste juste derrière elle sans te crasher : elle s'arrête toute seule."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "take-care-of-jason",
+   "num": 28,
+   "chapitre": "2",
+   "nom": "Jouer les infirmières",
+   "nomEn": "Play Nurse",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Jason Duval",
+   "recompense": "1 déblocage",
+   "resume": "Tâche de fond : passer voir Jason régulièrement pendant tout le chapitre 2.",
+   "etapes": [
+    "Retourne voir Jason dans la chambre de temps en temps.",
+    "Elle se termine seule à la fin du chapitre."
+   ],
+   "bloque": [
+    "Elle n'a pas de marqueur : regarde la liste des missions (Carte > Histoire)."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "overnight-charges",
+   "num": 29,
+   "chapitre": "2",
+   "nom": "Frais de nuit",
+   "nomEn": "Overnight Charges",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Linda",
+   "recompense": "",
+   "resume": "La gérante du motel veut être payée.",
+   "etapes": [
+    "Sors de la chambre et entre à la réception, à gauche.",
+    "Parle à Linda, la gérante."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "just-moved-in",
+   "num": 30,
+   "chapitre": "2",
+   "nom": "Tout juste installés",
+   "nomEn": "Just Moved In",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Faire des courses pour Jason.",
+   "etapes": [
+    "Va à la station-service en face du motel (magasin Alpha).",
+    "Prends les 8 articles marqués sur la mini-carte (55 $).",
+    "Rapporte-les dans la chambre."
+   ],
+   "bloque": [
+    "Prendre soin de Jason améliore votre relation."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "girls-trip",
+   "num": 31,
+   "chapitre": "2",
+   "nom": "Virée entre filles",
+   "nomEn": "Girls' Trip",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Vicki",
+   "recompense": "50 $ rendus par Vicki sur BuckMe",
+   "resume": "Trouver des antidouleurs pour Jason avec l'aide de Vicki.",
+   "etapes": [
+    "Interroge les clients du motel (commence par Zach).",
+    "Apporte les cachets à Jason, puis confronte Vicki chambre 10.",
+    "Va au club Delights avec Vicki.",
+    "Cherche Dunk : sa caravane, puis le chantier naval, puis la station de lavage.",
+    "Choisis deux fois « Calmer » face aux Kolts.",
+    "Ramène Dunk chez lui."
+   ],
+   "bloque": [
+    "Choisir « Calmer » deux fois évite le combat."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "pick-up-a-gun",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Prendre une arme",
+   "nomEn": "Pick Up a Gun",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : s'équiper à Port Gellhorn.",
+   "etapes": [
+    "Va à l'Ammu-Nation de Port Gellhorn.",
+    "Achète une arme ou prends-en une dans le casier vert."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "moses",
+   "num": 32,
+   "chapitre": "2",
+   "nom": "Moses",
+   "nomEn": "Moses",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Moses",
+   "recompense": "7 déblocages",
+   "resume": "Rencontrer Moses, le garagiste qui rachète les voitures volées.",
+   "etapes": [
+    "Amène n'importe quelle voiture dans son garage.",
+    "Scanne les 3 véhicules de la cour avec l'appli WAiNK.",
+    "Prends le crochet (Slim Jim) et essaie-le sur la Montagne XL.",
+    "Fais enregistrer une voiture volée sans traceur."
+   ],
+   "bloque": [
+    "Le Slim Jim ouvre les voitures fermées sans déclencher l'alarme.",
+    "Pas de voiture sans traceur ? Vole-en une sur la route principale."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "new-look",
+   "num": 33,
+   "chapitre": "2",
+   "nom": "Nouvelle coiffure",
+   "nomEn": "New Look",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Changer la coiffure de Lucia.",
+   "etapes": [
+    "Va au salon Pearl House à Port Gellhorn.",
+    "Achète n'importe quelle coupe."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "how-do-i-look",
+   "num": 34,
+   "chapitre": "2",
+   "nom": "Comment je suis ?",
+   "nomEn": "How Do I Look?",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Acheter une nouvelle tenue à Lucia.",
+   "etapes": [
+    "Va au magasin Bargain World, au sud de Port Gellhorn.",
+    "Achète un haut et un bas."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "painkiller-supplier",
+   "num": 35,
+   "chapitre": "2",
+   "nom": "T'as des cachets ?",
+   "nomEn": "Got Pills?",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Dunk",
+   "recompense": "",
+   "resume": "Attendre l'appel de Dunk.",
+   "etapes": [
+    "Rien à faire : Dunk appelle au bout de quelques heures de jeu."
+   ],
+   "bloque": [
+    "Pas de marqueur : continue les autres missions en attendant."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "daily-driver",
+   "num": 36,
+   "chapitre": "2",
+   "nom": "Voiture de tous les jours",
+   "nomEn": "Daily Driver",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Moses",
+   "recompense": "Jusqu'à 1 375 $ (moins si le Crawler est abîmé) · 2 déblocages",
+   "resume": "Voler un Canis Crawler de 1982 pour Moses.",
+   "etapes": [
+    "Trouve le Crawler blanc près de l'ancien bâtiment Traders' Union.",
+    "Livre-le au garage de Moses."
+   ],
+   "bloque": [
+    "Abîme-le le moins possible : jusqu'à 500 $ de bonus s'il est en bon état."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "behind-on-payments",
+   "num": 37,
+   "chapitre": "2",
+   "nom": "Retard de paiement",
+   "nomEn": "Behind on Payments",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Linda",
+   "recompense": "1 déblocage",
+   "resume": "Payer les 900 $ de la chambre.",
+   "etapes": [
+    "Gagne 900 $ avec les autres missions du chapitre 2.",
+    "Paie Linda à la réception."
+   ],
+   "bloque": [
+    "Si elle gardait le collier de Lucia en garantie, tu le récupères."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "slam-dunk",
+   "num": 38,
+   "chapitre": "2",
+   "nom": "Slam Dunk",
+   "nomEn": "Slam Dunk",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Dunk",
+   "recompense": "1 700 $ de Dunk sur BuckMe (le lendemain) · 2 déblocages",
+   "resume": "Kidnapper le docteur Bill pour obtenir de vrais antidouleurs.",
+   "etapes": [
+    "Retrouve Dunk à sa caravane.",
+    "Attrape le docteur Bill et fais-le monter en voiture.",
+    "Va aux quais, roule doucement derrière l'homme qui marche.",
+    "Récupère Bill quand il saute de la voiture.",
+    "Au rendez-vous de la piste d'aviation, élimine les Kolts.",
+    "Ramène Dunk chez lui."
+   ],
+   "bloque": [
+    "Elle ne s'ouvre qu'après les autres missions du chapitre 2 et les deux appels de Dunk."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "breakfast-run",
+   "num": 39,
+   "chapitre": "2",
+   "nom": "Petit-déjeuner express",
+   "nomEn": "Breakfast Run",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "4 déblocages",
+   "resume": "Premier braquage de Jason et Lucia ensemble.",
+   "etapes": [
+    "Attends l'appel de Jason, puis rejoins-le au motel.",
+    "Braque le Hank's Waffles : menace le personnel et prends l'argent.",
+    "Braque le magasin d'alcool et la friperie de la même façon.",
+    "Sème la police (2 étoiles)."
+   ],
+   "bloque": [
+    "Les petits chemins de terre sont le plus simple pour semer la police.",
+    "Une minute est affichée après chaque braquage : ne traîne pas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "coffee-break",
+   "num": 40,
+   "chapitre": "2",
+   "nom": "Pause café",
+   "nomEn": "Coffee Break",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "Compte BuckMe Silver (100 000 $ de plafond) · 2 000 $ d'intérêts si tu as atteint le premier objectif de 5 000 $ d'épargne familiale · 2 déblocages",
+   "resume": "Le couple décide de continuer ensemble.",
+   "etapes": [
+    "Va à la cuisine du motel, au coin sud.",
+    "Achète un café à Lucia (2 $).",
+    "À la voiture, maintiens droite sur la croix pour ouvrir le menu partenaire."
+   ],
+   "bloque": [
+    "Désormais tu peux passer de Jason à Lucia quand tu veux.",
+    "Avec 5 000 $ d'épargne familiale, tu gagnes 2 000 $ d'intérêts."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "thrillbillies",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Thrillbillies",
+   "nomEn": "Thrillbillies",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Billy",
+   "recompense": "Jusqu'à 2 500 $ selon ta place",
+   "resume": "Mission facultative : course de motos dans la boue.",
+   "etapes": [
+    "Achète une tenue au stand d'entrée du Thrillbilly Mud Club.",
+    "Loue une moto (la Sanchez est plus rapide).",
+    "Fais la course : il suffit de ne pas finir dernier."
+   ],
+   "bloque": [
+    "La 1re place rapporte 2 500 $."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "twist-wrist-smash-grab",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Coup de poignet",
+   "nomEn": "Twist Wrist, Smash, Grab",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Billy",
+   "recompense": "2 000 $",
+   "resume": "Mission facultative : braquer un fourgon blindé avec Billy.",
+   "etapes": [
+    "Retrouve Billy au banc marqué à Port Gellhorn.",
+    "Poursuis le fourgon avec sa bande jusqu'à ce qu'il percute un arbre.",
+    "Pose une charge sur les portes arrière et fais-la sauter.",
+    "Suis Billy jusqu'en haut de la montagne."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "hit-avery-pawn",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Braquer Avery Pawn",
+   "nomEn": "Hit Avery Pawn",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : braquer le prêteur sur gages.",
+   "etapes": [
+    "Va à Avery Pawn à Port Gellhorn et menace le personnel.",
+    "Sème la police (une moto rapide aide).",
+    "Vends le butin à la caravane de Dunk."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "hit-kingpin-bowling",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Braquer le Kingpin Bowling",
+   "nomEn": "Hit Kingpin Bowling",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "3 déblocages",
+   "resume": "Mission facultative : braquer le bowling des Kolts.",
+   "etapes": [
+    "Appelle ton partenaire pour venir avec toi.",
+    "Entre en force et prends les 3 objets de valeur.",
+    "Fuis et sème la police (2 étoiles)."
+   ],
+   "bloque": [
+    "Prends les 3 objets pour le trophée « Let's Go Bowling »."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "impounded-vehicle",
+   "num": null,
+   "chapitre": "2",
+   "nom": "Véhicule en fourrière",
+   "nomEn": "Impounded Vehicle",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : récupérer la voiture de Lucia.",
+   "etapes": [
+    "Va à la fourrière près du commissariat (icône voiture verte).",
+    "Reprends la voiture."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "prepare-for-vice-city",
+   "num": 41,
+   "chapitre": "2",
+   "nom": "Se préparer pour Vice City",
+   "nomEn": "Prepare for Vice City",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "",
+   "resume": "Gagner au moins 15 000 $.",
+   "etapes": [
+    "Fais des braquages, des missions et vends des voitures jusqu'à 15 000 $."
+   ],
+   "bloque": [
+    "Les 15 000 $ débloquent Départ, la dernière mission du chapitre."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "afternoon-delight",
+   "num": 42,
+   "chapitre": "2",
+   "nom": "Délice de l'après-midi",
+   "nomEn": "Afternoon Delight",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Vicki",
+   "recompense": "10 000 $ de Vicki sur BuckMe (le lendemain) · Au moins 1 800 $ en liquide (en aidant Frankie et Mario ou dans le bureau de Frankie)",
+   "resume": "Braquer le club Delights avec l'aide de Vicki.",
+   "etapes": [
+    "Trouve un moyen d'aller dans les coulisses (plusieurs choix possibles).",
+    "Ouvre le coffre du bureau : code 2008.",
+    "Sors en tirant et sème les motards.",
+    "Si Jason a dansé, achète-lui de nouveaux vêtements.",
+    "Retrouve Vicki."
+   ],
+   "bloque": [
+    "Code du coffre : 2008."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "checking-out",
+   "num": 43,
+   "chapitre": "2",
+   "nom": "Départ",
+   "nomEn": "Checking Out",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "",
+   "resume": "Les policiers corrompus retrouvent le couple au motel.",
+   "etapes": [
+    "Prends le fusil à pompe sur le lit et repousse les policiers.",
+    "Rejoins Lucia à la cafétéria.",
+    "En Lucia, prends la moto d'un motard et suis Jason.",
+    "Approche-toi de sa voiture et saute dedans.",
+    "Tire sur les voitures de police (vise les pneus)."
+   ],
+   "bloque": [
+    "Il faut 15 000 $ et avoir fini les autres missions principales."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "welcome-to-vice-city",
+   "num": 44,
+   "chapitre": "3",
+   "nom": "Bienvenue à Vice City",
+   "nomEn": "Welcome to Vice City",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "2 déblocages",
+   "resume": "Arrivée à Vice City et rencontre de Boobie Ike.",
+   "etapes": [
+    "Va au Jack of Hearts, le club de Dre'Quan.",
+    "Parle au videur, puis passe par l'entrée de l'autre côté.",
+    "Lance des billets aux danseuses si tu veux.",
+    "Suis Dre'Quan à l'étage pour rencontrer Boobie.",
+    "Va à l'appartement et gare-toi sur la place couverte."
+   ],
+   "bloque": [
+    "Les voitures garées sur cette place sont gardées."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "dealers-choice",
+   "num": 45,
+   "chapitre": "3",
+   "nom": "Le choix du dealer",
+   "nomEn": "Dealer's Choice",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "",
+   "resume": "Une livraison de drogue pour Boobie avec Dre'Quan.",
+   "etapes": [
+    "Retrouve Dre'Quan au studio, en haut des escaliers.",
+    "Va chez Tyrone avec lui.",
+    "Choisis la drogue coupée ou pure.",
+    "Fais l'échange près du Jack of Hearts.",
+    "Assomme l'homme qui réclame le sac.",
+    "Dépose Dre'Quan à Southside."
+   ],
+   "bloque": [
+    "La drogue coupée rapporte plus mais les acheteurs s'en rendent compte."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "meet-the-heders",
+   "num": 46,
+   "chapitre": "3",
+   "nom": "Dîner chez les Heder",
+   "nomEn": "Meet the Heders",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "1 déblocage",
+   "resume": "Brian accepte de vous présenter à Raul, qui vous met à l'épreuve.",
+   "etapes": [
+    "Dîne avec Brian et Lori au bar sur le toit.",
+    "Parle à Brian, puis passe à Lucia.",
+    "Prends la camionnette blanche jusqu'au port.",
+    "Trouve le conteneur jaune SCOOP en haut de la pile du milieu.",
+    "Poursuis le camion à moto et récupère la voiture.",
+    "Sème la police et va au garage au nord-ouest."
+   ],
+   "bloque": [
+    "Coupe le cadenas avec la nouvelle disqueuse.",
+    "Reste sur l'autoroute : la voiture est très rapide."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "dubious-provenance",
+   "num": 47,
+   "chapitre": "3",
+   "nom": "Provenance douteuse",
+   "nomEn": "Dubious Provenance",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "Environ 2 500 $ en bijoux et liquide · 2 déblocages",
+   "resume": "Faire estimer la statuette… et la récupérer.",
+   "etapes": [
+    "Prends le sac dans le placard de l'appartement.",
+    "Va chez l'antiquaire de Capri.",
+    "Reviens quand Evelyn est partie et entre dans la boutique.",
+    "Cherche Halifax au motel d'à côté.",
+    "Va chez Maryam, puis poursuis Halifax en Seashark.",
+    "Récupère la statuette et décide du sort d'Halifax."
+   ],
+   "bloque": [
+    "Pour sauter sur son bateau, colle-toi à lui et maintiens le bouton."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "mami-knows-best",
+   "num": 48,
+   "chapitre": "3",
+   "nom": "Maman sait mieux",
+   "nomEn": "Mami Knows Best",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Mia Caminos",
+   "recompense": "",
+   "resume": "Aider Mia à préparer une maison à vendre.",
+   "etapes": [
+    "Retrouve Mia à Peacock Bay et conduis jusqu'à la maison.",
+    "Visite la maison avec elle.",
+    "Jette les déchets du jardin dans la benne bleue.",
+    "Sors le matelas de la piscine.",
+    "Abats l'alligator qui attrape Mia.",
+    "Casse la maison du gang M7 avec la pelleteuse.",
+    "Va au bureau de Mia."
+   ],
+   "bloque": [
+    "Tire vite sur l'alligator pour sauver Mia."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "get-your-wheels",
+   "num": null,
+   "chapitre": "3",
+   "nom": "Trouver une voiture",
+   "nomEn": "Get Your Wheels",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "Mission facultative : avoir une voiture à Vice City.",
+   "etapes": [
+    "Récupère ta voiture à la fourrière, ou vole/achète-en une."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "south-leonida-real-estate",
+   "num": 49,
+   "chapitre": "3",
+   "nom": "Immobilier du sud de Leonida",
+   "nomEn": "South Leonida Real Estate",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Mia Caminos",
+   "recompense": "2 000 $ de Mia (envoyés plusieurs jours plus tard)",
+   "resume": "Mia est enlevée par le gang M7.",
+   "etapes": [
+    "Retourne à la maison et cherche Mia.",
+    "Suis la voiture des ravisseurs de loin.",
+    "Entre par la porte sud de l'allée.",
+    "Conduis le groupe aux propriétés proposées par Mia.",
+    "Élimine Viper et sa bande (ramasse leurs armes).",
+    "Tire sur Viper pour libérer Mia."
+   ],
+   "bloque": [
+    "Si le marqueur se remplit de jaune, tu es trop près : recule."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "here-kitty-kitty",
+   "num": 50,
+   "chapitre": "3",
+   "nom": "Minou, minou",
+   "nomEn": "Here, Kitty Kitty",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Tyrone",
+   "recompense": "1 déblocage",
+   "resume": "Retrouver Charles pour Tyrone.",
+   "etapes": [
+    "Va chez Charles à Rockridge.",
+    "Va au camp de sans-abri de La Perle et force la porte.",
+    "Poursuis Charles dans les escaliers (assomme plutôt que tirer).",
+    "Fouille-le en bas."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "send-money-to-lorena",
+   "num": 51,
+   "chapitre": "3",
+   "nom": "Envoyer de l'argent à Lorena",
+   "nomEn": "Send Money to Lorena",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "Envoyer de l'argent depuis le téléphone.",
+   "etapes": [
+    "Ouvre le téléphone et envoie l'argent à Lorena."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "car-service",
+   "num": 52,
+   "chapitre": "3",
+   "nom": "Service auto",
+   "nomEn": "Car Service",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "3 000 $ · 2 déblocages",
+   "resume": "Voler une voiture pour Raul dans un atelier de gang.",
+   "etapes": [
+    "Prends les grenades et le pistolet silencieux dans le coffre au départ.",
+    "Entre par le toit : grimpe sur la camionnette blanche au nord.",
+    "Vole la Schafter V12 garée sous l'abri.",
+    "Livre-la à Leonida Auto World, au nord-ouest."
+   ],
+   "bloque": [
+    "Randy devient ensuite un acheteur de voitures haut de gamme."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "send-more-money-to-lorena",
+   "num": 53,
+   "chapitre": "3",
+   "nom": "Envoyer encore de l'argent à Lorena",
+   "nomEn": "Send More Money to Lorena",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "Deuxième envoi d'argent.",
+   "etapes": [
+    "Ouvre le téléphone et envoie l'argent à Lorena."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "top-billing",
+   "num": 54,
+   "chapitre": "3",
+   "nom": "Tête d'affiche",
+   "nomEn": "Top Billing",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "1 déblocage",
+   "resume": "Retrouver les Dimez et Roxy.",
+   "etapes": [
+    "Retrouve Dre'Quan dans les coulisses.",
+    "En Lucia, cherche les Dimez sur le parking.",
+    "Suis Roxy jusqu'au passage du train.",
+    "Commande à manger au Peewees.",
+    "Contourne Jacki et assomme Kaamal.",
+    "En Jason, coupe le courant au boîtier vert."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "boobie-time",
+   "num": 55,
+   "chapitre": "3",
+   "nom": "L'heure de Boobie",
+   "nomEn": "Boobie Time",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Boobie Ike",
+   "recompense": "1 déblocage",
+   "resume": "Servir de chauffeur à Boobie.",
+   "etapes": [
+    "Prends le volant de la voiture de Boobie.",
+    "Fais les arrêts et attends-le.",
+    "Va au futur club près du fleuve.",
+    "Poursuis les voleurs du sac en Seashark.",
+    "Retourne à la voiture et va voir Yasmani."
+   ],
+   "bloque": [
+    "Yasmani devient un receleur pour tes objets volés."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "yasmanis-jewelry-jobs",
+   "num": null,
+   "chapitre": "3",
+   "nom": "Les bijoux de Yasmani",
+   "nomEn": "Yasmani's Jewelry Jobs",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Yasmani",
+   "recompense": "20 000 $ pour les objets demandés · 2 déblocages",
+   "resume": "Mission facultative : braquer trois bijouteries.",
+   "etapes": [
+    "Commence par Casa de Empeño (chaîne crâne de buffle).",
+    "Richardson Jewelry (bague en diamant) : entre par derrière avec le pistolet à crochets.",
+    "Donovan Banks & Co. (collier d'améthyste) : même méthode.",
+    "Vends tout à Yasmani."
+   ],
+   "bloque": [
+    "Coupe la sécurité et récupère la vidéo des caméras pour éviter la police."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "first-impressions",
+   "num": 56,
+   "chapitre": "3",
+   "nom": "Premières impressions",
+   "nomEn": "First Impressions",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "3 000 $",
+   "resume": "Rencontre de Raul… en pleine fuite.",
+   "etapes": [
+    "Au garage de Waxman Island, tape le code 2404.",
+    "En Lucia, va chercher Raul à Ocean Beach.",
+    "En Jason, tire sur la police pendant que Lucia conduit.",
+    "Fuis vers les Rialto Islands (saute le pont levé).",
+    "Change de véhicule sur le parking.",
+    "Dépose Raul à Bayside."
+   ],
+   "bloque": [
+    "Code du garage : 2404."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "caught-slipping",
+   "num": 57,
+   "chapitre": "3",
+   "nom": "Pris en flagrant délit",
+   "nomEn": "Caught Slipping",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "1 déblocage",
+   "resume": "Rattraper deux cambrioleurs.",
+   "etapes": [
+    "En Jason, poursuis le premier voleur : Focus et tir dans les jambes.",
+    "Fouille son sac.",
+    "En Lucia, même chose avec le second.",
+    "Va au garde-meubles Big House Storage."
+   ],
+   "bloque": [
+    "Le Focus ralentit le temps : vise les jambes."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "crosstown-traffic",
+   "num": 58,
+   "chapitre": "3",
+   "nom": "Trafic à Crosstown",
+   "nomEn": "Crosstown Traffic",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "3 000 $",
+   "resume": "Suivre un gang pour Raul.",
+   "etapes": [
+    "En Jason, suis les bateaux à moto sur les chemins de terre.",
+    "En Lucia, cours jusqu'à la station suivante et monte dans le métro.",
+    "Intimide le membre du gang et prends son téléphone.",
+    "En Jason, élimine les tireurs du quai.",
+    "En Lucia, appuie sur l'arrêt d'urgence du train.",
+    "Défends le bateau avec le fusil (munitions illimitées)."
+   ],
+   "bloque": [
+    "Le fusil d'assaut et le gilet sont sous les sièges arrière du bateau."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "credit-check",
+   "num": 59,
+   "chapitre": "3",
+   "nom": "Vérification de crédit",
+   "nomEn": "Credit Check",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "6 000 $ · 2 déblocages",
+   "resume": "Trois braquages de banques Fleeca avec l'équipe de Raul.",
+   "etapes": [
+    "Choisis tes masques et parle à Karim.",
+    "Mets le masque et braque la Fleeca de Washington Beach.",
+    "Va à la deuxième banque, loin de la zone de police.",
+    "Braque la dernière, gare-toi face à la route.",
+    "Sors en combattant et sépare-toi."
+   ],
+   "bloque": [
+    "Ne touche pas au coffre de la dernière banque : la police arrive déjà."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "steal-the-zorrusso-for-randy",
+   "num": 60,
+   "chapitre": "3",
+   "nom": "Voler la Zorrusso pour Randy",
+   "nomEn": "Steal the Zorrusso for Randy",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Randy",
+   "recompense": "21 250 $ · 10 000 $ de bonus si la voiture est livrée intacte · 3 déblocages",
+   "resume": "Voler une voiture de luxe avec traceur.",
+   "etapes": [
+    "Escalade le mur du parking des Hathaway Apartments.",
+    "Installe le cloneur de clé sur le téléphone.",
+    "Prends la Zorrusso au rez-de-chaussée, côté est.",
+    "Livre-la à Randy sans rouler trop lentement."
+   ],
+   "bloque": [
+    "Si tu roules trop doucement, le traceur envoie ta position : garde de la vitesse.",
+    "10 000 $ de bonus si elle est intacte."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "race-against-yago",
+   "num": null,
+   "chapitre": "3",
+   "nom": "Course contre Yago",
+   "nomEn": "Race Against Yago",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Yago",
+   "recompense": "Gain selon ta place (3 800 $ pour la 1re place)",
+   "resume": "Mission facultative : une course de rue. Elle disparaît vite.",
+   "etapes": [
+    "Va au rendez-vous à Salton dès le message de Yago.",
+    "Parle à Santiago et choisis Freeway Run.",
+    "Loue une voiture et fais la course."
+   ],
+   "bloque": [
+    "Jusqu'à 3 800 $ pour la 1re place."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "sinfrontera-national-bank",
+   "num": 61,
+   "chapitre": "3",
+   "nom": "Sinfrontera National Bank",
+   "nomEn": "Sinfrontera National Bank",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Repérage de la banque du cartel.",
+   "etapes": [
+    "Va à la banque à Tequesta.",
+    "En Lucia, accoude-toi à la table avec Jason.",
+    "Avec le Focus, inspecte chaque point de sécurité.",
+    "Rejoins Raul et Andrea à l'étage."
+   ],
+   "bloque": [
+    "Le Focus met en surbrillance tout ce qu'il faut inspecter."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "security-expert",
+   "num": 62,
+   "chapitre": "3",
+   "nom": "Expert en sécurité",
+   "nomEn": "Security Expert",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Enlever Nicole Park pour le braquage.",
+   "etapes": [
+    "Va à Waning Sands.",
+    "Suis Jason par l'arrière de la maison.",
+    "Porte Nicole jusqu'à la voiture.",
+    "Fuis vite et va à la salle de préparation de Stockyard."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "heist-planning",
+   "num": 63,
+   "chapitre": "3",
+   "nom": "Préparer le braquage",
+   "nomEn": "Heist Planning",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "Suivi des missions de préparation du braquage.",
+   "etapes": [
+    "Fais les missions : Propriété de l'entreprise, Le chaînon manquant, Mot de sécurité, Charges cachées."
+   ],
+   "bloque": [
+    "Ce n'est pas une mission à jouer : elle se coche toute seule."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "ride-or-die",
+   "num": 64,
+   "chapitre": "3",
+   "nom": "À la vie, à la mort",
+   "nomEn": "Ride or Die",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "",
+   "resume": "Voler la voiture du rappeur DWNPLY.",
+   "etapes": [
+    "Retrouve Dre'Quan au Jack of Hearts.",
+    "Achète des baskets DWNPLY au magasin Eris.",
+    "Montre les baskets au videur du salon VIP.",
+    "Vole les clés de DWNPLY pendant qu'il signe.",
+    "Trouve la voiture au klaxon et livre-la."
+   ],
+   "bloque": [
+    "Pour éjecter l'homme sur le capot, zigzague."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "company-property",
+   "num": 65,
+   "chapitre": "3",
+   "nom": "Propriété de l'entreprise",
+   "nomEn": "Company Property",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Brian Heder",
+   "recompense": "1 déblocage",
+   "resume": "Une livraison d'armes qui tourne mal.",
+   "etapes": [
+    "Retrouve Brian au Skeeter's à Hamlet.",
+    "Charge les caisses dans le camion.",
+    "En Jason, suis Pete à travers le hangar.",
+    "Décolle avec lui.",
+    "En Lucia, protège le camion à la mitrailleuse.",
+    "Pose l'avion en catastrophe."
+   ],
+   "bloque": [
+    "Chaque caisse perdue = une charge explosive de moins pour plus tard : tire vite sur les véhicules."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "the-missing-link",
+   "num": 66,
+   "chapitre": "3",
+   "nom": "Le chaînon manquant",
+   "nomEn": "The Missing Link",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Andrea",
+   "recompense": "1 déblocage",
+   "resume": "Capturer Monty, un homme du cartel.",
+   "etapes": [
+    "Retrouve Andrea au Sloppy Molly's en Lucia, seule.",
+    "Suis-la jusqu'à Monty.",
+    "Bats Monty à mains nues.",
+    "Sors en tirant.",
+    "Roule jusqu'à Vice City.",
+    "En Jason, interroge Monty et décide de son sort."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "safe-word",
+   "num": 67,
+   "chapitre": "3",
+   "nom": "Mot de sécurité",
+   "nomEn": "Safe Word",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Nicole Park",
+   "recompense": "1 500 $ (dans le coffre d'entraînement) · 1 déblocage",
+   "resume": "Voler un coffre d'entraînement sur un tournage.",
+   "etapes": [
+    "Parle à Nicole chez Raul.",
+    "En Jason, entre accroupi sur le tournage.",
+    "Joue ton rôle (épuisette dans la piscine).",
+    "Trouve le coffre dans la maison.",
+    "En Lucia, accroche-le au treuil et tire-le.",
+    "Livre-le chez Felipe en balançant le coffre contre les poursuivants.",
+    "Entraîne-toi à l'ouvrir."
+   ],
+   "bloque": [
+    "Entraîne-toi bien : c'est la même chose pendant le grand braquage."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "cooties",
+   "num": 68,
+   "chapitre": "3",
+   "nom": "Cooties",
+   "nomEn": "Cooties",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "1 déblocage",
+   "resume": "Tourner le clip des Dimez.",
+   "etapes": [
+    "Retrouve Dre'Quan à Crosstown.",
+    "Joue les scènes du clip.",
+    "Fuis la bande de DWNPLY jusqu'à sortir de la zone rouge.",
+    "Ramène la voiture au studio."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "this-is-a-free-call-from",
+   "num": null,
+   "chapitre": "3",
+   "nom": "Récupérer Shayna",
+   "nomEn": "Pick Up Shayna",
+   "facultative": true,
+   "manquable": true,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Shayna",
+   "recompense": "Jusqu'à environ 6 500 $ en objets volés et drogue à revendre",
+   "resume": "Mission facultative : aider une amie de prison. Elle peut être manquée.",
+   "etapes": [
+    "Va chercher Shayna près de Hamlet.",
+    "Conduis-la chez Raph et fouille la maison.",
+    "Gère le gang : discute ou élimine-les.",
+    "Partage le butin."
+   ],
+   "bloque": [
+    "Éliminer le gang rapporte le plus (environ 5 000 $ de drogue)."
+   ],
+   "sources": [
+    "GTABase"
+   ]
+  },
+  {
+   "id": "bricked-up",
+   "num": 69,
+   "chapitre": "3",
+   "nom": "Emmurés",
+   "nomEn": "Bricked Up",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Boobie Ike",
+   "recompense": "3 500 $ (seulement si tu prends les briques de Boobie en partant)",
+   "resume": "Une course pour Boobie tourne à la descente de police.",
+   "etapes": [
+    "Va aux Venture Apartments à Rockridge.",
+    "Gare-toi hors de la zone rouge.",
+    "Demande Raymond et monte frapper à la porte rouge.",
+    "Combats la police de Méndez étage par étage.",
+    "Sors par la fenêtre.",
+    "Sème la police et l'hélicoptère."
+   ],
+   "bloque": [
+    "Ramasse les armes longues des policiers : tu n'as que des pistolets.",
+    "Prends les briques de Boobie en partant : 3 500 $."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "hidden-charges",
+   "num": 70,
+   "chapitre": "3",
+   "nom": "Charges cachées",
+   "nomEn": "Hidden Charges",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Karim",
+   "recompense": "1 déblocage",
+   "resume": "Poser des explosifs sur les antennes relais.",
+   "etapes": [
+    "Retrouve Karim à la salle de préparation.",
+    "Conduis la camionnette au garage du centre-ville.",
+    "Pose les charges sur les tours Est, Sud et Ouest.",
+    "Fuis en parachute."
+   ],
+   "bloque": [
+    "Change de personnage pour aller plus vite : l'autre est déjà sur place."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "the-cartel-heist",
+   "num": 71,
+   "chapitre": "3",
+   "nom": "Le braquage du cartel",
+   "nomEn": "The Cartel Heist",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "120 000 $",
+   "resume": "Le grand braquage de la Sinfrontera National Bank.",
+   "etapes": [
+    "Fais sauter les antennes, puis va à la banque.",
+    "Prends le contrôle du hall.",
+    "En Lucia, descends à la salle des coffres.",
+    "En Jason, nettoie l'étage et le toit.",
+    "Ouvre le coffre comme à l'entraînement.",
+    "Tiens la police, enfume la rue.",
+    "Défends le bus, puis rejoins-le sur l'autoroute."
+   ],
+   "bloque": [
+    "Avec les 3 antennes coupées, tu as presque 11 minutes avant la police.",
+    "Pour le coffre, les deux barres bougent : ajuste-les en même temps."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "ocean-beach",
+   "num": 72,
+   "chapitre": "4",
+   "nom": "Ocean Beach",
+   "nomEn": "Ocean Beach",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "1 déblocage",
+   "resume": "Jason et Lucia s'installent dans une suite de l'hôtel Y.",
+   "etapes": [
+    "Quitte l'appartement de Bayside.",
+    "Va à l'hôtel Y, côté Vice Beach : le voiturier prend ta voiture.",
+    "Retrouve Valentina à droite du hall.",
+    "Monte au 7e étage, chambre 701 (à gauche, au bout du couloir).",
+    "Visite la suite et ouvre l'armoire.",
+    "Apporte une coupe de champagne à Lucia sur le balcon."
+   ],
+   "bloque": [
+    "Nouvelles tenues disponibles dans l'armoire à partir de ce chapitre."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "another-life",
+   "num": 73,
+   "chapitre": "4",
+   "nom": "Une autre vie",
+   "nomEn": "Another Life",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Lucia Caminos",
+   "recompense": "Compte BuckMe Black (2 000 000 $ de plafond)",
+   "resume": "Un souvenir de Lucia avec son fils Tomas.",
+   "etapes": [
+    "Va chercher Tomas dans son berceau au bout du couloir.",
+    "Calme-le dans le salon et monte le son de la radio.",
+    "Danse avec lui en suivant les indications."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "pool-day",
+   "num": 74,
+   "chapitre": "4",
+   "nom": "Journée piscine",
+   "nomEn": "Pool Day",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "",
+   "resume": "Une journée de détente à l'hôtel.",
+   "etapes": [
+    "Rejoins Lucia sur le balcon.",
+    "Commande-lui une Tequila Sunrise au bar de la piscine.",
+    "Parle à Eddie Acosta s'il t'arrête.",
+    "Observe les gens avec Lucia.",
+    "Suis-la sur la plage."
+   ],
+   "bloque": [
+    "Pas de marqueur classique : va sur le balcon après Une autre vie."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "attend-eddie-acostas-party",
+   "num": null,
+   "chapitre": "4",
+   "nom": "La fête d'Eddie Acosta",
+   "nomEn": "Attend Eddie Acosta's Party",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Eddie Acosta",
+   "recompense": "",
+   "resume": "Mission facultative : une soirée crypto qui est une arnaque.",
+   "etapes": [
+    "Va à Heathcliff Heights après l'invitation d'Eddie.",
+    "Monte avec lui : il t'enferme sur le toit.",
+    "Trouve un moyen de redescendre, puis confronte-le si tu veux."
+   ],
+   "bloque": [
+    "Ne paie pas les 50 000 $ : c'est une arnaque."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "company-cars",
+   "num": 75,
+   "chapitre": "4",
+   "nom": "Voitures de société",
+   "nomEn": "Company Cars",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Santino",
+   "recompense": "1 déblocage",
+   "resume": "Choisir une voiture pour Jason et pour Lucia.",
+   "etapes": [
+    "Parle à Santino dans le hall de l'hôtel.",
+    "Parle au vendeur à la concession.",
+    "Choisis une voiture pour Jason, puis pour Lucia.",
+    "Fais la course jusqu'à l'hôtel."
+   ],
+   "bloque": [
+    "Si un cadenas s'affiche encore, attends un peu après Journée piscine."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "lawyer-up",
+   "num": 76,
+   "chapitre": "4",
+   "nom": "Prendre un avocat",
+   "nomEn": "Lawyer Up",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Valentina",
+   "recompense": "",
+   "resume": "Rencontrer l'avocat Abe Gonzalez.",
+   "etapes": [
+    "Va au bureau d'Abe au centre-ville.",
+    "Parle à l'accueil, puis à Sandy au fond.",
+    "Monte voir Abe."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "party-hard",
+   "num": 77,
+   "chapitre": "4",
+   "nom": "Fête à tout prix",
+   "nomEn": "Party Hard",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Valentina",
+   "recompense": "",
+   "resume": "Protéger la star Andrés de León… qui se fait enlever.",
+   "etapes": [
+    "Va chercher Andrés.",
+    "Fais un détour par Little Cuba pour sa boisson.",
+    "Suis-le à la fête de Megamundo.",
+    "Désarme et assomme l'attaquant.",
+    "En Lucia, longe le mur dans l'escalier.",
+    "En Jason, nettoie l'étage de la fête.",
+    "Saute sur l'hélicoptère, puis pose-le sur le toit."
+   ],
+   "bloque": [
+    "Ton pistolet silencieux n'a pas de munitions de rechange : vise bien.",
+    "Le Focus sans viser montre les ennemis."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "heavy-lifting",
+   "num": 78,
+   "chapitre": "4",
+   "nom": "Poids lourds",
+   "nomEn": "Heavy Lifting",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Préparer le braquage de l'aéroport en infiltrant une salle de sport.",
+   "etapes": [
+    "Récupère le disque dur au garde-meubles.",
+    "Retrouve Raul sur sa péniche.",
+    "Va en bateau à l'Ajax Gym.",
+    "En Lucia, change-toi et fouille le sac de Raina.",
+    "Fais du sport sans te faire remarquer.",
+    "Piège Nate dans les cabines de bronzage.",
+    "Suis les culturistes de loin, jusqu'au toit."
+   ],
+   "bloque": [
+    "Reste loin de leur voiture pour ne pas être repéré."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "its-a-date",
+   "num": null,
+   "chapitre": "4",
+   "nom": "C'est un rendez-vous !",
+   "nomEn": "It's a Date!",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "1 déblocage",
+   "resume": "Mission facultative : un rendez-vous en amoureux.",
+   "etapes": [
+    "Va au Courtyard Bar à Stockyard avec Jason et Lucia.",
+    "Achète un verre."
+   ],
+   "bloque": [
+    "Elle améliore la relation du couple."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "photo-shoot",
+   "num": 79,
+   "chapitre": "4",
+   "nom": "Photo/Shoot",
+   "nomEn": "Photo/Shoot",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "6 000 $ · 2 déblocages",
+   "resume": "Une séance photo des Dimez qui tourne mal.",
+   "etapes": [
+    "Retrouve Dre'Quan à Tequesta.",
+    "En Lucia, photographie les Dimez depuis l'hélicoptère.",
+    "En Jason, poursuis en hélicoptère la voiture de Cash City.",
+    "Sauve Dre'Quan sous l'autoroute."
+   ],
+   "bloque": [
+    "Attention aux renforts qui arrivent en voiture sur la droite."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "bad-driver",
+   "num": null,
+   "chapitre": "4",
+   "nom": "Mauvais conducteur !",
+   "nomEn": "Bad Driver!",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Andrea",
+   "recompense": "20 000 $ (si tu tues Felipe) · 1 déblocage",
+   "resume": "Mission facultative : retrouver Felipe, qui a abandonné l'équipe.",
+   "etapes": [
+    "Va à Millport.",
+    "Poursuis Felipe dans les bois (tir dans les jambes).",
+    "Interroge-le et décide de son sort."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "making-gainz",
+   "num": 80,
+   "chapitre": "4",
+   "nom": "Faire du muscle",
+   "nomEn": "Making Gainz",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Lucia s'entraîne pour gagner la confiance de l'équipe de Kordell.",
+   "etapes": [
+    "Va seule à la salle de préparation.",
+    "Trouve Nate à l'Ajax Gym.",
+    "Fais les exercices avec lui (développé couché, squat, soulevé de terre).",
+    "Continue l'entraînement pendant le montage.",
+    "Rejoins Jason et Raul.",
+    "Entraîne-toi sur le Trauma Floor."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "too-much-baggage",
+   "num": 81,
+   "chapitre": "4",
+   "nom": "Trop de bagages",
+   "nomEn": "Too Much Baggage",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Andrea",
+   "recompense": "",
+   "resume": "Jason repère l'aéroport comme bagagiste.",
+   "etapes": [
+    "Va à l'aéroport et gare-toi dans le parking.",
+    "Regarde chaque boîte blanche jusqu'à ce qu'elle passe au vert.",
+    "Accroche le tracteur aux deux remorques.",
+    "Lance les sacs à Omar.",
+    "Pose le micro dans les toilettes.",
+    "Accepte le travail."
+   ],
+   "bloque": [
+    "Pour lancer un sac, relâche juste avant que la barre soit pleine."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "watch-it",
+   "num": 82,
+   "chapitre": "4",
+   "nom": "Regarde-le",
+   "nomEn": "Watch It",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "",
+   "resume": "Aider Dre'Quan à impressionner un patron de club.",
+   "etapes": [
+    "Retrouve Dre'Quan au magasin.",
+    "Va au dernier étage du parking Cruda.",
+    "Assomme les deux hommes, puis repousse les tireurs.",
+    "Choisis une tenue chez Nola.",
+    "Rencontre Royce Jones au Doight d'Or."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "cash-injections",
+   "num": 83,
+   "chapitre": "4",
+   "nom": "Injections de cash",
+   "nomEn": "Cash Injections",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Nate",
+   "recompense": "",
+   "resume": "Couvrir Nate pendant une vente.",
+   "etapes": [
+    "Appelle Nate (ou attends son appel).",
+    "Suis-le jusqu'à la ruelle.",
+    "Désarme l'homme à côté de toi et élimine les acheteurs.",
+    "Poursuis le voleur de la voiture.",
+    "Nettoie le motel et reprends la voiture.",
+    "Fuis, puis va manger une glace."
+   ],
+   "bloque": [
+    "Inutile de tirer sur le conducteur pendant la poursuite : reste derrière lui."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "amateur-hour",
+   "num": 84,
+   "chapitre": "4",
+   "nom": "L'heure des amateurs",
+   "nomEn": "Amateur Hour",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Francisco Delgado",
+   "recompense": "1 000 $",
+   "resume": "Aider Cisco à récupérer son argent.",
+   "etapes": [
+    "Parle à Francisco sur le Trauma Floor.",
+    "Change de tenue et va à sa voiture.",
+    "Gare-toi à Washington Island et attends le camping-car.",
+    "Poursuis-le en visant les pneus.",
+    "Ramène Cisco à l'Ajax Gym."
+   ],
+   "bloque": [
+    "Vise les pneus : le camping-car s'arrête plus vite."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "dirty-work",
+   "num": 85,
+   "chapitre": "4",
+   "nom": "Sale boulot",
+   "nomEn": "Dirty Work",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Andrea",
+   "recompense": "",
+   "resume": "Piéger Raina avec des photos.",
+   "etapes": [
+    "Retrouve Andrea.",
+    "Va au Velvet Palm Motel à Tequesta.",
+    "En Jason, résiste à Raina jusqu'à ouvrir la fenêtre.",
+    "En Lucia, prends les photos depuis les conteneurs.",
+    "Rejoins Lucia et parle à Nate le lendemain."
+   ],
+   "bloque": [
+    "Il faut avoir fini Trop de bagages et Injections de cash."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "adventures-in-babysitting",
+   "num": 86,
+   "chapitre": "4",
+   "nom": "Baby-sitting",
+   "nomEn": "Adventures in Babysitting",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Andrés de León",
+   "recompense": "",
+   "resume": "Garde du corps d'Andrés en boîte de nuit.",
+   "etapes": [
+    "Va chez Andrés à Starfish Island.",
+    "Accompagne-le au club et commande ses boissons.",
+    "Invite les filles à sa table.",
+    "Suis Andrés partout.",
+    "Récupère la drogue dehors.",
+    "Protège Andrés contre le FAP, puis fuis en voiture (mitrailleuse).",
+    "Défends l'hélicoptère au lance-roquettes."
+   ],
+   "bloque": [
+    "Surveille ta santé dans la voiture : la drogue brouille ta vue."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "fresh-evidence",
+   "num": 87,
+   "chapitre": "4",
+   "nom": "Nouvelles preuves",
+   "nomEn": "Fresh Evidence",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "10 000 $",
+   "resume": "Voler des vidéos de chantage chez Dante.",
+   "etapes": [
+    "Retrouve Dre'Quan au Jack of Hearts.",
+    "Escalade le mur de la villa de nuit.",
+    "Prends la carte d'accès sur la table de nuit (évite le tigre).",
+    "Passe par le balcon jusqu'à l'ascenseur.",
+    "Ouvre la salle secrète et copie les fichiers.",
+    "Sors en combattant et fuis en hors-bord."
+   ],
+   "bloque": [
+    "Le tigre bloque le couloir : passe par le balcon."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "power-play",
+   "num": 88,
+   "chapitre": "4",
+   "nom": "Jeu de pouvoir",
+   "nomEn": "Power Play",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Kordell Grant",
+   "recompense": "40 000 $",
+   "resume": "Aider l'équipe de Kordell à braquer un fourgon.",
+   "etapes": [
+    "Va à leur base à Salton.",
+    "En Jason, entre par le toit sans être vu.",
+    "Photographie le plan du braquage.",
+    "En Lucia, pose les cônes sur la route.",
+    "Prends le fusil dans la caisse et couvre l'équipe.",
+    "Fuis à pied, puis vole une voiture."
+   ],
+   "bloque": [
+    "Ne prends pas une voiture tournée vers toi : cette direction est bloquée."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "childs-play",
+   "num": 89,
+   "chapitre": "4",
+   "nom": "Jeu d'enfant",
+   "nomEn": "Child's Play",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Andrés de León",
+   "recompense": "30 000 $",
+   "resume": "Sauver Rafa, le fils d'Andrés.",
+   "etapes": [
+    "Retrouve Andrés à Megamundo.",
+    "Va à la carrière au sud de l'aéroport.",
+    "En Lucia, repère les ennemis aux jumelles.",
+    "Libère Rafa en silence (pistolet silencieux).",
+    "En Jason, protège Andrés.",
+    "Poursuis Gustavo et sauve Rafa de la voiture."
+   ],
+   "bloque": [
+    "Rafa est à l'étage du bâtiment en face, sous les lumières rouges."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "headliners",
+   "num": 90,
+   "chapitre": "4",
+   "nom": "Têtes d'affiche",
+   "nomEn": "Headliners",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Dre'Quan Priest",
+   "recompense": "Jusqu'à environ 50 000 $ (selon tes choix) · 1 déblocage",
+   "resume": "La soirée de lancement des Dimez au club VYB.",
+   "etapes": [
+    "Suis Dre'Quan dans le club.",
+    "En Lucia, teste les lumières.",
+    "En Jason, attribue les 3 tables VIP.",
+    "Fais le tour des tables.",
+    "Libère une table pour Sexxy Red.",
+    "Bats le gros videur (esquive et patience).",
+    "En Lucia, désarme DWNPLY."
+   ],
+   "bloque": [
+    "Le gros bagarreur frappe fort : esquive et frappe après ses attaques.",
+    "Tes choix de tables changent le gain (jusqu'à 50 000 $)."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "close-surveillance",
+   "num": 91,
+   "chapitre": "4",
+   "nom": "Surveillance rapprochée",
+   "nomEn": "Close Surveillance",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Espionner les culturistes avec un drone.",
+   "etapes": [
+    "Retrouve Karim.",
+    "Pilote le drone jusqu'au bar The Calique.",
+    "Écoute sans te faire repérer.",
+    "Suis leur voiture en restant haut.",
+    "Entre dans l'appartement 405 d'Omar et pose les caméras.",
+    "Sors le drone avant qu'ils le trouvent."
+   ],
+   "bloque": [
+    "Garde la barre d'écoute dans le vert sans descendre au niveau de la rue."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "delivery-method",
+   "num": 92,
+   "chapitre": "4",
+   "nom": "Mode de livraison",
+   "nomEn": "Delivery Method",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Andrea",
+   "recompense": "",
+   "resume": "Pirater la sécurité de l'aéroport.",
+   "etapes": [
+    "Entre à l'aéroport déguisé en livreur.",
+    "Branche la clé USB sur l'ordinateur de l'accueil.",
+    "Déclenche l'alarme incendie.",
+    "Pirate l'ordinateur du bureau du fond, au 2e étage.",
+    "Ressors à vélo."
+   ],
+   "bloque": [
+    "Fais vite : tout le monde doit encore être dehors quand tu sors."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "team-building",
+   "num": 93,
+   "chapitre": "4",
+   "nom": "Esprit d'équipe",
+   "nomEn": "Team Building",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "lucia"
+   ],
+   "donneur": "Kordell Grant",
+   "recompense": "",
+   "resume": "Lucia doit faire ses preuves auprès de Kordell.",
+   "etapes": [
+    "Retrouve Kordell à l'Ajax Gym.",
+    "Va à l'entrepôt, entrée par la gauche.",
+    "Gagne le combat en cage.",
+    "Va au Riverbank Waterside Bar."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "fully-catered",
+   "num": 94,
+   "chapitre": "4",
+   "nom": "Traiteur compris",
+   "nomEn": "Fully Catered",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Voler un camion de traiteur à l'aéroport.",
+   "etapes": [
+    "Entre discrètement dans la zone et vole le camion Plane & Simple.",
+    "Livre-le à Rockridge.",
+    "Remplis les sacs de faux billets."
+   ],
+   "bloque": [
+    "Les employés qui te voient te signalent : avance lentement."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "vcia-takedown",
+   "num": 95,
+   "chapitre": "4",
+   "nom": "Coup à l'aéroport VCIA",
+   "nomEn": "VCIA Takedown",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "250 000 $ · 1 déblocage",
+   "resume": "Le grand braquage de l'aéroport.",
+   "etapes": [
+    "En Lucia, suis Nate dans le terminal.",
+    "En Jason, conduis le camion jusqu'au terminal cargo.",
+    "Neutralise Janice dans les toilettes.",
+    "Suis le responsable de la chambre forte.",
+    "En Jason, atteins le terminal réseau (5 minutes).",
+    "Ouvre la chambre forte, cache Omar, charge l'avion.",
+    "Poursuis l'avion, puis le camion.",
+    "En Lucia, bats Raina et pose l'avion."
+   ],
+   "bloque": [
+    "Utilise le Focus pour abattre l'homme qui lance des objets depuis le camion."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "tie-up-loose-ends",
+   "num": 96,
+   "chapitre": "4",
+   "nom": "Régler les derniers détails",
+   "nomEn": "Tie Up Loose Ends",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Raul Bautista",
+   "recompense": "",
+   "resume": "Attendre des nouvelles après le braquage.",
+   "etapes": [
+    "Fais ce que tu veux en attendant.",
+    "Réponds à l'appel de Valentina : c'est lui qui fait avancer l'histoire."
+   ],
+   "bloque": [
+    "L'appel de Raul n'arrive jamais : c'est normal."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "thats-where-the-money-is",
+   "num": null,
+   "chapitre": "4",
+   "nom": "C'est là qu'est l'argent…",
+   "nomEn": "That's Where the Money Is…",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Yasmani",
+   "recompense": "Environ 80 000 $ en billets marqués (si tu prends tout) · 1 déblocage",
+   "resume": "Mission facultative : ton premier braquage de chambre forte.",
+   "etapes": [
+    "Attends au Café Orquídea.",
+    "Suis le fourgon de loin.",
+    "Suis le garde dans la banque.",
+    "Mets un déguisement et fais sauter la porte du fond.",
+    "Prends les billets marqués.",
+    "Sème la police (4 étoiles).",
+    "Vends tout à Yasmani."
+   ],
+   "bloque": [
+    "Pas de sortie arrière : prépare-toi à combattre en sortant."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "sunset",
+   "num": 97,
+   "chapitre": "4",
+   "nom": "Coucher de soleil",
+   "nomEn": "Sunset",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "",
+   "resume": "Raul est retrouvé à moitié mort.",
+   "etapes": [
+    "Parle à Valentina, puis rappelle-la.",
+    "Prends le mot à l'accueil de l'hôtel.",
+    "Va à la marina et fouille la péniche de Raul.",
+    "Fuis le long des quais avec Lucia.",
+    "Défends le bateau.",
+    "Mets le pilote automatique et saute entre les barges."
+   ],
+   "bloque": [
+    "Saute au bon moment, puis reste sous l'eau."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "starting-from-zero",
+   "num": 98,
+   "chapitre": "4",
+   "nom": "Repartir de zéro",
+   "nomEn": "Starting From Zero",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Jason Duval, Lucia Caminos",
+   "recompense": "",
+   "resume": "En fuite, le couple cherche de l'aide.",
+   "etapes": [
+    "Prends la voiture et va à l'Aqua Stadium.",
+    "Trouve Andrea dans les tribunes, côté sud-ouest.",
+    "Abandonne la voiture et va au garde-meubles.",
+    "En Lucia, retrouve le contact de Mattia à l'hôtel.",
+    "Chez Giorgio, fais ce que tu veux avec l'arme (elle n'est pas chargée).",
+    "Suis Giorgio et Dardan."
+   ],
+   "bloque": [
+    "La police fouille la ville : roule sans attirer l'attention."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "bird-in-the-hand",
+   "num": 99,
+   "chapitre": "5",
+   "nom": "Un tiens vaut mieux…",
+   "nomEn": "Bird in the Hand",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Giorgio Gallo",
+   "recompense": "",
+   "resume": "Voler un hélicoptère sur une base militaire.",
+   "etapes": [
+    "Change-toi et rejoins Giorgio.",
+    "En Lucia, observe la base des garde-côtes depuis l'hélico.",
+    "En Jason, vole jusqu'au pont, puis vers Key Lento.",
+    "Saute en parachute sur le bateau.",
+    "Infiltre la base de nuit en restant dans l'ombre.",
+    "Entre par la trappe du toit du hangar.",
+    "Ouvre les portes et défends l'hélicoptère."
+   ],
+   "bloque": [
+    "Reste dans l'ombre : les soldats ne te voient pas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "taking-liberties",
+   "num": 100,
+   "chapitre": "5",
+   "nom": "Prendre des libertés",
+   "nomEn": "Taking Liberties",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Giorgio Gallo",
+   "recompense": "",
+   "resume": "Giorgio fait son offre.",
+   "etapes": [
+    "Retrouve Giorgio au spa.",
+    "Suis-le jusqu'à son bureau."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "doggie-bag",
+   "num": 101,
+   "chapitre": "5",
+   "nom": "Doggy bag",
+   "nomEn": "Doggie Bag",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Vinny Capsik",
+   "recompense": "",
+   "resume": "Enlever Rocco, un chien, sur un paquebot.",
+   "etapes": [
+    "En Lucia, monte à bord par le garage ouvert.",
+    "Prends l'ascenseur jusqu'au pont supérieur.",
+    "Trouve Rocco au sud-est.",
+    "Donne-lui le biscuit drogué et porte-le.",
+    "Va à la zone d'atterrissage en longeant le bord."
+   ],
+   "bloque": [
+    "Les passerelles du bas sont plus loin des gardes."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "vc-baby",
+   "num": 102,
+   "chapitre": "5",
+   "nom": "VC Baby",
+   "nomEn": "VC Baby",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Mattia Tauro",
+   "recompense": "",
+   "resume": "Mattia a besoin d'aide pour aller à l'hôpital.",
+   "etapes": [
+    "Suis Mattia à l'ascenseur et accepte d'aider.",
+    "Récupère la clé de Dardan quand Lucia jette son téléphone.",
+    "Prends une voiture au garage.",
+    "Va à l'hôpital au nord-est en moins de 4 minutes."
+   ],
+   "bloque": [
+    "4 minutes suffisent si tu ne te crashes pas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "operation-savage-glory",
+   "num": 103,
+   "chapitre": "5",
+   "nom": "Opération Savage Glory",
+   "nomEn": "Operation Savage Glory",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Vinny Capsik",
+   "recompense": "50 000 $ · 2 déblocages",
+   "resume": "Une grosse opération pour Giorgio.",
+   "etapes": [
+    "En Lucia, piège la pile du pont.",
+    "En Jason, nettoie le cargo au fusil de précision.",
+    "Protège Rocco et pose les explosifs.",
+    "En Lucia, lève le pont.",
+    "Plonge jusqu'aux garde-côtes.",
+    "Défends la cargaison et accroche le treuil."
+   ],
+   "bloque": [
+    "Abats tout de suite l'hélicoptère ennemi qui arrive à gauche."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "honest-abe",
+   "num": 104,
+   "chapitre": "5",
+   "nom": "Honnête Abe",
+   "nomEn": "Honest Abe",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Abe Gonzalez",
+   "recompense": "",
+   "resume": "Une scène au bureau d'Abe.",
+   "etapes": [
+    "Va au bureau d'Abe au centre-ville et regarde la scène."
+   ],
+   "bloque": [],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "unfinished-business",
+   "num": 105,
+   "chapitre": "5",
+   "nom": "Affaires en suspens",
+   "nomEn": "Unfinished Business",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Abe Gonzalez",
+   "recompense": "",
+   "resume": "Finaliser l'accord avec Abe.",
+   "etapes": [
+    "Termine ce que tu veux avant (c'est le dernier moment calme).",
+    "Retrouve Abe : ses honoraires sont de 150 000 $.",
+    "Retourne au penthouse et regarde la scène."
+   ],
+   "bloque": [
+    "Fais les missions facultatives avant : la fin approche."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "protective-custody",
+   "num": 106,
+   "chapitre": "5",
+   "nom": "Garde à vue",
+   "nomEn": "Protective Custody",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Giorgio Gallo",
+   "recompense": "",
+   "resume": "Le début de la fin : la police vous tend un piège.",
+   "etapes": [
+    "En Lucia, rentre la boule noire au billard.",
+    "En Jason, assieds-toi sur le banc à Panos Plaza.",
+    "En Lucia, échappe-toi du fourgon de police.",
+    "En Jason, suis Fitzroy et défends le commissariat.",
+    "Rejoins l'entrepôt, puis élimine la brigade de Méndez.",
+    "Décide du sort de Méndez."
+   ],
+   "bloque": [
+    "Si tu acceptes l'offre de Méndez, tu obtiens la pire fin."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "the-end-of-the-road",
+   "num": 107,
+   "chapitre": "5",
+   "nom": "Le bout de la route",
+   "nomEn": "The End of the Road",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "",
+   "recompense": "",
+   "resume": "La dernière mission de l'histoire.",
+   "etapes": [
+    "Équipe-toi au hangar de la marina de Brian.",
+    "Attaque le penthouse de Giorgio depuis l'hélicoptère.",
+    "En Jason, récupère le disque dur.",
+    "En Lucia, saute de la grue au bon moment.",
+    "Sauve Lucia dans le garage, puis fuis en voiture.",
+    "Va vers l'aérodrome de South Point.",
+    "Sur le pont, fais ton choix."
+   ],
+   "bloque": [
+    "Il y a 5 fins : elles dépendent de ta relation, de ton épargne et de ton profil.",
+    "Après le générique, tu peux rejouer la fin sans recommencer."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  }
+ ]
+}
