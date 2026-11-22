@@ -339,7 +339,7 @@ function homePalms() {
 {
   const p = '', R = R_(p);
   const H = ACCUEIL;
-  const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length };
+  const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length + CATALOGUE.vehicules.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length };
   const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
   const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
   const maj = site.majLe.split('-').reverse().join('.');

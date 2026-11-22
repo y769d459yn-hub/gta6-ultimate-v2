@@ -25,7 +25,7 @@
   },
   "tuiles": [
     { "id": "astuces", "label": "Je cherche une astuce", "sousTitre": "{n} solutions", "compteur": "astuces", "href": "astuces/", "icon": "bolt", "couleur": "#ff2bd6", "taille": "large" },
-    { "id": "vehicules", "label": "Un véhicule", "sousTitre": "{n} fiches", "compteur": "vehicules", "href": "vehicules/", "icon": "car", "couleur": "#ffb547", "taille": "normale" },
+    { "id": "vehicules", "label": "Un véhicule", "sousTitre": "{n} véhicules", "compteur": "vehicules", "href": "vehicules/", "icon": "car", "couleur": "#ffb547", "taille": "normale" },
     { "id": "carte", "label": "Voir la carte", "sousTitre": "{n} repères", "compteur": "reperes", "href": "carte/", "icon": "map", "couleur": "#2de2e6", "taille": "normale" },
     { "id": "encyclopedie", "label": "Comprendre le jeu", "sousTitre": "Personnages, lieux…", "compteur": null, "href": "encyclopedie/", "icon": "book", "couleur": "#9d7bff", "taille": "normale" },
     { "id": "actualites", "label": "Dernières infos", "sousTitre": "{date}", "compteur": "actualites", "href": "actualites/", "icon": "news", "couleur": "#39ff88", "taille": "normale" }
