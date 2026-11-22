@@ -15,7 +15,7 @@
 .pg-deco .h-palms { position: absolute; left: 0; right: 0; bottom: 0; height: 160px; opacity: .18; }
 .pg-deco::before { content: ""; position: absolute; width: 520px; height: 520px; right: -200px; top: -260px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 43, 214, .18), transparent); }
 .v2 main.page { position: relative; }
-.v2 main.page > *:not(.pg-deco) { position: relative; z-index: 1; }
+.v2 main.page > *:not(.pg-deco):not(.atp):not(.sr-only) { position: relative; z-index: 1; }
 @media (min-width: 900px) { .pg-deco .h-sun { width: 520px; right: -40px; top: -40px; } }
 
 /* ---------- Typographie ---------- */
