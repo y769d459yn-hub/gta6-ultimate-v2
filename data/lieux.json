@@ -309,7 +309,7 @@
   "precision": "zone",
   "statut": "a-verifier",
   "icon": "plane",
-  "mapcat": "points-utiles",
+  "mapcat": "services",
   "desc": "L'aéroport international de Vice City.",
   "kw": [
    "aeroport",
@@ -320,7 +320,8 @@
   "sources": [
    "gamesradar-locations"
   ],
-  "gtadb": "Vice City International Airport"
+  "gtadb": "Vice City International Airport",
+  "service": "Aéroport"
  },
  {
   "id": "port-vice-city",
@@ -330,7 +331,7 @@
   "precision": "zone",
   "statut": "a-verifier",
   "icon": "anchor",
-  "mapcat": "points-utiles",
+  "mapcat": "services",
   "desc": "Les docks et le port de commerce.",
   "kw": [
    "port",
@@ -341,7 +342,8 @@
   "sources": [
    "gamesradar-locations"
   ],
-  "gtadb": "Port Vice City"
+  "gtadb": "Port Vice City",
+  "service": "Port"
  },
  {
   "id": "commissariat-crosstown",
@@ -351,7 +353,7 @@
   "precision": "zone",
   "statut": "provisoire",
   "icon": "badge",
-  "mapcat": "points-utiles",
+  "mapcat": "services",
   "desc": "Le commissariat sur NW 9th St, où une Pegassi Infernus serait garée en haut du parking.",
   "kw": [
    "police",
@@ -362,7 +364,8 @@
   "sources": [
    "detonated-cars"
   ],
-  "gtadb": "Crosstown, Vice City"
+  "gtadb": "Crosstown, Vice City",
+  "service": "Police"
  },
  {
   "id": "hamlet",
@@ -669,8 +672,9 @@
    "gtadb"
   ],
   "gtadb": "Jason's House, Key Lento",
-  "mapcat": "points-utiles",
-  "astuce": "planques"
+  "mapcat": "services",
+  "astuce": "planques",
+  "service": "Planque"
  },
  {
   "id": "planque-starlet",
@@ -690,8 +694,9 @@
    "gtadb"
   ],
   "gtadb": "Starlet Motel, Historic Route 628",
-  "mapcat": "points-utiles",
-  "astuce": "planques"
+  "mapcat": "services",
+  "astuce": "planques",
+  "service": "Planque"
  },
  {
   "id": "planque-lucia",
@@ -711,8 +716,9 @@
    "gtadb"
   ],
   "gtadb": "Lucia's Apartment, Crosstown",
-  "mapcat": "points-utiles",
-  "astuce": "planques"
+  "mapcat": "services",
+  "astuce": "planques",
+  "service": "Planque"
  },
  {
   "id": "planque-y",
@@ -733,8 +739,9 @@
    "gtadb"
   ],
   "gtadb": "Y Vice City, Washington Beach",
-  "mapcat": "points-utiles",
-  "astuce": "planques"
+  "mapcat": "services",
+  "astuce": "planques",
+  "service": "Planque"
  },
  {
   "id": "mile-zero",
@@ -878,7 +885,8 @@
    "gtadb"
   ],
   "gtadb": "Vice Beach Marina, Ocean Beach",
-  "mapcat": "points-utiles"
+  "mapcat": "services",
+  "service": "Marina"
  },
  {
   "id": "brian-marina",
@@ -898,7 +906,8 @@
    "gtadb"
   ],
   "gtadb": "Brian's Boat Works & Marina, Key Lento",
-  "mapcat": "points-utiles"
+  "mapcat": "services",
+  "service": "Marina"
  },
  {
   "id": "panos-plaza",
@@ -977,8 +986,9 @@
    "gtadb"
   ],
   "gtadb": "Wonder Whale, Key Lento",
-  "mapcat": "points-utiles",
-  "astuce": "changer-de-look"
+  "mapcat": "commerces",
+  "astuce": "changer-de-look",
+  "service": "Vêtements"
  },
  {
   "id": "rideout-customs",
@@ -999,8 +1009,9 @@
    "gtadb"
   ],
   "gtadb": "Rideout Customs, Crosstown",
-  "mapcat": "points-utiles",
-  "astuce": "personnaliser-voiture"
+  "mapcat": "services",
+  "astuce": "personnaliser-voiture",
+  "service": "Garage auto"
  },
  {
   "id": "euroform",
@@ -1020,8 +1031,9 @@
    "gtadb"
   ],
   "gtadb": "Euroform Automotive, Little Cuba",
-  "mapcat": "points-utiles",
-  "astuce": "personnaliser-voiture"
+  "mapcat": "services",
+  "astuce": "personnaliser-voiture",
+  "service": "Garage auto"
  },
  {
   "id": "wasteland-offroad",
@@ -1041,8 +1053,9 @@
    "gtadb"
   ],
   "gtadb": "Wasteland Off-Road, Port Gellhorn",
-  "mapcat": "points-utiles",
-  "astuce": "personnaliser-voiture"
+  "mapcat": "services",
+  "astuce": "personnaliser-voiture",
+  "service": "Garage auto"
  },
  {
   "id": "ajax-gym",
@@ -1063,8 +1076,9 @@
    "gtadb"
   ],
   "gtadb": "Ajax Gym, SW 4th St",
-  "mapcat": "points-utiles",
-  "astuce": "augmenter-stats"
+  "mapcat": "services",
+  "astuce": "augmenter-stats",
+  "service": "Salle de sport"
  },
  {
   "id": "grand-majestic",
@@ -1084,8 +1098,9 @@
    "gtadb"
   ],
   "gtadb": "Grand Majestic, Tequesta",
-  "mapcat": "points-utiles",
-  "astuce": "augmenter-stats"
+  "mapcat": "services",
+  "astuce": "augmenter-stats",
+  "service": "Salle de sport"
  },
  {
   "id": "stock-305",
@@ -1105,8 +1120,9 @@
    "gtadb"
   ],
   "gtadb": "Stock 305, Stockyard",
-  "mapcat": "points-utiles",
-  "astuce": "changer-de-look"
+  "mapcat": "commerces",
+  "astuce": "changer-de-look",
+  "service": "Vêtements"
  },
  {
   "id": "electric-fang",
@@ -1126,8 +1142,9 @@
    "gtadb"
   ],
   "gtadb": "Electric Fang Tattoo, Stockyard",
-  "mapcat": "points-utiles",
-  "astuce": "changer-de-look"
+  "mapcat": "commerces",
+  "astuce": "changer-de-look",
+  "service": "Tatoueur"
  },
  {
   "id": "sara-salon",
@@ -1147,8 +1164,9 @@
    "gtadb"
   ],
   "gtadb": "Sara's Unisex Salon, Hamlet",
-  "mapcat": "points-utiles",
-  "astuce": "changer-de-look"
+  "mapcat": "commerces",
+  "astuce": "changer-de-look",
+  "service": "Coiffeur"
  },
  {
   "id": "ammu-phil",
@@ -1169,8 +1187,9 @@
    "gtadb"
   ],
   "gtadb": "Phil's Ammu-Nation, Leonida",
-  "mapcat": "points-utiles",
-  "astuce": "acheter-silencieux"
+  "mapcat": "armes",
+  "astuce": "acheter-silencieux",
+  "service": "Armurerie"
  },
  {
   "id": "pawn-gun",
@@ -1190,8 +1209,9 @@
    "gtadb"
   ],
   "gtadb": "Pawn & Gun, Port Gellhorn",
-  "mapcat": "points-utiles",
-  "astuce": "acheter-silencieux"
+  "mapcat": "armes",
+  "astuce": "acheter-silencieux",
+  "service": "Armurerie"
  },
  {
   "id": "hopital-vc",
@@ -1210,8 +1230,9 @@
    "gtadb"
   ],
   "gtadb": "Vice City Hospital, Rockridge",
-  "mapcat": "points-utiles",
-  "astuce": "se-soigner"
+  "mapcat": "services",
+  "astuce": "se-soigner",
+  "service": "Hôpital"
  },
  {
   "id": "capri",

@@ -116,7 +116,7 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (cam.s >= .2 ? ' at-dot--lbl' : '');
+          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 ? ' at-dot--lbl' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
           el.innerHTML = `<span class="at-dot-i">${icn}</span>${cam.s >= .2 ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
@@ -261,6 +261,7 @@
       showCommu(on) { st.showCommu = on; render(true); },
       setCommuFilter(fn) { st.commuFilter = fn; render(true); },
       clearActive() { st.active = null; render(true); },
+      markFound(set) { st.found = set; render(true); },
       feats: () => st.feats, nodes: () => nodes, layer, stage, toScreen,
       inView() {
         const [x0, y1] = toWorld(pad.left, pad.top), [x1, y0] = toWorld(W - pad.right, H - pad.bottom);

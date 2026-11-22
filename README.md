@@ -41,6 +41,17 @@ Statuts de fiabilité : `confirme` (vérifié humainement), `a-verifier`, `provi
 - Moteur : `src/atlas.js` (tuiles, regroupement, pincer/glisser/molette, inertie), page : `src/carte.js`.
 - Mettre à jour la carte : `git clone https://github.com/rolux/gtadb.org`, puis `python3 tools/tuiles.py ../gtadb.org` et copier `map/data/6/landmarks.json` dans `vendor/gtadb/`.
 
+## Carte : « Je cherche… »
+
+La carte (`carte/`) range ses repères en 8 besoins, posés comme des questions (`data/site.json` → `categories.carte`) :
+une voiture, une arme, de l'argent, un magasin, un service, une mission, un lieu secret, une activité.
+Toucher une question ne garde que ces repères et ouvre la liste, rangée par type (armurerie, banque, coiffeur…).
+
+- Repères du guide : `data/lieux.json` (`mapcat` + `service`), véhicules, astuces.
+- Commerces, armes, banques, services et lieux remarquables : lieux GTADB reconnus par leur étiquette `#` ou par leur nom (`SERVICES`, `NOMS`, `CURIOSITE` dans `scripts/build.mjs`), un seul repère par endroit.
+- Missions : `data/carte-missions.json` (lieu du guide ou lieu GTADB → missions) ; la page Missions renvoie vers ces repères (« Voir sur la carte »).
+- Chaque fiche propose « Le plus proche d'ici » (armurerie, hôpital, essence, garage, vêtements, planque), « J'y suis allé » (progression gardée sur l'appareil, clé `lg:carte-trouves`) et « Partager » (lien `?focus=`).
+
 ## Images des véhicules
 Chaque véhicule est montré avec sa **photo du jeu** quand elle existe (`src/photos/<slug>.webp`, 27 sur 31 ; les photos sombres sont recadrées et éclaircies par `tools/photos.py`). Pour ajouter ou remplacer une photo, dépose `src/photos/<slug>.webp` (ex. `src/photos/jobuilt-hauler.webp`) puis relance `npm run build`, l'image la plus réaliste possible. Les photos sont préparées par `python3 tools/photos.py <dépôt gta6-hq>` à partir du dépôt public xpbeats00-sudo/gta6-hq, et `data/photos.json` garde l'origine de chacune (Rockstar Games, via GTABase, Tracker.gg ou GTA Wiki), affichée sous l'image. Ces images appartiennent à Rockstar Games : elles ne sont pas sous licence libre.
 

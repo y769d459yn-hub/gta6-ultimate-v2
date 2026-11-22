@@ -140,34 +140,68 @@
   ],
   "carte": [
    {
-    "id": "argent",
-    "nom": "Argent",
-    "icon": "money",
-    "color": "#39ff88"
-   },
-   {
     "id": "vehicules",
     "nom": "Véhicules",
+    "q": "Une voiture",
     "icon": "car",
-    "color": "#ff9a1f"
+    "color": "#ff9a1f",
+    "sens": "Où trouver une voiture, une moto, un bateau ou un avion"
+   },
+   {
+    "id": "armes",
+    "nom": "Armes",
+    "q": "Une arme",
+    "icon": "gun",
+    "color": "#ff5a3c",
+    "sens": "Armureries et boutiques qui vendent des armes"
+   },
+   {
+    "id": "argent",
+    "nom": "Argent",
+    "q": "De l'argent",
+    "icon": "money",
+    "color": "#39ff88",
+    "sens": "Banques, bijouteries, receleurs et caches d'argent"
+   },
+   {
+    "id": "commerces",
+    "nom": "Commerces",
+    "q": "Un magasin",
+    "icon": "diamond",
+    "color": "#ffd23f",
+    "sens": "Vêtements, coiffeur, tatoueur, épicerie, essence…"
+   },
+   {
+    "id": "services",
+    "nom": "Services",
+    "q": "Un service",
+    "icon": "heart",
+    "color": "#4da3ff",
+    "sens": "Hôpitaux, police, garages, planques, marinas, aéroport"
+   },
+   {
+    "id": "missions",
+    "nom": "Missions",
+    "q": "Une mission",
+    "icon": "flag",
+    "color": "#ff3d6e",
+    "sens": "Où se passent les missions de l'histoire"
    },
    {
     "id": "lieux",
-    "nom": "Lieux",
+    "nom": "Lieux et secrets",
+    "q": "Un lieu secret",
     "icon": "pin",
-    "color": "#ff2d87"
+    "color": "#ff2d87",
+    "sens": "Quartiers, monuments et endroits à découvrir"
    },
    {
     "id": "activites",
     "nom": "Activités",
+    "q": "Une activité",
     "icon": "wave",
-    "color": "#19d3e3"
-   },
-   {
-    "id": "points-utiles",
-    "nom": "Points utiles",
-    "icon": "info",
-    "color": "#ffd23f"
+    "color": "#19d3e3",
+    "sens": "Sport, loisirs, courses et défis"
    }
   ],
   "actualites": [
