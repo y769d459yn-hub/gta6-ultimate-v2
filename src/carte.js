@@ -153,15 +153,18 @@
     showPanel(`${head('question', '#19d3e3', "Mode d'emploi", 'Comment utiliser la carte')}
       <ol class="hl-steps">
         <li><span class="hl-dot hl-gest">${ic('search')}</span><span><b>Dis ce que tu cherches</b>Touche « Une arme », « Une voiture », « Un magasin »… en haut : la carte ne garde que ça et te donne la liste.</span></li>
-        <li>${dot('#ff9a1f', 'car')}<span><b>Touche un rond coloré</b>Tu vois ce que c'est, où aller, quoi faire et ce qu'il y a de plus proche.</span></li>
-        <li><span class="hl-dot hl-cl" style="--ring:conic-gradient(#39ff88 0 40%,#ff9a1f 40% 70%,#ffd23f 70%)"><b>12</b></span><span><b>Un rond avec un chiffre ?</b>Il regroupe plusieurs points. Touche-le pour zoomer dessus.</span></li>
-        <li><span class="hl-dot hl-gest">${ic('expand')}</span><span><b>Zoome et déplace-toi</b>Pince avec deux doigts (ou molette, ou + et −). Glisse pour te déplacer.</span></li>
-        <li><span class="hl-dot hl-gest">${ic('list')}</span><span><b>Tu préfères une liste ?</b>Le bouton « Liste » montre tous les points visibles à l'écran.</span></li>
-        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ce que tu as trouvé</b>Le bouton « Trouvé » garde ta progression sur cet appareil.</span></li>
       </ol>
       <h3 class="hl-h">Les couleurs</h3>
       <ul class="hl-leg">${Object.values(cats).map((c) => `<li>${dot(c.color, c.icon)}<span><b>${escH(c.nom)}</b>${escH(c.sens || '')}</span></li>`).join('')}
         <li>${dot('#ff9a1f', 'pin', 'hl-dash')}<span><b>Bord en pointillés</b>Position approximative : cherche dans le coin.</span></li></ul>
+      <h3 class="hl-h">Pour bien t'en servir</h3>
+      <ol class="hl-steps">
+        <li>${dot('#ff9a1f', 'car')}<span><b>Touche un rond coloré</b>Tu vois ce que c'est, où aller, quoi faire et ce qu'il y a de plus proche.</span></li>
+        <li><span class="hl-dot hl-cl" style="--ring:conic-gradient(#39ff88 0 40%,#ff9a1f 40% 70%,#ffd23f 70%)"><b>12</b></span><span><b>Un rond avec un chiffre ?</b>Il regroupe plusieurs points. Touche-le pour zoomer dessus.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('expand')}</span><span><b>Zoome et déplace-toi</b>Pince avec deux doigts (ou molette, ou + et −). Glisse pour te déplacer.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('list')}</span><span><b>Tu préfères une liste ?</b>Le bouton « Liste » montre tous les points visibles à l'écran.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ce que tu as trouvé</b>Le bouton « J'y suis allé » garde ta progression sur cet appareil.</span></li>
+      </ol>
       <div class="pn-act"><button type="button" class="nbtn nbtn--primary" data-ok><span>C'est parti</span><i>${ic('arrow-right')}</i></button></div>`);
     $('[data-ok]', panel).addEventListener('click', closePanel);
   }
