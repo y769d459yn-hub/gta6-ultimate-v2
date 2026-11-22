@@ -116,7 +116,9 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '');
+          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (cam.s >= .2 ? ' at-dot--lbl' : '');
+          const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
+          el.innerHTML = `<span class="at-dot-i">${icn}</span>${cam.s >= .2 ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
           el.setAttribute('aria-label', `${f.nom} (${(cats[f.cat] || {}).nom || ''})`);
           el.dataset.id = f.id;
@@ -207,7 +209,7 @@
         if (pan && g && !reduce() && performance.now() - vel.t < 80) {
           const p = { t: 0 }, x0 = cam.x, y0 = cam.y, tx = -vel.x * 280 / cam.s, ty = vel.y * 280 / cam.s;
           g.to(p, { t: 1, duration: 1, ease: 'power3.out', onUpdate: () => { cam.x = x0 + tx * p.t; cam.y = y0 + ty * p.t; render(); }, onComplete: () => render(true) });
-        } else render(true);
+        } else if (moved) render(true);
         start = null; setTimeout(() => { moved = false; }, 0);
       } else if (pts.size === 1) { const [id, p] = [...pts.entries()][0]; start = { x: p.x, y: p.y, cx: cam.x, cy: cam.y, id }; }
     };

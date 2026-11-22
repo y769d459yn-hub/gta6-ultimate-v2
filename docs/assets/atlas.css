@@ -107,3 +107,31 @@
 .atp-panel .pn-tip + .pn-tags { margin-top: 12px; }
 .atp-panel .pn-act + .pn-tags { margin-top: 12px; }
 .hm-pop-q { display: block; margin-top: 4px; font: 500 .82rem/1.3 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }
+
+/* Repères avec pictogramme (plus lisibles et plus faciles à toucher) */
+.at-dot { width: 40px; height: 40px; }
+.at-dot::before { display: none; }
+.at-dot::after { inset: 4px; }
+.at-dot-i { position: relative; z-index: 1; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: #07060c; border: 2px solid var(--c); color: var(--c); box-shadow: 0 0 0 2px rgba(5, 4, 11, .85), 0 0 14px -2px var(--c); transition: transform .25s cubic-bezier(.16, 1, .3, 1), background .25s, color .25s; }
+.at-dot-i .ic { width: 16px; height: 16px; stroke-width: 2; }
+.at-dot--approx .at-dot-i { border-style: dashed; }
+.at-dot:hover .at-dot-i, .at-dot.is-on .at-dot-i { transform: scale(1.25); background: var(--c); color: #07060c; }
+.at-dot.is-on::after { animation-duration: 1.4s; border-width: 2px; }
+.at-dot-n { position: absolute; left: 50%; top: 100%; translate: -50% -4px; padding: 3px 8px; border-radius: 6px; background: rgba(5, 4, 11, .85); border: 1px solid color-mix(in srgb, var(--c) 50%, transparent); font: 600 .74rem/1.2 var(--fd, sans-serif); color: #fff; white-space: nowrap; pointer-events: none; }
+/* Bloc « Où aller » */
+.atp-panel .pn-where { --c: #ff2bd6; margin-top: 12px; display: grid; gap: 3px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--hair2, rgba(255, 255, 255, .14)); background: rgba(255, 255, 255, .03); }
+.atp-panel .pn-where-k { display: inline-flex; align-items: center; gap: 6px; font: 600 .74rem/1 var(--fm, monospace); letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--c) 70%, #fff); }
+.atp-panel .pn-where-k .ic { width: 15px; height: 15px; }
+.atp-panel .pn-where b { font: 600 1.02rem/1.3 var(--fd, sans-serif); color: #fff; }
+.atp-panel .pn-where span { font: 500 .88rem/1.35 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }
+.atp-panel .pn-where .pn-where-go { display: flex; gap: 6px; align-items: flex-start; color: #fff; }
+.atp-panel .pn-where .pn-where-go .ic { width: 15px; height: 15px; flex: none; margin-top: 2px; color: var(--cy, #2de2e6); }
+.atp-panel .pn-where small { font: 500 .74rem/1.3 var(--fd, sans-serif); color: #ffe07a; }
+.hm-pop-w { display: flex; align-items: center; gap: 5px; margin-top: 4px; font: 600 .8rem/1.2 var(--fd, sans-serif); color: #fff; }
+.hm-pop-w .ic { width: 14px; height: 14px; color: var(--pk, #ff2bd6); }
+.v2 .hm-pop { align-items: start; }
+.v2 .hm-pop-q { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Bulle, filtres et boutons au-dessus des repères */
+.hm .hm-pop, .hm .hm-ctrl, .hm .hm-legend, .hm .hm-hint, .hm .at-attrib { z-index: 5; }
+.hm .hm-stage { z-index: 0; }

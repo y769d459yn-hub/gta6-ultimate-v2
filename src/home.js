@@ -124,7 +124,7 @@
     function open(f) {
       const c = cats[f.cat] || {};
       pop.innerHTML = `<span class="hm-pop-ico" style="--c:${c.color}">${ic(f.icon)}</span>
-        <span class="hm-pop-t"><small>${escH(c.nom || '')} · ${STAT[f.statut] || ''}</small><b>${escH(f.nom)}</b>${f.tip ? `<span class="hm-pop-q">${escH(f.tip.titre)}</span>` : (f.precision === 'region' ? '<em>Emplacement à confirmer</em>' : '<em>Position approximative</em>')}</span>
+        <span class="hm-pop-t"><small>${escH(f.tip ? f.tip.type : (c.nom || ''))}</small><b>${escH(f.tip ? f.tip.titre : f.nom)}</b><span class="hm-pop-w">${ic('pin')}${escH(f.lieuNom || f.nom)}</span>${f.tip ? `<span class="hm-pop-q">${escH(f.tip.reponse)}</span>` : (f.precision === 'region' ? '<em>Emplacement à confirmer</em>' : '<em>Position approximative</em>')}</span>
         <span class="hm-pop-act"><button type="button" data-close aria-label="Fermer">${ic('x')}</button><a class="go" href="${ROOT}${f.tip ? f.tip.lien : 'carte/?focus=' + encodeURIComponent(f.id)}" aria-label="${f.tip ? escH(f.tip.libelle) : 'Ouvrir sur la carte complète'}">${ic('arrow-right')}</a></span>`;
       pop.hidden = false;
       $('[data-close]', pop).addEventListener('click', close);

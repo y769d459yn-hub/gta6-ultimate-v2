@@ -67,15 +67,19 @@
     const favType = f.cat === 'vehicules' ? 'vehicule' : 'lieu';
     const fav = { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
     const t = f.tip;
-    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span>${r ? `<span class="pn-tag">${escH(r.nom)}</span>` : ''}<span class="pn-tag pn-tag--warn">${f.precision === 'region' ? 'Emplacement à confirmer' : 'Position approximative'}</span></div>`;
+    const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : (f.desc || '').split('.')[0].replace(/^[^·]*· /, ''));
+    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : 'Position approximative (carte communautaire)';
+    const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
+    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span></div>`;
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const body = t
-      ? `<div class="pn-tip" style="--c:${c.color}"><p class="pn-q">${ic('bolt')}${escH(t.titre)}</p><p class="pn-a">${escH(t.reponse)}</p>
+      ? `${where}<div class="pn-tip" style="--c:${c.color}"><p class="pn-a">${escH(t.reponse)}</p>
          <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}${t.lien}"><span>${escH(t.libelle)}</span><i>${ic('arrow-right')}</i></a>${favBtn}</div>
          <ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol></div>${tags}`
-      : `${tags}<p>${escH(f.desc || '')}</p>
-         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>`;
-    showPanel(`${head(f.icon, c.color, (c.nom || '') + (f.service ? ' · ' + f.service : ''), f.nom)}${body}`);
+      : `${where}<p>${escH(f.desc || '')}</p>
+         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
+    const quoi = t ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
+    showPanel(`${head(f.icon, c.color, quoi, t ? t.titre : f.nom)}${body}`);
     if (innerWidth < 900) {
       const ts = Math.max(atlas.cam.s, .3); const ph = panel.offsetHeight;
       atlas.flyTo(f.x, f.y - (ph / 2 + 10) / ts, ts);

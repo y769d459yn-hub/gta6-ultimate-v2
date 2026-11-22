@@ -91,7 +91,7 @@ function autour(id, rayon) {
   return [Math.round(c[0] + Math.cos(a) * rayon * (1 + k * .12)), Math.round(c[1] + Math.sin(a) * rayon * (1 + k * .12))];
 }
 // Résumé affiché dans la fiche de la carte : la réponse et les étapes, sans changer de page
-const tipAstuce = (slug) => { const a = A[slug]; return a ? { titre: a.titre, reponse: a.reponse, etapes: a.etapes.slice(0, 3), lien: `astuces/${slug}/`, libelle: "Voir l'astuce complète" } : undefined; };
+const tipAstuce = (slug) => { const a = A[slug]; return a ? { type: `Astuce ${cat('astuces', a.cat).nom.toLowerCase()}`, titre: a.titre, reponse: a.reponse, etapes: a.etapes.slice(0, 3), lien: `astuces/${slug}/`, libelle: "Voir l'astuce complète" } : undefined; };
 const features = [];
 const lieuMapCat = (l) => l.mapcat || 'lieux';
 for (const l of LIEUX) {
@@ -100,7 +100,7 @@ for (const l of LIEUX) {
   if (!pos) continue;
   const mc = lieuMapCat(l);
   const url = l.astuce ? `astuces/${l.astuce}/` : l.enc ? `encyclopedie/${l.enc}/` : `lieux/#${l.id}`;
-  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: l.id, nom: l.nom, cat: mc, sous: mc === 'lieux' ? l.type : mc === 'activites' ? l.id : 'service', region: l.type === 'region' ? l.id : l.region, statut: l.statut, precision, icon: l.icon, desc: l.desc, url, tip: l.astuce ? tipAstuce(l.astuce) : undefined, ...(l.type === 'region' ? { label: true } : {}) } });
+  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: l.id, nom: l.nom, cat: mc, sous: mc === 'lieux' ? l.type : mc === 'activites' ? l.id : 'service', region: l.type === 'region' ? l.id : l.region, statut: l.statut, precision, icon: l.icon, desc: l.desc, url, acces: l.acces, tip: l.astuce ? tipAstuce(l.astuce) : undefined, ...(l.type === 'region' ? { label: true } : {}) } });
 }
 for (const v of VEHICULES) {
   const l = v.lieu && L[v.lieu];
@@ -108,7 +108,7 @@ for (const v of VEHICULES) {
   const pos = v.gtadb ? gtadbCentre(v.gtadb) : autour(l.id, l.type === 'region' ? 420 : 110);
   if (!pos) continue;
   const precision = l.type === 'region' ? 'region' : 'zone';
-  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/`, tip: { titre: `Comment obtenir : ${v.nom} ?`, reponse: v.emplacement, etapes: v.obtenir.slice(0, 3), lien: `vehicules/${v.slug}/`, libelle: 'Voir la fiche du véhicule' } } });
+  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/`, lieuNom: l.nom, tip: { type: `Véhicule · ${cat('vehicules', v.type).nom.toLowerCase()}`, titre: `Comment obtenir : ${v.nom} ?`, reponse: v.emplacement, etapes: v.obtenir.slice(0, 3), lien: `vehicules/${v.slug}/`, libelle: 'Voir la fiche du véhicule' } } });
 }
 // Services repérés par la communauté (étiquettes « # » de GTADB) → catégorie « Points utiles »
 const SERVICES = {
