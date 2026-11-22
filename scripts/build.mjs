@@ -696,14 +696,6 @@ for (const v of VEHICULES) {
     <p class="mis-now-c"><span data-mcount>0 / ${princ} missions de l'histoire faites</span><button class="lnk" type="button" data-mreset hidden>Tout effacer</button></p>
     <a class="btn-s" href="#" data-mnext hidden>${icon('arrow-right')}<span>Voir la solution</span></a>
   </div>
-  <section class="faq mis-stuck" aria-labelledby="stuck-t"><h2 class="h3" id="stuck-t">${icon('question')}Bloqué ? Les réponses rapides</h2>
-    <details><summary>Je ne trouve pas la mission suivante</summary><p>1. Ouvre la carte et touche l'icône en forme de livre : c'est la liste des missions. 2. Si rien n'est marqué, la suite arrive souvent par un appel ou un SMS : fais autre chose quelques heures de jeu ou dors dans ta planque. 3. Certaines missions demandent d'en finir d'autres avant (c'est indiqué dans « Si tu es bloqué »).</p></details>
-    <details><summary>Il me faut de l'argent pour continuer</summary><p>Certaines missions ne s'ouvrent qu'avec assez d'argent : par exemple 15 000 $ à la fin du chapitre 2. Braque des magasins, vends des voitures à Moses ou à Randy, ou fais les missions facultatives. Mets ton argent à la banque (BuckMe) : l'argent liquide est perdu si tu meurs.</p></details>
-    <details><summary>La mission est trop dure</summary><p>1. Utilise le Focus : il ralentit le temps pour viser. 2. Soigne-toi avec des Zombix (5 maximum). 3. Change d'approche : en discrétion (accroupi, par derrière) ou à couvert avec une arme plus puissante. 4. Si tu échoues, tu reprends au dernier point de passage.</p></details>
-    <details><summary>Peut-on rejouer une mission ?</summary><p>Non : GTA 6 n'a ni rejouer de mission ni médaille d'or. Sauvegarde avant les grosses missions pour pouvoir revenir en arrière.</p></details>
-    <details><summary>J'ai raté une mission facultative</summary><p>Les missions marquées « peut être manquée » disparaissent au bout d'un moment. Ce n'est pas grave : elles ne comptent ni pour les trophées ni pour les 100 %.</p></details>
-    <details><summary>Comment changer de personnage ?</summary><p>À partir de la mission « Pause café » (chapitre 2), maintiens droite sur la croix directionnelle pour passer de Jason à Lucia et donner des ordres à ton partenaire.</p></details>
-  </section>
   <h2 class="h3 mis-list-t">${icon('list')}Toutes les missions</h2>
   ${fieldFilter('Chercher une mission : banque, Raul, bateau…')}
   <div class="filterbar" role="group" aria-label="Filtrer par chapitre">
@@ -722,6 +714,14 @@ for (const v of VEHICULES) {
     <div class="mis-list">${L.map(carte).join('')}</div></section>`;
   }).join('')}
   <p class="empty" data-mempty hidden>${icon('search')}Aucune mission ne correspond. Essaie un autre mot.</p>
+  <section class="faq mis-stuck" aria-labelledby="stuck-t"><h2 class="h3" id="stuck-t">${icon('question')}Bloqué ? Les réponses rapides</h2>
+    <details><summary>Je ne trouve pas la mission suivante</summary><p>1. Ouvre la carte et touche l'icône en forme de livre : c'est la liste des missions. 2. Si rien n'est marqué, la suite arrive souvent par un appel ou un SMS : fais autre chose quelques heures de jeu ou dors dans ta planque. 3. Certaines missions demandent d'en finir d'autres avant (c'est indiqué dans « Si tu es bloqué »).</p></details>
+    <details><summary>Il me faut de l'argent pour continuer</summary><p>Certaines missions ne s'ouvrent qu'avec assez d'argent : par exemple 15 000 $ à la fin du chapitre 2. Braque des magasins, vends des voitures à Moses ou à Randy, ou fais les missions facultatives. Mets ton argent à la banque (BuckMe) : l'argent liquide est perdu si tu meurs.</p></details>
+    <details><summary>La mission est trop dure</summary><p>1. Utilise le Focus : il ralentit le temps pour viser. 2. Soigne-toi avec des Zombix (5 maximum). 3. Change d'approche : en discrétion (accroupi, par derrière) ou à couvert avec une arme plus puissante. 4. Si tu échoues, tu reprends au dernier point de passage.</p></details>
+    <details><summary>Peut-on rejouer une mission ?</summary><p>Non : GTA 6 n'a ni rejouer de mission ni médaille d'or. Sauvegarde avant les grosses missions pour pouvoir revenir en arrière.</p></details>
+    <details><summary>J'ai raté une mission facultative</summary><p>Les missions marquées « peut être manquée » disparaissent au bout d'un moment. Ce n'est pas grave : elles ne comptent ni pour les trophées ni pour les 100 %.</p></details>
+    <details><summary>Comment changer de personnage ?</summary><p>À partir de la mission « Pause café » (chapitre 2), maintiens droite sur la croix directionnelle pour passer de Jason à Lucia et donner des ordres à ton partenaire.</p></details>
+  </section>
   <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide. Noms anglais : ceux du jeu.</span></p>
 </section>`;
   emit(p, layout({ p, title: `Missions GTA 6 : les ${MS.length} missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (${princ} de l'histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
