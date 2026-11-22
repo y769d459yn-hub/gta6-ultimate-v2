@@ -261,3 +261,17 @@
 .atp-panel .pn-near-n { margin: 8px 0 0; font: 400 .74rem/1.3 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }
 .atp-panel .pn-tip-q { display: flex; gap: 6px; align-items: flex-start; margin: 0 0 6px; font: 600 .82rem/1.35 var(--fd, sans-serif); color: color-mix(in srgb, var(--c) 70%, #fff); }
 .atp-panel .pn-tip-q .ic { width: 14px; height: 14px; flex: none; margin-top: 2px; }
+
+/* ---------- point mis en avant (arrivée depuis un lien : mission, lieu…) ---------- */
+.at-layer.has-spot .at-dot:not(.is-spot), .at-layer.has-spot .at-cl, .at-layer.has-spot .at-c { opacity: .22; filter: grayscale(.7); transition: opacity .4s, filter .4s; }
+.at-layer.has-spot .at-lbl { opacity: .45; }
+.at-dot.is-spot { z-index: 6; }
+.at-dot.is-spot .at-dot-i { transform: scale(1.6); background: var(--c); color: #07060c; box-shadow: 0 0 0 4px #05040b, 0 0 0 7px var(--c), 0 0 34px 6px var(--c); }
+.at-dot.is-spot::after { inset: -22px; border-width: 3px; opacity: 1; animation: at-ping 1.6s cubic-bezier(.16, 1, .3, 1) infinite; }
+.at-beam { position: absolute; left: 50%; top: 50%; width: 150px; height: 150px; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--c) 38%, transparent) 0, transparent 70%); pointer-events: none; animation: at-beam 2.4s ease-in-out infinite; }
+@keyframes at-beam { 0%, 100% { opacity: .55; scale: .85; } 50% { opacity: 1; scale: 1.1; } }
+.at-dot.is-spot .at-dot-n { translate: -50% 14px; padding: 5px 10px; font-size: .86rem; background: var(--c); color: #07060c; border-color: var(--c); }
+@media (prefers-reduced-motion: reduce) { .at-beam, .at-dot.is-spot::after { animation: none; } }
+.atp-panel .pn-mis li.is-cur a { border-color: #ff3d6e; background: rgba(255, 61, 110, .18); box-shadow: 0 0 0 1px #ff3d6e, 0 0 22px -8px #ff3d6e; position: relative; padding-top: 22px; }
+.atp-panel .pn-mis-cur { position: absolute; left: 10px; top: 6px; font: 700 .66rem/1 var(--fm, monospace); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: #ff8fab; }
+@media (max-width: 899px) { .atp-panel.pn-peek { max-height: 40vh; } }

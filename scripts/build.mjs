@@ -683,7 +683,7 @@ for (const v of VEHICULES) {
       <h3 class="mis-h">${icon('list')}Étape par étape</h3>
       <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
       ${m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
-      <div class="mis-act"><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
+      <div class="mis-act"><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
       <p class="mis-src">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.join(', ')}.` : `Mission listée par ${m.sources[0]} seulement.`}</p>
     </div>
   </details>`;

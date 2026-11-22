@@ -47,7 +47,8 @@
     const focus = params.get('focus');
     const f = focus && atlas.feats().find((x) => x.id === focus);
     if (only && cats[only] && !focus) setTimeout(() => openAnswer(only), 300);
-    if (f) setTimeout(() => { f.label ? openRegion(regions[f.id]) : atlas.select(f, { fly: innerWidth >= 900, s: .32 }); }, 250);
+    // arrivée par un lien (mission, lieu…) : le point est mis en avant, le reste s'efface
+    if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); atlas.select(f, { fly: true, s: .45 }); }, 250);
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     bind();
     if (!f && !only && !params.get('region') && !store.get('lg-carte-aide')) setTimeout(openHelp, 600);
@@ -82,7 +83,7 @@
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); atlas.clearActive(); } }
+  function closePanel() { if (atlas) atlas.spot(false); state.spot = ''; panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); atlas.clearActive(); } }
   // Téléphone : glisser la fiche vers le bas pour la fermer
   let sw = null;
   panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
@@ -170,6 +171,7 @@
   }
   const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
   function openFeature(f) {
+    if (state.spot && state.spot !== f.id) { state.spot = ''; atlas.spot(false); panel.classList.remove('pn-peek'); }
     const c = cats[f.cat] || {}; const r = regions[f.region]; const st = STAT[f.statut] || STAT['a-verifier'];
     const favType = f.cat === 'vehicules' ? 'vehicule' : 'lieu';
     const fav = { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
@@ -189,7 +191,7 @@
     const quoi = t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
     const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
     const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
-    const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${f.missions.map((m) => `<li><a href="${ROOT}missions/#${escH(m.id)}"><span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
+    const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${f.missions.map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/#${escH(m.id)}">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
     const prox = BESOINS.map(([lab, icn, court]) => {
       let best = null, bd = Infinity;
       atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && x.service === lab) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
@@ -210,9 +212,13 @@
       const u = new URL(location.href); u.search = ''; u.searchParams.set('focus', f.id);
       try { if (navigator.share && innerWidth < 900) await navigator.share({ title: f.nom, url: u.href }); else { await navigator.clipboard.writeText(u.href); LG.toast && LG.toast('Lien copié', 'check'); } } catch (err) { /* annulé */ }
     });
+    panel.classList.toggle('pn-peek', !!state.spot && innerWidth < 900);
+    const cur = $('.pn-mis li.is-cur', panel); if (cur) panel.scrollTop = Math.max(0, cur.offsetTop - 60);
     if (innerWidth < 900) {
-      const ts = Math.max(atlas.cam.s, .3); const ph = panel.offsetHeight;
-      atlas.flyTo(f.x, f.y - (ph / 2 + 10) / ts, ts);
+      // le point se place au milieu de l'espace libre entre la barre du haut et la fiche
+      const ts = Math.max(atlas.cam.s, state.spot ? .45 : .3), sr = stage.getBoundingClientRect();
+      const y0 = top.getBoundingClientRect().bottom - sr.top, y1 = panel.getBoundingClientRect().top - sr.top;
+      atlas.flyTo(f.x, f.y - (sr.height / 2 - (y0 + y1) / 2) / ts, ts);
     }
   }
   function openCommu(p) {
