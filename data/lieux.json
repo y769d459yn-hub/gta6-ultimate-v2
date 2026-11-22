@@ -1252,5 +1252,240 @@
    "gtadb"
   ],
   "gtadb": "Washington Beach, Vice Beach"
+ },
+ {
+  "id": "moses-watkins",
+  "nom": "Moses · Watkins Auto Parts",
+  "type": "batiment",
+  "region": "port-gellhorn",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "car",
+  "desc": "Moses rachète les voitures volées sans traceur.",
+  "kw": [
+   "moses",
+   "vendre",
+   "voiture",
+   "watkins"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Watkins Auto Parts, Port Gellhorn",
+  "mapcat": "argent",
+  "astuce": "vendre-voitures-moses"
+ },
+ {
+  "id": "key-lento",
+  "nom": "Key Lento",
+  "type": "quartier",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "island",
+  "desc": "Île de départ de l'histoire : maison de Jason, Kenton, Shirley, l'animalerie.",
+  "kw": [
+   "key lento",
+   "ile",
+   "debut"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Key Lento",
+  "astuce": "voitures-gratuites"
+ },
+ {
+  "id": "vice-city-pawn",
+  "nom": "Vice City Pawn",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "diamond",
+  "desc": "Prêteur sur gages et receleur : gros butin, mais billets marqués.",
+  "kw": [
+   "preteur",
+   "pawn",
+   "receleur",
+   "braquage"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Vice City Pawn, Crosstown",
+  "mapcat": "argent",
+  "astuce": "preteurs-sur-gages"
+ },
+ {
+  "id": "pawn-salton",
+  "nom": "Prêteur de Salton",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "diamond",
+  "desc": "Prêteur sur gages et receleur de Salton.",
+  "kw": [
+   "preteur",
+   "pawn",
+   "receleur"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Pawn Shop, Salton",
+  "mapcat": "argent",
+  "astuce": "ou-vendre-butin"
+ },
+ {
+  "id": "lombank-ocean",
+  "nom": "Lombank (Ocean Beach)",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "bank",
+  "desc": "Banque : gros coup plus tard dans l'histoire.",
+  "kw": [
+   "banque",
+   "lombank",
+   "braquage"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Lombank, Ocean Beach",
+  "mapcat": "argent",
+  "astuce": "braquer-bijouteries"
+ },
+ {
+  "id": "lombank-tequesta",
+  "nom": "Lombank (Tequesta)",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "bank",
+  "desc": "Banque : gros coup plus tard dans l'histoire.",
+  "kw": [
+   "banque",
+   "lombank",
+   "braquage"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Lombank, Tequesta",
+  "mapcat": "argent",
+  "astuce": "braquer-bijouteries"
+ },
+ {
+  "id": "little-gems",
+  "nom": "Little Gems Jewellery",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "diamond",
+  "desc": "Bijouterie de Rockridge (environ 10 000 à 25 000 $ à partir du chapitre 3).",
+  "kw": [
+   "bijouterie",
+   "bijoux",
+   "braquage"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Little Gems Jewellery, Rockridge",
+  "mapcat": "argent",
+  "astuce": "braquer-bijouteries"
+ },
+ {
+  "id": "adelphila-jewelry",
+  "nom": "Bijouterie d'Ocean Beach",
+  "type": "batiment",
+  "region": "vice-city",
+  "precision": "zone",
+  "statut": "provisoire",
+  "icon": "diamond",
+  "desc": "Bijouterie d'Ocean Beach.",
+  "kw": [
+   "bijouterie",
+   "bijoux",
+   "braquage"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Adelphila? Jewelry, Ocean Beach",
+  "mapcat": "argent",
+  "astuce": "braquer-bijouteries"
+ },
+ {
+  "id": "entrepot-vice-dale",
+  "nom": "Entrepôt du sud de Vice-Dale",
+  "type": "poi",
+  "region": null,
+  "precision": "zone",
+  "statut": "provisoire",
+  "icon": "chest",
+  "desc": "Gros butin selon les guides : drogue, armes, coffre et un sac de 6 000 $.",
+  "kw": [
+   "entrepot",
+   "cache",
+   "argent",
+   "vice-dale"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Vice-Dale County",
+  "mapcat": "argent",
+  "astuce": "caches-argent"
+ },
+ {
+  "id": "cache-jason",
+  "nom": "Cachette sous le plancher",
+  "type": "poi",
+  "region": "leonida-keys",
+  "precision": "zone",
+  "statut": "a-verifier",
+  "icon": "chest",
+  "desc": "Sous le plancher de la chambre de Jason : ton argent y est à l'abri.",
+  "kw": [
+   "cachette",
+   "plancher",
+   "argent",
+   "jason"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Jason's House, Key Lento",
+  "mapcat": "argent",
+  "astuce": "garder-son-argent"
+ },
+ {
+  "id": "kenton",
+  "nom": "Kenton · plongées au trésor",
+  "type": "poi",
+  "region": "leonida-keys",
+  "precision": "region",
+  "statut": "a-verifier",
+  "icon": "dive",
+  "desc": "Kenton te prête son bateau et un détecteur d'épaves (après « Island Dreams »).",
+  "kw": [
+   "kenton",
+   "plongee",
+   "tresor",
+   "epave"
+  ],
+  "sources": [
+   "gtadb"
+  ],
+  "gtadb": "Key Lento",
+  "mapcat": "argent",
+  "astuce": "plongees-kenton"
  }
 ]

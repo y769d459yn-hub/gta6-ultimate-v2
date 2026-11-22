@@ -425,19 +425,20 @@
   "icon": "tracker",
   "titre": "Que veut dire l'icône rouge sur une voiture volée ?",
   "court": "Voiture avec traceur",
-  "reponse": "La voiture a un traceur. Si tu roules trop longtemps au ralenti, la police peut te retrouver.",
+  "reponse": "Traceur jaune : la police te repère si tu t'arrêtes. Traceur rouge : elle te repère dès que tu ralentis. Une voiture à traceur rouge ne peut être ni vendue, ni gardée.",
   "etapes": [
-   "Repère l'icône rouge de traceur.",
-   "Roule vite et évite de stationner.",
-   "Ou abandonne la voiture et prends-en une autre."
+   "Scanne la voiture avec WAiNK avant de la voler.",
+   "Traceur rouge : roule vite, puis abandonne-la loin de ta destination.",
+   "Traceur jaune : paie l'immatriculation pour le retirer et garder la voiture."
   ],
-  "asavoir": "Scanne une voiture avec WAiNK avant de la voler pour éviter les mauvaises surprises.",
+  "asavoir": "Les guides ne sont pas d'accord sur la façon de retirer un traceur. N'abandonne jamais une voiture volée près du départ d'une mission.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
-   "gamespot-tips",
-   "beebom-apps"
+   "gamespot-steal",
+   "gtabase-steal",
+   "stealthy-steal"
   ],
   "kw": [
    "traceur",
@@ -739,17 +740,18 @@
   "icon": "dive",
   "titre": "Comment gagner de l'argent sans combat ?",
   "court": "Plongées au trésor",
-  "reponse": "Fais les plongées au trésor de Kenton. Il n'y a ni braquage ni fusillade, et la première épave rapporte environ 1 400 $.",
+  "reponse": "Va voir Kenton à Key Lento après la mission « Island Dreams » (chapitre 1). Il te prête son bateau et un détecteur pour trouver des épaves : la première rapporte environ 1 400 $.",
   "etapes": [
-   "Débloque les missions de Kenton.",
-   "Plonge jusqu'à l'épave indiquée.",
-   "Remonte le butin et encaisse."
+   "Termine la mission « Island Dreams ».",
+   "Rejoins Kenton à Key Lento et prends son bateau.",
+   "Plonge avec le détecteur, remonte le trésor et encaisse."
   ],
   "asavoir": "Plusieurs guides la classent comme la meilleure source d'argent répétable au début.",
   "duree": 5,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
+   "consolepulse-money",
    "keengamer-money",
    "g2a-money"
   ],
@@ -774,19 +776,20 @@
   "icon": "car",
   "titre": "Où vendre des voitures volées ?",
   "court": "Vendre des voitures",
-  "reponse": "Vends-les à Moses, à partir du chapitre 2. Il n'y a pas de limite par jour, et chaque voiture rapporte souvent 1 000 $ ou plus.",
+  "reponse": "Va voir Moses chez Watkins Auto Parts, à Port Gellhorn (dès le chapitre 2). Il achète les voitures sans traceur, environ 1 000 $ ou plus chacune.",
   "etapes": [
-   "Débloque Moses au chapitre 2.",
-   "Vole une voiture en bon état.",
-   "Livre-la à Moses et encaisse."
+   "Vole une voiture loin du garage de Moses (sinon il refuse).",
+   "Vérifie qu'elle n'a pas de traceur (appli WAiNK).",
+   "Livre-la chez Watkins Auto Parts, puis attends environ 2 minutes avant la suivante."
   ],
-  "asavoir": "Une voiture abîmée rapporte moins.",
+  "asavoir": "Pas de limite par jour, mais une courte attente entre deux ventes. Une voiture abîmée rapporte moins.",
   "duree": 5,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
-   "g2a-money",
-   "gtabase-money"
+   "consolepulse-money",
+   "rarethief-sell",
+   "g2a-money"
   ],
   "kw": [
    "vendre",
@@ -1883,6 +1886,357 @@
   "voir": [
    "ce-que-sait-la-police",
    "semer-la-police"
+  ]
+ },
+ {
+  "slug": "voler-voiture",
+  "cat": "vehicules",
+  "icon": "car",
+  "titre": "Comment voler une voiture sans se faire prendre ?",
+  "court": "Voler une voiture",
+  "reponse": "Scanne-la d'abord avec l'appli WAiNK. Une voiture avec seulement une alarme s'ouvre au Slim Jim ; une voiture sans clé demande le cloneur de clés.",
+  "etapes": [
+   "Pointe la voiture avec WAiNK : sécurité, valeur et traceur s'affichent.",
+   "Alarme seule : ouvre-la avec le Slim Jim. Sans clé : utilise le cloneur (donné par Randy vers le milieu de l'histoire).",
+   "Éloigne-toi vite, puis vends-la, garde-la ou abandonne-la loin de ta destination."
+  ],
+  "asavoir": "Une voiture volée près du départ d'une mission peut alerter la police.",
+  "duree": 2,
+  "niveau": "facile",
+  "statut": "a-verifier",
+  "sources": [
+   "gtabase-steal",
+   "pcgamer-steal",
+   "gamespot-steal"
+  ],
+  "kw": [
+   "voler",
+   "voiture",
+   "slim jim",
+   "cloneur",
+   "cle",
+   "alarme",
+   "wainK",
+   "scanner",
+   "vol",
+   "car"
+  ],
+  "voir": [
+   "voiture-tracee",
+   "garder-voiture-volee"
+  ]
+ },
+ {
+  "slug": "garder-voiture-volee",
+  "cat": "vehicules",
+  "icon": "garage",
+  "titre": "Comment garder une voiture volée ?",
+  "court": "Garder une voiture volée",
+  "reponse": "Fais-la immatriculer (c'est payant) : elle devient à toi et va dans ton garage. Impossible avec un traceur rouge.",
+  "etapes": [
+   "Vérifie qu'elle n'a pas de traceur rouge (WAiNK).",
+   "Paie l'immatriculation (chez Moses ou en atelier, selon les guides).",
+   "Range-la dans un garage pour ne pas la perdre."
+  ],
+  "asavoir": "Plus la voiture est chère, plus l'immatriculation coûte cher.",
+  "duree": 2,
+  "niveau": "facile",
+  "statut": "a-verifier",
+  "sources": [
+   "gtabase-steal",
+   "stealthy-steal",
+   "keengamer-ff"
+  ],
+  "kw": [
+   "garder",
+   "immatriculer",
+   "immatriculation",
+   "voiture",
+   "volee",
+   "garage",
+   "enregistrer"
+  ],
+  "voir": [
+   "stocker-vehicules",
+   "voler-voiture"
+  ]
+ },
+ {
+  "slug": "essence",
+  "cat": "vehicules",
+  "icon": "bolt",
+  "titre": "Faut-il faire le plein ?",
+  "court": "Faire le plein",
+  "reponse": "Oui, selon un guide : les voitures consomment de l'essence. Fais le plein dans une station-service avant une longue fuite.",
+  "etapes": [
+   "Surveille la jauge d'essence.",
+   "Repère une station-service (catégorie Points utiles de la carte).",
+   "Fais le plein avant une mission ou une poursuite."
+  ],
+  "asavoir": "Information d'une seule source : à vérifier. Joey rend ta voiture réparée avec le plein.",
+  "duree": 1,
+  "niveau": "facile",
+  "statut": "provisoire",
+  "sources": [
+   "stealthy-steal",
+   "gamesgg-joey"
+  ],
+  "kw": [
+   "essence",
+   "carburant",
+   "plein",
+   "station",
+   "jauge",
+   "fuel"
+  ],
+  "voir": [
+   "reparer-voiture-gratuit",
+   "voler-voiture"
+  ]
+ },
+ {
+  "slug": "voitures-gratuites",
+  "cat": "vehicules",
+  "icon": "sparkle",
+  "titre": "Où trouver une bonne voiture gratuite au début ?",
+  "court": "Bonnes voitures gratuites",
+  "reponse": "Une Imponte Ruiner (Trans Am) est garée à Key Lento, près des Cove Condominiums. À Vice City, la Penumbra FF dort dans un garage de Vespucci Island.",
+  "etapes": [
+   "Key Lento : cherche la Ruiner dans une allée près du panneau Cove Condominiums.",
+   "Chapitre 1 : les missions « Get Shirley's Rum » et « Steal the Scooter » offrent la Penumbra de Shirley.",
+   "Plus tard : supercars garées sur la presqu'île de Capri et Tempesta devant les hôtels de Vice Beach."
+  ],
+  "asavoir": "Immatricule ou repeins la voiture pour la garder. Emplacements donnés par les guides, non vérifiés.",
+  "duree": 5,
+  "niveau": "facile",
+  "statut": "a-verifier",
+  "sources": [
+   "hotcars-ruiner",
+   "keengamer-ff",
+   "space4games-shirley",
+   "sportskeeda-cars"
+  ],
+  "kw": [
+   "voiture",
+   "gratuite",
+   "rapide",
+   "meilleure",
+   "ruiner",
+   "penumbra",
+   "tempesta",
+   "zorrusso",
+   "debut",
+   "supercar"
+  ],
+  "voir": [
+   "voiture-rare",
+   "garder-voiture-volee"
+  ]
+ },
+ {
+  "slug": "caches-argent",
+  "cat": "argent",
+  "icon": "chest",
+  "titre": "Où trouver de l'argent caché ?",
+  "court": "Argent caché",
+  "reponse": "Plusieurs cachettes sont connues : un conduit d'aération dans l'arrière-boutique d'un magasin d'alcool (~1 000 $), un autre près du générateur de l'animalerie de Key Lento (~1 300 $), un entrepôt du sud de Vice-Dale (sac de 6 000 $).",
+  "etapes": [
+   "Utilise le mode Focus près des conduits d'aération et des murs.",
+   "À Key Lento, parle au perroquet de l'animalerie : il te mène à la cachette.",
+   "Ramasse vite : la police vide la cachette si l'alarme est donnée."
+  ],
+  "asavoir": "Certains sacs contiennent des billets marqués à blanchir avant de les dépenser. Les montants varient selon les guides.",
+  "duree": 5,
+  "niveau": "intermediaire",
+  "statut": "a-verifier",
+  "sources": [
+   "keengamer-stash",
+   "vicepulse-cash"
+  ],
+  "kw": [
+   "argent",
+   "cache",
+   "cachette",
+   "stash",
+   "secret",
+   "conduit",
+   "perroquet",
+   "entrepot",
+   "fric",
+   "thune"
+  ],
+  "voir": [
+   "billets-marques",
+   "garder-son-argent"
+  ]
+ },
+ {
+  "slug": "billets-marques",
+  "cat": "argent",
+  "icon": "money",
+  "titre": "Que faire des billets marqués ?",
+  "court": "Billets marqués",
+  "reponse": "Les billets marqués ne se dépensent pas tels quels : blanchis-les au Lockup de Brian. Les packs d'encre des banques et prêteurs gâchent aussi le butin tant que tu n'as pas le brouilleur.",
+  "etapes": [
+   "Repère les billets marqués dans ton inventaire.",
+   "Va les blanchir au Lockup de Brian.",
+   "Avant les banques, obtiens le brouilleur de packs d'encre."
+  ],
+  "asavoir": "Le brouilleur se débloque avec l'histoire (vers le chapitre 3, selon les guides).",
+  "duree": 2,
+  "niveau": "intermediaire",
+  "statut": "a-verifier",
+  "sources": [
+   "vicepulse-cash",
+   "pcgamer-money",
+   "gamespot-robberies"
+  ],
+  "kw": [
+   "billets",
+   "marques",
+   "blanchir",
+   "brian",
+   "lockup",
+   "encre",
+   "dye pack",
+   "brouilleur"
+  ],
+  "voir": [
+   "caches-argent",
+   "braquer-bijouteries"
+  ]
+ },
+ {
+  "slug": "distributeurs",
+  "cat": "argent",
+  "icon": "truck",
+  "titre": "Comment voler un distributeur de billets ?",
+  "court": "Voler un distributeur",
+  "reponse": "Installe un treuil sur une dépanneuse (environ 300 $), accroche le distributeur et emporte-le. Environ un distributeur sur trois peut être arraché.",
+  "etapes": [
+   "Dans un atelier : Carrosserie, puis Remorquage, puis Treuil.",
+   "Accroche un distributeur avec le treuil et démarre.",
+   "Mets-le à l'abri et ouvre-le."
+  ],
+  "asavoir": "Ça attire la police. Le butin peut être en billets marqués ou taché par un pack d'encre. Gains très variables selon les guides.",
+  "duree": 5,
+  "niveau": "intermediaire",
+  "statut": "provisoire",
+  "sources": [
+   "pcgamer-money",
+   "sportskeeda-atm"
+  ],
+  "kw": [
+   "distributeur",
+   "atm",
+   "treuil",
+   "depanneuse",
+   "billets",
+   "voler",
+   "argent"
+  ],
+  "voir": [
+   "billets-marques",
+   "fourgons-blindes"
+  ]
+ },
+ {
+  "slug": "fourgons-blindes",
+  "cat": "argent",
+  "icon": "truck",
+  "titre": "Comment braquer un fourgon blindé ?",
+  "court": "Fourgons blindés",
+  "reponse": "Yasmani vend des tuyaux sur les fourgons (10 000 $) après deux braquages de « Payday Loan » pour lui. Bloque le fourgon, pose une bombe collante sur les portes arrière, prends l'argent et sors de la zone rouge.",
+  "etapes": [
+   "Fais les deux braquages de Payday Loan pour Yasmani.",
+   "Achète-lui un tuyau sur un fourgon.",
+   "Bloque le fourgon, fais sauter les portes arrière, prends l'argent et fuis."
+  ],
+  "asavoir": "Mission dangereuse : prévois une voiture rapide et un gilet pare-balles.",
+  "duree": 5,
+  "niveau": "intermediaire",
+  "statut": "a-verifier",
+  "sources": [
+   "pcgamer-money"
+  ],
+  "kw": [
+   "fourgon",
+   "blinde",
+   "yasmani",
+   "payday",
+   "bombe",
+   "braquage",
+   "convoi"
+  ],
+  "voir": [
+   "braquer-bijouteries",
+   "distributeurs"
+  ]
+ },
+ {
+  "slug": "preteurs-sur-gages",
+  "cat": "argent",
+  "icon": "diamond",
+  "titre": "Les prêteurs sur gages valent-ils le coup ?",
+  "court": "Prêteurs sur gages",
+  "reponse": "Oui, mais c'est risqué : un prêteur comme Vice City Pawn rapporte environ 4 500 à 12 000 $. Le butin contient souvent des billets marqués et des packs d'encre.",
+  "etapes": [
+   "Repère le prêteur en entrant comme client.",
+   "Fais le braquage à deux si possible.",
+   "Blanchis les billets marqués avant de les dépenser."
+  ],
+  "asavoir": "Attends d'avoir le brouilleur de packs d'encre pour ne pas perdre le butin.",
+  "duree": 5,
+  "niveau": "intermediaire",
+  "statut": "a-verifier",
+  "sources": [
+   "pcgamer-money",
+   "outputlag-rob"
+  ],
+  "kw": [
+   "preteur",
+   "gages",
+   "pawn",
+   "braquage",
+   "butin"
+  ],
+  "voir": [
+   "billets-marques",
+   "braquer-magasin"
+  ]
+ },
+ {
+  "slug": "ou-vendre-butin",
+  "cat": "argent",
+  "icon": "money",
+  "titre": "Où revendre son butin ?",
+  "court": "Revendre son butin",
+  "reponse": "Chez un receleur : le butin d'un braquage ne devient de l'argent qu'une fois revendu. Les receleurs sont dans la catégorie Points utiles de la carte.",
+  "etapes": [
+   "Ouvre la carte, catégorie Points utiles, puis cherche « Receleur ».",
+   "Va chez le receleur le plus proche sans te faire suivre.",
+   "Vends tout, puis mets l'argent à la banque."
+  ],
+  "asavoir": "Les premiers receleurs paient mal. Si tu es arrêté, tu perds les sacs.",
+  "duree": 2,
+  "niveau": "facile",
+  "statut": "a-verifier",
+  "sources": [
+   "gta6heists-robberies",
+   "gamespot-robberies",
+   "gtadb"
+  ],
+  "kw": [
+   "receleur",
+   "revendre",
+   "vendre",
+   "butin",
+   "fence",
+   "argent"
+  ],
+  "voir": [
+   "braquer-magasin",
+   "garder-son-argent"
   ]
  }
 ]

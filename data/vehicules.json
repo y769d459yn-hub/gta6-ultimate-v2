@@ -651,5 +651,101 @@
    "thegamer-vehicles"
   ],
   "color": "#19d3e3"
+ },
+ {
+  "slug": "imponte-ruiner",
+  "nom": "Imponte Ruiner",
+  "type": "voitures",
+  "sous": "Muscle car",
+  "dispo": "a-verifier",
+  "lieu": "key-lento",
+  "emplacement": "Dans une allée près du panneau Cove Condominiums, à Key Lento. Accessible dès le début.",
+  "obtenir": [
+   "Va près du panneau Cove Condominiums, à Key Lento.",
+   "Vole la voiture dans l'allée.",
+   "Repeins-la ou immatricule-la pour la garder."
+  ],
+  "kw": [
+   "ruiner",
+   "trans am",
+   "muscle",
+   "gratuite",
+   "debut"
+  ],
+  "sources": [
+   "hotcars-ruiner"
+  ],
+  "color": "#ff7a3d"
+ },
+ {
+  "slug": "maibatsu-penumbra-shirley",
+  "nom": "Penumbra de Shirley",
+  "type": "voitures",
+  "sous": "Sportive",
+  "dispo": "a-verifier",
+  "lieu": "key-lento",
+  "emplacement": "Offerte au chapitre 1 après deux missions de Shirley à Key Lento.",
+  "obtenir": [
+   "Va chez Shirley à Key Lento.",
+   "Fais « Get Shirley's Rum » et « Steal the Scooter ».",
+   "La voiture t'est offerte."
+  ],
+  "kw": [
+   "penumbra",
+   "shirley",
+   "gratuite",
+   "chapitre 1"
+  ],
+  "sources": [
+   "space4games-shirley"
+  ],
+  "color": "#19d3e3"
+ },
+ {
+  "slug": "pegassi-tempesta",
+  "nom": "Pegassi Tempesta",
+  "type": "voitures",
+  "sous": "Supercar",
+  "dispo": "provisoire",
+  "lieu": "ocean-beach",
+  "emplacement": "Garée souvent devant l'entrée des hôtels Eden Grove, à Vice Beach.",
+  "obtenir": [
+   "Va devant les hôtels Eden Grove de Vice Beach.",
+   "Attends qu'elle apparaisse.",
+   "Vole-la et éloigne-toi vite."
+  ],
+  "kw": [
+   "tempesta",
+   "supercar",
+   "vice beach",
+   "hotel"
+  ],
+  "sources": [
+   "sportskeeda-cars"
+  ],
+  "color": "#ff2bd6"
+ },
+ {
+  "slug": "granforma-zorrusso",
+  "nom": "Granforma Zorrusso",
+  "type": "voitures",
+  "sous": "Supercar",
+  "dispo": "provisoire",
+  "lieu": "capri",
+  "emplacement": "Sur la presqu'île nord-ouest de Capri, réputée pour ses supercars garées.",
+  "obtenir": [
+   "Va sur la presqu'île nord-ouest de Capri.",
+   "Scanne les voitures avec WAiNK.",
+   "Ouvre-la avec le bon outil et pars vite."
+  ],
+  "kw": [
+   "zorrusso",
+   "supercar",
+   "capri"
+  ],
+  "sources": [
+   "sportskeeda-cars"
+  ],
+  "color": "#ffd23f"
  }
 ]

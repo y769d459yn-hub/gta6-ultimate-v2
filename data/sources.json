@@ -220,5 +220,69 @@
  "gtadb": {
   "n": "GTADB (carte communautaire, CC BY 4.0)",
   "u": "https://map.gtadb.org"
+ },
+ "gtabase-steal": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/articles/gta-6/gta-6-car-stealing-guide-how-to-steal-sell-keep-vehicles"
+ },
+ "gamespot-steal": {
+  "n": "GameSpot",
+  "u": "https://www.gamespot.com/articles/how-to-steal-cars-and-remove-trackers-in-gta-6/"
+ },
+ "pcgamer-steal": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-to-steal-cars/"
+ },
+ "stealthy-steal": {
+  "n": "Stealthy Gaming",
+  "u": "https://stealthygaming.com/gta-6-how-to-steal-cars/"
+ },
+ "keengamer-stash": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-best-early-money-farming-spots-and-secret-cash-stashes/"
+ },
+ "vicepulse-cash": {
+  "n": "VicePulse",
+  "u": "https://vicepulse.org/gta-6/money/hidden-cash"
+ },
+ "dotesports-stash": {
+  "n": "Dot Esports",
+  "u": "https://dotesports.com/gta/guides/gta-6-store-cash-jason-house"
+ },
+ "consolepulse-money": {
+  "n": "ConsolePulse",
+  "u": "https://consolepulse.com/playstation/gta/guides/gta-6-make-money-fast"
+ },
+ "rarethief-sell": {
+  "n": "Rare Thief",
+  "u": "https://rarethief.com/where-to-sell-cars-in-gta-vi/"
+ },
+ "pcgamer-money": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-to-make-money/"
+ },
+ "sportskeeda-atm": {
+  "n": "Sportskeeda",
+  "u": "https://www.sportskeeda.com/gta/how-rob-atm-machine-gta-6"
+ },
+ "outputlag-rob": {
+  "n": "OutputLag",
+  "u": "https://outputlag.com/guides/gta-6-how-to-rob-stores-heists/"
+ },
+ "hotcars-ruiner": {
+  "n": "HotCars",
+  "u": "https://www.hotcars.com/how-to-get-fastest-car-early-in-gta-6/"
+ },
+ "keengamer-ff": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-fast-and-furious-secret-car-location/"
+ },
+ "space4games-shirley": {
+  "n": "Space4Games",
+  "u": "https://space4games.com/en/games-en/gta-6-shirleys-car-free-guide/"
+ },
+ "sportskeeda-cars": {
+  "n": "Sportskeeda",
+  "u": "https://www.sportskeeda.com/esports/7-best-early-game-cars-gta-6-get"
  }
 }

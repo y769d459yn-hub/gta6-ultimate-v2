@@ -94,3 +94,16 @@
   .at-attrib--page { left: 20px; bottom: 16px; right: auto; font-size: .74rem; white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) { .at-dot::after { animation: none; } .at-tile { transition: none; } }
+
+/* Astuce affichée directement dans la fiche du repère */
+.atp-panel .pn-tip { margin-top: 12px; padding: 14px; border-radius: 16px; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); background: linear-gradient(135deg, color-mix(in srgb, var(--c) 10%, #0b0a14), #0b0a14 70%); }
+.atp-panel .pn-q { display: flex; gap: 8px; align-items: flex-start; margin: 0; font: 600 1rem/1.3 var(--fd, sans-serif); color: #fff; }
+.atp-panel .pn-q .ic { width: 18px; height: 18px; flex: none; margin-top: 2px; color: color-mix(in srgb, var(--c) 70%, #fff); }
+.atp-panel .pn-a { margin: 8px 0 0; font: 500 .95rem/1.45 var(--fd, sans-serif); color: var(--tx, #fff); }
+.atp-panel .pn-steps { margin: 10px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 6px; }
+.atp-panel .pn-steps li { counter-increment: s; display: grid; grid-template-columns: 24px 1fr; gap: 8px; font: 400 .9rem/1.4 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }
+.atp-panel .pn-steps li::before { content: counter(s); width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--c); color: #fff; font: 600 .78rem/1 var(--fm, monospace); }
+.atp-panel .pn-tip .pn-act { margin-top: 12px; }
+.atp-panel .pn-tip + .pn-tags { margin-top: 12px; }
+.atp-panel .pn-act + .pn-tags { margin-top: 12px; }
+.hm-pop-q { display: block; margin-top: 4px; font: 500 .82rem/1.3 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }

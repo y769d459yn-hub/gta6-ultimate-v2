@@ -63,13 +63,19 @@
   function closePanel() { panel.hidden = true; page.classList.remove('has-panel'); atlas && atlas.clearActive(); }
   const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
   function openFeature(f) {
-    const c = cats[f.cat] || {}; const r = regions[f.region]; const s = STAT[f.statut] || STAT['a-verifier'];
+    const c = cats[f.cat] || {}; const r = regions[f.region]; const st = STAT[f.statut] || STAT['a-verifier'];
     const favType = f.cat === 'vehicules' ? 'vehicule' : 'lieu';
     const fav = { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
-    showPanel(`${head(f.icon, c.color, c.nom, f.nom)}
-      <div class="pn-tags"><span class="pn-tag ${s[1]}">${s[0]}</span>${r ? `<span class="pn-tag">${escH(r.nom)}</span>` : ''}<span class="pn-tag pn-tag--warn">${f.precision === 'region' ? 'Emplacement à confirmer' : 'Position approximative'}</span></div>
-      <p>${escH(f.desc || '')}</p>
-      <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>${f.service ? 'Astuce liée' : 'Voir la fiche'}</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button></div>`);
+    const t = f.tip;
+    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span>${r ? `<span class="pn-tag">${escH(r.nom)}</span>` : ''}<span class="pn-tag pn-tag--warn">${f.precision === 'region' ? 'Emplacement à confirmer' : 'Position approximative'}</span></div>`;
+    const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
+    const body = t
+      ? `<div class="pn-tip" style="--c:${c.color}"><p class="pn-q">${ic('bolt')}${escH(t.titre)}</p><p class="pn-a">${escH(t.reponse)}</p>
+         <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}${t.lien}"><span>${escH(t.libelle)}</span><i>${ic('arrow-right')}</i></a>${favBtn}</div>
+         <ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol></div>${tags}`
+      : `${tags}<p>${escH(f.desc || '')}</p>
+         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>`;
+    showPanel(`${head(f.icon, c.color, (c.nom || '') + (f.service ? ' · ' + f.service : ''), f.nom)}${body}`);
     if (innerWidth < 900) {
       const ts = Math.max(atlas.cam.s, .3); const ph = panel.offsetHeight;
       atlas.flyTo(f.x, f.y - (ph / 2 + 10) / ts, ts);
