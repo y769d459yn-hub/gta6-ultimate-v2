@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { voiture } from './voiture.js';
 import { moto, bateau, avion, helico, camion } from './autres.js';
 
@@ -48,17 +49,18 @@ const FAMILLES = {
   avion: avion, hydravion: avion, jet: avion, helicoptere: helico, camion: camion
 };
 
-export function creer(spec) {
-  const M = materiaux(spec);
-  const g = (FAMILLES[spec.forme] || voiture)(spec, M);
-  g.traverse((o) => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; } });
-  // centré au sol, longueur normalisée à 4,6 m pour un cadrage identique
+// centré au sol, longueur normalisée à 4,6 m pour un cadrage identique
+function normaliser(g) {
   const box = new THREE.Box3().setFromObject(g), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3());
   const k = 4.6 / Math.max(size.x, size.z * .9);
   const root = new THREE.Group();
   g.position.set(-c.x, -box.min.y, -c.z); root.add(g); root.scale.setScalar(k);
   root.userData.h = size.y * k; root.userData.l = size.x * k; root.userData.w = size.z * k;
   return root;
+}
+export function creer(spec) {
+  const g = (FAMILLES[spec.forme] || voiture)(spec, materiaux(spec));
+  return normaliser(g);
 }
 
 function ombre() {
@@ -81,7 +83,7 @@ function studio(renderer, spec) {
   const rimB = new THREE.PointLight('#19d3e3', 4, 14); rimB.position.set(4.5, 1.6, -3); scene.add(rimB);
   const v = creer(spec); scene.add(v);
   const o = ombre(); o.scale.set(v.userData.l * 1.25, 1, Math.max(v.userData.w, 1.4) * 1.5); scene.add(o);
-  return { scene, v };
+  return { scene, v, o };
 }
 
 function nouveauRendu(cv, opts = {}) {
@@ -101,7 +103,7 @@ function cadrer(cam, v, aspect, angle = -.62, haut = .2) {
 export function monter(el, spec, { rotation = true } = {}) {
   const cv = document.createElement('canvas'); cv.className = 'v3d-canvas'; el.appendChild(cv);
   const r = nouveauRendu(cv);
-  const { scene, v } = studio(r, spec);
+  const st = studio(r, spec), { scene, o } = st; let v = st.v;
   const cam = new THREE.PerspectiveCamera(30, 1, .1, 100);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ctl = new OrbitControls(cam, cv);
@@ -126,6 +128,12 @@ export function monter(el, spec, { rotation = true } = {}) {
   document.addEventListener('visibilitychange', go);
   ctl.addEventListener('start', () => el.classList.add('is-touch'));
   go();
+  // modèle réaliste fourni (.glb) : il remplace le modèle simplifié dès qu'il est chargé
+  if (spec.glb) new GLTFLoader().load(spec.glb, (gl) => {
+    const nv = normaliser(gl.scene); scene.remove(v); scene.add(nv); v = nv;
+    o.scale.set(v.userData.l * 1.25, 1, Math.max(v.userData.w, 1.4) * 1.5); taille(); go();
+    el.classList.add('is-glb');
+  });
   return {
     stop(on) { ctl.autoRotate = !on && rotation && !reduce; },
     dispose() { io.disconnect(); ro.disconnect(); cancelAnimationFrame(raf); ctl.dispose(); r.dispose(); cv.remove(); }

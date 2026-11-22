@@ -74,13 +74,16 @@ for (const f of fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync
 const MODELES = fs.existsSync(path.join(ROOT, 'data', 'modeles3d.json')) ? read('modeles3d.json').modeles : {};
 const RENDUS = new Set(fs.existsSync(path.join(ROOT, 'src', 'rendus')) ? fs.readdirSync(path.join(ROOT, 'src', 'rendus')).map((f) => f.replace(/\.webp$/, '')) : []);
 const rendu = (v, R) => (RENDUS.has(v.slug) ? `<img class="veh-photo veh-rendu" src="${R}rendus/${v.slug}.webp" alt="${esc(v.nom)} en 3D" loading="lazy" decoding="async">` : '');
-const vehVisuel = (v, R, cls = '') => RENDUS.has(v.slug) ? rendu(v, R) : (PHOTOS[v.slug] ? `<img class="veh-photo" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}" loading="lazy" decoding="async">` : silhouette(v, cls));
+const photoJeu = (v, R, extra = '') => `<img class="veh-photo${extra}" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}" loading="lazy" decoding="async">`;
+// Modèles 3D réalistes fournis (src/modeles/<slug>.glb) : remplacent le modèle simplifié dans la vue 3D
+const GLB = new Set(fs.existsSync(path.join(ROOT, 'src', 'modeles')) ? fs.readdirSync(path.join(ROOT, 'src', 'modeles')).filter((f) => f.endsWith('.glb')).map((f) => f.slice(0, -4)) : []);
+const vehVisuel = (v, R, cls = '') => PHOTOS[v.slug] ? photoJeu(v, R) : RENDUS.has(v.slug) ? rendu(v, R) : silhouette(v, cls);
 const vehCredit = (v) => {
   const ph = PHOTOS[v.slug], m = MODELES[v.slug];
   if (m) {
-    const note = m.indicatif ? 'Modèle 3D indicatif : aucune image fiable de ce véhicule, apparence supposée.' : 'Modèle 3D créé par le site d\'après la photo du jeu : formes simplifiées, couleurs et détails relevés sur la photo.';
-    const cr = ph && ph.credit ? ` Photo du jeu : ${ph.url ? `<a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.credit)}</a>` : esc(ph.credit)}${ph.note ? ` (${esc(ph.note.charAt(0).toLowerCase() + ph.note.slice(1))})` : ''}.` : '';
-    return `<p class="veh-credit">${m.indicatif ? `<strong>${note}</strong>` : note}${cr}</p>`;
+    const cr = ph && ph.credit ? `${ph.note ? `<strong>${esc(ph.note)}</strong> · ` : ''}Photo du jeu : ${ph.url ? `<a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.credit)}</a>` : esc(ph.credit)}. ` : '';
+    const v3 = GLB.has(v.slug) ? 'Vue 3D : modèle 3D réaliste fourni.' : m.indicatif ? '<strong>Vue 3D indicative : aucune image fiable de ce véhicule, apparence supposée.</strong>' : 'Vue 3D : modèle simplifié créé par le site d\'après la photo.';
+    return `<p class="veh-credit">${cr}${v3}</p>`;
   }
   if (!ph) return '';
   const cr = ph.credit ? `Image : ${ph.url ? `<a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.credit)}</a>` : esc(ph.credit)}` : '';
@@ -131,7 +134,7 @@ for (const v of VEHICULES) {
   const pos = v.gtadb ? gtadbCentre(v.gtadb) : autour(l.id, l.type === 'region' ? 420 : 110);
   if (!pos) continue;
   const precision = l.type === 'region' ? 'region' : 'zone';
-  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/`, lieuNom: l.nom, ...(RENDUS.has(v.slug) ? { img: `rendus/${v.slug}.webp`, imgNote: MODELES[v.slug] && MODELES[v.slug].indicatif ? 'Modèle 3D indicatif' : 'Modèle 3D', imgCredit: undefined, img3d: true } : PHOTOS[v.slug] ? { img: `photos/${PHOTOS[v.slug].fichier}`, imgNote: PHOTOS[v.slug].note || undefined, imgCredit: PHOTOS[v.slug].credit || undefined } : {}), tip: { type: `Véhicule · ${cat('vehicules', v.type).nom.toLowerCase()}`, titre: `Comment obtenir : ${v.nom} ?`, reponse: v.emplacement, etapes: v.obtenir.slice(0, 3), lien: `vehicules/${v.slug}/`, libelle: 'Voir la fiche du véhicule' } } });
+  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/`, lieuNom: l.nom, ...(PHOTOS[v.slug] ? { img: `photos/${PHOTOS[v.slug].fichier}`, imgNote: PHOTOS[v.slug].note || undefined, imgCredit: PHOTOS[v.slug].credit || undefined } : RENDUS.has(v.slug) ? { img: `rendus/${v.slug}.webp`, imgNote: MODELES[v.slug] && MODELES[v.slug].indicatif ? 'Modèle 3D indicatif' : 'Modèle 3D', imgCredit: undefined, img3d: true } : {}), tip: { type: `Véhicule · ${cat('vehicules', v.type).nom.toLowerCase()}`, titre: `Comment obtenir : ${v.nom} ?`, reponse: v.emplacement, etapes: v.obtenir.slice(0, 3), lien: `vehicules/${v.slug}/`, libelle: 'Voir la fiche du véhicule' } } });
 }
 // Services repérés par la communauté (étiquettes « # » de GTADB) → catégorie « Points utiles »
 const SERVICES = {
@@ -545,8 +548,8 @@ for (const v of VEHICULES) {
   const sameReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id) && !similar.includes(x)).slice(0, 2) : [];
   const body = `<article class="wrap fiche" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    ${MODELES[v.slug] ? `<div class="veh-hero veh-hero--3d" data-v3d="${esc(JSON.stringify(MODELES[v.slug]))}">${rendu(v, R).replace(' loading="lazy"', '')}<div class="v3d-stage"></div>${PHOTOS[v.slug] ? `<img class="veh-photo veh-jeu" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)} : photo du jeu" loading="lazy" hidden>` : ''}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}
-      <div class="v3d-bar" role="group" aria-label="Affichage du véhicule"><button type="button" data-vue="3d" aria-pressed="true">${icon('refresh')}Vue 3D</button>${PHOTOS[v.slug] ? `<button type="button" data-vue="photo" aria-pressed="false">${icon('eye')}Photo du jeu</button>` : ''}</div>
+    ${MODELES[v.slug] ? `<div class="veh-hero veh-hero--3d${PHOTOS[v.slug] ? ' is-photo' : ''}" data-v3d="${esc(JSON.stringify({ ...MODELES[v.slug], ...(GLB.has(v.slug) ? { glb: `modeles/${v.slug}.glb` } : {}) }))}"${PHOTOS[v.slug] ? ' data-v3d-attente' : ''}>${rendu(v, R).replace(' loading="lazy"', '')}<div class="v3d-stage"></div>${PHOTOS[v.slug] ? photoJeu(v, R, ' veh-jeu').replace(' loading="lazy"', '') : ''}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}
+      <div class="v3d-bar" role="group" aria-label="Affichage du véhicule">${PHOTOS[v.slug] ? `<button type="button" data-vue="photo" aria-pressed="true">${icon('eye')}Photo du jeu</button>` : ''}<button type="button" data-vue="3d" aria-pressed="${PHOTOS[v.slug] ? 'false' : 'true'}">${icon('refresh')}Vue 3D</button></div>
       <span class="v3d-hint" aria-hidden="true">${icon('refresh')}Glisse pour le faire tourner</span></div>`
     : `<div class="veh-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</div>`}
     ${vehCredit(v)}
@@ -895,7 +898,7 @@ write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUT
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
