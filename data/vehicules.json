@@ -122,31 +122,6 @@
   "color": "#ff7a3d"
  },
  {
-  "slug": "pegassi-torus-doree",
-  "nom": "Pegassi Torus dorée",
-  "type": "voitures",
-  "sous": "Supercar",
-  "dispo": "a-verifier",
-  "lieu": "casanova-island",
-  "emplacement": "Dans le garage d'une villa sur Casanova Island.",
-  "obtenir": [
-   "Va sur Casanova Island.",
-   "Trouve la villa avec garage.",
-   "Récupère la voiture dorée."
-  ],
-  "kw": [
-   "or",
-   "doree",
-   "gold",
-   "torus",
-   "luxe"
-  ],
-  "sources": [
-   "gamesgg-luxury"
-  ],
-  "color": "#ffd23f"
- },
- {
   "slug": "mallard-flammes",
   "nom": "Mallard à flammes",
   "type": "avions",

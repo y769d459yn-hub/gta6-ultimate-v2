@@ -449,12 +449,10 @@
   "precision": "inconnue",
   "statut": "provisoire",
   "icon": "island",
-  "desc": "Île de villas où serait garée une Pegassi Torus dorée.",
+  "desc": "Île de villas de luxe.",
   "kw": [
    "villa",
-   "luxe",
-   "torus",
-   "or"
+   "luxe"
   ],
   "sources": [
    "gamesgg-luxury"

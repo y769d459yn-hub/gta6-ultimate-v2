@@ -54,12 +54,12 @@ Site indépendant, non affilié à Rockstar Games ni à Take-Two. Aucune image d
 
 ## Catalogue complet des véhicules
 
-La page Véhicules range les 313 véhicules confirmés de GTA 6 en 19 catégories (Supercars, Sportives, Muscle cars, SUV, Motos, Bateaux, Avions, Police…). Dans chaque catégorie, les 31 véhicules du guide dont l'emplacement est connu passent en premier. Un toucher sur un véhicule du catalogue ouvre ses infos : photo, présentation, marque, vraie voiture d'origine, places, transmission, poids, autres jeux et « comment l'obtenir » quand c'est documenté.
+La page Véhicules range les 312 véhicules confirmés de GTA 6 en 19 catégories (Supercars, Sportives, Muscle cars, SUV, Motos, Bateaux, Avions, Police…). Dans chaque catégorie, les 30 véhicules du guide dont l'emplacement est connu passent en premier. Un toucher sur un véhicule du catalogue ouvre ses infos : photo, présentation, marque, vraie voiture d'origine, places, transmission, poids, autres jeux et « comment l'obtenir » quand c'est documenté.
 
 - Sources : fiches GTABase (`vendor/catalogue/gtabase-fiches.json`) et gta6guide.fr (`vendor/catalogue/gta6guide.json`), relevées le 22/11/2026.
 - `python3 tools/catalogue.py <dépôt gta6-hq> <cache images> [--images]` fusionne les sources, range chaque véhicule dans sa catégorie, compare toutes les photos disponibles (GTABase, gta6-hq, gta6guide.fr) et garde la plus nette. Les photos floues, trop sombres ou où le véhicule est masqué sont écartées à la main (`PHOTOS_REJETEES`) : le véhicule garde alors sa silhouette.
 
 ## Vérification : les véhicules sont-ils dans GTA 6 ?
 
-`python3 tools/verification.py` écrit `data/verification.json` : un véhicule est « confirmé » si GTA Wiki (page et catégorie « Vehicles in GTA VI », `vendor/catalogue/gtawiki-vehicules-gta6.json`) ou le site officiel de Rockstar le recensent ; sinon il est « à confirmer » (vu seulement sur GTABase ou gta6guide.fr). Relevé du 22/11/2026 : 273 confirmés, 39 à confirmer, 1 non confirmé (Pegassi Torus dorée). Le site affiche ce statut sur chaque carte, dans la fenêtre d'infos et sur les fiches, avec un filtre « Confirmés seulement ».
+`python3 tools/verification.py` écrit `data/verification.json` : un véhicule est « confirmé » si GTA Wiki (page et catégorie « Vehicles in GTA VI », `vendor/catalogue/gtawiki-vehicules-gta6.json`) ou le site officiel de Rockstar le recensent ; sinon il est « à confirmer » (vu seulement sur GTABase ou gta6guide.fr). Relevé du 22/11/2026 : 273 confirmés, 39 à confirmer. La « Pegassi Torus dorée », introuvable dans toutes les sources, a été retirée du guide. Le site affiche ce statut sur chaque carte, dans la fenêtre d'infos et sur les fiches, avec un filtre « Confirmés seulement ».
 

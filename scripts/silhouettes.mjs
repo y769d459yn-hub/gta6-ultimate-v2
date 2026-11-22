@@ -38,7 +38,7 @@ export const SILHOUETTES = {
 };
 
 const PAR_SLUG = {
-  'pegassi-infernus': 'supercar', 'pegassi-torus-doree': 'supercar', 'grotti-cheetah-95': 'supercar', 'pegassi-tempesta': 'supercar', 'granforma-zorrusso': 'supercar',
+  'pegassi-infernus': 'supercar', 'grotti-cheetah-95': 'supercar', 'pegassi-tempesta': 'supercar', 'granforma-zorrusso': 'supercar',
   'progen-emerus-royal-ruby': 'hypercar', 'bravado-gauntlet-hellfire': 'muscle', 'imponte-phoenix-bloodbath': 'muscle', 'imponte-ruiner': 'muscle',
   'maibatsu-penumbra-ff': 'sportive', 'maibatsu-penumbra-shirley': 'sportive', 'pfister-comet-s2': 'sportive', 'obey-tailgater-s': 'berline',
   'vapid-ganado': 'pickup', 'vapid-stanier-55': 'classique', 'vapid-dominator-buggy': 'buggy', 'jobuilt-hauler': 'camion', 'hauners-ridgway': 'inconnu',

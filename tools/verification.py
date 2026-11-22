@@ -39,7 +39,6 @@ ALIAS = {
     'vapid-ganado': 'Ganado', 'jobuilt-hauler': 'Hauler', 'imponte-ruiner': 'Ruiner', 'pegassi-tempesta': 'Tempesta', 'granforma-zorrusso': 'Zorrusso'}
 # précisions affichées (variante ou détail non confirmé)
 NOTES = {
-    'pegassi-torus-doree': "Introuvable sur GTA Wiki, GTABase et le site officiel : ce véhicule n'est confirmé par aucune source fiable.",
     'lapwing-stolen-valor': "Le Lapwing Duster 300-H existe bien dans GTA 6 ; la livrée « Stolen Valor » n'est pas confirmée.",
     'progen-emerus-royal-ruby': "L'Emerus existe bien ; la version « Royal Ruby » vient des guides, pas encore du wiki.",
     'imponte-phoenix-bloodbath': "La Phoenix existe bien ; la version « Bloodbath » vient des guides, pas encore du wiki.",
@@ -58,7 +57,6 @@ for x in CAT['vehicules']: out[x['slug']] = verifier(x['slug'], x['modele'])
 for v in json.load(open(os.path.join(ROOT, 'data/vehicules.json'))):
     m = re.sub(r"«.*?»|'\d\d|à flammes|dorée|de Shirley", '', v['nom']).strip().split(' ', 1)[-1]
     out[v['slug']] = verifier(v['slug'], m)
-out['pegassi-torus-doree']['statut'] = 'non-confirme'
 json.dump({'info': 'Vérification de présence dans GTA 6 (22/11/2026) : site officiel Rockstar, GTA Wiki, GTABase, gta6guide.fr. Généré par tools/verification.py.', 'vehicules': out},
           open(os.path.join(ROOT, 'data/verification.json'), 'w'), ensure_ascii=False, indent=1)
 from collections import Counter

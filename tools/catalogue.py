@@ -41,7 +41,7 @@ PRIORITE = ['emergency', 'military', 'helicopters', 'planes', 'boats', 'cycles',
 # nos 31 fiches détaillées -> catégorie (+ fiche GTABase correspondante quand elle existe)
 NOS = {
     'pegassi-infernus': ('sportives-classiques', 'infernus96'), 'bravado-gauntlet-hellfire': ('muscle', 'gauntlethellfire'), 'maibatsu-penumbra-ff': ('sportives', 'penumbraff97'),
-    'progen-emerus-royal-ruby': ('supercars', 'emerus'), 'imponte-phoenix-bloodbath': ('muscle', 'phoenix77'), 'pegassi-torus-doree': ('supercars', None),
+    'progen-emerus-royal-ruby': ('supercars', 'emerus'), 'imponte-phoenix-bloodbath': ('muscle', 'phoenix77'), 
     'mallard-flammes': ('avions', 'mallard'), 'lapwing-stolen-valor': ('avions', None), 'hauners-ridgway': ('tout-terrain', None),
     'hydroglisseur': ('bateaux', 'airboatfanboat'), 'jet-ski': ('bateaux', 'seashark'), 'vedette': ('bateaux', None), 'moto-sportive': ('motos', None),
     'dinka-enduro': ('motos', 'enduro72'), 'kayak-crest': ('bateaux', 'kayak'), 'mammoth-dodo': ('avions', 'dodo'), 'jets-militaires': ('avions', None),
