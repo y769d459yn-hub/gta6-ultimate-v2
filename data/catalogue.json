@@ -813,26 +813,6 @@
    ]
   },
   {
-   "slug": "bravado-buffalo-stx-pursuit-de-police",
-   "nom": "Bravado Buffalo STX Pursuit de police",
-   "fabricant": "Bravado",
-   "modele": "Buffalo STX Pursuit de police",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "2015 Dodge Charger",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-buffalo-stx"
-    }
-   ],
-   "img": "bravado-buffalo-stx-pursuit-de-police.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-buffalo-stx"
-  },
-  {
    "slug": "bravado-dorado",
    "nom": "Bravado Dorado",
    "fabricant": "Bravado",
@@ -857,23 +837,6 @@
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/dorado"
   },
   {
-   "slug": "bravado-gauntlet-classic",
-   "nom": "Bravado Gauntlet Classic",
-   "fabricant": "Bravado",
-   "modele": "Gauntlet Classic",
-   "classe": "Muscle car",
-   "type": "voitures",
-   "inspiration": "Dodge Challenger de première génération",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/gauntlet-classic"
-    }
-   ]
-  },
-  {
    "slug": "bravado-gauntlet-custom-69",
    "nom": "Bravado Gauntlet Custom '69",
    "fabricant": "Bravado",
@@ -889,26 +852,6 @@
      "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=muscle"
     }
    ]
-  },
-  {
-   "slug": "bravado-gauntlet-interceptor-de-police",
-   "nom": "Bravado Gauntlet Interceptor de police",
-   "fabricant": "Bravado",
-   "modele": "Gauntlet Interceptor de police",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "2018 Dodge Challenger SRT Demon",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-gauntlet"
-    }
-   ],
-   "img": "bravado-gauntlet-interceptor-de-police.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-gauntlet"
   },
   {
    "slug": "bravado-gresley-xt",
@@ -1040,26 +983,6 @@
    ]
   },
   {
-   "slug": "bravado-voiture-de-patrouille-buffalo",
-   "nom": "Bravado Voiture de patrouille (Buffalo)",
-   "fabricant": "Bravado",
-   "modele": "Voiture de patrouille (Buffalo)",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Dodge Charger",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-cruiser-buffalo"
-    }
-   ],
-   "img": "bravado-voiture-de-patrouille-buffalo.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-cruiser-buffalo"
-  },
-  {
    "slug": "bravado-youga",
    "nom": "Bravado Youga",
    "fabricant": "Bravado",
@@ -1099,23 +1022,6 @@
    "img": "bravado-youga-74.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/gta-6/vehicles/youga-classic"
-  },
-  {
-   "slug": "bravado-youga-classic",
-   "nom": "Bravado Youga Classic",
-   "fabricant": "Bravado",
-   "modele": "Youga Classic",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "Ford Ecoline (2nd gen)",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/youga-classic"
-    }
-   ]
   },
   {
    "slug": "bravado-youga-xl-79",
@@ -1162,26 +1068,6 @@
    "creditUrl": "https://www.gtabase.com/gta-6/vehicles/boxville"
   },
   {
-   "slug": "brute-camion-utilitaire",
-   "nom": "Brute Camion utilitaire",
-   "fabricant": "Brute",
-   "modele": "Camion utilitaire",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "International 4700 Series",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/utility-truck-van"
-    }
-   ],
-   "img": "brute-camion-utilitaire.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/utility-truck-van"
-  },
-  {
    "slug": "brute-camper",
    "nom": "Brute Camper",
    "fabricant": "Brute",
@@ -1199,23 +1085,6 @@
     {
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/camper"
-    }
-   ]
-  },
-  {
-   "slug": "brute-navette-de-location",
-   "nom": "Brute Navette de location",
-   "fabricant": "Brute",
-   "modele": "Navette de location",
-   "classe": "Transport",
-   "type": "autres",
-   "inspiration": "1996-2002 Chevrolet Express",
-   "places": "10",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/rental-shuttle-bus"
     }
    ]
   },
@@ -1255,26 +1124,6 @@
      "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=service"
     }
    ]
-  },
-  {
-   "slug": "brute-riot-de-police",
-   "nom": "Brute Riot de police",
-   "fabricant": "Brute",
-   "modele": "Riot de police",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Lenco BEAR",
-   "places": "8",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-riot"
-    }
-   ],
-   "img": "brute-riot-de-police.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-riot"
   },
   {
    "slug": "brute-tipper-6-wheels",
@@ -1391,23 +1240,6 @@
    "img": "buckingham-maverick.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/gta-6/vehicles/maverick"
-  },
-  {
-   "slug": "buckingham-maverick-de-police",
-   "nom": "Buckingham Maverick de police",
-   "fabricant": "Buckingham",
-   "modele": "Maverick de police",
-   "classe": "Avion",
-   "type": "avions",
-   "inspiration": "Eurocopter AS350B",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-maverick"
-    }
-   ]
   },
   {
    "slug": "buckingham-police-maverick",
@@ -2422,23 +2254,6 @@
    "creditUrl": "https://www.gtabase.com/gta-6/vehicles/blista-compact"
   },
   {
-   "slug": "dinka-blista-compact",
-   "nom": "Dinka Blista Compact",
-   "fabricant": "Dinka",
-   "modele": "Blista Compact",
-   "classe": "Sportive",
-   "type": "voitures",
-   "inspiration": "Honda CRX 1st Gen",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/blista-compact"
-    }
-   ]
-  },
-  {
    "slug": "dinka-chavos-xs",
    "nom": "Dinka Chavos XS",
    "fabricant": "Dinka",
@@ -2618,23 +2433,6 @@
    "img": "dundreary-landstalker-xl.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/gta-6/vehicles/landstalker-xl"
-  },
-  {
-   "slug": "dundreary-landstalker-xl-de-police",
-   "nom": "Dundreary Landstalker XL de police",
-   "fabricant": "Dundreary",
-   "modele": "Landstalker XL de police",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Lincoln Navigator de quatrième génération",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-landstalker-xl"
-    }
-   ]
   },
   {
    "slug": "dundreary-police-landstalker-xl",
@@ -2949,43 +2747,6 @@
    ]
   },
   {
-   "slug": "hvy-chariot-elevateur",
-   "nom": "HVY Chariot élévateur",
-   "fabricant": "HVY",
-   "modele": "Chariot élévateur",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "Modèle de chariot élévateur Yale (Yale GLP060VX)",
-   "places": "1",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/forklift"
-    }
-   ]
-  },
-  {
-   "slug": "hvy-dozer",
-   "nom": "HVY Dozer",
-   "fabricant": "HVY",
-   "modele": "Dozer",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "Caterpillar 963D",
-   "places": "1",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/dozer"
-    }
-   ],
-   "img": "hvy-dozer.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/dozer"
-  },
-  {
    "slug": "hvy-lifta",
    "nom": "HVY Lifta",
    "fabricant": "HVY",
@@ -3182,26 +2943,6 @@
    ]
   },
   {
-   "slug": "invetero-coquette-classic",
-   "nom": "Invetero Coquette Classic",
-   "fabricant": "Invetero",
-   "modele": "Coquette Classic",
-   "classe": "Muscle car",
-   "type": "voitures",
-   "inspiration": "Chevrolet Corvette C2",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/coquette-classic"
-    }
-   ],
-   "img": "invetero-coquette-classic.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/coquette-classic"
-  },
-  {
    "slug": "invetero-coquette-d10",
    "nom": "Invetero Coquette D10",
    "fabricant": "Invetero",
@@ -3248,23 +2989,6 @@
    "img": "jacksheepe-fieldmaster-99.webp",
    "credit": "gta6guide.fr",
    "creditUrl": "https://gta6guide.fr/gta-6/vehicules/fieldmaster"
-  },
-  {
-   "slug": "jacksheepe-pelle-mecanique",
-   "nom": "Jacksheepe Pelle mécanique",
-   "fabricant": "Jacksheepe",
-   "modele": "Pelle mécanique",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "Liebherr R954B HD-S and Samsung SE280LC-2",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/excavator"
-    }
-   ]
   },
   {
    "slug": "jobuilt-flatbed",
@@ -3700,43 +3424,6 @@
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/police-boat"
   },
   {
-   "slug": "lure-predator-s23",
-   "nom": "Lure Predator S23",
-   "fabricant": "Lure Predator",
-   "modele": "S23",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Contender 25 Bay",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/s23"
-    }
-   ],
-   "img": "lure-predator-s23.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/s23"
-  },
-  {
-   "slug": "mtl-camion-de-pompiers",
-   "nom": "MTL Camion de pompiers",
-   "fabricant": "MTL",
-   "modele": "Camion de pompiers",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "2012 Pierce Arrow XT Rescue Pumper",
-   "places": "8",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/fire-truck"
-    }
-   ]
-  },
-  {
    "slug": "mtl-packer",
    "nom": "MTL Packer",
    "fabricant": "MTL",
@@ -4039,23 +3726,6 @@
     {
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/blazer"
-    }
-   ]
-  },
-  {
-   "slug": "nagasaki-buzzard-de-police",
-   "nom": "Nagasaki Buzzard de police",
-   "fabricant": "Nagasaki",
-   "modele": "Buzzard de police",
-   "classe": "Avion",
-   "type": "avions",
-   "inspiration": "MH-6 Little Bird, avec une livrée similaire à celle des hélicoptères de la police de Miami",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-buzzard"
     }
    ]
   },
@@ -4439,26 +4109,6 @@
    ]
   },
   {
-   "slug": "pegassi-tempesta-de-police",
-   "nom": "Pegassi Tempesta de police",
-   "fabricant": "Pegassi",
-   "modele": "Tempesta de police",
-   "classe": "Sportive",
-   "type": "voitures",
-   "inspiration": "Lamborghini Huracán/Centenario, proposed 2015 Lotus Esprit",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-tempesta"
-    }
-   ],
-   "img": "pegassi-tempesta-de-police.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-tempesta"
-  },
-  {
    "slug": "pegassi-toros",
    "nom": "Pegassi Toros",
    "fabricant": "Pegassi",
@@ -4542,23 +4192,6 @@
    "img": "pfister-comet-88.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/comet-retro-custom"
-  },
-  {
-   "slug": "pfister-comet-retro-custom",
-   "nom": "Pfister Comet Retro Custom",
-   "fabricant": "Pfister",
-   "modele": "Comet Retro Custom",
-   "classe": "Sportive",
-   "type": "voitures",
-   "inspiration": "Rauh-Welt Porsche 911 930",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/comet-retro-custom"
-    }
-   ]
   },
   {
    "slug": "pfister-growler",
@@ -5125,40 +4758,6 @@
    ]
   },
   {
-   "slug": "vapid-depanneuse",
-   "nom": "Vapid Dépanneuse",
-   "fabricant": "Vapid",
-   "modele": "Dépanneuse",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "1980s International Harvester S-Series",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/tow-truck"
-    }
-   ]
-  },
-  {
-   "slug": "vapid-ghost-de-police-stanier-le",
-   "nom": "Vapid Ghost de police (Stanier LE)",
-   "fabricant": "Vapid",
-   "modele": "Ghost de police (Stanier LE)",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Ford Crown Victoria",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-ghost-stanier-le"
-    }
-   ]
-  },
-  {
    "slug": "vapid-hustler-32",
    "nom": "Vapid Hustler '32",
    "fabricant": "Vapid",
@@ -5226,26 +4825,6 @@
    "img": "vapid-lowline.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/ford-taurus"
-  },
-  {
-   "slug": "vapid-lowline-de-police-interceptor",
-   "nom": "Vapid Lowline de police (Interceptor)",
-   "fabricant": "Vapid",
-   "modele": "Lowline de police (Interceptor)",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Ford Police Interceptor Sedan (2013–2019), basée sur la Ford Taurus",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-cruiser-interceptor"
-    }
-   ],
-   "img": "vapid-lowline-de-police-interceptor.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/police-cruiser-interceptor"
   },
   {
    "slug": "vapid-marshall",
@@ -5365,26 +4944,6 @@
    "img": "vapid-montagne-xl.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/Montagne_XL"
-  },
-  {
-   "slug": "vapid-montagne-de-police",
-   "nom": "Vapid Montagne de police",
-   "fabricant": "Vapid",
-   "modele": "Montagne de police",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Ford Explorer (6th Gen)",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/ford-explorer-suv-police"
-    }
-   ],
-   "img": "vapid-montagne-de-police.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/ford-explorer-suv-police"
   },
   {
    "slug": "vapid-police-cruiser-stanier-le",
@@ -5718,23 +5277,6 @@
    "img": "vapid-tow-truck.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/tow-truck"
-  },
-  {
-   "slug": "vapid-voiture-de-patrouille-stanier-le",
-   "nom": "Vapid Voiture de patrouille (Stanier LE)",
-   "fabricant": "Vapid",
-   "modele": "Voiture de patrouille (Stanier LE)",
-   "classe": "Urgences",
-   "type": "autres",
-   "inspiration": "Ford Crown Victoria",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/police-cruiser"
-    }
-   ]
   },
   {
    "slug": "vulcar-ingot",
@@ -6140,123 +5682,6 @@
    ]
   },
   {
-   "slug": "audi-q7-2nd-gen",
-   "nom": "Audi Q7 (2nd Gen)",
-   "fabricant": null,
-   "modele": "Audi Q7 (2nd Gen)",
-   "classe": "SUV",
-   "type": "voitures",
-   "inspiration": "Audi Q7 (2nd Gen)",
-   "places": "4",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=suvs"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/audi-q7-2nd-gen"
-    }
-   ],
-   "img": "audi-q7-2nd-gen.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/audi-q7-2nd-gen"
-  },
-  {
-   "slug": "azimut-85",
-   "nom": "Azimut 85",
-   "fabricant": null,
-   "modele": "Azimut 85",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Azimut 85",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/azimut-85"
-    }
-   ]
-  },
-  {
-   "slug": "azimut-atlantis-45",
-   "nom": "Azimut Atlantis 45",
-   "fabricant": null,
-   "modele": "Azimut Atlantis 45",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Azimut Atlantis 45",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/azimut-atlantis-45"
-    }
-   ],
-   "img": "azimut-atlantis-45.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/azimut-atlantis-45"
-  },
-  {
-   "slug": "btn-delmar",
-   "nom": "BTN Delmar",
-   "fabricant": null,
-   "modele": "BTN Delmar",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "BTN Delmar",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/btn-delmar"
-    }
-   ],
-   "img": "btn-delmar.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/btn-delmar"
-  },
-  {
-   "slug": "bavaria-sr33",
-   "nom": "Bavaria SR33",
-   "fabricant": null,
-   "modele": "Bavaria SR33",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Bavaria SR33",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/bavaria-sr33"
-    }
-   ],
-   "img": "bavaria-sr33.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/bavaria-sr33"
-  },
-  {
    "slug": "blimp",
    "nom": "Blimp",
    "fabricant": null,
@@ -6272,30 +5697,6 @@
      "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=planes"
     }
    ]
-  },
-  {
-   "slug": "chevrolet-silverado-6500-hd",
-   "nom": "Chevrolet Silverado 6500 HD",
-   "fabricant": null,
-   "modele": "Chevrolet Silverado 6500 HD",
-   "classe": "Van",
-   "type": "autres",
-   "inspiration": "Chevrolet Silverado 6500 HD",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=vans"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/chevrolet-silverado-6500-hd"
-    }
-   ],
-   "img": "chevrolet-silverado-6500-hd.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/chevrolet-silverado-6500-hd"
   },
   {
    "slug": "clarion",
@@ -6337,54 +5738,6 @@
      "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
     }
    ]
-  },
-  {
-   "slug": "crusader-boats-gfy",
-   "nom": "Crusader Boats GFY",
-   "fabricant": null,
-   "modele": "Crusader Boats GFY",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "2005 34' Crusader Boats GFY and Netwon 36' Dive Special",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/crusader-boats-gfy"
-    }
-   ],
-   "img": "crusader-boats-gfy.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/crusader-boats-gfy"
-  },
-  {
-   "slug": "dodge-dakota-convertible",
-   "nom": "Dodge Dakota Convertible",
-   "fabricant": null,
-   "modele": "Dodge Dakota Convertible",
-   "classe": "Van",
-   "type": "autres",
-   "inspiration": "Dodge Dakota Convertible",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=vans"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/dodge-dakota-convertible"
-    }
-   ],
-   "img": "dodge-dakota-convertible.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/dodge-dakota-convertible"
   },
   {
    "slug": "endurex-race-bike",
@@ -6449,126 +5802,6 @@
    ]
   },
   {
-   "slug": "ford-econoline-4th-gen",
-   "nom": "Ford Econoline (4th Gen)",
-   "fabricant": null,
-   "modele": "Ford Econoline (4th Gen)",
-   "classe": "Van",
-   "type": "autres",
-   "inspiration": "Ford Econoline (4th Gen)",
-   "places": "10",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=vans"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/ford-econoline-4th-gen"
-    }
-   ],
-   "img": "ford-econoline-4th-gen.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/ford-econoline-4th-gen"
-  },
-  {
-   "slug": "ford-f-series-3rd-gen",
-   "nom": "Ford F-Series (3rd Gen)",
-   "fabricant": null,
-   "modele": "Ford F-Series (3rd Gen)",
-   "classe": "Van",
-   "type": "autres",
-   "inspiration": "Ford F-Series (3rd Gen)",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=vans"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-3rd-gen"
-    }
-   ],
-   "img": "ford-f-series-3rd-gen.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-3rd-gen"
-  },
-  {
-   "slug": "ford-f-series-flatbed",
-   "nom": "Ford F-Series Flatbed",
-   "fabricant": null,
-   "modele": "Ford F-Series Flatbed",
-   "classe": "Van",
-   "type": "autres",
-   "inspiration": "Ford F-Series (6th Gen)",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=vans"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-6th-gen"
-    }
-   ],
-   "img": "ford-f-series-flatbed.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-6th-gen"
-  },
-  {
-   "slug": "ford-f-series-tow-truck",
-   "nom": "Ford F-Series Tow Truck",
-   "fabricant": null,
-   "modele": "Ford F-Series Tow Truck",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "Ford F-Series Tow Truck",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=utility"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-tow-truck"
-    }
-   ],
-   "img": "ford-f-series-tow-truck.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/ford-f-series-tow-truck"
-  },
-  {
-   "slug": "frauscher-1017-gt",
-   "nom": "Frauscher 1017 GT",
-   "fabricant": null,
-   "modele": "Frauscher 1017 GT",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Frauscher 1017 GT",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/frauscher-1017-gt"
-    }
-   ],
-   "img": "frauscher-1017-gt.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/frauscher-1017-gt"
-  },
-  {
    "slug": "freight-train",
    "nom": "Freight Train",
    "fabricant": null,
@@ -6584,75 +5817,6 @@
      "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=service"
     }
    ]
-  },
-  {
-   "slug": "highfield-sport-900",
-   "nom": "Highfield Sport 900",
-   "fabricant": null,
-   "modele": "Highfield Sport 900",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Highfield Sport 900",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/highfield-sport-900"
-    }
-   ],
-   "img": "highfield-sport-900.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/highfield-sport-900"
-  },
-  {
-   "slug": "hitachi-metrorail",
-   "nom": "Hitachi Metrorail",
-   "fabricant": null,
-   "modele": "Hitachi Metrorail",
-   "classe": "Service",
-   "type": "autres",
-   "inspiration": "Hitachi Metrorail",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=service"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/metro-vice-city"
-    }
-   ]
-  },
-  {
-   "slug": "international-s-series-semi-truck",
-   "nom": "International S-Series Semi Truck",
-   "fabricant": null,
-   "modele": "International S-Series Semi Truck",
-   "classe": "Utilitaire",
-   "type": "autres",
-   "inspiration": "International S-Series Semi Truck",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=utility"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/international-s-series-semi-truck"
-    }
-   ],
-   "img": "international-s-series-semi-truck.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/international-s-series-semi-truck"
   },
   {
    "slug": "jet",
@@ -6722,54 +5886,6 @@
    "img": "lombike.webp",
    "credit": "gta6guide.fr",
    "creditUrl": "https://gta6guide.fr/gta-6/vehicules/lombike"
-  },
-  {
-   "slug": "lurssen-73m-coral-ocean",
-   "nom": "Lurssen 73m Coral Ocean",
-   "fabricant": null,
-   "modele": "Lurssen 73m Coral Ocean",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Lurssen 73m Coral Ocean",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/lurssen-73m-coral-ocean"
-    }
-   ],
-   "img": "lurssen-73m-coral-ocean.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/lurssen-73m-coral-ocean"
-  },
-  {
-   "slug": "mercedes-benz-cle-class-a236",
-   "nom": "Mercedes-Benz CLE Class (A236)",
-   "fabricant": null,
-   "modele": "Mercedes-Benz CLE Class (A236)",
-   "classe": "Coupé",
-   "type": "voitures",
-   "inspiration": "Mercedes-Benz CLE Class (A236)",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=coupes"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/mercedes-benz-cle-class-a236"
-    }
-   ],
-   "img": "mercedes-benz-cle-class-a236.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/mercedes-benz-cle-class-a236"
   },
   {
    "slug": "metromule",
@@ -6900,78 +6016,6 @@
    "img": "shifter.webp",
    "credit": "Rockstar Games, via GTABase",
    "creditUrl": "https://www.gtabase.com/vehicles/gta-6/ford-transit-cargo-4th-gen"
-  },
-  {
-   "slug": "shipyard-de-hoop-brion",
-   "nom": "Shipyard De Hoop Brion",
-   "fabricant": null,
-   "modele": "Shipyard De Hoop Brion",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Shipyard De Hoop Brion",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/shipyard-de-hoop-brion"
-    }
-   ],
-   "img": "shipyard-de-hoop-brion.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/shipyard-de-hoop-brion"
-  },
-  {
-   "slug": "skater-388",
-   "nom": "Skater 388",
-   "fabricant": null,
-   "modele": "Skater 388",
-   "classe": "Bateau",
-   "type": "bateaux",
-   "inspiration": "Skater 388",
-   "places": null,
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=boats"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/skater-388"
-    }
-   ],
-   "img": "skater-388.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/skater-388"
-  },
-  {
-   "slug": "suzuki-gsx-r1000",
-   "nom": "Suzuki GSX-R1000",
-   "fabricant": null,
-   "modele": "Suzuki GSX-R1000",
-   "classe": "Moto",
-   "type": "motos",
-   "inspiration": "Suzuki GSX-R1000",
-   "places": "2",
-   "obtenir": null,
-   "sources": [
-    {
-     "nom": "GTABase",
-     "url": "https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class=motorcycles"
-    },
-    {
-     "nom": "gta6guide.fr",
-     "url": "https://gta6guide.fr/gta-6/vehicules/suzuki-gsx-r1000"
-    }
-   ],
-   "img": "suzuki-gsx-r1000.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/suzuki-gsx-r1000"
   },
   {
    "slug": "swamp-blaster",

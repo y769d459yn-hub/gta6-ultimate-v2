@@ -46,6 +46,14 @@ NOS = {
     'granforma-zorrusso': 'zorrusso'
 }
 DEJA = set(NOS.values())
+# doublons de gta6guide.fr (noms traduits de véhicules déjà listés par GTABase)
+DOUBLONS_G6 = {'bravado-buffalo-stx-pursuit-de-police', 'bravado-gauntlet-interceptor-de-police', 'bravado-voiture-de-patrouille-buffalo', 'brute-camion-utilitaire',
+    'brute-navette-de-location', 'brute-riot-de-police', 'buckingham-maverick-de-police', 'dundreary-landstalker-xl-de-police', 'hvy-chariot-elevateur', 'hvy-dozer',
+    'jacksheepe-pelle-mecanique', 'mtl-camion-de-pompiers', 'nagasaki-buzzard-de-police', 'pegassi-tempesta-de-police', 'vapid-depanneuse', 'vapid-ghost-de-police-stanier-le',
+    'vapid-lowline-de-police-interceptor', 'vapid-montagne-de-police', 'vapid-voiture-de-patrouille-stanier-le', 'dinka-blista-compact', 'invetero-coquette-classic',
+    'pfister-comet-retro-custom', 'bravado-gauntlet-classic', 'bravado-youga-classic', 'lure-predator-s23'}
+# véhicules sans nom dans le jeu, désignés par leur vraie marque : on ne les présente pas comme des véhicules de GTA 6
+VRAIES_MARQUES = re.compile(r'^(Azimut|Bavaria|BTN|Frauscher|Highfield|Lurssen|Shipyard|Crusader|Skater|Mercedes|Suzuki|Audi|Ford|International|Chevrolet|Dodge|Hitachi|Lamborghini|Buick|Toyota|Honda|Porsche|BMW|Nissan)\b', re.I)
 
 # ---------- fusion ----------
 g6_par_modele = {}
@@ -61,7 +69,7 @@ for v in GB:
     fab = v['fabricant'] if v['fabricant'] not in ('-', '') else None
     modele = v['nom'].strip()
     k = norm(modele)
-    if k in cat: continue
+    if k in cat or VRAIES_MARQUES.match(modele): continue
     cl, ty = CLASSES.get(v['classe'], ('Véhicule', 'autres'))
     e = {'cle': k, 'fabricant': fab, 'modele': modele, 'classe': cl, 'type': ty, 'inspiration': v.get('base') or None,
          'sources': [{'nom': 'GTABase', 'url': f"https://www.gtabase.com/fr/articles/gta-6/gta-6-list-of-confirmed-vehicles-by-class?class={v['classe']}"}]}
@@ -113,6 +121,8 @@ def enregistrer(src_img, dest):
 liste = []
 for k, e in sorted(cat.items(), key=lambda kv: ((kv[1]['fabricant'] or '~'), kv[1]['modele'])):
     if k in DEJA: continue
+    nom0 = f"{e['fabricant']} {e['modele']}" if e['fabricant'] and not e['modele'].startswith(e['fabricant']) else e['modele']
+    if slug(nom0) in DOUBLONS_G6: continue
     nom = f"{e['fabricant']} {e['modele']}" if e['fabricant'] and not e['modele'].startswith(e['fabricant']) else e['modele']
     sl = slug(nom)
     o = e.get('g6') or {}
