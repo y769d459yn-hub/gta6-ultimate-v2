@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { icon, iconDefs } from './icons.mjs';
+import { validate } from './validate.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'docs');
@@ -17,6 +18,17 @@ const ENC = read('encyclopedie.json');
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
 const CARTE = read('carte.json');
 const M = site.marque;
+const ACCUEIL = read('accueil.json');
+{
+  const errs = [
+    ...validate(read('schemas/accueil.schema.json'), ACCUEIL, 'accueil'),
+    ...validate(read('schemas/carte.schema.json'), CARTE, 'carte')
+  ];
+  const slugs = new Set(ASTUCES.map((a) => a.slug));
+  ACCUEIL.enCeMoment.astuces.forEach((s) => { if (!slugs.has(s)) errs.push(`accueil.enCeMoment : astuce inconnue « ${s} »`); });
+  [...ACCUEIL.tuiles.map((t) => t.icon), ...ACCUEIL.hero.raccourcis.map((r) => r.icon)].forEach((n) => { if (!iconDefs[n]) errs.push(`accueil : icône inconnue « ${n} »`); });
+  if (errs.length) { console.error('✗ Données invalides :\n  ' + errs.join('\n  ')); process.exit(1); }
+}
 
 // ---------- helpers ----------
 const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -91,7 +103,8 @@ for (const l of LIEUX) if (l.astuce && onMap(l.id)) (astuceMap[l.astuce] ||= [])
 const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'cat=activites', 'vendre-voitures-moses': 'cat=vehicules', 'stocker-vehicules': 'cat=vehicules' };
 
 // ---------- layout ----------
-function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website' }) {
+const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = false }) {
   const depth = p.split('/').filter(Boolean).length;
   const R = depth ? '../'.repeat(depth) : './';
   const canon = `${site.url}/${p}`;
@@ -104,14 +117,14 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
   if (crumbs) schema = [...schema, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: `${site.url}/${c[1]}` })) }];
   const crumbHtml = crumbs ? `<nav class="crumbs" aria-label="Fil d'Ariane">${crumbs.map((c, i) => i < crumbs.length - 1 ? `<a href="${R}${c[1]}">${esc(c[0])}</a>${icon('arrow-right')}` : `<span aria-current="page">${esc(c[0])}</span>`).join('')}</nav>` : '';
   return `<!doctype html>
-<html lang="fr" data-theme="night">
+<html lang="fr" data-theme="night"${v2 ? ' class="v2"' : ''}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="${canon}">`}
-<meta name="theme-color" content="#140a22">
+<meta name="theme-color" content="${v2 ? '#040309' : '#140a22'}">
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${esc(M)}">
 <meta property="og:title" content="${esc(title)}">
@@ -122,9 +135,10 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${R}manifest.webmanifest">
-<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${R}assets/app.css">
+${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
+<link rel="stylesheet" href="${R}assets/app.css">${v2 ? `\n<link rel="stylesheet" href="${R}assets/home.css">` : ''}
 <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size}catch(e){}</script>
 ${schema.map(ld).join('\n')}
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -133,7 +147,7 @@ ${schema.map(ld).join('\n')}
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
   <a class="brand" href="${R}" aria-label="${esc(M)} — accueil">
-    <span class="brand-sun" aria-hidden="true"></span>
+    ${v2 ? BRAND_MARK : '<span class="brand-sun" aria-hidden="true"></span>'}
     <span class="brand-txt"><b>LEONIDA</b><i>guide</i></span>
   </a>
   <button class="search-trigger" type="button" data-open-search aria-label="Rechercher">
@@ -151,7 +165,7 @@ ${body}
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <a class="brand brand--foot" href="${R}"><span class="brand-sun" aria-hidden="true"></span><span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
+    <a class="brand brand--foot" href="${R}">${v2 ? BRAND_MARK.replace(/mk-g/g, 'mk-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
     <nav aria-label="Pied de page">
       <a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
     </nav>
@@ -181,6 +195,7 @@ ${tabs.map(([u, t, i]) => u === '#search'
   </div>
 </div>
 <div class="toast" role="status" aria-live="polite" hidden></div>
+${v2 ? ['gsap', 'ScrollTrigger', 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
 <script src="${R}assets/app.js" defer></script>
 ${scripts.map((s) => `<script src="${R}assets/${s}" defer></script>`).join('\n')}
 </body>
@@ -228,36 +243,118 @@ function astuceCard(a, R) {
   <span class="card-cta">Voir la solution ${icon('arrow-right')}</span></a>`;
 }
 
-// ---------- ACCUEIL ----------
+// ---------- ACCUEIL (direction artistique v2 : néon sombre, traits fins) ----------
+function mapSvgNeon(id = 'hm') {
+  const [x0, y0, w, h] = CARTE.viewBox;
+  const pts = (a) => a.map((p) => p.join(',')).join(' ');
+  const road = (r) => 'M' + r.map((p) => p.join(',')).join(' L');
+  const ns = 'vector-effect="non-scaling-stroke"';
+  const img = CARTE.image;
+  const regColor = (rid) => (rid === 'leonida-keys' ? CARTE.keysRegion.color : (CARTE.regions.find((r) => r.id === rid) || {}).color);
+  return `<svg class="hm-svg" viewBox="${x0} ${y0} ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Carte de Leonida">
+  <defs>
+    <pattern id="${id}-grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="rgba(45,226,230,.07)" stroke-width="1" ${ns}/></pattern>
+    <filter id="${id}-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="${id}-land"><polygon points="${pts(CARTE.land)}"/></clipPath>
+    <radialGradient id="${id}-vig" cx="50%" cy="50%" r="70%"><stop offset=".55" stop-color="#040309" stop-opacity="0"/><stop offset="1" stop-color="#040309" stop-opacity=".85"/></radialGradient>
+  </defs>
+  <rect x="-2000" y="-2000" width="${w + 4000}" height="${h + 4000}" fill="#05040b"/>
+  <rect x="-2000" y="-2000" width="${w + 4000}" height="${h + 4000}" fill="url(#${id}-grid)"/>
+  ${img ? `<image href="${esc(img.src)}" x="${img.x}" y="${img.y}" width="${img.width}" height="${img.height}" preserveAspectRatio="none"/>` : `
+  <polygon class="hm-land" points="${pts(CARTE.land)}" fill="#0a0a17"/>
+  <g clip-path="url(#${id}-land)">${CARTE.regions.map((r) => `<polygon class="hm-reg" data-region="${r.id}" points="${pts(r.pts)}" fill="${r.color}" fill-opacity=".03" stroke="${r.color}" stroke-opacity=".5" stroke-width="1" stroke-dasharray="3 7" ${ns}/>`).join('')}</g>
+  <g class="hm-roads">${CARTE.roads.map((r) => `<path d="${road(r)}" fill="none" stroke="#ffb547" stroke-opacity=".28" stroke-width="1" stroke-dasharray="6 6" ${ns}/>`).join('')}</g>
+  <polygon class="hm-coast-glow" points="${pts(CARTE.land)}" fill="none" stroke="#2de2e6" stroke-opacity=".55" stroke-width="2" filter="url(#${id}-glow)" ${ns}/>
+  <polygon class="hm-coast" points="${pts(CARTE.land)}" fill="none" stroke="#2de2e6" stroke-width="1.2" stroke-linejoin="round" ${ns}/>
+  ${CARTE.islands.map((i) => `<polygon class="hm-isl" points="${pts(i.pts)}" fill="${regColor(i.region)}" fill-opacity=".12" stroke="#2de2e6" stroke-width="1" ${ns}/>`).join('')}
+  <ellipse class="hm-lake" cx="${CARTE.lake.cx}" cy="${CARTE.lake.cy}" rx="${CARTE.lake.rx}" ry="${CARTE.lake.ry}" fill="#05040b" stroke="#2de2e6" stroke-width="1" ${ns}/>`}
+</svg>`;
+}
+function homeSun() {
+  // Soleil en traits fins : arcs concentriques + lignes d'horizon
+  const arcs = [150, 128, 106, 84].map((r, i) => `<path class="sun-arc" d="M${200 - r} 200a${r} ${r} 0 0 1 ${r * 2} 0" stroke="url(#sun-g)" stroke-opacity="${1 - i * .18}"/>`).join('');
+  const lines = [212, 226, 242, 260, 282].map((y, i) => `<line class="sun-line" x1="${30 + i * 8}" x2="${370 - i * 8}" y1="${y}" y2="${y}" stroke="url(#sun-h)" stroke-opacity="${.9 - i * .15}"/>`).join('');
+  return `<svg class="h-sun" viewBox="0 0 400 300" aria-hidden="true" fill="none" stroke-width="1.1" stroke-linecap="round">
+    <defs><linearGradient id="sun-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".6" stop-color="#ff2bd6"/><stop offset="1" stop-color="#9d7bff"/></linearGradient>
+    <linearGradient id="sun-h" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="380" y2="0"><stop offset="0" stop-color="#2de2e6" stop-opacity="0"/><stop offset=".5" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6" stop-opacity="0"/></linearGradient></defs>
+    ${arcs}${lines}</svg>`;
+}
+function homePalms() {
+  const palm = (tx, s, flip) => `<g transform="translate(${tx} 0) scale(${flip ? -s : s} ${s})"><path class="palm-l" d="M0 300C2 240 6 190 18 140"/><path class="palm-l" d="M18 140C4 116-22 108-46 118M18 140C10 112 14 88 30 72M18 140C30 116 54 104 80 110M18 140C36 132 58 138 72 156M18 140C0 136-18 146-26 166"/></g>`;
+  return `<svg class="h-palms" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true" fill="none" stroke="#ff2bd6" stroke-width="1.1" stroke-linecap="round">${palm(90, 1, false)}${palm(1110, 1.15, true)}${palm(1010, .75, false)}</svg>`;
+}
 {
   const p = '', R = R_(p);
-  const shortcuts = ['semer-la-police', 'argent-debut', 'sauvegarder'].map((s) => A[s]);
+  const H = ACCUEIL;
+  const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length };
+  const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
+  const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
+  const maj = site.majLe.split('-').reverse().join('.');
+  const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : ''}" href="${R}${t.href}" style="--c:${t.couleur}" data-h="tile">
+      <span class="ht-idx">0${i + 1}</span>
+      <span class="ht-ico">${icon(t.icon)}</span>
+      <span class="ht-txt"><b>${esc(t.label)}</b><small>${esc(fill(t.sousTitre, t.compteur))}</small></span>
+      <span class="ht-go" aria-hidden="true">${icon('arrow-right')}</span>
+    </a>`).join('');
   const body = `
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true"><span class="sun"></span><span class="hz"></span>${palms()}</div>
-  <div class="wrap hero-in">
-    <p class="kicker" data-reveal>${icon('pin')}Leonida · GTA 6</p>
-    <h1 class="h1 h1--hero" data-reveal>Que veux-tu<br><em>trouver ?</em></h1>
-    <button class="hero-search" type="button" data-open-search data-reveal>${icon('search')}<span>Une voiture, une mission, un lieu…</span><span class="hero-search-go">${icon('arrow-right')}</span></button>
-    <div class="tiles tiles--home" data-reveal-group>
-      ${tile({ href: `${R}astuces/`, ic: 'bolt', label: 'Je cherche une astuce', sub: `${ASTUCES.length} solutions`, color: '#ff2d87', big: true })}
-      ${tile({ href: `${R}vehicules/`, ic: 'car', label: 'Je cherche un véhicule', sub: `${VEHICULES.length} fiches`, color: '#ff9a1f' })}
-      ${tile({ href: `${R}carte/`, ic: 'map', label: 'Voir la carte', sub: `${features.length} repères`, color: '#19d3e3' })}
-      ${tile({ href: `${R}encyclopedie/`, ic: 'book', label: 'Comprendre le jeu', sub: 'Personnages, lieux…', color: '#9b6bff' })}
-      ${tile({ href: `${R}actualites/`, ic: 'news', label: 'Dernières infos', sub: fmtDate(ACTUS[0].date), color: '#3ddc84' })}
-    </div>
-    <p class="hint" data-reveal>${icon('info')}Tu ne sais pas où aller ? Choisis une catégorie.</p>
+<section class="h-hero" aria-labelledby="h-title">
+  <div class="h-bg" aria-hidden="true">
+    <div class="h-glow"></div>
+    ${homeSun()}
+    <div class="h-floor"><div class="h-floor-grid"></div></div>
+    ${homePalms()}
+  </div>
+  <div class="wrap h-in">
+    <p class="h-kicker h-anim"><span class="h-dot"></span>${esc(H.hero.kicker)}<span class="h-sep">/</span>MAJ ${maj}</p>
+    <h1 class="h-title" id="h-title">${H.hero.titre.map((l) => `<span class="h-line h-line--${l.style}"${l.style === 'neon' ? ` data-text="${esc(l.texte)}"` : ''}>${esc(l.texte)}</span>`).join('')}</h1>
+    <button class="h-search h-anim" type="button" data-open-search aria-label="${esc(H.hero.recherche.label)}">
+      ${icon('search')}
+      <span class="h-search-ph"><span data-typer data-words='${esc(JSON.stringify(H.hero.recherche.suggestionsAnimees))}'>${esc(H.hero.recherche.placeholder)}</span><i class="h-caret"></i></span>
+      <kbd>/</kbd>
+      <span class="h-search-go">${icon('arrow-right')}</span>
+    </button>
+    <nav class="h-quick h-anim" aria-label="Recherches rapides">${H.hero.raccourcis.map((r) => `<a href="${R}recherche/?q=${encodeURIComponent(r.q)}" data-q="${esc(r.q)}">${icon(r.icon)}${esc(r.label)}</a>`).join('')}</nav>
+    <nav class="h-tiles" aria-label="Catégories">${tilesHtml}</nav>
+    <p class="h-help h-anim">${icon('info')}${esc(H.aide)}</p>
   </div>
 </section>
-<section class="wrap now" aria-labelledby="now-t">
-  <h2 id="now-t" class="h3">${icon('bolt')}En ce moment</h2>
-  <div class="rail" data-reveal-group>${shortcuts.map((a) => astuceCard(a, R)).join('')}</div>
+
+<section class="wrap h-map" aria-labelledby="hm-title">
+  <header class="h-head">
+    <p class="h-kicker"><span class="h-dot h-dot--c"></span>${esc(H.carte.kicker)}</p>
+    <h2 class="h-h2" id="hm-title">${esc(H.carte.titre)}</h2>
+    <p class="h-lead">${esc(H.carte.texte)}</p>
+  </header>
+  <div class="hm" data-homemap data-center="${H.carte.vueInitiale.centre.join(',')}" data-zoom="${H.carte.vueInitiale.zoom}">
+    <div class="hm-stage" tabindex="0" aria-label="Carte interactive : glisse pour naviguer, + et − pour zoomer">
+      ${mapSvgNeon()}
+      <div class="hm-layer"></div>
+    </div>
+    <div class="hm-legend" role="group" aria-label="Afficher">${site.categories.carte.map((c) => `<button type="button" class="hm-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}</button>`).join('')}</div>
+    <div class="hm-ctrl">
+      <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
+      <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
+      <button type="button" class="hm-btn" data-z="reset" aria-label="Recentrer">${icon('expand')}</button>
+    </div>
+    <p class="hm-hint" hidden>Ctrl + molette pour zoomer</p>
+    <div class="hm-pop" hidden></div>
+    <span class="hm-corner hm-corner--tl"></span><span class="hm-corner hm-corner--tr"></span><span class="hm-corner hm-corner--bl"></span><span class="hm-corner hm-corner--br"></span>
+  </div>
+  <a class="nbtn nbtn--primary" href="${R}${H.carte.cta.href}"><span>${esc(H.carte.cta.label)}</span><i>${icon('arrow-right')}</i></a>
+</section>
+
+<section class="wrap h-now" aria-labelledby="now-title">
+  <header class="h-head h-head--row"><p class="h-kicker"><span class="h-dot h-dot--g"></span>${esc(H.enCeMoment.titre)}</p><a class="nbtn nbtn--ghost nbtn--sm" href="${R}astuces/"><span>Toutes les astuces</span><i>${icon('arrow-right')}</i></a></header>
+  <h2 class="sr-only" id="now-title">${esc(H.enCeMoment.titre)}</h2>
+  <ol class="h-rows">${shortcuts.map((a, i) => { const c = cat('astuces', a.cat); return `<li><a class="h-row" href="${R}astuces/${a.slug}/" style="--c:${c.color === '#ff3d6e' ? '#ff2bd6' : c.color}"><span class="h-row-n">0${i + 1}</span><span class="h-row-ico">${icon(a.icon)}</span><span class="h-row-t"><small>${esc(c.nom)} · ${dureeNom(a.duree)}</small><b>${esc(a.court)}</b></span><span class="h-row-go">${icon('arrow-right')}</span></a></li>`; }).join('')}</ol>
 </section>`;
   emit(p, layout({
-    p, title: `Guides GTA 6 : astuces, véhicules et carte | ${M}`,
-    desc: 'Trouvez vite une astuce GTA 6, un véhicule ou un lieu grâce à une recherche simple, des filtres utiles et une carte interactive.',
-    cls: 'home', body,
-    schema: [{ '@context': 'https://schema.org', '@type': 'WebSite', name: M, url: site.url + '/', inLanguage: 'fr', potentialAction: { '@type': 'SearchAction', target: `${site.url}/recherche/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }]
+    p, title: H.meta.title, desc: H.meta.description, cls: 'home', body, v2: true, scripts: ['home.js'],
+    schema: [
+      { '@context': 'https://schema.org', '@type': 'WebSite', name: M, url: site.url + '/', inLanguage: 'fr-FR', potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${site.url}/recherche/?q={search_term_string}` }, 'query-input': 'required name=search_term_string' } },
+      { '@context': 'https://schema.org', '@type': 'Organization', name: M, url: site.url + '/', logo: `${site.url}/favicon.svg` },
+      { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Rubriques du guide', itemListElement: H.tuiles.map((t, i) => ({ '@type': 'SiteNavigationElement', position: i + 1, name: t.label, url: `${site.url}/${t.href}` })) }
+    ]
   }));
 }
 

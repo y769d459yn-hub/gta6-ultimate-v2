@@ -1,0 +1,45 @@
+{
+  "$schema": "./schemas/accueil.schema.json",
+  "version": 1,
+  "meta": {
+    "title": "Guides GTA 6 : astuces, véhicules et carte | Leonida Guide",
+    "description": "Trouvez vite une astuce GTA 6, un véhicule ou un lieu grâce à une recherche simple, des filtres utiles et une carte interactive."
+  },
+  "hero": {
+    "kicker": "Leonida · GTA VI",
+    "titre": [
+      { "texte": "Que veux-tu", "style": "plein" },
+      { "texte": "trouver ?", "style": "neon" }
+    ],
+    "recherche": {
+      "label": "Rechercher dans le guide",
+      "placeholder": "Une voiture, une mission, un lieu…",
+      "suggestionsAnimees": ["Semer la police…", "Pegassi Infernus…", "Gagner de l'argent vite…", "Sauvegarder sa partie…", "Voyage rapide…"]
+    },
+    "raccourcis": [
+      { "label": "Police", "q": "semer la police", "icon": "siren" },
+      { "label": "Argent", "q": "argent rapide", "icon": "money" },
+      { "label": "Sauvegarde", "q": "sauvegarder", "icon": "save" },
+      { "label": "Triche", "q": "code de triche", "icon": "code" }
+    ]
+  },
+  "tuiles": [
+    { "id": "astuces", "label": "Je cherche une astuce", "sousTitre": "{n} solutions", "compteur": "astuces", "href": "astuces/", "icon": "bolt", "couleur": "#ff2bd6", "taille": "large" },
+    { "id": "vehicules", "label": "Un véhicule", "sousTitre": "{n} fiches", "compteur": "vehicules", "href": "vehicules/", "icon": "car", "couleur": "#ffb547", "taille": "normale" },
+    { "id": "carte", "label": "Voir la carte", "sousTitre": "{n} repères", "compteur": "reperes", "href": "carte/", "icon": "map", "couleur": "#2de2e6", "taille": "normale" },
+    { "id": "encyclopedie", "label": "Comprendre le jeu", "sousTitre": "Personnages, lieux…", "compteur": null, "href": "encyclopedie/", "icon": "book", "couleur": "#9d7bff", "taille": "normale" },
+    { "id": "actualites", "label": "Dernières infos", "sousTitre": "{date}", "compteur": "actualites", "href": "actualites/", "icon": "news", "couleur": "#39ff88", "taille": "normale" }
+  ],
+  "aide": "Tu ne sais pas où aller ? Choisis une catégorie.",
+  "carte": {
+    "kicker": "Carte interactive",
+    "titre": "Explore Leonida",
+    "texte": "Glisse pour naviguer, pince ou utilise + et − pour zoomer. Touche un repère pour l'ouvrir.",
+    "cta": { "label": "Ouvrir la carte complète", "href": "carte/" },
+    "vueInitiale": { "centre": [510, 650], "zoom": 1 }
+  },
+  "enCeMoment": {
+    "titre": "En ce moment",
+    "astuces": ["semer-la-police", "argent-debut", "sauvegarder"]
+  }
+}
