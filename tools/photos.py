@@ -37,6 +37,7 @@ CHOIX = {
     'maibatsu-penumbra-shirley': ('images/vehicles/maibatsu-penumbra.jpg', '', 1),
     'pegassi-tempesta': ('images/vehicles/pegassi-police-tempesta.jpg', 'Version police montrée', 1),
     'granforma-zorrusso': ('images/vehicles/granforma-zorrusso.jpg', '', 1),
+    'jets-militaires': ('images/locations/mile-zero-air-station.jpg', 'Jet sur la base de Mile Zero', 1.1, (250, 350, 1850, 1250)),
 }
 
 ORIGINES = {}
@@ -48,14 +49,15 @@ def credit(src):
     s = ORIGINES.get(src, '')
     url = next((w.strip('",') for w in s.split() if w.startswith('http')), '')
     nom = 'Rockstar Games'
-    for dom, n in [('gtabase.com', 'GTABase'), ('tracker.gg', 'Tracker.gg'), ('gta.wiki', 'GTA Wiki')]:
-        if dom in url: nom = f'Rockstar Games, via {n}'
+    for dom, n in [('pcgamer.com', 'PC Gamer'), ('gtabase.com', 'GTABase'), ('tracker.gg', 'Tracker.gg'), ('gta.wiki', 'GTA Wiki')]:
+        if dom in url: nom = 'Capture du jeu, via PC Gamer' if n == 'PC Gamer' else f'Rockstar Games, via {n}'
     return nom, url
 
 os.makedirs(OUT, exist_ok=True)
 data = {}
-for slug, (src, note, lum) in CHOIX.items():
+for slug, (src, note, lum, *crop) in CHOIX.items():
     im = Image.open(os.path.join(SRC, src)).convert('RGB')
+    if crop: im = im.crop(crop[0])
     if lum != 1: im = ImageEnhance.Brightness(im).enhance(lum)
     im.thumbnail((960, 960))
     im.save(os.path.join(OUT, slug + '.webp'), 'WEBP', quality=74, method=6)
