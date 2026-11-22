@@ -54,8 +54,7 @@ Site indépendant, non affilié à Rockstar Games ni à Take-Two. Aucune image d
 
 ## Catalogue complet des véhicules
 
-En plus des 31 fiches détaillées (avec emplacement), la page Véhicules liste tous les véhicules confirmés de GTA 6 (336 de plus) : photo, marque, classe, vraie voiture d'origine, places et « comment l'obtenir » quand c'est documenté. Un toucher ouvre ses infos.
+La page Véhicules range les 313 véhicules confirmés de GTA 6 en 19 catégories (Supercars, Sportives, Muscle cars, SUV, Motos, Bateaux, Avions, Police…). Dans chaque catégorie, les 31 véhicules du guide dont l'emplacement est connu passent en premier. Un toucher sur un véhicule du catalogue ouvre ses infos : photo, présentation, marque, vraie voiture d'origine, places, transmission, poids, autres jeux et « comment l'obtenir » quand c'est documenté.
 
-- Sources : GTABase (véhicules confirmés par classe) et gta6guide.fr (fiches), relevés le 22/11/2026 dans `vendor/catalogue/`.
-- `python3 tools/catalogue.py <dépôt gta6-hq> [--images]` fusionne les deux sources, écarte les doublons et nos 31 fiches, choisit la meilleure photo (`src/catalogue/`) et écrit `data/catalogue.json`. Il complète aussi nos fiches (marque, classe, inspiration).
-
+- Sources : fiches GTABase (`vendor/catalogue/gtabase-fiches.json`) et gta6guide.fr (`vendor/catalogue/gta6guide.json`), relevées le 22/11/2026.
+- `python3 tools/catalogue.py <dépôt gta6-hq> <cache images> [--images]` fusionne les sources, range chaque véhicule dans sa catégorie, compare toutes les photos disponibles (GTABase, gta6-hq, gta6guide.fr) et garde la plus nette. Les photos floues, trop sombres ou où le véhicule est masqué sont écartées à la main (`PHOTOS_REJETEES`) : le véhicule garde alors sa silhouette.

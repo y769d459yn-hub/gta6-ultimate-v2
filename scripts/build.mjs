@@ -521,42 +521,54 @@ function vehCard(v, R) {
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
 }
+const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classiques': 'Sportive classique', 'Muscle cars': 'Muscle car', 'Coupés': 'Coupé', 'Berlines': 'Berline', 'Motos': 'Moto', 'Vélos': 'Vélo', 'Bateaux': 'Bateau', 'Hélicoptères': 'Hélicoptère', 'Avions': 'Avion', 'Police et urgences': 'Urgences', 'Militaires': 'Militaire', 'Vans et fourgons': 'Van', 'Utilitaires': 'Utilitaire', 'Industriels': 'Industriel', 'Taxis, bus et service': 'Service' };
 function catCard(x, R) {
   const c = cat('vehicules', x.type);
   const txt = norm([x.nom, x.classe, c.nom, x.inspiration || '', x.fabricant || ''].join(' '));
   const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}" loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
-  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-zone="" data-dispo="" data-map="0" data-alpha="${esc(norm(x.nom))}" data-text="${esc(txt)}" data-id="${x.slug}" aria-haspopup="dialog">
-  <span class="veh-art">${visu}<span class="veh-type">${esc(x.classe)}</span></span>
-  <span class="card-body"><span class="card-kicker">${esc(c.nom)}</span><b class="card-title">${esc(x.nom)}</b>
-  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}</span></span>
+  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-map="0" data-text="${esc(txt)}" aria-haspopup="dialog">
+  <span class="veh-art">${visu}<span class="veh-type">${esc(UN[x.classe] || x.classe)}</span></span>
+  <span class="card-body"><span class="card-kicker">${esc(x.fabricant || c.nom)}</span><b class="card-title">${esc(x.modele || x.nom)}</b>
+  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}${x.obtenir ? `<span class="pill pill--ok">${icon('pin')}Où l'obtenir</span>` : ''}</span></span>
   <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></button>`;
 }
 {
   const p = 'vehicules/', R = R_(p);
-  const TOUS = [...VEHICULES.map((v) => ({ type: v.type })), ...CATALOGUE.vehicules];
-  const zones = [...new Set(VEHICULES.map((v) => { const l = L[v.lieu]; return l ? (l.type === 'region' ? l.id : l.region) : null; }).filter(Boolean))];
-  const body = `<section class="wrap section" data-list data-page-size="24">
+  const GRP = CATALOGUE.groupes || [];
+  const grpDe = (v) => (CATALOGUE.fiches[v.slug] || {}).groupe || 'service';
+  // une carte par véhicule, rangée dans sa catégorie : nos fiches (emplacement connu) d'abord, puis les photos nettes, puis le reste
+  const cartes = {};
+  for (const v of VEHICULES) (cartes[grpDe(v)] ||= []).push({ o: 0, n: v.nom, html: vehCard(v, R).replace('class="card card--veh"', `class="card card--veh card--fiche" data-grp="${grpDe(v)}" data-photo="1" data-known="1"`) });
+  for (const x of CATALOGUE.vehicules) (cartes[x.groupe] ||= []).push({ o: x.obtenir ? 1 : x.img ? 2 : 3, n: x.nom, html: catCard(x, R) });
+  const groupes = GRP.filter((g) => cartes[g.id]);
+  const total = VEHICULES.length + CATALOGUE.vehicules.length;
+  const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
+  const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead"><b>${TOUS.length} véhicules</b> : ${VEHICULES.length} avec leur emplacement, et tous les autres véhicules confirmés du jeu. Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
+  <p class="lead veh-lead"><b>${total} véhicules</b> rangés par catégorie. Dans chaque catégorie, ceux dont on sait où les trouver passent en premier. Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
-  <div class="doors doors--5" role="group" aria-label="Type" data-filter="cat">
-    ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${TOUS.filter((v) => v.type === c.id).length}</small></button>`).join('')}
+  <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
+    ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
   </div>
   <div class="filterbar">
-    ${chipGroup('zone', 'Zone', zones.map((z) => ({ v: z, n: REG[z].nom })), { all: 'Toutes zones' })}
-    ${chipGroup('dispo', 'Disponibilité', [{ v: 'confirme', n: 'Confirmé' }, { v: 'a-verifier', n: 'À vérifier' }], { all: 'Tout' })}
-    <button class="chip chip--toggle" type="button" data-toggle="map" aria-pressed="false">${icon('map')}Sur la carte</button>
+    <button class="chip chip--toggle" type="button" data-vtoggle="known" aria-pressed="false">${icon('pin')}Emplacement connu</button>
+    <button class="chip chip--toggle" type="button" data-vtoggle="photo" aria-pressed="false">${icon('eye')}Avec photo</button>
+    <button class="chip chip--toggle" type="button" data-vtoggle="map" aria-pressed="false">${icon('map')}Sur la carte</button>
   </div>
-  <p class="count-line" data-count></p>
-  <div class="grid" data-items>${VEHICULES.map((v) => vehCard(v, R)).join('')}${CATALOGUE.vehicules.map((x) => catCard(x, R)).join('')}</div>
+  <nav class="vjump" aria-label="Aller à une catégorie">${groupes.map((g) => `<a href="#cat-${g.id}" data-jump="${g.id}">${esc(g.nom)}<small>${cartes[g.id].length}</small></a>`).join('')}</nav>
+  <p class="count-line" data-vcount aria-live="polite"></p>
+  ${groupes.map((g) => `<section class="vgrp" id="cat-${g.id}" data-vgrp="${g.id}" data-type="${g.type}" aria-labelledby="t-${g.id}">
+    <h2 class="vgrp-h" id="t-${g.id}">${esc(g.nom)} <small data-vn>${cartes[g.id].length}</small></h2>
+    <div class="grid">${cartes[g.id].sort((a, b) => a.o - b.o || a.n.localeCompare(b.n, 'fr')).map((c) => c.html).join('')}</div>
+    <button class="btn btn--ghost vgrp-more" type="button" data-vmore hidden>${icon('plus')}<span></span></button>
+  </section>`).join('')}
+  <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
   <dialog class="vdlg" aria-labelledby="vdlg-t"><div class="vdlg-in" data-vdlg></div></dialog>
-  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, o: x.obtenir, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
-  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr.</span></p>
-  ${emptyState('Aucun véhicule ne correspond. Essaie un autre mot.', R, ['Tout voir', 'vehicules/'])}
-  ${moreBtn}
+  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
+  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, voitures, motos et emplacements', desc: `Les ${TOUS.length} véhicules confirmés de GTA 6 : photo, marque, classe, vraie voiture d'origine et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète par catégorie, photos et emplacements', desc: `Les ${total} véhicules confirmés de GTA 6 rangés par catégorie : photo, marque, vraie voiture d'origine, caractéristiques et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -585,6 +597,7 @@ for (const v of VEHICULES) {
     <div><dt>${icon('shield')}Disponibilité</dt><dd>${esc(statut(v.dispo).nom)}</dd></div>
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].fabricant ? `<div><dt>${icon('badge')}Marque</dt><dd>${esc(CATALOGUE.fiches[v.slug].fabricant)}${CATALOGUE.fiches[v.slug].classe ? ' · ' + esc(CATALOGUE.fiches[v.slug].classe) : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
+    ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
     <div id="ou"><dt>${icon('pin')}Emplacement</dt><dd>${l ? `<b>${esc(l.nom)}</b> — ` : '<b>Inconnu</b> — '}${esc(v.emplacement)}</dd></div>
   </dl>
   <section class="steps-wrap" aria-labelledby="ob-t"><h2 id="ob-t" class="h3">${icon('list')}Comment l'obtenir</h2>
