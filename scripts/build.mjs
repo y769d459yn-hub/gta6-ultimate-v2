@@ -61,6 +61,9 @@ function ref(slug) {
 
 // ---------- positions carte (unités monde GTADB : x est, y nord) ----------
 const TUILES = read('tuiles.json');
+const VIGN = new Set(fs.existsSync(path.join(ROOT, 'data', 'vignettes.json')) ? read('vignettes.json').ids : []);
+// url() dans une variable CSS est résolue par rapport à la feuille de style (assets/) : chemin relatif à assets/
+const vign = (id) => (VIGN.has(id) ? `../vignettes/${id}.webp` : null);
 const GTADB_RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'gtadb', 'landmarks.json'), 'utf8'));
 // Lieux communautaires : [adresse, [x, y], …, tags (index 6)]
 const GTADB = Object.entries(GTADB_RAW).filter(([, v]) => v[1] && v[1].length === 2).map(([id, v]) => ({ id, adr: v[0] || '', x: v[1][0], y: v[1][1], tags: v[6] || [] }));
@@ -120,7 +123,10 @@ const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'ca
 
 // ---------- layout ----------
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
-function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = false, styles = [] }) {
+function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [] }) {
+  if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
+  if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
+  const deco = v2 && cls !== 'home' && cls !== 'p-atlas' ? `<div class="pg-deco" aria-hidden="true">${homeSun()}${homePalms()}</div>` : '';
   const depth = p.split('/').filter(Boolean).length;
   const R = depth ? '../'.repeat(depth) : './';
   const canon = `${site.url}/${p}`;
@@ -176,6 +182,7 @@ ${schema.map(ld).join('\n')}
   </div>
 </header>
 <main id="main" class="page">
+${deco}
 ${crumbHtml}
 ${body}
 </main>
@@ -281,7 +288,8 @@ function homePalms() {
   const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
   const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
   const maj = site.majLe.split('-').reverse().join('.');
-  const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : ''}" href="${R}${t.href}" style="--c:${t.couleur}" data-h="tile">
+  const tileImg = { carte: vign('vice-city', R), vehicules: vign('v-pegassi-infernus', R) };
+  const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : ''}${tileImg[t.id] ? ' ht--img' : ''}" href="${R}${t.href}" style="--c:${t.couleur}${tileImg[t.id] ? `;--img:url(${tileImg[t.id]})` : ''}" data-h="tile">
       <span class="ht-idx">0${i + 1}</span>
       <span class="ht-ico">${icon(t.icon)}</span>
       <span class="ht-txt"><b>${esc(t.label)}</b><small>${esc(fill(t.sousTitre, t.compteur))}</small></span>
@@ -412,6 +420,7 @@ for (const a of ASTUCES) {
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}astuces/?cat=${a.cat}">${icon(c.icon)}${esc(c.nom)}</a><span class="pill">${icon('clock')}${dureeNom(a.duree)}</span><span class="pill">${niveauNom(a.niveau)}</span>${badge(a.statut)}</div>
     <h1 class="h1 h1--fiche">${esc(a.titre)}</h1>
   </header>
+  ${mapIds.length && vign(mapIds[0], R) ? `<a class="map-banner" href="${R}carte/?focus=${mapIds[0]}" style="--img:url(${vign(mapIds[0], R)})"><i></i><span>${icon('map')}Voir l'endroit sur la carte</span><small>Position approximative</small></a>` : ''}
   <section class="answer" id="solution" aria-label="Réponse">
     <span class="answer-k">${icon('bolt')}Réponse</span>
     <p>${esc(a.reponse)}</p>
@@ -455,7 +464,7 @@ function vehCard(v, R) {
   const reg = l ? (l.type === 'region' ? l.id : l.region) : '';
   const txt = norm([v.nom, v.sous, c.nom, v.emplacement, v.kw.join(' '), l ? l.nom : ''].join(' '));
   return `<a class="card card--veh" href="${R}vehicules/${v.slug}/" style="--c:${v.color || c.color}" data-cat="${v.type}" data-zone="${reg || ''}" data-dispo="${v.dispo}" data-map="${vehOnMap(v.slug) ? 1 : 0}" data-alpha="${esc(norm(v.nom))}" data-text="${esc(txt)}" data-id="${v.slug}">
-  <span class="veh-art">${icon(c.icon, 'ic-xl')}<span class="veh-type">${esc(v.sous)}</span></span>
+  <span class="veh-art"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${icon(c.icon, 'ic-xl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</span>
   <span class="card-body"><span class="card-kicker">${esc(c.nom)}</span><b class="card-title">${esc(v.nom)}</b>
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
@@ -491,7 +500,7 @@ for (const v of VEHICULES) {
   const sameReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id) && !similar.includes(x)).slice(0, 2) : [];
   const body = `<article class="wrap fiche" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    <div class="veh-hero">${icon(c.icon, 'ic-xxl')}<span class="veh-type">${esc(v.sous)}</span></div>
+    <div class="veh-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${icon(c.icon, 'ic-xxl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</div>
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a>${badge(v.dispo)}</div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
   </header>
@@ -552,7 +561,9 @@ for (const v of VEHICULES) {
     const color = l.type === 'region' ? (CARTE.regions.find((r) => r.id === l.id) || {}).couleur || c.color : c.color;
     const m = onMap(l.id);
     const txt = norm([l.nom, l.desc, l.kw.join(' '), reg ? reg.nom : '', c.nom].join(' '));
+    const vg = vign(l.id, R);
     return `<article class="card card--lieu" id="${l.id}" style="--c:${color}" data-cat="${l.type}" data-zone="${l.region || ''}" data-ver="${l.statut === 'confirme' ? 'oui' : 'non'}" data-map="${m ? 1 : 0}" data-alpha="${esc(norm(l.nom))}" data-text="${esc(txt)}">
+    ${vg ? `<a class="card-map" href="${R}carte/?focus=${l.id}" style="--img:url(${vg})" aria-label="Voir ${esc(l.nom)} sur la carte"><i></i></a>` : ''}
     <span class="card-ico">${icon(l.icon)}</span>
     <span class="card-body"><span class="card-kicker">${esc(c.nom.replace(/s$/, '').replace("Points d'intérêt", "Point d'intérêt"))}${reg && l.type !== 'region' ? ` · ${esc(reg.nom)}` : ''}</span><b class="card-title">${esc(l.nom)}</b>
     <span class="card-desc">${esc(l.desc)}${l.acces ? ` <i>${icon('compass')}${esc(l.acces)}</i>` : ''}</span>
@@ -617,6 +628,7 @@ for (const e of ENC) {
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}encyclopedie/?cat=${e.cat}">${icon(c.icon)}${esc(c.nom)}</a>${badge(e.statut)}</div>
     <h1 class="h1 h1--fiche">${esc(e.nom)}</h1>
   </header>
+  ${lieu && vign(e.lieu, R) ? `<a class="map-banner" href="${R}carte/?focus=${e.lieu}" style="--img:url(${vign(e.lieu, R)});--c:${c.color}"><i></i><span>${icon('map')}${esc(e.nom)} sur la carte</span><small>Carte communautaire GTADB</small></a>` : ''}
   <section class="answer"><span class="answer-k">${icon('info')}En bref</span><p>${esc(e.bref)}</p></section>
   <div class="actions">
     ${lieu ? `<a class="btn btn--primary" href="${R}carte/?focus=${e.lieu}">${icon('map')}Voir sur la carte</a>` : ''}
@@ -722,7 +734,6 @@ for (const a of ACTUS) {
     <a class="acc-card" href="${R}favoris/" style="--c:#ff2d87"><span class="tile-ico">${icon('heart')}</span><b>Mes favoris</b><span class="acc-big" data-acc-favs>0</span><small>enregistrés</small></a>
     <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico">${icon('trophy')}</span><b>Ma progression</b><div class="ring" data-ring style="--p:0"><span data-acc-done>0</span><small>/ ${ASTUCES.length}</small></div><small>astuces marquées « fait »</small><button class="link-btn" type="button" data-reset-done>Remettre à zéro</button></div>
     <div class="acc-card acc-card--prefs" style="--c:#9b6bff"><span class="tile-ico">${icon('sliders')}</span><b>Mes préférences</b>
-      <p class="sheet-l">Thème</p><div class="chips" data-pref="theme"><button class="chip" data-value="auto" aria-pressed="false">${icon('refresh')}Auto</button><button class="chip" data-value="night" aria-pressed="false">${icon('moon')}Nuit</button><button class="chip" data-value="day" aria-pressed="false">${icon('sun')}Jour</button></div>
       <p class="sheet-l">Animations</p><div class="chips" data-pref="motion"><button class="chip" data-value="on" aria-pressed="false">Oui</button><button class="chip" data-value="off" aria-pressed="false">Réduites</button></div>
       <p class="sheet-l">Taille du texte</p><div class="chips" data-pref="size"><button class="chip" data-value="" aria-pressed="false">Normale</button><button class="chip" data-value="l" aria-pressed="false">Grande</button></div>
     </div>
@@ -833,7 +844,7 @@ write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUT
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
-  write(f.startsWith('tiles' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');

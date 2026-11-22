@@ -332,3 +332,7 @@
 @media (prefers-reduced-motion: reduce) {
   .v2 .h-floor-grid, .v2 .h-dot, .v2 .hm-dot::after, .v2 .h-caret { animation: none; }
 }
+
+/* Tuiles avec aperçu de la carte */
+.v2 .ht--img { background: linear-gradient(180deg, rgba(9, 8, 15, .5), rgba(9, 8, 15, .92) 75%), #050610 var(--img) center / cover; }
+.v2 .ht--img:hover { background: linear-gradient(180deg, rgba(9, 8, 15, .3), rgba(9, 8, 15, .88) 75%), #050610 var(--img) center / cover; }
