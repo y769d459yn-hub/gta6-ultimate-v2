@@ -51,3 +51,11 @@ Title et description par page, URL propres, canonical, Open Graph, JSON-LD (WebS
 
 ---
 Site indépendant, non affilié à Rockstar Games ni à Take-Two. Aucune image du jeu n'est utilisée : les pictogrammes et la carte sont des créations originales.
+
+## Catalogue complet des véhicules
+
+En plus des 31 fiches détaillées (avec emplacement), la page Véhicules liste tous les véhicules confirmés de GTA 6 (336 de plus) : photo, marque, classe, vraie voiture d'origine, places et « comment l'obtenir » quand c'est documenté. Un toucher ouvre ses infos.
+
+- Sources : GTABase (véhicules confirmés par classe) et gta6guide.fr (fiches), relevés le 22/11/2026 dans `vendor/catalogue/`.
+- `python3 tools/catalogue.py <dépôt gta6-hq> [--images]` fusionne les deux sources, écarte les doublons et nos 31 fiches, choisit la meilleure photo (`src/catalogue/`) et écrit `data/catalogue.json`. Il complète aussi nos fiches (marque, classe, inspiration).
+

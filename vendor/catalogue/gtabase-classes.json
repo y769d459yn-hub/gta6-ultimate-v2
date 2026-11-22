@@ -1,0 +1,2305 @@
+[
+ {
+  "classe": "boats",
+  "fabricant": "Seashark",
+  "nom": "Hydroblast",
+  "base": "Sea Doo RXT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Pegassi",
+  "nom": "Speeder",
+  "base": "Coeur 290 Nighthawk, Cherubini Classic 20",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Shitzu",
+  "nom": "Tropic",
+  "base": "Sea Ray 300 Sundancer",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Airgator",
+  "nom": "Airboat / Fanboat",
+  "base": "Panther Airboat",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Dingus",
+  "nom": "Como",
+  "base": "Rigid-hulled inflatable boat",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Dinka",
+  "nom": "Marquis",
+  "base": "Adjutor Yachts",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Shitzu",
+  "nom": "Squalo",
+  "base": "Chris-Craft Stinger 390x",
+  "route": "-  ·"
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Airgator",
+  "nom": "Airboat 09",
+  "base": "Diamondback Hunting & Fishing Airboat",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Clarion",
+  "base": "Cigarette 38 Top Gun and Cigarette 515",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Crest",
+  "nom": "Kayak",
+  "base": "Crescent Kayak, in several variants (Splashback, Ultralite, and Primo)",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Lure Predator",
+  "nom": "L35P Police Boat",
+  "base": "Contender 25T and Contender 24S boat",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Bombora",
+  "nom": "S23 CCS",
+  "base": "Contender 25 Bay",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Azimut 85",
+  "base": "Azimut 85",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Azimut Atlantis 45",
+  "base": "Azimut Atlantis 45",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Bavaria SR33",
+  "base": "Bavaria SR33",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "BTN Delmar",
+  "base": "BTN Delmar",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Lure Predator",
+  "nom": "L35P",
+  "base": "Contender 25T and Contender 24S boat",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Rugger",
+  "nom": "Rhode",
+  "base": "Contender 39ST",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Nagasaki",
+  "nom": "Tao",
+  "base": "Crownline 275 SS",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Cruise Ship",
+  "base": "Royal Caribbean International Voyager",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Frauscher 1017 GT",
+  "base": "Frauscher 1017 GT",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Highfield Sport 900",
+  "base": "Highfield Sport 900",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Calder",
+  "nom": "CB69",
+  "base": "Horizon Power Catamarans PC60",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Lurssen 73m Coral Ocean",
+  "base": "Lurssen 73m Coral Ocean",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "RB-S",
+  "base": "RB-S",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "RB-S II",
+  "base": "RB-S II",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Calder",
+  "nom": "Yakuruna",
+  "base": "Riva 86 Domino",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Shasa",
+  "base": "Sea Ray 350 Sundancer",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Seashark",
+  "nom": "Sedna",
+  "base": "Sea-Doo RXT-X 300",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Shipyard De Hoop Brion",
+  "base": "Shipyard De Hoop Brion",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Skater 388",
+  "base": "Skater 388",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Ferry",
+  "base": "Elliott Bay Design Group's Fisher Island Ferry (such as the Eagle, Pelican, Heron, and Flamingo ferries)",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Crusader Boats GFY",
+  "base": "2005 34' Crusader Boats GFY and Netwon 36' Dive Special",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "-",
+  "nom": "Fishing Boat",
+  "base": "Steiger Craft 31 Miami",
+  "route": null
+ },
+ {
+  "classe": "boats",
+  "fabricant": "Rugger",
+  "nom": "Rhode Police",
+  "base": "Contender 39ST",
+  "route": null
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Interstate",
+  "nom": "Benson '97",
+  "base": "International 4700 Delivery Truck Chassis",
+  "route": "228"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Interstate",
+  "nom": "Stockade '99",
+  "base": "International 4700 Series",
+  "route": "223"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "JoBuilt",
+  "nom": "Phantom Custom '81",
+  "base": "1984 GMC General with an Aerodynamic Sleeper Cab",
+  "route": "191"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Maibatsu",
+  "nom": "Mule",
+  "base": "Mitsubishi Fuso Canter (7th gen)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "JoBuilt",
+  "nom": "Phantom",
+  "base": "Peterbilt 359 EXHD",
+  "route": "-  ·"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "MTL",
+  "nom": "Packer",
+  "base": "1994 International 9000/9200",
+  "route": "-  ·"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Cartwright",
+  "nom": "Hauler",
+  "base": "Freightliner and Kenworth",
+  "route": "-  ·"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Cartwright",
+  "nom": "Biff",
+  "base": "Kenworth T800",
+  "route": "-  ·"
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Declasse",
+  "nom": "D7700",
+  "base": "Chevrolet Kodiak/GMC Topkick",
+  "route": null
+ },
+ {
+  "classe": "commercial",
+  "fabricant": "Maibatsu",
+  "nom": "Iota",
+  "base": "Isuzu Elf 250",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Übermacht",
+  "nom": "Apoc",
+  "base": "BMW M6 E63",
+  "route": "488"
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Willard",
+  "nom": "Lasso '90",
+  "base": "Buick Reatta Convertible",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Dundreary",
+  "nom": "Arcturus '93",
+  "base": "Lincoln Mark VIII",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Declasse",
+  "nom": "Akane",
+  "base": "Chevrolet Sonic",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Albany",
+  "nom": "DeVanity '59",
+  "base": "Cadillac Eldorado (1959)",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Sirius",
+  "nom": "Sungrazer '61",
+  "base": "1960-1961 Mercury Comet",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Übermacht",
+  "nom": "Sentinel XS",
+  "base": "BMW M3 E92",
+  "route": "-  ·"
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Buckingham",
+  "nom": "Windsor",
+  "base": "Rolls Royce Wraith",
+  "route": "-  ·"
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Übermacht",
+  "nom": "Apoc (Cabrio)",
+  "base": "BMW 6-Series E64",
+  "route": "-  ·"
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "-",
+  "nom": "Mercedes-Benz CLE Class (A236)",
+  "base": "Mercedes-Benz CLE Class (A236)",
+  "route": null
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Fathom",
+  "nom": "FR36",
+  "base": "Infiniti G35 (V35)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "coupes",
+  "fabricant": "Buckingham",
+  "nom": "Windsor Drop",
+  "base": "Rolls-Royce Ghost & Rolls-Royce Dawn",
+  "route": "-  ·"
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "Walter",
+  "nom": "Cruiser",
+  "base": "Beach Cruiser bike style, which was popular in the 1930s",
+  "route": "-  ·"
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "Tuff",
+  "nom": "BMX",
+  "base": "BMX bike",
+  "route": "-  ·"
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "PED",
+  "nom": "Scorcher",
+  "base": "Saracen Zen, Rockshox Domain 180mm",
+  "route": "-  ·"
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "-",
+  "nom": "Lombike",
+  "base": "CitiBike Miami E-Bikes",
+  "route": null
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "-",
+  "nom": "Zoot",
+  "base": "BIRD One rental e-scooter",
+  "route": null
+ },
+ {
+  "classe": "cycles",
+  "fabricant": "-",
+  "nom": "Endurex Race Bike",
+  "base": "Pinarello Dogma",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Interstate",
+  "nom": "Ambulance",
+  "base": "Chevrolet Express 3500 cab-chassis",
+  "route": "276"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Vapid",
+  "nom": "Police Lowline (Interceptor)",
+  "base": "Ford Police Interceptor Sedan (2013–2019), based on the Ford Taurus",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Vapid",
+  "nom": "Police Cruiser (Stanier LE)",
+  "base": "Ford Crown Victoria",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Bravado",
+  "nom": "Police Cruiser (Buffalo)",
+  "base": "Dodge Charger",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Buckingham",
+  "nom": "Police Maverick",
+  "base": "Eurocopter AS350B",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Bravado",
+  "nom": "Police Buffalo STX Pursuit",
+  "base": "2015 Dodge Charger",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Bravado",
+  "nom": "Police Gauntlet Interceptor",
+  "base": "2018 Dodge Challenger SRT Demon",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Brute",
+  "nom": "Police Riot",
+  "base": "Lenco BEAR",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Bottcher",
+  "nom": "Police Buzzard",
+  "base": "MH-6 Little Bird, with a livery similar to the Miami Police Department helicopters",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Lure Predator",
+  "nom": "L35P Police Boat",
+  "base": "Contender 25T and Contender 24S boat",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "MTL",
+  "nom": "Pumper",
+  "base": "2012 Pierce Arrow XT Rescue Pumper",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Western",
+  "nom": "Sovereign 107 Police",
+  "base": "Harley-Davidson Road King FLHP",
+  "route": "-  ·"
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Bravado",
+  "nom": "Bison 1800 (Police)",
+  "base": "Ram 1500 (DT)",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Vapid",
+  "nom": "Police Ghost (Stanier LE)",
+  "base": "Ford Crown Victoria",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Vapid",
+  "nom": "Montagne Pickup (Lifeguard)",
+  "base": "Ford Explorer Sport Trac",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Vapid",
+  "nom": "Police Montagne",
+  "base": "Ford Explorer (6th Gen)",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Dundreary",
+  "nom": "Police Landstalker XL",
+  "base": "Fourth generation Lincoln Navigator",
+  "route": null
+ },
+ {
+  "classe": "emergency",
+  "fabricant": "Declasse",
+  "nom": "Granger Police",
+  "base": "Chevrolet Suburban",
+  "route": null
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "Maverick",
+  "base": "Bell 206L Longranger",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "-",
+  "nom": "Sea Sparrow",
+  "base": "Sikorsky S-300 (formerly Hughes 300 and Schweizer 300), Aérospatiale Alouette II",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "SuperVolito",
+  "base": "Eurocopter EC145",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "Police Maverick",
+  "base": "Eurocopter AS350B",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Bottcher",
+  "nom": "Buzzard Attack Chopper",
+  "base": "MD Helicopters AH-6 Little Bird",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "Swift",
+  "base": "AgustaWestland AW109, Bell 222",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Bottcher",
+  "nom": "Police Buzzard",
+  "base": "MH-6 Little Bird, with a livery similar to the Miami Police Department helicopters",
+  "route": null
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "Valkyrie",
+  "base": "Bell UH-1Y Venom/UH-1 Iroquois Huey/212/412, Fenestron",
+  "route": "-  ·"
+ },
+ {
+  "classe": "helicopters",
+  "fabricant": "Buckingham",
+  "nom": "Volatus",
+  "base": "Airbus Helicopters H160",
+  "route": "-  ·"
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "HVY",
+  "nom": "Mixer",
+  "base": "Kenworth T800",
+  "route": "-  ·"
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "JoBuilt",
+  "nom": "Rubble",
+  "base": "Peterbilt 359 EXHD",
+  "route": "-  ·"
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "JoBuilt",
+  "nom": "Flatbed",
+  "base": "2004 Freightliner Century Class 112",
+  "route": "-  ·"
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "Dinka",
+  "nom": "B3000 Excavator",
+  "base": "Liebherr R954B HD-S and Samsung SE280LC-2",
+  "route": null
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "Brute",
+  "nom": "Tipper (6 wheels)",
+  "base": "Chevy Kodiak/GMC TopKick",
+  "route": "-  ·"
+ },
+ {
+  "classe": "industrial",
+  "fabricant": "HVY",
+  "nom": "Bulldozer",
+  "base": "Caterpillar 963D",
+  "route": "-  ·"
+ },
+ {
+  "classe": "military",
+  "fabricant": "Hauners",
+  "nom": "Rhino Tank",
+  "base": "M1 Abrams and Leopard 2A5",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Maibatsu",
+  "nom": "Sanchez",
+  "base": "2006-2009 Yamaha YZ450F, 2007 Kawasaki KX450F, Honda CRF450X",
+  "route": "520"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Maibatsu",
+  "nom": "Manchez",
+  "base": "500cc KTM",
+  "route": "495"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Dinka",
+  "nom": "Double-T",
+  "base": "Honda CBR",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Western",
+  "nom": "Nightblade",
+  "base": "Harley Davidson Night Rod Special / Harley Davidson Dyna Street Bob",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "LCC",
+  "nom": "Avarus",
+  "base": "Generica mostly-naked chopper",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Nagasaki",
+  "nom": "Carbon RS",
+  "base": "Ducati 1199, EBR 1190RS",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Western",
+  "nom": "Sovereign 107",
+  "base": "Harley Davidson Road King",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Western",
+  "nom": "Zombie Chopper",
+  "base": "Harley Davidson Fat Bob Custom, Iron 883",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Principe",
+  "nom": "Alvino V1",
+  "base": "Ducati Panigale V2 Sport Bike",
+  "route": null
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Dinka",
+  "nom": "Enduro '72",
+  "base": "Honda XL350, XR500 & CB Series",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Western",
+  "nom": "Sovereign 107 Police",
+  "base": "Harley-Davidson Road King FLHP",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Pegassi",
+  "nom": "Bati 801",
+  "base": "Ducati 848",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Taci",
+  "nom": "Ragno",
+  "base": "Piaggio Vespa LX and Primavera",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Nagasaki",
+  "nom": "Nimbe",
+  "base": "Yamaha BWs 125",
+  "route": null
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Maibatsu",
+  "nom": "Boomazoom",
+  "base": "Pride Maxima 3 Mobility Scooter",
+  "route": null
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "-",
+  "nom": "Suzuki GSX-R1000",
+  "base": "Suzuki GSX-R1000",
+  "route": null
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Principe",
+  "nom": "Lectro",
+  "base": "Ducati Streetfighter S, MV Agusta Brutale S",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Western",
+  "nom": "Cliffhanger",
+  "base": "Harley Davidson XR-750",
+  "route": "-  ·"
+ },
+ {
+  "classe": "motorcycles",
+  "fabricant": "Übermacht",
+  "nom": "FCR 1000",
+  "base": "BMW R100",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Bravado",
+  "nom": "Buffalo '19",
+  "base": "2015 Dodge Charger",
+  "route": "557"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Albany",
+  "nom": "Hermes '50",
+  "base": "Mercury Eight (1949)",
+  "route": "515"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Classique",
+  "nom": "Stallion '68",
+  "base": "68 - '69 & '70 - '71 Oldsmobile Cutlass, '70 Plymouth Hemi Barracuda",
+  "route": "492"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Dominator '65",
+  "base": "Ford Mustang (1st Gen)",
+  "route": null
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Bravado",
+  "nom": "Gauntlet Custom '69",
+  "base": "First generation Dodge Challenger",
+  "route": "463"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Ganado '70",
+  "base": "1970 Ford Ranchero and 1969–1970 Mercury Cougar",
+  "route": null
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Impaler SZ '95",
+  "base": "1994-1996 Chevrolet Impala SS",
+  "route": "441"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Picador '72",
+  "base": "Chevrolet El Camino",
+  "route": "440"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Tulip '72",
+  "base": "1972 Chevelle Malibu, 1972 Oldsmobile Cutlass Supreme",
+  "route": "439"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Imponte",
+  "nom": "Ruiner '82",
+  "base": "Pontiac Trans Am/Chevrolet Camaro",
+  "route": "431"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Sirius",
+  "nom": "Transgressor '67",
+  "base": "1970 Mercury Cougar",
+  "route": null
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Imponte",
+  "nom": "Phoenix '77",
+  "base": "Chevy Camaro, Pontiac Firebird (2nd generation)",
+  "route": "417"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Impaler '80",
+  "base": "Sixth generation Chevrolet Impala",
+  "route": "388"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Vamos '74",
+  "base": "Chevrolet Nova",
+  "route": "385"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Albany",
+  "nom": "Buccaneer '65",
+  "base": "Ford Fairlane, Buick Riviera",
+  "route": "384"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Dundreary",
+  "nom": "Chino '65",
+  "base": "1965 Lincoln Continental, 1965 Chrysler Imperial, 1970s Ford Thunderbird(s)",
+  "route": "384"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Tulip M-100 '78",
+  "base": "Fourth generation Chevrolet Malibu",
+  "route": "358"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Yosemite '67",
+  "base": "Chevrolet C10",
+  "route": "355"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Slamvan '56",
+  "base": "Rat Rodded 1953–1956 Ford F-Series (pickup form), 1950s Ford F-Series",
+  "route": "323"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Hustler '32",
+  "base": "1932 Ford Coupe",
+  "route": "308"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Moonbeam",
+  "base": "1985-1994 Chevrolet Astro/1985-1994 GMC Safari; KK Jeep Liberty",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Sabre Turbo",
+  "base": "Chevrolet Chevelle, Oldsmobile Cutlass",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Albany",
+  "nom": "Buccaneer Custom",
+  "base": "Ford Fairlane, Buick Riviera",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Dominator",
+  "base": "Ford Mustang",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Dominator ASP",
+  "base": "Ford Mustang SVT Cobra R (New Edge)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Dominator GTX",
+  "base": "2015-present Ford Mustang, seventh generation Dodge Charger, 2016-present Chevrolet Camaro ZL1, Ford Mustang GTT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Bravado",
+  "nom": "Gauntlet Hellfire",
+  "base": "2018 Dodge Challenger Demon, 5th Gen Chevrolet Camaro, 6th Gen Ford Mustang",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Declasse",
+  "nom": "Vigero ZX Convertible",
+  "base": "Chevrolet Camaro Gen VI",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Schyster",
+  "nom": "Deviant '72",
+  "base": "1972 AMC Javelin",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Vapid",
+  "nom": "Dominator GT",
+  "base": "2018-2023 Ford Mustang Convertible",
+  "route": "-  ·"
+ },
+ {
+  "classe": "muscle",
+  "fabricant": "Willard",
+  "nom": "Faction Custom Donk",
+  "base": "1982-1987 Buick Regal; Buick Grand National/T-Type/GNX",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Maibatsu",
+  "nom": "Sanchez",
+  "base": "2006-2009 Yamaha YZ450F, 2007 Kawasaki KX450F, Honda CRF450X",
+  "route": "520"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "BF",
+  "nom": "Injection '73",
+  "base": "VW \"Baja Bugs\"",
+  "route": "505"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Maibatsu",
+  "nom": "Manchez",
+  "base": "500cc KTM",
+  "route": "495"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Karin",
+  "nom": "Rebel '84",
+  "base": "Toyota Hilux",
+  "route": "391"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Declasse",
+  "nom": "Walton '81",
+  "base": "1991-1993 Chevrolet S-10",
+  "route": "379"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Bravado",
+  "nom": "Bison 900 '95 (Lifted)",
+  "base": "Dodge Ram (2nd Gen) in Monster Truck form",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Annis",
+  "nom": "Hellion '95",
+  "base": "Nissan Patrol Safari Y6,  Jeep Cherokee (XJ)",
+  "route": "326"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Declasse",
+  "nom": "Rancher '86",
+  "base": "Chevy Suburban",
+  "route": "315"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Nagasaki",
+  "nom": "Blazer",
+  "base": "Yamaha YFZ450",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Caracara",
+  "base": "Ford F-150, Hennessey VelociRaptor 6X6",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Mer-Can",
+  "nom": "Outlaw",
+  "base": "Can-Am Maverick X3 Turbo",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Sandking XL",
+  "base": "Ford Super Duty (3rd Gen)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Caracara 4x4",
+  "base": "2nd gen Ford F-150 Raptor (P552)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Dinka",
+  "nom": "Verus",
+  "base": "Polaris Sportsman MV850 and 570",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Liberator",
+  "base": "Ford Super Duty (4th Gen)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Declasse",
+  "nom": "Yosemite 1500",
+  "base": "Chevrolet Silverado (1st Gen)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Dominator '67 Buggy",
+  "base": "Ford Mustang (1st Gen), with lifted suspension",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Canis",
+  "nom": "Kamacho",
+  "base": "Jeep Crew Chief 715 concept",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Reclaimer",
+  "base": "2019-2023 Ford Ranger (T6)",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Montagne Pickup",
+  "base": "Ford Explorer Sport Trac",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Mammoth",
+  "nom": "Patriot '92",
+  "base": "Hummer H1 SUV",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Canis",
+  "nom": "Terminus",
+  "base": "Fourth generation Jeep Wrangler Rubicon (JL)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "-",
+  "nom": "Swamp Blaster",
+  "base": "Palm Beach Swamp Buggy",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Mer-Can",
+  "nom": "Blast",
+  "base": "Polaris Ranger",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Sandking XT",
+  "base": "Ford Super Duty (4th Gen)",
+  "route": null
+ },
+ {
+  "classe": "off-road",
+  "fabricant": "Vapid",
+  "nom": "Marshall",
+  "base": "Ford Super Duty (4th Gen)",
+  "route": null
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Mammoth",
+  "nom": "Dodo",
+  "base": "De Havilland Canada DHC-2 Beaver",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "-",
+  "nom": "Blimp",
+  "base": "Goodyear Aerospace GZ-20",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Western Company",
+  "nom": "Duster",
+  "base": "Stearman Model 75",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "-",
+  "nom": "Jet",
+  "base": "Boeing 747-400, 747-8I",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Lapwing",
+  "nom": "Mammatus",
+  "base": "Cessna 172 Skyhawk",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Buckingham",
+  "nom": "Shamal",
+  "base": "Learjet 45",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Lapwing",
+  "nom": "Mallard",
+  "base": "Extra EA-300",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Lapwing",
+  "nom": "Nimbus",
+  "base": "Cessna Citation X",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Mammoth",
+  "nom": "Streamer216",
+  "base": "de Havilland Canada DHC-6 Twin Otter",
+  "route": "-  ·"
+ },
+ {
+  "classe": "planes",
+  "fabricant": "Buckingham",
+  "nom": "Luxor",
+  "base": "Learjet 45",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Obey",
+  "nom": "Animus",
+  "base": "Audi A7 RS7 (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Karin",
+  "nom": "Feroci '98",
+  "base": "Lexus GS 300 (First-generation)",
+  "route": "487"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Declasse",
+  "nom": "Impaler '20",
+  "base": "Chevrolet Impala (10th Gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Vapid",
+  "nom": "Stanier '98",
+  "base": "Ford Crown Victoria",
+  "route": "438"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Karin",
+  "nom": "Asterope GZ",
+  "base": "Toyota Camry (XV30)",
+  "route": "412"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Willard",
+  "nom": "Grouse '92",
+  "base": "Buick Skylark (6th Gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Schyster",
+  "nom": "Woodland '85",
+  "base": "Chrysler LeBaron Town & Country station wagon (1986-1988)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Declasse",
+  "nom": "Parkland '71",
+  "base": "Buick Estate (1971-1976)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Albany",
+  "nom": "Emperor '85",
+  "base": "1977-1980 Cadillac Sedan de Ville (5th Gen) and 1986–1990 Cadillac Brougham",
+  "route": "305"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Vulcar",
+  "nom": "Ingot",
+  "base": "VW Passat wagon, Nissan Stagea",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Albany",
+  "nom": "Primo",
+  "base": "Late 80's Pontiac Bonneville",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Dundreary",
+  "nom": "Regina",
+  "base": "Chevy Caprice wagon",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Imponte",
+  "nom": "DF8-90",
+  "base": "Pontiac G6; Pontiac Grand Am; Pontiac Sunfire; Honda Civic; Pontiac Bonneville; Subaru SVX; Pontiac G8",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Karin",
+  "nom": "Intruder",
+  "base": "Infiniti Q45/I30",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Benefactor",
+  "nom": "Schafter V12",
+  "base": "Brabus E V12",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Zirconium",
+  "nom": "Stratum",
+  "base": "Honda Accord station wagon",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Vapid",
+  "nom": "Stanier '55",
+  "base": "1956 Ford Fairlane Club Sedan; The yellow-on-white Stanier is inspired by the 1955 Oldsmobile 88 parked on Ocean Drive, Miami Beach.",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Obey",
+  "nom": "Tailgater",
+  "base": "Audi A6",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Schyster",
+  "nom": "PMP 700",
+  "base": "Second-generation Chrysler 300 (LD)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Obey",
+  "nom": "Tailgater S",
+  "base": "Audi RS3 Sedan",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Willard",
+  "nom": "Transient",
+  "base": "Buick Regal (6th Gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Bravado",
+  "nom": "Bogan",
+  "base": "Chrysler Sebring (2nd gen) and Dodge Stratus (2nd gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Vapid",
+  "nom": "Lowline",
+  "base": "2013-2019 Ford Taurus",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Dinka",
+  "nom": "Chavos XS",
+  "base": "Honda Accord (10th Gen)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "Benefactor",
+  "nom": "Schafter",
+  "base": "Mercedes-Benz C Class (W205)",
+  "route": null
+ },
+ {
+  "classe": "sedans",
+  "fabricant": "BF",
+  "nom": "Greta",
+  "base": "Volkswagen Jetta",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "Whiffler",
+  "nom": "Dashound",
+  "base": "MCI Renaissance E series bus, Greyhound Lines",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "Whiffler",
+  "nom": "Bus",
+  "base": "New Flyer Xcelsior",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "-",
+  "nom": "Freight Train",
+  "base": "Electro Motive Division, GE AC4400CW",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "Brute",
+  "nom": "Rental Bus",
+  "base": "1996-2002 Chevrolet Express",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "Vapid",
+  "nom": "Stanier Taxi",
+  "base": "Ford Crown Victoria",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "Bravado",
+  "nom": "Sojourn Taxi",
+  "base": "Chrysler minivan (2011-2020 Dodge Grand Caravan and 2011–2016 Chrysler Town & Country)",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "-",
+  "nom": "Amloco",
+  "base": "GE Genesis locomotive",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "-",
+  "nom": "Hitachi Metrorail",
+  "base": "Hitachi Metrorail",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "-",
+  "nom": "Metromule",
+  "base": "Innovia APM 100 used by the Miami Metromover",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "Declasse",
+  "nom": "Granger Taxi",
+  "base": "Chevrolet Suburban",
+  "route": null
+ },
+ {
+  "classe": "service",
+  "fabricant": "MTL",
+  "nom": "Wastelander",
+  "base": "Mongo (Fast & Furious)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "service",
+  "fabricant": "Karin",
+  "nom": "Allander Taxi",
+  "base": "Toyota RAV4 (5th Gen)",
+  "route": null
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Pfister",
+  "nom": "Comet '88",
+  "base": "Rauh-Welt Porsche 911 930",
+  "route": "640"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Obey",
+  "nom": "8F Drafter",
+  "base": "2018 Audi RS5 Coupe",
+  "route": "576"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Annis",
+  "nom": "Elegy '90",
+  "base": "Nissan Skyline GT-R",
+  "route": "568"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Maibatsu",
+  "nom": "Penumbra FF '97",
+  "base": "2nd Generation Mitsubishi Eclipse & 2nd Generation Eagle Talon",
+  "route": "504"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Bravado",
+  "nom": "Buffalo '07",
+  "base": "Dodge Charger",
+  "route": "497"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Dinka",
+  "nom": "Blista '85",
+  "base": "Honda CRX 1st Gen",
+  "route": "437"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Karin",
+  "nom": "Futo '85",
+  "base": "Toyota AE86 Levin",
+  "route": "412"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Albany",
+  "nom": "Alpha",
+  "base": "Cadillac Sixteen, 2013 Cadillac ATS",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Emperor",
+  "nom": "Sultan",
+  "base": "Lexus IS, Mitsubishi Lancer Evo VI, Subaru Impreza",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Ocelot",
+  "nom": "Locust",
+  "base": "2015 Lotus 3-Eleven",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Bravado",
+  "nom": "Banshee",
+  "base": "Dodge Viper",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Grotti",
+  "nom": "Carbonizzare",
+  "base": "V12 Zagato rear, Nissan GT-R, Ferrari 458 Italia, Ferrari 612 Scagliëtti",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Pfister",
+  "nom": "Comet S2 Cabrio",
+  "base": "Porsche 911 Turbo S Cabriolet",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Invetero",
+  "nom": "Coquette D10",
+  "base": "Chevrolet Corvette C8",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Maibatsu",
+  "nom": "Penumbra",
+  "base": "Mitsubishi Eclipse, Audi TT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Übermacht",
+  "nom": "Cypher",
+  "base": "BMW M2 (F87) with some design cues from the BMW M6 (F13) and BMW M8 (F92)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Ocelot",
+  "nom": "Jugular",
+  "base": "Jaguar XE SV Project 8",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Obey",
+  "nom": "Omnis e-GT",
+  "base": "Audi e-Tron GT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Invetero",
+  "nom": "Coquette",
+  "base": "Corvette C7, 2014 Corvette Stingray",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Pfister",
+  "nom": "Growler",
+  "base": "Porsche 718 Cayman",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Ascot",
+  "nom": "Paragon",
+  "base": "2018 Bentley Continental GT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Dinka",
+  "nom": "Sugoi",
+  "base": "Honda Civic Type R FK8",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Emperor",
+  "nom": "Vectre",
+  "base": "Lexus RC F",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Coil",
+  "nom": "Raiden",
+  "base": "Tesla Model S",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Albany",
+  "nom": "V-STR",
+  "base": "2019 Cadillac CTS-V",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Grotti",
+  "nom": "Itali RSX",
+  "base": "Ferrari SF90 Stradale",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Pfister",
+  "nom": "Neon",
+  "base": "Porsche Taycan, Porsche 918 Spyder, second generation Porsche Panamera and the 991.2 Porsche 911",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Grotti",
+  "nom": "Itali GTO",
+  "base": "Ferrari 812 Superfast",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Grotti",
+  "nom": "Bestia GTS",
+  "base": "Ferrari FF, GTC4Lusso",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Vysser",
+  "nom": "Neo",
+  "base": "Spyker C8 Aileron, Maserati 3200 GT",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports",
+  "fabricant": "Annis",
+  "nom": "Venturas BLVD Elegy '90",
+  "base": "Nissan Skyline GT-R",
+  "route": null
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Pegassi",
+  "nom": "Infernus '96",
+  "base": "Lamborghini Diablo, Cizeta V16T, Ferrari Testarossa",
+  "route": "698"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Grotti",
+  "nom": "Cheetah '95",
+  "base": "Ferrari Testarossa, 512 BB",
+  "route": "633"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Invetero",
+  "nom": "Coquette '64",
+  "base": "Chevrolet Corvette C2",
+  "route": "488"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Übermacht",
+  "nom": "Sentinel '85",
+  "base": "BMW E30 M3",
+  "route": "460"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Albany",
+  "nom": "Manana '77",
+  "base": "Buick LeSabre, Cadillac Eldorado",
+  "route": "364"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Declasse",
+  "nom": "Tornado",
+  "base": "Chevrolet Bel Air",
+  "route": "-  ·"
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "Declasse",
+  "nom": "Mamba GT",
+  "base": "Shelby Daytona Coupe",
+  "route": null
+ },
+ {
+  "classe": "sports-classic",
+  "fabricant": "-",
+  "nom": "Kellison J4",
+  "base": "Kellison J4",
+  "route": null
+ },
+ {
+  "classe": "super",
+  "fabricant": "Piccia",
+  "nom": "Furia",
+  "base": "Pininfarina Battista",
+  "route": "-  ·"
+ },
+ {
+  "classe": "super",
+  "fabricant": "Granforma",
+  "nom": "Zorrusso",
+  "base": "Italdesign Zerouno",
+  "route": "-  ·"
+ },
+ {
+  "classe": "super",
+  "fabricant": "Pegassi",
+  "nom": "Tempesta",
+  "base": "Lamborghini Huracán/Centenario, proposed 2015 Lotus Esprit",
+  "route": "-  ·"
+ },
+ {
+  "classe": "super",
+  "fabricant": "Truffade",
+  "nom": "Thrax",
+  "base": "Bugatti Divo, Italdesign Zerouno",
+  "route": "-  ·"
+ },
+ {
+  "classe": "super",
+  "fabricant": "Pegassi",
+  "nom": "Vitello",
+  "base": "Lamborghini Aventador",
+  "route": null
+ },
+ {
+  "classe": "super",
+  "fabricant": "Progen",
+  "nom": "Emerus",
+  "base": "McLaren Senna",
+  "route": "-  ·"
+ },
+ {
+  "classe": "super",
+  "fabricant": "Pegassi",
+  "nom": "Police Tempesta",
+  "base": "Lamborghini Huracán/Centenario, proposed 2015 Lotus Esprit",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Pfister",
+  "nom": "Astron",
+  "base": "Porsche Macan",
+  "route": "576"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Vapid",
+  "nom": "Aleutian",
+  "base": "Fourth generation Ford Expedition (U553)",
+  "route": "467"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Karin",
+  "nom": "Allander",
+  "base": "Toyota RAV4 (5th Gen)",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Gallivanter",
+  "nom": "Baller II",
+  "base": "Range Rover Evoque/Range Rover Sport",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Karin",
+  "nom": "Contender",
+  "base": "Toyota Tunder Devolro Diablo, Ford Raptor, Ford F-150",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Declasse",
+  "nom": "Granger",
+  "base": "Chevrolet Suburban",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Pegassi",
+  "nom": "Toros",
+  "base": "Lamborghini Urus, Lamborghini Aventador, Audi Q8",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Lampadati",
+  "nom": "Novak",
+  "base": "Maserati Levante, Alfa Romeo Stelvio",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Canis",
+  "nom": "Seminole Frontier",
+  "base": "2nd Generation Jeep Cherokee (XJ)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Benefactor",
+  "nom": "Dubsta",
+  "base": "Mercedes-Benz G-Class",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Declasse",
+  "nom": "Granger 3600LX",
+  "base": "2015 - 2020 Chevrolet Suburban",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Buckingham",
+  "nom": "Jubilee",
+  "base": "Rolls-Royce Cullinan",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Dundreary",
+  "nom": "Landstalker XL",
+  "base": "Fourth generation Lincoln Navigator",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Canis",
+  "nom": "Mesa",
+  "base": "Jeep Wrangler",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Vapid",
+  "nom": "Riata Classic",
+  "base": "First-generation Ford Bronco",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Gallivanter",
+  "nom": "Baller ST-D",
+  "base": "Fifth-generation Range Rover (L460)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Albany",
+  "nom": "Cavalcade XL",
+  "base": "2023 Cadillac Escalade-V",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Bravado",
+  "nom": "Dorado",
+  "base": "1st generation Dodge Durango",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Karin",
+  "nom": "Vivanite",
+  "base": "Fourth generation Toyota Sienna (XL40)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Benefactor",
+  "nom": "XLS",
+  "base": "Mercedes GL Class, BMW X5",
+  "route": "-  ·"
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "-",
+  "nom": "Audi Q7 (2nd Gen)",
+  "base": "Audi Q7 (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Bravado",
+  "nom": "Gresley XT",
+  "base": "Dodge Durango (3rd Gen)",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Vapid",
+  "nom": "Montagne XL",
+  "base": "Ford Explorer (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Vapid",
+  "nom": "Montagne",
+  "base": "Ford Explorer (6th Gen)",
+  "route": null
+ },
+ {
+  "classe": "suvs",
+  "fabricant": "Übermacht",
+  "nom": "Rebla GTS",
+  "base": "Fourth generation BMW X5",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "Vapid",
+  "nom": "Sadler",
+  "base": "First Generation Ford F250 Super Duty",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "Vapid",
+  "nom": "Tow Truck",
+  "base": "1980s International Harvester S-Series",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "HVY",
+  "nom": "Lifta",
+  "base": "Yale Forklift truck model (Yale GLP060VX)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "Brute",
+  "nom": "Utility Truck",
+  "base": "International 4700 Series",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "-",
+  "nom": "Ford F-Series Tow Truck",
+  "base": "Ford F-Series Tow Truck",
+  "route": null
+ },
+ {
+  "classe": "utility",
+  "fabricant": "-",
+  "nom": "International S-Series Semi Truck",
+  "base": "International S-Series Semi Truck",
+  "route": null
+ },
+ {
+  "classe": "utility",
+  "fabricant": "HVY",
+  "nom": "Airtug",
+  "base": "Clark CT30",
+  "route": "-  ·"
+ },
+ {
+  "classe": "utility",
+  "fabricant": "Jacksheepe",
+  "nom": "Fieldmaster '99",
+  "base": "John Deere 7810",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Declasse",
+  "nom": "Bobcat XL '84",
+  "base": "Fourth generation Chevrolet C/K",
+  "route": "406"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Bison 900 '95",
+  "base": "Dodge Ram (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Declasse",
+  "nom": "Burrito '98",
+  "base": "1996-2002 Chevrolet Express",
+  "route": "361"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Youga XL '79",
+  "base": "Dodge Ram Van (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Canis",
+  "nom": "Crawler '82",
+  "base": "Jeep Scrambler (CJ-8)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Youga '74",
+  "base": "Ford Ecoline (2nd gen)",
+  "route": "296"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Willard",
+  "nom": "Trotter '95",
+  "base": "Rexhall Rose Air",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Osprey",
+  "nom": "Journey '78",
+  "base": "1979–1981 Fleetwood Pace Arrow",
+  "route": "227"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Willard",
+  "nom": "Moocher '83",
+  "base": "1985 Fleetwood Southwind",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Brute",
+  "nom": "Boxville",
+  "base": "GMC Step Van",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Vapid",
+  "nom": "Minivan",
+  "base": "Ford Windstar, Dodge Caravan",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Vapid",
+  "nom": "Speedo",
+  "base": "2003-present Chevrolet Express van",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Youga",
+  "base": "Dodge Ram Van (Dodge B-Series)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Bison",
+  "base": "Dodge Ram Quad Cab (4th Gen)",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Brute",
+  "nom": "Camper",
+  "base": "1996-2002 Chevrolet Express",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Rumpo Custom",
+  "base": "GMC Vandura",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Vapid",
+  "nom": "Rumpo",
+  "base": "Ford E-Series",
+  "route": "-  ·"
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Bison 1800",
+  "base": "Ram 1500 (DT)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Chevrolet Silverado 6500 HD",
+  "base": "Chevrolet Silverado 6500 HD",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Sojourn",
+  "base": "Dodge Grand Caravan",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Dodge Dakota Convertible",
+  "base": "Dodge Dakota Convertible",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Ford Econoline (4th Gen)",
+  "base": "Ford Econoline (4th Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Ford F-Series (3rd Gen)",
+  "base": "Ford F-Series (3rd Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Ford F-Series Flatbed",
+  "base": "Ford F-Series (6th Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Vapid",
+  "nom": "Shuttle",
+  "base": "Ford Transit (4th Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "-",
+  "nom": "Shifter",
+  "base": "Ford Transit Cargo (4th Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Benefactor",
+  "nom": "Spritz",
+  "base": "Mercedes-Benz Sprinter (2nd Gen)",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "Bravado",
+  "nom": "Bison 3800",
+  "base": "RAM 3500",
+  "route": null
+ },
+ {
+  "classe": "vans",
+  "fabricant": "BF",
+  "nom": "Surfer",
+  "base": "Volkswagen Type 2",
+  "route": "-  ·"
+ }
+]

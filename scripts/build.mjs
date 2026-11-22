@@ -14,6 +14,8 @@ const site = read('site.json');
 const SRC = read('sources.json');
 const ASTUCES = read('astuces.json');
 const VEHICULES = read('vehicules.json');
+// Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
+const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
@@ -519,14 +521,26 @@ function vehCard(v, R) {
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
 }
+function catCard(x, R) {
+  const c = cat('vehicules', x.type);
+  const txt = norm([x.nom, x.classe, c.nom, x.inspiration || '', x.fabricant || ''].join(' '));
+  const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}" loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-zone="" data-dispo="" data-map="0" data-alpha="${esc(norm(x.nom))}" data-text="${esc(txt)}" data-id="${x.slug}" aria-haspopup="dialog">
+  <span class="veh-art">${visu}<span class="veh-type">${esc(x.classe)}</span></span>
+  <span class="card-body"><span class="card-kicker">${esc(c.nom)}</span><b class="card-title">${esc(x.nom)}</b>
+  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}</span></span>
+  <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></button>`;
+}
 {
   const p = 'vehicules/', R = R_(p);
+  const TOUS = [...VEHICULES.map((v) => ({ type: v.type })), ...CATALOGUE.vehicules];
   const zones = [...new Set(VEHICULES.map((v) => { const l = L[v.lieu]; return l ? (l.type === 'region' ? l.id : l.region) : null; }).filter(Boolean))];
-  const body = `<section class="wrap section" data-list>
+  const body = `<section class="wrap section" data-list data-page-size="24">
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  ${fieldFilter('Nom du véhicule')}
+  <p class="lead veh-lead"><b>${TOUS.length} véhicules</b> : ${VEHICULES.length} avec leur emplacement, et tous les autres véhicules confirmés du jeu. Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
+  ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-filter="cat">
-    ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${VEHICULES.filter((v) => v.type === c.id).length}</small></button>`).join('')}
+    ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${TOUS.filter((v) => v.type === c.id).length}</small></button>`).join('')}
   </div>
   <div class="filterbar">
     ${chipGroup('zone', 'Zone', zones.map((z) => ({ v: z, n: REG[z].nom })), { all: 'Toutes zones' })}
@@ -534,12 +548,15 @@ function vehCard(v, R) {
     <button class="chip chip--toggle" type="button" data-toggle="map" aria-pressed="false">${icon('map')}Sur la carte</button>
   </div>
   <p class="count-line" data-count></p>
-  <div class="grid" data-items>${VEHICULES.map((v) => vehCard(v, R)).join('')}</div>
+  <div class="grid" data-items>${VEHICULES.map((v) => vehCard(v, R)).join('')}${CATALOGUE.vehicules.map((x) => catCard(x, R)).join('')}</div>
+  <dialog class="vdlg" aria-labelledby="vdlg-t"><div class="vdlg-in" data-vdlg></div></dialog>
+  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, o: x.obtenir, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
+  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr.</span></p>
   ${emptyState('Aucun véhicule ne correspond. Essaie un autre mot.', R, ['Tout voir', 'vehicules/'])}
   ${moreBtn}
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : voitures, motos et emplacements', desc: 'Parcourez les véhicules GTA 6 et consultez leurs fiches, avec les lieux disponibles et leur niveau de vérification.', body, cls: 'p-list', crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, voitures, motos et emplacements', desc: `Les ${TOUS.length} véhicules confirmés de GTA 6 : photo, marque, classe, vraie voiture d'origine et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -566,6 +583,8 @@ for (const v of VEHICULES) {
   <dl class="facts">
     <div><dt>${icon(c.icon)}Type</dt><dd>${esc(c.nom)} · ${esc(v.sous)}</dd></div>
     <div><dt>${icon('shield')}Disponibilité</dt><dd>${esc(statut(v.dispo).nom)}</dd></div>
+    ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].fabricant ? `<div><dt>${icon('badge')}Marque</dt><dd>${esc(CATALOGUE.fiches[v.slug].fabricant)}${CATALOGUE.fiches[v.slug].classe ? ' · ' + esc(CATALOGUE.fiches[v.slug].classe) : ''}</dd></div>` : ''}
+    ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     <div id="ou"><dt>${icon('pin')}Emplacement</dt><dd>${l ? `<b>${esc(l.nom)}</b> — ` : '<b>Inconnu</b> — '}${esc(v.emplacement)}</dd></div>
   </dl>
   <section class="steps-wrap" aria-labelledby="ob-t"><h2 id="ob-t" class="h3">${icon('list')}Comment l'obtenir</h2>
@@ -870,6 +889,7 @@ for (const a of ACTUS) {
 const index = [];
 const push = (o) => index.push(o);
 for (const a of ASTUCES) { const c = cat('astuces', a.cat); push({ t: a.court, q: a.titre, k: norm([a.kw.join(' '), c.nom].join(' ')), d: a.reponse.slice(0, 90), u: `astuces/${a.slug}/`, i: a.icon, c: c.color, g: 'astuce', s: a.cat, l: c.nom, m: (astuceMap[a.slug] || []).length ? 1 : 0 }); }
+for (const x of CATALOGUE.vehicules) { const c = cat('vehicules', x.type); push({ t: x.nom, q: x.classe, k: norm([x.nom, x.fabricant || '', x.classe, c.nom, x.inspiration || '', 'vehicule'].join(' ')), d: x.inspiration ? `Inspiré de ${x.inspiration}` : x.classe, u: `vehicules/?v=${x.slug}`, i: c.icon, c: c.color, g: 'vehicule', s: x.type, l: 'Véhicule · ' + x.classe, m: 0, f: '' }); }
 for (const v of VEHICULES) { const c = cat('vehicules', v.type); const l = L[v.lieu]; push({ t: v.nom, q: v.sous, k: norm([v.kw.join(' '), c.nom, 'vehicule voiture', l ? l.nom : ''].join(' ')), d: v.emplacement.slice(0, 90), u: `vehicules/${v.slug}/`, i: c.icon, c: v.color || c.color, g: 'vehicule', s: v.type, l: 'Véhicule · ' + c.nom, m: vehOnMap(v.slug) ? 1 : 0, f: vehOnMap(v.slug) ? 'v-' + v.slug : '' }); }
 for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: l.desc.slice(0, 90), u: onMap(l.id) ? `carte/?focus=${l.id}` : `lieux/#${l.id}`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
@@ -901,7 +921,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
