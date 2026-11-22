@@ -59,27 +59,37 @@ function ref(slug) {
   return null;
 }
 
-// ---------- positions carte ----------
-// Les éléments sans position précise mais avec une région sont répartis
-// en spirale autour du repère de la région (affichés « à confirmer »).
-const spiralCount = {};
-function placeInRegion(regionId) {
-  const r = REG[regionId];
-  if (!r || !r.pos) return null;
-  const k = (spiralCount[regionId] = (spiralCount[regionId] || 0) + 1);
-  const a = k * 2.39996;
-  const rad = 34 + 15 * Math.sqrt(k);
-  const sy = regionId === 'leonida-keys' ? 0.35 : regionId === 'vice-city' ? 1.25 : 1;
-  const sx = regionId === 'leonida-keys' ? 1.8 : regionId === 'vice-city' ? 0.5 : 1;
-  const oy = regionId === 'leonida-keys' ? 0 : 34;
-  return [Math.round(r.pos[0] + Math.cos(a) * rad * sx), Math.round(r.pos[1] + oy + Math.sin(a) * rad * sy)];
+// ---------- positions carte (unités monde GTADB : x est, y nord) ----------
+const TUILES = read('tuiles.json');
+const GTADB_RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'gtadb', 'landmarks.json'), 'utf8'));
+// Lieux communautaires : [adresse, [x, y], …, tags (index 6)]
+const GTADB = Object.entries(GTADB_RAW).filter(([, v]) => v[1] && v[1].length === 2).map(([id, v]) => ({ id, adr: v[0] || '', x: v[1][0], y: v[1][1], tags: v[6] || [] }));
+function gtadbCentre(motif) {
+  const m = motif.toLowerCase();
+  const hits = GTADB.filter((g) => g.adr.toLowerCase().split(', ').some((_, i, a) => a.slice(i).join(', ').startsWith(m)));
+  if (!hits.length) throw new Error(`GTADB : aucun lieu pour « ${motif} »`);
+  // médiane (robuste aux lieux mal placés)
+  const med = (arr) => { const s = [...arr].sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+  return [Math.round(med(hits.map((h) => h.x))), Math.round(med(hits.map((h) => h.y)))];
 }
-
+const POS = {}; // position de chaque lieu du guide
+for (const l of LIEUX) {
+  if (l.monde) POS[l.id] = l.monde;
+  else if (l.gtadb) POS[l.id] = gtadbCentre(l.gtadb);
+}
+// Éléments connus seulement à l'échelle d'une région : disposés en couronne autour du repère de la région
+const ring = {};
+function autour(id, rayon) {
+  const c = POS[id]; if (!c) return null;
+  const k = (ring[id] = (ring[id] || 0) + 1);
+  const a = k * 2.39996;
+  return [Math.round(c[0] + Math.cos(a) * rayon * (1 + k * .12)), Math.round(c[1] + Math.sin(a) * rayon * (1 + k * .12))];
+}
 const features = [];
 const lieuMapCat = (l) => l.mapcat || 'lieux';
 for (const l of LIEUX) {
-  let pos = l.pos, precision = l.precision;
-  if (!pos && l.region && precision === 'region') pos = placeInRegion(l.region);
+  let pos = POS[l.id] || null; const precision = l.precision;
+  if (!pos && l.region && precision === 'region') pos = autour(l.region, 380);
   if (!pos) continue;
   const mc = lieuMapCat(l);
   const url = l.astuce ? `astuces/${l.astuce}/` : l.enc ? `encyclopedie/${l.enc}/` : `lieux/#${l.id}`;
@@ -88,12 +98,18 @@ for (const l of LIEUX) {
 for (const v of VEHICULES) {
   const l = v.lieu && L[v.lieu];
   if (!l) continue;
-  let pos = null, precision = 'region';
-  if (l.type === 'region') pos = placeInRegion(l.id);
-  else if (l.region) pos = placeInRegion(l.region);
+  const pos = v.gtadb ? gtadbCentre(v.gtadb) : autour(l.id, l.type === 'region' ? 420 : 110);
   if (!pos) continue;
+  const precision = l.type === 'region' ? 'region' : 'zone';
   features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/` } });
 }
+// Couche communautaire : lieux nommés et positionnés de GTADB
+const COMMU_CATS = CARTE.communaute.categories;
+const communaute = GTADB.filter((g) => g.adr && !g.adr.startsWith('?') && !g.tags.includes('demolished')).map((g) => {
+  const parts = g.adr.split(', ');
+  const c = (COMMU_CATS.find((c) => c.tags.some((t) => g.tags.includes(t))) || COMMU_CATS[COMMU_CATS.length - 1]).id;
+  return { i: g.id, n: parts[0].replace(/\?$/, ''), z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
+});
 const mapIndex = Object.fromEntries(features.map((f) => [f.properties.id, f]));
 const onMap = (id) => !!mapIndex[id];
 const vehOnMap = (slug) => !!mapIndex['v-' + slug];
@@ -104,7 +120,7 @@ const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'ca
 
 // ---------- layout ----------
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
-function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = false }) {
+function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = false, styles = [] }) {
   const depth = p.split('/').filter(Boolean).length;
   const R = depth ? '../'.repeat(depth) : './';
   const canon = `${site.url}/${p}`;
@@ -138,7 +154,7 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
 ${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
-<link rel="stylesheet" href="${R}assets/app.css">${v2 ? `\n<link rel="stylesheet" href="${R}assets/home.css">` : ''}
+<link rel="stylesheet" href="${R}assets/app.css">${v2 ? `\n<link rel="stylesheet" href="${R}assets/home.css">` : ''}${styles.map((f) => `\n<link rel="stylesheet" href="${R}assets/${f}">`).join('')}
 <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size}catch(e){}</script>
 ${schema.map(ld).join('\n')}
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -244,32 +260,7 @@ function astuceCard(a, R) {
 }
 
 // ---------- ACCUEIL (direction artistique v2 : néon sombre, traits fins) ----------
-function mapSvgNeon(id = 'hm') {
-  const [x0, y0, w, h] = CARTE.viewBox;
-  const pts = (a) => a.map((p) => p.join(',')).join(' ');
-  const road = (r) => 'M' + r.map((p) => p.join(',')).join(' L');
-  const ns = 'vector-effect="non-scaling-stroke"';
-  const img = CARTE.image;
-  const regColor = (rid) => (rid === 'leonida-keys' ? CARTE.keysRegion.color : (CARTE.regions.find((r) => r.id === rid) || {}).color);
-  return `<svg class="hm-svg" viewBox="${x0} ${y0} ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Carte de Leonida">
-  <defs>
-    <pattern id="${id}-grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="rgba(45,226,230,.07)" stroke-width="1" ${ns}/></pattern>
-    <filter id="${id}-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="${id}-land"><polygon points="${pts(CARTE.land)}"/></clipPath>
-    <radialGradient id="${id}-vig" cx="50%" cy="50%" r="70%"><stop offset=".55" stop-color="#040309" stop-opacity="0"/><stop offset="1" stop-color="#040309" stop-opacity=".85"/></radialGradient>
-  </defs>
-  <rect x="-2000" y="-2000" width="${w + 4000}" height="${h + 4000}" fill="#05040b"/>
-  <rect x="-2000" y="-2000" width="${w + 4000}" height="${h + 4000}" fill="url(#${id}-grid)"/>
-  ${img ? `<image href="${esc(img.src)}" x="${img.x}" y="${img.y}" width="${img.width}" height="${img.height}" preserveAspectRatio="none"/>` : `
-  <polygon class="hm-land" points="${pts(CARTE.land)}" fill="#0a0a17"/>
-  <g clip-path="url(#${id}-land)">${CARTE.regions.map((r) => `<polygon class="hm-reg" data-region="${r.id}" points="${pts(r.pts)}" fill="${r.color}" fill-opacity=".03" stroke="${r.color}" stroke-opacity=".5" stroke-width="1" stroke-dasharray="3 7" ${ns}/>`).join('')}</g>
-  <g class="hm-roads">${CARTE.roads.map((r) => `<path d="${road(r)}" fill="none" stroke="#ffb547" stroke-opacity=".28" stroke-width="1" stroke-dasharray="6 6" ${ns}/>`).join('')}</g>
-  <polygon class="hm-coast-glow" points="${pts(CARTE.land)}" fill="none" stroke="#2de2e6" stroke-opacity=".55" stroke-width="2" filter="url(#${id}-glow)" ${ns}/>
-  <polygon class="hm-coast" points="${pts(CARTE.land)}" fill="none" stroke="#2de2e6" stroke-width="1.2" stroke-linejoin="round" ${ns}/>
-  ${CARTE.islands.map((i) => `<polygon class="hm-isl" points="${pts(i.pts)}" fill="${regColor(i.region)}" fill-opacity=".12" stroke="#2de2e6" stroke-width="1" ${ns}/>`).join('')}
-  <ellipse class="hm-lake" cx="${CARTE.lake.cx}" cy="${CARTE.lake.cy}" rx="${CARTE.lake.rx}" ry="${CARTE.lake.ry}" fill="#05040b" stroke="#2de2e6" stroke-width="1" ${ns}/>`}
-</svg>`;
-}
+const ATTRIB_HTML = (R) => `Fond : <a href="https://map.gtadb.org" target="_blank" rel="noopener">Yanis v18 · GTADB</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, recoloré. Reconstruction communautaire, non officielle.`;
 function homeSun() {
   // Soleil en traits fins : arcs concentriques + lignes d'horizon
   const arcs = [150, 128, 106, 84].map((r, i) => `<path class="sun-arc" d="M${200 - r} 200a${r} ${r} 0 0 1 ${r * 2} 0" stroke="url(#sun-g)" stroke-opacity="${1 - i * .18}"/>`).join('');
@@ -326,10 +317,8 @@ function homePalms() {
     <p class="h-lead">${esc(H.carte.texte)}</p>
   </header>
   <div class="hm" data-homemap data-center="${H.carte.vueInitiale.centre.join(',')}" data-zoom="${H.carte.vueInitiale.zoom}">
-    <div class="hm-stage" tabindex="0" aria-label="Carte interactive : glisse pour naviguer, + et − pour zoomer">
-      ${mapSvgNeon()}
-      <div class="hm-layer"></div>
-    </div>
+    <div class="hm-stage" tabindex="0" role="application" aria-label="Carte interactive de Leonida : glisse pour naviguer, + et − pour zoomer"></div>
+    <p class="at-attrib">${ATTRIB_HTML(R)}</p>
     <div class="hm-legend" role="group" aria-label="Afficher">${site.categories.carte.map((c) => `<button type="button" class="hm-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}</button>`).join('')}</div>
     <div class="hm-ctrl">
       <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
@@ -349,7 +338,7 @@ function homePalms() {
   <ol class="h-rows">${shortcuts.map((a, i) => { const c = cat('astuces', a.cat); return `<li><a class="h-row" href="${R}astuces/${a.slug}/" style="--c:${c.color === '#ff3d6e' ? '#ff2bd6' : c.color}"><span class="h-row-n">0${i + 1}</span><span class="h-row-ico">${icon(a.icon)}</span><span class="h-row-t"><small>${esc(c.nom)} · ${dureeNom(a.duree)}</small><b>${esc(a.court)}</b></span><span class="h-row-go">${icon('arrow-right')}</span></a></li>`; }).join('')}</ol>
 </section>`;
   emit(p, layout({
-    p, title: H.meta.title, desc: H.meta.description, cls: 'home', body, v2: true, scripts: ['home.js'],
+    p, title: H.meta.title, desc: H.meta.description, cls: 'home', body, v2: true, scripts: ['atlas.js', 'home.js'], styles: ['atlas.css'],
     schema: [
       { '@context': 'https://schema.org', '@type': 'WebSite', name: M, url: site.url + '/', inLanguage: 'fr-FR', potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${site.url}/recherche/?q={search_term_string}` }, 'query-input': 'required name=search_term_string' } },
       { '@context': 'https://schema.org', '@type': 'Organization', name: M, url: site.url + '/', logo: `${site.url}/favicon.svg` },
@@ -526,66 +515,30 @@ for (const v of VEHICULES) {
   emit(p, layout({ p, title: `${v.nom} GTA 6 : emplacement et comment l'obtenir`, desc: `Localisation, informations et méthode d'obtention de ${v.nom} dans GTA 6, selon les sources disponibles.`, body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
 }
 
-// ---------- CARTE ----------
-function mapSvg() {
-  const [x0, y0, w, h] = CARTE.viewBox;
-  const pts = (a) => a.map((p) => p.join(',')).join(' ');
-  const road = (r) => 'M' + r.map((p) => p.join(',')).join(' L');
-  return `<svg class="map-svg" viewBox="${x0} ${y0} ${w} ${h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Carte schématique de Leonida">
-  <defs>
-    <clipPath id="landclip"><polygon points="${pts(CARTE.land)}"/></clipPath>
-    <pattern id="waves" width="40" height="18" patternUnits="userSpaceOnUse"><path d="M0 9c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4" fill="none" stroke="var(--map-wave)" stroke-width="1.2"/></pattern>
-    <radialGradient id="glow" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="var(--map-glow)"/><stop offset="1" stop-color="transparent"/></radialGradient>
-  </defs>
-  <rect x="-500" y="-500" width="${w + 1000}" height="${h + 1000}" fill="var(--map-sea)"/>
-  <rect x="-500" y="-500" width="${w + 1000}" height="${h + 1000}" fill="url(#waves)" opacity=".6"/>
-  <polygon points="${pts(CARTE.land)}" fill="var(--map-land)" stroke="var(--map-coast)" stroke-width="6" stroke-linejoin="round"/>
-  <g clip-path="url(#landclip)">${CARTE.regions.map((r) => `<polygon class="reg" data-region="${r.id}" points="${pts(r.pts)}" fill="${r.color}" />`).join('')}</g>
-  ${CARTE.islands.map((i) => `<polygon class="reg reg--isl" data-region="${i.region}" points="${pts(i.pts)}" fill="${i.region === 'leonida-keys' ? CARTE.keysRegion.color : (CARTE.regions.find((r) => r.id === i.region) || {}).color}" stroke="var(--map-coast)" stroke-width="3"/>`).join('')}
-  <ellipse cx="${CARTE.lake.cx}" cy="${CARTE.lake.cy}" rx="${CARTE.lake.rx}" ry="${CARTE.lake.ry}" fill="var(--map-sea)" stroke="var(--map-coast)" stroke-width="4"/>
-  <g class="roads">${CARTE.roads.map((r) => `<path d="${road(r)}"/>`).join('')}</g>
-  <g clip-path="url(#landclip)" class="borders">${CARTE.regions.map((r) => `<polygon points="${pts(r.pts)}"/>`).join('')}</g>
-  <rect x="-500" y="-500" width="${w + 1000}" height="${h + 1000}" fill="url(#glow)" pointer-events="none"/>
-</svg>`;
-}
+// ---------- CARTE (v2 : vraie carte communautaire) ----------
 {
   const p = 'carte/', R = R_(p);
-  const regs = [...CARTE.regions.map((r) => r.id), 'leonida-keys'];
-  const body = `<h1 class="sr-only">Carte interactive de GTA 6</h1>
-<section class="map-page" data-map>
-  <div class="map-stage" tabindex="0" aria-label="Carte. Glisse pour déplacer, pince ou molette pour zoomer.">
-    <div class="map-canvas">${mapSvg()}</div>
-    <div class="map-layer" aria-live="off"></div>
-  </div>
-  <div class="map-ui">
-    <div class="map-top">
-      <p class="map-q">Que veux-tu voir ?</p>
-      <label class="field field--map">${icon('search')}<input type="search" data-map-search placeholder="Chercher sur la carte" autocomplete="off" enterkeyhint="search" aria-controls="map-sugg"></label>
-      <div class="map-sugg" id="map-sugg" hidden></div>
-      <div class="map-cats" role="group" aria-label="Catégories">
-        ${site.categories.carte.map((c) => `<button class="mcat" type="button" data-mcat="${c.id}" aria-pressed="true" style="--c:${c.color}">${icon(c.icon)}<span>${esc(c.nom)}</span><small data-mcount="${c.id}"></small></button>`).join('')}
-      </div>
-    </div>
-    <div class="map-ctrl">
-      <button class="ibtn ibtn--map" type="button" data-zoom="in" aria-label="Zoomer">${icon('plus')}</button>
-      <button class="ibtn ibtn--map" type="button" data-zoom="out" aria-label="Dézoomer">${icon('minus')}</button>
-      <button class="ibtn ibtn--map" type="button" data-zoom="reset" aria-label="Recentrer">${icon('expand')}</button>
-      <button class="ibtn ibtn--map" type="button" data-open-filters aria-label="Filtres" aria-expanded="false">${icon('sliders')}<span class="dot" data-filter-dot hidden></span></button>
+  const body = `<h1 class="sr-only">Carte interactive de GTA 6 : Leonida</h1>
+<section class="atp" data-atlas-page>
+  <div class="atp-stage" tabindex="0" role="application" aria-label="Carte de Leonida : glisse pour naviguer, pince ou molette pour zoomer"></div>
+  <div class="atp-top">
+    <label class="atp-search"><span class="sr-only">Chercher sur la carte</span>${icon('search')}<input type="search" id="atp-q" placeholder="Chercher un lieu, un véhicule…" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg"></label>
+    <div class="atp-sugg" id="atp-sugg" role="listbox" hidden></div>
+    <div class="atp-cats" role="group" aria-label="Afficher sur la carte">
+      ${site.categories.carte.map((c) => `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}<small data-n="${c.id}"></small></button>`).join('')}
+      <button type="button" class="atp-chip atp-chip--commu" data-commu aria-pressed="false" style="--c:#c7c2e0"><i></i>Lieux de la communauté<small data-n="commu"></small></button>
     </div>
   </div>
-  <div class="sheet sheet--filters" data-filters hidden>
-    <div class="sheet-grip"></div>
-    <div class="sheet-h"><b>${icon('sliders')}Filtres</b><button class="ibtn" type="button" data-close-filters aria-label="Fermer">${icon('x')}</button></div>
-    <p class="sheet-l">Sous-type</p><div class="chips" data-sous></div>
-    <p class="sheet-l">Région</p>
-    <div class="chips" data-regions><button class="chip" type="button" data-reg="" aria-pressed="true">Toutes</button>${regs.map((id) => `<button class="chip" type="button" data-reg="${id}" aria-pressed="false">${esc(REG[id].nom)}</button>`).join('')}</div>
-    <label class="switch"><input type="checkbox" data-verified><span class="switch-ui"></span>Positions vérifiées seulement</label>
-    <p class="muted small">${icon('info')}Carte schématique originale. Les repères en pointillés sont placés dans leur région : emplacement à confirmer.</p>
+  <div class="atp-ctrl">
+    <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
+    <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
+    <button type="button" class="hm-btn" data-z="reset" aria-label="Voir toute la carte">${icon('expand')}</button>
   </div>
-  <div class="sheet sheet--detail" data-detail hidden></div>
-  <noscript><p class="wrap">La carte nécessite JavaScript. Consulte la <a href="${R}lieux/">liste des lieux</a>.</p></noscript>
+  <div class="atp-regions" role="group" aria-label="Aller à une région">${CARTE.regions.map((r) => `<button type="button" data-reg="${r.id}" style="--c:${r.couleur}">${esc(r.nom)}</button>`).join('')}</div>
+  <aside class="atp-panel" data-panel hidden aria-live="polite"></aside>
+  <p class="at-attrib at-attrib--page">${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0.</p>
 </section>`;
-  emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: 'Explorez la carte GTA 6 avec des repères classés par catégorie et des fiches expliquant leur niveau de fiabilité.', body, cls: 'p-map', scripts: ['map.js'] }));
+  emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: 'Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de 900 lieux repérés par la communauté.', body, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
 }
 
 // ---------- LIEUX ----------
@@ -596,7 +549,7 @@ function mapSvg() {
   const tileL = (l) => {
     const c = cat('lieux', l.type);
     const reg = l.region && REG[l.region];
-    const color = l.type === 'region' ? (CARTE.regions.find((r) => r.id === l.id) || CARTE.keysRegion).color : c.color;
+    const color = l.type === 'region' ? (CARTE.regions.find((r) => r.id === l.id) || {}).couleur || c.color : c.color;
     const m = onMap(l.id);
     const txt = norm([l.nom, l.desc, l.kw.join(' '), reg ? reg.nom : '', c.nom].join(' '));
     return `<article class="card card--lieu" id="${l.id}" style="--c:${color}" data-cat="${l.type}" data-zone="${l.region || ''}" data-ver="${l.statut === 'confirme' ? 'oui' : 'non'}" data-map="${m ? 1 : 0}" data-alpha="${esc(norm(l.nom))}" data-text="${esc(txt)}">
@@ -829,6 +782,7 @@ for (const a of ACTUS) {
     <div class="st st--part">${badge('provisoire')}<p>Information partielle.</p></div>
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
+  <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">Signale-le ici</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Aucune image du jeu n'est utilisée : pictogrammes et carte schématique sont des créations originales.</span></p>
@@ -865,10 +819,21 @@ fs.rmSync(OUT, { recursive: true, force: true });
 const write = (rel, content) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, content); };
 for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html', html);
 write('data/index.json', JSON.stringify({ items: index, syn, popular }));
-write('data/carte.json', JSON.stringify({ type: 'FeatureCollection', info: CARTE.info, viewBox: CARTE.viewBox, regions: [...CARTE.regions.map(({ id, nom, color }) => ({ id, nom, color, label: REG[id].pos })), { ...CARTE.keysRegion, label: REG['leonida-keys'].pos }], categories: site.categories.carte, sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) }, icons: Object.fromEntries([...new Set(features.map((f) => f.properties.icon).concat(['pin']))].map((n) => [n, iconDefs[n] ? iconDefs[n][1] : ''])), features }, null, 1));
+const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
+write('data/carte.json', JSON.stringify({
+  type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
+  tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
+  bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
+  regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
+  categories: site.categories.carte,
+  sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
+  features
+}));
+write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUTION.lieux, champs: { i: 'identifiant GTADB', n: 'nom', z: 'quartier / zone', x: 'x monde', y: 'y monde', c: 'catégorie', d: '1 = douteux' }, categories: COMMU_CATS.map(({ id, nom }) => ({ id, nom })), lieux: communaute }));
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
-  if (fs.statSync(full).isFile()) write(path.join('assets', path.basename(f)), fs.readFileSync(full));
+  if (!fs.statSync(full).isFile()) continue;
+  write(f.startsWith('tiles' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');

@@ -114,207 +114,43 @@
   }
 
   // ======================================================================
-  //   Carte interactive (zoom, dézoom, déplacement, inertie)
+  //   Carte interactive (tuiles néon de la carte communautaire GTADB)
   // ======================================================================
   function homeMap() {
-    const box = $('[data-homemap]'); if (!box) return;
-    const stage = $('.hm-stage', box), svg = $('.hm-svg', box), layer = $('.hm-layer', box), pop = $('.hm-pop', box), hint = $('.hm-hint', box);
-    const [VX, VY, VW, VH] = svg.getAttribute('viewBox').split(' ').map(Number);
-    const C0 = (box.dataset.center || '').split(',').map(Number);
-    const cam = { x: C0[0] || VX + VW / 2, y: C0[1] || VY + VH / 2, w: VW };
-    let W = 0, H = 0, wMax = VW, wMin = VW / 9;
-    let feats = [], regions = [], cats = {}, hidden = new Set(), active = null;
-
-    const measure = () => {
-      W = stage.clientWidth; H = stage.clientHeight;
-      const a = W / H;
-      wMax = Math.max(VW, VH * a) * 1.04; wMin = wMax / 9;
-      cam.w = Math.min(Math.max(cam.w, wMin), wMax);
-    };
-    const hOf = (w) => w * H / W;
-    const clampCam = () => {
-      cam.w = Math.min(Math.max(cam.w, wMin), wMax);
-      const h = hOf(cam.w), mx = Math.max(0, (VW - cam.w) / 2 + cam.w * .35), my = Math.max(0, (VH - h) / 2 + h * .35);
-      cam.x = Math.min(Math.max(cam.x, VX + VW / 2 - mx), VX + VW / 2 + mx);
-      cam.y = Math.min(Math.max(cam.y, VY + VH / 2 - my), VY + VH / 2 + my);
-    };
-    const k = () => W / cam.w;
-    const toScreen = (x, y) => [(x - cam.x) * k() + W / 2, (y - cam.y) * k() + H / 2];
-    const toMap = (sx, sy) => [(sx - W / 2) / k() + cam.x, (sy - H / 2) / k() + cam.y];
-
-    let nodes = [], builtW = 0;
-    function render() {
-      clampCam();
-      const h = hOf(cam.w);
-      svg.setAttribute('viewBox', `${cam.x - cam.w / 2} ${cam.y - h / 2} ${cam.w} ${h}`);
-      if (!builtW || Math.abs(Math.log(cam.w / builtW)) > .08) build();
-      for (const n of nodes) { const [sx, sy] = toScreen(n.x, n.y); n.el.style.transform = `translate3d(${sx}px,${sy}px,0)`; }
-    }
-    function build() {
-      builtW = cam.w;
-      layer.innerHTML = ''; nodes = [];
-      const frag = document.createDocumentFragment();
-      const zoomed = wMax / cam.w;
-      regions.forEach((r) => {
-        const el = document.createElement('span'); el.className = 'hm-lbl'; el.textContent = r.nom;
-        el.style.opacity = zoomed > 3.5 ? .35 : 1;
-        frag.appendChild(el); nodes.push({ el, x: r.label[0], y: r.label[1] - 18 / k() });
-      });
-      const R = 30 / k(), cl = [];
-      feats.filter((f) => !hidden.has(f.cat)).forEach((f) => {
-        if (f.id === active) { cl.push({ x: f.x, y: f.y, m: [f], solo: 1 }); return; }
-        const c = cl.find((c) => !c.solo && Math.hypot(c.x - f.x, c.y - f.y) < R);
-        if (c) { c.m.push(f); c.x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length; c.y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length; }
-        else cl.push({ x: f.x, y: f.y, m: [f] });
-      });
-      cl.forEach((c, i) => {
-        const el = document.createElement('button'); el.type = 'button';
-        if (c.m.length === 1) {
-          const f = c.m[0];
-          el.className = 'hm-dot' + (f.precision === 'region' ? ' hm-dot--approx' : '') + (f.id === active ? ' is-on' : '');
-          el.style.setProperty('--c', cats[f.cat].color); el.style.setProperty('--d', (i % 7) * .35 + 's');
-          el.setAttribute('aria-label', f.nom);
-          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); open(f); });
-        } else {
-          el.className = 'hm-cl'; el.textContent = c.m.length; el.setAttribute('aria-label', `${c.m.length} repères : zoomer`);
-          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); fitTo(c.m); });
-        }
-        frag.appendChild(el); nodes.push({ el, x: c.x, y: c.y });
-      });
-      layer.appendChild(frag);
-    }
-
-    // ---- caméra animée (GSAP) ----
-    function flyTo(x, y, w, dur = .9) {
-      w = Math.min(Math.max(w, wMin), wMax);
-      if (!g || reduce) { cam.x = x; cam.y = y; cam.w = w; return render(); }
-      g.to(cam, { x, y, w, duration: dur, ease: 'expo.out', overwrite: true, onUpdate: render });
-    }
-    function zoomAt(sx, sy, f) {
-      const [mx, my] = toMap(sx, sy); const nw = Math.min(Math.max(cam.w / f, wMin), wMax); const nk = W / nw;
-      flyTo(mx - (sx - W / 2) / nk, my - (sy - H / 2) / nk, nw, .7);
-    }
-    function fitTo(list) {
-      const xs = list.map((f) => f.x), ys = list.map((f) => f.y);
-      const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
-      const w = Math.max((x1 - x0) * 2.2, (y1 - y0) * 2.2 * W / H, wMin * 1.2);
-      flyTo((x0 + x1) / 2, (y0 + y1) / 2, w);
-    }
-
-    // ---- fiche au toucher ----
+    const box = $('[data-homemap]'); if (!box || !window.Atlas) return;
+    const stage = $('.hm-stage', box), pop = $('.hm-pop', box), hint = $('.hm-hint', box);
     const STAT = { confirme: 'Confirmé', 'a-verifier': 'À vérifier', provisoire: 'Provisoire' };
+    let atlas, cats = {}, hidden = new Set(), hintT;
     function open(f) {
-      active = f.id; builtW = 0; render();
-      const c = cats[f.cat];
+      const c = cats[f.cat] || {};
       pop.innerHTML = `<span class="hm-pop-ico" style="--c:${c.color}">${ic(f.icon)}</span>
-        <span class="hm-pop-t"><small>${escH(c.nom)} · ${STAT[f.statut] || ''}</small><b>${escH(f.nom)}</b>${f.precision === 'region' ? '<em>Emplacement à confirmer</em>' : ''}</span>
-        <span class="hm-pop-act"><button type="button" data-close aria-label="Fermer">${ic('x')}</button><a class="go" href="${ROOT}${f.url}" aria-label="Voir la fiche de ${escH(f.nom)}">${ic('arrow-right')}</a></span>`;
+        <span class="hm-pop-t"><small>${escH(c.nom || '')} · ${STAT[f.statut] || ''}</small><b>${escH(f.nom)}</b>${f.precision === 'region' ? '<em>Emplacement à confirmer</em>' : '<em>Position approximative</em>'}</span>
+        <span class="hm-pop-act"><button type="button" data-close aria-label="Fermer">${ic('x')}</button><a class="go" href="${ROOT}carte/?focus=${encodeURIComponent(f.id)}" aria-label="Ouvrir ${escH(f.nom)} sur la carte complète">${ic('arrow-right')}</a></span>`;
       pop.hidden = false;
       $('[data-close]', pop).addEventListener('click', close);
       if (g && !reduce) g.fromTo(pop, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
-      const [sx, sy] = toScreen(f.x, f.y);
-      const safeBottom = H - pop.offsetHeight - 30;
-      if (sy > safeBottom || sy < 60 || sx < 30 || sx > W - 30) flyTo(f.x, f.y + (pop.offsetHeight / 2) / k(), cam.w, .8);
     }
-    function close() { pop.hidden = true; if (active) { active = null; builtW = 0; render(); } }
-
-    // ---- gestes ----
-    let moved = false, armed = false;
-    const pts = new Map(); let start = null, pinch = null, vel = { x: 0, y: 0, t: 0 };
-    stage.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      if (g) g.killTweensOf(cam);
-      armed = true; moved = false;
-      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (pts.size === 1) { start = { x: e.clientX, y: e.clientY, cx: cam.x, cy: cam.y, id: e.pointerId }; vel = { x: 0, y: 0, t: performance.now(), px: e.clientX, py: e.clientY }; }
-      if (pts.size === 2) {
-        const [a, b] = [...pts.values()], r = stage.getBoundingClientRect();
-        pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), w: cam.w, m: toMap((a.x + b.x) / 2 - r.left, (a.y + b.y) / 2 - r.top) }; moved = true;
-      }
-    });
-    stage.addEventListener('pointermove', (e) => {
-      if (!pts.has(e.pointerId)) return;
-      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      const r = stage.getBoundingClientRect();
-      if (pts.size >= 2 && pinch) {
-        const [a, b] = [...pts.values()];
-        cam.w = pinch.w * pinch.d / Math.max(Math.hypot(a.x - b.x, a.y - b.y), 1); cam.w = Math.min(Math.max(cam.w, wMin), wMax);
-        const mx = (a.x + b.x) / 2 - r.left, my = (a.y + b.y) / 2 - r.top;
-        cam.x = pinch.m[0] - (mx - W / 2) / k(); cam.y = pinch.m[1] - (my - H / 2) / k(); render();
-      } else if (start && e.pointerId === start.id) {
-        const dx = e.clientX - start.x, dy = e.clientY - start.y;
-        if (!moved && Math.hypot(dx, dy) > 5) { moved = true; stage.classList.add('is-drag'); try { stage.setPointerCapture(e.pointerId); } catch (err) { /* */ } }
-        if (moved) {
-          cam.x = start.cx - dx / k(); cam.y = start.cy - dy / k(); render();
-          const now = performance.now(), dt = Math.max(now - vel.t, 1);
-          vel = { x: (e.clientX - vel.px) / dt, y: (e.clientY - vel.py) / dt, t: now, px: e.clientX, py: e.clientY };
-        }
-      }
-    });
-    const up = (e) => {
-      const wasPan = pts.size === 1 && moved && start;
-      pts.delete(e.pointerId);
-      if (pts.size < 2) pinch = null;
-      if (!pts.size) {
-        stage.classList.remove('is-drag');
-        if (wasPan && g && !reduce && performance.now() - vel.t < 80) { // inertie
-          g.to(cam, { x: cam.x - vel.x * 260 / k(), y: cam.y - vel.y * 260 / k(), duration: 1, ease: 'power3.out', onUpdate: render });
-        }
-        start = null; setTimeout(() => { moved = false; }, 0);
-      } else if (pts.size === 1) { const [id, p] = [...pts.entries()][0]; start = { x: p.x, y: p.y, cx: cam.x, cy: cam.y, id }; }
-    };
-    stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up);
-    stage.addEventListener('click', (e) => { if (!moved && !e.target.closest('.hm-dot,.hm-cl')) close(); });
-    stage.addEventListener('pointerleave', () => { if (!pts.size) armed = false; });
-    let hintT;
-    stage.addEventListener('wheel', (e) => {
-      if (!(e.ctrlKey || e.metaKey || armed)) { // ne bloque pas le défilement de la page
-        hint.hidden = false; clearTimeout(hintT); hintT = setTimeout(() => { hint.hidden = true; }, 1200); return;
-      }
-      e.preventDefault();
-      const r = stage.getBoundingClientRect();
-      const f = Math.exp(-e.deltaY * (e.ctrlKey ? .012 : .0022));
-      const sx = e.clientX - r.left, sy = e.clientY - r.top; const [mx, my] = toMap(sx, sy);
-      cam.w = Math.min(Math.max(cam.w / f, wMin), wMax);
-      cam.x = mx - (sx - W / 2) / k(); cam.y = my - (sy - H / 2) / k(); render();
-    }, { passive: false });
-    stage.addEventListener('dblclick', (e) => { const r = stage.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, 2.2); });
-    stage.addEventListener('keydown', (e) => {
-      const s = cam.w * .12, m = { ArrowLeft: [-s, 0], ArrowRight: [s, 0], ArrowUp: [0, -s], ArrowDown: [0, s] };
-      if (m[e.key]) { e.preventDefault(); flyTo(cam.x + m[e.key][0], cam.y + m[e.key][1], cam.w, .5); }
-      if (e.key === '+' || e.key === '=') zoomAt(W / 2, H / 2, 1.8);
-      if (e.key === '-') zoomAt(W / 2, H / 2, 1 / 1.8);
-      if (e.key === 'Escape') close();
-    });
-    $$('[data-z]', box).forEach((b) => b.addEventListener('click', () => {
-      const z = b.dataset.z;
-      if (z === 'in') zoomAt(W / 2, H / 2, 1.9); else if (z === 'out') zoomAt(W / 2, H / 2, 1 / 1.9);
-      else { close(); flyTo(VX + VW / 2, VY + VH / 2, wMax); }
-    }));
-    $$('.hm-chip', box).forEach((b) => b.addEventListener('click', () => {
-      const c = b.dataset.cat; hidden.has(c) ? hidden.delete(c) : hidden.add(c);
-      b.setAttribute('aria-pressed', !hidden.has(c)); builtW = 0; render();
-      if (g && !reduce) g.from('.hm-dot, .hm-cl', { scale: 0, duration: .4, stagger: .01, ease: 'back.out(2)' });
-    }));
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { measure(); builtW = 0; render(); }, 120); });
-
-    // ---- données (JSON) ----
+    function close() { pop.hidden = true; atlas && atlas.clearActive(); }
     fetch(ROOT + 'data/carte.json').then((r) => r.json()).then((d) => {
       d.categories.forEach((c) => { cats[c.id] = c; });
-      regions = d.regions;
-      feats = d.features.filter((f) => !f.properties.label).map((f) => ({ ...f.properties, x: f.geometry.coordinates[0], y: f.geometry.coordinates[1] }));
-      measure(); cam.w = wMax / (+box.dataset.zoom || 1); render();
+      atlas = window.Atlas(stage, {
+        root: ROOT, tuiles: d.tuiles, carte: d, wheelNeedsArm: true, pad: { top: 50, bottom: 40 },
+        onSelect: open, onBlank: close,
+        onRegion: (r) => atlas.flyTo(r.label[0], r.label[1], .12),
+        onWheelHint: () => { hint.hidden = false; clearTimeout(hintT); hintT = setTimeout(() => { hint.hidden = true; }, 1300); }
+      });
+      $$('[data-z]', box).forEach((b) => b.addEventListener('click', () => {
+        const z = b.dataset.z; if (z === 'in') atlas.zoomIn(); else if (z === 'out') atlas.zoomOut(); else { close(); atlas.reset(); }
+      }));
+      $$('.hm-chip', box).forEach((b) => b.addEventListener('click', () => {
+        const c = b.dataset.cat; hidden.has(c) ? hidden.delete(c) : hidden.add(c);
+        b.setAttribute('aria-pressed', !hidden.has(c)); atlas.setFilter((f) => !hidden.has(f.cat));
+      }));
       if (g && !reduce && window.ScrollTrigger) {
-        const tl = g.timeline({ scrollTrigger: { trigger: box, start: 'top 75%', once: true } });
-        tl.fromTo(svg, { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(75% at 50% 50%)', duration: 1.8, ease: 'power3.inOut', clearProps: 'clipPath' }, 0)
-          .from('.hm-coast-glow', { opacity: 0, duration: 1.4 }, .9);
-        tl.from('.hm-reg', { opacity: 0, duration: 1.2, stagger: .1 }, .5)
-          .from('.hm-roads path', { opacity: 0, duration: 1 }, 1)
-          .from('.hm-lbl', { opacity: 0, y: 6, duration: .6, stagger: .06 }, 1.2)
-          .from('.hm-dot, .hm-cl', { scale: 0, opacity: 0, duration: .5, stagger: .03, ease: 'back.out(2.2)' }, 1.4)
-          .from('.hm-legend > *, .hm-ctrl > *', { opacity: 0, y: -8, duration: .5, stagger: .05 }, 1.2);
+        g.from(stage, { clipPath: 'circle(0% at 50% 50%)', duration: 1.6, ease: 'power3.inOut', clearProps: 'clipPath', scrollTrigger: { trigger: box, start: 'top 80%', once: true } });
+        g.from('.hm-legend > *, .hm-ctrl > *', { opacity: 0, y: -8, duration: .5, stagger: .05, delay: .8, scrollTrigger: { trigger: box, start: 'top 80%', once: true } });
       }
-    }).catch(() => { /* carte indisponible : le fond reste visible */ });
+    }).catch(() => { stage.textContent = 'Carte indisponible pour le moment.'; });
   }
 
   intro(); tilesFx(); typer(); rowsFx(); homeMap();

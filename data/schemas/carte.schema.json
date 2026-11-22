@@ -1,22 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "carte.schema.json",
-  "title": "Fond de carte de Leonida",
+  "title": "Configuration de la carte de Leonida",
   "type": "object",
-  "required": ["info", "viewBox", "land", "islands", "lake", "regions", "roads", "keysRegion"],
+  "required": ["version", "info", "fond", "bornes", "vueInitiale", "regions", "communaute"],
   "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "minimum": 2 },
     "info": { "type": "string" },
-    "viewBox": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "number" } },
-    "image": {
-      "description": "Image de carte réelle (optionnelle). Si présente, elle remplace le fond vectoriel. Coordonnées dans le même repère que viewBox.",
-      "type": "object", "required": ["src", "x", "y", "width", "height", "credit"],
-      "properties": { "src": { "type": "string" }, "x": { "type": "number" }, "y": { "type": "number" }, "width": { "type": "number" }, "height": { "type": "number" }, "credit": { "type": "string" } }
-    },
-    "land": { "type": "array", "minItems": 3, "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number" } } },
-    "islands": { "type": "array", "items": { "type": "object", "required": ["id", "region", "pts"] } },
-    "lake": { "type": "object", "required": ["cx", "cy", "rx", "ry"] },
-    "regions": { "type": "array", "items": { "type": "object", "required": ["id", "nom", "color", "pts"], "properties": { "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } } } },
-    "roads": { "type": "array", "items": { "type": "array" } },
-    "keysRegion": { "type": "object", "required": ["id", "nom", "color"] }
+    "fond": { "type": "string", "pattern": "\\.json$" },
+    "bornes": { "type": "object", "required": ["ouest", "est", "sud", "nord"], "properties": { "ouest": { "type": "number" }, "est": { "type": "number" }, "sud": { "type": "number" }, "nord": { "type": "number" } } },
+    "vueInitiale": { "type": "object", "required": ["centre", "zoomMin"], "properties": { "centre": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number" } }, "zoomMin": { "type": "number" } } },
+    "regions": { "type": "array", "minItems": 6, "items": { "type": "object", "required": ["id", "nom", "couleur"], "properties": { "id": { "type": "string", "pattern": "^[a-z-]+$" }, "nom": { "type": "string" }, "couleur": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } } } },
+    "communaute": { "type": "object", "required": ["categories"], "properties": { "categories": { "type": "array", "items": { "type": "object", "required": ["id", "nom", "tags"], "properties": { "id": { "type": "string" }, "nom": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } } } } } } }
   }
 }

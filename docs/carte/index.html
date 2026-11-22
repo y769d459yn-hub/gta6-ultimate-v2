@@ -1,34 +1,36 @@
 <!doctype html>
-<html lang="fr" data-theme="night">
+<html lang="fr" data-theme="night" class="v2">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Carte GTA 6 interactive : lieux et véhicules</title>
-<meta name="description" content="Explorez la carte GTA 6 avec des repères classés par catégorie et des fiches expliquant leur niveau de fiabilité.">
+<meta name="description" content="Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de 900 lieux repérés par la communauté.">
 <link rel="canonical" href="https://y769d459yn-hub.github.io/gta6-ultimate-v2/carte/">
-<meta name="theme-color" content="#140a22">
+<meta name="theme-color" content="#040309">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Leonida Guide">
 <meta property="og:title" content="Carte GTA 6 interactive : lieux et véhicules">
-<meta property="og:description" content="Explorez la carte GTA 6 avec des repères classés par catégorie et des fiches expliquant leur niveau de fiabilité.">
+<meta property="og:description" content="Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de 900 lieux repérés par la communauté.">
 <meta property="og:url" content="https://y769d459yn-hub.github.io/gta6-ultimate-v2/carte/">
 <meta property="og:image" content="https://y769d459yn-hub.github.io/gta6-ultimate-v2/assets/og.png">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.webmanifest">
-<link rel="preload" href="../assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/app.css">
+<link rel="stylesheet" href="../assets/home.css">
+<link rel="stylesheet" href="../assets/atlas.css">
 <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size}catch(e){}</script>
 
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
-<body class="p-map" data-root="../">
+<body class="p-atlas" data-root="../">
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
   <a class="brand" href="../" aria-label="Leonida Guide — accueil">
-    <span class="brand-sun" aria-hidden="true"></span>
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>
     <span class="brand-txt"><b>LEONIDA</b><i>guide</i></span>
   </a>
   <button class="search-trigger" type="button" data-open-search aria-label="Rechercher">
@@ -42,59 +44,30 @@
 </header>
 <main id="main" class="page">
 
-<h1 class="sr-only">Carte interactive de GTA 6</h1>
-<section class="map-page" data-map>
-  <div class="map-stage" tabindex="0" aria-label="Carte. Glisse pour déplacer, pince ou molette pour zoomer.">
-    <div class="map-canvas"><svg class="map-svg" viewBox="0 0 1020 1300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Carte schématique de Leonida">
-  <defs>
-    <clipPath id="landclip"><polygon points="30,140 180,110 380,95 600,80 800,78 965,95 975,180 950,300 940,420 925,560 915,700 930,790 948,880 940,990 905,1075 840,1135 760,1165 690,1158 640,1110 602,1020 575,920 545,820 500,720 450,622 390,520 320,442 240,392 150,366 60,346 24,262"/></clipPath>
-    <pattern id="waves" width="40" height="18" patternUnits="userSpaceOnUse"><path d="M0 9c5 0 5-4 10-4s5 4 10 4 5-4 10-4 5 4 10 4" fill="none" stroke="var(--map-wave)" stroke-width="1.2"/></pattern>
-    <radialGradient id="glow" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="var(--map-glow)"/><stop offset="1" stop-color="transparent"/></radialGradient>
-  </defs>
-  <rect x="-500" y="-500" width="2020" height="2300" fill="var(--map-sea)"/>
-  <rect x="-500" y="-500" width="2020" height="2300" fill="url(#waves)" opacity=".6"/>
-  <polygon points="30,140 180,110 380,95 600,80 800,78 965,95 975,180 950,300 940,420 925,560 915,700 930,790 948,880 940,990 905,1075 840,1135 760,1165 690,1158 640,1110 602,1020 575,920 545,820 500,720 450,622 390,520 320,442 240,392 150,366 60,346 24,262" fill="var(--map-land)" stroke="var(--map-coast)" stroke-width="6" stroke-linejoin="round"/>
-  <g clip-path="url(#landclip)"><polygon class="reg" data-region="port-gellhorn" points="0,90 420,70 420,330 360,470 0,430" fill="#ff9a1f" /><polygon class="reg" data-region="mount-kalaga" points="420,50 1020,50 1020,300 760,320 560,300 420,330" fill="#3ddc84" /><polygon class="reg" data-region="ambrosia" points="420,330 560,300 760,320 1020,300 1020,640 810,660 560,700 360,470" fill="#ffd23f" /><polygon class="reg" data-region="grassrivers" points="360,470 560,700 810,660 850,760 840,1000 780,1200 560,1180 420,700" fill="#19d3e3" /><polygon class="reg" data-region="vice-city" points="810,660 1020,640 1020,1180 780,1200 840,1000 850,760" fill="#ff2d87" /></g>
-  <polygon class="reg reg--isl" data-region="vice-city" points="962,760 978,756 992,860 990,1000 972,1004 966,880" fill="#ff2d87" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="vice-city" points="938,905 952,900 956,920 942,926" fill="#ff2d87" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="leonida-keys" points="690,1186 742,1176 748,1192 694,1204" fill="#9b6bff" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="leonida-keys" points="600,1210 664,1200 668,1216 604,1228" fill="#9b6bff" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="leonida-keys" points="505,1228 574,1222 576,1240 508,1248" fill="#9b6bff" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="leonida-keys" points="410,1246 478,1238 482,1258 412,1264" fill="#9b6bff" stroke="var(--map-coast)" stroke-width="3"/><polygon class="reg reg--isl" data-region="leonida-keys" points="300,1252 386,1250 390,1276 298,1280" fill="#9b6bff" stroke="var(--map-coast)" stroke-width="3"/>
-  <ellipse cx="730" cy="505" rx="76" ry="58" fill="var(--map-sea)" stroke="var(--map-coast)" stroke-width="4"/>
-  <g class="roads"><path d="M160,250 L320,230 L520,260 L660,330 L760,380 L880,420 L905,560 L892,700 L885,820 L882,960 L860,1090 L760,1160 L690,1190 L630,1210 L540,1232 L440,1250 L340,1265"/><path d="M880,420 L930,300 L930,170 L820,140 L660,150 L520,170 L380,180 L200,180"/><path d="M660,330 L620,520 L640,700 L720,820 L882,860"/></g>
-  <g clip-path="url(#landclip)" class="borders"><polygon points="0,90 420,70 420,330 360,470 0,430"/><polygon points="420,50 1020,50 1020,300 760,320 560,300 420,330"/><polygon points="420,330 560,300 760,320 1020,300 1020,640 810,660 560,700 360,470"/><polygon points="360,470 560,700 810,660 850,760 840,1000 780,1200 560,1180 420,700"/><polygon points="810,660 1020,640 1020,1180 780,1200 840,1000 850,760"/></g>
-  <rect x="-500" y="-500" width="2020" height="2300" fill="url(#glow)" pointer-events="none"/>
-</svg></div>
-    <div class="map-layer" aria-live="off"></div>
-  </div>
-  <div class="map-ui">
-    <div class="map-top">
-      <p class="map-q">Que veux-tu voir ?</p>
-      <label class="field field--map"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" data-map-search placeholder="Chercher sur la carte" autocomplete="off" enterkeyhint="search" aria-controls="map-sugg"></label>
-      <div class="map-sugg" id="map-sugg" hidden></div>
-      <div class="map-cats" role="group" aria-label="Catégories">
-        <button class="mcat" type="button" data-mcat="vehicules" aria-pressed="true" style="--c:#ff9a1f"><svg class="ic " data-anim="drive" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v-3l2-5h14l2 5v3z"/><path d="M5 16v2M19 16v2M3 13h18"/><circle cx="7.5" cy="15.5" r=".6"/><circle cx="16.5" cy="15.5" r=".6"/></svg><span>Véhicules</span><small data-mcount="vehicules"></small></button><button class="mcat" type="button" data-mcat="lieux" aria-pressed="true" style="--c:#ff2d87"><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Lieux</span><small data-mcount="lieux"></small></button><button class="mcat" type="button" data-mcat="activites" aria-pressed="true" style="--c:#19d3e3"><svg class="ic " data-anim="drive" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2"/><path d="M2 15c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2"/></svg><span>Activités</span><small data-mcount="activites"></small></button><button class="mcat" type="button" data-mcat="points-utiles" aria-pressed="true" style="--c:#ffd23f"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg><span>Points utiles</span><small data-mcount="points-utiles"></small></button>
-      </div>
-    </div>
-    <div class="map-ctrl">
-      <button class="ibtn ibtn--map" type="button" data-zoom="in" aria-label="Zoomer"><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-      <button class="ibtn ibtn--map" type="button" data-zoom="out" aria-label="Dézoomer"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></button>
-      <button class="ibtn ibtn--map" type="button" data-zoom="reset" aria-label="Recentrer"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
-      <button class="ibtn ibtn--map" type="button" data-open-filters aria-label="Filtres" aria-expanded="false"><svg class="ic " data-anim="wiggle" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><span class="dot" data-filter-dot hidden></span></button>
+<h1 class="sr-only">Carte interactive de GTA 6 : Leonida</h1>
+<section class="atp" data-atlas-page>
+  <div class="atp-stage" tabindex="0" role="application" aria-label="Carte de Leonida : glisse pour naviguer, pince ou molette pour zoomer"></div>
+  <div class="atp-top">
+    <label class="atp-search"><span class="sr-only">Chercher sur la carte</span><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="atp-q" placeholder="Chercher un lieu, un véhicule…" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg"></label>
+    <div class="atp-sugg" id="atp-sugg" role="listbox" hidden></div>
+    <div class="atp-cats" role="group" aria-label="Afficher sur la carte">
+      <button type="button" class="atp-chip" data-cat="vehicules" aria-pressed="true" style="--c:#ff9a1f"><i></i>Véhicules<small data-n="vehicules"></small></button><button type="button" class="atp-chip" data-cat="lieux" aria-pressed="true" style="--c:#ff2d87"><i></i>Lieux<small data-n="lieux"></small></button><button type="button" class="atp-chip" data-cat="activites" aria-pressed="true" style="--c:#19d3e3"><i></i>Activités<small data-n="activites"></small></button><button type="button" class="atp-chip" data-cat="points-utiles" aria-pressed="true" style="--c:#ffd23f"><i></i>Points utiles<small data-n="points-utiles"></small></button>
+      <button type="button" class="atp-chip atp-chip--commu" data-commu aria-pressed="false" style="--c:#c7c2e0"><i></i>Lieux de la communauté<small data-n="commu"></small></button>
     </div>
   </div>
-  <div class="sheet sheet--filters" data-filters hidden>
-    <div class="sheet-grip"></div>
-    <div class="sheet-h"><b><svg class="ic " data-anim="wiggle" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Filtres</b><button class="ibtn" type="button" data-close-filters aria-label="Fermer"><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-    <p class="sheet-l">Sous-type</p><div class="chips" data-sous></div>
-    <p class="sheet-l">Région</p>
-    <div class="chips" data-regions><button class="chip" type="button" data-reg="" aria-pressed="true">Toutes</button><button class="chip" type="button" data-reg="port-gellhorn" aria-pressed="false">Port Gellhorn</button><button class="chip" type="button" data-reg="mount-kalaga" aria-pressed="false">Mount Kalaga</button><button class="chip" type="button" data-reg="ambrosia" aria-pressed="false">Ambrosia</button><button class="chip" type="button" data-reg="grassrivers" aria-pressed="false">Grassrivers</button><button class="chip" type="button" data-reg="vice-city" aria-pressed="false">Vice City</button><button class="chip" type="button" data-reg="leonida-keys" aria-pressed="false">Leonida Keys</button></div>
-    <label class="switch"><input type="checkbox" data-verified><span class="switch-ui"></span>Positions vérifiées seulement</label>
-    <p class="muted small"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg>Carte schématique originale. Les repères en pointillés sont placés dans leur région : emplacement à confirmer.</p>
+  <div class="atp-ctrl">
+    <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer"><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></button>
+    <button type="button" class="hm-btn" data-z="reset" aria-label="Voir toute la carte"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
   </div>
-  <div class="sheet sheet--detail" data-detail hidden></div>
-  <noscript><p class="wrap">La carte nécessite JavaScript. Consulte la <a href="../lieux/">liste des lieux</a>.</p></noscript>
+  <div class="atp-regions" role="group" aria-label="Aller à une région"><button type="button" data-reg="vice-city" style="--c:#ff2bd6">Vice City</button><button type="button" data-reg="leonida-keys" style="--c:#9d7bff">Leonida Keys</button><button type="button" data-reg="grassrivers" style="--c:#2de2e6">Grassrivers</button><button type="button" data-reg="port-gellhorn" style="--c:#ffb547">Port Gellhorn</button><button type="button" data-reg="ambrosia" style="--c:#ffd23f">Ambrosia</button><button type="button" data-reg="mount-kalaga" style="--c:#39ff88">Mount Kalaga</button></div>
+  <aside class="atp-panel" data-panel hidden aria-live="polite"></aside>
+  <p class="at-attrib at-attrib--page">Fond : <a href="https://map.gtadb.org" target="_blank" rel="noopener">Yanis v18 · GTADB</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, recoloré. Reconstruction communautaire, non officielle. Lieux : GTADB, CC BY 4.0.</p>
 </section>
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <a class="brand brand--foot" href="../"><span class="brand-sun" aria-hidden="true"></span><span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
+    <a class="brand brand--foot" href="../"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-f)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-f)" stroke-width="1.3" stroke-linecap="round"/></svg><span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
     <nav aria-label="Pied de page">
       <a href="../astuces/">Astuces GTA 6</a><a href="../vehicules/">Véhicules</a><a href="../carte/">Carte interactive</a><a href="../lieux/">Lieux</a><a href="../encyclopedie/">Encyclopédie</a><a href="../actualites/">Actualités</a><a href="../a-propos/">À propos et fiabilité</a><a href="../compte/">Mon espace</a>
     </nav>
@@ -122,8 +95,12 @@
   </div>
 </div>
 <div class="toast" role="status" aria-live="polite" hidden></div>
-
+<script src="../assets/gsap.min.js" defer></script>
+<script src="../assets/ScrollTrigger.min.js" defer></script>
+<script src="../assets/SplitText.min.js" defer></script>
+<script src="../assets/DrawSVGPlugin.min.js" defer></script>
 <script src="../assets/app.js" defer></script>
-<script src="../assets/map.js" defer></script>
+<script src="../assets/atlas.js" defer></script>
+<script src="../assets/carte.js" defer></script>
 </body>
 </html>
