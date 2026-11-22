@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { icon, iconDefs } from './icons.mjs';
 import { validate } from './validate.mjs';
+import { silhouette } from './silhouettes.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'docs');
@@ -63,6 +64,9 @@ function ref(slug) {
 const TUILES = read('tuiles.json');
 const VIGN = new Set(fs.existsSync(path.join(ROOT, 'data', 'vignettes.json')) ? read('vignettes.json').ids : []);
 // url() dans une variable CSS est résolue par rapport à la feuille de style (assets/) : chemin relatif à assets/
+// Photos des véhicules : déposer src/photos/<slug>.webp (ou .jpg/.png) — tes propres captures uniquement
+const PHOTOS = Object.fromEntries((fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync(path.join(ROOT, 'src', 'photos')) : []).map((f) => [f.replace(/\.(webp|jpe?g|png)$/i, ''), f]));
+const vehVisuel = (v, R, cls = '') => (PHOTOS[v.slug] ? `<img class="veh-photo" src="${R}photos/${PHOTOS[v.slug]}" alt="${esc(v.nom)}" loading="lazy">` : silhouette(v, cls));
 const vign = (id) => (VIGN.has(id) ? `../vignettes/${id}.webp` : null);
 const GTADB_RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'vendor', 'gtadb', 'landmarks.json'), 'utf8'));
 // Lieux communautaires : [adresse, [x, y], …, tags (index 6)]
@@ -486,7 +490,7 @@ function vehCard(v, R) {
   const reg = l ? (l.type === 'region' ? l.id : l.region) : '';
   const txt = norm([v.nom, v.sous, c.nom, v.emplacement, v.kw.join(' '), l ? l.nom : ''].join(' '));
   return `<a class="card card--veh" href="${R}vehicules/${v.slug}/" style="--c:${v.color || c.color}" data-cat="${v.type}" data-zone="${reg || ''}" data-dispo="${v.dispo}" data-map="${vehOnMap(v.slug) ? 1 : 0}" data-alpha="${esc(norm(v.nom))}" data-text="${esc(txt)}" data-id="${v.slug}">
-  <span class="veh-art"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${icon(c.icon, 'ic-xl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</span>
+  <span class="veh-art"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R)}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</span>
   <span class="card-body"><span class="card-kicker">${esc(c.nom)}</span><b class="card-title">${esc(v.nom)}</b>
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
@@ -522,7 +526,7 @@ for (const v of VEHICULES) {
   const sameReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id) && !similar.includes(x)).slice(0, 2) : [];
   const body = `<article class="wrap fiche" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    <div class="veh-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${icon(c.icon, 'ic-xxl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</div>
+    <div class="veh-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}</div>
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a>${badge(v.dispo)}</div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
   </header>
@@ -867,7 +871,7 @@ write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUT
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');

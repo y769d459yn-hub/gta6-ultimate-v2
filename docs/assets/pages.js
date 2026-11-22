@@ -19,7 +19,10 @@
     const split = new SplitText(h1, { type: 'words,chars', wordsClass: 'w' });
     g.from(split.chars, { yPercent: 60, opacity: 0, duration: .8, stagger: .012, ease: 'expo.out', onComplete: () => split.revert() });
   }
-  g.from('.map-banner, .veh-hero', { opacity: 0, scale: .98, duration: .9, ease: 'expo.out', clearProps: 'transform' });
+  if (window.DrawSVGPlugin && window.ScrollTrigger) {
+    window.ScrollTrigger.batch('.veh-svg', { once: true, start: 'top 92%', onEnter: (els) => g.from(els.map((e) => [...e.querySelectorAll('path, circle')]).flat(), { drawSVG: '0%', duration: 1.2, stagger: .01, ease: 'power2.inOut' }) });
+  }
+  g.fromTo('.map-banner, .veh-hero', { opacity: 0, scale: .98 }, { opacity: 1, scale: 1, duration: .9, ease: 'expo.out', clearProps: 'transform' });
   const icons = document.querySelectorAll('.fiche-ico .ic > *, .door-ico .ic > *');
   if (icons.length && window.DrawSVGPlugin) g.from(icons, { drawSVG: '0%', duration: 1, stagger: .01, ease: 'power2.inOut', delay: .2 });
 })();

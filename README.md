@@ -41,6 +41,9 @@ Statuts de fiabilité : `confirme` (vérifié humainement), `a-verifier`, `provi
 - Moteur : `src/atlas.js` (tuiles, regroupement, pincer/glisser/molette, inertie), page : `src/carte.js`.
 - Mettre à jour la carte : `git clone https://github.com/rolux/gtadb.org`, puis `python3 tools/tuiles.py ../gtadb.org` et copier `map/data/6/landmarks.json` dans `vendor/gtadb/`.
 
+## Images des véhicules
+Chaque véhicule a une silhouette néon originale (`scripts/silhouettes.mjs`). Pour afficher une vraie image à la place, dépose **ta propre capture** dans `src/photos/<slug>.webp` (ou `.jpg` / `.png`), par exemple `src/photos/pegassi-infernus.webp`, puis relance `npm run build`. N'utilise pas d'images officielles de Rockstar sans autorisation.
+
 ## SEO (discret)
 Title et description par page, URL propres, canonical, Open Graph, JSON-LD (WebSite + SearchAction, FAQPage, HowTo, BreadcrumbList, Article, NewsArticle), sitemap.xml, robots.txt. Le texte complémentaire est rangé dans des blocs repliables (« Questions fréquentes », « En savoir plus »).
 

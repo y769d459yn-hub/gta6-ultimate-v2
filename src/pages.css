@@ -136,3 +136,13 @@
   .v2 .card--veh .veh-pin { left: 8px; right: 8px; bottom: 8px; max-width: none; font-size: .68rem; padding: 4px 6px; text-align: center; }
   .v2 .card--veh .veh-type { letter-spacing: .04em; }
 }
+
+/* Silhouettes néon des véhicules */
+.v2 .veh-svg { position: relative; z-index: 1; width: 78%; max-width: 260px; height: auto; color: var(--c); filter: drop-shadow(0 0 6px var(--c)) drop-shadow(0 0 1px #000); overflow: visible; }
+.v2 .veh-svg .vs-glass { fill: color-mix(in srgb, var(--c) 22%, transparent); stroke-width: 1.4; }
+.v2 .veh-svg .vs-water { stroke: var(--cy); stroke-width: 1.4; opacity: .7; }
+.v2 .veh-svg--xl { width: 70%; max-width: 420px; }
+.v2 .veh-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.v2 .card--veh:hover .veh-svg { animation: a-drive .8s ease-in-out infinite; }
+.v2 .veh-hero .veh-svg { animation: a-drive 2.4s ease-in-out infinite; }
+@media (max-width: 559px) { .v2 .card--veh .veh-svg { width: 90%; } }
