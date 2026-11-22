@@ -3,7 +3,7 @@ Source des images : dépôt xpbeats00-sudo/gta6-hq (images/vehicles, images/edit
 dont le fichier docs/compliance/media-hashes.csv donne l'origine de chaque image.
 Usage : python3 tools/photos.py <chemin du dépôt gta6-hq>"""
 import csv, json, os, sys
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageEnhance, ImageOps
 
 SRC = sys.argv[1]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,11 +11,11 @@ OUT = os.path.join(ROOT, 'src', 'photos')
 
 # slug du site -> (image source, note affichée sous la photo, réglage de luminosité)
 CHOIX = {
-    'pegassi-infernus': ('images/vehicles/pegassi-infernus-96.jpg', '', 1.25),
-    'bravado-gauntlet-hellfire': ('images/vehicles/bravado-gauntlet-hellfire.jpg', '', 1),
-    'maibatsu-penumbra-ff': ('images/vehicles/maibatsu-penumbra-ff.jpg', '', 1.5),
+    'pegassi-infernus': ('images/vehicles/pegassi-infernus-96.jpg', '', 1.7, (0, 50, 832, 440)),
+    'bravado-gauntlet-hellfire': ('images/vehicles/bravado-gauntlet-hellfire.jpg', '', 1.1, (130, 50, 832, 445)),
+    'maibatsu-penumbra-ff': ('images/vehicles/maibatsu-penumbra-ff.jpg', '', 2.2, (0, 70, 832, 420)),
     'progen-emerus-royal-ruby': ('images/vehicles/progen-emerus.jpg', 'Modèle standard montré (pas la version « Royal Ruby »)', 1),
-    'imponte-phoenix-bloodbath': ('images/vehicles/imponte-phoenix.jpg', 'Modèle standard montré (pas la version « Bloodbath »)', 1.2),
+    'imponte-phoenix-bloodbath': ('images/vehicles/imponte-phoenix.jpg', 'Modèle standard montré (pas la version « Bloodbath »)', 1.5, (150, 70, 960, 500)),
     'mallard-flammes': ('images/vehicles/lapwing-mallard.jpg', 'Mallard standard montré (sans les flammes)', 1),
     'hydroglisseur': ('images/vehicles/airboat.jpg', '', 1),
     'jet-ski': ('images/vehicles/jet-ski.jpg', '', 1),
@@ -33,7 +33,7 @@ CHOIX = {
     'vapid-ganado': ('images/vehicles/vapid-ganado.jpg', '', 1),
     'pfister-comet-s2': ('images/vehicles/pfister-comet-s2.jpg', '', 1),
     'obey-tailgater-s': ('images/vehicles/obey-tailgater-s.jpg', '', 1),
-    'imponte-ruiner': ('images/vehicles/imponte-ruiner-82.jpg', '', 1),
+    'imponte-ruiner': ('images/vehicles/imponte-ruiner-82.jpg', '', 1.15, (0, 0, 768, 533)),
     'maibatsu-penumbra-shirley': ('images/vehicles/maibatsu-penumbra.jpg', '', 1),
     'pegassi-tempesta': ('images/vehicles/pegassi-police-tempesta.jpg', 'Version police montrée', 1),
     'granforma-zorrusso': ('images/vehicles/granforma-zorrusso.jpg', '', 1),
@@ -58,7 +58,11 @@ data = {}
 for slug, (src, note, lum, *crop) in CHOIX.items():
     im = Image.open(os.path.join(SRC, src)).convert('RGB')
     if crop: im = im.crop(crop[0])
-    if lum != 1: im = ImageEnhance.Brightness(im).enhance(lum)
+    if lum != 1:
+        im = ImageOps.autocontrast(im, cutoff=(.5, .2))
+        g = 1 / lum
+        im = im.point(lambda v: int(255 * (v / 255) ** g))
+        im = ImageEnhance.Color(im).enhance(1.12)
     im.thumbnail((960, 960))
     im.save(os.path.join(OUT, slug + '.webp'), 'WEBP', quality=74, method=6)
     nom, url = credit(src)

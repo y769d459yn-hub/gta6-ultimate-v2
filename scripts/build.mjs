@@ -71,8 +71,10 @@ for (const f of fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync
   if (k !== f && !PHOTOS[k]) PHOTOS[k] = { fichier: f, note: '', credit: '', url: '' };
 }
 // Modèles 3D générés (data/modeles3d.json) et leurs rendus fixes (src/rendus/<slug>.webp, tools/rendus3d.cjs)
-const MODELES = fs.existsSync(path.join(ROOT, 'data', 'modeles3d.json')) ? read('modeles3d.json').modeles : {};
-const RENDUS = new Set(fs.existsSync(path.join(ROOT, 'src', 'rendus')) ? fs.readdirSync(path.join(ROOT, 'src', 'rendus')).map((f) => f.replace(/\.webp$/, '')) : []);
+// Vue 3D désactivée : le site montre les vraies photos du jeu (les outils tools/3d restent disponibles)
+const VUE_3D = false;
+const MODELES = VUE_3D && fs.existsSync(path.join(ROOT, 'data', 'modeles3d.json')) ? read('modeles3d.json').modeles : {};
+const RENDUS = new Set(VUE_3D && fs.existsSync(path.join(ROOT, 'src', 'rendus')) ? fs.readdirSync(path.join(ROOT, 'src', 'rendus')).map((f) => f.replace(/\.webp$/, '')) : []);
 const rendu = (v, R) => (RENDUS.has(v.slug) ? `<img class="veh-photo veh-rendu" src="${R}rendus/${v.slug}.webp" alt="${esc(v.nom)} en 3D" loading="lazy" decoding="async">` : '');
 const photoJeu = (v, R, extra = '') => `<img class="veh-photo${extra}" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}" loading="lazy" decoding="async">`;
 // Modèles 3D réalistes fournis (src/modeles/<slug>.glb) : remplacent le modèle simplifié dans la vue 3D
@@ -898,6 +900,7 @@ write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUT
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
+  if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
   write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
