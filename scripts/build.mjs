@@ -1297,5 +1297,7 @@ write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /compte/\nDisallow: /fav
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
+// adresse personnalisée (GitHub Pages)
+if (!site.url.includes('github.io')) write('CNAME', new URL(site.url).hostname + '\n');
 
 console.log(`✓ ${pages.length} pages · ${index.length} entrées de recherche · ${features.length} repères carte → docs/`);
