@@ -10,7 +10,7 @@
   const st = { cat: params.get('cat') || '', seq: false };
   const chips = $$('[data-ccat]');
   chips.forEach((b) => b.addEventListener('click', () => { st.cat = b.dataset.ccat; apply(); }));
-  $('[data-cseq]').addEventListener('click', (e) => { st.seq = !st.seq; e.currentTarget.setAttribute('aria-pressed', String(st.seq)); apply(); });
+  $('[data-cseq]') && $('[data-cseq]').addEventListener('click', (e) => { st.seq = !st.seq; e.currentTarget.setAttribute('aria-pressed', String(st.seq)); apply(); });
   if (input) { input.value = params.get('q') || ''; let t; input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 80); }); }
   function apply() {
     chips.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ccat === st.cat)));

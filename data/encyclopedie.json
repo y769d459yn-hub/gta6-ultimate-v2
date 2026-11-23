@@ -419,7 +419,7 @@
   "cat": "gameplay",
   "icon": "code",
   "nom": "Codes",
-  "bref": "61 codes, qui se tapent au téléphone avec une suite de flèches.",
+  "bref": "19 codes connus, qui se tapent au téléphone avec une suite de flèches.",
   "sait": [
    "Ils apparaissent dans le menu Progression après l'histoire.",
    "Chacun se débloque par un défi (sport, stands de tir, collection…).",
@@ -427,7 +427,7 @@
    "Il n'y a pas de code d'invincibilité ni de santé."
   ],
   "incertain": [
-   "42 combinaisons n'ont pas encore été trouvées par la communauté."
+   "D'autres codes existent, mais leur combinaison n'a pas encore été trouvée : ils seront ajoutés dès qu'elle le sera."
   ],
   "liens": [
    "entrer-un-code",

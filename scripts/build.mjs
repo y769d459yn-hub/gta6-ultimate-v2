@@ -20,6 +20,9 @@ const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON
 const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.statut === 'confirme' ? (v.preuves.length ? `Confirmé par ${v.preuves.join(' et ')}` : 'Type de véhicule confirmé') : v.statut === 'non-confirme' ? 'Non confirmé' : 'À confirmer : vu seulement sur GTABase ou gta6guide.fr'; };
 const MISSIONS = fs.existsSync(path.join(ROOT, 'data', 'missions.json')) ? read('missions.json') : { chapitres: [], missions: [] };
 const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes.json') : { categories: [], codes: [] };
+// on n'affiche que les codes dont la combinaison est connue
+CODES.codes = CODES.codes.filter((c) => c.sequence.length);
+CODES.categories = CODES.categories.filter((k) => CODES.codes.some((c) => c.cat === k.id));
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 // inspirations des véhicules (relevées en anglais) → français
 const INSP = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'traductions', 'inspirations.json'), 'utf8'));
@@ -776,7 +779,7 @@ for (const v of VEHICULES) {
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes GTA 6</h1>
-  <p class="lead">GTA 6 compte <b>${C.length} codes</b>. On connaît pour l'instant <b>${connus} combinaisons</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper.</p>
+  <p class="lead">Les <b>${C.length} codes de GTA 6 dont la combinaison est connue</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper. Les codes dont la combinaison n'a pas encore été découverte ne sont pas listés : ils seront ajoutés dès qu'elle sera trouvée.</p>
   <ol class="howto">
     <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste des codes apparaît dans le menu Progression.</span></li>
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
@@ -787,7 +790,6 @@ for (const v of VEHICULES) {
   <div class="filterbar" role="group" aria-label="Filtrer les codes">
     <button class="chip" type="button" data-ccat="" aria-pressed="true">Tous <small>${C.length}</small></button>
     ${cats.map((k) => `<button class="chip" type="button" data-ccat="${k.id}" aria-pressed="false" style="--c:${k.color}">${icon(k.icon)}${esc(k.nom)} <small>${C.filter((c) => c.cat === k.id).length}</small></button>`).join('')}
-    <button class="chip chip--toggle" type="button" data-cseq aria-pressed="false">${icon('check')}Combinaison connue</button>
   </div>
   <p class="count-line" data-ccount aria-live="polite"></p>
   ${cats.map((k) => `<section class="code-grp" data-cgrp="${k.id}" aria-labelledby="cg-${k.id}"><h2 class="vgrp-h" id="cg-${k.id}">${esc(k.nom)} <small>${C.filter((c) => c.cat === k.id).length}</small></h2>
@@ -796,12 +798,12 @@ for (const v of VEHICULES) {
   <section class="faq" aria-labelledby="faq-t"><h2 class="h3" id="faq-t">${icon('question')}Questions fréquentes</h2>
     <details><summary>Pourquoi mon code ne marche pas ?</summary><p>Un code ne fonctionne que s'il est débloqué : termine d'abord l'histoire, puis réussis son défi (indiqué sous chaque code). Vérifie aussi que tu maintiens bien L1 (ou LB) en appuyant sur R1 (ou RB) avant de taper les flèches.</p></details>
     <details><summary>Est-ce que les codes bloquent les trophées ?</summary><p>Oui, mais seulement pendant la session : tant qu'un code est actif, tu ne peux ni sauvegarder ni gagner de trophées. Quitte le jeu et recharge ta sauvegarde pour revenir à la normale. Ce que tu as fait pendant que le code était actif n'est pas gardé.</p></details>
-    <details><summary>Y a-t-il un code d'invincibilité ou de santé ?</summary><p>Non. Aucun des 61 codes ne rend invincible et il n'y a pas de code de santé.</p></details>
+    <details><summary>Y a-t-il un code d'invincibilité ou de santé ?</summary><p>Non. Aucun code connu ne rend invincible et il n'y a pas de code de santé.</p></details>
     <details><summary>Et sur PC ?</summary><p>GTA 6 n'est sorti que sur PS5 et Xbox Series. Les combinaisons utilisent seulement la croix directionnelle : elles sont identiques sur les deux consoles.</p></details>
   </section>
   <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Codes GTA 6 : les ${C.length} codes, combinaisons et déblocage`, desc: `Tous les codes de GTA 6 : ce que fait chaque code, comment le débloquer et la combinaison de flèches à taper (${connus} connues).`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
+  emit(p, layout({ p, title: `Codes GTA 6 : les ${C.length} codes, combinaisons et déblocage`, desc: `Les ${connus} codes de GTA 6 dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
