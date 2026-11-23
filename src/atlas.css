@@ -287,3 +287,7 @@
 .atp-panel .pn-en { margin: 12px 0 0; font: 400 .92rem/1.45 var(--fd, sans-serif); color: #fff; font-style: italic; }
 .atp-panel .pn-en small { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; font: 500 .74rem/1.2 var(--fd, sans-serif); font-style: normal; color: var(--tx2, #d3cdea); }
 .atp-panel .pn-en small .ic { width: 13px; height: 13px; }
+.atp-vide { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: rgba(9, 8, 15, .96); border: 1px solid #2de2e6; box-shadow: 0 0 22px -8px #2de2e6; font: 400 .86rem/1.4 var(--fd, sans-serif); color: var(--tx2, #d3cdea); pointer-events: auto; }
+.atp-vide[hidden] { display: none; }
+.atp-vide > .ic { width: 18px; height: 18px; flex: none; color: #2de2e6; }
+.atp-vide b { color: #fff; }

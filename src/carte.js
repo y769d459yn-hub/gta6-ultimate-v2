@@ -15,7 +15,7 @@
   const stage = $('.atp-stage'), panel = $('[data-panel]'), top = $('.atp-top');
   const params = new URLSearchParams(location.search);
   let atlas, D, commu = [], commuCats = {}, cats = {}, regions = {}, sousNoms = {};
-  const shown = new Set(), state = { commu: false, fromList: false, sel: '' };
+  const shown = new Set(), state = { commu: false, fromList: false, sel: '', vide: true };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
   // points marqués « trouvé » (gardés sur cet appareil)
   const KEY_T = 'lg:carte-trouves';
@@ -33,7 +33,7 @@
     d.categories.forEach((k) => { cats[k.id] = k; shown.add(k.id); });
     d.regions.forEach((r) => { regions[r.id] = r; });
     Object.entries(d.sousTypes || {}).forEach(([c, L]) => L.forEach((x) => { sousNoms[c + ':' + x.id] = c === 'activites' ? 'Activités' : x.nom; }));
-    const only = params.get('cat'); if (only && cats[only]) { state.sel = only; shown.clear(); shown.add(only); }
+    const only = params.get('cat'); if (only && cats[only]) { state.vide = false; state.sel = only; shown.clear(); shown.add(only); }
     atlas = window.Atlas(stage, {
       root: ROOT, tuiles: d.tuiles, carte: d, pad: padding(),
       onSelect: (f) => (f.commu ? openCommu(f) : openFeature(f)),
@@ -52,7 +52,7 @@
     if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); if (params.get('mission')) solo(f); atlas.select(f, { fly: true, s: .45 }); }, 250);
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     bind();
-    if (!f && !only && !params.get('region') && !store.get('lg-carte-aide')) setTimeout(openHelp, 600);
+    if (!f && !only && !params.get('region')) setTimeout(openHelp, 400); // à chaque ouverture : le mode d'emploi, carte vide
     if (g && !reduce) g.from('.atp-top > *, .atp-ctrl > *, .atp-regions > *', { opacity: 0, y: -10, duration: .6, stagger: .03, ease: 'expo.out' });
   }).catch(() => { stage.textContent = 'Carte indisponible pour le moment.'; });
 
@@ -62,13 +62,14 @@
   }
   function syncChips() {
     $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', !state.solo && state.sel === b.dataset.cat));
-    $('[data-all]').setAttribute('aria-pressed', !state.sel && !state.solo);
+    $('[data-all]').setAttribute('aria-pressed', !state.sel && !state.solo && !state.vide);
+    const hv = $('[data-vide]'); if (hv) hv.hidden = !state.vide || !panel.hidden;
     $('[data-commu]').setAttribute('aria-pressed', state.commu);
     const u = new URL(location.href);
     state.sel ? u.searchParams.set('cat', state.sel) : u.searchParams.delete('cat');
     u.searchParams.delete('focus'); history.replaceState(null, '', u);
   }
-  function applyFilter() { atlas.setFilter((f) => (state.solo ? f.id === state.solo : shown.has(f.cat))); atlas.showCommu(state.commu && !state.solo); countView(); }
+  function applyFilter() { atlas.setFilter((f) => (state.solo ? f.id === state.solo : !state.vide && shown.has(f.cat))); atlas.showCommu(state.commu && !state.solo); countView(); }
   // depuis une mission : on ne garde que son lieu ; le reste revient quand on choisit une catégorie
   function solo(f) {
     state.solo = f.id;
@@ -77,22 +78,23 @@
   }
   function unsolo() { if (!state.solo) return; state.solo = ''; state.spot = ''; $('[data-solo]').hidden = true; atlas.spot(false); }
   function choose(id) {
-    unsolo();
+    unsolo(); state.vide = false;
     state.sel = id || ''; shown.clear();
     if (id) shown.add(id); else Object.keys(cats).forEach((k) => shown.add(k));
     syncChips(); applyFilter();
   }
-  function ensureShown(f) { if (state.solo ? f.id !== state.solo : !shown.has(f.cat)) choose(''); }
+  function ensureShown(f) { if (state.solo ? f.id !== state.solo : state.vide || !shown.has(f.cat)) choose(f.cat); }
 
   // ---------- panneau de détail ----------
   function showPanel(html) {
+    const hv = $('[data-vide]'); if (hv) hv.hidden = true;
     panel.innerHTML = html; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
     if (innerWidth >= 900 && atlas) atlas.setPad(padding());
     $('[data-x]', panel).addEventListener('click', closePanel);
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
+  function closePanel() { setTimeout(syncChips, 0); if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
   // Téléphone : glisser la fiche vers le bas pour la fermer
   let sw = null;
   panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
@@ -162,7 +164,7 @@
     const dot = (c, icn, cls = '') => `<span class="hl-dot ${cls}" style="--c:${c}">${ic(icn)}</span>`;
     showPanel(`${head('question', '#19d3e3', "Mode d'emploi", 'Comment utiliser la carte')}
       <ol class="hl-steps">
-        <li><span class="hl-dot hl-gest">${ic('search')}</span><span><b>Dis ce que tu cherches</b>Touche « Une arme », « Une voiture », « Un magasin »… en haut : la carte ne garde que ça et te donne la liste.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('search')}</span><span><b>Dis ce que tu cherches</b>Au départ, la carte est vide. Touche « Une arme », « Une voiture », « Un objet »… en haut : seuls ces lieux apparaissent, avec leur liste. « Tout » les affiche tous.</span></li>
       </ol>
       <h3 class="hl-h">Les couleurs</h3>
       <ul class="hl-leg">${Object.values(cats).map((c) => `<li>${dot(c.color, c.icon)}<span><b>${escH(c.nom)}</b>${escH(c.sens || '')}</span></li>`).join('')}
