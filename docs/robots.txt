@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /compte/
 Disallow: /favoris/
-Sitemap: https://gta6facile.eu/sitemap.xml
+Sitemap: https://gta6facile.fr/sitemap.xml
