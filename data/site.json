@@ -145,7 +145,7 @@
     "q": "Une voiture",
     "icon": "car",
     "color": "#ff9a1f",
-    "sens": "Où trouver une voiture, une moto, un bateau ou un avion"
+    "sens": "Véhicules remarquables, véhicules à commander et où trouver une voiture, une moto, un bateau ou un avion"
    },
    {
     "id": "armes",
@@ -153,7 +153,15 @@
     "q": "Une arme",
     "icon": "gun",
     "color": "#ff5a3c",
-    "sens": "Armureries et boutiques qui vendent des armes"
+    "sens": "Armes au sol, armes uniques, armureries et stands de tir"
+   },
+   {
+    "id": "collection",
+    "nom": "Objets à collectionner",
+    "q": "Un objet",
+    "icon": "chest",
+    "color": "#c77dff",
+    "sens": "Cartes, paquets cachés, météorites, scans WAiNK, trésors…"
    },
    {
     "id": "argent",
@@ -161,7 +169,7 @@
     "q": "De l'argent",
     "icon": "money",
     "color": "#39ff88",
-    "sens": "Banques, bijouteries, receleurs et caches d'argent"
+    "sens": "Banques, coffres-forts, magasins à braquer, receleurs et caches"
    },
    {
     "id": "commerces",
@@ -201,7 +209,7 @@
     "q": "Une activité",
     "icon": "wave",
     "color": "#19d3e3",
-    "sens": "Sport, loisirs, courses et défis"
+    "sens": "Cascades, courses, passages sous les ponts, sport, pêche, événements…"
    }
   ],
   "actualites": [

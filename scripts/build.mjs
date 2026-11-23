@@ -200,6 +200,22 @@ for (const g of GTADB) {
   const douteux = g.adr.includes('?') || g.tags.includes('unconfirmed');
   features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [x, y] }, properties: { id: 's-' + g.id, nom, cat: mc, sous: label, region: null, statut: 'a-verifier', precision: 'zone', icon: ic, desc: `${label} · ${zone}. Repéré par la communauté GTADB${douteux ? ' (nom ou position à confirmer)' : ''}.`, url: ast && A[ast] ? `astuces/${ast}/` : null, tip: ast && A[ast] ? tipAstuce(ast) : undefined, service: label, zone } });
 }
+// Open GTA 6 Map (CC BY 4.0) : objets à collectionner, armes au sol, véhicules, braquages, commerces, activités
+const OGM = fs.existsSync(path.join(ROOT, 'data', 'carte-ogm.json')) ? read('carte-ogm.json') : { lieux: [] };
+{
+  const pres = (f, x, y, r) => Math.hypot(f.geometry.coordinates[0] - x, f.geometry.coordinates[1] - y) < r;
+  const retirer = new Set();
+  const out = [];
+  for (const o of OGM.lieux) {
+    // un repère du guide au même endroit (même catégorie) : on garde le nôtre
+    if (features.some((f) => f.properties.cat === o.c && !/^[sm]-/.test(f.properties.id) && pres(f, o.x, o.y, 60))) continue;
+    // un repère GTADB équivalent : remplacé par celui-ci, mieux décrit
+    features.forEach((f, i) => { if (f.properties.cat === o.c && f.properties.id.startsWith('s-') && f.properties.service !== 'Lieu remarquable' && pres(f, o.x, o.y, 150)) retirer.add(i); });
+    out.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [o.x, o.y] }, properties: { id: 'o-' + o.id, nom: o.n, cat: o.c, sous: o.s, service: o.s, region: null, statut: 'a-verifier', precision: 'zone', icon: o.i, desc: o.d || '', ...(o.en ? { en: 1 } : {}), ...(o.a ? { zone: o.a } : {}), ...(o.ph || o.d ? { ext: `https://fbritoferreira.github.io/gta6/l/${o.id}/`, ph: o.ph ? 1 : undefined } : {}), src: 'ogm' } });
+  }
+  for (const i of [...retirer].sort((a, b) => b - a)) features.splice(i, 1);
+  features.push(...out);
+}
 // Missions : où elles se passent (repère du guide ou lieu GTADB)
 const MLIEUX = fs.existsSync(path.join(ROOT, 'data', 'carte-missions.json')) ? read('carte-missions.json').lieux : [];
 const MIS = Object.fromEntries(MISSIONS.missions.map((m) => [m.id, m]));
@@ -435,7 +451,7 @@ function homePalms() {
   <div class="hm" data-homemap data-center="${H.carte.vueInitiale.centre.join(',')}" data-zoom="${H.carte.vueInitiale.zoom}">
     <div class="hm-stage" tabindex="0" role="application" aria-label="Carte interactive de Leonida : glisse pour naviguer, + et − pour zoomer"></div>
     <p class="at-attrib">${ATTRIB_HTML(R)}</p>
-    <div class="hm-legend" role="group" aria-label="Afficher">${site.categories.carte.map((c) => `<button type="button" class="hm-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}</button>`).join('')}</div>
+    <div class="hm-legend" role="group" aria-label="Afficher">${site.categories.carte.filter((c) => features.some((f) => f.properties.cat === c.id && f.properties.src !== 'ogm' && !f.properties.label)).map((c) => `<button type="button" class="hm-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}</button>`).join('')}</div>
     <div class="hm-ctrl">
       <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
       <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
@@ -796,7 +812,7 @@ for (const v of VEHICULES) {
   </div>
   <div class="atp-regions" role="group" aria-label="Liste et régions"><button type="button" class="atp-list" data-list>${icon('list')}Liste<small data-n="vue"></small></button>${CARTE.regions.map((r) => `<button type="button" data-reg="${r.id}" style="--c:${r.couleur}">${esc(r.nom)}</button>`).join('')}</div>
   <div class="atp-panel" data-panel role="region" aria-label="Détails" hidden aria-live="polite"></div>
-  <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0.</p></details>
+  <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0. Objets, armes, véhicules, braquages, commerces et activités : <a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, positions converties et textes traduits.</p></details>
 </section>`;
   emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: 'Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de 900 lieux repérés par la communauté.', body, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
 }
@@ -1045,6 +1061,7 @@ for (const a of ACTUS) {
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
+  <p>Les objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces et activités viennent d'<a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous avons sélectionné les emplacements utiles, converti leurs positions sur notre carte et traduit les types et les phrases courantes ; les autres indications des joueurs restent en anglais et sont signalées comme telles.</p>
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">Signale-le ici</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
@@ -1072,6 +1089,10 @@ for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat ==
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
+{
+  const types = {}; for (const f of features) if (f.properties.src === 'ogm') { const k = f.properties.cat + '|' + f.properties.service; (types[k] ||= { ...f.properties, n: 0 }).n++; }
+  for (const t of Object.values(types)) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
+}
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Les ${MISSIONS.missions.length} missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: m.nomEn, k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
@@ -1097,6 +1118,16 @@ write('data/carte.json', JSON.stringify({
   categories: site.categories.carte,
   sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
   features
+}));
+// accueil : la mini-carte n'a besoin que des repères du guide (fichier léger)
+write('data/carte-accueil.json', JSON.stringify({
+  type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
+  tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
+  bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
+  regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
+  categories: site.categories.carte,
+  sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
+  features: features.filter((f) => f.properties.src !== 'ogm')
 }));
 write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUTION.lieux, champs: { i: 'identifiant GTADB', n: 'nom', z: 'quartier / zone', x: 'x monde', y: 'y monde', c: 'catégorie', d: '1 = douteux' }, categories: COMMU_CATS.map(({ id, nom }) => ({ id, nom })), lieux: communaute }));
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {

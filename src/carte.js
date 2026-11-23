@@ -22,7 +22,8 @@
   let trouves = new Set(); try { trouves = new Set(JSON.parse(store.get(KEY_T) || '[]')); } catch (e) { /* */ }
   const saveT = () => store.set(KEY_T, JSON.stringify([...trouves]));
   // ce qu'on cherche souvent : la plus proche, depuis n'importe quel point
-  const BESOINS = [['Armurerie', 'gun', 'Armurerie'], ['Hôpital', 'heart', 'Hôpital'], ['Station-service', 'bolt', 'Station-service'], ['Garage auto', 'spray', 'Garage'], ['Vêtements', 'user', 'Vêtements'], ['Planque', 'home', 'Planque']];
+  const BESOINS = [[['Armurerie'], 'gun', 'Armurerie'], [['Hôpital'], 'heart', 'Hôpital'], [['Station-service'], 'bolt', 'Station-service'], [['Garage auto', "Pay 'n' Spray"], 'spray', 'Garage ou Pay \'n\' Spray'], [['Vêtements'], 'user', 'Vêtements'], [['Planque'], 'home', 'Planque']];
+  const foundTxt = (f, on) => (f.cat === 'collection' ? (on ? 'Trouvé !' : "Je l'ai trouvé") : (on ? 'Trouvé !' : "J'y suis allé"));
   const km = (d) => (d < 950 ? `${Math.max(100, Math.round(d / 100) * 100)} m` : `${(d / 1000).toFixed(1).replace('.', ',')} km`);
   const sousLigne = (f) => { const z = f.zone || f.lieuNom || (regions[f.region] || {}).nom || ''; return z && !f.nom.includes(z.split(',')[0]) ? z : (f.service || (f.tip ? f.tip.titre : '') || z); };
   const sousNom = (f) => f.service || sousNoms[f.cat + ':' + f.sous] || (cats[f.cat] || {}).nom || '';
@@ -172,7 +173,7 @@
         <li><span class="hl-dot hl-cl" style="--ring:conic-gradient(#39ff88 0 40%,#ff9a1f 40% 70%,#ffd23f 70%)"><b>12</b></span><span><b>Un rond avec un chiffre ?</b>Il regroupe plusieurs points. Touche-le pour zoomer dessus.</span></li>
         <li><span class="hl-dot hl-gest">${ic('expand')}</span><span><b>Zoome et déplace-toi</b>Pince avec deux doigts (ou molette, ou + et −). Glisse pour te déplacer.</span></li>
         <li><span class="hl-dot hl-gest">${ic('list')}</span><span><b>Tu préfères une liste ?</b>Le bouton « Liste » montre tous les points visibles à l'écran.</span></li>
-        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ce que tu as trouvé</b>Le bouton « J'y suis allé » garde ta progression sur cet appareil.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ce que tu as trouvé</b>Les boutons « Je l'ai trouvé » et « J'y suis allé » gardent ta progression sur cet appareil.</span></li>
       </ol>
       <div class="pn-act"><button type="button" class="nbtn nbtn--primary" data-ok><span>C'est parti</span><i>${ic('arrow-right')}</i></button></div>`);
     $('[data-ok]', panel).addEventListener('click', closePanel);
@@ -186,7 +187,7 @@
     const t = f.tip;
     const place = /^[sm]-/.test(f.id) || (f.service && f.cat !== 'vehicules'); // un endroit : son nom en titre, l'astuce en dessous
     const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : (f.desc || '').split('.')[0].replace(/^[^·]*· /, ''));
-    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : 'Position approximative (carte communautaire)';
+    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : 'Position approximative (carte communautaire)';
     const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
     const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span></div>`;
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
@@ -194,26 +195,26 @@
       ? `${where}<div class="pn-tip" style="--c:${c.color}">${place ? `<p class="pn-tip-q">${ic('bolt')}${escH(t.titre)}</p>` : ''}<p class="pn-a">${escH(t.reponse)}</p>
          <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}${t.lien}"><span>${escH(t.libelle)}</span><i>${ic('arrow-right')}</i></a>${favBtn}</div>
          <ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol></div>${tags}`
-      : `${where}${f.missions ? '' : `<p>${escH(f.desc || '')}</p>`}
-         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
+      : `${where}${f.missions || !f.desc ? '' : f.en ? `<p class="pn-en"><small>${ic('info')}Indication des joueurs, en anglais :</small>${escH(f.desc || '')}</p>` : `<p>${escH(f.desc || '')}</p>`}
+         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : f.ext ? `<a class="nbtn${f.ph ? ' nbtn--primary' : ''}" href="${f.ext}" target="_blank" rel="noopener"><span>${f.ph ? 'Voir la photo du lieu' : 'Détail : Open GTA 6 Map'}</span><i>${ic(f.ph ? 'eye' : 'arrow-right')}</i></a>` : f.src === 'ogm' ? '' : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
     const quoi = t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
     const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
     const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
     const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/#${escH(m.id)}">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
     const prox = BESOINS.map(([lab, icn, court]) => {
       let best = null, bd = Infinity;
-      atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && x.service === lab) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
-      return best && f.service !== lab ? `<li><button type="button" data-go="${escH(best.id)}"><span class="pn-li-i">${ic(icn)}</span><span><b>${escH(court)}</b><small>${escH(best.nom)}</small></span><em>${km(bd)}</em></button></li>` : '';
+      atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && lab.includes(x.service)) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
+      return best && !lab.includes(f.service) ? `<li><button type="button" data-go="${escH(best.id)}"><span class="pn-li-i">${ic(icn)}</span><span><b>${escH(court)}</b><small>${escH(best.nom)}</small></span><em>${km(bd)}</em></button></li>` : '';
     }).filter(Boolean).slice(0, 4).join('');
     const proche = prox ? `<details class="pn-near"${innerWidth >= 900 ? ' open' : ''}><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
     const isT = trouves.has(f.id);
-    const outils = `<div class="pn-tools"><button type="button" class="pn-tool" data-found aria-pressed="${isT}">${ic('check')}<span>${isT ? 'Trouvé !' : "J'y suis allé"}</span></button><button type="button" class="pn-tool" data-share>${ic('share')}<span>Partager</span></button></div>`;
+    const outils = `<div class="pn-tools"><button type="button" class="pn-tool" data-found aria-pressed="${isT}">${ic('check')}<span>${foundTxt(f, isT)}</span></button><button type="button" class="pn-tool" data-share>${ic('share')}<span>Partager</span></button></div>`;
     showPanel(`${head(f.icon, c.color, quoi, t && !place ? t.titre : f.nom)}${img}${mis}${body}${outils}${proche}${nav(f)}`);
     bindNav();
     $('[data-found]', panel).addEventListener('click', (e) => {
       const b = e.currentTarget, on = !trouves.has(f.id);
       on ? trouves.add(f.id) : trouves.delete(f.id); saveT();
-      b.setAttribute('aria-pressed', on); b.querySelector('span').textContent = on ? 'Trouvé !' : "J'y suis allé";
+      b.setAttribute('aria-pressed', on); b.querySelector('span').textContent = foundTxt(f, on);
       atlas.markFound && atlas.markFound(trouves);
     });
     $('[data-share]', panel).addEventListener('click', async () => {

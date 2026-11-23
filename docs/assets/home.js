@@ -131,7 +131,7 @@
       if (g && !reduce) g.fromTo(pop, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
     }
     function close() { pop.hidden = true; atlas && atlas.clearActive(); }
-    fetch(ROOT + 'data/carte.json').then((r) => r.json()).then((d) => {
+    fetch(ROOT + 'data/carte-accueil.json').then((r) => r.json()).then((d) => {
       d.categories.forEach((c) => { cats[c.id] = c; });
       atlas = window.Atlas(stage, {
         root: ROOT, tuiles: d.tuiles, carte: d, wheelNeedsArm: true, pad: { top: 50, bottom: 40 },
