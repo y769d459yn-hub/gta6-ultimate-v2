@@ -1,4 +1,4 @@
-/* Leonida Guide — accueil v2 : animations GSAP (SplitText, DrawSVG, ScrollTrigger) + carte interactive */
+/* GTA 6 Facile — accueil v2 : animations GSAP (SplitText, DrawSVG, ScrollTrigger) + carte interactive */
 (() => {
   'use strict';
   const html = document.documentElement;

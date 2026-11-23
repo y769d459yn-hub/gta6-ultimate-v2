@@ -1,4 +1,4 @@
-/* Leonida Guide — moteur de carte (tuiles néon GTADB, repères, regroupement, gestes, inertie).
+/* GTA 6 Facile — moteur de carte (tuiles néon GTADB, repères, regroupement, gestes, inertie).
    Coordonnées monde GTADB : x vers l'est, y vers le nord. Aucune dépendance (GSAP utilisé s'il est présent). */
 (() => {
   'use strict';

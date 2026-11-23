@@ -1,5 +1,5 @@
 window.LG_SB={"url":"https://shpzxvdubrqkastpvcgz.supabase.co","cle":"sb_publishable_F8BtniSVSlVktxL32CzckQ_Lz4j7GcW"};
-/* Leonida Guide — comptes visiteurs (Supabase) : connexion, inscription et synchronisation des favoris.
+/* GTA 6 Facile — comptes visiteurs (Supabase) : connexion, inscription et synchronisation des favoris.
    La configuration (window.LG_SB = { url, cle }) est ajoutée en tête de ce fichier au build.
    Sans compte, rien ne change : tout reste dans le navigateur. La bibliothèque Supabase n'est chargée
    que sur la page « Mon espace » ou quand une session existe déjà. */

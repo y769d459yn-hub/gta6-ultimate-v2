@@ -1,4 +1,4 @@
-/* Leonida Guide — page Véhicules : catégories, filtres, recherche et fenêtre d'infos du catalogue */
+/* GTA 6 Facile — page Véhicules : catégories, filtres, recherche et fenêtre d'infos du catalogue */
 (() => {
   'use strict';
   const root = document.querySelector('[data-vlist]'); if (!root) return;
