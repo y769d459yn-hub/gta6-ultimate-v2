@@ -123,7 +123,7 @@
     "droite",
     "haut"
    ],
-   "confirme": false,
+   "confirme": true,
    "sources": [
     "GTABase"
    ],
@@ -236,7 +236,7 @@
    "cat": "combat",
    "nom": "Munitions au maximum",
    "effet": "Remplit les munitions de toutes tes armes.",
-   "deblocage": "Gagner 25 médailles de bronze (ou mieux) aux stands de tir.",
+   "deblocage": "Gagner 25 médailles de bronze (ou mieux) aux stands de tir (20 selon un guide).",
    "nomEn": "Max Ammo",
    "sequence": [
     "bas",
@@ -769,7 +769,7 @@
    "cat": "environnement",
    "nom": "Changer la météo",
    "effet": "Fait défiler les différentes météos.",
-   "deblocage": "Terminer l'histoire.",
+   "deblocage": "Terminer l'histoire (un guide dit : révéler toute la carte).",
    "nomEn": "Cycle Weather",
    "sequence": [
     "bas",

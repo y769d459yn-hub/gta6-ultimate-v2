@@ -5,9 +5,9 @@
   "icon": "download",
   "titre": "Comment préparer l'installation de GTA 6 ?",
   "court": "Préparer l'installation",
-  "reponse": "Libère au moins 212 Go et mets ta console à jour avant de lancer le téléchargement.",
+  "reponse": "Libère environ 210 Go (taille relevée sur PS5, non officielle) et mets ta console à jour avant de lancer le téléchargement.",
   "etapes": [
-   "Libère environ 212 Go, plus de la marge pour les mises à jour.",
+   "Libère environ 210 Go, plus de la marge pour les mises à jour.",
    "Sur PS5, installe la dernière mise à jour système.",
    "Édition physique : saisis le code fourni dans la boîte. Il remplace le disque et reste lié à ton compte."
   ],
@@ -43,13 +43,13 @@
   "icon": "save",
   "titre": "Comment sauvegarder dans GTA 6 ?",
   "court": "Sauvegarder",
-  "reponse": "Hors mission : menu Pause, puis Jeu, puis Sauvegarder. Le jeu sauvegarde aussi tout seul à la fin de chaque mission.",
+  "reponse": "Hors mission : menu Pause, puis Jeu, puis Sauvegarder. Il y a 15 emplacements manuels et une sauvegarde automatique. Pas besoin d'aller dans une planque.",
   "etapes": [
-   "Termine ou quitte la mission en cours.",
+   "Termine ou quitte la mission en cours (on ne peut pas sauvegarder pendant la plupart des missions).",
    "Ouvre Pause, puis Jeu, puis Sauvegarder.",
-   "Ou dors dans le lit d'une planque : ça sauvegarde aussi."
+   "Choisis un emplacement libre ou écrase une ancienne sauvegarde manuelle."
   ],
-  "asavoir": "Impossible de sauvegarder pendant la plupart des missions. Les sources ne donnent pas toutes la même méthode.",
+  "asavoir": "La sauvegarde automatique n'est pas toujours fiable selon plusieurs joueurs : sauvegarde à la main régulièrement.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -144,13 +144,13 @@
   "icon": "bank",
   "titre": "Comment ne pas perdre son argent en mourant ?",
   "court": "Protéger son argent",
-  "reponse": "Mets ton argent liquide à la banque avec l'appli BuckMe. Tu perds l'argent que tu as sur toi si tu meurs ou si tu te fais arrêter.",
+  "reponse": "Dépose ton argent liquide sur ton compte BuckMe, à un distributeur. L'argent que tu as sur toi est perdu si tu meurs ou si tu te fais arrêter ; celui de la banque est protégé.",
   "etapes": [
-   "Ouvre le téléphone, puis BuckMe (après la mission « Buck Me »).",
-   "Dépose ton argent liquide.",
-   "Avant BuckMe : cache ton argent sous le plancher de la chambre de Jason."
+   "Ouvre ton compte avec la mission « Buck Me » (chapitre 1).",
+   "Va à un distributeur pour déposer ton liquide : l'appli BuckMe t'indique le plus proche.",
+   "L'épargne familiale (Family Savings) ne peut pas être retirée, mais elle ne se perd jamais."
   ],
-  "asavoir": "La cachette sous le plancher vient d'un seul guide. Elle reste à vérifier.",
+  "asavoir": "Certains guides parlent de petits frais prélevés sur le compte à la mort ou à l'arrestation, sans montant confirmé.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -182,11 +182,11 @@
   "icon": "swap",
   "titre": "Comment changer entre Jason et Lucia ?",
   "court": "Changer de personnage",
-  "reponse": "Le changement se débloque au fil de l'histoire. Ensuite, c'est aussi le voyage rapide le moins cher.",
+  "reponse": "Le changement libre se débloque vers le milieu du chapitre 2. Il est gratuit : c'est le voyage rapide le moins cher.",
   "etapes": [
-   "Avance dans l'histoire jusqu'au déblocage.",
-   "Ouvre la roue des personnages.",
-   "Choisis Jason ou Lucia : tu arrives où se trouve l'autre."
+   "Avance dans l'histoire jusqu'au milieu du chapitre 2.",
+   "Ouvre la roue des personnages (Droite sur la croix directionnelle).",
+   "Choisis Jason ou Lucia : tu arrives où se trouve l'autre. L'option « Se retrouver » réunit les deux."
   ],
   "asavoir": "Le personnage que tu ne joues pas reste en général près de ta planque.",
   "duree": 1,
@@ -426,13 +426,13 @@
   "icon": "tracker",
   "titre": "Que veut dire l'icône rouge sur une voiture volée ?",
   "court": "Voiture avec traceur",
-  "reponse": "Traceur jaune : la police te repère si tu t'arrêtes. Traceur rouge : elle te repère dès que tu ralentis. Une voiture à traceur rouge ne peut être ni vendue, ni gardée.",
+  "reponse": "Certaines voitures ont un traceur. Traceur standard : Moses refuse la voiture, mais un Pay 'n' Spray peut le retirer. Traceur avancé : la police est prévenue si tu ralentis trop.",
   "etapes": [
    "Scanne la voiture avec WAiNK avant de la voler.",
-   "Traceur rouge : roule vite, puis abandonne-la loin de ta destination.",
-   "Traceur jaune : paie l'immatriculation pour le retirer et garder la voiture."
+   "Traceur avancé : garde de la vitesse, puis abandonne-la loin de ta destination.",
+   "Traceur standard : passe au Pay 'n' Spray avant de la vendre ou de la garder."
   ],
-  "asavoir": "Les guides ne sont pas d'accord sur la façon de retirer un traceur. N'abandonne jamais une voiture volée près du départ d'une mission.",
+  "asavoir": "Les guides ne sont pas tous d'accord sur le nom et l'effet des traceurs. N'abandonne jamais une voiture volée près du départ d'une mission.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -747,11 +747,11 @@
   "icon": "dive",
   "titre": "Comment gagner de l'argent sans combat ?",
   "court": "Plongées au trésor",
-  "reponse": "Va voir Kenton à Key Lento après la mission « Island Dreams » (chapitre 1). Il te prête son bateau et un détecteur pour trouver des épaves : la première rapporte environ 1 400 $.",
+  "reponse": "Après la mission « Island Dreams » (chapitre 1, 400 $ de récompense), Kenton te propose d'autres plongées sur des épaves. Tu remontes les trésors avec un détecteur, et Kenton les revend pour toi.",
   "etapes": [
    "Termine la mission « Island Dreams ».",
-   "Rejoins Kenton à Key Lento et prends son bateau.",
-   "Plonge avec le détecteur, remonte le trésor et encaisse."
+   "Retourne voir Kenton dans les Keys pour une nouvelle plongée.",
+   "Suis le détecteur (il passe du rouge au vert), remonte le trésor et donne-le à Kenton."
   ],
   "asavoir": "Plusieurs guides la classent comme la meilleure source d'argent répétable au début.",
   "duree": 5,
@@ -783,7 +783,7 @@
   "icon": "car",
   "titre": "Où vendre des voitures volées ?",
   "court": "Vendre des voitures",
-  "reponse": "Va voir Moses chez Watkins Auto Parts, à Port Gellhorn (dès le chapitre 2). Il achète les voitures sans traceur, environ 1 000 $ ou plus chacune.",
+  "reponse": "Va voir Moses chez Watkins Auto Parts, à Port Gellhorn (dès le chapitre 2). Il achète les voitures sans traceur : de quelques centaines à quelques milliers de dollars selon le modèle, souvent 1 000 à 2 000 $.",
   "etapes": [
    "Vole une voiture loin du garage de Moses (sinon il refuse).",
    "Vérifie qu'elle n'a pas de traceur (appli WAiNK).",
@@ -819,11 +819,11 @@
   "icon": "diamond",
   "titre": "Quand faire de gros coups d'argent ?",
   "court": "Bijouteries et banques",
-  "reponse": "Dès le chapitre 3 : une bijouterie rapporte environ 10 000 à 25 000 $. Plus tard, les coffres de banque montent jusqu'à environ 205 000 $.",
+  "reponse": "Dès le chapitre 3 : une bijouterie rapporte environ 10 000 à 25 000 $, une fois les bijoux revendus. Plus tard, les chambres fortes des banques rapportent bien plus (un guide parle de 100 000 à 205 000 $).",
   "etapes": [
    "Atteins le chapitre 3.",
    "Prépare ta fuite avant le braquage.",
-   "Mets le butin à la banque tout de suite."
+   "Revends les bijoux (Yasmani paie bien), puis mets l'argent à la banque."
   ],
   "asavoir": "Ces montants sont rapportés par les joueurs, pas confirmés.",
   "duree": 5,
@@ -891,7 +891,7 @@
   "icon": "garage",
   "titre": "Comment garder plus de véhicules ?",
   "court": "Acheter un garage",
-  "reponse": "Achète des garages avec l'appli Vice City Real Estate. Elle se débloque au chapitre 2, après la mission « Daily Driver ». Il y a 12 garages : 8 à acheter et 4 offerts par l'histoire.",
+  "reponse": "Achète des garages avec l'appli Vice City Real Estate. Elle se débloque au chapitre 2, après la mission « Daily Driver ». Il y a 8 garages à vendre, de 4 000 à 40 000 $ ; d'autres sont offerts par l'histoire ou certaines éditions.",
   "etapes": [
    "Termine la mission « Daily Driver » (chapitre 2).",
    "Ouvre l'appli Vice City Real Estate.",
@@ -990,7 +990,7 @@
   "icon": "bolt",
   "titre": "Comment voyager vite dans GTA 6 ?",
   "court": "Voyage rapide",
-  "reponse": "Il n'y a pas de téléportation sur la carte. Change de personnage, appelle un RydeMe (+100 $ pour arriver tout de suite) ou prends le bus ou le train.",
+  "reponse": "Il n'y a pas de téléportation sur la carte. Change de personnage (gratuit), appelle un taxi ou un RydeMe (100 $ en plus pour passer le trajet) ou prends le bus ou le train.",
   "etapes": [
    "Le moins cher : passe sur l'autre personnage.",
    "Le plus direct : RydeMe, choisis un point, puis paie l'option « passer le trajet ».",
@@ -1515,13 +1515,13 @@
   "icon": "wrench",
   "titre": "Comment réparer sa voiture gratuitement ?",
   "court": "Réparer gratuitement",
-  "reponse": "Appelle Joey depuis tes contacts, une fois qu'il est débloqué. Il répare ta voiture sur place, et la facture va sur le compte de Brian.",
+  "reponse": "Au chapitre 1, appelle Joey depuis tes contacts : il te ramène ta voiture réparée, même détruite, sans rien te faire payer. Ensuite, l'appli Scooter Bros prend le relais contre un petit prix.",
   "etapes": [
-   "Débloque Joey dans l'histoire.",
+   "Termine la mission « Just a Scratch » (chapitre 1, garage Coastal Auto Care à Key Lento).",
    "Ouvre le téléphone, puis Contacts, puis Joey.",
-   "Demande la réparation et attends."
+   "Demande la réparation et attends la livraison."
   ],
-  "asavoir": "Les guides ne sont pas d'accord sur la récupération d'une voiture détruite. Un atelier de personnalisation répare aussi gratuitement avant les modifications.",
+  "asavoir": "Un atelier de personnalisation répare aussi la voiture avant les modifications.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -1657,7 +1657,7 @@
   "icon": "target",
   "titre": "Que sont les opérations illégales des gangs ?",
   "court": "Opérations des gangs",
-  "reponse": "39 planques tenues par 9 gangs. Neutralise les membres, prends l'argent du coffre et la drogue à revendre. Certaines cachent une arme ou un véhicule unique.",
+  "reponse": "Environ 40 planques (39 à 41 selon les guides), tenues par 8 gangs et des « autres criminels ». Neutralise les membres, prends l'argent du coffre et la drogue à revendre. Certaines cachent une arme ou un véhicule unique.",
   "etapes": [
    "Repère une opération sur la carte.",
    "Neutralise tous les membres du gang.",
@@ -1694,13 +1694,13 @@
   "icon": "home",
   "titre": "Où sont les planques de Jason et Lucia ?",
   "court": "Les 4 planques",
-  "reponse": "Une planque par chapitre : la maison sur pilotis de Jason à Key Lento, le Starlet Motel, l'appartement de Lucia à Vice City et une suite à l'hôtel Y de Washington Beach.",
+  "reponse": "Une planque par chapitre : la maison sur pilotis de Jason à Key Lento (chapitre 1), le Starlet Motel à Port Gellhorn (chapitre 2), l'appartement de Boobie à Bayside (chapitre 3) et la chambre 701 de l'hôtel Y à Ocean Beach (chapitre 4).",
   "etapes": [
    "Les planques se débloquent avec l'histoire, une par chapitre.",
-   "Dors dans le lit pour sauvegarder et te soigner.",
+   "Repère-la sur la carte du jeu grâce à l'icône maison.",
    "On ne peut pas acheter de planque : seulement des garages."
   ],
-  "asavoir": "En changeant de chapitre, l'ancienne planque n'est plus accessible. Garde une sauvegarde par chapitre.",
+  "asavoir": "En changeant de chapitre, l'ancienne planque n'est plus accessible. Un guide en signale une cinquième au chapitre 5 (Pegassi Residences), non confirmée.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -1731,13 +1731,13 @@
   "icon": "plane",
   "titre": "Où trouver un hélicoptère ?",
   "court": "Trouver un hélicoptère",
-  "reponse": "Sur les toits des gratte-ciel de Vice City marqués d'un « H » : entre dans le hall et prends l'ascenseur jusqu'au toit.",
+  "reponse": "Le plus tôt : un Maverick est posé sur le ponton de Southwind, près de Key Lento (à côté des hydravions). À Vice City, des hélicoptères se trouvent sur les toits marqués d'un « H ».",
   "etapes": [
-   "Repère l'icône « H » sur un gratte-ciel.",
-   "Entre dans le hall et prends l'ascenseur.",
-   "Autres spots : toit d'un hôtel d'Ocean Beach, piste au sud de Port Gellhorn."
+   "Va à Southwind (sud-ouest de Key Lento), parking de Sherwin Boatworks.",
+   "Regarde vers l'est : le Maverick est sur le ponton, derrière une grille ouverte.",
+   "À Vice City : repère l'icône « H » sur un gratte-ciel ou un hôpital."
   ],
-  "asavoir": "L'hélicoptère de l'hôpital de Vice-Dale n'apparaît pas toujours.",
+  "asavoir": "L'accès aux toits par l'ascenseur ne vient que d'un guide.",
   "duree": 2,
   "niveau": "facile",
   "statut": "a-verifier",
@@ -1872,7 +1872,7 @@
   "icon": "user",
   "titre": "Où changer de tenue, de coiffure ou se faire tatouer ?",
   "court": "Changer de look",
-  "reponse": "Vêtements : boutiques avec l'icône T-shirt (les boutiques souvenirs de Key Lento au début). Coiffeurs : 18 salons. Tatouages : dès Key Lento.",
+  "reponse": "Vêtements : boutiques avec l'icône T-shirt (les boutiques souvenirs de Key Lento au début). Coiffeurs : il y en a partout (16 sur notre carte). Tatouages : dès Key Lento.",
   "etapes": [
    "Cherche l'icône T-shirt, ciseaux ou aiguille sur la carte.",
    "Ou regarde la catégorie Points utiles de notre carte.",
@@ -1910,8 +1910,8 @@
   "court": "Voler une voiture",
   "reponse": "Scanne-la d'abord avec l'appli WAiNK. Une voiture avec seulement une alarme s'ouvre au Slim Jim ; une voiture sans clé demande le cloneur de clés.",
   "etapes": [
-   "Pointe la voiture avec WAiNK : sécurité, valeur et traceur s'affichent.",
-   "Alarme seule : ouvre-la avec le Slim Jim. Sans clé : utilise le cloneur (donné par Randy vers le milieu de l'histoire).",
+   "Pointe la voiture avec WAiNK : serrure, alarme, traceur et valeur s'affichent.",
+   "Serrure classique : ouvre-la avec le Slim Jim (mission « Moses », chapitre 2). Sans clé : utilise le cloneur de clés (donné par Randy au chapitre 3).",
    "Éloigne-toi vite, puis vends-la, garde-la ou abandonne-la loin de ta destination."
   ],
   "asavoir": "Une voiture volée près du départ d'une mission peut alerter la police.",
@@ -1981,16 +1981,16 @@
   "icon": "bolt",
   "titre": "Faut-il faire le plein ?",
   "court": "Faire le plein",
-  "reponse": "Oui, selon un guide : les voitures consomment de l'essence. Fais le plein dans une station-service avant une longue fuite.",
+  "reponse": "Oui : les voitures consomment de l'essence et une alerte s'affiche quand le réservoir est presque vide. Un plein dure longtemps, mais pense à t'arrêter avant une longue fuite.",
   "etapes": [
-   "Surveille la jauge d'essence.",
-   "Repère une station-service (catégorie Points utiles de la carte).",
-   "Fais le plein avant une mission ou une poursuite."
+   "Surveille la jauge et l'alerte de réservoir bas.",
+   "Va dans une station-service (catégorie Points utiles de la carte).",
+   "Maintiens la gâchette à la pompe pour faire le plein."
   ],
-  "asavoir": "Information d'une seule source : à vérifier. Joey rend ta voiture réparée avec le plein.",
+  "asavoir": "Les voitures électriques se rechargent aux bornes. Une voiture volée peut avoir peu d'essence.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
    "stealthy-steal",
    "gamesgg-joey"
@@ -2014,13 +2014,13 @@
   "icon": "sparkle",
   "titre": "Où trouver une bonne voiture gratuite au début ?",
   "court": "Bonnes voitures gratuites",
-  "reponse": "Une Imponte Ruiner (Trans Am) est garée à Key Lento, près des Cove Condominiums. À Vice City, la Penumbra FF dort dans un garage de Vespucci Island.",
+  "reponse": "Une Imponte Turbo Ruiner (avec nitro) est garée à Key Lento, près du panneau des Cove Condominiums. Et deux missions facultatives du chapitre 1 offrent la Penumbra rose de Shirley.",
   "etapes": [
    "Key Lento : cherche la Ruiner dans une allée près du panneau Cove Condominiums.",
-   "Chapitre 1 : les missions « Get Shirley's Rum » et « Steal the Scooter » offrent la Penumbra de Shirley.",
-   "Plus tard : supercars garées sur la presqu'île de Capri et Tempesta devant les hôtels de Vice Beach."
+   "Chapitre 1 : fais « Get Shirley's Rum » et « Steal the Scooter » chez Shirley, à Key Lento.",
+   "Plus tard : supercars garées sur la presqu'île de Capri et devant les hôtels de Vice Beach."
   ],
-  "asavoir": "Immatricule ou repeins la voiture pour la garder. Emplacements donnés par les guides, non vérifiés.",
+  "asavoir": "La nitro de la Ruiner s'active avec L3. Les guides ne sont pas d'accord sur le coût pour la garder.",
   "duree": 5,
   "niveau": "facile",
   "statut": "a-verifier",

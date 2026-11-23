@@ -361,7 +361,7 @@
    "L'appli se débloque après la première quête de Moses (chapitre 2)."
   ],
   "incertain": [
-   "Les prix."
+   "Les prix exacts : 8 garages entre 4 000 et 40 000 $, selon les guides."
   ],
   "liens": [
    "stocker-vehicules",
@@ -447,10 +447,11 @@
   "nom": "Sauvegarde",
   "bref": "Sauvegarde manuelle hors mission, et automatique à la fin de chaque mission.",
   "sait": [
+   "15 emplacements de sauvegarde manuelle, plus une sauvegarde automatique.",
    "Pas de menu pour rejouer les missions."
   ],
   "incertain": [
-   "Le nombre d'emplacements de sauvegarde."
+   "La sauvegarde automatique n'est pas toujours fiable, selon des joueurs."
   ],
   "liens": [
    "sauvegarder",
@@ -513,7 +514,7 @@
    "Les gros gains d'argent arrivent à partir du chapitre 3."
   ],
   "incertain": [
-   "Le nombre total de missions, autour de 93 selon un guide."
+   "Le nombre de missions principales : 91 à 93 selon les guides, selon la façon de compter."
   ],
   "liens": [
    "sauvegarde-par-chapitre",
@@ -618,12 +619,12 @@
   "cat": "gameplay",
   "icon": "target",
   "nom": "Gangs et opérations illégales",
-  "bref": "9 gangs tiennent 39 opérations illégales à piller dans tout Leonida.",
+  "bref": "Environ 40 opérations illégales (39 à 41 selon les guides) à piller dans tout Leonida, tenues par 8 gangs et des « autres criminels ».",
   "sait": [
    "Le coffre et la drogue reviennent ; les objets uniques, non."
   ],
   "incertain": [
-   "La répartition exacte par gang."
+   "Le nombre exact d'opérations varie selon les guides."
   ],
   "liens": [
    "operations-gangs",
@@ -663,10 +664,11 @@
   "nom": "Planques",
   "bref": "Quatre planques, une par chapitre, offertes par l'histoire.",
   "sait": [
+   "Chapitre 1 : maison de Jason à Key Lento. Chapitre 2 : Starlet Motel. Chapitre 3 : appartement de Boobie à Bayside. Chapitre 4 : hôtel Y à Ocean Beach.",
    "On ne peut pas acheter de planque, seulement des garages."
   ],
   "incertain": [
-   "L'ordre exact des planques selon les chapitres."
+   "Une cinquième planque au chapitre 5 (Pegassi Residences), citée par un seul guide."
   ],
   "liens": [
    "planques",

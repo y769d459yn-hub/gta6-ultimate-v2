@@ -95,10 +95,10 @@
      "titre": "Dès le début (chapitres 1 et 2)",
      "icon": "bolt",
      "items": [
-      { "t": "Vider les opérations illégales des gangs", "d": "39 planques de 9 gangs : argent du coffre et drogue à revendre. Certaines cachent une arme ou un véhicule unique.", "lien": "astuces/operations-gangs/" },
+      { "t": "Vider les opérations illégales des gangs", "d": "Environ 40 planques (39 à 41 selon les guides) : argent du coffre et drogue à revendre. Certaines cachent une arme ou un véhicule unique.", "lien": "astuces/operations-gangs/" },
       { "t": "Revendre la drogue", "d": "À Brian ou Donnie au chapitre 1, puis à Dunk au chapitre 2.", "lien": "astuces/argent-debut/" },
-      { "t": "Vendre des voitures volées à Moses", "d": "Environ 1 000 $ ou plus par voiture sans traceur, chez Watkins Auto Parts (Port Gellhorn).", "lien": "astuces/vendre-voitures-moses/" },
-      { "t": "Plonger pour Kenton", "d": "Des épaves à remonter sans combattre : la première rapporte environ 1 400 $.", "lien": "astuces/plongees-kenton/" },
+      { "t": "Vendre des voitures volées à Moses", "d": "Souvent 1 000 à 2 000 $ par voiture sans traceur, chez Watkins Auto Parts (Port Gellhorn).", "lien": "astuces/vendre-voitures-moses/" },
+      { "t": "Plonger pour Kenton", "d": "Des épaves à remonter sans combattre : Kenton revend les trésors pour toi.", "lien": "astuces/plongees-kenton/" },
       { "t": "Ramasser l'argent caché", "d": "Conduits d'aération, sacs oubliés : jusqu'à 6 000 $ d'un coup.", "lien": "astuces/caches-argent/" },
       { "t": "Chasser", "d": "Une bête tuée d'une seule balle se vend plus cher chez Bret.", "lien": "astuces/chasse/" }
      ]
@@ -107,7 +107,7 @@
      "titre": "Les gros coups (chapitre 3 et après)",
      "icon": "trophy",
      "items": [
-      { "t": "Braquer une bijouterie", "d": "Environ 10 000 à 25 000 $. Plus tard, les coffres de banque montent jusqu'à environ 205 000 $.", "lien": "astuces/braquer-bijouteries/" },
+      { "t": "Braquer une bijouterie", "d": "Environ 10 000 à 25 000 $. Plus tard, les chambres fortes des banques rapportent bien plus (un guide parle de 100 000 à 205 000 $).", "lien": "astuces/braquer-bijouteries/" },
       { "t": "Braquer un fourgon blindé", "d": "Tuyau de Yasmani à 10 000 $ après deux braquages de Payday Loan.", "lien": "astuces/fourgons-blindes/" },
       { "t": "Braquer un prêteur sur gages", "d": "Environ 4 500 à 12 000 $, mais souvent des billets marqués.", "lien": "astuces/preteurs-sur-gages/" },
       { "t": "Braquer un magasin", "d": "Petit butin mais rapide. Efface les caméras avant de partir.", "lien": "astuces/braquer-magasin/" },
@@ -125,7 +125,7 @@
      "titre": "Ne pas perdre ce que tu as gagné",
      "icon": "shield",
      "etapes": [
-      "Mets ton argent liquide à la banque avec l'appli BuckMe : tu perds ce que tu as sur toi si tu meurs ou si tu es arrêté.",
+      "Dépose ton liquide sur ton compte BuckMe à un distributeur : tu perds ce que tu as sur toi si tu meurs ou si tu es arrêté.",
       "Revends le butin chez un receleur : il ne devient de l'argent qu'une fois vendu.",
       "Blanchis les billets marqués au Lockup de Brian avant de les dépenser."
      ]
@@ -233,9 +233,9 @@
      "titre": "1. L'histoire et les tâches",
      "icon": "flag",
      "items": [
-      { "t": "Les 107 missions de l'histoire", "d": "Suis-les dans l'ordre et coche-les sur notre page.", "lien": "missions/" },
+      { "t": "Toutes les missions de l'histoire", "d": "91 à 93 missions principales selon les guides (107 étapes avec les petites tâches sur notre page). Suis-les dans l'ordre et coche-les.", "lien": "missions/" },
       { "t": "Les 27 missions facultatives", "d": "Elles apparaissent sur notre page avec le filtre « Facultatives ».", "lien": "missions/" },
-      { "t": "Les opérations des gangs", "d": "39 planques tenues par 9 gangs.", "lien": "astuces/operations-gangs/" },
+      { "t": "Les opérations des gangs", "d": "Environ 40 planques (39 à 41 selon les guides).", "lien": "astuces/operations-gangs/" },
       { "t": "Les braquages", "d": "Magasins, bijouteries, prêteurs, fourgons.", "lien": "dossiers/argent-rapide/" }
      ]
     },

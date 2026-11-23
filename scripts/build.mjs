@@ -443,7 +443,7 @@ function homePalms() {
     ['astuces/voiture-rare/', 'Voitures rares', 'Astuce', 'car', '#ff9a1f'],
     ['dossiers/secrets/', 'Secrets et Easter eggs', 'Dossier complet', 'sparkle', '#9d7bff'],
     ['dossiers/100-pour-cent/', 'Finir le jeu à 100 %', 'Dossier complet', 'trophy', '#2de2e6'],
-    ['missions/', 'Missions et solutions', `${counts.missions} missions`, 'flag', '#ff3d6e']
+    ['missions/', 'Missions et solutions', 'Toute l\'histoire, étape par étape', 'flag', '#ff3d6e']
   ];
   const maj = site.majLe.split('-').reverse().join('.');
   const tileImg = { carte: vign('vice-city', R), vehicules: vign('v-pegassi-infernus', R) };
@@ -745,11 +745,11 @@ for (const v of VEHICULES) {
   </details>`;
   const body = `<section class="wrap section missions" data-missions>
   <h1 class="h1">Missions et solutions</h1>
-  <p class="lead">Les <b>${princ} missions de l'histoire</b>, dans l'ordre et par chapitre, plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <p class="lead">Toute l'histoire dans l'ordre et par chapitre : <b>${princ} étapes</b> (les guides comptent 91 à 93 missions principales ; notre liste ajoute les petites tâches, comme envoyer de l'argent), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
   <div class="mis-now" data-mnow>
     <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
     <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>
-    <p class="mis-now-c"><span data-mcount>0 / ${princ} missions de l'histoire faites</span><button class="lnk" type="button" data-mreset hidden>Tout effacer</button></p>
+    <p class="mis-now-c"><span data-mcount>0 / ${princ} étapes de l'histoire faites</span><button class="lnk" type="button" data-mreset hidden>Tout effacer</button></p>
     <a class="btn-s" href="#" data-mnext hidden>${icon('arrow-right')}<span>Voir la solution</span></a>
   </div>
   <h2 class="h3 mis-list-t">${icon('list')}Toutes les missions</h2>
@@ -780,7 +780,7 @@ for (const v of VEHICULES) {
   </section>
   <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Missions GTA 6 : les ${MS.length} missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (${princ} de l'histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
+  emit(p, layout({ p, title: `Missions GTA 6 : toutes les missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
 
 // ---------- DOSSIERS (pages piliers) ----------
@@ -1183,7 +1183,7 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
   for (const t of Object.values(types)) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
 }
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
-push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Les ${MISSIONS.missions.length} missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
+push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });

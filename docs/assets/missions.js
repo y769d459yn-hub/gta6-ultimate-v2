@@ -23,7 +23,7 @@
       if (b) { b.setAttribute('aria-pressed', String(on)); b.querySelector('span').textContent = on ? 'Faite' : 'Mission faite'; }
     });
     const n = main.filter((c) => done.has(c.id)).length;
-    $('[data-mcount]').textContent = `${n} / ${main.length} missions de l'histoire faites`;
+    $('[data-mcount]').textContent = `${n} / ${main.length} étapes de l'histoire faites`;
     $('[data-mbar]').style.width = `${(n / main.length) * 100}%`;
     $('[data-mreset]').hidden = !done.size;
     // prochaine mission : la première mission principale pas encore faite

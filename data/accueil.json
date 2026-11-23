@@ -72,7 +72,7 @@
     {
       "id": "missions",
       "label": "Missions et solutions",
-      "sousTitre": "{n} missions",
+      "sousTitre": "Toute l'histoire, étape par étape",
       "compteur": "missions",
       "href": "missions/",
       "icon": "flag",
