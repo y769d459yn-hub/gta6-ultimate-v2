@@ -1,0 +1,538 @@
+[
+ {
+  "nom": "$250,000",
+  "desc": "Vous donne instantanément $250,000",
+  "unlock": "Terminez l’histoire",
+  "seq": [
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "UP",
+   "LEFT",
+   "DOWN",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Ivresse",
+  "desc": "Vous rend instantanément ivres, vous et votre partenaire",
+  "unlock": "Dépensez $2,500 en alcool",
+  "seq": []
+ },
+ {
+  "nom": "Augmenter la pression policière",
+  "desc": "Augmente votre niveau de pression policière sur toute la carte",
+  "unlock": "Échappez à un indice de recherche de 3 étoiles 25 fois.",
+  "seq": [
+   "LEFT",
+   "DOWN",
+   "RIGHT",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP"
+  ]
+ },
+ {
+  "nom": "Augmenter l’indice de recherche",
+  "desc": "Augmente votre indice de recherche sur toute la carte",
+  "unlock": "Échappez à un indice de recherche de 3 étoiles 50 fois.",
+  "seq": []
+ },
+ {
+  "nom": "Concentration illimitée",
+  "desc": "La concentration ne s’épuise jamais",
+  "unlock": "Terminez l’histoire",
+  "seq": [
+   "DOWN",
+   "UP",
+   "UP",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP",
+   "DOWN",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Aucun dégât de chute",
+  "desc": "Vous immunise contre les dégâts de chute",
+  "unlock": "Survivez à une chute libre de 40 pieds 20 fois.",
+  "seq": []
+ },
+ {
+  "nom": "Parachute",
+  "desc": "Ajoute un parachute à votre équipement",
+  "unlock": "Effectuez 50 sauts en parachute ou en BASE jump depuis une hauteur de 300 pieds ou plus.",
+  "seq": []
+ },
+ {
+  "nom": "Gilet pare-balles",
+  "desc": "Ajoute un gilet pare-balles à votre équipement",
+  "unlock": "Effectuez 100 séances d’entraînement.",
+  "seq": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "nom": "Réparer le véhicule",
+  "desc": "Répare entièrement votre véhicule actuel",
+  "unlock": "Terminez à la 1re place dans 10 courses à Gellhorn Raceway, Thrillbilly Mud Club et Boone Speedway.",
+  "seq": []
+ },
+ {
+  "nom": "Nitro illimitée",
+  "desc": "La nitro et le carburant des véhicules ne s’épuisent jamais",
+  "unlock": "Réussissez 50 sauts acrobatiques.",
+  "seq": []
+ },
+ {
+  "nom": "Munitions au maximum",
+  "desc": "Remplit toutes les réserves de munitions au maximum",
+  "unlock": "Remportez 25 médailles de bronze ou mieux dans les stands de tir.",
+  "seq": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "DOWN",
+   "LEFT"
+  ]
+ },
+ {
+  "nom": "Munitions infinies",
+  "desc": "Les munitions ne s’épuisent jamais",
+  "unlock": "Remportez 25 médailles d’argent ou mieux dans les stands de tir.",
+  "seq": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "nom": "Sans rechargement",
+  "desc": "Les munitions ne s’épuisent jamais et vous n’avez plus besoin de recharger",
+  "unlock": "Remportez 25 médailles d’or dans les stands de tir.",
+  "seq": [
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP"
+  ]
+ },
+ {
+  "nom": "Toutes les armes explosives",
+  "desc": "Ajoute toutes les armes explosives à votre équipement avec le plein de munitions",
+  "unlock": "Lancez 100 grenades.",
+  "seq": []
+ },
+ {
+  "nom": "Munitions incendiaires",
+  "desc": "Toutes les munitions sont incendiaires",
+  "unlock": "Brûlez 100 ennemis en leur infligeant des dégâts de feu.",
+  "seq": []
+ },
+ {
+  "nom": "Bouteilles explosives",
+  "desc": "Toutes les bouteilles explosent lorsqu’elles sont endommagées",
+  "unlock": "Lancez 100 cocktails Molotov",
+  "seq": []
+ },
+ {
+  "nom": "Fusil à pompe explosif",
+  "desc": "Ajoute à votre équipement un Mason & Keen Shortstraw qui tire des cartouches explosives",
+  "unlock": "Infligez des dégâts explosifs à 100 ennemis",
+  "seq": []
+ },
+ {
+  "nom": "Hauners H-AT",
+  "desc": "Ajoute un Hauners H-AT à votre équipement",
+  "unlock": "Faites exploser 100 véhicules",
+  "seq": []
+ },
+ {
+  "nom": "Force des attaques",
+  "desc": "Les balles et les attaques de mêlée projettent les cibles à l’impact",
+  "unlock": "Terminez l’histoire",
+  "seq": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "DOWN"
+  ]
+ },
+ {
+  "nom": "Balles et ballons explosifs",
+  "desc": "Les balles et ballons de sport explosent à l’impact",
+  "unlock": "Infligez des dégâts explosifs à 20 ennemis",
+  "seq": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Force des véhicules",
+  "desc": "Les collisions de véhicules projettent les cibles",
+  "unlock": "Tuez 25 ennemis avec un véhicule (écraser des civils compte aussi)",
+  "seq": [
+   "DOWN",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "UP",
+   "DOWN"
+  ]
+ },
+ {
+  "nom": "Interstate Ambulance",
+  "desc": "Fait apparaître une Interstate Ambulance",
+  "unlock": "Découvrez l’Interstate Ambulance dans le menu Progression.",
+  "seq": []
+ },
+ {
+  "nom": "Airboat 09",
+  "desc": "Fait apparaître un Airboat 09",
+  "unlock": "Terminez 5 défis de survie.",
+  "seq": []
+ },
+ {
+  "nom": "Bravado Banshee",
+  "desc": "Fait apparaître une Bravado Banshee",
+  "unlock": "Terminez tous les défis de combat.",
+  "seq": []
+ },
+ {
+  "nom": "Tuff BMX",
+  "desc": "Fait apparaître un Tuff BMX",
+  "unlock": "Terminez 5 défis de forme physique.",
+  "seq": []
+ },
+ {
+  "nom": "Maibatsu Boomazoom",
+  "desc": "Fait apparaître une Maibatsu Boomazoom",
+  "unlock": "Terminez 5 défis de shopping.",
+  "seq": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "LEFT"
+  ]
+ },
+ {
+  "nom": "Nagasaki Carbon RS",
+  "desc": "Fait apparaître une Nagasaki Carbon RS",
+  "unlock": "Terminez tous les défis d’exploration.",
+  "seq": []
+ },
+ {
+  "nom": "’65 Vapid Dominator",
+  "desc": "Fait apparaître une ’65 Vapid Dominator",
+  "unlock": "Terminez tous les défis de forme physique.",
+  "seq": []
+ },
+ {
+  "nom": "Progen Emerus",
+  "desc": "Fait apparaître une Progen Emerus",
+  "unlock": "Terminez tous les défis de véhicules.",
+  "seq": []
+ },
+ {
+  "nom": "Flamant rose gonflable",
+  "desc": "Fait apparaître un flamant rose gonflable",
+  "unlock": "Détruisez 50 flamants roses remplis de cocaïne.",
+  "seq": []
+ },
+ {
+  "nom": "MTL Pumper",
+  "desc": "Fait apparaître un MTL Pumper",
+  "unlock": "Condition de déblocage pas encore documentée",
+  "seq": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "UP"
+  ]
+ },
+ {
+  "nom": "Vapid Stanier G2 Taxi",
+  "desc": "Fait apparaître un Vapid Stanier G2 Taxi",
+  "unlock": "Terminez 5 défis sportifs.",
+  "seq": []
+ },
+ {
+  "nom": "Hauners P-996 Lazer",
+  "desc": "Fait apparaître un Hauners P-996 Lazer",
+  "unlock": "Terminez tous les défis.",
+  "seq": []
+ },
+ {
+  "nom": "HVY Bulldozer",
+  "desc": "Fait apparaître un HVY Bulldozer",
+  "unlock": "Découvrez le HVY Bulldozer dans le menu Progression.",
+  "seq": [
+   "LEFT",
+   "UP",
+   "RIGHT",
+   "DOWN",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN"
+  ]
+ },
+ {
+  "nom": "Lapwing Mallard",
+  "desc": "Fait apparaître un Lapwing Mallard",
+  "unlock": "Terminez 5 défis de véhicules.",
+  "seq": []
+ },
+ {
+  "nom": "Brimstone Golfer",
+  "desc": "Fait apparaître une Brimstone Golfer",
+  "unlock": "Terminez tous les défis sportifs.",
+  "seq": []
+ },
+ {
+  "nom": "Hauners Rhino Tank",
+  "desc": "Fait apparaître un Hauners Rhino Tank",
+  "unlock": "Terminez tous les défis de survie.",
+  "seq": []
+ },
+ {
+  "nom": "Maibatsu Sanchez",
+  "desc": "Fait apparaître une Maibatsu Sanchez",
+  "unlock": "Terminez 5 défis criminels.",
+  "seq": []
+ },
+ {
+  "nom": "Nagasaki Sea Sparrow",
+  "desc": "Fait apparaître un Nagasaki Sea Sparrow",
+  "unlock": "Terminez 5 défis d’exploration.",
+  "seq": []
+ },
+ {
+  "nom": "Speeder 700 GT",
+  "desc": "Fait apparaître un Speeder 700 GT",
+  "unlock": "Terminez 5 défis de combat.",
+  "seq": []
+ },
+ {
+  "nom": "Truffade Thrax",
+  "desc": "Fait apparaître une Truffade Thrax",
+  "unlock": "Terminez tous les défis de shopping.",
+  "seq": []
+ },
+ {
+  "nom": "Western Zombie Bobber",
+  "desc": "Fait apparaître une Western Zombie Bobber",
+  "unlock": "Terminez tous les défis criminels.",
+  "seq": []
+ },
+ {
+  "nom": "Avancer l’heure",
+  "desc": "Avance l’heure de la journée",
+  "unlock": "Trouvez 10 montres à collectionner.",
+  "seq": []
+ },
+ {
+  "nom": "Figer l’heure",
+  "desc": "Séquence pas encore documentée",
+  "unlock": "Trouvez 20 montres à collectionner.",
+  "seq": []
+ },
+ {
+  "nom": "Changer la météo",
+  "desc": "Condition de déblocage : Terminez l’histoire",
+  "unlock": "Terminez l’histoire",
+  "seq": [
+   "DOWN",
+   "RIGHT",
+   "UP",
+   "DOWN",
+   "RIGHT",
+   "UP",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Golden Hour",
+  "desc": "Applique un filtre doré au format écran large",
+  "unlock": "Passez 4 heures à vous tenir la main.",
+  "seq": []
+ },
+ {
+  "nom": "Powdered Sugar",
+  "desc": "Rend le monde blanc avec des reflets scintillants",
+  "unlock": "Scannez tous les débris spatiaux avec WAiNK",
+  "seq": []
+ },
+ {
+  "nom": "Pinhole",
+  "desc": "Applique un filtre de sténopé",
+  "unlock": "Éliminez 25 opérations de gangs avec votre partenaire.",
+  "seq": []
+ },
+ {
+  "nom": "Neon Jungle",
+  "desc": "Ajoute des reflets néon au monde",
+  "unlock": "Découvrez les 16 véhicules Girlypop",
+  "seq": []
+ },
+ {
+  "nom": "Yesteryear",
+  "desc": "Applique un filtre de téléviseur cathodique noir et blanc",
+  "unlock": "Découvrez le Ridgeway",
+  "seq": []
+ },
+ {
+  "nom": "Cataclysm",
+  "desc": "Remplit le monde d’une fumée sombre",
+  "unlock": "Découvrez la Vamos de Martha dans le menu Progression",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Videotape",
+  "desc": "Applique un filtre de type cassette vidéo",
+  "unlock": "Effectuez 50 activités avec votre partenaire.",
+  "seq": []
+ },
+ {
+  "nom": "Dark Mirror",
+  "desc": "Retourne le monde et le rend noir",
+  "unlock": "Gagnez $500,000 en vendant des véhicules",
+  "seq": []
+ },
+ {
+  "nom": "Migraine",
+  "desc": "Applique un filtre flou et déformant",
+  "unlock": "Survivez 6 minutes avec un indice de recherche de 6 étoiles.",
+  "seq": []
+ },
+ {
+  "nom": "Dollhouse",
+  "desc": "Applique un filtre aux couleurs vives au format étroit",
+  "unlock": "Passez 8 heures avec votre partenaire",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "DOWN",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Bubblegum",
+  "desc": "Rend le monde violet et jaune avec des reflets scintillants",
+  "unlock": "Trouvez les 24 cartes à collectionner des Vice City Flamingos",
+  "seq": []
+ },
+ {
+  "nom": "Fast Forward",
+  "desc": "Applique un flou de mouvement et accélère le déplacement des nuages",
+  "unlock": "Effectuez 50 séances de méditation",
+  "seq": []
+ },
+ {
+  "nom": "Fisheye",
+  "desc": "Applique un filtre fisheye",
+  "unlock": "Attrapez 100 poissons",
+  "seq": []
+ },
+ {
+  "nom": "Faded Glory",
+  "desc": "Applique un filtre de téléviseur cathodique couleur",
+  "unlock": "Braquez 50 magasins avec votre partenaire",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT"
+  ]
+ },
+ {
+  "nom": "Pixel Art",
+  "desc": "Applique un filtre pixélisé",
+  "unlock": "Gagnez $250,000 en vendant des objets à collectionner",
+  "seq": []
+ },
+ {
+  "nom": "Hellscape",
+  "desc": "Rend le monde rouge et orange avec un effet de brume de chaleur",
+  "unlock": "Volez 100 véhicules de police",
+  "seq": []
+ }
+]

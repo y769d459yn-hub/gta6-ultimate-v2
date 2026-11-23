@@ -1,0 +1,223 @@
+{
+ "info": "Lieux où se passent les missions (d'après les solutions de GTABase). Position : repère du guide (lieu) ou lieu GTADB (gtadb).",
+ "lieux": [
+  {
+   "lieu": "prison-hamlet",
+   "missions": [
+    "prologue",
+    "coming-home"
+   ]
+  },
+  {
+   "lieu": "brian-marina",
+   "missions": [
+    "down-to-earth",
+    "swamped",
+    "the-end-of-the-road"
+   ]
+  },
+  {
+   "lieu": "hamlet",
+   "missions": [
+    "unwanted-attention",
+    "company-property"
+   ]
+  },
+  {
+   "gtadb": "The Rusty Anchor",
+   "nom": "The Rusty Anchor",
+   "missions": [
+    "coming-home",
+    "day-release",
+    "ring-the-bell"
+   ]
+  },
+  {
+   "lieu": "visitor-center",
+   "missions": [
+    "tourist-trap"
+   ]
+  },
+  {
+   "lieu": "hopital-vc",
+   "missions": [
+    "discharge-time"
+   ]
+  },
+  {
+   "lieu": "southwind",
+   "missions": [
+    "clear-skies"
+   ]
+  },
+  {
+   "lieu": "planque-starlet",
+   "missions": [
+    "whats-in-the-bag",
+    "overnight-charges",
+    "take-care-of-jason",
+    "behind-on-payments",
+    "coffee-break",
+    "checking-out"
+   ]
+  },
+  {
+   "gtadb": "Alpha Gas Station",
+   "nom": "Station Alpha (près du Starlet Motel)",
+   "missions": [
+    "just-moved-in"
+   ]
+  },
+  {
+   "gtadb": "Delights",
+   "nom": "Delights",
+   "missions": [
+    "girls-trip",
+    "afternoon-delight"
+   ]
+  },
+  {
+   "lieu": "moses-watkins",
+   "missions": [
+    "moses",
+    "daily-driver"
+   ]
+  },
+  {
+   "gtadb": "Hank's Waffles",
+   "nom": "Hank's Waffles",
+   "missions": [
+    "breakfast-run"
+   ]
+  },
+  {
+   "gtadb": "Thrillbilly Mud Club",
+   "nom": "Thrillbilly Mud Club",
+   "missions": [
+    "thrillbillies"
+   ]
+  },
+  {
+   "gtadb": "Jack of Hearts",
+   "nom": "Jack of Hearts",
+   "missions": [
+    "welcome-to-vice-city",
+    "dealers-choice",
+    "top-billing",
+    "ride-or-die",
+    "fresh-evidence"
+   ]
+  },
+  {
+   "gtadb": "Effluvia",
+   "nom": "Effluvia (bar sur le toit)",
+   "missions": [
+    "meet-the-heders"
+   ]
+  },
+  {
+   "gtadb": "NINE1NINE",
+   "nom": "NINE1NINE",
+   "missions": [
+    "day-release"
+   ]
+  },
+  {
+   "lieu": "capri",
+   "missions": [
+    "dubious-provenance"
+   ]
+  },
+  {
+   "lieu": "la-perle",
+   "missions": [
+    "here-kitty-kitty"
+   ]
+  },
+  {
+   "lieu": "salton",
+   "missions": [
+    "car-service",
+    "race-against-yago",
+    "power-play"
+   ]
+  },
+  {
+   "lieu": "tequesta",
+   "missions": [
+    "sinfrontera-national-bank",
+    "the-cartel-heist",
+    "dirty-work",
+    "photo-shoot"
+   ]
+  },
+  {
+   "lieu": "stockyard",
+   "missions": [
+    "safe-word",
+    "its-a-date"
+   ]
+  },
+  {
+   "lieu": "watson-bay",
+   "missions": [
+    "the-missing-link"
+   ]
+  },
+  {
+   "gtadb": "Big House, Crosstown",
+   "nom": "Big House Storage",
+   "missions": [
+    "caught-slipping"
+   ]
+  },
+  {
+   "gtadb": "Venture Apts North",
+   "nom": "Venture Apartments",
+   "missions": [
+    "bricked-up"
+   ]
+  },
+  {
+   "lieu": "planque-y",
+   "missions": [
+    "ocean-beach",
+    "pool-day",
+    "company-cars",
+    "sunset"
+   ]
+  },
+  {
+   "gtadb": "Megamundo",
+   "nom": "Siège de Megamundo",
+   "missions": [
+    "party-hard",
+    "childs-play"
+   ]
+  },
+  {
+   "lieu": "ajax-gym",
+   "missions": [
+    "heavy-lifting",
+    "making-gainz",
+    "amateur-hour",
+    "team-building"
+   ]
+  },
+  {
+   "lieu": "aeroport-vci",
+   "missions": [
+    "too-much-baggage",
+    "delivery-method",
+    "fully-catered",
+    "vcia-takedown"
+   ]
+  },
+  {
+   "lieu": "panos-plaza",
+   "missions": [
+    "protective-custody"
+   ]
+  }
+ ]
+}

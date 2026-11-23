@@ -1,1 +1,100 @@
-# gta6-ultimate-v2
+# Leonida Guide — guide GTA 6
+
+Site guide **pédagogique, visuel et ultra rapide** pour GTA 6 : astuces, véhicules, lieux, encyclopédie, actualités et **carte interactive en JSON**.
+Objectif : trouver la solution en quelques secondes, avec peu de lecture et peu de scroll.
+
+## Lancer
+```bash
+npm run build      # génère le site dans docs/
+npm run dev        # build + serveur local sur http://localhost:8080
+```
+Aucune dépendance npm. GSAP et les polices (Anton, Inter) sont hébergés localement : le site ne fait aucun appel externe.
+
+**Mise en ligne (GitHub Pages)** : dans *Settings → Pages*, choisis la branche puis le dossier `/docs`. Pour un autre domaine, modifie `url` dans `data/site.json`.
+
+## Où modifier le contenu
+| Fichier | Contenu |
+|---|---|
+| `data/astuces.json` | Fiches astuces (réponse, 3 étapes, à savoir, voir aussi, sources, statut) |
+| `data/vehicules.json` | Véhicules (type, disponibilité, emplacement, comment l'obtenir) |
+| `data/lieux.json` | Régions, quartiers, bâtiments, activités (+ position carte) |
+| `data/carte.json` | Fond de carte schématique (côtes, régions, îles, lac, routes) |
+| `data/encyclopedie.json` | Fiches « ce qu'on sait / ce qui reste incertain » |
+| `data/actualites.json` | Actualités datées et sourcées |
+| `data/sources.json` | Sources citées |
+| `data/site.json` | Marque, URL, catégories, statuts, **synonymes de recherche** |
+
+Statuts de fiabilité : `confirme` (vérifié humainement), `a-verifier`, `provisoire`.
+**Règle : ne jamais inventer un emplacement.** Sans position connue, laisse `pos: null`. Avec une région seulement, mets `precision: "region"` : le repère est alors placé dans la région et affiché « à confirmer ».
+
+## Architecture
+- `scripts/build.mjs` : générateur statique (HTML par page, SEO, JSON-LD, sitemap, index de recherche, `docs/data/carte.json` au format GeoJSON).
+- `scripts/icons.mjs` : pictogrammes SVG originaux et animés.
+- `src/app.css` : direction artistique « coucher de soleil sur Leonida », mobile first, thèmes Nuit et Jour.
+- `src/app.js` : recherche instantanée (tolérance aux fautes, synonymes, meilleur résultat en premier, raccourcis `/` et `Ctrl+K`), filtres, favoris, progression, préférences, animations GSAP.
+- `src/map.js` : carte interactive (glisser, pincer, molette, regroupement des repères, filtres, recherche, panneau détail).
+
+## Carte interactive
+- Fond : carte communautaire « Yanis v18 — GTA VI Community Map » diffusée par [GTADB](https://map.gtadb.org) (CC BY 4.0), recolorée en néon par `tools/tuiles.py` → `src/tiles/` (5 niveaux, tuiles WebP de 1024 px). Ce n'est **pas** la carte officielle de Rockstar.
+- Lieux de la communauté : `vendor/gtadb/landmarks.json` (CC BY 4.0), filtrés à la construction → `docs/data/communaute.json`.
+- Les lieux du guide (`data/lieux.json`) sont placés soit par coordonnées (`monde`), soit par la médiane des lieux GTADB d'un quartier (`gtadb`).
+- Moteur : `src/atlas.js` (tuiles, regroupement, pincer/glisser/molette, inertie), page : `src/carte.js`.
+- Mettre à jour la carte : `git clone https://github.com/rolux/gtadb.org`, puis `python3 tools/tuiles.py ../gtadb.org` et copier `map/data/6/landmarks.json` dans `vendor/gtadb/`.
+
+## Carte : « Je cherche… »
+
+La carte (`carte/`) range ses repères en 8 besoins, posés comme des questions (`data/site.json` → `categories.carte`) :
+une voiture, une arme, de l'argent, un magasin, un service, une mission, un lieu secret, une activité.
+Toucher une question ne garde que ces repères et ouvre la liste, rangée par type (armurerie, banque, coiffeur…).
+
+- Repères du guide : `data/lieux.json` (`mapcat` + `service`), véhicules, astuces.
+- Commerces, armes, banques, services et lieux remarquables : lieux GTADB reconnus par leur étiquette `#` ou par leur nom (`SERVICES`, `NOMS`, `CURIOSITE` dans `scripts/build.mjs`), un seul repère par endroit.
+- Missions : `data/carte-missions.json` (lieu du guide ou lieu GTADB → missions) ; la page Missions renvoie vers ces repères (« Voir sur la carte »).
+- Chaque fiche propose « Le plus proche d'ici » (armurerie, hôpital, essence, garage, vêtements, planque), « J'y suis allé » (progression gardée sur l'appareil, clé `lg:carte-trouves`) et « Partager » (lien `?focus=`).
+
+## Carte : qualité du fond
+
+Six niveaux de tuiles (`src/tiles/0` à `5`), en couleurs réalistes proches de la carte du jeu (`tools/couleurs_realistes.py`). Le niveau 5 est le plus détaillé de la source GTADB (1 pixel par mètre) : `python3 tools/tuiles.py <gtadb.org> 5` le régénère seul (filtre médian pour retirer le bruit JPEG). Le zoom maximum (`sMax` dans `src/atlas.js`) est limité pour ne jamais agrandir ce niveau au point qu'il devienne flou.
+
+## Carte : emplacements Open GTA 6 Map
+
+`tools/opengta6map.py <clone de github.com/fbritoferreira/gta6>` écrit `data/carte-ogm.json` : objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces, services et activités (≈ 3 300 emplacements, CC BY 4.0, crédit sur la carte et dans « À propos »).
+Coordonnées converties dans le repère GTADB (x = 32·x − 16385, y = 16385 − 32·y, calé sur les 1 021 lieux communs), types et phrases courantes traduits ; les autres indications restent en anglais et sont signalées.
+Un repère du guide au même endroit est gardé ; un repère GTADB équivalent est remplacé. La mini-carte de l'accueil lit `data/carte-accueil.json`, sans ces emplacements.
+
+## Images des véhicules
+Chaque véhicule est montré avec sa **photo du jeu** quand elle existe (`src/photos/<slug>.webp`, 27 sur 31 ; les photos sombres sont recadrées et éclaircies par `tools/photos.py`). Pour ajouter ou remplacer une photo, dépose `src/photos/<slug>.webp` (ex. `src/photos/jobuilt-hauler.webp`) puis relance `npm run build`, l'image la plus réaliste possible. Les photos sont préparées par `python3 tools/photos.py <dépôt gta6-hq>` à partir du dépôt public xpbeats00-sudo/gta6-hq, et `data/photos.json` garde l'origine de chacune (Rockstar Games, via GTABase, Tracker.gg ou GTA Wiki), affichée sous l'image. Ces images appartiennent à Rockstar Games : elles ne sont pas sous licence libre.
+
+Une **vue 3D** (désactivée par défaut : `VUE_3D` dans `scripts/build.mjs`) peut être réactivée. Par défaut, c'est un modèle simplifié généré par `tools/3d` (three.js) d'après la photo, réglé dans `data/modeles3d.json` ; `npm run build:3d` assemble `src/vehicule3d.js` et produit les rendus fixes `src/rendus/` (utilisés quand il n'y a pas de photo). Pour une 3D réaliste, dépose un modèle `.glb` sous licence compatible dans `src/modeles/<slug>.glb` (par exemple `src/modeles/grotti-cheetah-95.glb`) : il remplace automatiquement le modèle simplifié. Pense à citer son auteur et sa licence.
+
+## SEO (discret)
+Title et description par page, URL propres, canonical, Open Graph, JSON-LD (WebSite + SearchAction, FAQPage, HowTo, BreadcrumbList, Article, NewsArticle), sitemap.xml, robots.txt. Le texte complémentaire est rangé dans des blocs repliables (« Questions fréquentes », « En savoir plus »).
+
+---
+Site indépendant, non affilié à Rockstar Games ni à Take-Two. Aucune image du jeu n'est utilisée : les pictogrammes et la carte sont des créations originales.
+
+## Catalogue complet des véhicules
+
+La page Véhicules range les 312 véhicules confirmés de GTA 6 en 19 catégories (Supercars, Sportives, Muscle cars, SUV, Motos, Bateaux, Avions, Police…). Dans chaque catégorie, les 30 véhicules du guide dont l'emplacement est connu passent en premier. Un toucher sur un véhicule du catalogue ouvre ses infos : photo, présentation, marque, vraie voiture d'origine, places, transmission, poids, autres jeux et « comment l'obtenir » quand c'est documenté.
+
+- Sources : fiches GTABase (`vendor/catalogue/gtabase-fiches.json`) et gta6guide.fr (`vendor/catalogue/gta6guide.json`), relevées le 22/11/2026.
+- `python3 tools/catalogue.py <dépôt gta6-hq> <cache images> [--images]` fusionne les sources, range chaque véhicule dans sa catégorie, compare toutes les photos disponibles (GTABase, gta6-hq, gta6guide.fr) et garde la plus nette. Les photos floues, trop sombres ou où le véhicule est masqué sont écartées à la main (`PHOTOS_REJETEES`) : le véhicule garde alors sa silhouette.
+
+## Vérification : les véhicules sont-ils dans GTA 6 ?
+
+`python3 tools/verification.py` écrit `data/verification.json` : un véhicule est « confirmé » si GTA Wiki (page et catégorie « Vehicles in GTA VI », `vendor/catalogue/gtawiki-vehicules-gta6.json`) ou le site officiel de Rockstar le recensent ; sinon il est « à confirmer » (vu seulement sur GTABase ou gta6guide.fr). Relevé du 22/11/2026 : 273 confirmés, 39 à confirmer. La « Pegassi Torus dorée », introuvable dans toutes les sources, a été retirée du guide. Le site affiche ce statut sur chaque carte, dans la fenêtre d'infos et sur les fiches, avec un filtre « Confirmés seulement ».
+
+## Missions et solutions
+
+La page `missions/` (onglet « Missions » du menu et de la barre du bas) liste les 134 missions de GTA 6 : 107 de l'histoire (prologue et 5 chapitres) et 27 facultatives.
+Pour chaque mission : nom français et nom du jeu, résumé, donneur, personnage joué, récompense, étapes courtes et conseils « si tu es bloqué ».
+Le bloc « Que faire maintenant ? » garde la progression sur l'appareil (`localStorage`, clé `lg:missions`) : « J'en suis là » coche les missions précédentes et affiche la suivante.
+
+- Liste, ordre, chapitres, donneurs et récompenses : relevé GTABase du 22/11/2026 (`vendor/missions/gtabase-*.json`), recoupé avec gta6guide.fr et GTA Wiki (`vendor/missions/*-liste.txt`) ; 132 missions sur 134 sont confirmées par au moins deux sources.
+- Textes français : `tools/missions_fr/` (rédigés par le site).
+- Régénérer : `python3 tools/missions.py` puis `npm run build`.
+
+## Codes
+
+La page `codes/` liste les 61 codes de GTA 6 en 5 groupes (joueur, combat, véhicules, météo et heure, filtres d'écran) : effet, défi pour le débloquer et combinaison de flèches quand elle est connue (19 sur 61). `python3 tools/codes.py` écrit `data/codes.json` à partir des relevés de GTABase, GTA Wiki et gta6guide.fr (`vendor/codes/`, 22/11/2026). Une combinaison est « confirmée » quand au moins deux sources donnent la même ; une combinaison donnée par une seule source et identique à celle d'un autre code est écartée (erreur probable).
+

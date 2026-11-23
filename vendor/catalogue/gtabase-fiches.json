@@ -1,0 +1,6530 @@
+[
+ {
+  "slug": "seashark",
+  "fabricant": "Seashark",
+  "nom": "Hydroblast",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "boats"
+  ],
+  "base": "Sea Doo RXT",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Seashark",
+   "places": "2",
+   "base": "Sea-Doo RXT",
+   "poids": "400 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/seashark",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/seashark-2.png"
+ },
+ {
+  "slug": "speeder",
+  "fabricant": "Pegassi",
+  "nom": "Speeder",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "boats"
+  ],
+  "base": "Coeur 290 Nighthawk, Cherubini Classic 20",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Pegassi",
+   "places": "4",
+   "base": "Coeur 290 Nighthawk, Cherubini Classic 20",
+   "poids": "2 400 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/speeder",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/speeder.jpg"
+ },
+ {
+  "slug": "tropic",
+  "fabricant": "Shitzu",
+  "nom": "Tropic",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "boats"
+  ],
+  "base": "Sea Ray 300 Sundancer",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Shitzu",
+   "places": "4",
+   "base": "Sea Ray 300 Sundancer",
+   "poids": "2 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/tropic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tropic.jpg"
+ },
+ {
+  "slug": "vortex",
+  "fabricant": "Airgator",
+  "nom": "Airboat / Fanboat",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "boats"
+  ],
+  "base": "Panther Airboat",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Airgator",
+   "base": "Aéroglisseur Panther",
+   "aussi": "GTA San Andreas"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/vortex",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/vortex.jpg"
+ },
+ {
+  "slug": "dinghy",
+  "fabricant": "Dingus",
+  "nom": "Como",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Rigid-hulled inflatable boat",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Dingus",
+   "places": "2",
+   "base": "Bateau pneumatique à coque rigide",
+   "poids": "2 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dinghy",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dinghy.jpg"
+ },
+ {
+  "slug": "marquis",
+  "fabricant": "Dinka",
+  "nom": "Marquis",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Adjutor Yachts",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Dinka",
+   "places": "4",
+   "base": "Yachts Adjutor",
+   "poids": "12 200 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/marquis",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/marquis.jpg"
+ },
+ {
+  "slug": "squalo",
+  "fabricant": "Shitzu",
+  "nom": "Squalo",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Chris-Craft Stinger 390x",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Shitzu",
+   "places": "2",
+   "poids": "3 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/squalo"
+ },
+ {
+  "slug": "airboat-09",
+  "fabricant": "Airgator",
+  "nom": "Airboat 09",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Diamondback Hunting & Fishing Airboat",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Airgator",
+   "base": "Hydroglisseur Diamondback pour la chasse et la pêche",
+   "aussi": "GTA San Andreas"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/airboat-09",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/airgator-airboat.jpg"
+ },
+ {
+  "slug": "clarion",
+  "fabricant": null,
+  "nom": "Clarion",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Cigarette 38 Top Gun and Cigarette 515",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Cigarette 38 Top Gun et Cigarette 515"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/clarion",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/boat-1.jpg"
+ },
+ {
+  "slug": "kayak",
+  "fabricant": "Crest",
+  "nom": "Kayak",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Crescent Kayak, in several variants (Splashback, Ultralite, and Primo)",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Crest",
+   "places": "1",
+   "base": "Crescent Kayak, en plusieurs variantes (Splashback, Ultralite et Primo)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/kayak"
+ },
+ {
+  "slug": "police-boat",
+  "fabricant": "Lure Predator",
+  "nom": "L35P Police Boat",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats",
+   "emergency"
+  ],
+  "base": "Contender 25T and Contender 24S boat",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Lure Predator",
+   "base": "Bateaux Contender 25T et Contender 24S"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/police-boat",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-boat.jpg"
+ },
+ {
+  "slug": "s23",
+  "fabricant": "Bombora",
+  "nom": "S23 CCS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Contender 25 Bay",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Bombora",
+   "base": "Contender 25 Baie"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/s23"
+ },
+ {
+  "slug": "azimut-85",
+  "fabricant": null,
+  "nom": "Azimut 85",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Azimut 85",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Azimut 85"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/azimut-85",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/azimut-85-nov.jpg"
+ },
+ {
+  "slug": "azimut-atlantis-45",
+  "fabricant": null,
+  "nom": "Azimut Atlantis 45",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Azimut Atlantis 45",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Azimut Atlantis 45"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/azimut-atlantis-45",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/atlantis-45.png"
+ },
+ {
+  "slug": "bavaria-sr33",
+  "fabricant": null,
+  "nom": "Bavaria SR33",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Bavaria SR33",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Bavaria SR33"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bavaria-sr33",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/bavaria-s-r33.jpg"
+ },
+ {
+  "slug": "btn-delmar",
+  "fabricant": null,
+  "nom": "BTN Delmar",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "BTN Delmar",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "BTN Delmar"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/btn-delmar",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/btn-delmar.png"
+ },
+ {
+  "slug": "lure-predator-l35p",
+  "fabricant": "Lure Predator",
+  "nom": "L35P",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Contender 25T and Contender 24S boat",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Lure Predator",
+   "base": "Bateaux Contender 25T et Contender 24S"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lure-predator-l35p",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-boat.jpg"
+ },
+ {
+  "slug": "contender-39st",
+  "fabricant": "Rugger",
+  "nom": "Rhode",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Contender 39ST",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Contender 39ST"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/contender-39st",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/contender-39st.jpg"
+ },
+ {
+  "slug": "crownline-275-ss",
+  "fabricant": "Nagasaki",
+  "nom": "Tao",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Crownline 275 SS",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Nagasaki",
+   "base": "Crownline 275 SS"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/crownline-275-ss",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/yamaha-255xd.png"
+ },
+ {
+  "slug": "cruise-ship",
+  "fabricant": null,
+  "nom": "Cruise Ship",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Royal Caribbean International Voyager",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Voyageur international Royal Caribbean"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/cruise-ship",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/cruise-ship.jpg"
+ },
+ {
+  "slug": "frauscher-1017-gt",
+  "fabricant": null,
+  "nom": "Frauscher 1017 GT",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Frauscher 1017 GT",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Frauscher 1017 GT"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/frauscher-1017-gt",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/rivamare.png"
+ },
+ {
+  "slug": "highfield-sport-900",
+  "fabricant": null,
+  "nom": "Highfield Sport 900",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Highfield Sport 900",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Highfield Sport 900"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/highfield-sport-900"
+ },
+ {
+  "slug": "horizon-power-catamarans-pc60",
+  "fabricant": "Calder",
+  "nom": "CB69",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Horizon Power Catamarans PC60",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Horizon Power Catamarans PC60"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/horizon-power-catamarans-pc60",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/p-c60-nov.jpg"
+ },
+ {
+  "slug": "lurssen-73m-coral-ocean",
+  "fabricant": null,
+  "nom": "Lurssen 73m Coral Ocean",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Lurssen 73m Coral Ocean",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Lurssen 73m Coral Ocean"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lurssen-73m-coral-ocean",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/yacht-1.png"
+ },
+ {
+  "slug": "rb-s",
+  "fabricant": null,
+  "nom": "RB-S",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "RB-S",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "RB-S and RB-S II"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rb-s",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/r-b-s.jpg"
+ },
+ {
+  "slug": "rb-s-ii",
+  "fabricant": null,
+  "nom": "RB-S II",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "RB-S II",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "RB-S II"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rb-s-ii",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/r-b-s-2.jpg"
+ },
+ {
+  "slug": "riva-86-domino",
+  "fabricant": "Calder",
+  "nom": "Yakuruna",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Riva 86 Domino",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Calder",
+   "base": "Riva 86 Domino"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/riva-86-domino",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/yakuruna-nov.jpg"
+ },
+ {
+  "slug": "sea-ray-350-sundancer",
+  "fabricant": null,
+  "nom": "Shasa",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Sea Ray 350 Sundancer",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Sea Ray 350 Sundancer"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sea-ray-350-sundancer",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/premiere-400.png"
+ },
+ {
+  "slug": "sea-doo-rxt-x-300",
+  "fabricant": "Seashark",
+  "nom": "Sedna",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Sea-Doo RXT-X 300",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Sea-Doo RXT-X 300"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sea-doo-rxt-x-300",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/sea-doo.png"
+ },
+ {
+  "slug": "shipyard-de-hoop-brion",
+  "fabricant": null,
+  "nom": "Shipyard De Hoop Brion",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Shipyard De Hoop Brion",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Shipyard De Hoop Brion"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/shipyard-de-hoop-brion",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/shipyard.jpg"
+ },
+ {
+  "slug": "skater-388",
+  "fabricant": null,
+  "nom": "Skater 388",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Skater 388",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Skater 388"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/skater-388",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/boat-2.jpg"
+ },
+ {
+  "slug": "ferry",
+  "fabricant": null,
+  "nom": "Ferry",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Elliott Bay Design Group's Fisher Island Ferry (such as the Eagle, Pelican, Heron, and Flamingo ferries)",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Le Fisher Island Ferry du groupe Elliott Bay Design (comme les ferries Eagle, Pelican, Heron et Flamingo)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ferry",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/ferry.jpg"
+ },
+ {
+  "slug": "water-taxi",
+  "fabricant": null,
+  "nom": "Water Taxi",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Bateaux"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/water-taxi",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/water-taxi-gta6.jpg"
+ },
+ {
+  "slug": "crusader-boats-gfy",
+  "fabricant": null,
+  "nom": "Crusader Boats GFY",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "2005 34' Crusader Boats GFY and Netwon 36' Dive Special",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Bateaux Crusader GFY et Newwon 36' (2005) - Spécial plongée"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/crusader-boats-gfy",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/crusader-boats-gfy-nov.jpg"
+ },
+ {
+  "slug": "fishing-boat",
+  "fabricant": null,
+  "nom": "Fishing Boat",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "boats"
+  ],
+  "base": "Steiger Craft 31 Miami",
+  "fiche": {
+   "classe": "Bateaux",
+   "base": "Steiger Craft 31 Miami"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/fishing-boat",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/fishing-boat.jpg"
+ },
+ {
+  "slug": "police-de-rhode",
+  "fabricant": "Rugger",
+  "nom": "Rhode Police",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "boats"
+  ],
+  "base": "Contender 39ST",
+  "fiche": {
+   "classe": "Bateaux",
+   "fabricant": "Rugger",
+   "base": "Contender 39ST"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-de-rhode",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/yacht-1.png"
+ },
+ {
+  "slug": "benson",
+  "fabricant": "Interstate",
+  "nom": "Benson '97",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "commercial"
+  ],
+  "base": "International 4700 Delivery Truck Chassis",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Entre États",
+   "places": "2",
+   "base": "Châssis de camion de livraison International 4700",
+   "poids": "7 000 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/benson",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/benson.jpg"
+ },
+ {
+  "slug": "stockade",
+  "fabricant": "Interstate",
+  "nom": "Stockade '99",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "International 4700 Series",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Interstate",
+   "places": "4",
+   "base": "Série Internationale 4700",
+   "poids": "6 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/stockade",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stockade.jpg"
+ },
+ {
+  "slug": "phantom-custom",
+  "fabricant": "JoBuilt",
+  "nom": "Phantom Custom '81",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "1984 GMC General with an Aerodynamic Sleeper Cab",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "JoBuilt",
+   "places": "5",
+   "base": "GMC General 1984 avec cabine couchette aérodynamique",
+   "poids": "12 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/phantom-custom",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/phantom.jpg"
+ },
+ {
+  "slug": "mule",
+  "fabricant": "Maibatsu",
+  "nom": "Mule",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Mitsubishi Fuso Canter (7th gen)",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Maibatsu",
+   "places": "6",
+   "base": "Mitsubishi Fuso Canter (7e génération)",
+   "poids": "5 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/mule",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mule-3.jpg"
+ },
+ {
+  "slug": "phantom",
+  "fabricant": "JoBuilt",
+  "nom": "Phantom",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Peterbilt 359 EXHD",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "JoBuilt",
+   "places": "2",
+   "base": "Peterbilt 359 EXHD",
+   "poids": "12 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/phantom",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/phantom-2.png"
+ },
+ {
+  "slug": "packer",
+  "fabricant": "MTL",
+  "nom": "Packer",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "1994 International 9000/9200",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "MTL",
+   "places": "2",
+   "base": "International 9000/9200 de 1994",
+   "poids": "12 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/packer",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/packer.jpg"
+ },
+ {
+  "slug": "hauler",
+  "fabricant": "Cartwright",
+  "nom": "Hauler",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Freightliner and Kenworth",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Cartwright",
+   "places": "2",
+   "base": "Freightliner et Kenworth",
+   "poids": "9 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/hauler",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/hauler.png"
+ },
+ {
+  "slug": "biff",
+  "fabricant": "Cartwright",
+  "nom": "Biff",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Kenworth T800",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Cartwright",
+   "places": "2",
+   "base": "Kenworth T800",
+   "poids": "9 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/biff",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/biff-2.jpg"
+ },
+ {
+  "slug": "chevrolet-kodiak-gmc-topkick",
+  "fabricant": "Declasse",
+  "nom": "D7700",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Chevrolet Kodiak/GMC Topkick",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Kodiak/GMC Topkick"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-kodiak-gmc-topkick",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/kodiak.jpg"
+ },
+ {
+  "slug": "isuzu-elf-250",
+  "fabricant": "Maibatsu",
+  "nom": "Iota",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "commercial"
+  ],
+  "base": "Isuzu Elf 250",
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "base": "Isuzu Elf 250"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/isuzu-elf-250",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/isuzu-elf.jpg"
+ },
+ {
+  "slug": "yankee-80",
+  "fabricant": "Interstate",
+  "nom": "Yankee '80",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "commercial"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Commercial",
+   "fabricant": "Entre États"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/yankee-80"
+ },
+ {
+  "slug": "zion",
+  "fabricant": "Übermacht",
+  "nom": "Apoc",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "BMW M6 E63",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Übermacht",
+   "places": "2",
+   "base": "BMW M6 E63",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/zion",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/zion.jpg"
+ },
+ {
+  "slug": "buick-reatta-convertible",
+  "fabricant": "Willard",
+  "nom": "Lasso '90",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Buick Reatta Convertible",
+  "fiche": {
+   "classe": "Coupés",
+   "places": "2"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/buick-reatta-convertible",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/buick-reatta.jpg"
+ },
+ {
+  "slug": "lincoln-mark-viii",
+  "fabricant": "Dundreary",
+  "nom": "Arcturus '93",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Lincoln Mark VIII",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Dundreary",
+   "places": "2",
+   "base": "Lincoln Mark VIII"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lincoln-mark-viii",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mark-viii-2.jpg"
+ },
+ {
+  "slug": "chevrolet-sonic",
+  "fabricant": "Declasse",
+  "nom": "Akane",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Chevrolet Sonic",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Sonic"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-sonic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sonic.jpg"
+ },
+ {
+  "slug": "cadillac-eldorado-1959",
+  "fabricant": "Albany",
+  "nom": "DeVanity '59",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Cadillac Eldorado (1959)",
+  "fiche": {
+   "classe": "Coupes",
+   "places": "2",
+   "base": "Cadillac Eldorado (1959)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/cadillac-eldorado-1959",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/cadillac-eldorado.jpg"
+ },
+ {
+  "slug": "mercury-comet-1st-gen",
+  "fabricant": "Sirius",
+  "nom": "Sungrazer '61",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "1960-1961 Mercury Comet",
+  "fiche": {
+   "classe": "Coupes",
+   "places": "2",
+   "base": "Comète de Mercure 1960-1961"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mercury-comet-1st-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mercury-comet-nov.jpg"
+ },
+ {
+  "slug": "sentinel-xs",
+  "fabricant": "Übermacht",
+  "nom": "Sentinel XS",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "coupes"
+  ],
+  "base": "BMW M3 E92",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Übermacht",
+   "places": "2",
+   "base": "BMW M3 E92",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sentinel-xs",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sentinel.png"
+ },
+ {
+  "slug": "windsor",
+  "fabricant": "Buckingham",
+  "nom": "Windsor",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Rolls Royce Wraith",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Buckingham",
+   "places": "2",
+   "base": "Rolls Royce Wraith",
+   "poids": "2 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/windsor",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/enus-windsor.jpg"
+ },
+ {
+  "slug": "zion-cabrio",
+  "fabricant": "Übermacht",
+  "nom": "Apoc (Cabrio)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "BMW 6-Series E64",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Übermacht",
+   "places": "2",
+   "base": "BMW Série 6 E64",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/zion-cabrio",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/zion-cabrio.jpg"
+ },
+ {
+  "slug": "mercedes-benz-cle-class-a236",
+  "fabricant": null,
+  "nom": "Mercedes-Benz CLE Class (A236)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Mercedes-Benz CLE Class (A236)",
+  "fiche": {
+   "classe": "Coupes",
+   "places": "2",
+   "base": "Mercedes-Benz CLE Class (A236)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mercedes-benz-cle-class-a236",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/mercedes-cle-a236.jpg"
+ },
+ {
+  "slug": "fr36",
+  "fabricant": "Fathom",
+  "nom": "FR36",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Infiniti G35 (V35)",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Fathom",
+   "places": "2",
+   "base": "Infiniti G35 (V35)",
+   "poids": "1 515 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/fr36",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/fr36.jpg"
+ },
+ {
+  "slug": "windsor-drop",
+  "fabricant": "Buckingham",
+  "nom": "Windsor Drop",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "coupes"
+  ],
+  "base": "Rolls-Royce Ghost & Rolls-Royce Dawn",
+  "fiche": {
+   "classe": "Coupes",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Rolls-Royce Ghost et Rolls-Royce Dawn",
+   "poids": "3 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/windsor-drop",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/windsor-drop-screen.jpg"
+ },
+ {
+  "slug": "cruiser",
+  "fabricant": "Walter",
+  "nom": "Cruiser",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "Beach Cruiser bike style, which was popular in the 1930s",
+  "fiche": {
+   "classe": "Cycles",
+   "fabricant": "Walter",
+   "places": "1",
+   "base": "Le style de vélo Beach Cruiser, très populaire dans les années 1930.",
+   "poids": "120 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/cruiser",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/cruiser-bike.jpg"
+ },
+ {
+  "slug": "bmx",
+  "fabricant": "Tuff",
+  "nom": "BMX",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "BMX bike",
+  "fiche": {
+   "classe": "Cycles",
+   "fabricant": "Tuf",
+   "places": "1",
+   "base": "vélo BMX",
+   "poids": "105 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bmx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bmx-4.jpg"
+ },
+ {
+  "slug": "scorcher",
+  "fabricant": "PED",
+  "nom": "Scorcher",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "Saracen Zen, Rockshox Domain 180mm",
+  "fiche": {
+   "classe": "Cycles",
+   "fabricant": "Del Perro",
+   "places": "1",
+   "base": "Saracen Zen, domaine Rockshox 180mm",
+   "poids": "115 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/scorcher",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/scorcher-2.jpg"
+ },
+ {
+  "slug": "lombike",
+  "fabricant": null,
+  "nom": "Lombike",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "CitiBike Miami E-Bikes",
+  "fiche": {
+   "classe": "Cycles",
+   "places": "1",
+   "base": "Vélos électriques CitiBike Miami"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lombike",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/lombike.jpg"
+ },
+ {
+  "slug": "electric-scooter",
+  "fabricant": null,
+  "nom": "Zoot",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "BIRD One rental e-scooter",
+  "fiche": {
+   "classe": "Cycles",
+   "places": "1",
+   "base": "Trottinette électrique de location BIRD One"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/electric-scooter",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/scooter-4.jpg"
+ },
+ {
+  "slug": "endurex-race-bike",
+  "fabricant": null,
+  "nom": "Endurex Race Bike",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "cycles"
+  ],
+  "base": "Pinarello Dogma",
+  "fiche": {
+   "classe": "Cycles",
+   "places": "1",
+   "base": "Dogme de Pinarello",
+   "poids": "110 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/endurex-race-bike",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/endurex-race-bike.jpg"
+ },
+ {
+  "slug": "ambulance-annees-90",
+  "fabricant": "Declasse",
+  "nom": "Ambulance '90s",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Declasse"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/ambulance-annees-90"
+ },
+ {
+  "slug": "ambulance",
+  "fabricant": "Interstate",
+  "nom": "Ambulance",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Chevrolet Express 3500 cab-chassis",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Entre États",
+   "places": "4",
+   "base": "Chevrolet Express 3500 châssis-cabine",
+   "poids": "2 500 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ambulance",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/ambulance.jpg"
+ },
+ {
+  "slug": "police-cruiser-interceptor",
+  "fabricant": "Vapid",
+  "nom": "Police Lowline (Interceptor)",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ford Police Interceptor Sedan (2013–2019), based on the Ford Taurus",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Police Interceptor Sedan (2013–2019), basée sur la Ford Taurus",
+   "poids": "1 450 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-interceptor",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/lowline-police.jpg"
+ },
+ {
+  "slug": "police-cruiser",
+  "fabricant": "Vapid",
+  "nom": "Police Cruiser (Stanier LE)",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ford Crown Victoria",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Crown Victoria",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-cruiser.jpg"
+ },
+ {
+  "slug": "police-cruiser-buffalo",
+  "fabricant": "Bravado",
+  "nom": "Police Cruiser (Buffalo)",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Dodge Charger",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Charger",
+   "poids": "1 650 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-buffalo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-buffalo.jpg"
+ },
+ {
+  "slug": "police-maverick",
+  "fabricant": "Buckingham",
+  "nom": "Police Maverick",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency",
+   "helicopters"
+  ],
+  "base": "Eurocopter AS350B",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Eurocopter AS350B",
+   "poids": "6 500 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-maverick",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-maverick-2.png"
+ },
+ {
+  "slug": "police-cruiser-buffalo-stx",
+  "fabricant": "Bravado",
+  "nom": "Police Buffalo STX Pursuit",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": "2015 Dodge Charger",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Charger 2015",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-buffalo-stx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/buffalo-stx-police.jpg"
+ },
+ {
+  "slug": "police-cruiser-gauntlet-hellfire",
+  "fabricant": "Bravado",
+  "nom": "Police Gauntlet Interceptor",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "emergency"
+  ],
+  "base": "2018 Dodge Challenger SRT Demon",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Dodge Challenger SRT Demon 2018",
+   "poids": "2 150 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-gauntlet-hellfire",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-gauntlet-hellfire.jpg"
+ },
+ {
+  "slug": "police-riot",
+  "fabricant": "Brute",
+  "nom": "Police Riot",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Lenco BEAR",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Brute",
+   "places": "8",
+   "base": "Ours Lenco",
+   "poids": "6 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/police-riot",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/riot.jpg"
+ },
+ {
+  "slug": "police-buzzard",
+  "fabricant": "Bottcher",
+  "nom": "Police Buzzard",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency",
+   "helicopters"
+  ],
+  "base": "MH-6 Little Bird, with a livery similar to the Miami Police Department helicopters",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Bottcher",
+   "places": "4",
+   "base": "Le MH-6 Little Bird, arborant une livrée similaire à celle des hélicoptères du département de police de Miami.",
+   "poids": "3 800 kg"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/police-buzzard",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-helicopter.jpg"
+ },
+ {
+  "slug": "fire-truck",
+  "fabricant": "MTL",
+  "nom": "Pumper",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "2012 Pierce Arrow XT Rescue Pumper",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "MTL",
+   "places": "8",
+   "base": "Camion-pompe de secours Pierce Arrow XT 2012",
+   "poids": "7 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/fire-truck",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/fire-truck-screen.jpg"
+ },
+ {
+  "slug": "sovereign-107",
+  "fabricant": "Western",
+  "nom": "Sovereign 107 Police",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency",
+   "motorcycles"
+  ],
+  "base": "Harley-Davidson Road King FLHP",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Western",
+   "places": "1",
+   "base": "Harley-Davidson Road King FLHP",
+   "poids": "250 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sovereign-107"
+ },
+ {
+  "slug": "bison-1800-police",
+  "fabricant": "Bravado",
+  "nom": "Bison 1800 (Police)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ram 1500 (DT)",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Bravado",
+   "places": "6",
+   "base": "Ram 1500 (DT)",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bison-1800-police",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bison1800-police.jpg"
+ },
+ {
+  "slug": "police-ghost-stanier-le",
+  "fabricant": "Vapid",
+  "nom": "Police Ghost (Stanier LE)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ford Crown Victoria",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Crown Victoria",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/police-ghost-stanier-le",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stanier-le-police-ghost.png"
+ },
+ {
+  "slug": "ford-explorer-sport-trac-lifeguard",
+  "fabricant": "Vapid",
+  "nom": "Montagne Pickup (Lifeguard)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ford Explorer Sport Trac",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Explorer Sport Trac"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-sport-trac-lifeguard",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/ford-explorer-lifeguard.jpg"
+ },
+ {
+  "slug": "ford-explorer-suv-police",
+  "fabricant": "Vapid",
+  "nom": "Police Montagne",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Ford Explorer (6th Gen)",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Explorer (6e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-suv-police",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/police-montagne.jpg"
+ },
+ {
+  "slug": "police-landstalker-xl",
+  "fabricant": "Dundreary",
+  "nom": "Police Landstalker XL",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Fourth generation Lincoln Navigator",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Dundreary",
+   "places": "4",
+   "base": "Lincoln Navigator de quatrième génération",
+   "poids": "2 500 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/police-landstalker-xl",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/landstalker-x-l-police.jpg"
+ },
+ {
+  "slug": "granger-police",
+  "fabricant": "Declasse",
+  "nom": "Granger Police",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "emergency"
+  ],
+  "base": "Chevrolet Suburban",
+  "fiche": {
+   "classe": "Urgence",
+   "fabricant": "Declasse",
+   "places": "8",
+   "base": "Chevrolet Suburban",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/granger-police",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/granger-police.jpg"
+ },
+ {
+  "slug": "maverick",
+  "fabricant": "Buckingham",
+  "nom": "Maverick",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "Bell 206L Longranger",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Bell 206L Longranger",
+   "poids": "6 500 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/maverick"
+ },
+ {
+  "slug": "sea-sparrow",
+  "fabricant": null,
+  "nom": "Sea Sparrow",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "Sikorsky S-300 (formerly Hughes 300 and Schweizer 300), Aérospatiale Alouette II",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "places": "2",
+   "base": "Sikorsky S-300 (anciennement Hughes 300 et Schweizer 300), Aérospatiale Alouette II",
+   "poids": "3 500 kg",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sea-sparrow"
+ },
+ {
+  "slug": "supervolito",
+  "fabricant": "Buckingham",
+  "nom": "SuperVolito",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "Eurocopter EC145",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Eurocopter EC145",
+   "poids": "6 500 kg",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/supervolito",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/supervolito-2.jpg"
+ },
+ {
+  "slug": "buzzard-attack-chopper",
+  "fabricant": "Bottcher",
+  "nom": "Buzzard Attack Chopper",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "MD Helicopters AH-6 Little Bird",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Bottcher",
+   "places": "4",
+   "base": "MD Helicopters AH-6 Little Bird",
+   "poids": "3 800 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/buzzard-attack-chopper",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/buzzard-attack-chopper.jpg"
+ },
+ {
+  "slug": "swift",
+  "fabricant": "Buckingham",
+  "nom": "Swift",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "AgustaWestland AW109, Bell 222",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "AgustaWestland AW109, Bell 222",
+   "poids": "6 500 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/swift",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/swift.png"
+ },
+ {
+  "slug": "valkyrie",
+  "fabricant": "Buckingham",
+  "nom": "Valkyrie",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "helicopters"
+  ],
+  "base": "Bell UH-1Y Venom/UH-1 Iroquois Huey/212/412, Fenestron",
+  "fiche": {
+   "classe": "Hélicoptères",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Bell UH-1Y Venom/UH-1 Iroquois Huey/212/412, Fenestron",
+   "poids": "6 500 kg",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/valkyrie",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/valkyrie-screen.jpg"
+ },
+ {
+  "slug": "mixer",
+  "fabricant": "HVY",
+  "nom": "Mixer",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "industrial"
+  ],
+  "base": "Kenworth T800",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "HVY",
+   "places": "2",
+   "base": "Kenworth T800",
+   "poids": "6 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/mixer"
+ },
+ {
+  "slug": "rubble",
+  "fabricant": "JoBuilt",
+  "nom": "Rubble",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "industrial"
+  ],
+  "base": "Peterbilt 359 EXHD",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "JoBuilt",
+   "places": "2",
+   "base": "Peterbilt 359 EXHD",
+   "poids": "6 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rubble",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/rubble.jpg"
+ },
+ {
+  "slug": "flatbed",
+  "fabricant": "JoBuilt",
+  "nom": "Flatbed",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "industrial"
+  ],
+  "base": "2004 Freightliner Century Class 112",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "JoBuilt",
+   "places": "2",
+   "base": "Camion Freightliner Century Classe 112 de 2004",
+   "poids": "6 500 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/flatbed",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/flatbed.jpg"
+ },
+ {
+  "slug": "excavator",
+  "fabricant": "Dinka",
+  "nom": "B3000 Excavator",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "industrial"
+  ],
+  "base": "Liebherr R954B HD-S and Samsung SE280LC-2",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "Dinka",
+   "base": "Liebherr R954B HD-S et Samsung SE280LC-2"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/excavator",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/excavator.jpg"
+ },
+ {
+  "slug": "tipper-6-wheels",
+  "fabricant": "Brute",
+  "nom": "Tipper (6 wheels)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "industrial"
+  ],
+  "base": "Chevy Kodiak/GMC TopKick",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "Brute",
+   "places": "2",
+   "base": "Chevy Kodiak/GMC TopKick",
+   "poids": "5 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/tipper-6-wheels",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tipper-2.jpg"
+ },
+ {
+  "slug": "dozer",
+  "fabricant": "HVY",
+  "nom": "Bulldozer",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "industrial"
+  ],
+  "base": "Caterpillar 963D",
+  "fiche": {
+   "classe": "Industriel",
+   "fabricant": "HVY",
+   "places": "1",
+   "base": "Caterpillar 963D",
+   "poids": "20 000 kg",
+   "transmission": "4x4",
+   "rapports": "1",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dozer"
+ },
+ {
+  "slug": "rhino-tank",
+  "fabricant": "Hauners",
+  "nom": "Rhino Tank",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "military"
+  ],
+  "base": "M1 Abrams and Leopard 2A5",
+  "fiche": {
+   "classe": "Militaire",
+   "fabricant": "Hauners",
+   "places": "1",
+   "base": "M1 Abrams et Leopard 2A5",
+   "poids": "60 000 kg",
+   "transmission": "4x4",
+   "rapports": "1",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rhino-tank"
+ },
+ {
+  "slug": "apc",
+  "fabricant": "Hauners",
+  "nom": "APC",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "military"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Militaire",
+   "fabricant": "Hauners"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/apc"
+ },
+ {
+  "slug": "sanchez",
+  "fabricant": "Maibatsu",
+  "nom": "Sanchez",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "motorcycles",
+   "off-road"
+  ],
+  "base": "2006-2009 Yamaha YZ450F, 2007 Kawasaki KX450F, Honda CRF450X",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "base": "2006-2009 Yamaha YZ450F, 2007 Kawasaki KX450F, Honda CRF450X.",
+   "poids": "220 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sanchez"
+ },
+ {
+  "slug": "manchez",
+  "fabricant": "Maibatsu",
+  "nom": "Manchez",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles",
+   "off-road"
+  ],
+  "base": "500cc KTM",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "base": "KTM 500cc",
+   "poids": "190 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/manchez",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/manchez-2.jpg"
+ },
+ {
+  "slug": "double-t",
+  "fabricant": "Dinka",
+  "nom": "Double-T",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Honda CBR",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Dinka",
+   "places": "2",
+   "base": "Honda CBR",
+   "poids": "200 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/double-t",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/double-t-screen.jpg"
+ },
+ {
+  "slug": "nightblade",
+  "fabricant": "Western",
+  "nom": "Nightblade",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Harley Davidson Night Rod Special / Harley Davidson Dyna Street Bob",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Western",
+   "places": "2",
+   "base": "Harley Davidson Night Rod Special / Harley Davidson Dyna Street Bob",
+   "poids": "205 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/nightblade",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/nightblade-nov.jpg"
+ },
+ {
+  "slug": "avarus",
+  "fabricant": "LCC",
+  "nom": "Avarus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Generica mostly-naked chopper",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "LCC",
+   "places": "1",
+   "base": "hacheur générique presque nu",
+   "poids": "230 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/avarus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/avarus.jpg"
+ },
+ {
+  "slug": "carbon-rs",
+  "fabricant": "Nagasaki",
+  "nom": "Carbon RS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Ducati 1199, EBR 1190RS",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Nagasaki",
+   "places": "2",
+   "base": "Ducati 1199, EBR 1190RS",
+   "poids": "250 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/carbon-rs",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/carbon-rs.jpg"
+ },
+ {
+  "slug": "sovereign",
+  "fabricant": "Western",
+  "nom": "Sovereign 107",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Harley Davidson Road King",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Western",
+   "places": "1",
+   "base": "Harley Davidson Road King",
+   "poids": "250 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sovereign",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sovereign.jpg"
+ },
+ {
+  "slug": "zombie-chopper",
+  "fabricant": "Western",
+  "nom": "Zombie Chopper",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Harley Davidson Fat Bob Custom, Iron 883",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Western",
+   "places": "2",
+   "base": "Bobber variant of Harley Davidson Fat Bob Custom, Iron 883",
+   "poids": "225 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/zombie-chopper",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/zombie-chopper-nov.jpg"
+ },
+ {
+  "slug": "alvino-v1",
+  "fabricant": "Principe",
+  "nom": "Alvino V1",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Ducati Panigale V2 Sport Bike",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Principe",
+   "places": "2",
+   "base": "Moto sportive Ducati Panigale V2"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/alvino-v1"
+ },
+ {
+  "slug": "enduro",
+  "fabricant": "Dinka",
+  "nom": "Enduro '72",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Honda XL350, XR500 & CB Series",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Dinka",
+   "places": "2",
+   "base": "Séries Honda XL350, XR500 et CB",
+   "poids": "220 kg",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/enduro"
+ },
+ {
+  "slug": "bati-801",
+  "fabricant": "Pegassi",
+  "nom": "Bati 801",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Ducati 848",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Pegassi",
+   "places": "2",
+   "base": "Ducati 848",
+   "poids": "230 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bati-801",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bati-801.jpg"
+ },
+ {
+  "slug": "faggio",
+  "fabricant": "Taci",
+  "nom": "Ragno",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Piaggio Vespa LX and Primavera",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Taci",
+   "places": "2",
+   "base": "Piaggio Vespa LX et Primavera",
+   "poids": "100 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "3",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/faggio",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/faggio.jpg"
+ },
+ {
+  "slug": "yamaha-bws-125",
+  "fabricant": "Nagasaki",
+  "nom": "Nimbe",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Yamaha BWs 125",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Nagasaki",
+   "places": "2",
+   "base": "Yamaha BWs 125",
+   "poids": "110 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "3"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/yamaha-bws-125",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/faggio-sport.jpg"
+ },
+ {
+  "slug": "mobility-scooter-pride-maxima-3",
+  "fabricant": "Maibatsu",
+  "nom": "Boomazoom",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Pride Maxima 3 Mobility Scooter",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Maibatsu",
+   "places": "1",
+   "base": "Scooter de mobilité Pride Maxima 3"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mobility-scooter-pride-maxima-3"
+ },
+ {
+  "slug": "suzuki-gsx-r1000",
+  "fabricant": null,
+  "nom": "Suzuki GSX-R1000",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Suzuki GSX-R1000",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "places": "2",
+   "base": "Suzuki GSX-R1000 (front) and Ducati Panigale V2 (rear)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/suzuki-gsx-r1000"
+ },
+ {
+  "slug": "lectro",
+  "fabricant": "Principe",
+  "nom": "Lectro",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Ducati Streetfighter S, MV Agusta Brutale S",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Principe",
+   "places": "2",
+   "base": "Ducati Streetfighter S, MV Agusta Brutale S",
+   "poids": "250 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lectro",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/lectro.jpg"
+ },
+ {
+  "slug": "cliffhanger",
+  "fabricant": "Western",
+  "nom": "Cliffhanger",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "Harley Davidson XR-750",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Western",
+   "places": "2",
+   "base": "Harley Davidson XR-750",
+   "poids": "140 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/cliffhanger"
+ },
+ {
+  "slug": "fcr-1000",
+  "fabricant": "Übermacht",
+  "nom": "FCR 1000",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": "BMW R100",
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Übermacht",
+   "places": "1",
+   "base": "BMW R100",
+   "poids": "210 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/fcr-1000",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/fcr-1000-nov.jpg"
+ },
+ {
+  "slug": "esskey",
+  "fabricant": "Principe",
+  "nom": "Esskey",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "motorcycles"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Motocyclettes",
+   "fabricant": "Principe",
+   "places": "2",
+   "base": "Ducati Scrambler",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/esskey",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/esskey.jpg"
+ },
+ {
+  "slug": "buffalo-stx",
+  "fabricant": "Bravado",
+  "nom": "Buffalo '19",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "2015 Dodge Charger",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Charger 2015",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "8"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/buffalo-stx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/buffalo-stx.jpg"
+ },
+ {
+  "slug": "hermes-50",
+  "fabricant": "Albany",
+  "nom": "Hermes '50",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Mercury Eight (1949)",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Albany",
+   "base": "Mercury Eight (1949)"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/hermes-50"
+ },
+ {
+  "slug": "stallion",
+  "fabricant": "Classique",
+  "nom": "Stallion '68",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "68 - '69 & '70 - '71 Oldsmobile Cutlass, '70 Plymouth Hemi Barracuda",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Classique",
+   "places": "2",
+   "base": "Oldsmobile Cutlass 68-69 et 70-71, Plymouth Hemi Barracuda 70",
+   "poids": "1 650 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/stallion",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stallion.jpg"
+ },
+ {
+  "slug": "dominator-67",
+  "fabricant": "Vapid",
+  "nom": "Dominator '65",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Ford Mustang (1st Gen)",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang (1ère génération)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dominator-67",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-67.jpg"
+ },
+ {
+  "slug": "gauntlet-classic",
+  "fabricant": "Bravado",
+  "nom": "Gauntlet Custom '69",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "First generation Dodge Challenger",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Dodge Challenger de première génération",
+   "poids": "1 350 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/gauntlet-classic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/gauntlet-classic.jpg"
+ },
+ {
+  "slug": "ganado",
+  "fabricant": "Vapid",
+  "nom": "Ganado '70",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1970 Ford Ranchero and 1969–1970 Mercury Cougar",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Ranchero 1970 et Mercury Cougar 1969-1970"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ganado"
+ },
+ {
+  "slug": "impaler-sz",
+  "fabricant": "Declasse",
+  "nom": "Impaler SZ '95",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1994-1996 Chevrolet Impala SS",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevrolet Impala SS 1994-1996",
+   "poids": "1 830 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/impaler-sz",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/impaler-s-z-2.jpg"
+ },
+ {
+  "slug": "tulip",
+  "fabricant": "Declasse",
+  "nom": "Tulip '72",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1972 Chevelle Malibu, 1972 Oldsmobile Cutlass Supreme",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevelle Malibu 1972, Oldsmobile Cutlass Supreme 1972",
+   "poids": "1 545 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/tulip",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tulip-2.jpg"
+ },
+ {
+  "slug": "ruiner",
+  "fabricant": "Imponte",
+  "nom": "Ruiner '82",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Pontiac Trans Am/Chevrolet Camaro",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Imponte",
+   "places": "2",
+   "base": "Pontiac Trans Am/Chevrolet Camaro",
+   "poids": "1 300 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/ruiner",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/ruiner.jpg"
+ },
+ {
+  "slug": "sirius",
+  "fabricant": "Sirius",
+  "nom": "Transgressor '67",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1970 Mercury Cougar",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Sirius",
+   "places": "2",
+   "base": "Mercury Cougar 1970"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sirius"
+ },
+ {
+  "slug": "phoenix",
+  "fabricant": "Imponte",
+  "nom": "Phoenix '77",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Chevy Camaro, Pontiac Firebird (2nd generation)",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Imponte",
+   "places": "2",
+   "base": "Chevrolet Camaro, Pontiac Firebird (2e génération)",
+   "poids": "1 700 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/phoenix",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/phoenix.jpg"
+ },
+ {
+  "slug": "impaler-lx",
+  "fabricant": "Declasse",
+  "nom": "Impaler '80",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Sixth generation Chevrolet Impala",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevrolet Impala de sixième génération",
+   "poids": "1 630 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/impaler-lx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/impaler-lx.jpg"
+ },
+ {
+  "slug": "buccaneer",
+  "fabricant": "Albany",
+  "nom": "Buccaneer '65",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Ford Fairlane, Buick Riviera",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Albany",
+   "places": "2",
+   "base": "Ford Fairlane, Buick Riviera",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/buccaneer",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/Albany-Buccaneer.jpg"
+ },
+ {
+  "slug": "chino",
+  "fabricant": "Dundreary",
+  "nom": "Chino '65",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1965 Lincoln Continental, 1965 Chrysler Imperial, 1970s Ford Thunderbird(s)",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Dundreary",
+   "places": "2",
+   "base": "Lincoln Continental 1965, Chrysler Imperial 1965, Ford Thunderbird des années 1970",
+   "poids": "2 300 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/chino",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/chino.jpg"
+ },
+ {
+  "slug": "tulip-m-100",
+  "fabricant": "Declasse",
+  "nom": "Tulip M-100 '78",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Fourth generation Chevrolet Malibu",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Malibu de quatrième génération",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "3",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/tulip-m-100",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tulip-m-100.jpg"
+ },
+ {
+  "slug": "yosemite-67",
+  "fabricant": "Declasse",
+  "nom": "Yosemite '67",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Chevrolet C10",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/yosemite-67"
+ },
+ {
+  "slug": "slamvan",
+  "fabricant": "Vapid",
+  "nom": "Slamvan '56",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Rat Rodded 1953–1956 Ford F-Series (pickup form), 1950s Ford F-Series",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford F-Series (version pick-up) de 1953 à 1956, customisée en Rat Rod, Ford F-Series des années 1950",
+   "poids": "1 200 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/slamvan",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/slamvan.png"
+ },
+ {
+  "slug": "hustler",
+  "fabricant": "Vapid",
+  "nom": "Hustler '32",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1932 Ford Coupe",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Coupé 1932",
+   "poids": "1 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/hustler"
+ },
+ {
+  "slug": "moonbeam",
+  "fabricant": "Declasse",
+  "nom": "Moonbeam",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1985-1994 Chevrolet Astro/1985-1994 GMC Safari; KK Jeep Liberty",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevrolet Astro 1985-1994 / GMC Safari 1985-1994 ; Jeep Liberty KK",
+   "poids": "2 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/moonbeam"
+ },
+ {
+  "slug": "sabre-turbo",
+  "fabricant": "Declasse",
+  "nom": "Sabre Turbo",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Chevrolet Chevelle, Oldsmobile Cutlass",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Chevelle, Oldsmobile Cutlass",
+   "poids": "1 200 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sabre-turbo"
+ },
+ {
+  "slug": "buccaneer-custom",
+  "fabricant": "Albany",
+  "nom": "Buccaneer Custom",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Ford Fairlane, Buick Riviera",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Albany",
+   "places": "2",
+   "base": "Ford Fairlane, Buick Riviera",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/buccaneer-custom",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/buccaneer-custom.jpg"
+ },
+ {
+  "slug": "dominator",
+  "fabricant": "Vapid",
+  "nom": "Dominator",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Ford Mustang",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dominator",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-4.jpg"
+ },
+ {
+  "slug": "dominator-asp",
+  "fabricant": "Vapid",
+  "nom": "Dominator ASP",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Ford Mustang SVT Cobra R (New Edge)",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang SVT Cobra R (New Edge)",
+   "poids": "1 665 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dominator-asp",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-asp-2.jpg"
+ },
+ {
+  "slug": "dominator-gtx",
+  "fabricant": "Vapid",
+  "nom": "Dominator GTX",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "2015-present Ford Mustang, seventh generation Dodge Charger, 2016-present Chevrolet Camaro ZL1, Ford Mustang GTT",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang (2015-présent), Dodge Charger de septième génération, Chevrolet Camaro ZL1 (2016-présent), Ford Mustang GTT",
+   "poids": "1 670 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dominator-gtx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-gtx.jpg"
+ },
+ {
+  "slug": "gauntlet-hellfire",
+  "fabricant": "Bravado",
+  "nom": "Gauntlet Hellfire",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "muscle"
+  ],
+  "base": "2018 Dodge Challenger Demon, 5th Gen Chevrolet Camaro, 6th Gen Ford Mustang",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Dodge Challenger Demon 2018, Chevrolet Camaro de 5e génération, Ford Mustang de 6e génération",
+   "poids": "1 940 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/gauntlet-hellfire",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/gauntlet-hellfire-2.jpg"
+ },
+ {
+  "slug": "vigero-zx-convertible",
+  "fabricant": "Declasse",
+  "nom": "Vigero ZX Convertible",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "Chevrolet Camaro Gen VI",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Camaro Gen VI",
+   "poids": "1 890 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/vigero-zx-convertible",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/vigero-zx-convertible.jpg"
+ },
+ {
+  "slug": "deviant",
+  "fabricant": "Schyster",
+  "nom": "Deviant '72",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1972 AMC Javelin",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Schyster",
+   "places": "2",
+   "base": "AMC Javelin de 1972",
+   "poids": "1 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/deviant"
+ },
+ {
+  "slug": "dominator-gt",
+  "fabricant": "Vapid",
+  "nom": "Dominator GT",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "2018-2023 Ford Mustang Convertible",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang décapotable 2018-2023",
+   "poids": "1 820 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dominator-gt",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-gt-2.jpg"
+ },
+ {
+  "slug": "faction-custom-donk",
+  "fabricant": "Willard",
+  "nom": "Faction Custom Donk",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "muscle"
+  ],
+  "base": "1982-1987 Buick Regal; Buick Grand National/T-Type/GNX",
+  "fiche": {
+   "classe": "Muscle",
+   "fabricant": "Willard",
+   "places": "2",
+   "base": "Buick Regal (1982-1987) ; Buick Grand National/T-Type/GNX",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/faction-custom-donk",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/faction-custom-donk.jpg"
+ },
+ {
+  "slug": "injection",
+  "fabricant": "BF",
+  "nom": "Injection '73",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "VW \"Baja Bugs\"",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "BF",
+   "places": "2",
+   "base": "VW « Baja Bugs »",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/injection"
+ },
+ {
+  "slug": "rebel",
+  "fabricant": "Karin",
+  "nom": "Rebel '84",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Toyota Hilux",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Karin",
+   "places": "2",
+   "poids": "2 400 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/rebel",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/rebel-3.jpg"
+ },
+ {
+  "slug": "walton-l35",
+  "fabricant": "Declasse",
+  "nom": "Walton '81",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "1991-1993 Chevrolet S-10",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet S-10 1991-1993",
+   "poids": "1 600 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/walton-l35",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/walton-l35-screen.jpg"
+ },
+ {
+  "slug": "bison-900-monster-truck",
+  "fabricant": "Bravado",
+  "nom": "Bison 900 '95 (Lifted)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Dodge Ram (2nd Gen) in Monster Truck form",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Ram (2e génération) en forme de Monster Truck"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bison-900-monster-truck",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bison-900-monster-truck.jpg"
+ },
+ {
+  "slug": "hellion",
+  "fabricant": "Annis",
+  "nom": "Hellion '95",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Nissan Patrol Safari Y6,  Jeep Cherokee (XJ)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Annis",
+   "places": "2",
+   "base": "Nissan Patrol Safari Y6,  Jeep Cherokee (XJ)",
+   "poids": "1 900 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/hellion",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/hellion-2.jpg"
+ },
+ {
+  "slug": "rancher",
+  "fabricant": "Declasse",
+  "nom": "Rancher '86",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Chevy Suburban",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevy Suburban",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rancher",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/declasse-rancher.jpg"
+ },
+ {
+  "slug": "blazer",
+  "fabricant": "Nagasaki",
+  "nom": "Blazer",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Yamaha YFZ450",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Nagasaki",
+   "places": "1",
+   "base": "YamahaYFZ450",
+   "poids": "600 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/blazer",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/blazer-2.jpg"
+ },
+ {
+  "slug": "caracara",
+  "fabricant": "Vapid",
+  "nom": "Caracara",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford F-150, Hennessey VelociRaptor 6X6",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "5",
+   "base": "Ford F-150, Hennessey VelociRaptor 6X6",
+   "poids": "3 500 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/caracara",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/caracara.jpg"
+ },
+ {
+  "slug": "outlaw",
+  "fabricant": "Mer-Can",
+  "nom": "Outlaw",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Can-Am Maverick X3 Turbo",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Mer-Can",
+   "places": "2",
+   "base": "Can-Am Maverick X3 Turbo",
+   "poids": "850 kg",
+   "transmission": "4x4",
+   "rapports": "3",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/outlaw",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/outlaw-gta6.jpg"
+ },
+ {
+  "slug": "sandking-xl",
+  "fabricant": "Vapid",
+  "nom": "Sandking XL",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Super Duty (3rd Gen)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Super Duty (3e génération)",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sandking-xl",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sandking-xl-nov.jpg"
+ },
+ {
+  "slug": "caracara-4x4",
+  "fabricant": "Vapid",
+  "nom": "Caracara 4x4",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "2nd gen Ford F-150 Raptor (P552)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford F-150 Raptor de 2e génération (P552)",
+   "poids": "2 480 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/caracara-4x4",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/caracara-4x4.png"
+ },
+ {
+  "slug": "verus",
+  "fabricant": "Dinka",
+  "nom": "Verus",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Polaris Sportsman MV850 and 570",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Dinka",
+   "places": "2",
+   "base": "Polaris Sportsman MV850 et 570",
+   "poids": "750 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/verus"
+ },
+ {
+  "slug": "liberator",
+  "fabricant": "Vapid",
+  "nom": "Liberator",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Super Duty (4th Gen)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Super Duty (4e génération)",
+   "poids": "4 000 kg",
+   "transmission": "4x4",
+   "rapports": "3",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/liberator",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/liberator.jpg"
+ },
+ {
+  "slug": "yosemite-1500",
+  "fabricant": "Declasse",
+  "nom": "Yosemite 1500",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Chevrolet Silverado (1st Gen)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Silverado (1ère génération)",
+   "poids": "1 830 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/yosemite-1500",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/yosemite-1500.jpg"
+ },
+ {
+  "slug": "dominator-buggy-67",
+  "fabricant": "Vapid",
+  "nom": "Dominator '67 Buggy",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Mustang (1st Gen), with lifted suspension",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Mustang (1ère génération), avec suspension surélevée"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dominator-buggy-67",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dominator-67.jpg"
+ },
+ {
+  "slug": "kamacho",
+  "fabricant": "Canis",
+  "nom": "Kamacho",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Jeep Crew Chief 715 concept",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Canis",
+   "places": "4",
+   "base": "Concept Jeep Crew Chief 715",
+   "poids": "2 350 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/kamacho"
+ },
+ {
+  "slug": "reclaimer",
+  "fabricant": "Vapid",
+  "nom": "Reclaimer",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "2019-2023 Ford Ranger (T6)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "4"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/reclaimer",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/reclaimer3.jpg"
+ },
+ {
+  "slug": "ford-explorer-sport-trac",
+  "fabricant": "Vapid",
+  "nom": "Montagne Pickup",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Explorer Sport Trac",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Explorer Sport Trac"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-sport-trac",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/sport-trac4.jpg"
+ },
+ {
+  "slug": "patriot-mil-spec",
+  "fabricant": "Mammoth",
+  "nom": "Patriot '92",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Hummer H1 SUV",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Mammoth",
+   "places": "4",
+   "base": "SUV Hummer H1",
+   "poids": "3 430 kg",
+   "transmission": "4x4",
+   "rapports": "4"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/patriot-mil-spec"
+ },
+ {
+  "slug": "terminus",
+  "fabricant": "Canis",
+  "nom": "Terminus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Fourth generation Jeep Wrangler Rubicon (JL)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Canis",
+   "places": "4",
+   "base": "Jeep Wrangler Rubicon (JL) de quatrième génération",
+   "poids": "2 000 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/terminus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/terminus-nov.jpg"
+ },
+ {
+  "slug": "swamp-buggy",
+  "fabricant": null,
+  "nom": "Swamp Blaster",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Palm Beach Swamp Buggy",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "base": "Palm Beach Swamp Buggy"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/swamp-buggy",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/swamp-buggy.jpg"
+ },
+ {
+  "slug": "polaris-ranger",
+  "fabricant": "Mer-Can",
+  "nom": "Blast",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Polaris Ranger",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Mer-Can",
+   "places": "2",
+   "base": "Polaris Ranger"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/polaris-ranger",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/polaris-ranger.jpg"
+ },
+ {
+  "slug": "sandking-xt",
+  "fabricant": "Vapid",
+  "nom": "Sandking XT",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Super Duty (4th Gen)",
+  "fiche": {
+   "classe": "Hors route",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Super Duty (4e génération)",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "6"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sandking-xt",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sandking.jpg"
+ },
+ {
+  "slug": "marshall",
+  "fabricant": "Vapid",
+  "nom": "Marshall",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "off-road"
+  ],
+  "base": "Ford Super Duty (4th Gen)",
+  "fiche": {
+   "classe": "Hors route",
+   "fabricant": "Vapid",
+   "base": "Ford Super Duty (4e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/marshall"
+ },
+ {
+  "slug": "dodo",
+  "fabricant": "Mammoth",
+  "nom": "Dodo",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "planes"
+  ],
+  "base": "De Havilland Canada DHC-2 Beaver",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Mammoth",
+   "places": "4",
+   "base": "De Havilland Canada DHC-2 Beaver",
+   "poids": "2 000 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dodo"
+ },
+ {
+  "slug": "blimp",
+  "fabricant": null,
+  "nom": "Blimp",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "planes"
+  ],
+  "base": "Goodyear Aerospace GZ-20",
+  "fiche": {
+   "classe": "Avions",
+   "places": "4",
+   "base": "Goodyear Aerospace GZ-20",
+   "poids": "12 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/blimp",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/blimp.jpg"
+ },
+ {
+  "slug": "duster",
+  "fabricant": "Western Company",
+  "nom": "Duster",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Stearman Model 75",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Bottcher",
+   "places": "2",
+   "base": "Stearman Modèle 75",
+   "poids": "2 000 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/duster",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/duster-screen.jpg"
+ },
+ {
+  "slug": "jet",
+  "fabricant": null,
+  "nom": "Jet",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Boeing 747-400, 747-8I",
+  "fiche": {
+   "classe": "Avions",
+   "places": "2",
+   "poids": "38 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/jet",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/jet.jpg"
+ },
+ {
+  "slug": "mammatus",
+  "fabricant": "Lapwing",
+  "nom": "Mammatus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Cessna 172 Skyhawk",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Vanneau",
+   "places": "4",
+   "base": "Cessna 172 Skyhawk",
+   "poids": "2 000 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mammatus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mammatus.jpg"
+ },
+ {
+  "slug": "shamal",
+  "fabricant": "Buckingham",
+  "nom": "Shamal",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Learjet 45",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Buckingham",
+   "places": "10",
+   "base": "Learjet 45",
+   "poids": "6 400 kg",
+   "transmission": "FWD",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/shamal",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/shamal.jpg"
+ },
+ {
+  "slug": "mallard",
+  "fabricant": "Lapwing",
+  "nom": "Mallard",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Extra EA-300",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Vanneau",
+   "places": "1",
+   "base": "EA-300 supplémentaire",
+   "poids": "1 000 kg",
+   "transmission": "FWD",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mallard",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mallard.jpg"
+ },
+ {
+  "slug": "nimbus",
+  "fabricant": "Lapwing",
+  "nom": "Nimbus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Cessna Citation X",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Vanneau",
+   "places": "8",
+   "base": "Cessna Citation X",
+   "poids": "6 500 kg",
+   "transmission": "FWD",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/nimbus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/nimbus-2.jpg"
+ },
+ {
+  "slug": "streamer216",
+  "fabricant": "Mammoth",
+  "nom": "Streamer216",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "de Havilland Canada DHC-6 Twin Otter",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Vanneau",
+   "places": "4",
+   "base": "de Havilland Canada DHC-6 Twin Otter",
+   "poids": "3 400 kg",
+   "transmission": "propulsion arrière",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/streamer216",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/streamer216.jpg"
+ },
+ {
+  "slug": "luxor",
+  "fabricant": "Buckingham",
+  "nom": "Luxor",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "planes"
+  ],
+  "base": "Learjet 45",
+  "fiche": {
+   "classe": "Avions",
+   "fabricant": "Buckingham",
+   "places": "10",
+   "base": "Learjet 45",
+   "poids": "6 400 kg",
+   "transmission": "FWD",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/luxor",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/luxor.jpg"
+ },
+ {
+  "slug": "audi-a7-rs7-2nd-gen",
+  "fabricant": "Obey",
+  "nom": "Animus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Audi A7 RS7 (2nd Gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Obey",
+   "places": "4",
+   "base": "Audi A7 RS7 (2nd Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/audi-a7-rs7-2nd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/audi-rs7.jpg"
+ },
+ {
+  "slug": "feroci",
+  "fabricant": "Karin",
+  "nom": "Feroci '98",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Lexus GS 300 (First-generation)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Lexus GS 300 (Première génération)",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA IV"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/feroci",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/feroci.jpg"
+ },
+ {
+  "slug": "chevrolet-impala-10th-gen",
+  "fabricant": "Declasse",
+  "nom": "Impaler '20",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Chevrolet Impala (10th Gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevrolet Impala (10th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-impala-10th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/impala.jpg"
+ },
+ {
+  "slug": "stanier",
+  "fabricant": "Vapid",
+  "nom": "Stanier '98",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Ford Crown Victoria",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Crown Victoria",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/stanier",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stanier.jpg"
+ },
+ {
+  "slug": "asterope-gz",
+  "fabricant": "Karin",
+  "nom": "Asterope GZ",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Toyota Camry (XV30)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Toyota Camry (XV30)",
+   "poids": "1 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/asterope-gz",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/asterope-gz.png"
+ },
+ {
+  "slug": "buick-skylark-6th-gen",
+  "fabricant": "Willard",
+  "nom": "Grouse '92",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Buick Skylark (6th Gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Willard",
+   "places": "4",
+   "base": "Buick Skylark (6th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/buick-skylark-6th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/skylark.jpg"
+ },
+ {
+  "slug": "chrysler-lebaron-town-country",
+  "fabricant": "Schyster",
+  "nom": "Woodland '85",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Chrysler LeBaron Town & Country station wagon (1986-1988)",
+  "fiche": {
+   "classe": "Berlines",
+   "places": "4",
+   "base": "Chrysler LeBaron Town & Country break (1986-1988)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-lebaron-town-country",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/le-baron.jpg"
+ },
+ {
+  "slug": "parkland-71",
+  "fabricant": "Declasse",
+  "nom": "Parkland '71",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Buick Estate (1971-1976)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Declasse",
+   "base": "Buick Estate (1971-1976)"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/parkland-71"
+ },
+ {
+  "slug": "emperor",
+  "fabricant": "Albany",
+  "nom": "Emperor '85",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "1977-1980 Cadillac Sedan de Ville (5th Gen) and 1986–1990 Cadillac Brougham",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Albany",
+   "places": "4",
+   "base": "Cadillac Sedan de Ville (5e génération) 1977-1980 et Cadillac Brougham 1986-1990",
+   "poids": "1 900 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/emperor",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/emperor-3.jpg"
+ },
+ {
+  "slug": "ingot",
+  "fabricant": "Vulcar",
+  "nom": "Ingot",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "VW Passat wagon, Nissan Stagea",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Vulcar",
+   "places": "4",
+   "base": "VW Passat familiale, Nissan Stagea",
+   "poids": "1 400 kg",
+   "transmission": "FWD",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/ingot"
+ },
+ {
+  "slug": "primo",
+  "fabricant": "Albany",
+  "nom": "Primo",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Late 80's Pontiac Bonneville",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Albany",
+   "places": "4",
+   "base": "Pontiac Bonneville de la fin des années 80",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/primo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/primo.jpg"
+ },
+ {
+  "slug": "regina",
+  "fabricant": "Dundreary",
+  "nom": "Regina",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Chevy Caprice wagon",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Dundreary",
+   "places": "4",
+   "base": "Chevrolet Caprice break",
+   "poids": "1 900 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/regina"
+ },
+ {
+  "slug": "df8-90",
+  "fabricant": "Imponte",
+  "nom": "DF8-90",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Pontiac G6; Pontiac Grand Am; Pontiac Sunfire; Honda Civic; Pontiac Bonneville; Subaru SVX; Pontiac G8",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Imponte",
+   "places": "4",
+   "base": "Pontiac G6 ; Pontiac Grand Am ; Pontiac Sunfire ; Honda Civic ; Pontiac Bonneville ; Subaru SVX ; Pontiac G8",
+   "poids": "1 700 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA IV"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/df8-90"
+ },
+ {
+  "slug": "intruder",
+  "fabricant": "Karin",
+  "nom": "Intruder",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Infiniti Q45/I30",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Infiniti Q45/I30",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/intruder",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/intruder-2.jpg"
+ },
+ {
+  "slug": "schafter-v12",
+  "fabricant": "Benefactor",
+  "nom": "Schafter V12",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Brabus E V12",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Benefactor",
+   "places": "4",
+   "base": "Brabus E V12",
+   "poids": "1 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/schafter-v12",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/schafter-v12-2.jpg"
+ },
+ {
+  "slug": "stratum",
+  "fabricant": "Zirconium",
+  "nom": "Stratum",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Honda Accord station wagon",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Zirconium",
+   "places": "4",
+   "base": "Honda Accord break",
+   "poids": "1 800 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/stratum",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stratum.jpg"
+ },
+ {
+  "slug": "vapid-stanier-55",
+  "fabricant": "Vapid",
+  "nom": "Stanier '55",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "1956 Ford Fairlane Club Sedan; The yellow-on-white Stanier is inspired by the 1955 Oldsmobile 88 parked on Ocean Drive, Miami Beach.",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Fairlane Club Sedan de 1956 ; la Stanier jaune et blanche s’inspire de l’Oldsmobile 88 de 1955 garée sur Ocean Drive, à Miami Beach.",
+   "poids": "1 900 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA San Andreas"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/vapid-stanier-55"
+ },
+ {
+  "slug": "tailgater",
+  "fabricant": "Obey",
+  "nom": "Tailgater",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Audi A6",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Obey",
+   "places": "4",
+   "base": "Audi A6",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/tailgater",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tailgater.jpg"
+ },
+ {
+  "slug": "pmp-700",
+  "fabricant": "Schyster",
+  "nom": "PMP 700",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Second-generation Chrysler 300 (LD)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Schyster",
+   "places": "4",
+   "base": "Chrysler 300 (LD) de deuxième génération",
+   "poids": "1 700 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA IV"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/pmp-700",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/pmp-700.jpg"
+ },
+ {
+  "slug": "tailgater-s",
+  "fabricant": "Obey",
+  "nom": "Tailgater S",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Audi RS3 Sedan",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Obey",
+   "places": "4",
+   "base": "Audi RS3 Berline",
+   "poids": "1 340 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/tailgater-s",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tailgater-s-2.jpg"
+ },
+ {
+  "slug": "buick-regal-6th-gen",
+  "fabricant": "Willard",
+  "nom": "Transient",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Buick Regal (6th Gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Willard",
+   "places": "4",
+   "base": "Buick Regal (6th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/buick-regal-6th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/regal-3.jpg"
+ },
+ {
+  "slug": "chrysler-sebring-2nd-gen",
+  "fabricant": "Bravado",
+  "nom": "Bogan",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Chrysler Sebring (2nd gen) and Dodge Stratus (2nd gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Chrysler Sebring (2e génération) et Dodge Stratus (2e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-sebring-2nd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stratus.jpg"
+ },
+ {
+  "slug": "ford-taurus",
+  "fabricant": "Vapid",
+  "nom": "Lowline",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "2013-2019 Ford Taurus",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Taurus 2013-2019"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-taurus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/taurus-2.jpg"
+ },
+ {
+  "slug": "honda-accord-10th-gen",
+  "fabricant": "Dinka",
+  "nom": "Chavos XS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Honda Accord (10th Gen)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Dinka",
+   "places": "4"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/honda-accord-10th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/accord.jpg"
+ },
+ {
+  "slug": "mercedes-benz-c-class-w205",
+  "fabricant": "Benefactor",
+  "nom": "Schafter",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Mercedes-Benz C Class (W205)",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "Benefactor",
+   "places": "4",
+   "base": "Mercedes-Benz C Class (W205)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mercedes-benz-c-class-w205",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/mercedes-benz-c.png"
+ },
+ {
+  "slug": "volkswagen-jetta",
+  "fabricant": "BF",
+  "nom": "Greta",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sedans"
+  ],
+  "base": "Volkswagen Jetta",
+  "fiche": {
+   "classe": "Berlines",
+   "fabricant": "BF",
+   "places": "4",
+   "base": "Volkswagen Jetta"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/volkswagen-jetta",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/jetta.jpg"
+ },
+ {
+  "slug": "airport-bus",
+  "fabricant": "Whiffler",
+  "nom": "Airport Bus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "Whiffler",
+   "places": "16",
+   "poids": "9 000 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/airport-bus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/airport-bus.jpg"
+ },
+ {
+  "slug": "dashound",
+  "fabricant": "Whiffler",
+  "nom": "Dashound",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "service"
+  ],
+  "base": "MCI Renaissance E series bus, Greyhound Lines",
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "Whiffler",
+   "places": "10",
+   "base": "Autobus MCI Renaissance série E, Greyhound Lines",
+   "poids": "8 500 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dashound",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dashound-2.jpg"
+ },
+ {
+  "slug": "bus",
+  "fabricant": "Whiffler",
+  "nom": "Bus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "New Flyer Xcelsior",
+  "fiche": {
+   "classe": "Service",
+   "places": "16",
+   "base": "New Flyer Xcelsior",
+   "poids": "9 000 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/brute-bus.jpg"
+ },
+ {
+  "slug": "freight-train",
+  "fabricant": null,
+  "nom": "Freight Train",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Electro Motive Division, GE AC4400CW",
+  "fiche": {
+   "classe": "Service",
+   "base": "Division Electro-Motive, GE AC4400CW",
+   "poids": "25 084 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/freight-train",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/freight-train.jpg"
+ },
+ {
+  "slug": "rental-shuttle-bus",
+  "fabricant": "Brute",
+  "nom": "Rental Bus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "1996-2002 Chevrolet Express",
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "Brute",
+   "places": "10",
+   "base": "Chevrolet Express 1996-2002",
+   "poids": "5 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rental-shuttle-bus"
+ },
+ {
+  "slug": "taxi",
+  "fabricant": "Vapid",
+  "nom": "Stanier Taxi",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Ford Crown Victoria",
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Crown Victoria",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/taxi",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/stanier-le-taxi.jpg"
+ },
+ {
+  "slug": "chrysler-town-country-taxi",
+  "fabricant": "Bravado",
+  "nom": "Sojourn Taxi",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Chrysler minivan (2011-2020 Dodge Grand Caravan and 2011–2016 Chrysler Town & Country)",
+  "fiche": {
+   "classe": "Service",
+   "places": "4",
+   "base": "Minivan Chrysler (Dodge Grand Caravan 2011-2020 et Chrysler Town & Country 2011-2016)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-town-country-taxi"
+ },
+ {
+  "slug": "ge-genesis",
+  "fabricant": null,
+  "nom": "Amloco",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "GE Genesis locomotive",
+  "fiche": {
+   "classe": "Service",
+   "base": "Locomotive GE Genesis"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ge-genesis"
+ },
+ {
+  "slug": "hitachi-metrorail",
+  "fabricant": null,
+  "nom": "Hitachi Metrorail",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Hitachi Metrorail",
+  "fiche": {
+   "classe": "Service",
+   "base": "Hitachi Metrorail"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/hitachi-metrorail",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/metrorail.png"
+ },
+ {
+  "slug": "metromule",
+  "fabricant": null,
+  "nom": "Metromule",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Innovia APM 100 used by the Miami Metromover",
+  "fiche": {
+   "classe": "Service",
+   "base": "Innovia APM 100 utilisé par le Miami Metromover"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/metromule",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/metromule.png"
+ },
+ {
+  "slug": "granger-taxi",
+  "fabricant": "Declasse",
+  "nom": "Granger Taxi",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Chevrolet Suburban",
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "Declasse",
+   "places": "8",
+   "base": "Chevrolet Suburban",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/granger-taxi",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/granger-taxi.jpg"
+ },
+ {
+  "slug": "wastelander",
+  "fabricant": "MTL",
+  "nom": "Wastelander",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "service"
+  ],
+  "base": "Mongo (Fast & Furious)",
+  "fiche": {
+   "classe": "Service",
+   "fabricant": "HVY",
+   "places": "6",
+   "base": "Mongo (Fast & Furious)",
+   "poids": "7 000 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/wastelander"
+ },
+ {
+  "slug": "comet-retro-custom",
+  "fabricant": "Pfister",
+  "nom": "Comet '88",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Rauh-Welt Porsche 911 930",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Pfister",
+   "places": "2",
+   "base": "Porsche 911 930 de Rauh-Welt",
+   "poids": "1 200 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/comet-retro-custom",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/comet-retro-custom.jpg"
+ },
+ {
+  "slug": "8f-drafter",
+  "fabricant": "Obey",
+  "nom": "8F Drafter",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "2018 Audi RS5 Coupe",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Obey",
+   "places": "2",
+   "base": "Audi RS5 Coupé 2018",
+   "poids": "1 650 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/8f-drafter",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/8f-drafter-2.jpg"
+ },
+ {
+  "slug": "elegy-retro-custom",
+  "fabricant": "Annis",
+  "nom": "Elegy '90",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Nissan Skyline GT-R",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Annis",
+   "places": "2",
+   "base": "Nissan Skyline GT-R",
+   "poids": "1 450 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/elegy-retro-custom",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/elegy-retro-custom-3.jpg"
+ },
+ {
+  "slug": "penumbra-ff",
+  "fabricant": "Maibatsu",
+  "nom": "Penumbra FF '97",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "2nd Generation Mitsubishi Eclipse & 2nd Generation Eagle Talon",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "base": "Mitsubishi Eclipse de 2e génération et Eagle Talon de 2e génération",
+   "poids": "1 300 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/penumbra-ff",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/penumbra-ff.jpg"
+ },
+ {
+  "slug": "buffalo",
+  "fabricant": "Bravado",
+  "nom": "Buffalo '07",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Dodge Charger",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Charger",
+   "poids": "1 650 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/buffalo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/buffalo-2.jpg"
+ },
+ {
+  "slug": "blista-compact",
+  "fabricant": "Dinka",
+  "nom": "Blista '85",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Honda CRX 1st Gen",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Dinka",
+   "places": "2",
+   "base": "Honda CRX 1ère génération",
+   "poids": "1 050 kg",
+   "transmission": "FWD",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/blista-compact",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/blista-compact-3.jpg"
+ },
+ {
+  "slug": "futo",
+  "fabricant": "Karin",
+  "nom": "Futo '85",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Toyota AE86 Levin",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Karin",
+   "places": "2",
+   "base": "Toyota AE86 Levin",
+   "poids": "900 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/futo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/futo-3.jpg"
+ },
+ {
+  "slug": "alpha",
+  "fabricant": "Albany",
+  "nom": "Alpha",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Cadillac Sixteen, 2013 Cadillac ATS",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Albany",
+   "places": "2",
+   "base": "Cadillac Sixteen, Cadillac ATS 2013",
+   "poids": "1 800 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/alpha"
+ },
+ {
+  "slug": "sultan",
+  "fabricant": "Emperor",
+  "nom": "Sultan",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Lexus IS, Mitsubishi Lancer Evo VI, Subaru Impreza",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Emperor",
+   "places": "4",
+   "base": "Lexus IS, Mitsubishi Lancer Evo VI, Subaru Impreza",
+   "poids": "1 400 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sultan",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sultan.jpg"
+ },
+ {
+  "slug": "locust",
+  "fabricant": "Ocelot",
+  "nom": "Locust",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "2015 Lotus 3-Eleven",
+  "fiche": {
+   "fabricant": "Ocelot",
+   "places": "2",
+   "poids": "920 kg",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/locust"
+ },
+ {
+  "slug": "banshee",
+  "fabricant": "Bravado",
+  "nom": "Banshee",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Dodge Viper",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Dodge Viper",
+   "poids": "1 200 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/banshee",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/banshee-2.jpg"
+ },
+ {
+  "slug": "carbonizzare",
+  "fabricant": "Grotti",
+  "nom": "Carbonizzare",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "V12 Zagato rear, Nissan GT-R, Ferrari 458 Italia, Ferrari 612 Scagliëtti",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Grotti",
+   "places": "2",
+   "base": "V12 Zagato arrière, Nissan GT-R, Ferrari 458 Italia, Ferrari 612 Scagliëtti",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/carbonizzare",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/carbonizzare-2.jpg"
+ },
+ {
+  "slug": "comet-s2-cabrio",
+  "fabricant": "Pfister",
+  "nom": "Comet S2 Cabrio",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Porsche 911 Turbo S Cabriolet",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Pfister",
+   "places": "2",
+   "base": "Porsche 911 Turbo S Cabriolet",
+   "poids": "1 650 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/comet-s2-cabrio",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/comet-s2-cabrio.jpg"
+ },
+ {
+  "slug": "coquette-d10",
+  "fabricant": "Invetero",
+  "nom": "Coquette D10",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Chevrolet Corvette C8",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Invetero",
+   "places": "2",
+   "base": "Chevrolet Corvette C8",
+   "poids": "1 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/coquette-d10",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/Invetero-Coquette.jpg"
+ },
+ {
+  "slug": "penumbra",
+  "fabricant": "Maibatsu",
+  "nom": "Penumbra",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Mitsubishi Eclipse, Audi TT",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "base": "Mitsubishi Eclipse, Audi TT",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/penumbra",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/penumbra-2.jpg"
+ },
+ {
+  "slug": "cypher",
+  "fabricant": "Übermacht",
+  "nom": "Cypher",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "BMW M2 (F87) with some design cues from the BMW M6 (F13) and BMW M8 (F92)",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Übermacht",
+   "places": "2",
+   "base": "BMW M2 (F87) avec quelques éléments de design empruntés aux BMW M6 (F13) et BMW M8 (F92)",
+   "poids": "1 625 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/cypher",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/cypher-2.jpg"
+ },
+ {
+  "slug": "jugular",
+  "fabricant": "Ocelot",
+  "nom": "Jugular",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Jaguar XE SV Project 8",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Ocelot",
+   "places": "4",
+   "base": "Projet Jaguar XE SV 8",
+   "poids": "1 745 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/jugular",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/jugular-3.jpg"
+ },
+ {
+  "slug": "omnis-e-gt",
+  "fabricant": "Obey",
+  "nom": "Omnis e-GT",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Audi e-Tron GT",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Obey",
+   "places": "4",
+   "base": "Audi e-Tron GT",
+   "poids": "2 350 kg",
+   "transmission": "4x4",
+   "rapports": "2",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/omnis-e-gt",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/omnis-e-gt.jpg"
+ },
+ {
+  "slug": "coquette",
+  "fabricant": "Invetero",
+  "nom": "Coquette",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Corvette C7, 2014 Corvette Stingray",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Invetero",
+   "places": "2",
+   "base": "Corvette C7, Corvette Stingray 2014",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/coquette",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/coquette-2.jpg"
+ },
+ {
+  "slug": "growler",
+  "fabricant": "Pfister",
+  "nom": "Growler",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Porsche 718 Cayman",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Pfister",
+   "places": "2",
+   "base": "Porsche 718 Cayman",
+   "poids": "1 420 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "7",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/growler",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/growler.jpg"
+ },
+ {
+  "slug": "paragon-r",
+  "fabricant": "Ascot",
+  "nom": "Paragon",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "2018 Bentley Continental GT",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Ascot",
+   "places": "2",
+   "base": "Bentley Continental GT 2018",
+   "poids": "2 415 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/paragon-r",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/paragon-r.jpg"
+ },
+ {
+  "slug": "sugoi",
+  "fabricant": "Dinka",
+  "nom": "Sugoi",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Honda Civic Type R FK8",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Dinka",
+   "places": "4",
+   "base": "Honda Civic Type R FK8",
+   "poids": "1 380 kg",
+   "transmission": "FWD",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sugoi",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sugoi-screen.jpg"
+ },
+ {
+  "slug": "vectre",
+  "fabricant": "Emperor",
+  "nom": "Vectre",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Lexus RC F",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Emperor",
+   "places": "2",
+   "base": "Lexus RC F",
+   "poids": "1 765 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/vectre",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/vectre-2.jpg"
+ },
+ {
+  "slug": "raiden",
+  "fabricant": "Coil",
+  "nom": "Raiden",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Tesla Model S",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Coil",
+   "places": "4",
+   "base": "Tesla Model S",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "1",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/raiden",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/raiden-nov.jpg"
+ },
+ {
+  "slug": "v-str",
+  "fabricant": "Albany",
+  "nom": "V-STR",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "2019 Cadillac CTS-V",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Albany",
+   "places": "4",
+   "base": "Cadillac CTS-V 2019",
+   "poids": "1 878 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/v-str",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/v-str-2.jpg"
+ },
+ {
+  "slug": "itali-rsx",
+  "fabricant": "Grotti",
+  "nom": "Itali RSX",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Ferrari SF90 Stradale",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Grotti",
+   "places": "2",
+   "base": "Ferrari SF90 Stradale",
+   "poids": "1 600 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/itali-rsx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/itali-rsx-screen.jpg"
+ },
+ {
+  "slug": "neon",
+  "fabricant": "Pfister",
+  "nom": "Neon",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Porsche Taycan, Porsche 918 Spyder, second generation Porsche Panamera and the 991.2 Porsche 911",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Pfister",
+   "places": "4",
+   "base": "Porsche Taycan, Porsche 918 Spyder, Porsche Panamera de deuxième génération et Porsche 911 (991.2)",
+   "poids": "2 000 kg",
+   "transmission": "4x4",
+   "rapports": "1",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/neon",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/neon-2.jpg"
+ },
+ {
+  "slug": "itali-gto",
+  "fabricant": "Grotti",
+  "nom": "Itali GTO",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Ferrari 812 Superfast",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Grotti",
+   "places": "2",
+   "base": "Ferrari 812 Superfast",
+   "poids": "1 520 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/itali-gto",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/itali-gto.jpg"
+ },
+ {
+  "slug": "bestia-gts",
+  "fabricant": "Grotti",
+  "nom": "Bestia GTS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Ferrari FF, GTC4Lusso",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Grotti",
+   "places": "2",
+   "base": "Ferrari FF, GTC4Lusso",
+   "poids": "1 800 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bestia-gts"
+ },
+ {
+  "slug": "neo",
+  "fabricant": "Vysser",
+  "nom": "Neo",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports"
+  ],
+  "base": "Spyker C8 Aileron, Maserati 3200 GT",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Vysser",
+   "places": "2",
+   "base": "Spyker C8 Aileron, Maserati 3200 GT",
+   "poids": "1 390 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/neo"
+ },
+ {
+  "slug": "venturas-blvd-elegy-90",
+  "fabricant": "Annis",
+  "nom": "Venturas BLVD Elegy '90",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports"
+  ],
+  "base": "Nissan Skyline GT-R",
+  "fiche": {
+   "classe": "Sports",
+   "fabricant": "Annis",
+   "places": "2",
+   "base": "Nissan Skyline GT-R",
+   "poids": "1 450 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/venturas-blvd-elegy-90",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/venturas-blvd-elegy-90.jpg"
+ },
+ {
+  "slug": "infernus-classic",
+  "fabricant": "Pegassi",
+  "nom": "Infernus '96",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Lamborghini Diablo, Cizeta V16T, Ferrari Testarossa",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Pegassi",
+   "places": "2",
+   "base": "Lamborghini Diablo, Cizeta V16T, Ferrari Testarossa",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/infernus-classic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/infernus-classic.jpg"
+ },
+ {
+  "slug": "cheetah-classic",
+  "fabricant": "Grotti",
+  "nom": "Cheetah '95",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Ferrari Testarossa, 512 BB",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Grotti",
+   "places": "2",
+   "base": "Ferrari Testarossa, 512 BB",
+   "poids": "1 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/cheetah-classic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/cheetah-classic-nov.jpg"
+ },
+ {
+  "slug": "coquette-classique",
+  "fabricant": "Invetero",
+  "nom": "Coquette '64",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Chevrolet Corvette C2",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Invetero",
+   "places": "2",
+   "base": "Chevrolet Corvette C2",
+   "poids": "1 400 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/coquette-classique",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/coquette-classic-nov.jpg"
+ },
+ {
+  "slug": "sentinel-classic",
+  "fabricant": "Übermacht",
+  "nom": "Sentinel '85",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "BMW E30 M3",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Übermacht",
+   "places": "2",
+   "base": "BMW E30 M3",
+   "poids": "1 100 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/sentinel-classic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sentinel-classic-2.jpg"
+ },
+ {
+  "slug": "manana",
+  "fabricant": "Albany",
+  "nom": "Manana '77",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Buick LeSabre, Cadillac Eldorado",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Albany",
+   "places": "2",
+   "base": "Buick LeSabre, Cadillac Eldorado",
+   "poids": "2 100 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/manana",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/Albany-Manana.jpg"
+ },
+ {
+  "slug": "tornado",
+  "fabricant": "Declasse",
+  "nom": "Tornado",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Chevrolet Bel Air",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet Bel Air",
+   "poids": "2 100 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/tornado"
+ },
+ {
+  "slug": "mamba-gt",
+  "fabricant": "Declasse",
+  "nom": "Mamba GT",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Shelby Daytona Coupe",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Shelby Daytona Coupé",
+   "poids": "1 160 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mamba-gt"
+ },
+ {
+  "slug": "kellison-j4",
+  "fabricant": null,
+  "nom": "Kellison J4",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "sports-classic"
+  ],
+  "base": "Kellison J4",
+  "fiche": {
+   "classe": "Sports Classiques",
+   "places": "2",
+   "base": "Kellison J4"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/kellison-j4",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/kellison-j4.jpg"
+ },
+ {
+  "slug": "furia",
+  "fabricant": "Piccia",
+  "nom": "Furia",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "super"
+  ],
+  "base": "Pininfarina Battista",
+  "fiche": {
+   "classe": "Super",
+   "fabricant": "Piccia",
+   "places": "2",
+   "base": "Pininfarina Battista",
+   "poids": "1 898 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/furia",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/furia-2.jpg"
+ },
+ {
+  "slug": "zorrusso",
+  "fabricant": "Granforma",
+  "nom": "Zorrusso",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "super"
+  ],
+  "base": "Italdesign Zerouno",
+  "fiche": {
+   "classe": "Super",
+   "fabricant": "Granforma",
+   "places": "2",
+   "base": "Italdesign Zerouno",
+   "poids": "1 300 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/zorrusso",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/zorrusso-screen.jpg"
+ },
+ {
+  "slug": "tempesta",
+  "fabricant": "Pegassi",
+  "nom": "Tempesta",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "super"
+  ],
+  "base": "Lamborghini Huracán/Centenario, proposed 2015 Lotus Esprit",
+  "fiche": {
+   "classe": "Super",
+   "fabricant": "Pegassi",
+   "places": "2",
+   "base": "Lamborghini Huracán/Centenario, proposition Lotus Esprit 2015",
+   "poids": "1 422 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/tempesta",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/Pegassi-Tempesta.jpg"
+ },
+ {
+  "slug": "thrax",
+  "fabricant": "Truffade",
+  "nom": "Thrax",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "super"
+  ],
+  "base": "Bugatti Divo, Italdesign Zerouno",
+  "fiche": {
+   "fabricant": "Truffade",
+   "places": "2",
+   "poids": "1 960 kg",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/thrax",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/thrax-screen.jpg"
+ },
+ {
+  "slug": "lamborghini-aventador",
+  "fabricant": "Pegassi",
+  "nom": "Vitello",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "super"
+  ],
+  "base": "Lamborghini Aventador",
+  "fiche": {
+   "classe": "Super",
+   "fabricant": "Pegassi",
+   "places": "2",
+   "base": "Lamborghini Aventador"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/lamborghini-aventador",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/lamborghini-aventador-2.png"
+ },
+ {
+  "slug": "emerus",
+  "fabricant": "Progen",
+  "nom": "Emerus",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "super"
+  ],
+  "base": "McLaren Senna",
+  "fiche": {
+   "classe": "Super",
+   "fabricant": "Progen",
+   "places": "2",
+   "base": "McLaren Senna",
+   "poids": "1 198 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "7",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/emerus",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/Progen-Emerus.jpg"
+ },
+ {
+  "slug": "astron",
+  "fabricant": "Pfister",
+  "nom": "Astron",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Porsche Macan",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Pfister",
+   "places": "4",
+   "base": "Porsche Macan",
+   "poids": "1 970 kg",
+   "transmission": "4x4",
+   "rapports": "7",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/astron",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/astron-2.jpg"
+ },
+ {
+  "slug": "aleutian",
+  "fabricant": "Vapid",
+  "nom": "Aleutian",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Fourth generation Ford Expedition (U553)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Expedition de quatrième génération (U553)",
+   "poids": "2 550 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/aleutian",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/aleutian-artwork.jpg"
+ },
+ {
+  "slug": "toyota-rav4-5th-gen",
+  "fabricant": "Karin",
+  "nom": "Allander",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Toyota RAV4 (5th Gen)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Toyota RAV4 (5th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/toyota-rav4-5th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/rav4.jpg"
+ },
+ {
+  "slug": "baller",
+  "fabricant": "Gallivanter",
+  "nom": "Baller II",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Range Rover Evoque/Range Rover Sport",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Gallivanter",
+   "places": "4",
+   "base": "Range Rover Evoque/Range Rover Sport",
+   "poids": "2 200 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/baller",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/baller-screen.jpg"
+ },
+ {
+  "slug": "contender",
+  "fabricant": "Karin",
+  "nom": "Contender",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Toyota Tunder Devolro Diablo, Ford Raptor, Ford F-150",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Toyota Tunder Devolro Diablo, Ford Raptor, Ford F-150",
+   "poids": "2 750 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/contender",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/contender-2.jpg"
+ },
+ {
+  "slug": "granger",
+  "fabricant": "Declasse",
+  "nom": "Granger",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Chevrolet Suburban",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Declasse",
+   "places": "8",
+   "base": "Chevrolet Suburban",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/granger",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/granger.png"
+ },
+ {
+  "slug": "toros",
+  "fabricant": "Pegassi",
+  "nom": "Toros",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Lamborghini Urus, Lamborghini Aventador, Audi Q8",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Pegassi",
+   "places": "4",
+   "base": "Lamborghini Urus, Lamborghini Aventador, Audi Q8",
+   "poids": "2 200 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/toros",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/toros-2.jpg"
+ },
+ {
+  "slug": "novak",
+  "fabricant": "Lampadati",
+  "nom": "Novak",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Maserati Levante, Alfa Romeo Stelvio",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Lampadati",
+   "places": "4",
+   "base": "Maserati Levante, Alfa Romeo Stelvio",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/novak",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/novak-2.jpg"
+ },
+ {
+  "slug": "seminole-frontier",
+  "fabricant": "Canis",
+  "nom": "Seminole Frontier",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "2nd Generation Jeep Cherokee (XJ)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Canis",
+   "places": "4",
+   "base": "Jeep Cherokee de 2e génération (XJ)",
+   "poids": "2 200 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/seminole-frontier",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/seminole-frontier.jpg"
+ },
+ {
+  "slug": "dubsta",
+  "fabricant": "Benefactor",
+  "nom": "Dubsta",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Mercedes-Benz G-Class",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Benefactor",
+   "places": "4",
+   "base": "Mercedes-Benz Classe G",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/dubsta",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dubsta.jpg"
+ },
+ {
+  "slug": "granger-3600lx",
+  "fabricant": "Declasse",
+  "nom": "Granger 3600LX",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "2015 - 2020 Chevrolet Suburban",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Declasse",
+   "places": "8",
+   "base": "Chevrolet Suburban 2015-2020",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "4"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/granger-3600lx",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/granger-3600-l-x-2.jpg"
+ },
+ {
+  "slug": "jubilee",
+  "fabricant": "Buckingham",
+  "nom": "Jubilee",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Rolls-Royce Cullinan",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Buckingham",
+   "places": "4",
+   "base": "Rolls-Royce Cullinan",
+   "poids": "2 660 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/jubilee",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/jubilee.jpg"
+ },
+ {
+  "slug": "landstalker-xl",
+  "fabricant": "Dundreary",
+  "nom": "Landstalker XL",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Fourth generation Lincoln Navigator",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Dundreary",
+   "places": "4",
+   "base": "Lincoln Navigator de quatrième génération",
+   "poids": "2 500 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/landstalker-xl",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/landstalker-x-l3.jpg"
+ },
+ {
+  "slug": "mesa",
+  "fabricant": "Canis",
+  "nom": "Mesa",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Jeep Wrangler",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Canis",
+   "places": "4",
+   "base": "Jeep Wrangler",
+   "poids": "2 400 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mesa",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/mesa.jpg"
+ },
+ {
+  "slug": "riata-classic",
+  "fabricant": "Vapid",
+  "nom": "Riata Classic",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "First-generation Ford Bronco",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Bronco de première génération"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/riata-classic"
+ },
+ {
+  "slug": "baller-st-d",
+  "fabricant": "Gallivanter",
+  "nom": "Baller ST-D",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Fifth-generation Range Rover (L460)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Gallivanter",
+   "places": "4",
+   "base": "Range Rover de cinquième génération (L460)",
+   "poids": "2 600 kg",
+   "transmission": "4x4",
+   "rapports": "7",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/baller-st-d",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/baller-std-2.jpg"
+ },
+ {
+  "slug": "cavalcade-xl",
+  "fabricant": "Albany",
+  "nom": "Cavalcade XL",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "2023 Cadillac Escalade-V",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Albany",
+   "places": "4",
+   "base": "Cadillac Escalade-V 2023",
+   "poids": "3 170 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/cavalcade-xl",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/cavalcade-x-l4.jpg"
+ },
+ {
+  "slug": "dorado",
+  "fabricant": "Bravado",
+  "nom": "Dorado",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "1st generation Dodge Durango",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Durango de première génération",
+   "poids": "2 150 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dorado",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/dorado.png"
+ },
+ {
+  "slug": "vivanite",
+  "fabricant": "Karin",
+  "nom": "Vivanite",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Fourth generation Toyota Sienna (XL40)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Karin",
+   "places": "4",
+   "base": "Toyota Sienna de quatrième génération (XL40)",
+   "poids": "2 180 kg",
+   "transmission": "4x4",
+   "rapports": "1",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/vivanite",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/vivanite.jpg"
+ },
+ {
+  "slug": "xls",
+  "fabricant": "Benefactor",
+  "nom": "XLS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Mercedes GL Class, BMW X5",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Benefactor",
+   "places": "4",
+   "base": "Mercedes Classe GL, BMW X5",
+   "poids": "2 600 kg",
+   "transmission": "4x4",
+   "rapports": "6",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/xls",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/xls-2.jpg"
+ },
+ {
+  "slug": "audi-q7-2nd-gen",
+  "fabricant": null,
+  "nom": "Audi Q7 (2nd Gen)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Audi Q7 (2nd Gen)",
+  "fiche": {
+   "classe": "SUV",
+   "places": "4",
+   "base": "Audi Q7 (2nd Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/audi-q7-2nd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/audi-q7.png"
+ },
+ {
+  "slug": "dodge-durango-3rd-gen",
+  "fabricant": "Bravado",
+  "nom": "Gresley XT",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Dodge Durango (3rd Gen)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Durango (3rd Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dodge-durango-3rd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/durango-2.jpg"
+ },
+ {
+  "slug": "ford-explorer-2nd-gen",
+  "fabricant": "Vapid",
+  "nom": "Montagne XL",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Ford Explorer (2nd Gen)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Vapid"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-2nd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/ford-explorer-2nd.jpg"
+ },
+ {
+  "slug": "ford-explorer-6th-gen",
+  "fabricant": "Vapid",
+  "nom": "Montagne",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Ford Explorer (6th Gen)",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Explorer (6e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-6th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/montagne.jpg"
+ },
+ {
+  "slug": "rebla-gts",
+  "fabricant": "Übermacht",
+  "nom": "Rebla GTS",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "suvs"
+  ],
+  "base": "Fourth generation BMW X5",
+  "fiche": {
+   "classe": "SUV",
+   "fabricant": "Übermacht",
+   "places": "4",
+   "base": "BMW X5 de quatrième génération",
+   "poids": "2 185 kg",
+   "transmission": "4x4",
+   "rapports": "8",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rebla-gts",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/rebla-gts-nov.jpg"
+ },
+ {
+  "slug": "sadler",
+  "fabricant": "Vapid",
+  "nom": "Sadler",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "utility"
+  ],
+  "base": "First Generation Ford F250 Super Duty",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford F250 Super Duty de première génération",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/sadler",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sadler-gtav.jpg"
+ },
+ {
+  "slug": "tow-truck",
+  "fabricant": "Vapid",
+  "nom": "Tow Truck",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "1980s International Harvester S-Series",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "International Harvester série S des années 1980",
+   "poids": "5 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/tow-truck",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/tow-truck-2.jpg"
+ },
+ {
+  "slug": "forklift",
+  "fabricant": "HVY",
+  "nom": "Lifta",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "Yale Forklift truck model (Yale GLP060VX)",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "HVY",
+   "places": "1",
+   "base": "Modèle de chariot élévateur Yale (Yale GLP060VX)",
+   "poids": "6 000 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "1",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/forklift",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/forklift.png"
+ },
+ {
+  "slug": "utility-truck-van",
+  "fabricant": "Brute",
+  "nom": "Utility Truck",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "International 4700 Series",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Brute",
+   "places": "2",
+   "base": "Série Internationale 4700",
+   "poids": "6 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/utility-truck-van",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/utility-truck.jpg"
+ },
+ {
+  "slug": "ford-f-series-tow-truck",
+  "fabricant": null,
+  "nom": "Ford F-Series Tow Truck",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "Ford F-Series Tow Truck",
+  "fiche": {
+   "classe": "Utilité",
+   "places": "2",
+   "base": "Ford F-Series Tow Truck"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-f-series-tow-truck",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/f-series-tow-truck.jpg"
+ },
+ {
+  "slug": "international-s-series-semi-truck",
+  "fabricant": null,
+  "nom": "International S-Series Semi Truck",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "International S-Series Semi Truck",
+  "fiche": {
+   "classe": "Utilité",
+   "places": "2",
+   "base": "International S-Series Semi Truck"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/international-s-series-semi-truck",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/international-s-series.jpg"
+ },
+ {
+  "slug": "airtug",
+  "fabricant": "HVY",
+  "nom": "Airtug",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "Clark CT30",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "HVY",
+   "places": "2",
+   "base": "Clark CT30",
+   "poids": "1 400 kg",
+   "transmission": "FWD",
+   "rapports": "1",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/airtug",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/airtug.jpg"
+ },
+ {
+  "slug": "caddy",
+  "fabricant": "Maibatsu",
+  "nom": "Caddy '82",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Maibatsu",
+   "places": "2",
+   "poids": "600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "1",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/caddy",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/caddy.jpg"
+ },
+ {
+  "slug": "fieldmaster",
+  "fabricant": "Jacksheepe",
+  "nom": "Fieldmaster '99",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "utility"
+  ],
+  "base": "John Deere 7810",
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Jacksheepe",
+   "places": "1",
+   "base": "John Deere 7810",
+   "poids": "6 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/fieldmaster"
+ },
+ {
+  "slug": "golfeur",
+  "fabricant": "Vapid",
+  "nom": "Golfer",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "utility"
+  ],
+  "base": null,
+  "fiche": {
+   "classe": "Utilité",
+   "fabricant": "Vapid"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/golfeur"
+ },
+ {
+  "slug": "bobcat-xl",
+  "fabricant": "Declasse",
+  "nom": "Bobcat XL '84",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Fourth generation Chevrolet C/K",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Declasse",
+   "places": "2",
+   "base": "Chevrolet C/K de quatrième génération",
+   "poids": "2 600 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/bobcat-xl",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bobcat-xl-3.jpg"
+ },
+ {
+  "slug": "bison-900-1995",
+  "fabricant": "Bravado",
+  "nom": "Bison 900 '95",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Ram (2nd Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "6",
+   "base": "Dodge Ram (2e génération)",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bison-900-1995",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bison-900-95-2.jpg"
+ },
+ {
+  "slug": "burrito",
+  "fabricant": "Declasse",
+  "nom": "Burrito '98",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "1996-2002 Chevrolet Express",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Declasse",
+   "places": "4",
+   "base": "Chevrolet Express 1996-2002",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/burrito",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/burrito-2.jpg"
+ },
+ {
+  "slug": "youga-xl-79",
+  "fabricant": "Bravado",
+  "nom": "Youga XL '79",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Ram Van (2nd Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "base": "Dodge Ram Van (2e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/youga-xl-79"
+ },
+ {
+  "slug": "jeep-scrambler-cj-8",
+  "fabricant": "Canis",
+  "nom": "Crawler '82",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Jeep Scrambler (CJ-8)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Canis",
+   "places": "2",
+   "base": "Jeep Scrambler (CJ-8)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/jeep-scrambler-cj-8"
+ },
+ {
+  "slug": "youga-classic",
+  "fabricant": "Bravado",
+  "nom": "Youga '74",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford Ecoline (2nd gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Ford Ecoline (2e génération)",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/youga-classic",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/youga-classic-2.jpg"
+ },
+ {
+  "slug": "rexhall-rose-air",
+  "fabricant": "Willard",
+  "nom": "Trotter '95",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Rexhall Rose Air",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Willard",
+   "base": "Rexhall Rose Air"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/rexhall-rose-air",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/rexhall-rose-air.jpg"
+ },
+ {
+  "slug": "journey",
+  "fabricant": "Osprey",
+  "nom": "Journey '78",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "1979–1981 Fleetwood Pace Arrow",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Osprey",
+   "poids": "4 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/journey",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/journey.jpg"
+ },
+ {
+  "slug": "moocher",
+  "fabricant": "Willard",
+  "nom": "Moocher '83",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "1985 Fleetwood Southwind",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Willard",
+   "places": "4",
+   "base": "1985 Fleetwood Southwind"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/moocher",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/moocher.jpg"
+ },
+ {
+  "slug": "boxville",
+  "fabricant": "Brute",
+  "nom": "Boxville",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "GMC Step Van",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Brute",
+   "places": "4",
+   "base": "Fourgon GMC à marchepied",
+   "poids": "5 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/boxville",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/boxville-2.jpg"
+ },
+ {
+  "slug": "minivan",
+  "fabricant": "Vapid",
+  "nom": "Minivan",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford Windstar, Dodge Caravan",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Windstar, Dodge Caravan",
+   "poids": "2 000 kg",
+   "transmission": "4x4",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/minivan"
+ },
+ {
+  "slug": "speedo",
+  "fabricant": "Vapid",
+  "nom": "Speedo",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "2003-present Chevrolet Express van",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Fourgonnette Chevrolet Express (2003-présent)",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/speedo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/speedo.jpg"
+ },
+ {
+  "slug": "youga",
+  "fabricant": "Bravado",
+  "nom": "Youga",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Ram Van (Dodge B-Series)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "2",
+   "base": "Fourgonnette Dodge Ram (Dodge série B)",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/youga"
+ },
+ {
+  "slug": "bison",
+  "fabricant": "Bravado",
+  "nom": "Bison",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Ram Quad Cab (4th Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "6",
+   "base": "Dodge Ram Quad Cab (4e génération)",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/bison",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bison-gameinf.jpg"
+ },
+ {
+  "slug": "camper",
+  "fabricant": "Brute",
+  "nom": "Camper",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "1996-2002 Chevrolet Express",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Brute",
+   "places": "2",
+   "poids": "4 000 kg",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/camper"
+ },
+ {
+  "slug": "rumpo-custom",
+  "fabricant": "Bravado",
+  "nom": "Rumpo Custom",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "GMC Vandura",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "GMC Vandura",
+   "poids": "2 250 kg",
+   "transmission": "4x4",
+   "rapports": "5",
+   "aussi": "GTA Online"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/rumpo-custom"
+ },
+ {
+  "slug": "rumpo",
+  "fabricant": "Vapid",
+  "nom": "Rumpo",
+  "chemin": "gta-6/vehicules",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford E-Series",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Vapid",
+   "places": "4",
+   "base": "Ford Série E",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "5",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/rumpo",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/rumpo.jpg"
+ },
+ {
+  "slug": "bison-ii",
+  "fabricant": "Bravado",
+  "nom": "Bison 1800",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ram 1500 (DT)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "6",
+   "base": "Ram 1500 (DT)",
+   "poids": "2 100 kg",
+   "transmission": "4x4",
+   "rapports": "5"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/bison-ii",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/bison-2.png"
+ },
+ {
+  "slug": "chevrolet-silverado-6500-hd",
+  "fabricant": null,
+  "nom": "Chevrolet Silverado 6500 HD",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Chevrolet Silverado 6500 HD",
+  "fiche": {
+   "classe": "Vans",
+   "places": "2",
+   "base": "Chevrolet Silverado 6500 HD"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-silverado-6500-hd",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/silverado-hd.jpg"
+ },
+ {
+  "slug": "chrysler-town-country-5th-gen",
+  "fabricant": "Bravado",
+  "nom": "Sojourn",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Grand Caravan",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado",
+   "places": "4",
+   "base": "Dodge Grand Caravan"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-town-country-5th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/grand-caravan-nov.jpg"
+ },
+ {
+  "slug": "dodge-dakota-convertible",
+  "fabricant": null,
+  "nom": "Dodge Dakota Convertible",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Dodge Dakota Convertible",
+  "fiche": {
+   "classe": "Vans",
+   "places": "2",
+   "base": "Dodge Dakota Convertible"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/dodge-dakota-convertible",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/dodge-dakota.png"
+ },
+ {
+  "slug": "ford-econoline-4th-gen",
+  "fabricant": null,
+  "nom": "Ford Econoline (4th Gen)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford Econoline (4th Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "places": "10",
+   "base": "Ford Econoline (4th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-econoline-4th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/ford-econoline.png"
+ },
+ {
+  "slug": "ford-f-series-3rd-gen",
+  "fabricant": null,
+  "nom": "Ford F-Series (3rd Gen)",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford F-Series (3rd Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "places": "2",
+   "base": "Ford F-Series (3rd Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-f-series-3rd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/ford-f-series-3rd.jpg"
+ },
+ {
+  "slug": "ford-f-series-6th-gen",
+  "fabricant": null,
+  "nom": "Ford F-Series Flatbed",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford F-Series (6th Gen)",
+  "fiche": {
+   "classe": "Tout-terrain",
+   "fabricant": "Vapid",
+   "places": "2",
+   "base": "Ford Série F (6e génération)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-f-series-6th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/f-series-flatbed.jpg"
+ },
+ {
+  "slug": "ford-transit-4th-gen",
+  "fabricant": "Vapid",
+  "nom": "Shuttle",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford Transit (4th Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Vapid",
+   "places": "10",
+   "base": "Ford Transit (4th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-transit-4th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/ford-transit-cargo.jpg"
+ },
+ {
+  "slug": "ford-transit-cargo-4th-gen",
+  "fabricant": null,
+  "nom": "Shifter",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Ford Transit Cargo (4th Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "places": "2",
+   "base": "Ford Transit Cargo (4th Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ford-transit-cargo-4th-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/ford-transit-cargo.jpg"
+ },
+ {
+  "slug": "mercedes-benz-sprinter-2nd-gen",
+  "fabricant": "Benefactor",
+  "nom": "Spritz",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Mercedes-Benz Sprinter (2nd Gen)",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Benefactor",
+   "places": "10",
+   "base": "Mercedes-Benz Sprinter (2nd Gen)"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/mercedes-benz-sprinter-2nd-gen",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/sprinter.jpg"
+ },
+ {
+  "slug": "ram-3500",
+  "fabricant": "Bravado",
+  "nom": "Bison 3800",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "RAM 3500",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "Bravado"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/ram-3500",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/unknown/suv-3-dodge-ram.jpg"
+ },
+ {
+  "slug": "surfeur",
+  "fabricant": "BF",
+  "nom": "Surfer",
+  "chemin": "vehicules/gta-6",
+  "classes": [
+   "vans"
+  ],
+  "base": "Volkswagen Type 2",
+  "fiche": {
+   "classe": "Vans",
+   "fabricant": "BF",
+   "places": "2",
+   "base": "Volkswagen Type 2",
+   "poids": "2 500 kg",
+   "transmission": "propulsion arrière",
+   "rapports": "4",
+   "aussi": "GTA V"
+  },
+  "url": "https://www.gtabase.com/fr/vehicules/gta-6/surfeur",
+  "imgUrl": "https://www.gtabase.com/images/gta-6/vehicles/temp/surfer-nov.jpg"
+ }
+]

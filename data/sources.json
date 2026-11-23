@@ -1,0 +1,328 @@
+{
+ "rockstar": {
+  "n": "Rockstar Games (officiel)",
+  "u": "https://www.rockstargames.com/VI",
+  "official": true
+ },
+ "rockstar-newswire": {
+  "n": "Rockstar Newswire (officiel)",
+  "u": "https://www.rockstargames.com/newswire",
+  "official": true
+ },
+ "gamespot-tips": {
+  "n": "GameSpot",
+  "u": "https://www.gamespot.com/articles/gta-6-tips-everything-i-wish-i-knew-before-i-started-playing/"
+ },
+ "gamespot-travel": {
+  "n": "GameSpot",
+  "u": "https://www.gamespot.com/articles/gta-6-fast-travel-methods/"
+ },
+ "kotaku-tips": {
+  "n": "Kotaku",
+  "u": "https://kotaku.com/32-spoiler-free-tips-as-you-hop-into-grand-theft-auto-6-2000758016"
+ },
+ "redbull-guide": {
+  "n": "Red Bull Gaming",
+  "u": "https://www.redbull.com/int-en/gta-6-beginners-guide"
+ },
+ "redbull-cheats": {
+  "n": "Red Bull Gaming",
+  "u": "https://www.redbull.com/us-en/gta-6-cheat-codes"
+ },
+ "gtabase-launch": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/articles/gta-6/gta-6-launch-prep-guide-pre-load-date-storage-editions"
+ },
+ "gtabase-money": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/gta-6/articles/how-to-make-money-fast-in-gta-6"
+ },
+ "gtabase-wanted": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/articles/gta-6/gta-6-wanted-level-explained-police-system-guide"
+ },
+ "gtabase-map": {
+  "n": "GTABase (carte)",
+  "u": "https://www.gtabase.com/gta-6/map/?feature=standout-vehicle"
+ },
+ "g2a-money": {
+  "n": "G2A News",
+  "u": "https://www.g2a.com/news/gta-6-news/gta-6-money-making-guide/"
+ },
+ "keengamer-money": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-vi-best-ways-to-make-money-fast/"
+ },
+ "keengamer-weapons": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-best-early-game-unique-weapon-locations/"
+ },
+ "cheatcc": {
+  "n": "CheatCC",
+  "u": "https://www.cheatcc.com/articles/gta-6-cheats/"
+ },
+ "gtacheatcodes": {
+  "n": "GTAcheat.codes",
+  "u": "https://gtacheat.codes/"
+ },
+ "pcguide-cheats": {
+  "n": "PC Guide",
+  "u": "https://www.pcguide.com/news/gta-6-cheat-codes-list-for-playstation-5-xbox-series-xs-and-how-to-unlock-them/"
+ },
+ "consolyte-save": {
+  "n": "Consolyte",
+  "u": "https://consolyte.gg/gta-6/wiki/guides/how-to-save"
+ },
+ "dotesports-travel": {
+  "n": "Dot Esports",
+  "u": "https://dotesports.com/gta/guides/gta-6-fast-travel"
+ },
+ "beebom-apps": {
+  "n": "Beebom",
+  "u": "https://beebom.com/all-gta-6-phone-apps/"
+ },
+ "pushsquare-randy": {
+  "n": "Push Square",
+  "u": "https://www.pushsquare.com/guides/gta-6-randys-wish-list-vehicle-locations"
+ },
+ "detonated-cars": {
+  "n": "Detonated",
+  "u": "https://detonated.com/gta-6-best-car-locations/"
+ },
+ "gamesgg-luxury": {
+  "n": "Games.gg",
+  "u": "https://games.gg/grand-theft-auto-vi/guides/grand-theft-auto-6-luxury-car-locations-how-to-get-them/"
+ },
+ "gamesradar-activities": {
+  "n": "GamesRadar+",
+  "u": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-side-activities/"
+ },
+ "gamesradar-locations": {
+  "n": "GamesRadar+",
+  "u": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-locations"
+ },
+ "pcgamer-map": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta6-map"
+ },
+ "pcgamer-chars": {
+  "n": "PC Gamer",
+  "u": "https://pcgamer.com/games/action/grand-theft-auto/gta6-characters"
+ },
+ "powerpyx": {
+  "n": "PowerPyx",
+  "u": "https://www.powerpyx.com/gta-6-grand-theft-auto-vi-wiki-strategy-guide/"
+ },
+ "metaforge-weapons": {
+  "n": "MetaForge",
+  "u": "https://metaforge.app/gta-6/best-weapons-gta-6"
+ },
+ "rockstarintel-controls": {
+  "n": "RockstarINTEL",
+  "u": "https://rockstarintel.com/30-hidden-gta-6-controls-and-secret-mechanics-you-probably-missed/"
+ },
+ "mobalytics-hidden": {
+  "n": "Mobalytics",
+  "u": "https://mobalytics.gg/gamebase/guides/grand-theft-auto-6-hidden-details-you-missed"
+ },
+ "thumbwars-tips": {
+  "n": "Thumb Wars",
+  "u": "https://thethumbwars.com/gta-6-tips-and-tricks-we-wish-we-knew-before-playing/"
+ },
+ "gtabase-stats": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/gta-6/articles/how-to-increase-jason-and-lucia-stats-in-gta-6"
+ },
+ "game8-fitness": {
+  "n": "Game8",
+  "u": "https://game8.co/games/GTA-6/archives/638525"
+ },
+ "gtabase-heal": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/gta-6/articles/how-to-heal-in-gta-6"
+ },
+ "game8-repair": {
+  "n": "Game8",
+  "u": "https://game8.co/games/GTA-6/archives/637296"
+ },
+ "gamesgg-joey": {
+  "n": "Games.gg",
+  "u": "https://games.gg/grand-theft-auto-vi/guides/how-to-repair-your-car-for-free-in-gta-6-call-joey/"
+ },
+ "gtaboss-custom": {
+  "n": "GTA Boss",
+  "u": "https://www.gtaboss.gg/gta-6/guides/gta-6-car-customization"
+ },
+ "gamespot-robberies": {
+  "n": "GameSpot",
+  "u": "https://www.gamespot.com/articles/gta-6-safe-codes-and-robberies-guide/"
+ },
+ "gta6heists-robberies": {
+  "n": "GTA6Heists",
+  "u": "https://www.gta6heists.com/robberies"
+ },
+ "keengamer-illegal": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/how-to-rob-illegal-operations-in-gta-6-all-9-gangs-and-the-pest-control-trophy/"
+ },
+ "metaforge-hunting": {
+  "n": "MetaForge",
+  "u": "https://metaforge.app/gta-6/gta-6-hunting-guide"
+ },
+ "keengamer-fishing": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-fishing-guide-how-to-fish-and-catch-bigger-fish/"
+ },
+ "timesaver-safehouses": {
+  "n": "Timesaver",
+  "u": "https://timesaver.gg/blog/gta-6-safehouses"
+ },
+ "gtabase-properties": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/gta-6/properties/"
+ },
+ "redbull-ultimate": {
+  "n": "Red Bull Gaming",
+  "u": "https://www.redbull.com/int-en/gta-6-ultimate-edition-bonuses"
+ },
+ "mobalytics-ultimate": {
+  "n": "Mobalytics",
+  "u": "https://mobalytics.gg/gamebase/guides/grand-theft-auto-6-ultimate-edition-bonus-content"
+ },
+ "powerpyx-aircraft": {
+  "n": "PowerPyx",
+  "u": "https://www.powerpyx.com/gta-6-helicopter-plane-locations/"
+ },
+ "pcgamer-plane": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-first-plane-and-helicopter/"
+ },
+ "outputlag-clothes": {
+  "n": "OutputLag",
+  "u": "https://outputlag.com/guides/gta-6-clothes-masks-haircuts/"
+ },
+ "meowdb-tattoos": {
+  "n": "MeowDB",
+  "u": "https://meowdb.com/gta6/tattoos"
+ },
+ "gamesradar-cheats": {
+  "n": "GamesRadar+",
+  "u": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-cheats/"
+ },
+ "vice-cheats": {
+  "n": "VICE",
+  "u": "https://www.vice.com/en/article/gta-6-cheat-codes-list/"
+ },
+ "thegamer-vehicles": {
+  "n": "TheGamer",
+  "u": "https://www.thegamer.com/grand-theft-auto-6-gta-car-confirmed-list/"
+ },
+ "gtadb": {
+  "n": "GTADB (carte communautaire, CC BY 4.0)",
+  "u": "https://map.gtadb.org"
+ },
+ "gtabase-steal": {
+  "n": "GTABase",
+  "u": "https://www.gtabase.com/articles/gta-6/gta-6-car-stealing-guide-how-to-steal-sell-keep-vehicles"
+ },
+ "gamespot-steal": {
+  "n": "GameSpot",
+  "u": "https://www.gamespot.com/articles/how-to-steal-cars-and-remove-trackers-in-gta-6/"
+ },
+ "pcgamer-steal": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-to-steal-cars/"
+ },
+ "stealthy-steal": {
+  "n": "Stealthy Gaming",
+  "u": "https://stealthygaming.com/gta-6-how-to-steal-cars/"
+ },
+ "keengamer-stash": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-best-early-money-farming-spots-and-secret-cash-stashes/"
+ },
+ "vicepulse-cash": {
+  "n": "VicePulse",
+  "u": "https://vicepulse.org/gta-6/money/hidden-cash"
+ },
+ "dotesports-stash": {
+  "n": "Dot Esports",
+  "u": "https://dotesports.com/gta/guides/gta-6-store-cash-jason-house"
+ },
+ "consolepulse-money": {
+  "n": "ConsolePulse",
+  "u": "https://consolepulse.com/playstation/gta/guides/gta-6-make-money-fast"
+ },
+ "rarethief-sell": {
+  "n": "Rare Thief",
+  "u": "https://rarethief.com/where-to-sell-cars-in-gta-vi/"
+ },
+ "pcgamer-money": {
+  "n": "PC Gamer",
+  "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-to-make-money/"
+ },
+ "sportskeeda-atm": {
+  "n": "Sportskeeda",
+  "u": "https://www.sportskeeda.com/gta/how-rob-atm-machine-gta-6"
+ },
+ "outputlag-rob": {
+  "n": "OutputLag",
+  "u": "https://outputlag.com/guides/gta-6-how-to-rob-stores-heists/"
+ },
+ "hotcars-ruiner": {
+  "n": "HotCars",
+  "u": "https://www.hotcars.com/how-to-get-fastest-car-early-in-gta-6/"
+ },
+ "keengamer-ff": {
+  "n": "KeenGamer",
+  "u": "https://www.keengamer.com/articles/guides/gta-6-fast-and-furious-secret-car-location/"
+ },
+ "space4games-shirley": {
+  "n": "Space4Games",
+  "u": "https://space4games.com/en/games-en/gta-6-shirleys-car-free-guide/"
+ },
+ "sportskeeda-cars": {
+  "n": "Sportskeeda",
+  "u": "https://www.sportskeeda.com/esports/7-best-early-game-cars-gta-6-get"
+ },
+ "gtabase-cheats": {
+  "n": "GTABase — codes GTA 6",
+  "u": "https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes",
+  "official": false
+ },
+ "gtawiki-cheats": {
+  "n": "GTA Wiki — Cheats in GTA VI",
+  "u": "https://gta.wiki/w/Cheats_in_GTA_VI",
+  "official": false
+ },
+ "gta6guide-cheats": {
+  "n": "gta6guide.fr — codes",
+  "u": "https://gta6guide.fr/gta-6/codes-triche",
+  "official": false
+ },
+ "forbes-ventes": {
+  "n": "Forbes : 3,8 milliards de dollars le premier jour",
+  "u": "https://www.forbes.com/sites/antoniopequenoiv/2026/11/20/gta-6-raked-in-38-billion-sales-on-first-day-the-largest-entertainment-launch-ever/",
+  "official": false
+ },
+ "beebom-patchs": {
+  "n": "Beebom : suivi des mises à jour de GTA 6",
+  "u": "https://beebom.com/gta-6-patch-notes-updates-tracker/",
+  "official": false
+ },
+ "happygamer-patch": {
+  "n": "HappyGamer : mise à jour 1.002.002",
+  "u": "https://happygamer.com/gta-6-day-5-live-updates-179682/",
+  "official": false
+ },
+ "vice-online": {
+  "n": "VICE : GTA 6 Online et version PC",
+  "u": "https://www.vice.com/en/article/gta-6-pc-online-release-date/",
+  "official": false
+ },
+ "covers-online": {
+  "n": "Covers : date de GTA 6 Online",
+  "u": "https://www.covers.com/entertainment/gta-6-online-release-date",
+  "official": false
+ }
+}

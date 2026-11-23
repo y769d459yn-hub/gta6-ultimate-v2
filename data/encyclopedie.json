@@ -1,0 +1,686 @@
+[
+ {
+  "slug": "jason-duval",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Jason Duval",
+  "bref": "L'un des deux personnages jouables, partenaire de Lucia.",
+  "sait": [
+   "Personnage jouable confirmé par Rockstar.",
+   "Il apparaît aux côtés de Lucia dans les deux bandes-annonces."
+  ],
+  "incertain": [
+   "Le détail de son passé n'est pas couvert ici, pour éviter de te gâcher l'histoire."
+  ],
+  "liens": [
+   "lucia-caminos",
+   "changer-de-personnage"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "lucia-caminos",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Lucia Caminos",
+  "bref": "La première héroïne principale d'un GTA en 3D, jouable avec Jason.",
+  "sait": [
+   "Personnage jouable confirmé.",
+   "La première bande-annonce la montre en prison."
+  ],
+  "incertain": [
+   "Son parcours complet n'est pas raconté ici, pour éviter les spoilers."
+  ],
+  "liens": [
+   "jason-duval",
+   "changer-de-personnage"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "cal-hampton",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Cal Hampton",
+  "bref": "Ami et complice de Jason, présenté dans la deuxième bande-annonce.",
+  "sait": [
+   "Personnage présenté officiellement par Rockstar."
+  ],
+  "incertain": [
+   "Son rôle exact dans l'histoire."
+  ],
+  "liens": [
+   "jason-duval"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "boobie-ike",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Boobie Ike",
+  "bref": "Une figure locale de Vice City, présentée par Rockstar.",
+  "sait": [
+   "Personnage présenté officiellement."
+  ],
+  "incertain": [
+   "Ses liens avec les autres personnages."
+  ],
+  "liens": [
+   "dre-quan-priest",
+   "vice-city"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "dre-quan-priest",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Dre'Quan Priest",
+  "bref": "Producteur musical, il gère les rappeuses Real Dimez.",
+  "sait": [
+   "Personnage présenté officiellement."
+  ],
+  "incertain": [
+   "Son rôle dans les missions."
+  ],
+  "liens": [
+   "real-dimez",
+   "boobie-ike"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "real-dimez",
+  "cat": "personnages",
+  "icon": "music",
+  "nom": "Real Dimez",
+  "bref": "Un duo de rappeuses formé par Bae-Luxe et Roxy.",
+  "sait": [
+   "Personnages présentés officiellement."
+  ],
+  "incertain": [
+   "Leur place dans l'histoire."
+  ],
+  "liens": [
+   "dre-quan-priest"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "raul-bautista",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Raul Bautista",
+  "bref": "Un braqueur de banques expérimenté.",
+  "sait": [
+   "Personnage présenté officiellement."
+  ],
+  "incertain": [
+   "L'orthographe varie selon les sources (Bautista / Batista)."
+  ],
+  "liens": [
+   "braquer-bijouteries"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars"
+  ]
+ },
+ {
+  "slug": "brian-heder",
+  "cat": "personnages",
+  "icon": "person",
+  "nom": "Brian Heder",
+  "bref": "Un trafiquant des Keys, chez qui Jason loge.",
+  "sait": [
+   "Personnage présenté officiellement.",
+   "Il rachète de la marchandise au chapitre 1, selon les guides."
+  ],
+  "incertain": [
+   "Les détails de ses missions."
+  ],
+  "liens": [
+   "argent-debut",
+   "leonida-keys"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "pcgamer-chars",
+   "g2a-money"
+  ]
+ },
+ {
+  "slug": "leonida",
+  "cat": "lieux",
+  "icon": "map",
+  "nom": "Leonida",
+  "bref": "L'État fictif du jeu, inspiré de la Floride.",
+  "sait": [
+   "Six régions : Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga."
+  ],
+  "incertain": [
+   "Les frontières exactes des régions sur notre carte sont approximatives."
+  ],
+  "liens": [
+   "vice-city",
+   "grassrivers"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": null
+ },
+ {
+  "slug": "vice-city",
+  "cat": "lieux",
+  "icon": "city",
+  "nom": "Vice City",
+  "bref": "La métropole de Leonida, inspirée de Miami.",
+  "sait": [
+   "Ville principale du jeu, sur la côte sud-est.",
+   "Elle est décrite par Rockstar comme le cœur de Leonida."
+  ],
+  "incertain": [
+   "La liste des quartiers diffère selon les guides."
+  ],
+  "liens": [
+   "leonida",
+   "leonida-keys"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "vice-city"
+ },
+ {
+  "slug": "leonida-keys",
+  "cat": "lieux",
+  "icon": "island",
+  "nom": "Leonida Keys",
+  "bref": "L'archipel du sud, inspiré des Florida Keys.",
+  "sait": [
+   "Région confirmée, formée d'îles reliées par des ponts."
+  ],
+  "incertain": [
+   "Le nombre d'îles."
+  ],
+  "liens": [
+   "vice-city",
+   "activites-eau"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "leonida-keys"
+ },
+ {
+  "slug": "grassrivers",
+  "cat": "lieux",
+  "icon": "reed",
+  "nom": "Grassrivers",
+  "bref": "Les marais de Leonida, inspirés des Everglades.",
+  "sait": [
+   "Région confirmée : marais, mangroves, faune sauvage."
+  ],
+  "incertain": [
+   "Les limites exactes de la région."
+  ],
+  "liens": [
+   "hydroglisseur",
+   "activites-eau"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "grassrivers"
+ },
+ {
+  "slug": "port-gellhorn",
+  "cat": "lieux",
+  "icon": "anchor",
+  "nom": "Port Gellhorn",
+  "bref": "Une ville portuaire en déclin, sur la côte du Golfe.",
+  "sait": [
+   "Région confirmée au nord-ouest de l'État."
+  ],
+  "incertain": [
+   "Ses lieux exacts."
+  ],
+  "liens": [
+   "leonida"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "port-gellhorn"
+ },
+ {
+  "slug": "ambrosia",
+  "cat": "lieux",
+  "icon": "factory",
+  "nom": "Ambrosia",
+  "bref": "Une région rurale au bord du lac Leonida.",
+  "sait": [
+   "La raffinerie Allied Crystal domine son horizon."
+  ],
+  "incertain": [
+   "Les villes qui en font partie."
+  ],
+  "liens": [
+   "leonida",
+   "mount-kalaga"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "ambrosia"
+ },
+ {
+  "slug": "mount-kalaga",
+  "cat": "lieux",
+  "icon": "mountain",
+  "nom": "Mount Kalaga",
+  "bref": "Un parc national au nord de Leonida.",
+  "sait": [
+   "Région confirmée : forêts et nature."
+  ],
+  "incertain": [
+   "Les activités qu'on peut y faire."
+  ],
+  "liens": [
+   "ambrosia"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "pcgamer-map"
+  ],
+  "lieu": "mount-kalaga"
+ },
+ {
+  "slug": "vehicules-remarquables",
+  "cat": "vehicules",
+  "icon": "sparkle",
+  "nom": "Véhicules remarquables",
+  "bref": "Des véhicules rares garés à des endroits fixes.",
+  "sait": [
+   "Les guides en recensent environ 139."
+  ],
+  "incertain": [
+   "La liste n'est pas encore complète."
+  ],
+  "liens": [
+   "voiture-rare",
+   "pegassi-infernus"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "gtabase-map"
+  ]
+ },
+ {
+  "slug": "garages",
+  "cat": "vehicules",
+  "icon": "garage",
+  "nom": "Garages",
+  "bref": "Ils servent à stocker tes véhicules. On les achète avec Vice City Real Estate.",
+  "sait": [
+   "L'appli se débloque après la première quête de Moses (chapitre 2)."
+  ],
+  "incertain": [
+   "Les prix exacts : 8 garages entre 4 000 et 40 000 $, selon les guides."
+  ],
+  "liens": [
+   "stocker-vehicules",
+   "livrer-vehicule"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "beebom-apps"
+  ]
+ },
+ {
+  "slug": "niveau-de-recherche",
+  "cat": "gameplay",
+  "icon": "siren",
+  "nom": "Niveau de recherche",
+  "bref": "Les étoiles montrent à quel point la police te cherche. Les icônes rouges montrent ce qu'elle sait de toi.",
+  "sait": [
+   "Étoiles pleines : la police te voit. Étoiles qui clignotent : elle te cherche.",
+   "Changer de voiture ou de tenue brouille les pistes."
+  ],
+  "incertain": [
+   "L'effet exact du Pay 'n' Spray."
+  ],
+  "liens": [
+   "semer-la-police",
+   "ce-que-sait-la-police"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "gtabase-wanted"
+  ]
+ },
+ {
+  "slug": "telephone",
+  "cat": "gameplay",
+  "icon": "phone",
+  "nom": "Le téléphone",
+  "bref": "Toutes tes applis : banque, taxi, messages, garages.",
+  "sait": [
+   "BuckMe, RydeMe, WhatUp, Snapmatic, Scooter Bros, WAiNK, Vice City Real Estate."
+  ],
+  "incertain": [
+   "La liste complète des applis."
+  ],
+  "liens": [
+   "telephone-apps"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "beebom-apps"
+  ]
+ },
+ {
+  "slug": "liste-des-codes",
+  "cat": "gameplay",
+  "icon": "code",
+  "nom": "Codes",
+  "bref": "19 codes connus, qui se tapent au téléphone avec une suite de flèches.",
+  "sait": [
+   "Ils apparaissent dans le menu Progression après l'histoire.",
+   "Chacun se débloque par un défi (sport, stands de tir, collection…).",
+   "Ils bloquent la sauvegarde et les trophées jusqu'à ce que tu quittes le jeu.",
+   "Il n'y a pas de code d'invincibilité ni de santé."
+  ],
+  "incertain": [
+   "D'autres codes existent, mais leur combinaison n'a pas encore été trouvée : ils seront ajoutés dès qu'elle le sera."
+  ],
+  "liens": [
+   "entrer-un-code",
+   "code-argent"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "gtabase-cheats",
+   "gtawiki-cheats",
+   "gta6guide-cheats"
+  ]
+ },
+ {
+  "slug": "sauvegarde",
+  "cat": "gameplay",
+  "icon": "save",
+  "nom": "Sauvegarde",
+  "bref": "Sauvegarde manuelle hors mission, et automatique à la fin de chaque mission.",
+  "sait": [
+   "15 emplacements de sauvegarde manuelle, plus une sauvegarde automatique.",
+   "Pas de menu pour rejouer les missions."
+  ],
+  "incertain": [
+   "La sauvegarde automatique n'est pas toujours fiable, selon des joueurs."
+  ],
+  "liens": [
+   "sauvegarder",
+   "sauvegarde-par-chapitre"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "consolyte-save"
+  ]
+ },
+ {
+  "slug": "deplacements",
+  "cat": "gameplay",
+  "icon": "bolt",
+  "nom": "Se déplacer",
+  "bref": "RydeMe, bus, train ou changement de personnage. Pas de téléportation sur la carte.",
+  "sait": [
+   "RydeMe permet de passer le trajet contre 100 $."
+  ],
+  "incertain": [
+   "Les horaires des transports."
+  ],
+  "liens": [
+   "voyage-rapide"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "gamespot-travel",
+   "dotesports-travel"
+  ]
+ },
+ {
+  "slug": "le-pitch",
+  "cat": "histoire",
+  "icon": "book",
+  "nom": "Le pitch (sans spoiler)",
+  "bref": "Jason et Lucia, un couple de criminels, tentent leur chance dans l'État de Leonida.",
+  "sait": [
+   "Histoire à deux personnages, présentée dans les bandes-annonces officielles."
+  ],
+  "incertain": [
+   "Rien n'est révélé ici au-delà des bandes-annonces."
+  ],
+  "liens": [
+   "jason-duval",
+   "lucia-caminos"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar"
+  ]
+ },
+ {
+  "slug": "chapitres",
+  "cat": "histoire",
+  "icon": "layers",
+  "nom": "Chapitres",
+  "bref": "L'histoire est découpée en chapitres. Chacun est lié à une planque.",
+  "sait": [
+   "Les gros gains d'argent arrivent à partir du chapitre 3."
+  ],
+  "incertain": [
+   "Le nombre de missions principales : 91 à 93 selon les guides, selon la façon de compter."
+  ],
+  "liens": [
+   "sauvegarde-par-chapitre",
+   "braquer-bijouteries"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "consolyte-save",
+   "g2a-money"
+  ]
+ },
+ {
+  "slug": "gta-vi",
+  "cat": "le-jeu",
+  "icon": "gamepad",
+  "nom": "Grand Theft Auto VI",
+  "bref": "Le jeu de Rockstar Games, sorti le 19 novembre 2026 sur PS5 et Xbox Series X|S.",
+  "sait": [
+   "Développé par Rockstar Games et édité par Take-Two Interactive.",
+   "Plateformes de sortie : PlayStation 5 et Xbox Series X|S.",
+   "Plus gros lancement du divertissement : 3,79 milliards de dollars le premier jour, selon Take-Two."
+  ],
+  "incertain": [
+   "Aucune version PC n'a de date annoncée."
+  ],
+  "liens": [
+   "sortie-19-novembre-2026",
+   "preparer-installation"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar"
+  ]
+ },
+ {
+  "slug": "plateformes",
+  "cat": "le-jeu",
+  "icon": "console",
+  "nom": "Plateformes",
+  "bref": "PS5 et Xbox Series X|S.",
+  "sait": [
+   "Les codes sont identiques sur PS5 et Xbox."
+  ],
+  "incertain": [
+   "Version PC : aucune date officielle (méfie-toi des fausses versions PC).",
+   "Mode en ligne : aucune date officielle, 2027 n'est qu'une estimation."
+  ],
+  "liens": [
+   "gta-vi",
+   "entrer-un-code"
+  ],
+  "statut": "confirme",
+  "sources": [
+   "rockstar",
+   "redbull-cheats"
+  ]
+ },
+ {
+  "slug": "mode-focus-ency",
+  "cat": "gameplay",
+  "icon": "eye",
+  "nom": "Mode Focus",
+  "bref": "Une vision spéciale qui révèle secrets, ennemis et indices, et ralentit le temps en combat.",
+  "sait": [
+   "Il s'active en enfonçant les deux sticks.",
+   "Il montre les notes avec des codes de coffre et les traces d'animaux."
+  ],
+  "incertain": [
+   "La liste complète de ce qu'il révèle."
+  ],
+  "liens": [
+   "mode-focus",
+   "codes-coffres"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "rockstarintel-controls"
+  ]
+ },
+ {
+  "slug": "statistiques",
+  "cat": "gameplay",
+  "icon": "trophy",
+  "nom": "Statistiques",
+  "bref": "Force, Cardio et Focus, chacune jusqu'au niveau 4.",
+  "sait": [
+   "La Force augmente la vie maximale, le Cardio l'endurance.",
+   "La forme baisse si on saute les séances."
+  ],
+  "incertain": [
+   "Les noms exacts varient selon les guides (Santé, Endurance…)."
+  ],
+  "liens": [
+   "augmenter-stats",
+   "se-soigner"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "gtabase-stats"
+  ]
+ },
+ {
+  "slug": "gangs",
+  "cat": "gameplay",
+  "icon": "target",
+  "nom": "Gangs et opérations illégales",
+  "bref": "Environ 40 opérations illégales (39 à 41 selon les guides) à piller dans tout Leonida, tenues par 8 gangs et des « autres criminels ».",
+  "sait": [
+   "Le coffre et la drogue reviennent ; les objets uniques, non."
+  ],
+  "incertain": [
+   "Le nombre exact d'opérations varie selon les guides."
+  ],
+  "liens": [
+   "operations-gangs",
+   "argent-debut"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "keengamer-illegal"
+  ]
+ },
+ {
+  "slug": "edition-ultimate",
+  "cat": "le-jeu",
+  "icon": "sparkle",
+  "nom": "Édition Ultimate",
+  "bref": "Une édition avec véhicules, boutiques et objets bonus débloqués au fil des chapitres.",
+  "sait": [
+   "Les bonus sont listés dans la page Boutique du menu Pause."
+  ],
+  "incertain": [
+   "Certains emplacements diffèrent selon les guides."
+  ],
+  "liens": [
+   "bonus-ultimate",
+   "vapid-ganado"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "redbull-ultimate",
+   "mobalytics-ultimate"
+  ]
+ },
+ {
+  "slug": "planques-ency",
+  "cat": "histoire",
+  "icon": "home",
+  "nom": "Planques",
+  "bref": "Quatre planques, une par chapitre, offertes par l'histoire.",
+  "sait": [
+   "Chapitre 1 : maison de Jason à Key Lento. Chapitre 2 : Starlet Motel. Chapitre 3 : appartement de Boobie à Bayside. Chapitre 4 : hôtel Y à Ocean Beach.",
+   "On ne peut pas acheter de planque, seulement des garages."
+  ],
+  "incertain": [
+   "Une cinquième planque au chapitre 5 (Pegassi Residences), citée par un seul guide."
+  ],
+  "liens": [
+   "planques",
+   "stocker-vehicules"
+  ],
+  "statut": "a-verifier",
+  "sources": [
+   "timesaver-safehouses",
+   "gtabase-properties"
+  ],
+  "lieu": "planque-jason"
+ }
+]

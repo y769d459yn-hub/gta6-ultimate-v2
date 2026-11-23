@@ -1,0 +1,385 @@
+{
+ "marque": "Leonida Guide",
+ "url": "https://y769d459yn-hub.github.io/gta6-ultimate-v2",
+ "lang": "fr",
+ "majLe": "2026-11-22",
+ "categories": {
+  "astuces": [
+   {
+    "id": "missions",
+    "nom": "Missions",
+    "icon": "flag",
+    "color": "#ff3d6e"
+   },
+   {
+    "id": "argent",
+    "nom": "Argent",
+    "icon": "money",
+    "color": "#3ddc84"
+   },
+   {
+    "id": "vehicules",
+    "nom": "Véhicules",
+    "icon": "car",
+    "color": "#ff9a1f"
+   },
+   {
+    "id": "exploration",
+    "nom": "Exploration",
+    "icon": "compass",
+    "color": "#19d3e3"
+   },
+   {
+    "id": "gameplay",
+    "nom": "Gameplay",
+    "icon": "gamepad",
+    "color": "#9b6bff"
+   },
+   {
+    "id": "debuter",
+    "nom": "Débuter",
+    "icon": "sprout",
+    "color": "#ffd23f"
+   }
+  ],
+  "vehicules": [
+   {
+    "id": "voitures",
+    "nom": "Voitures",
+    "icon": "car",
+    "color": "#ff9a1f"
+   },
+   {
+    "id": "motos",
+    "nom": "Motos",
+    "icon": "moto",
+    "color": "#ff7a3d"
+   },
+   {
+    "id": "bateaux",
+    "nom": "Bateaux",
+    "icon": "boat",
+    "color": "#19d3e3"
+   },
+   {
+    "id": "avions",
+    "nom": "Avions",
+    "icon": "plane",
+    "color": "#9b6bff"
+   },
+   {
+    "id": "autres",
+    "nom": "Autres",
+    "icon": "sparkle",
+    "color": "#3ddc84"
+   }
+  ],
+  "lieux": [
+   {
+    "id": "region",
+    "nom": "Régions",
+    "icon": "map",
+    "color": "#ff2d87"
+   },
+   {
+    "id": "quartier",
+    "nom": "Quartiers",
+    "icon": "city",
+    "color": "#ff9a1f"
+   },
+   {
+    "id": "batiment",
+    "nom": "Bâtiments",
+    "icon": "building",
+    "color": "#19d3e3"
+   },
+   {
+    "id": "poi",
+    "nom": "Points d'intérêt",
+    "icon": "pin",
+    "color": "#ffd23f"
+   }
+  ],
+  "encyclopedie": [
+   {
+    "id": "personnages",
+    "nom": "Personnages",
+    "icon": "person",
+    "color": "#ff2d87"
+   },
+   {
+    "id": "lieux",
+    "nom": "Lieux",
+    "icon": "map",
+    "color": "#19d3e3"
+   },
+   {
+    "id": "vehicules",
+    "nom": "Véhicules",
+    "icon": "car",
+    "color": "#ff9a1f"
+   },
+   {
+    "id": "gameplay",
+    "nom": "Gameplay",
+    "icon": "gamepad",
+    "color": "#9b6bff"
+   },
+   {
+    "id": "histoire",
+    "nom": "Histoire",
+    "icon": "book",
+    "color": "#ffd23f"
+   },
+   {
+    "id": "le-jeu",
+    "nom": "Le jeu",
+    "icon": "console",
+    "color": "#3ddc84"
+   }
+  ],
+  "carte": [
+   {
+    "id": "vehicules",
+    "nom": "Véhicules",
+    "q": "Une voiture",
+    "icon": "car",
+    "color": "#ff9a1f",
+    "sens": "Véhicules remarquables, véhicules à commander et où trouver une voiture, une moto, un bateau ou un avion"
+   },
+   {
+    "id": "armes",
+    "nom": "Armes",
+    "q": "Une arme",
+    "icon": "gun",
+    "color": "#ff5a3c",
+    "sens": "Armes au sol, armes uniques, armureries et stands de tir"
+   },
+   {
+    "id": "collection",
+    "nom": "Objets à collectionner",
+    "q": "Un objet",
+    "icon": "chest",
+    "color": "#c77dff",
+    "sens": "Cartes, paquets cachés, météorites, scans WAiNK, trésors…"
+   },
+   {
+    "id": "argent",
+    "nom": "Argent",
+    "q": "De l'argent",
+    "icon": "money",
+    "color": "#39ff88",
+    "sens": "Banques, coffres-forts, magasins à braquer, receleurs et caches"
+   },
+   {
+    "id": "commerces",
+    "nom": "Commerces",
+    "q": "Un magasin",
+    "icon": "diamond",
+    "color": "#ffd23f",
+    "sens": "Vêtements, coiffeur, tatoueur, épicerie, essence…"
+   },
+   {
+    "id": "services",
+    "nom": "Services",
+    "q": "Un service",
+    "icon": "heart",
+    "color": "#4da3ff",
+    "sens": "Hôpitaux, police, garages, planques, marinas, aéroport"
+   },
+   {
+    "id": "missions",
+    "nom": "Missions",
+    "q": "Une mission",
+    "icon": "flag",
+    "color": "#ff3d6e",
+    "sens": "Où se passent les missions de l'histoire"
+   },
+   {
+    "id": "lieux",
+    "nom": "Lieux et secrets",
+    "q": "Un lieu secret",
+    "icon": "pin",
+    "color": "#ff2d87",
+    "sens": "Quartiers, monuments et endroits à découvrir"
+   },
+   {
+    "id": "activites",
+    "nom": "Activités",
+    "q": "Une activité",
+    "icon": "wave",
+    "color": "#19d3e3",
+    "sens": "Cascades, courses, passages sous les ponts, sport, pêche, événements…"
+   }
+  ],
+  "actualites": [
+   {
+    "id": "officiel",
+    "nom": "Annonces officielles",
+    "icon": "badge",
+    "color": "#3ddc84"
+   },
+   {
+    "id": "maj",
+    "nom": "Mises à jour",
+    "icon": "refresh",
+    "color": "#19d3e3"
+   },
+   {
+    "id": "a-verifier",
+    "nom": "À vérifier",
+    "icon": "question",
+    "color": "#ffd23f"
+   }
+  ]
+ },
+ "statuts": {
+  "confirme": {
+   "nom": "Confirmé",
+   "desc": "Confirmé par plusieurs sources qui concordent."
+  },
+  "a-verifier": {
+   "nom": "À vérifier",
+   "desc": "Donné par les guides, pas encore recoupé partout."
+  },
+  "provisoire": {
+   "nom": "Provisoire",
+   "desc": "Information partielle ou donnée par une seule source."
+  }
+ },
+ "synonymes": {
+  "argent": [
+   "thune",
+   "fric",
+   "money",
+   "cash",
+   "oseille",
+   "blé",
+   "dollars",
+   "dollar",
+   "riche",
+   "pognon"
+  ],
+  "police": [
+   "flic",
+   "flics",
+   "cops",
+   "keufs",
+   "poulets",
+   "etoiles",
+   "étoiles",
+   "wanted",
+   "recherche",
+   "recherché",
+   "heat"
+  ],
+  "voiture": [
+   "caisse",
+   "bagnole",
+   "car",
+   "auto",
+   "vehicule",
+   "véhicule",
+   "supercar",
+   "tire"
+  ],
+  "moto": [
+   "bike",
+   "deux roues",
+   "scooter"
+  ],
+  "bateau": [
+   "boat",
+   "jetski",
+   "jet-ski",
+   "airboat",
+   "hydroglisseur",
+   "vedette"
+  ],
+  "avion": [
+   "plane",
+   "jet",
+   "helico",
+   "hélico",
+   "hélicoptère",
+   "helicoptere"
+  ],
+  "sauvegarder": [
+   "save",
+   "sauvegarde",
+   "enregistrer",
+   "sauver"
+  ],
+  "triche": [
+   "cheat",
+   "cheats",
+   "code",
+   "codes",
+   "astuce"
+  ],
+  "voyage rapide": [
+   "fast travel",
+   "teleporter",
+   "téléporter",
+   "taxi",
+   "rydeme",
+   "aller vite"
+  ],
+  "arme": [
+   "armes",
+   "gun",
+   "flingue",
+   "fusil",
+   "pistolet",
+   "weapon"
+  ],
+  "carte": [
+   "map",
+   "plan",
+   "emplacement",
+   "localisation",
+   "position"
+  ],
+  "personnage": [
+   "perso",
+   "jason",
+   "lucia",
+   "heros",
+   "héros",
+   "switch"
+  ],
+  "telephone": [
+   "phone",
+   "portable",
+   "tel",
+   "appli",
+   "app",
+   "smartphone"
+  ],
+  "mission": [
+   "missions",
+   "quete",
+   "quête",
+   "histoire",
+   "chapitre"
+  ],
+  "garage": [
+   "ranger",
+   "stocker",
+   "parking"
+  ],
+  "debuter": [
+   "debut",
+   "début",
+   "commencer",
+   "noob",
+   "nouveau",
+   "premiers pas",
+   "bases"
+  ]
+ },
+ "comptes": {
+  "url": "https://shpzxvdubrqkastpvcgz.supabase.co",
+  "cle": "sb_publishable_F8BtniSVSlVktxL32CzckQ_Lz4j7GcW"
+ }
+}

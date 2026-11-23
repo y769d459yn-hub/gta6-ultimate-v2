@@ -1,0 +1,25 @@
+{
+  "$schema": "./schemas/carte.schema.json",
+  "version": 2,
+  "info": "Coordonnées en unités monde GTADB : x vers l'est, y vers le nord, origine au centre de la carte (monde de 32 768 unités de côté). Positions communautaires approximatives.",
+  "fond": "tuiles.json",
+  "bornes": { "ouest": -9600, "est": 3200, "sud": -7600, "nord": 9000 },
+  "vueInitiale": { "centre": [-3200, 700], "zoomMin": 0.6 },
+  "regions": [
+    { "id": "vice-city", "nom": "Vice City", "couleur": "#ff2bd6" },
+    { "id": "leonida-keys", "nom": "Leonida Keys", "couleur": "#9d7bff" },
+    { "id": "grassrivers", "nom": "Grassrivers", "couleur": "#2de2e6" },
+    { "id": "port-gellhorn", "nom": "Port Gellhorn", "couleur": "#ffb547" },
+    { "id": "ambrosia", "nom": "Ambrosia", "couleur": "#ffd23f" },
+    { "id": "mount-kalaga", "nom": "Mount Kalaga", "couleur": "#39ff88" }
+  ],
+  "communaute": {
+    "categories": [
+      { "id": "transport", "nom": "Transports", "tags": ["transportation", "#bus", "#train", "#airport", "#metromover", "infrastructure"] },
+      { "id": "commerce", "nom": "Commerces", "tags": ["retail", "restaurant", "hotel", "#gas", "#supermarket", "service", "office"] },
+      { "id": "nature", "nom": "Nature et loisirs", "tags": ["natural", "leisure", "agriculture", "events"] },
+      { "id": "public", "nom": "Services publics", "tags": ["government", "utilities", "public"] },
+      { "id": "repere", "nom": "Repères", "tags": [] }
+    ]
+  }
+}

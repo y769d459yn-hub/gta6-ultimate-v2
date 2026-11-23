@@ -1,0 +1,701 @@
+[
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Grants $250,000 in money",
+  "unlock": "Finish the story",
+  "seq": [
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "DOWN",
+   "DOWN",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Makes the player and their partner drunk",
+  "unlock": "Spend $2,500 on alcohol",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Raises the heat level in every area of the map",
+  "unlock": "Lose a three-star wanted level 25 times",
+  "seq": [
+   "LEFT",
+   "LEFT",
+   "DOWN",
+   "DOWN",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP"
+  ]
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Raises the wanted level across the map",
+  "unlock": "Lose a three-star wanted level 50 times",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Focus never depletes",
+  "unlock": "Finish the story",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Prevents fall damage",
+  "unlock": "Survive 20 freefalls from a height of at least 40 feet",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Adds a Parachute to the player's inventory",
+  "unlock": "Complete 50 skydives or base jumps from 300 feet or higher",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Adds Body Armor to the player's inventory",
+  "unlock": "Complete 100 workouts",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Fully repairs the vehicle the player is driving",
+  "unlock": "Place first in 10 races each at Gellhorn Raceway, Thrillbilly Mud Club and Boone Speedway",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Player\">Player",
+  "effet": "Nitrous and fuel are never used up in vehicles",
+  "unlock": "Complete 50 stunt jumps",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Refills ammunition for all weapons",
+  "unlock": "Earn 25 bronze medals or better at shooting ranges",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT"
+  ]
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Ammunition is never depleted",
+  "unlock": "Earn 25 silver medals or better at shooting ranges",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Ammunition is never depleted and weapons do not need reloading",
+  "unlock": "Earn 25 gold medals at shooting ranges",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP"
+  ]
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Adds every explosive weapon to the player's inventory with full ammunition",
+  "unlock": "Throw 100 grenades",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "All ammunition becomes incendiary",
+  "unlock": "Set 100 enemies on fire",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Bottles explode when damaged",
+  "unlock": "Throw 100 molotov cocktails",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Adds a Mason & Keen Shortstraw shotgun that fires explosive shells",
+  "unlock": "Hit 100 enemies with explosive damage",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Adds a Hauners H-AT to the player's inventory",
+  "unlock": "Destroy 100 vehicles",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Gunshots and melee attacks send targets flying",
+  "unlock": "Finish the story",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP"
+  ]
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Sports balls explode on impact",
+  "unlock": "Hit 20 enemies with explosive damage",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Combat\">Combat",
+  "effet": "Collisions with vehicles send targets flying",
+  "unlock": "Kill 25 enemies with a vehicle (running over civilians also counts)",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Interstate Ambulance",
+  "unlock": "Discover the Interstate Ambulance in the Progress menu",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Airboat 09",
+  "unlock": "Complete 5 survival challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Bravado Banshee",
+  "unlock": "Complete every combat challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Tuff BMX",
+  "unlock": "Complete 5 fitness challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Maibatsu Boomazoom",
+  "unlock": "Complete 5 shopping challenges",
+  "seq": [
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT"
+  ]
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Nagasaki Carbon RS",
+  "unlock": "Complete every exploration challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "'65 Vapid Dominator",
+  "unlock": "Complete every fitness challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Progen Emerus",
+  "unlock": "Complete every vehicle challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Inflatable Flamingo",
+  "unlock": "Destroy 50 cocaine flamingos",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "MTL Pumper",
+  "unlock": "TBA",
+  "seq": [
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP"
+  ]
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Vapid Stanier G2 Taxi",
+  "unlock": "Complete 5 sports challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Hauners P-996 Lazer",
+  "unlock": "Complete every challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "HVY Bulldozer",
+  "unlock": "Discover the HVY Bulldozer in the Progress menu",
+  "seq": [
+   "LEFT",
+   "LEFT",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "DOWN",
+   "DOWN"
+  ]
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Lapwing Mallard",
+  "unlock": "Complete 5 vehicle challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Brimstone Golfer",
+  "unlock": "Complete every sports challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Hauners Rhino Tank",
+  "unlock": "Complete every survival challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Maibatsu Sanchez",
+  "unlock": "Complete 5 criminal challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Nagasaki Sea Sparrow",
+  "unlock": "Complete 5 exploration challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Speeder 700 GT",
+  "unlock": "Complete 5 combat challenges",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Truffade Thrax",
+  "unlock": "Complete every shopping challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Vehicles\">Vehicles",
+  "effet": "Western Zombie Bobber",
+  "unlock": "Complete every criminal challenge",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Environment\">Environment",
+  "effet": "Advances the time of day",
+  "unlock": "Find 10 collectible watches",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Environment\">Environment",
+  "effet": "Freezes the time of day",
+  "unlock": "Find 20 collectible watches",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Environment\">Environment",
+  "effet": "Cycles through the weather types",
+  "unlock": "Finish the story",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "DOWN",
+   "DOWN",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Golden Hour (Gold tint with a widescreen aspect ratio.)",
+  "unlock": "Spend 4 hours holding hands with the partner",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Powdered Sugar (The world turns white, with sparkling highlights.)",
+  "unlock": "Scan all space debris with WAiNK",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Pinhole (Pinhole camera effect.)",
+  "unlock": "Clear 25 gang operations with the partner",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Neon Jungle (Neon highlights across the world.)",
+  "unlock": "Discover all 16 Girlypop vehicles",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Yesteryear (Black-and-white CRT television effect.)",
+  "unlock": "Discover the Ridgeway",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Cataclysm (The world fills with dark smoke.)",
+  "unlock": "Discover Martha's Vamos in the Progress menu",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Videotape (Videotape effect.)",
+  "unlock": "Complete 50 activities with the partner",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Dark Mirror (The world is turned upside down and goes black.)",
+  "unlock": "Earn $500,000 from selling vehicles",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Migraine (Blurred and distorted view.)",
+  "unlock": "Survive 6 minutes at a six-star wanted level",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Dollhouse (Vivid colors with a narrow aspect ratio.)",
+  "unlock": "Spend 8 hours with the partner",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "DOWN",
+   "DOWN",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Bubblegum (Purple and yellow world with sparkling highlights.)",
+  "unlock": "Find all 24 collectible cards for the Vice City Flamingos",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Fast Forward (Motion blur, with clouds moving more quickly.)",
+  "unlock": "Complete 50 meditations",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Fisheye (Fisheye lens effect.)",
+  "unlock": "Catch 100 fish",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Faded Glory (Color CRT television effect.)",
+  "unlock": "Rob 50 stores with the partner",
+  "seq": [
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "DOWN",
+   "UP",
+   "UP",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "RIGHT",
+   "UP",
+   "UP",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "LEFT",
+   "RIGHT",
+   "RIGHT"
+  ]
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Pixel Art (Pixelated view.)",
+  "unlock": "Earn $250,000 from selling collectibles",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Screen_Filters\">Screen Filters",
+  "effet": "Hellscape (Red and orange world with a heat haze.)",
+  "unlock": "Steal 100 police vehicles",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Navigation\">Navigation",
+  "effet": "Grand Theft Auto: London",
+  "unlock": "[\"Cheats in GTA London\",\"Radio Stations in GTA London\",\"Weapons in GTA\",\"Vehicles in GTA London 1961\",\"Missions in GTA London 1961\",\"Characters in GTA London 1961\",\"Manchester\",\"London\",\"Protagonists in GTA London\",\"Cheats in GTA London\",\"Radio Stations in GTA London\",\"Weapons in GTA\",\"Vehicles in GTA London 1969\",\"Missions in GTA London 1969\",\"Characters in GTA London 1969\",\"London\",\"Protagonists in GTA London\"]London 1969",
+  "seq": []
+ },
+ {
+  "cat": "id=\"Navigation\">Navigation",
+  "effet": "Episodes from Liberty City",
+  "unlock": "[\"Cheats in GTA IV\",\"Achievements and Trophies in GTA IV\",\"Radio Stations in GTA IV\",\"Weapons in TBOGT\",\"Vehicles in TBOGT\",\"Missions in TBOGT\",\"Gangs in GTA IV\",\"Characters in TBOGT\",\"State of Alderney\",\"Liberty City (HD Universe)\",\"Luis Fernando Lopez\",\"Cheats in GTA IV\",\"Achievements and Trophies in GTA IV\",\"Radio Stations in GTA IV\",\"Weapons in TLAD\",\"Vehicles in TLAD\",\"Missions in TLAD\",\"Gangs in GTA IV\",\"Characters in TLAD\",\"State of Alderney\",\"Liberty City (HD Universe)\",\"Johnny Klebitz\"]The Lost and Damned",
+  "seq": []
+ }
+]

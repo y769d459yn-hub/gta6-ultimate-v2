@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "carte.schema.json",
+  "title": "Configuration de la carte de Leonida",
+  "type": "object",
+  "required": ["version", "info", "fond", "bornes", "vueInitiale", "regions", "communaute"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "minimum": 2 },
+    "info": { "type": "string" },
+    "fond": { "type": "string", "pattern": "\\.json$" },
+    "bornes": { "type": "object", "required": ["ouest", "est", "sud", "nord"], "properties": { "ouest": { "type": "number" }, "est": { "type": "number" }, "sud": { "type": "number" }, "nord": { "type": "number" } } },
+    "vueInitiale": { "type": "object", "required": ["centre", "zoomMin"], "properties": { "centre": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number" } }, "zoomMin": { "type": "number" } } },
+    "regions": { "type": "array", "minItems": 6, "items": { "type": "object", "required": ["id", "nom", "couleur"], "properties": { "id": { "type": "string", "pattern": "^[a-z-]+$" }, "nom": { "type": "string" }, "couleur": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } } } },
+    "communaute": { "type": "object", "required": ["categories"], "properties": { "categories": { "type": "array", "items": { "type": "object", "required": ["id", "nom", "tags"], "properties": { "id": { "type": "string" }, "nom": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } } } } } } }
+  }
+}
