@@ -1177,43 +1177,6 @@ for (const a of ACTUS) {
   emit(p, layout({ p, title: `Mon compte | ${M}`, desc: 'Accédez à vos favoris et préférences.', body, noindex: true, cls: 'p-account' }));
 }
 
-// ---------- ADMIN ----------
-{
-  const p = 'admin/', R = R_(p);
-  const rows = [
-    ...ASTUCES.map((a) => ({ type: 'Guides', t: a.titre, st: a.statut, pub: a.publie === false ? 'Brouillon' : 'Publié', u: `astuces/${a.slug}/`, src: a.sources.length })),
-    ...VEHICULES.map((v) => ({ type: 'Véhicules', t: v.nom, st: v.dispo, pub: 'Publié', u: `vehicules/${v.slug}/`, src: v.sources.length })),
-    ...LIEUX.map((l) => ({ type: 'Carte', t: l.nom, st: l.statut, pub: 'Publié', u: `lieux/#${l.id}`, src: l.sources.length, pos: onMap(l.id) ? l.precision : 'hors carte' })),
-    ...ACTUS.map((a) => ({ type: 'Actualités', t: a.titre, st: a.statut === 'officiel' ? 'confirme' : 'a-verifier', pub: 'Publié', u: `actualites/${a.slug}/`, src: a.sources.length })),
-    ...ENC.map((e) => ({ type: 'Encyclopédie', t: e.nom, st: e.statut, pub: 'Publié', u: `encyclopedie/${e.slug}/`, src: e.sources.length }))
-  ];
-  const drafts = rows.filter((r) => r.pub === 'Brouillon').length;
-  const toCheck = rows.filter((r) => r.st !== 'confirme').length;
-  const types = ['Guides', 'Véhicules', 'Carte', 'Actualités', 'Encyclopédie'];
-  const tpl = JSON.stringify({ slug: 'nouveau-guide', cat: 'debuter', icon: 'bolt', titre: 'Comment … ?', court: '…', reponse: '…', etapes: ['…', '…', '…'], asavoir: '…', duree: 2, niveau: 'facile', statut: 'provisoire', publie: false, sources: [], kw: [], voir: [] }, null, 2);
-  const body = `<section class="wrap section" data-list data-page-size="40">
-  <h1 class="h1">Gérer le site</h1>
-  <p class="note">${icon('shield')}<span>Écran privé, non indexé, en lecture seule. On modifie le contenu dans <code>data/*.json</code>. Chaque contenu est relu par une personne avant publication, en deux étapes séparées : « Vérifier », puis « Approuver ». Rien n'est publié automatiquement par une IA.</span></p>
-  <div class="acc-grid acc-grid--3">
-    <div class="acc-card" style="--c:#ff9a1f"><span class="tile-ico">${icon('list')}</span><b>À traiter</b><span class="acc-big">${drafts}</span><small>brouillons</small></div>
-    <div class="acc-card" style="--c:#ffd23f"><span class="tile-ico">${icon('question')}</span><b>À vérifier</b><span class="acc-big">${toCheck}</span><small>contenus non confirmés</small></div>
-    <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico">${icon('check')}</span><b>Confirmés</b><span class="acc-big">${rows.length - toCheck}</span><small>sur ${rows.length}</small></div>
-  </div>
-  <details class="more"><summary>${icon('plus')}Nouveau guide</summary><p>Copie ce modèle dans <code>data/astuces.json</code>. Laisse « publie » à false tant qu'il n'est pas approuvé.</p><pre class="code">${esc(tpl)}</pre></details>
-  ${fieldFilter('Texte recherché')}
-  <div class="filterbar">
-    ${chipGroup('cat', 'Type', types.map((t) => ({ v: norm(t), n: t })), { all: 'Tous types' })}
-    ${chipGroup('ver', 'Fiabilité', [{ v: 'provisoire', n: 'Provisoire' }, { v: 'a-verifier', n: 'À vérifier' }, { v: 'confirme', n: 'Confirmé' }], { all: 'Toute fiabilité' })}
-    ${chipGroup('pub', 'État', [{ v: 'publie', n: 'Publié' }, { v: 'brouillon', n: 'Brouillon' }], { all: 'Tout état' })}
-  </div>
-  <p class="count-line" data-count></p>
-  <div class="list list--admin" data-items>${rows.map((r) => `<div class="arow" data-cat="${norm(r.type)}" data-ver="${r.st}" data-pub="${norm(r.pub)}" data-text="${esc(norm(r.t + ' ' + r.type))}"><span class="pill">${esc(r.type)}</span><a href="${R}${r.u}">${esc(r.t)}</a>${badge(r.st)}<span class="pill">${esc(r.pub)}</span><span class="muted small">${r.src} source${r.src > 1 ? 's' : ''}${r.pos ? ' · ' + esc(r.pos) : ''}</span><span class="arow-act"><button class="chip" type="button" data-admin-act="verifier">Vérifier</button><button class="chip" type="button" data-admin-act="approuver" disabled>Approuver</button></span></div>`).join('')}</div>
-  ${emptyState('Aucun contenu.', R)}
-  ${moreBtn}
-</section>`;
-  emit(p, layout({ p, title: `Administration | ${M}`, desc: 'Gestion privée des contenus.', body, noindex: true, cls: 'p-admin' }));
-}
-
 // ---------- A PROPOS ----------
 {
   const p = 'a-propos/', R = R_(p);
@@ -1330,7 +1293,7 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
 write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'Leonida', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
-write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
+write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');

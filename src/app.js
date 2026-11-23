@@ -385,14 +385,6 @@
     });
   }
 
-  // ---------- admin (démo locale, validation humaine en 2 temps) ----------
-  $$('[data-admin-act="verifier"]').forEach((b) => b.addEventListener('click', () => {
-    const row = b.closest('.arow'); row.classList.toggle('is-checked');
-    const ap = row.querySelector('[data-admin-act="approuver"]'); ap.disabled = !row.classList.contains('is-checked');
-    b.setAttribute('aria-pressed', row.classList.contains('is-checked'));
-  }));
-  $$('[data-admin-act="approuver"]').forEach((b) => b.addEventListener('click', () => toast('Approbation notée : reporte-la dans data/*.json', 'check')));
-
   // ---------- animations (GSAP chargé à la demande) ----------
   function animate() {
     const g = window.gsap;

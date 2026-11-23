@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
 Disallow: /compte/
 Disallow: /favoris/
 Sitemap: https://y769d459yn-hub.github.io/gta6-ultimate-v2/sitemap.xml
