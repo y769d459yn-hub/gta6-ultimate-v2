@@ -130,12 +130,13 @@ OBJETS = {'Mattress': 'Matelas', 'Cone': 'Cône', 'Fridge': 'Frigo', 'Chair': 'C
     'Microwave': 'Micro-ondes', 'Lamp': 'Lampe', 'Table': 'Table', 'Bike': 'Vélo', 'Car': 'Voiture', 'Boat': 'Bateau', 'Trash Can': 'Poubelle',
     'Dumpster': 'Benne', 'Oven': 'Four', 'Stove': 'Cuisinière', 'Piano': 'Piano', 'Bathtub': 'Baignoire', 'Crate': 'Caisse', 'Drum': 'Bidon'}
 PARENS = {'safe': 'coffre-fort', 'beach party': 'fête sur la plage', 'bus': 'bus', "lovers' camp": 'camp des amoureux', 'Garage': 'garage',
-    'Dock Warehouse': 'entrepôt du quai', 'Armory': 'armurerie', 'Lieutenant Room': 'chambre du lieutenant', 'Gold': 'or', 'Wyman kit car': 'voiture en kit Wyman',
+    'Dock Warehouse': 'entrepôt du quai', 'toilet': 'toilettes', 'island': 'île', 'VR Gamer house safe': 'coffre de la maison du joueur VR', 'Capri North': 'Capri nord', 'Capri South': 'Capri sud', 'beached whale': 'baleine échouée', 'chimney': 'cheminée', 'clinic': 'clinique', 'observatory': 'observatoire', 'Armory': 'armurerie', 'Lieutenant Room': 'chambre du lieutenant', 'Gold': 'or', 'Wyman kit car': 'voiture en kit Wyman',
     'Pink/Blue': 'rose et bleu', 'North': 'nord', 'South': 'sud', 'East': 'est', 'West': 'ouest', 'helicopter': 'hélicoptère', 'boat': 'bateau',
     'house': 'maison', 'roof': 'toit', 'rooftop': 'toit', 'bar': 'bar', 'motel': 'motel', 'pool': 'piscine', 'dock': 'ponton', 'garage': 'garage',
     'kitchen': 'cuisine', 'bedroom': 'chambre', 'bathroom': 'salle de bain', 'office': 'bureau', 'shed': 'cabane', 'trailer': 'caravane',
     'caravan': 'caravane', 'warehouse': 'entrepôt', 'basement': 'sous-sol', 'attic': 'grenier', 'porch': 'porche', 'yard': 'jardin', 'church': 'église'}
 FIN = [
+    (r'^Overheard Conversation(.*)$', r'Conversation surprise\1'),
     (r'^Magazine rack: (.+)$', r'Présentoir à magazines : \1'), (r"^Styling Magazine \(Lucia's make-up\)$", 'Magazine de style (maquillage de Lucia)'),
     (r'^Styling Magazine \(Waink scan\)$', 'Magazine de style (scan WAiNK)'), (r'^Styling Magazine: Beard Style$', 'Magazine de style : barbe'),
     (r'^Styling Magazine: Cowboy Horseshoe Mustache$', 'Magazine de style : moustache en fer à cheval'), (r'^Styling Magazine: Lucia Make-up$', 'Magazine de style : maquillage de Lucia'), (r'^Styling Magazine: Square Goatee \(Jason\)$', 'Magazine de style : bouc carré (Jason)'), (r'^Styling Magazine: (.+)$', r'Magazine de style : \1'),

@@ -1,0 +1,296 @@
+{
+ "info": "Dossiers (pages piliers) : relevé du 23/11/2026. Contenu rédigé par le site à partir de ses fiches, de la carte et des guides cités.",
+ "dossiers": [
+  {
+   "slug": "codes-coffres",
+   "icon": "bank",
+   "couleur": "#ffb547",
+   "court": "Codes de coffres",
+   "titre": "Tous les codes de coffres de GTA 6",
+   "seo": "Codes de coffres GTA 6 : tous les codes connus et où les trouver",
+   "desc": "Tous les codes de coffres-forts connus dans GTA 6 : repaires de gangs, lieux secrets, missions. Et comment trouver le code d'un coffre de braquage.",
+   "reponse": "Ça dépend du coffre. Les coffres des braquages (magasins, banques, bijouteries) changent de code à chaque partie et même à chaque braquage : cherche la note avec le mode Focus. Les coffres des repaires de gangs, des lieux secrets et de certaines missions ont un code fixe : ils sont listés ci-dessous.",
+   "sections": [
+    {
+     "titre": "Codes fixes confirmés par plusieurs guides",
+     "icon": "check",
+     "items": [
+      { "t": "Kingpin Bowling (Port Gellhorn)", "code": "0300", "d": "Coffre du petit bureau, au coin nord-est. Un guide donne 0330 : essaie-le si 0300 ne marche pas.", "carte": "o-safe-015" },
+      { "t": "La Cascara Motel (Port Gellhorn)", "code": "6969", "d": "Coffre de la chambre du lieutenant. Le code est aussi sur la carte murale à l'étage de Brooks Boatworks.", "carte": "o-safe-009" },
+      { "t": "Brooks Boatworks (Port Gellhorn)", "code": "6823", "d": "Le code est sur la carte murale, à l'étage du bâtiment gris.", "carte": "o-gang-operation-007" },
+      { "t": "Sunrise RV Park (Kingfishers)", "code": "6769", "d": "Coffre du bâtiment du quai.", "carte": "o-gang-operation-002" },
+      { "t": "Caravane de Cottonmouth Lake", "code": "44017", "d": "Le code est caché près des cartes postales accrochées au mur.", "carte": "o-safe-041" },
+      { "t": "Nova Auto Junkyard (Hamlet)", "code": "7777", "d": "Coffre du garage, dans la casse tenue par M7.", "carte": "o-safe-036" },
+      { "t": "Garage JanJak's (La Perle)", "code": "4444", "d": "Le code est sur une note collée au frigo. Le coffre est dans la pièce d'à côté.", "carte": "o-safe-022" },
+      { "t": "Avant-poste de Pelican Valley", "code": "0072", "d": "Coffre de l'avant-poste. Le code 0212 ouvre une porte près du ponton, pas un coffre." },
+      { "t": "Delights (Port Gellhorn)", "code": "2008", "d": "Coffre du cabaret.", "carte": "m-delights" },
+      { "t": "Marbelle Hotel", "code": "955214", "d": "Code donné par plusieurs guides." }
+     ]
+    },
+    {
+     "titre": "Coffres des bijouteries de Yasmani (missions)",
+     "icon": "flag",
+     "intro": "Ces codes font partie des missions de Yasmani : ils sont les mêmes pour tout le monde.",
+     "items": [
+      { "t": "Richardson Jewelry & Diamonds", "code": "6815", "carte": "o-smash-n-grab-011" },
+      { "t": "Donovan Banks & Co.", "code": "0104" },
+      { "t": "Casa de Empeño", "code": "1680" }
+     ]
+    },
+    {
+     "titre": "Codes donnés par un seul guide (à vérifier)",
+     "icon": "alert",
+     "warn": true,
+     "items": [
+      { "t": "Repaire des bikers (Ambrosia)", "code": "1982", "carte": "o-safe-011" },
+      { "t": "Saber Shipping Facility (Vice City)", "code": "1122 ou 1965", "d": "Les guides ne sont pas d'accord : essaie les deux.", "carte": "o-safe-026" },
+      { "t": "Coffre de Stormy", "code": "7869", "carte": "o-safe-053" },
+      { "t": "Chambre 115", "code": "4242", "d": "Le même code est donné par l'homme dans la salle de bain du motel (carte « Los Santos Panic »).", "carte": "o-safe-055" },
+      { "t": "Taudis", "code": "9790", "carte": "o-safe-058" },
+      { "t": "Kalinga .50 (Black Eagle Import)", "code": "789987 puis 031462", "d": "Le premier code ouvre la porte, le second le coffre où est l'arme.", "carte": "o-weapon-spawn-050" },
+      { "t": "Maison abandonnée (carte « Dunks Exclusive »)", "code": "23554", "d": "Entre par le toit : la carte est dans le coffre.", "carte": "o-collectible-card-113" },
+      { "t": "Maison avec le chien (carte « Liberty City Wrath »)", "code": "6961", "carte": "o-card-liberty-city-wrath-001" },
+      { "t": "Trappe de la tour (Hamlet)", "code": "2341", "d": "Porte au bas de la tour, vers la salle d'opérations.", "carte": "o-comics-002" },
+      { "t": "Hangar de Pilot Pete (aérodrome de Sundown)", "code": "3718" },
+      { "t": "Fleeca Bank de Key Lento", "code": "1747", "d": "Attention : les coffres de banque changent souvent de code. Si celui-ci ne marche pas, cherche la note.", "carte": "o-safe-049" }
+     ]
+    },
+    {
+     "titre": "Coffre de braquage : comment trouver le code",
+     "icon": "eye",
+     "etapes": [
+      "Active le mode Focus (les deux sticks en même temps) près du coffre.",
+      "Cherche la note surlignée : post-it, écran d'ordinateur, papier sur un garde à terre.",
+      "Pas de note ? Les petits coffres se crochètent et les caisses se forcent.",
+      "Les codes des braquages changent à chaque fois : une liste trouvée sur Internet ne marchera pas."
+     ]
+    }
+   ],
+   "liens": ["astuces/codes-coffres/", "astuces/operations-gangs/", "astuces/braquer-magasin/", "carte/?cat=argent"],
+   "faq": [
+    ["Pourquoi le code trouvé sur Internet ne marche pas ?", "Parce que les coffres de braquage (magasins, banques, bijouteries hors missions) changent de code à chaque partie. Seuls les coffres des repaires de gangs, des lieux secrets et des missions gardent le même code."],
+    ["Peut-on ouvrir un coffre sans le code ?", "Les petits coffres se crochètent et les caisses se forcent. Les grands coffres demandent le code : cherche la note avec le mode Focus."]
+   ],
+   "sources": [
+    ["GTABase", "https://www.gtabase.com/gta-6/map/?feature=safe"],
+    ["GameSpot", "https://www.gamespot.com/articles/gta-6-safe-codes-and-robberies-guide/"],
+    ["GamesRadar", "https://www.gamesradar.com/games/grand-theft-auto/gta-6-safe-codes/"],
+    ["Tracker.gg", "https://tracker.gg/gta6/safe-codes"],
+    ["Metaforge", "https://metaforge.app/gta-6/gta-6-safe-codes"],
+    ["bo3.gg", "https://bo3.gg/games/articles/gta-6-safe-codes"],
+    ["Open GTA 6 Map", "https://github.com/fbritoferreira/gta6"]
+   ]
+  },
+  {
+   "slug": "argent-rapide",
+   "icon": "money",
+   "couleur": "#3ddc84",
+   "court": "Argent rapide",
+   "titre": "Comment gagner de l'argent vite et facilement dans GTA 6",
+   "seo": "Argent facile et rapide dans GTA 6 : les meilleures méthodes",
+   "desc": "Les meilleures façons de gagner de l'argent vite dans GTA 6, du début à la fin de l'histoire : opérations de gangs, voitures, braquages, code argent.",
+   "reponse": "Au début : vide les opérations illégales des gangs et revends la drogue, puis vends des voitures volées à Moses. À partir du chapitre 3 : les bijouteries rapportent 10 000 à 25 000 $. Après l'histoire : le code argent donne 250 000 $. Et mets toujours ton argent à la banque.",
+   "sections": [
+    {
+     "titre": "Dès le début (chapitres 1 et 2)",
+     "icon": "bolt",
+     "items": [
+      { "t": "Vider les opérations illégales des gangs", "d": "39 planques de 9 gangs : argent du coffre et drogue à revendre. Certaines cachent une arme ou un véhicule unique.", "lien": "astuces/operations-gangs/" },
+      { "t": "Revendre la drogue", "d": "À Brian ou Donnie au chapitre 1, puis à Dunk au chapitre 2.", "lien": "astuces/argent-debut/" },
+      { "t": "Vendre des voitures volées à Moses", "d": "Environ 1 000 $ ou plus par voiture sans traceur, chez Watkins Auto Parts (Port Gellhorn).", "lien": "astuces/vendre-voitures-moses/" },
+      { "t": "Plonger pour Kenton", "d": "Des épaves à remonter sans combattre : la première rapporte environ 1 400 $.", "lien": "astuces/plongees-kenton/" },
+      { "t": "Ramasser l'argent caché", "d": "Conduits d'aération, sacs oubliés : jusqu'à 6 000 $ d'un coup.", "lien": "astuces/caches-argent/" },
+      { "t": "Chasser", "d": "Une bête tuée d'une seule balle se vend plus cher chez Bret.", "lien": "astuces/chasse/" }
+     ]
+    },
+    {
+     "titre": "Les gros coups (chapitre 3 et après)",
+     "icon": "trophy",
+     "items": [
+      { "t": "Braquer une bijouterie", "d": "Environ 10 000 à 25 000 $. Plus tard, les coffres de banque montent jusqu'à environ 205 000 $.", "lien": "astuces/braquer-bijouteries/" },
+      { "t": "Braquer un fourgon blindé", "d": "Tuyau de Yasmani à 10 000 $ après deux braquages de Payday Loan.", "lien": "astuces/fourgons-blindes/" },
+      { "t": "Braquer un prêteur sur gages", "d": "Environ 4 500 à 12 000 $, mais souvent des billets marqués.", "lien": "astuces/preteurs-sur-gages/" },
+      { "t": "Braquer un magasin", "d": "Petit butin mais rapide. Efface les caméras avant de partir.", "lien": "astuces/braquer-magasin/" },
+      { "t": "Arracher un distributeur", "d": "Avec une dépanneuse équipée d'un treuil.", "lien": "astuces/distributeurs/" }
+     ]
+    },
+    {
+     "titre": "Après l'histoire",
+     "icon": "code",
+     "items": [
+      { "t": "Code argent : 250 000 $", "d": "↑ → ↓ ← ↑ ← ↓ →, une fois l'histoire terminée. Il bloque la sauvegarde tant qu'il est actif.", "lien": "astuces/code-argent/" }
+     ]
+    },
+    {
+     "titre": "Ne pas perdre ce que tu as gagné",
+     "icon": "shield",
+     "etapes": [
+      "Mets ton argent liquide à la banque avec l'appli BuckMe : tu perds ce que tu as sur toi si tu meurs ou si tu es arrêté.",
+      "Revends le butin chez un receleur : il ne devient de l'argent qu'une fois vendu.",
+      "Blanchis les billets marqués au Lockup de Brian avant de les dépenser."
+     ]
+    },
+    {
+     "titre": "Et les glitchs d'argent ?",
+     "icon": "alert",
+     "texte": "Aucun glitch d'argent fiable n'est connu pour l'instant. Ceux qui circulent sont souvent faux ou corrigés par une mise à jour, et ils peuvent abîmer ta sauvegarde. Les méthodes ci-dessus marchent à coup sûr."
+    }
+   ],
+   "liens": ["astuces/garder-son-argent/", "astuces/ou-vendre-butin/", "astuces/billets-marques/", "codes/"],
+   "faq": [
+    ["Quelle est la méthode la plus rapide au début ?", "Les opérations illégales des gangs : elles rapportent de l'argent liquide et de la drogue à revendre dès le chapitre 1."],
+    ["Y a-t-il un code d'argent ?", "Oui : ↑ → ↓ ← ↑ ← ↓ → donne 250 000 $, mais seulement une fois l'histoire terminée."],
+    ["Existe-t-il un glitch d'argent ?", "Aucun glitch fiable n'est connu à ce jour."]
+   ],
+   "sources": []
+  },
+  {
+   "slug": "secrets",
+   "icon": "sparkle",
+   "couleur": "#9d7bff",
+   "court": "Secrets et Easter eggs",
+   "titre": "Secrets et Easter eggs de GTA 6",
+   "seo": "Secrets et Easter eggs GTA 6 : Bigfoot, OVNI, fantômes et clins d'œil",
+   "desc": "Les secrets et Easter eggs de GTA 6 repérés par les joueurs : Bigfoot, OVNI, monstre des marais, fantômes, clins d'œil cachés. Avec leur position sur la carte.",
+   "reponse": "Leonida cache des rencontres étranges (Bigfoot, OVNI, monstre des marais, fantômes, homme-sirène) et des clins d'œil de Rockstar. La plupart sont des événements aléatoires : il faut passer au bon endroit, parfois la nuit. Le mode Focus aide à les repérer.",
+   "sections": [
+    {
+     "titre": "Créatures et légendes",
+     "icon": "eye",
+     "items": [
+      { "t": "Bigfoot", "d": "Tu entends des rugissements dans les marais, tu le poursuis, puis tu t'évanouis. Il fait aussi partie d'une quête secondaire.", "carte": "o-random-event-002" },
+      { "t": "Le monstre des marais", "d": "Un hurlement, un cerf tué, une fumée verte qui disparaît dans la forêt.", "carte": "o-random-event-001" },
+      { "t": "Les effigies du Skunk Ape", "d": "Des statues tribales en bois et en plantes, dispersées dans la nature.", "carte": "o-random-event-055" },
+      { "t": "Skunk Apeology 101", "d": "Parle à l'inconnu qui fait voler des drones.", "carte": "o-random-event-017" },
+      { "t": "La sorcière du marais", "d": "Elle te demande de revenir quelques jours plus tard.", "carte": "o-random-event-022" },
+      { "t": "L'homme-sirène", "d": "En direct sur internet sur la plage : prends plus de 2 selfies pour une surprise.", "carte": "o-random-event-076" }
+     ]
+    },
+    {
+     "titre": "OVNI et extraterrestres",
+     "icon": "star",
+     "items": [
+      { "t": "Rencontre extraterrestre", "d": "Une voiture abandonnée phares allumés, puis une lumière vive dans un champ.", "carte": "o-random-event-063" },
+      { "t": "Rencontre du troisième type", "d": "Une voiture qui émet des bruits électroniques et une traînée de vêtements vers les bois.", "carte": "o-random-event-006" },
+      { "t": "OVNI : la voiture suspecte", "d": "Inspecte la voiture au comportement bizarre.", "carte": "o-random-event-016" },
+      { "t": "Bud, chasseur d'extraterrestres", "d": "Vers 19 h, debout sur sa voiture, il essaie d'attirer les extraterrestres.", "carte": "o-random-event-178" },
+      { "t": "Les météorites", "d": "51 fragments repérés, souvent signalés par une lueur rouge.", "lien": "carte/?cat=collection" }
+     ]
+    },
+    {
+     "titre": "Fantômes et lieux qui font peur",
+     "icon": "moon",
+     "items": [
+      { "t": "La femme fantôme", "d": "La nuit, ta voiture s'éteint et une femme rampe vers toi.", "carte": "o-random-event-092" },
+      { "t": "Le fantôme de Rockledge Road", "d": "La nuit, une silhouette traverse la route.", "carte": "o-random-event-157" },
+      { "t": "Le rituel du sacrifice", "d": "Apporte un corps devant le symbole pour lancer une petite quête.", "carte": "o-random-event-074" },
+      { "t": "Preuves d'un meurtre", "d": "Derrière la maison de Mandy : un fût et un carré de terre fraîchement retournée.", "carte": "o-hidden-package-072" }
+     ]
+    },
+    {
+     "titre": "Clins d'œil cachés",
+     "icon": "sparkle",
+     "items": [
+      { "t": "La pince géante", "d": "Une énigme avec un boîtier électrique et un mot de passe d'ordinateur.", "carte": "o-hidden-package-018" },
+      { "t": "Le QR code « Stop ! Ne tirez pas la chasse »", "d": "Il mène à une page du FIB sur le site de Rockstar.", "carte": "o-hidden-package-022" },
+      { "t": "Le lit qui bipe de l'observatoire", "d": "Entre dans le dôme par le haut et descends tout en bas.", "carte": "o-hidden-package-082" },
+      { "t": "Le nid d'oiseau sur le mât", "d": "Tout en haut du mât : un nid avec un œuf.", "carte": "o-hidden-package-076" },
+      { "t": "Jumbo l'alligator", "d": "Un alligator entre dans le magasin et réclame un hot-dog.", "carte": "o-random-event-184" },
+      { "t": "Des tigres dans les garages", "d": "Un tigre dans chacun des garages de cette maison.", "carte": "o-random-event-179" },
+      { "t": "Ocean View Hotel", "d": "L'hôtel culte de GTA Vice City est de retour sur Ocean Beach.", "carte": "o-landmark-007" }
+     ]
+    },
+    {
+     "titre": "Trésors et messages",
+     "icon": "map",
+     "items": [
+      { "t": "Les épaves espagnoles", "d": "7 trésors sous-marins, débloqués avec les demandes de Kenton.", "carte": "o-treasure-001" },
+      { "t": "Les messages dans une bouteille", "d": "6 bouteilles autour de Key Lento.", "carte": "o-message-bottle-002" }
+     ]
+    }
+   ],
+   "liens": ["astuces/mode-focus/", "carte/?cat=activites", "carte/?cat=collection"],
+   "faq": [
+    ["Bigfoot est-il dans GTA 6 ?", "Oui : on peut le croiser dans les marais lors d'un événement aléatoire, et il apparaît aussi dans une quête secondaire."],
+    ["Comment trouver les OVNI ?", "Ce sont des événements aléatoires : passe aux endroits indiqués sur la carte, surtout la nuit, et active le mode Focus."]
+   ],
+   "sources": [
+    ["Open GTA 6 Map", "https://github.com/fbritoferreira/gta6"],
+    ["PowerPyx", "https://www.powerpyx.com/"]
+   ]
+  },
+  {
+   "slug": "100-pour-cent",
+   "icon": "trophy",
+   "couleur": "#2de2e6",
+   "court": "Obtenir 100 %",
+   "titre": "Comment obtenir 100 % dans GTA 6",
+   "seo": "GTA 6 à 100 % : la checklist complète",
+   "desc": "Ce qu'il faut faire pour finir GTA 6 à 100 % : missions, activités, collection, défis. Avec les liens vers chaque liste et la carte.",
+   "reponse": "Termine d'abord l'histoire : la liste du 100 % apparaît ensuite dans Progression, puis Statistiques. Elle compte environ 35 objectifs en trois groupes (histoire et tâches, exploration et activités, découvertes). La plupart ne demandent qu'une partie d'une catégorie, et rien n'est définitivement manqué : tout se rattrape en jeu libre.",
+   "sections": [
+    {
+     "titre": "1. L'histoire et les tâches",
+     "icon": "flag",
+     "items": [
+      { "t": "Les 107 missions de l'histoire", "d": "Suis-les dans l'ordre et coche-les sur notre page.", "lien": "missions/" },
+      { "t": "Les 27 missions facultatives", "d": "Elles apparaissent sur notre page avec le filtre « Facultatives ».", "lien": "missions/" },
+      { "t": "Les opérations des gangs", "d": "39 planques tenues par 9 gangs.", "lien": "astuces/operations-gangs/" },
+      { "t": "Les braquages", "d": "Magasins, bijouteries, prêteurs, fourgons.", "lien": "dossiers/argent-rapide/" }
+     ]
+    },
+    {
+     "titre": "2. Exploration et activités",
+     "icon": "map",
+     "intro": "Nombres repérés par les joueurs sur notre carte : ils peuvent être incomplets.",
+     "items": [
+      { "t": "Sauts de cascade", "n": "130", "lien": "carte/?cat=activites" },
+      { "t": "Passages sous les ponts", "n": "202", "lien": "carte/?cat=activites" },
+      { "t": "Courses", "n": "48", "lien": "carte/?cat=activites" },
+      { "t": "Courses de drone", "n": "42", "lien": "carte/?cat=activites" },
+      { "t": "Vols en rase-mottes", "n": "40", "lien": "carte/?cat=activites" },
+      { "t": "Sauts BASE", "n": "25", "lien": "carte/?cat=activites" },
+      { "t": "Paniers de basket", "n": "100", "lien": "carte/?cat=activites" },
+      { "t": "Stands de tir", "n": "15", "lien": "astuces/stands-de-tir/" },
+      { "t": "Coins de pêche", "n": "36", "lien": "astuces/peche/" },
+      { "t": "Méditations", "d": "18 à faire, une fois avec Jason et une fois avec Lucia à chaque endroit.", "lien": "carte/?cat=activites" }
+     ]
+    },
+    {
+     "titre": "3. Découvertes et collection",
+     "icon": "star",
+     "items": [
+      { "t": "Cartes à collectionner", "n": "371", "lien": "carte/?cat=collection" },
+      { "t": "Scans WAiNK", "n": "95", "lien": "carte/?cat=collection" },
+      { "t": "Magazines et BD", "n": "74", "lien": "carte/?cat=collection" },
+      { "t": "Fragments de météorite", "n": "51", "lien": "carte/?cat=collection" },
+      { "t": "Street art Ahol", "n": "50", "lien": "carte/?cat=collection" },
+      { "t": "Messages dans une bouteille", "n": "6", "lien": "carte/?cat=collection" },
+      { "t": "Trésors sous-marins", "n": "7", "lien": "dossiers/secrets/" },
+      { "t": "Véhicules remarquables", "d": "À trouver ou à commander.", "lien": "vehicules/" }
+     ]
+    },
+    {
+     "titre": "Conseils pour aller plus vite",
+     "icon": "bolt",
+     "etapes": [
+      "Finis l'histoire d'abord : la liste du 100 % ne s'affiche qu'après.",
+      "Regarde dans Progression ce qu'il te manque vraiment : beaucoup d'objectifs ne demandent qu'une partie d'une catégorie.",
+      "Utilise notre carte : touche une catégorie, puis « Je l'ai trouvé » sur chaque repère pour suivre ta progression.",
+      "Les défis débloquent aussi les codes : ils avancent en même temps."
+     ]
+    }
+   ],
+   "liens": ["missions/", "astuces/collection/", "astuces/defis-cascades/", "codes/"],
+   "faq": [
+    ["Peut-on rater quelque chose définitivement ?", "D'après les guides, non : tout se rattrape en jeu libre après l'histoire."],
+    ["Où voir son pourcentage ?", "Dans Progression, puis Statistiques, une fois l'histoire terminée."]
+   ],
+   "sources": [
+    ["Timesaver", "https://timesaver.gg/tools/gta-6/completion"],
+    ["PowerPyx", "https://www.powerpyx.com/gta-6-100-completion-checklist/"],
+    ["TheGamesWiki", "https://thegameswiki.com/gta6/wiki/100-completion"]
+   ]
+  }
+ ]
+}

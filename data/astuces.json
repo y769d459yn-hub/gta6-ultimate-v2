@@ -171,6 +171,7 @@
    "fric"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "argent-debut",
    "telephone-apps"
   ]
@@ -660,6 +661,7 @@
    "thune"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "entrer-un-code",
    "argent-debut"
   ]
@@ -734,6 +736,7 @@
    "farm"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "plongees-kenton",
    "vendre-voitures-moses"
   ]
@@ -805,6 +808,7 @@
    "revendre"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "voiture-rare",
    "argent-debut"
   ]
@@ -840,6 +844,7 @@
    "heist"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "garder-son-argent",
    "semer-la-police"
   ]
@@ -1151,6 +1156,7 @@
    "race"
   ],
   "voir": [
+   "dossier:100-pour-cent",
    "collection",
    "activites-eau"
   ]
@@ -1185,6 +1191,7 @@
    "animaux"
   ],
   "voir": [
+   "dossier:100-pour-cent",
    "defis-cascades",
    "voiture-rare"
   ]
@@ -1288,6 +1295,7 @@
    "focus"
   ],
   "voir": [
+   "dossier:100-pour-cent",
    "entrer-un-code",
    "code-argent"
   ]
@@ -1323,6 +1331,7 @@
    "ralenti"
   ],
   "voir": [
+   "dossier:secrets",
    "codes-coffres",
    "augmenter-stats"
   ]
@@ -1613,7 +1622,7 @@
   "icon": "chest",
   "titre": "Comment ouvrir un coffre-fort ?",
   "court": "Codes des coffres",
-  "reponse": "Les codes changent d'une partie à l'autre : les listes sur Internet ne marchent pas. Cherche une note avec le code grâce au mode Focus.",
+  "reponse": "Ça dépend du coffre : ceux des braquages (magasins, banques, bijouteries) changent de code, cherche la note avec le mode Focus. Ceux des repaires de gangs et des lieux secrets ont un code fixe : ils sont dans notre dossier « Codes de coffres ».",
   "etapes": [
    "Active le mode Focus près du coffre.",
    "Lis la note surlignée qui donne le code.",
@@ -1637,6 +1646,7 @@
    "focus"
   ],
   "voir": [
+   "dossier:codes-coffres",
    "mode-focus",
    "braquer-magasin"
   ]
@@ -1673,6 +1683,7 @@
    "coffre"
   ],
   "voir": [
+   "dossier:codes-coffres",
    "argent-debut",
    "codes-coffres"
   ]
@@ -2069,6 +2080,7 @@
    "thune"
   ],
   "voir": [
+   "dossier:argent-rapide",
    "billets-marques",
    "garder-son-argent"
   ]

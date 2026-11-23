@@ -45,6 +45,7 @@ const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date
 const CARTE = read('carte.json');
 const M = site.marque;
 const ACCUEIL = read('accueil.json');
+const DOSSIERS = fs.existsSync(path.join(ROOT, 'data', 'dossiers.json')) ? read('dossiers.json').dossiers : [];
 {
   const errs = [
     ...validate(read('schemas/accueil.schema.json'), ACCUEIL, 'accueil'),
@@ -82,6 +83,8 @@ function ref(slug) {
   if (V[slug]) { const c = cat('vehicules', V[slug].type); return { t: V[slug].nom, u: `vehicules/${slug}/`, i: c.icon, c: c.color, k: 'Véhicule' }; }
   if (E[slug]) { const c = cat('encyclopedie', E[slug].cat); return { t: E[slug].nom, u: `encyclopedie/${slug}/`, i: E[slug].icon, c: c.color, k: c.nom }; }
   if (N[slug]) return { t: N[slug].titre, u: `actualites/${slug}/`, i: 'news', c: '#19d3e3', k: 'Actu' };
+  const D = slug.startsWith('dossier:') && DOSSIERS.find((d) => d.slug === slug.slice(8));
+  if (D) return { t: D.court, u: `dossiers/${D.slug}/`, i: D.icon, c: D.couleur, k: 'Dossier complet' };
   return null;
 }
 
@@ -431,6 +434,17 @@ function homePalms() {
   const counts = { astuces: ASTUCES.length, vehicules: VEHICULES.length + CATALOGUE.vehicules.length, reperes: features.filter((f) => !f.properties.label).length, actualites: ACTUS.length, missions: MISSIONS.missions.length };
   const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
   const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
+  const TOP = [
+    ['codes/', 'Codes de triche PS5 et Xbox', `${CODES.codes.length} codes connus`, 'code', '#9b6bff'],
+    ['dossiers/argent-rapide/', 'Gagner de l\'argent vite', 'Dossier complet', 'money', '#3ddc84'],
+    ['dossiers/codes-coffres/', 'Tous les codes de coffres', 'Dossier complet', 'bank', '#ffb547'],
+    ['carte/', 'La carte interactive', `${counts.reperes} repères`, 'map', '#2de2e6'],
+    ['carte/?cat=armes', 'Où trouver les armes', 'Sur la carte', 'gun', '#ff5a5a'],
+    ['astuces/voiture-rare/', 'Voitures rares', 'Astuce', 'car', '#ff9a1f'],
+    ['dossiers/secrets/', 'Secrets et Easter eggs', 'Dossier complet', 'sparkle', '#9d7bff'],
+    ['dossiers/100-pour-cent/', 'Finir le jeu à 100 %', 'Dossier complet', 'trophy', '#2de2e6'],
+    ['missions/', 'Missions et solutions', `${counts.missions} missions`, 'flag', '#ff3d6e']
+  ];
   const maj = site.majLe.split('-').reverse().join('.');
   const tileImg = { carte: vign('vice-city', R), vehicules: vign('v-pegassi-infernus', R) };
   const tilesHtml = H.tuiles.map((t, i) => `<a class="ht${t.taille === 'large' ? ' ht--large' : t.taille === 'large2' ? ' ht--wide' : ''}${tileImg[t.id] ? ' ht--img' : ''}" href="${R}${t.href}" style="--c:${t.couleur}${tileImg[t.id] ? `;--img:url(${tileImg[t.id]})` : ''}" data-h="tile">
@@ -460,6 +474,12 @@ function homePalms() {
     <nav class="h-tiles" aria-label="Catégories">${tilesHtml}</nav>
     <p class="h-help h-anim">${icon('info')}${esc(H.aide)}</p>
   </div>
+</section>
+
+<section class="wrap h-now h-top" aria-labelledby="top-title">
+  <header class="h-head h-head--row"><p class="h-kicker"><span class="h-dot"></span>Les plus recherchés</p><a class="nbtn nbtn--ghost nbtn--sm" href="${R}dossiers/"><span>Tous les dossiers</span><i>${icon('arrow-right')}</i></a></header>
+  <h2 class="sr-only" id="top-title">Les plus recherchés</h2>
+  <ol class="h-rows">${TOP.map((t, i) => `<li><a class="h-row" href="${R}${t[0]}" style="--c:${t[4]}"><span class="h-row-n">${String(i + 1).padStart(2, '0')}</span><span class="h-row-ico">${icon(t[3])}</span><span class="h-row-t"><small>${esc(t[2])}</small><b>${esc(t[1])}</b></span><span class="h-row-go">${icon('arrow-right')}</span></a></li>`).join('')}</ol>
 </section>
 
 <section class="wrap h-map" aria-labelledby="hm-title">
@@ -763,6 +783,55 @@ for (const v of VEHICULES) {
   emit(p, layout({ p, title: `Missions GTA 6 : les ${MS.length} missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (${princ} de l'histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
 
+// ---------- DOSSIERS (pages piliers) ----------
+{
+  const lienItem = (it, R) => it.carte && mapIndex[it.carte] ? `${R}carte/?focus=${it.carte}` : it.lien ? `${R}${it.lien}` : null;
+  const libItem = (it) => it.carte && mapIndex[it.carte] ? 'Voir sur la carte' : it.lien && it.lien.startsWith('carte/') ? 'Voir sur la carte' : 'Voir';
+  for (const D of DOSSIERS) for (const sec of D.sections) for (const it of sec.items || []) if (it.carte && !mapIndex[it.carte]) console.warn(`dossier ${D.slug} : repère inconnu ${it.carte}`);
+  const item = (it, R) => {
+    const href = lienItem(it, R);
+    return `<li class="dos-it">${it.code ? `<span class="dos-code" aria-label="Code ${esc(it.code)}">${esc(it.code)}</span>` : it.n ? `<span class="dos-n">${esc(it.n)}</span>` : ''}<span class="dos-t"><b>${esc(it.t)}</b>${it.d ? `<small>${esc(it.d)}</small>` : ''}</span>${href ? `<a class="dos-go" href="${href}" aria-label="${esc(libItem(it))} : ${esc(it.t)}">${icon(it.carte || (it.lien || '').startsWith('carte/') ? 'map' : 'arrow-right')}<span>${esc(libItem(it))}</span></a>` : ''}</li>`;
+  };
+  const relLien = (u, R) => {
+    const m = u.match(/^astuces\/([^/]+)\/$/);
+    if (m) return relCard(m[1], R);
+    const D = DOSSIERS.find((d) => `dossiers/${d.slug}/` === u);
+    const lab = D ? [D.court, D.icon, D.couleur, 'Dossier'] : u.startsWith('carte/') ? ['La carte interactive', 'map', '#2de2e6', 'Carte'] : u === 'codes/' ? ['Codes de triche', 'code', '#9b6bff', 'Codes'] : u === 'missions/' ? ['Missions et solutions', 'flag', '#ff3d6e', 'Missions'] : [u, 'arrow-right', '#ff2bd6', 'Page'];
+    return `<a class="mini" href="${R}${u}" style="--c:${lab[2]}"><span class="mini-ico">${icon(lab[1])}</span><span><small>${esc(lab[3])}</small><b>${esc(lab[0])}</b></span>${icon('arrow-right')}</a>`;
+  };
+  for (const D of DOSSIERS) {
+    const p = `dossiers/${D.slug}/`, R = R_(p);
+    const autres = DOSSIERS.filter((d) => d !== D).map((d) => `dossiers/${d.slug}/`);
+    const body = `<article class="wrap fiche dos" style="--c:${D.couleur}">
+  <header class="fiche-head">
+    <div class="fiche-ico">${icon(D.icon, 'ic-xl')}</div>
+    <div class="fiche-tags"><span class="pill pill--cat">${icon('book')}Dossier complet</span><span class="pill">${icon('clock')}Mis à jour le ${fmtDate('2026-11-23')}</span></div>
+    <h1 class="h1 h1--fiche">${esc(D.titre)}</h1>
+  </header>
+  <section class="answer" aria-label="Réponse"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(D.reponse)}</p></section>
+  <nav class="dos-toc" aria-label="Sommaire">${D.sections.map((sec, i) => `<a href="#s${i + 1}">${icon(sec.icon)}${esc(sec.titre)}</a>`).join('')}</nav>
+  ${D.sections.map((sec, i) => `<section class="dos-sec${sec.warn ? ' dos-sec--warn' : ''}" id="s${i + 1}" aria-labelledby="s${i + 1}-t">
+    <h2 class="h3" id="s${i + 1}-t">${icon(sec.icon)}${esc(sec.titre)}</h2>
+    ${sec.intro ? `<p class="dos-intro">${esc(sec.intro)}</p>` : ''}
+    ${sec.texte ? `<aside class="note">${icon('info')}<p>${esc(sec.texte)}</p></aside>` : ''}
+    ${sec.items ? `<ul class="dos-list">${sec.items.map((it) => item(it, R)).join('')}</ul>` : ''}
+    ${sec.etapes ? `<ol class="steps">${sec.etapes.map((t, j) => `<li class="step"><span class="step-n">${j + 1}</span><span class="step-t">${esc(t)}</span></li>`).join('')}</ol>` : ''}
+  </section>`).join('')}
+  <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${[...D.liens, ...autres].map((u) => relLien(u, R)).join('')}</div></section>
+  ${D.faq.length ? `<details class="more" open><summary>${icon('question')}Questions fréquentes</summary>${D.faq.map(([q, r]) => `<h3>${esc(q)}</h3><p>${esc(r)}</p>`).join('')}</details>` : ''}
+  ${D.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${D.sources.length})</summary><ul>${D.sources.map(([n, u]) => `<li><a href="${u}" rel="nofollow noopener" target="_blank">${esc(n)}</a></li>`).join('')}</ul><p class="muted">Relevé du 23/11/2026. Textes rédigés par Leonida Guide.</p></details>` : ''}
+</article>`;
+    emit(p, layout({
+      p, title: D.seo, desc: D.desc, body, cls: 'p-fiche', ogType: 'article',
+      crumbs: [['Accueil', ''], ['Dossiers', 'dossiers/'], [D.court, p]],
+      schema: [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: D.titre, acceptedAnswer: { '@type': 'Answer', text: D.reponse } }, ...D.faq.map(([q, r]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: r } }))] }]
+    }));
+  }
+  const p = 'dossiers/', R = R_(p);
+  emit(p, layout({ p, title: 'Dossiers GTA 6 : les guides complets', desc: 'Les guides complets de GTA 6 : codes de coffres, argent rapide, secrets et Easter eggs, 100 %.', cls: 'p-list', crumbs: [['Accueil', ''], ['Dossiers', p]],
+    body: `<section class="wrap section"><h1 class="h1">Dossiers GTA 6</h1><p class="lead">Les guides complets sur les sujets les plus recherchés.</p><div class="minis">${DOSSIERS.map((d) => relLien(`dossiers/${d.slug}/`, R)).join('')}</div></section>` }));
+}
+
 // ---------- CODES ----------
 {
   const p = 'codes/', R = R_(p);
@@ -778,8 +847,8 @@ for (const v of VEHICULES) {
     ${c.sequence.length ? `<p class="code-src ${c.confirme ? 'is-ok' : 'is-warn'}">${icon(c.confirme ? 'check' : 'alert')}${c.confirme ? `Combinaison confirmée par ${c.sources.length} guides` : `Combinaison donnée par un seul guide (${esc(c.sources.join(', '))}) : à vérifier`}</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
-  <h1 class="h1">Codes GTA 6</h1>
-  <p class="lead">Les <b>${C.length} codes de GTA 6 dont la combinaison est connue</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper. Les codes dont la combinaison n'a pas encore été découverte ne sont pas listés : ils seront ajoutés dès qu'elle sera trouvée.</p>
+  <h1 class="h1">Codes de triche GTA 6</h1>
+  <p class="lead">Les <b>${C.length} codes de triche de GTA 6 (PS5 et Xbox) dont la combinaison est connue</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper. Les codes dont la combinaison n'a pas encore été découverte ne sont pas listés : ils seront ajoutés dès qu'elle sera trouvée.</p>
   <ol class="howto">
     <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste des codes apparaît dans le menu Progression.</span></li>
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
@@ -803,7 +872,7 @@ for (const v of VEHICULES) {
   </section>
   <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Codes GTA 6 : les ${C.length} codes, combinaisons et déblocage`, desc: `Les ${connus} codes de GTA 6 dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
+  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : les ${C.length} codes et comment les débloquer`, desc: `Les ${connus} codes de triche de GTA 6 sur PS5 et Xbox dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -1116,7 +1185,8 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Les ${MISSIONS.missions.length} missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
-push({ t: 'Codes', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
+push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
+for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
