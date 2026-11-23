@@ -29,7 +29,7 @@
   {
    "id": "5",
    "titre": "Au sommet du monde, m'man",
-   "resume": "Le final : cinq fins possibles."
+   "resume": "Le final : plusieurs fins possibles (cinq selon la plupart des guides)."
   }
  ],
  "missions": [
@@ -123,30 +123,26 @@
    ]
   },
   {
-   "id": "unwanted-attention",
+   "id": "just-a-scratch",
    "num": 4,
    "chapitre": "1",
-   "nom": "Attention indésirable",
-   "nomEn": "Unwanted Attention",
+   "nom": "Juste une éraflure",
+   "nomEn": "Just a Scratch",
    "facultative": false,
    "manquable": false,
    "perso": [
     "jason"
    ],
-   "donneur": "Cal Hampton",
-   "recompense": "150 $ · 1 déblocage",
-   "resume": "Récupérer à la fourrière de Hamlet une voiture qui cache l'argent de Brian.",
+   "donneur": "Jason Duval",
+   "recompense": "2 déblocages",
+   "resume": "Jason fait réparer sa Ganado chez Coastal Auto Care.",
    "etapes": [
-    "Retrouve Cal sur la plage au nord de Key Lento.",
-    "Conduis jusqu'à la fourrière de Hamlet.",
-    "Escalade la clôture puis les conteneurs du fond et trouve l'Imponte Phoenix.",
-    "Sors par la grille et sème la police (c'est prévu par la mission).",
-    "Repeins la voiture au Pay 'n' Spray de Hamlet.",
-    "Gare-la dans le garage de Brian et prends les 150 $ dans l'arrière-salle."
+    "Conduis la Ganado de 1970 jusqu'au garage.",
+    "Parle à Joey puis entre dans l'atelier.",
+    "Choisis « Moteur complet » (gratuit), puis une nouvelle peinture."
    ],
    "bloque": [
-    "La police te repère toujours à la sortie : ce n'est pas une erreur.",
-    "Change de chapeau ou de lunettes pour que la police ne te reconnaisse plus."
+    "Si la Ganado est détruite, appelle ton véhicule perso avec le téléphone."
    ],
    "sources": [
     "GTABase",
@@ -184,8 +180,40 @@
    ]
   },
   {
-   "id": "pipework",
+   "id": "unwanted-attention",
    "num": 6,
+   "chapitre": "1",
+   "nom": "Attention indésirable",
+   "nomEn": "Unwanted Attention",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Cal Hampton",
+   "recompense": "150 $ · 1 déblocage",
+   "resume": "Récupérer à la fourrière de Hamlet une voiture qui cache l'argent de Brian.",
+   "etapes": [
+    "Retrouve Cal sur la plage au nord de Key Lento.",
+    "Conduis jusqu'à la fourrière de Hamlet.",
+    "Escalade la clôture puis les conteneurs du fond et trouve l'Imponte Phoenix.",
+    "Sors par la grille et sème la police (c'est prévu par la mission).",
+    "Repeins la voiture au Pay 'n' Spray de Hamlet.",
+    "Gare-la dans le garage de Brian et prends les 150 $ dans l'arrière-salle."
+   ],
+   "bloque": [
+    "La police te repère toujours à la sortie : ce n'est pas une erreur.",
+    "Change de chapeau ou de lunettes pour que la police ne te reconnaisse plus."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "pipework",
+   "num": 7,
    "chapitre": "1",
    "nom": "Plomberie",
    "nomEn": "Pipework",
@@ -204,34 +232,6 @@
    ],
    "bloque": [
     "La ventouse est par terre dans la salle de bain."
-   ],
-   "sources": [
-    "GTABase",
-    "gta6guide.fr",
-    "GTA Wiki"
-   ]
-  },
-  {
-   "id": "just-a-scratch",
-   "num": 7,
-   "chapitre": "1",
-   "nom": "Juste une éraflure",
-   "nomEn": "Just a Scratch",
-   "facultative": false,
-   "manquable": false,
-   "perso": [
-    "jason"
-   ],
-   "donneur": "Jason Duval",
-   "recompense": "2 déblocages",
-   "resume": "Jason fait réparer sa Ganado chez Coastal Auto Care.",
-   "etapes": [
-    "Conduis la Ganado de 1970 jusqu'au garage.",
-    "Parle à Joey puis entre dans l'atelier.",
-    "Choisis « Moteur complet » (gratuit), puis une nouvelle peinture."
-   ],
-   "bloque": [
-    "Si la Ganado est détruite, appelle ton véhicule perso avec le téléphone."
    ],
    "sources": [
     "GTABase",
@@ -567,35 +567,8 @@
    ]
   },
   {
-   "id": "clean-up-after-donnie",
-   "num": 12,
-   "chapitre": "1",
-   "nom": "Ménage après Donnie",
-   "nomEn": "Clean Up After Donnie",
-   "facultative": false,
-   "manquable": false,
-   "perso": [
-    "jason"
-   ],
-   "donneur": "Donnie",
-   "recompense": "600 $",
-   "resume": "Retrouver un colis perdu par Donnie dans les marais.",
-   "etapes": [
-    "Va au point de pêche marqué et inspecte le colis.",
-    "Prends le bateau et descends la rivière jusqu'à la cabane.",
-    "Élimine les trois Kingfishers et prends la cocaïne.",
-    "Dépose-la dans le conteneur de la caravane de Donnie à Key Lento."
-   ],
-   "bloque": [],
-   "sources": [
-    "GTABase",
-    "gta6guide.fr",
-    "GTA Wiki"
-   ]
-  },
-  {
    "id": "buck-me",
-   "num": 13,
+   "num": 12,
    "chapitre": "1",
    "nom": "Buck Me",
    "nomEn": "Buck Me",
@@ -615,6 +588,33 @@
    "bloque": [
     "L'argent de l'Épargne familiale ne se perd jamais, même si tu meurs."
    ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "clean-up-after-donnie",
+   "num": 13,
+   "chapitre": "1",
+   "nom": "Ménage après Donnie",
+   "nomEn": "Clean Up After Donnie",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Donnie",
+   "recompense": "600 $",
+   "resume": "Retrouver un colis perdu par Donnie dans les marais.",
+   "etapes": [
+    "Va au point de pêche marqué et inspecte le colis.",
+    "Prends le bateau et descends la rivière jusqu'à la cabane.",
+    "Élimine les trois Kingfishers et prends la cocaïne.",
+    "Dépose-la dans le conteneur de la caravane de Donnie à Key Lento."
+   ],
+   "bloque": [],
    "sources": [
     "GTABase",
     "gta6guide.fr",
@@ -645,6 +645,36 @@
    "bloque": [
     "Tirer dans les bras et les jambes neutralise sans tuer.",
     "Facultatif : vends le reste de la cocaïne à Donnie pour 800 $."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr",
+    "GTA Wiki"
+   ]
+  },
+  {
+   "id": "clear-skies",
+   "num": 15,
+   "chapitre": "1",
+   "nom": "Ciel dégagé",
+   "nomEn": "Clear Skies",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Brian Heder, Donnie",
+   "recompense": "1 400 $",
+   "resume": "Escorter un avion de contrebande, puis sauver Donnie des motards.",
+   "etapes": [
+    "Parle à Brian à Southwind.",
+    "Décolle depuis l'eau et rejoins l'avion de Pilot Pete.",
+    "Pose-toi sur la piste suivante et suis Donnie.",
+    "Nettoie le bâtiment et détache Donnie.",
+    "Retiens les motards, puis fuis à moto."
+   ],
+   "bloque": [
+    "Décolle depuis l'eau plutôt que depuis la route : c'est plus sûr."
    ],
    "sources": [
     "GTABase",
@@ -710,7 +740,7 @@
   },
   {
    "id": "deposit-cash-into-buckme",
-   "num": 15,
+   "num": 16,
    "chapitre": "1",
    "nom": "Déposer de l'argent sur BuckMe",
    "nomEn": "Deposit Cash Into BuckMe",
@@ -732,11 +762,12 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "save-for-the-future",
-   "num": 16,
+   "num": 17,
    "chapitre": "1",
    "nom": "Épargner pour l'avenir",
    "nomEn": "Save for the Future",
@@ -758,11 +789,12 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "day-release",
-   "num": 17,
+   "num": 18,
    "chapitre": "1",
    "nom": "Journée de sortie",
    "nomEn": "Day Release",
@@ -820,36 +852,6 @@
    ]
   },
   {
-   "id": "clear-skies",
-   "num": 18,
-   "chapitre": "1",
-   "nom": "Ciel dégagé",
-   "nomEn": "Clear Skies",
-   "facultative": false,
-   "manquable": false,
-   "perso": [
-    "jason"
-   ],
-   "donneur": "Brian Heder, Donnie",
-   "recompense": "1 400 $",
-   "resume": "Escorter un avion de contrebande, puis sauver Donnie des motards.",
-   "etapes": [
-    "Parle à Brian à Southwind.",
-    "Décolle depuis l'eau et rejoins l'avion de Pilot Pete.",
-    "Pose-toi sur la piste suivante et suis Donnie.",
-    "Nettoie le bâtiment et détache Donnie.",
-    "Retiens les motards, puis fuis à moto."
-   ],
-   "bloque": [
-    "Décolle depuis l'eau plutôt que depuis la route : c'est plus sûr."
-   ],
-   "sources": [
-    "GTABase",
-    "gta6guide.fr",
-    "GTA Wiki"
-   ]
-  },
-  {
    "id": "building-a-life",
    "num": 19,
    "chapitre": "1",
@@ -871,7 +873,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "ring-the-bell",
@@ -1178,7 +1181,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "overnight-charges",
@@ -1202,7 +1206,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "just-moved-in",
@@ -1339,7 +1344,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "how-do-i-look",
@@ -1363,7 +1369,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "painkiller-supplier",
@@ -1388,7 +1395,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "daily-driver",
@@ -1441,7 +1449,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "slam-dunk",
@@ -1694,7 +1703,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "afternoon-delight",
@@ -1998,6 +2008,36 @@
    ]
   },
   {
+   "id": "take-out-kitty-litter",
+   "num": null,
+   "chapitre": "3",
+   "nom": "Les labos de Kitty Litter",
+   "nomEn": "Take Out Kitty Litter",
+   "facultative": true,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Tyrone",
+   "recompense": "2 000 à 2 500 $ par labo détruit",
+   "resume": "Mission facultative : détruire les labos de drogue Kitty Litter pour Tyrone. Elle compte pour le 100 %.",
+   "etapes": [
+    "Termine la mission « Here, Kitty Kitty » (chapitre 3) : Tyrone te confie la mission.",
+    "Trouve les labos (14 ou 15 selon les guides) et détruis-les : Tyrone te paie sur BuckMe pour chacun.",
+    "Quand tu en as détruit assez, la mission finale de Tyrone, « Spin On This », se débloque."
+   ],
+   "bloque": [
+    "Le garage de Balsero demande un code : 1999.",
+    "Les labos sont aussi en jeu libre : tu peux les détruire à ton rythme, sans indication."
+   ],
+   "sources": [
+    "GTABase",
+    "TheClick",
+    "EGamers"
+   ]
+  },
+  {
    "id": "send-money-to-lorena",
    "num": 51,
    "chapitre": "3",
@@ -2019,7 +2059,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "car-service",
@@ -2072,7 +2113,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "top-billing",
@@ -2422,7 +2464,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "ride-or-die",
@@ -2777,7 +2820,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "attend-eddie-acostas-party",
@@ -3039,38 +3083,8 @@
    ]
   },
   {
-   "id": "too-much-baggage",
-   "num": 81,
-   "chapitre": "4",
-   "nom": "Trop de bagages",
-   "nomEn": "Too Much Baggage",
-   "facultative": false,
-   "manquable": false,
-   "perso": [
-    "jason"
-   ],
-   "donneur": "Andrea",
-   "recompense": "",
-   "resume": "Jason repère l'aéroport comme bagagiste.",
-   "etapes": [
-    "Va à l'aéroport et gare-toi dans le parking.",
-    "Regarde chaque boîte blanche jusqu'à ce qu'elle passe au vert.",
-    "Accroche le tracteur aux deux remorques.",
-    "Lance les sacs à Omar.",
-    "Pose le micro dans les toilettes.",
-    "Accepte le travail."
-   ],
-   "bloque": [
-    "Pour lancer un sac, relâche juste avant que la barre soit pleine."
-   ],
-   "sources": [
-    "GTABase",
-    "gta6guide.fr"
-   ]
-  },
-  {
    "id": "watch-it",
-   "num": 82,
+   "num": 81,
    "chapitre": "4",
    "nom": "Regarde-le",
    "nomEn": "Watch It",
@@ -3097,7 +3111,7 @@
   },
   {
    "id": "cash-injections",
-   "num": 83,
+   "num": 82,
    "chapitre": "4",
    "nom": "Injections de cash",
    "nomEn": "Cash Injections",
@@ -3127,7 +3141,7 @@
   },
   {
    "id": "amateur-hour",
-   "num": 84,
+   "num": 83,
    "chapitre": "4",
    "nom": "L'heure des amateurs",
    "nomEn": "Amateur Hour",
@@ -3156,7 +3170,7 @@
   },
   {
    "id": "dirty-work",
-   "num": 85,
+   "num": 84,
    "chapitre": "4",
    "nom": "Sale boulot",
    "nomEn": "Dirty Work",
@@ -3178,6 +3192,36 @@
    ],
    "bloque": [
     "Il faut avoir fini Trop de bagages et Injections de cash."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "too-much-baggage",
+   "num": 85,
+   "chapitre": "4",
+   "nom": "Trop de bagages",
+   "nomEn": "Too Much Baggage",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason"
+   ],
+   "donneur": "Andrea",
+   "recompense": "",
+   "resume": "Jason repère l'aéroport comme bagagiste.",
+   "etapes": [
+    "Va à l'aéroport et gare-toi dans le parking.",
+    "Regarde chaque boîte blanche jusqu'à ce qu'elle passe au vert.",
+    "Accroche le tracteur aux deux remorques.",
+    "Lance les sacs à Omar.",
+    "Pose le micro dans les toilettes.",
+    "Accepte le travail."
+   ],
+   "bloque": [
+    "Pour lancer un sac, relâche juste avant que la barre soit pleine."
    ],
    "sources": [
     "GTABase",
@@ -3511,7 +3555,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "thats-where-the-money-is",
@@ -3665,8 +3710,37 @@
    ]
   },
   {
-   "id": "doggie-bag",
+   "id": "vc-baby",
    "num": 101,
+   "chapitre": "5",
+   "nom": "VC Baby",
+   "nomEn": "VC Baby",
+   "facultative": false,
+   "manquable": false,
+   "perso": [
+    "jason",
+    "lucia"
+   ],
+   "donneur": "Mattia Tauro",
+   "recompense": "",
+   "resume": "Mattia a besoin d'aide pour aller à l'hôpital.",
+   "etapes": [
+    "Suis Mattia à l'ascenseur et accepte d'aider.",
+    "Récupère la clé de Dardan quand Lucia jette son téléphone.",
+    "Prends une voiture au garage.",
+    "Va à l'hôpital au nord-est en moins de 4 minutes."
+   ],
+   "bloque": [
+    "4 minutes suffisent si tu ne te crashes pas."
+   ],
+   "sources": [
+    "GTABase",
+    "gta6guide.fr"
+   ]
+  },
+  {
+   "id": "doggie-bag",
+   "num": 102,
    "chapitre": "5",
    "nom": "Doggy bag",
    "nomEn": "Doggie Bag",
@@ -3688,35 +3762,6 @@
    ],
    "bloque": [
     "Les passerelles du bas sont plus loin des gardes."
-   ],
-   "sources": [
-    "GTABase",
-    "gta6guide.fr"
-   ]
-  },
-  {
-   "id": "vc-baby",
-   "num": 102,
-   "chapitre": "5",
-   "nom": "VC Baby",
-   "nomEn": "VC Baby",
-   "facultative": false,
-   "manquable": false,
-   "perso": [
-    "jason",
-    "lucia"
-   ],
-   "donneur": "Mattia Tauro",
-   "recompense": "",
-   "resume": "Mattia a besoin d'aide pour aller à l'hôpital.",
-   "etapes": [
-    "Suis Mattia à l'ascenseur et accepte d'aider.",
-    "Récupère la clé de Dardan quand Lucia jette son téléphone.",
-    "Prends une voiture au garage.",
-    "Va à l'hôpital au nord-est en moins de 4 minutes."
-   ],
-   "bloque": [
-    "4 minutes suffisent si tu ne te crashes pas."
    ],
    "sources": [
     "GTABase",
@@ -3776,7 +3821,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "unfinished-business",
@@ -3804,7 +3850,8 @@
    "sources": [
     "GTABase",
     "gta6guide.fr"
-   ]
+   ],
+   "tache": true
   },
   {
    "id": "protective-custody",

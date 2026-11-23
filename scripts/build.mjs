@@ -728,11 +728,11 @@ for (const v of VEHICULES) {
 {
   const p = 'missions/', R = R_(p);
   const MS = MISSIONS.missions, CH = MISSIONS.chapitres;
-  const princ = MS.filter((m) => !m.facultative).length, fac = MS.length - princ;
+  const princ = MS.filter((m) => !m.facultative).length, fac = MS.length - princ, taches = MS.filter((m) => m.tache).length, vraies = princ - taches;
   const chNom = (c) => (c.id === 'prologue' ? 'Prologue' : `Chapitre ${c.id}`);
   const PERS = { jason: 'Jason', lucia: 'Lucia' };
-  const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
-    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable ? `<small>${[m.facultative ? 'facultative' : '', m.manquable ? '<em>peut être manquée</em>' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
+  const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}${m.tache ? ' mis--tache' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
+    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable || m.tache ? `<small>${[m.facultative ? 'facultative' : '', m.tache ? 'petite tâche' : '', m.manquable ? '<em>peut être manquée</em>' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
     <div class="mis-b">
       <p class="mis-r">${esc(m.resume)}</p>
       <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
@@ -745,7 +745,7 @@ for (const v of VEHICULES) {
   </details>`;
   const body = `<section class="wrap section missions" data-missions>
   <h1 class="h1">Missions et solutions</h1>
-  <p class="lead">Toute l'histoire dans l'ordre et par chapitre : <b>${princ} étapes</b> (les guides comptent 91 à 93 missions principales ; notre liste ajoute les petites tâches, comme envoyer de l'argent), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <p class="lead">Toute l'histoire dans l'ordre et par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
   <div class="mis-now" data-mnow>
     <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
     <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>

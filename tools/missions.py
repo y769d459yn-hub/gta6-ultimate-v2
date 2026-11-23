@@ -22,7 +22,7 @@ CHAP = [('prologue', 'Prologue', "Lucia en prison, juste avant le début de l'hi
         ('2', 'Le paradis perdu', 'En fuite, le couple se cache à Port Gellhorn.'),
         ('3', 'Sexe, drogue et fric', 'Arrivée à Vice City et braquage de la banque du cartel.'),
         ('4', 'Vice City, bébé', "La vie à Ocean Beach et le braquage de l'aéroport."),
-        ('5', 'Au sommet du monde, m'man', 'Le final : cinq fins possibles.')]
+        ('5', "Au sommet du monde, m'man", 'Le final : plusieurs fins possibles (cinq selon la plupart des guides).')]
 
 def recompense(r):
     if not r or r.lower() == 'none' or r.startswith('None'): return ''
@@ -56,8 +56,32 @@ for k, d in enumerate(D):
     out.append({'id': d['url'].rstrip('/').split('/')[-1], 'num': d['num'], 'chapitre': ch, 'nom': nom, 'nomEn': en,
                 'facultative': 'opt' in d['badges'], 'manquable': 'miss' in d['badges'], 'perso': prot, 'donneur': giver,
                 'recompense': recompense(d['info'].get('Rewards', '')), 'resume': resume, 'etapes': etapes, 'bloque': bloque, 'sources': src})
+# --- vérification du 23/11/2026 (listes par chapitre de TheClick, HowToVideoGame, games.gg, Push Square, Dexerto) ---
+# petites tâches de l'histoire : les guides ne les comptent pas parmi les 91 à 93 missions principales
+TACHES = {'Deposit Cash Into BuckMe', 'Save for the Future', 'Building a Life', 'Play Nurse', 'Overnight Charges', 'New Look', 'How Do I Look?',
+          'Got Pills?', 'Behind on Payments', 'Prepare for Vice City', 'Send Money to Lorena', 'Send More Money to Lorena', 'Heist Planning',
+          'Pool Day', 'Tie Up Loose Ends', 'Honest Abe', 'Unfinished Business'}
+for m in out:
+    if m['nomEn'] in TACHES: m['tache'] = True
+# ordre corrigé d'après le consensus des guides : (mission à déplacer, à placer juste après)
+APRES = [('Just a Scratch', 'Gear Up'), ('Lab Fees', 'Just a Scratch'), ('Unwanted Attention', 'Lab Fees'), ('Pipework', 'Unwanted Attention'),
+         ('Buck Me', 'Coming Home'), ('Clear Skies', 'Down to Earth'), ('Too Much Baggage', 'Dirty Work'), ('VC Baby', 'Taking Liberties')]
+for a_, b_ in APRES:
+    i = next(k for k, m in enumerate(out) if m['nomEn'] == a_); m = out.pop(i)
+    j = next(k for k, x in enumerate(out) if x['nomEn'] == b_); out.insert(j + 1, m)
+# mission facultative absente du relevé GTABase des missions : « Take Out Kitty Litter » (Tyrone), listée comme rencontre
+i = next(k for k, m in enumerate(out) if m['nomEn'] == 'Here, Kitty Kitty')
+out.insert(i + 1, {'id': 'take-out-kitty-litter', 'num': None, 'chapitre': '3', 'nom': 'Les labos de Kitty Litter', 'nomEn': 'Take Out Kitty Litter',
+    'facultative': True, 'manquable': False, 'perso': ['jason', 'lucia'], 'donneur': 'Tyrone', 'recompense': '2 000 à 2 500 $ par labo détruit',
+    'resume': "Mission facultative : détruire les labos de drogue Kitty Litter pour Tyrone. Elle compte pour le 100 %.",
+    'etapes': ["Termine la mission « Here, Kitty Kitty » (chapitre 3) : Tyrone te confie la mission.", "Trouve les labos (14 ou 15 selon les guides) et détruis-les : Tyrone te paie sur BuckMe pour chacun.", "Quand tu en as détruit assez, la mission finale de Tyrone, « Spin On This », se débloque."],
+    'bloque': ["Le garage de Balsero demande un code : 1999.", "Les labos sont aussi en jeu libre : tu peux les détruire à ton rythme, sans indication."],
+    'sources': ['GTABase', 'TheClick', 'EGamers']})
+k = 0
+for m in out:
+    if not m['facultative']: k += 1; m['num'] = k
 json.dump({'info': 'Missions de GTA 6 (relevé du 22/11/2026). Liste : GTABase, recoupée avec gta6guide.fr et GTA Wiki. Textes rédigés par le site. Généré par tools/missions.py.',
            'chapitres': [{'id': c[0], 'titre': c[1], 'resume': c[2]} for c in CHAP], 'missions': out},
           open(os.path.join(ROOT, 'data', 'missions.json'), 'w'), ensure_ascii=False, indent=1)
-print(len(out), 'missions ·', sum(1 for m in out if not m['facultative']), 'principales ·', sum(1 for m in out if m['facultative']), 'facultatives ·',
+print(sum(1 for m in out if not m['facultative'] and not m.get('tache')), 'missions principales ·', sum(1 for m in out if m.get('tache')), 'tâches ·', len(out), 'entrées ·', sum(1 for m in out if not m['facultative']), 'principales ·', sum(1 for m in out if m['facultative']), 'facultatives ·',
       sum(1 for m in out if len(m['sources']) > 1), 'confirmées par 2 sources ou plus')

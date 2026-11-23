@@ -233,8 +233,8 @@
      "titre": "1. L'histoire et les tâches",
      "icon": "flag",
      "items": [
-      { "t": "Toutes les missions de l'histoire", "d": "91 à 93 missions principales selon les guides (107 étapes avec les petites tâches sur notre page). Suis-les dans l'ordre et coche-les.", "lien": "missions/" },
-      { "t": "Les 27 missions facultatives", "d": "Elles apparaissent sur notre page avec le filtre « Facultatives ».", "lien": "missions/" },
+      { "t": "Toutes les missions de l'histoire", "d": "90 missions principales sur notre page (91 à 93 selon les guides), plus 17 petites tâches. Suis-les dans l'ordre et coche-les.", "lien": "missions/" },
+      { "t": "Les 28 missions facultatives", "d": "Elles apparaissent sur notre page avec le filtre « Facultatives ».", "lien": "missions/" },
       { "t": "Les opérations des gangs", "d": "Environ 40 planques (39 à 41 selon les guides).", "lien": "astuces/operations-gangs/" },
       { "t": "Les braquages", "d": "Magasins, bijouteries, prêteurs, fourgons.", "lien": "dossiers/argent-rapide/" }
      ]

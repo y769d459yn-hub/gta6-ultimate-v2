@@ -377,3 +377,4 @@
   .dos-go span { display: none; }
   .dos-it:has(.dos-go) .dos-t { flex-basis: calc(100% - 140px); }
 }
+.v2 .mis--tache .mis-n { opacity: .65; font-size: .85em; }
