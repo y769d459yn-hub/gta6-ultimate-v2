@@ -497,9 +497,9 @@ function homePalms() {
   ];
   const body = `
 <section class="hx" aria-labelledby="h-title">
-  <div class="hx-banner" style="--img:url(${ph('m-banniere')})">
-    <h1 class="hx-title" id="h-title"><span class="hx-k">Le guide ultime de</span><span class="hx-gta">GTA <em>6</em></span></h1>
-    <p class="hx-sub">Astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida.</p>
+  <div class="hx-banner hx-banner--img">
+    <img src="${R}assets/m-banniere-titre.webp" width="2640" height="516" alt="" fetchpriority="high" decoding="async">
+    <h1 class="sr-only" id="h-title">Le guide ultime de GTA 6 : astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida</h1>
   </div>
   <div class="wrap hx-in">
     <button class="hx-search" type="button" data-open-search aria-label="Rechercher un code, une mission, un véhicule">${icon('search')}<span>Rechercher un code, une mission, un véhicule…</span>${icon('sparkle')}</button>
