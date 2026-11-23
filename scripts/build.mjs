@@ -21,6 +21,21 @@ const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.stat
 const MISSIONS = fs.existsSync(path.join(ROOT, 'data', 'missions.json')) ? read('missions.json') : { chapitres: [], missions: [] };
 const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes.json') : { categories: [], codes: [] };
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
+// inspirations des véhicules (relevées en anglais) → français
+const INSP = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'traductions', 'inspirations.json'), 'utf8'));
+const ORD = { '1st': '1re', First: '1re', first: '1re', '2nd': '2e', Second: '2e', second: '2e', '3rd': '3e', Third: '3e', '4th': '4e', Fourth: '4e', '5th': '5e', Fifth: '5e', '6th': '6e', Sixth: '6e', '7th': '7e', Seventh: '7e', seventh: '7e', '10th': '10e' };
+const frInsp = (s) => {
+  if (!s) return s;
+  if (INSP[s]) return INSP[s];
+  return s
+    .replace(/\((\d+(?:st|nd|rd|th)|First|Second)[- ](?:Gen|gen|generation|Generation)\)/g, (_, o) => `(${ORD[o]} génération)`)
+    .replace(/\b(\d+(?:st|nd|rd|th)) (?:Gen|gen)$/, (_, o) => `(${ORD[o]} génération)`)
+    .replace(/\bGen VI$/, '(6e génération)')
+    .replace(/^(First|Second|Fourth|Fifth|Sixth|1st|2nd)[- ](?:generation|Generation|gen) (.+?)( \(.+\))?$/, (_, o, m, x) => `${m}${x || ''} (${ORD[o]} génération)`.replace(/\) \(/, ', '))
+    .replace(/ Series\b/g, ' série').replace(/^(.+) série$/, 'série $1').replace(/^Tesla Model S$/, 'Tesla Model S').replace(/^Stearman Model 75$/, 'Stearman Model 75');
+};
+for (const v of CATALOGUE.vehicules) v.inspiration = frInsp(v.inspiration);
+for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiration = frInsp(f.inspiration);
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
@@ -232,10 +247,12 @@ for (const e of MLIEUX) {
 }
 // Couche communautaire : lieux nommés et positionnés de GTADB
 const COMMU_CATS = CARTE.communaute.categories;
+const TR_COMMU = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'traductions', 'communaute.json'), 'utf8'));
 const communaute = GTADB.filter((g) => g.adr && !g.adr.startsWith('?') && !g.tags.includes('demolished')).map((g) => {
   const parts = g.adr.split(', ');
   const c = (COMMU_CATS.find((c) => c.tags.some((t) => g.tags.includes(t))) || COMMU_CATS[COMMU_CATS.length - 1]).id;
-  return { i: g.id, n: parts[0].replace(/\?$/, ''), z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
+  const n0 = parts[0].replace(/\?$/, '');
+  return { i: g.id, n: TR_COMMU[n0] || n0, z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
 });
 const mapIndex = Object.fromEntries(features.map((f) => [f.properties.id, f]));
 const onMap = (id) => !!mapIndex[id];
@@ -692,7 +709,7 @@ for (const v of VEHICULES) {
   const chNom = (c) => (c.id === 'prologue' ? 'Prologue' : `Chapitre ${c.id}`);
   const PERS = { jason: 'Jason', lucia: 'Lucia' };
   const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
-    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b><small>${esc(m.nomEn)}${m.facultative ? ' · facultative' : ''}${m.manquable ? ' · <em>peut être manquée</em>' : ''}</small></span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
+    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable ? `<small>${[m.facultative ? 'facultative' : '', m.manquable ? '<em>peut être manquée</em>' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
     <div class="mis-b">
       <p class="mis-r">${esc(m.resume)}</p>
       <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
@@ -725,7 +742,7 @@ for (const v of VEHICULES) {
   <p class="count-line" data-mcountline aria-live="polite"></p>
   ${CH.map((c) => {
     const L = MS.filter((m) => m.chapitre === c.id);
-    return `<section class="mis-ch" data-mchap="${c.id}" aria-labelledby="ch-${c.id}"><h2 class="vgrp-h" id="ch-${c.id}">${chNom(c)}${c.id === 'prologue' ? '' : ` · ${esc(c.titre)}`} <small>${L.filter((m) => !m.facultative).length} missions${L.some((m) => m.facultative) ? ` + ${L.filter((m) => m.facultative).length} facultatives` : ''}</small></h2>
+    return `<section class="mis-ch" data-mchap="${c.id}" aria-labelledby="ch-${c.id}"><h2 class="vgrp-h" id="ch-${c.id}">${chNom(c)}${c.id === 'prologue' ? '' : ` · ${esc(c.titre)}`} <small>${((n) => `${n} mission${n > 1 ? 's' : ''}`)(L.filter((m) => !m.facultative).length)}${((n) => n ? ` + ${n} facultative${n > 1 ? 's' : ''}` : '')(L.filter((m) => m.facultative).length)}</small></h2>
     <p class="mis-ch-r">${esc(c.resume)}</p>
     <div class="mis-list">${L.map(carte).join('')}</div></section>`;
   }).join('')}
@@ -738,7 +755,7 @@ for (const v of VEHICULES) {
     <details><summary>J'ai raté une mission facultative</summary><p>Les missions marquées « peut être manquée » disparaissent au bout d'un moment. Ce n'est pas grave : elles ne comptent ni pour les trophées ni pour les 100 %.</p></details>
     <details><summary>Comment changer de personnage ?</summary><p>À partir de la mission « Pause café » (chapitre 2), maintiens droite sur la croix directionnelle pour passer de Jason à Lucia et donner des ordres à ton partenaire.</p></details>
   </section>
-  <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide. Noms anglais : ceux du jeu.</span></p>
+  <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide.</span></p>
 </section>`;
   emit(p, layout({ p, title: `Missions GTA 6 : les ${MS.length} missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (${princ} de l'histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
@@ -751,7 +768,7 @@ for (const v of VEHICULES) {
   const C = CODES.codes, cats = CODES.categories;
   const connus = C.filter((c) => c.sequence.length).length;
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
-    <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3><small>${esc(c.nomEn)}</small></div></header>
+    <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3></div></header>
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
@@ -1062,7 +1079,7 @@ for (const a of ACTUS) {
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
-  <p>Les objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces et activités viennent d'<a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous avons sélectionné les emplacements utiles, converti leurs positions sur notre carte et traduit les types et les phrases courantes ; les autres indications des joueurs restent en anglais et sont signalées comme telles.</p>
+  <p>Les objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces et activités viennent d'<a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous avons sélectionné les emplacements utiles, converti leurs positions sur notre carte et traduit en français les types, les noms et les indications des joueurs.</p>
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">Signale-le ici</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
@@ -1096,9 +1113,9 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 }
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Les ${MISSIONS.missions.length} missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
-for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: m.nomEn, k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
+for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
-for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: c.nomEn, k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
+for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
 

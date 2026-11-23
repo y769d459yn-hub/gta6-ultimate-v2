@@ -18,11 +18,11 @@ WK = {n(l) for l in open(os.path.join(V, 'gtawiki-liste.txt')).read().split('\n'
 G6_ALIAS = {'Play Nurse': 'Take Care of Jason', 'Got Pills?': 'Painkiller Supplier'}
 
 CHAP = [('prologue', 'Prologue', "Lucia en prison, juste avant le début de l'histoire."),
-        ('1', 'Just Like Paradise', 'Jason dans les Keys, puis la sortie de prison de Lucia.'),
-        ('2', 'Paradise Lost', 'En fuite, le couple se cache à Port Gellhorn.'),
-        ('3', 'Tits Ass Drug Money', 'Arrivée à Vice City et braquage de la banque du cartel.'),
-        ('4', 'Vice City, Baby', "La vie à Ocean Beach et le braquage de l'aéroport."),
-        ('5', 'Top of the World, Ma', 'Le final : cinq fins possibles.')]
+        ('1', 'Comme au paradis', 'Jason dans les Keys, puis la sortie de prison de Lucia.'),
+        ('2', 'Le paradis perdu', 'En fuite, le couple se cache à Port Gellhorn.'),
+        ('3', 'Sexe, drogue et fric', 'Arrivée à Vice City et braquage de la banque du cartel.'),
+        ('4', 'Vice City, bébé', "La vie à Ocean Beach et le braquage de l'aéroport."),
+        ('5', 'Au sommet du monde, m'man', 'Le final : cinq fins possibles.')]
 
 def recompense(r):
     if not r or r.lower() == 'none' or r.startswith('None'): return ''

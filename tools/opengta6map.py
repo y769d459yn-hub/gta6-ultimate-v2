@@ -3,9 +3,11 @@
 Usage : python3 tools/opengta6map.py <dossier du dépôt fbritoferreira/gta6>
 Garde les emplacements utiles (objets, armes, véhicules, braquages, commerces, services, activités),
 convertit les coordonnées dans le repère monde de GTADB (calage exact sur les 1 021 lieux communs : x = 32·x − 16385, y = 16385 − 32·y),
-traduit les types et les formules répétées. Les autres descriptions restent en anglais (signalé sur la carte)."""
+traduit en français les types, les noms génériques et les indications des joueurs (tools/traduction_carte.py)."""
 import json, os, re, sys, shutil
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from traduction_carte import traduire_desc, traduire_nom
 SRC = sys.argv[1]
 L = json.load(open(os.path.join(SRC, 'public', 'data', 'locations.json')))
 os.makedirs(os.path.join(ROOT, 'vendor', 'opengta6map'), exist_ok=True)
@@ -143,12 +145,15 @@ for l in L:
     if t not in T: manque.add(t); continue
     cat, lab, ic = T[t]
     d, en = fr(l.get('description', ''))
-    nom = l['name'].strip()
+    if en:
+        t = traduire_desc(d)
+        if t: d, en = t, False
+    nom = traduire_nom(l['name'].strip())
     out.append({'id': l['id'], 'c': cat, 's': lab, 'i': ic, 'n': nom, 'x': round(32 * l['x'] - 16385), 'y': round(16385 - 32 * l['y']),
                 **({'d': d} if d else {}), **({'en': 1} if en else {}), **({'ph': 1} if l.get('screenshot') else {}), **({'a': l['area']} if l.get('area') else {})})
 assert not manque, manque
 json.dump({'source': 'Open GTA 6 Map (fbritoferreira), https://github.com/fbritoferreira/gta6', 'licence': 'CC BY 4.0', 'revision': REV,
-           'modifications': 'Sélection des emplacements utiles, coordonnées converties dans le repère GTADB, types et formules traduits en français.', 'lieux': out},
+           'modifications': 'Sélection des emplacements utiles, coordonnées converties dans le repère GTADB, types, noms et indications traduits en français.', 'lieux': out},
           open(os.path.join(ROOT, 'data', 'carte-ogm.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
 import collections
 print(len(out), 'emplacements ·', dict(collections.Counter(o['c'] for o in out)), '·', sum(1 for o in out if o.get('en')), 'descriptions en anglais')
