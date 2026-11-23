@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /compte/
 Disallow: /favoris/
 Sitemap: https://gta6facile.fr/sitemap.xml

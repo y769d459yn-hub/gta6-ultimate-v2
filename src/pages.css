@@ -442,3 +442,55 @@
 .auth-sync[data-state="erreur"] { color: #ffb3c4; }
 .auth-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .auth-del { color: #ff8fa8; }
+
+/* ---------- administration ---------- */
+.adm .h1 { display: flex; align-items: center; gap: 10px; }
+.adm-pub { margin: 6px 0 16px; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 14px; background: rgba(255, 255, 255, .03); }
+.adm-pub p, .adm-err { display: flex; gap: 10px; align-items: flex-start; margin: 0; }
+.adm-pub p + p { margin-top: 8px; }
+.adm-pub .ic, .adm-err .ic { flex: none; width: 20px; height: 20px; margin-top: 2px; }
+.adm-wait { color: #ffd23f; }
+.adm-err { padding: 10px 12px; border-radius: 12px; background: rgba(255, 80, 110, .12); color: #ffb3c1; }
+.adm-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0 0 18px; padding: 5px; border-radius: 16px; background: rgba(255, 255, 255, .05); }
+.adm-tabs button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border: 0; border-radius: 12px; background: none; color: inherit; font: 600 .85rem var(--fd, inherit); cursor: pointer; }
+.adm-tabs button .ic { width: 20px; height: 20px; }
+.adm-tabs button[aria-selected="true"] { background: rgba(45, 226, 230, .16); color: #5fe3df; }
+.adm-nums { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+@media (min-width: 700px) { .adm-nums { grid-template-columns: repeat(3, 1fr); } }
+.adm-num { display: grid; gap: 2px; padding: 14px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; background: rgba(255, 255, 255, .03); }
+.adm-num .ic { width: 20px; height: 20px; color: #ff7ac6; }
+.adm-num b { font: 700 1.7rem var(--fd, inherit); }
+.adm-num small { opacity: .75; }
+.adm-card { margin: 0 0 14px; padding: 14px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; }
+.adm-card .h3 { display: flex; gap: 8px; align-items: center; margin-top: 0; }
+.adm-top { margin: 0; padding-left: 1.4em; }
+.adm-top li { padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+.adm-top li > * { vertical-align: middle; }
+.adm-top li b { float: right; color: #5fe3df; }
+.adm-quick { margin-bottom: 14px; }
+.adm-quick .btn { width: 100%; justify-content: center; }
+.adm-cols { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.adm-bar { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+.adm-bar .field { flex: 1; margin: 0; }
+.adm-list { display: grid; gap: 8px; }
+.adm-row { display: grid; gap: 4px; padding: 12px 14px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 14px; background: rgba(255, 255, 255, .03); color: inherit; text-align: left; font: inherit; }
+.adm-row--btn { cursor: pointer; width: 100%; }
+.adm-row--btn:hover { border-color: rgba(45, 226, 230, .5); }
+.adm-row-t { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.adm-row-t b { word-break: break-word; }
+.adm-row .adm-del { justify-self: start; margin-top: 4px; }
+.adm-del { color: #ff8fa6; }
+.adm-pill-mod { background: rgba(255, 210, 63, .16); color: #ffd23f; }
+.adm-pill-del { background: rgba(255, 80, 110, .16); color: #ff8fa6; }
+.adm-form label { display: grid; gap: 6px; }
+.adm-form label small { opacity: .7; font-size: .8rem; }
+.adm-form textarea, .adm-form select, .adm-form input[type="text"], .adm-form input[type="number"] { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; }
+.adm-form textarea[data-type="json"] { font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+.adm-form input[readonly] { opacity: .6; }
+.adm-check { display: flex !important; grid-template-columns: none; align-items: center; gap: 10px; }
+.adm-check input { width: 22px; height: 22px; }
+.adm-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.auth-admin { margin: 14px 0 4px; }
+.adm-form input[type="text"], .adm-form input[type="number"], .adm-form select { height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--hair2); background: rgba(0, 0, 0, .25); color: var(--tx); }
+.adm-form textarea { padding: 10px 14px; border-radius: 12px; border: 1px solid var(--hair2); background: rgba(0, 0, 0, .25); color: var(--tx); resize: vertical; line-height: 1.45; }
+.adm-form select option { background: #140a22; }

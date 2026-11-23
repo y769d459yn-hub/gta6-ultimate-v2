@@ -5,7 +5,9 @@ window.LG_SB={"url":"https://shpzxvdubrqkastpvcgz.supabase.co","cle":"sb_publish
    que sur la page « Mon espace » ou quand une session existe déjà. */
 (() => {
   'use strict';
-  const CFG = window.LG_SB; if (!CFG || !CFG.url || !CFG.cle) return;
+  // les autres scripts (administration) attendent cette promesse : { sb, user } ou null sans compte
+  let pret; window.LG_COMPTE = new Promise((ok) => { pret = ok; });
+  const CFG = window.LG_SB; if (!CFG || !CFG.url || !CFG.cle) return pret(null);
   const ROOT = document.body.dataset.root || './';
   const REF = CFG.url.replace(/^https:\/\//, '').split('.')[0];
   const SESSION = `sb-${REF}-auth-token`;
@@ -13,7 +15,7 @@ window.LG_SB={"url":"https://shpzxvdubrqkastpvcgz.supabase.co","cle":"sb_publish
   const UID = 'lg:sb-uid';
   const page = document.querySelector('[data-auth]');
   const ls = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } }, del: (k) => { try { localStorage.removeItem(k); } catch (e) { /* */ } } };
-  if (!page && !ls.get(SESSION)) return; // pas de compte sur cet appareil : rien à faire
+  if (!page && !ls.get(SESSION)) return pret(null); // pas de compte sur cet appareil : rien à faire
 
   const $ = (s, c = document) => c.querySelector(s);
   const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -98,6 +100,8 @@ window.LG_SB={"url":"https://shpzxvdubrqkastpvcgz.supabase.co","cle":"sb_publish
     if (!page) return;
     $('[data-auth-off]', page).hidden = !!user; $('[data-auth-on]', page).hidden = !user;
     if (user) { $('[data-auth-email]', page).textContent = user.email || ''; }
+    const adm = $('[data-auth-admin]', page);
+    if (adm) { adm.hidden = true; if (user) sb.rpc('est_admin').then(({ data }) => { adm.hidden = data !== true; }); }
     document.querySelectorAll('[data-auth-label]').forEach((e) => { e.textContent = user ? 'Mon compte' : 'Mon espace'; });
   }
   function brancherPage() {
@@ -156,5 +160,6 @@ window.LG_SB={"url":"https://shpzxvdubrqkastpvcgz.supabase.co","cle":"sb_publish
     const { data } = await sb.auth.getSession();
     user = data.session ? data.session.user : null; afficher();
     if (page) page.classList.remove('is-loading');
-  }).catch(() => { if (page) { page.classList.remove('is-loading'); msg('Le service de comptes est momentanément indisponible.'); } });
+    pret({ sb, get user() { return user; } });
+  }).catch(() => { pret(null); if (page) { page.classList.remove('is-loading'); msg('Le service de comptes est momentanément indisponible.'); } });
 })();
