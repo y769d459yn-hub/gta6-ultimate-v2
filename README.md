@@ -52,6 +52,10 @@ Toucher une question ne garde que ces repères et ouvre la liste, rangée par ty
 - Missions : `data/carte-missions.json` (lieu du guide ou lieu GTADB → missions) ; la page Missions renvoie vers ces repères (« Voir sur la carte »).
 - Chaque fiche propose « Le plus proche d'ici » (armurerie, hôpital, essence, garage, vêtements, planque), « J'y suis allé » (progression gardée sur l'appareil, clé `lg:carte-trouves`) et « Partager » (lien `?focus=`).
 
+## Carte : qualité du fond
+
+Six niveaux de tuiles (`src/tiles/0` à `5`). Le niveau 5 est le plus détaillé de la source GTADB (1 pixel par mètre) : `python3 tools/tuiles.py <gtadb.org> 5` le régénère seul (filtre médian pour retirer le bruit JPEG). Le zoom maximum (`sMax` dans `src/atlas.js`) est limité pour ne jamais agrandir ce niveau au point qu'il devienne flou.
+
 ## Carte : emplacements Open GTA 6 Map
 
 `tools/opengta6map.py <clone de github.com/fbritoferreira/gta6>` écrit `data/carte-ogm.json` : objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces, services et activités (≈ 3 300 emplacements, CC BY 4.0, crédit sur la carte et dans « À propos »).
