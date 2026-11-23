@@ -491,13 +491,6 @@ function homePalms() {
     ['astuces/voiture-rare/', 'Véhicules', 'Trouver une voiture rare', 'progen-emerus-royal-ruby', '#ffb547', 'Où sont garées les plus belles'],
     ['carte/?cat=armes', 'Armes', 'Où trouver les armes', 'jets-militaires', '#ff5a5a', 'Armes au sol et armes uniques']
   ];
-  const A0 = ACTUS[0];
-  const DERNIERS = [
-    [`actualites/${A0.slug}/`, 'Actualités', A0.titre, A0.bref, 'm-actus', '#2de2e6'],
-    ['vehicules/', 'Véhicules', 'Tous les véhicules de GTA 6', 'Photos, emplacements et comment les obtenir.', 'm-voitures', '#ffb547'],
-    ['astuces/?cat=debuter', 'Astuces', 'Les astuces pour bien débuter', 'Sauvegarder, se soigner, semer la police…', 'm-debuter', '#ff2bd6'],
-    ['missions/', 'Missions', 'Missions et solutions', `${vraiesM} missions principales, étape par étape.`, 'vapid-dominator-buggy', '#b44dff']
-  ];
   const body = `
 <section class="hx" aria-labelledby="h-title">
   <div class="hx-banner hx-banner--img">
@@ -527,11 +520,6 @@ function homePalms() {
     <button class="hx-arr hx-arr--r" type="button" data-car="1" aria-label="Guides suivants">${icon('chevron')}</button>
   </div>
   <div class="hx-dots" data-dots aria-hidden="true"></div>
-</section>
-
-<section class="wrap hx-sec" aria-labelledby="der-t">
-  <header class="hx-h"><h2 id="der-t">${icon('guide')}Derniers guides</h2><a href="${R}astuces/">Tout voir${icon('arrow-right')}</a></header>
-  <ul class="hx-list">${DERNIERS.map(([u, tag, t, d, img, c]) => `<li><a class="hx-row" href="${R}${u}" style="--c:${c}"><span class="hx-row-img" style="--img:url(${ph(img)})"></span><span class="hx-tag">${esc(tag)}</span><span class="hx-row-t"><b>${esc(t)}</b><small>${esc(d)}</small></span><span class="hx-chev">${icon('chevron')}</span></a></li>`).join('')}</ul>
 </section>
 
 <section class="wrap hx-sec">
