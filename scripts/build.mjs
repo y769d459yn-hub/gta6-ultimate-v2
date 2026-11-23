@@ -330,7 +330,7 @@ ${schema.map(ld).join('\n')}
 <header class="top">
   <a class="brand" href="${R}" aria-label="${esc(M)} — accueil">
     ${v2 ? BRAND_PALM : '<span class="brand-sun" aria-hidden="true"></span>'}
-    <span class="brand-txt"><b>LEONIDA</b><i>guide</i></span>
+    <span class="brand-txt"><b>GTA 6</b><i>facile</i></span>
   </a>
   <button class="search-trigger" type="button" data-open-search aria-label="Rechercher">
     ${icon('search')}<span>Une voiture, une mission, un lieu…</span><kbd>/</kbd>
@@ -360,7 +360,7 @@ ${body}
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <a class="brand brand--foot" href="${R}">${v2 ? BRAND_PALM.replace(/pm-g/g, 'pm-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
+    <a class="brand brand--foot" href="${R}">${v2 ? BRAND_PALM.replace(/pm-g/g, 'pm-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>GTA 6</b><i>facile</i></span></a>
     <nav aria-label="Pied de page">
       <a href="${R}missions/">Missions et solutions</a><a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
     </nav>
