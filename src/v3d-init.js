@@ -1,4 +1,4 @@
-/* Leonida Guide — fiche véhicule : vue 3D chargée à la demande, bascule « Vue 3D / Photo du jeu » */
+/* GTA 6 Facile — fiche véhicule : vue 3D chargée à la demande, bascule « Vue 3D / Photo du jeu » */
 (() => {
   'use strict';
   const hero = document.querySelector('[data-v3d]'); if (!hero) return;

@@ -1,4 +1,4 @@
-/* Leonida Guide — page carte plein écran (recherche, filtres, fiches, couche communautaire GTADB) */
+/* GTA 6 Facile — page carte plein écran (recherche, filtres, fiches, couche communautaire GTADB) */
 (() => {
   'use strict';
   const page = document.querySelector('[data-atlas-page]'); if (!page || !window.Atlas) return;

@@ -2,7 +2,7 @@
   "$schema": "./schemas/accueil.schema.json",
   "version": 1,
   "meta": {
-    "title": "Guides GTA 6 : astuces, véhicules et carte | Leonida Guide",
+    "title": "Guides GTA 6 : astuces, véhicules et carte | GTA 6 Facile",
     "description": "Trouvez vite une astuce GTA 6, un véhicule ou un lieu grâce à une recherche simple, des filtres utiles et une carte interactive."
   },
   "hero": {

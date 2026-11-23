@@ -1,4 +1,4 @@
-/* Leonida Guide — Missions et solutions : recherche, filtres et suivi de progression (gardé sur cet appareil) */
+/* GTA 6 Facile — Missions et solutions : recherche, filtres et suivi de progression (gardé sur cet appareil) */
 (() => {
   'use strict';
   const root = document.querySelector('[data-missions]'); if (!root) return;

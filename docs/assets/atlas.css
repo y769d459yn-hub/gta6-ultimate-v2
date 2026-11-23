@@ -1,4 +1,4 @@
-/* Leonida Guide — styles de la carte (accueil et page carte), direction « néon de nuit » */
+/* GTA 6 Facile — styles de la carte (accueil et page carte), direction « néon de nuit » */
 .at-tiles, .at-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .at-tiles { z-index: 0; } .at-layer { z-index: 1; pointer-events: none; }
 .at-tile { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; user-select: none; -webkit-user-drag: none; image-rendering: auto; transition: opacity .35s; }

@@ -1,4 +1,4 @@
-/* Leonida Guide — animations communes des pages intérieures (GSAP + DrawSVG + SplitText) */
+/* GTA 6 Facile — animations communes des pages intérieures (GSAP + DrawSVG + SplitText) */
 (() => {
   'use strict';
   const g = window.gsap;

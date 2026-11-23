@@ -844,7 +844,7 @@ for (const v of VEHICULES) {
     <details><summary>J'ai raté une mission facultative</summary><p>Les missions marquées « peut être manquée » disparaissent au bout d'un moment. Ce n'est pas grave : elles ne comptent ni pour les trophées ni pour les 100 %.</p></details>
     <details><summary>Comment changer de personnage ?</summary><p>À partir de la mission « Pause café » (chapitre 2), maintiens droite sur la croix directionnelle pour passer de Jason à Lucia et donner des ordres à ton partenaire.</p></details>
   </section>
-  <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par Leonida Guide.</span></p>
+  <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par GTA 6 Facile.</span></p>
 </section>`;
   emit(p, layout({ p, title: `Missions GTA 6 : toutes les missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
@@ -885,7 +885,7 @@ for (const v of VEHICULES) {
   </section>`).join('')}
   <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${[...D.liens, ...autres].map((u) => relLien(u, R)).join('')}</div></section>
   ${D.faq.length ? `<details class="more" open><summary>${icon('question')}Questions fréquentes</summary>${D.faq.map(([q, r]) => `<h3>${esc(q)}</h3><p>${esc(r)}</p>`).join('')}</details>` : ''}
-  ${D.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${D.sources.length})</summary><ul>${D.sources.map(([n, u]) => `<li><a href="${u}" rel="nofollow noopener" target="_blank">${esc(n)}</a></li>`).join('')}</ul><p class="muted">Relevé du 23/11/2026. Textes rédigés par Leonida Guide.</p></details>` : ''}
+  ${D.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${D.sources.length})</summary><ul>${D.sources.map(([n, u]) => `<li><a href="${u}" rel="nofollow noopener" target="_blank">${esc(n)}</a></li>`).join('')}</ul><p class="muted">Relevé du 23/11/2026. Textes rédigés par GTA 6 Facile.</p></details>` : ''}
 </article>`;
     emit(p, layout({
       p, title: D.seo, desc: D.desc, body, cls: 'p-fiche', ogType: 'article',
@@ -1189,7 +1189,7 @@ for (const a of ACTUS) {
         <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
         <label>Mot de passe <small>(8 caractères minimum)</small><input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label>
         <label>Confirme le mot de passe<input type="password" name="mdp2" autocomplete="new-password" minlength="8" required></label>
-        <label class="auth-check"><input type="checkbox" name="ok"> <span>J'accepte que mon e-mail serve uniquement à mon compte Leonida Guide (voir <a href="${R}a-propos/#donnees">données personnelles</a>).</span></label>
+        <label class="auth-check"><input type="checkbox" name="ok"> <span>J'accepte que mon e-mail serve uniquement à mon compte GTA 6 Facile (voir <a href="${R}a-propos/#donnees">données personnelles</a>).</span></label>
         <button class="btn btn--primary" type="submit">${icon('plus')}Créer mon compte</button>
       </form>
       <form class="auth-form" data-auth-view="oubli" data-form="oubli" hidden>
@@ -1355,7 +1355,7 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
-write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'Leonida', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
+write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'GTA 6 Facile', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
 write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);

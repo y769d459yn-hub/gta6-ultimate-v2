@@ -1,4 +1,4 @@
-/* Leonida Guide — interactions globales (sans dépendance ; GSAP en amélioration progressive) */
+/* GTA 6 Facile — interactions globales (sans dépendance ; GSAP en amélioration progressive) */
 (() => {
   'use strict';
   const html = document.documentElement;
