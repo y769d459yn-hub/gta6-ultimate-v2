@@ -9,13 +9,13 @@ masquage de la colonne de légende et des vignettes (x monde > COUPE_X), redéco
 """
 import json, os, sys, glob
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else '../rolux-gtadb'
 SET = 'yanis,18'
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'src', 'tiles')
-NIVEAUX = range(0, 5)
+NIVEAUX = [int(a) for a in sys.argv[2].split(',')] if len(sys.argv) > 2 else range(0, 6)  # 5 = niveau le plus détaillé de la source (1 pixel par mètre)
 SRC_TILE, OUT_TILE = 256, 1024
 MONDE, ZERO = 32768, 16384
 COUPE_X = 3600  # au-delà : légende et vignettes de la carte source, exclues
@@ -73,6 +73,7 @@ for z in NIVEAUX:
                         canvas.paste(im, (i * SRC_TILE, j * SRC_TILE)); found = True
                         mask[j * SRC_TILE:(j + 1) * SRC_TILE, i * SRC_TILE:(i + 1) * SRC_TILE] = True
             if not found: continue
+            if z >= 5: canvas = canvas.filter(ImageFilter.MedianFilter(3))  # niveau détaillé : retire le bruit JPEG de la source avant la recoloration
             a = np.asarray(canvas).astype(np.float32) / 255.
             o = neon(a)
             o[~mask] = FOND
@@ -80,8 +81,11 @@ for z in NIVEAUX:
             o[:, xs > COUPE_X] = FOND
             if np.abs(o - FOND).max() < 0.03: continue  # tuile vide (océan uniforme)
             os.makedirs(os.path.join(OUT, str(z)), exist_ok=True)
-            Image.fromarray((np.clip(o, 0, 1) * 255).astype(np.uint8)).save(os.path.join(OUT, str(z), f'{tx}_{ty}.webp'), 'WEBP', quality=72, method=6)
+            Image.fromarray((np.clip(o, 0, 1) * 255).astype(np.uint8)).save(os.path.join(OUT, str(z), f'{tx}_{ty}.webp'), 'WEBP', quality=72 if z < 5 else 82, method=6)
             tuiles.append(f'{tx}_{ty}')
     meta['niveaux'].append({'z': z, 'grille': n // 4, 'tuiles': tuiles})
     print('niveau', z, len(tuiles), 'tuiles')
+if len(sys.argv) > 2:  # niveaux régénérés à part : on garde les autres
+    old = json.load(open(os.path.join(ROOT, 'data', 'tuiles.json')))['niveaux']
+    meta['niveaux'] = sorted([n for n in old if n['z'] not in NIVEAUX] + meta['niveaux'], key=lambda n: n['z'])
 json.dump(meta, open(os.path.join(ROOT, 'data', 'tuiles.json'), 'w'), ensure_ascii=False, indent=1)

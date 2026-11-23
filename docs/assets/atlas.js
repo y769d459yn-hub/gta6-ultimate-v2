@@ -16,7 +16,7 @@
 
     const B = C.bornes;
     const cam = { x: (B.ouest + B.est) / 2, y: (B.sud + B.nord) / 2, s: .04 };
-    let W = 1, H = 1, sMin = .02, sMax = 1.1;
+    let W = 1, H = 1, sMin = .02, sMax = .75; // zoom maximum : au-delà, le niveau le plus détaillé deviendrait flou
     const pad = Object.assign({ top: 0, bottom: 0, left: 0, right: 0 }, o.pad || {});
     const st = { feats: (C.features || []).map((f) => ({ ...f.properties, x: f.geometry.coordinates[0], y: f.geometry.coordinates[1] })), commu: [], showCommu: !!o.communaute, filter: () => true, commuFilter: () => true, active: null };
     const cats = Object.fromEntries((C.categories || []).map((c) => [c.id, c]));
@@ -26,7 +26,7 @@
       W = stage.clientWidth || 1; H = stage.clientHeight || 1;
       const aw = W - pad.left - pad.right, ah = H - pad.top - pad.bottom;
       sMin = Math.min(aw / (B.est - B.ouest), ah / (B.nord - B.sud)) * (C.vueInitiale.zoomMin ? 1 : 1);
-      sMax = 1.1;
+      sMax = .75;
     }
     const fx = () => pad.left + (W - pad.left - pad.right) / 2;
     const fy = () => pad.top + (H - pad.top - pad.bottom) / 2;
@@ -61,13 +61,13 @@
             im = new Image(); im.decoding = 'async'; im.alt = ''; im.draggable = false; im.className = 'at-tile';
             im.style.zIndex = L; im.style.opacity = 0; im.style.width = im.style.height = T.tileSize + 'px';
             im.onload = () => { im.style.opacity = 1; };
-            im.src = `${ROOT}tiles/${L}/${key}.webp`;
+            im.src = (window.LG_TILES && window.LG_TILES[id]) || `${ROOT}tiles/${L}/${key}.webp`; // LG_TILES : adresses de remplacement (aperçu)
             tilesEl.appendChild(im); imgs.set(id, im);
           }
           const [sx, sy] = toScreen(tx * span - T.zero, T.zero - ty * span);
           const size = span * cam.s;
           if (im._h) { im.style.display = ''; im._h = 0; }
-          const tr = `translate3d(${sx.toFixed(1)}px,${sy.toFixed(1)}px,0) scale(${((size + .6) / T.tileSize).toFixed(5)})`;
+          const tr = `translate3d(${sx.toFixed(1)}px,${sy.toFixed(1)}px,0) scale(${((size + 1) / T.tileSize).toFixed(5)})`;
           if (im._t !== tr) { im.style.transform = tr; im._t = tr; }
         }
       }
