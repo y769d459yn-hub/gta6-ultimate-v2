@@ -474,14 +474,15 @@ function homePalms() {
       <span class="ht-txt"><b>${esc(t.label)}</b><small>${esc(fill(t.sousTitre, t.compteur))}</small></span>
       <span class="ht-go" aria-hidden="true">${icon('arrow-right')}</span>
     </a>`).join('');
-  const ph = (n) => `../photos/${n}.webp`; // chemin relatif à assets/home.css (variable CSS)
+  // chemins relatifs à assets/home.css (variable CSS) : images de la maquette (m-…) dans assets/, photos du jeu dans photos/
+  const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : `../photos/${n}.webp`);
   const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
   const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
   const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547']];
   const UNE = D_('argent-rapide');
   const POP = [
-    ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'pegassi-infernus', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
-    ['dossiers/secrets/', 'Secrets', 'Secrets et Easter eggs de Leonida', 'mallard-flammes', '#9d7bff', 'Bigfoot, OVNI, fantômes…'],
+    ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'm-codes', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
+    ['dossiers/secrets/', 'Secrets', 'Secrets et Easter eggs de Leonida', 'm-secrets', '#9d7bff', 'Bigfoot, OVNI, fantômes…'],
     ['dossiers/codes-coffres/', 'Coffres', 'Tous les codes de coffres', 'vapid-stanier-55', '#ffb547', 'Repaires de gangs et lieux secrets'],
     ['dossiers/100-pour-cent/', '100 %', 'Finir GTA 6 à 100 %', 'kayak-crest', '#2de2e6', 'La checklist complète'],
     ['astuces/voiture-rare/', 'Véhicules', 'Trouver une voiture rare', 'progen-emerus-royal-ruby', '#ffb547', 'Où sont garées les plus belles'],
@@ -489,16 +490,14 @@ function homePalms() {
   ];
   const A0 = ACTUS[0];
   const DERNIERS = [
-    [`actualites/${A0.slug}/`, 'Actualités', A0.titre, A0.bref, 'helicoptere-toits', '#2de2e6'],
-    ['vehicules/', 'Véhicules', 'Tous les véhicules de GTA 6', 'Photos, emplacements et comment les obtenir.', 'pfister-comet-s2', '#ffb547'],
-    ['astuces/?cat=debuter', 'Astuces', 'Les astuces pour bien débuter', 'Sauvegarder, se soigner, semer la police…', 'vapid-ganado', '#ff2bd6'],
+    [`actualites/${A0.slug}/`, 'Actualités', A0.titre, A0.bref, 'm-actus', '#2de2e6'],
+    ['vehicules/', 'Véhicules', 'Tous les véhicules de GTA 6', 'Photos, emplacements et comment les obtenir.', 'm-voitures', '#ffb547'],
+    ['astuces/?cat=debuter', 'Astuces', 'Les astuces pour bien débuter', 'Sauvegarder, se soigner, semer la police…', 'm-debuter', '#ff2bd6'],
     ['missions/', 'Missions', 'Missions et solutions', `${vraiesM} missions principales, étape par étape.`, 'vapid-dominator-buggy', '#b44dff']
   ];
-  const PINS = [['car', '#ff5a5a', 47, 30], ['question', '#9d7bff', 70, 46], ['palm', '#ff2bd6', 82, 22], ['star', '#3d8bff', 52, 72]];
   const body = `
 <section class="hx" aria-labelledby="h-title">
-  <div class="hx-banner" style="--img:url(${ph('vedette')})">
-    ${homePalms()}
+  <div class="hx-banner" style="--img:url(${ph('m-banniere')})">
     <h1 class="hx-title" id="h-title"><span class="hx-k">Le guide ultime de</span><span class="hx-gta">GTA <em>6</em></span></h1>
     <p class="hx-sub">Astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida.</p>
   </div>
@@ -511,7 +510,7 @@ function homePalms() {
 <section class="wrap hx-sec" aria-labelledby="une-t">
   <header class="hx-h"><h2 id="une-t"><i class="hx-bar"></i>À la une</h2><span class="hx-maj">${icon('check')}Mis à jour</span><a href="${R}dossiers/">Tout voir${icon('arrow-right')}</a></header>
   <a class="hx-une" href="${R}dossiers/${UNE.slug}/" style="--c:${UNE.couleur}">
-    <span class="hx-une-img" style="--img:url(${ph('granforma-zorrusso')})"></span>
+    <span class="hx-une-img" style="--img:url(${ph('m-argent')})"></span>
     <span class="hx-une-t"><span class="hx-tag" style="--c:#3ddc84">Argent</span><b>Gagner de l'argent rapidement sur GTA 6</b><small>Les meilleures méthodes du début à la fin de l'histoire, et comment ne pas perdre ce que tu gagnes.</small></span>
     <span class="hx-go">${icon('arrow-right')}</span>
   </a>
@@ -535,7 +534,7 @@ function homePalms() {
 <section class="wrap hx-sec">
   <a class="hx-map" href="${R}carte/">
     <span class="hx-map-t"><b>${icon('pin')}Carte interactive de Leonida</b><small>Explore la carte de GTA 6 : missions, véhicules, lieux secrets, objets à collectionner et bien plus.</small><span class="hx-btn">${icon('map')}Ouvrir la carte${icon('arrow-right')}</span></span>
-    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/carte-apercu.webp" alt="" loading="lazy" decoding="async">${PINS.map(([i, c, x, y]) => `<i class="hx-pin" style="--c:${c};left:${x}%;top:${y}%">${icon(i)}</i>`).join('')}</span>
+    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/m-carte.webp" alt="" loading="lazy" decoding="async"></span>
   </a>
 </section>
 
