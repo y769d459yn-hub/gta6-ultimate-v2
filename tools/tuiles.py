@@ -1,10 +1,10 @@
-"""Génère les tuiles néon de la carte à partir des tuiles GTADB (Yanis v18, CC BY 4.0).
+"""Génère les tuiles de la carte (couleurs réalistes, proches de la carte du jeu) à partir des tuiles GTADB (Yanis v18, CC BY 4.0).
 
 Usage : python3 tools/tuiles.py <chemin/vers/gtadb.org> 
 Source : https://github.com/rolux/gtadb.org (maps/tiles/6/yanis,18)
 Sortie : src/tiles/<niveau>/<x>_<y>.webp + data/tuiles.json
 
-Modifications apportées (exigées par CC BY 4.0) : recoloration « néon de nuit »,
+Modifications apportées (exigées par CC BY 4.0) : recoloration en tons réalistes (tools/couleurs_realistes.py),
 masquage de la colonne de légende et des vignettes (x monde > COUPE_X), redécoupage en tuiles de 1024 px.
 """
 import json, os, sys, glob
@@ -21,7 +21,10 @@ MONDE, ZERO = 32768, 16384
 COUPE_X = 3600  # au-delà : légende et vignettes de la carte source, exclues
 
 def c(*v): return np.array(v, np.float32) / 255.
-FOND = c(5, 6, 16)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from couleurs_realistes import realiste, fond_eau
+FOND = fond_eau()
+MER = np.array([44, 104, 166], np.float32) / 255.  # mer profonde dans la source
 
 def neon(a):
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
@@ -51,11 +54,11 @@ def charge(z, row, col):
     f = os.path.join(SRC, 'maps', 'tiles', '6', SET, str(z), f'{z},{row},{col}.jpg')
     return Image.open(f).convert('RGB') if os.path.exists(f) else None
 
-meta = {'tileSize': OUT_TILE, 'monde': MONDE, 'zero': ZERO, 'fond': '#050610', 'coupeX': COUPE_X,
+meta = {'tileSize': OUT_TILE, 'monde': MONDE, 'zero': ZERO, 'fond': '#%02x%02x%02x' % tuple(int(round(x * 255)) for x in FOND), 'coupeX': COUPE_X,
         'source': {'nom': 'Yanis v18 — GTA VI Community Map', 'diffuseur': 'GTADB', 'url': 'https://map.gtadb.org',
                    'depot': 'https://github.com/rolux/gtadb.org', 'licence': 'CC BY 4.0',
                    'licenceUrl': 'https://creativecommons.org/licenses/by/4.0/',
-                   'modifications': 'Recoloration néon, légende et vignettes retirées, redécoupage.',
+                   'modifications': 'Recoloration en tons réalistes, légende et vignettes retirées, redécoupage.',
                    'officielle': False},
         'niveaux': []}
 for z in NIVEAUX:
@@ -75,13 +78,14 @@ for z in NIVEAUX:
             if not found: continue
             if z >= 5: canvas = canvas.filter(ImageFilter.MedianFilter(3))  # niveau détaillé : retire le bruit JPEG de la source avant la recoloration
             a = np.asarray(canvas).astype(np.float32) / 255.
-            o = neon(a)
+            o = realiste(a)
             o[~mask] = FOND
             xs = (tx * OUT_TILE + np.arange(OUT_TILE)) / ppu - ZERO
             o[:, xs > COUPE_X] = FOND
-            if np.abs(o - FOND).max() < 0.03: continue  # tuile vide (océan uniforme)
+            # tuile vide : pleine mer (couleur de la mer profonde de la source) hors quadrillage
+            if np.mean((np.abs(a - MER).max(-1) > .16) & mask & (xs <= COUPE_X)[None, :]) < .0004: continue
             os.makedirs(os.path.join(OUT, str(z)), exist_ok=True)
-            Image.fromarray((np.clip(o, 0, 1) * 255).astype(np.uint8)).save(os.path.join(OUT, str(z), f'{tx}_{ty}.webp'), 'WEBP', quality=72 if z < 5 else 82, method=6)
+            Image.fromarray((np.clip(o, 0, 1) * 255).astype(np.uint8)).save(os.path.join(OUT, str(z), f'{tx}_{ty}.webp'), 'WEBP', quality=86, method=6)
             tuiles.append(f'{tx}_{ty}')
     meta['niveaux'].append({'z': z, 'grille': n // 4, 'tuiles': tuiles})
     print('niveau', z, len(tuiles), 'tuiles')

@@ -54,7 +54,7 @@ Toucher une question ne garde que ces repères et ouvre la liste, rangée par ty
 
 ## Carte : qualité du fond
 
-Six niveaux de tuiles (`src/tiles/0` à `5`). Le niveau 5 est le plus détaillé de la source GTADB (1 pixel par mètre) : `python3 tools/tuiles.py <gtadb.org> 5` le régénère seul (filtre médian pour retirer le bruit JPEG). Le zoom maximum (`sMax` dans `src/atlas.js`) est limité pour ne jamais agrandir ce niveau au point qu'il devienne flou.
+Six niveaux de tuiles (`src/tiles/0` à `5`), en couleurs réalistes proches de la carte du jeu (`tools/couleurs_realistes.py`). Le niveau 5 est le plus détaillé de la source GTADB (1 pixel par mètre) : `python3 tools/tuiles.py <gtadb.org> 5` le régénère seul (filtre médian pour retirer le bruit JPEG). Le zoom maximum (`sMax` dans `src/atlas.js`) est limité pour ne jamais agrandir ce niveau au point qu'il devienne flou.
 
 ## Carte : emplacements Open GTA 6 Map
 

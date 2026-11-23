@@ -28,14 +28,14 @@
 .at-attrib { margin: 0; font: 500 .8rem/1.4 var(--fd, sans-serif); color: var(--tx2, #d3cdea); }
 .at-attrib a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .hm .at-attrib { position: absolute; left: 10px; right: 10px; bottom: 8px; pointer-events: auto; text-shadow: 0 0 6px #000; }
-.hm .hm-stage { background: #050610; }
+.hm .hm-stage { background: #5a85a3; }
 .hm .hm-pop { bottom: 40px; }
 
 /* ---------- Page carte plein écran ---------- */
 .p-atlas { padding-bottom: 0; overflow: hidden; }
 .p-atlas .foot { display: none; }
 .atp { position: fixed; inset: var(--top-h, 60px) 0 0 0; z-index: 1; }
-.atp-stage { position: absolute; inset: 0; touch-action: none; cursor: grab; outline: none; background: #050610; }
+.atp-stage { position: absolute; inset: 0; touch-action: none; cursor: grab; outline: none; background: #5a85a3; }
 .atp-stage.is-drag { cursor: grabbing; }
 .atp-top { position: absolute; left: max(12px, env(safe-area-inset-left)); right: max(12px, env(safe-area-inset-right)); top: 10px; display: grid; gap: 8px; max-width: 620px; pointer-events: none; z-index: 5; }
 .atp-top > * { pointer-events: auto; }
