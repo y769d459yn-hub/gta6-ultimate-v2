@@ -172,6 +172,14 @@ for k, e in sorted(cat.items(), key=lambda kv: kv[1]['modele']):
         item.update({'img': item['slug'] + '.webp', 'credit': best[2], 'creditUrl': best[3], 'nettete': round(best[0]), 'taille': list(best[4])})
     liste.append(item)
 
+# ---------- photos ajoutées à la main (data/catalogue-photos-extra.json) : rendus 4K du GTA Wiki et rendus GTABase vérifiés à l'œil ----------
+EXTRA_P = os.path.join(ROOT, 'data/catalogue-photos-extra.json')
+EXTRA = json.load(open(EXTRA_P)) if os.path.exists(EXTRA_P) else {}
+for item in liste:
+    x = EXTRA.get(item['slug'])
+    if x and os.path.exists(os.path.join(OUT_IMG, item['slug'] + '.webp')):
+        item.update({'img': item['slug'] + '.webp', 'credit': x['credit'], 'creditUrl': x['creditUrl'], 'taille': x['taille']})
+
 # ---------- nos 31 fiches : catégorie et infos (leurs photos restent celles choisies à la main) ----------
 fiches = {}
 for s, (gid, k) in NOS.items():

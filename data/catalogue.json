@@ -154,6 +154,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/apc"
     }
+   ],
+   "img": "hauners-apc.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/apc",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -247,6 +254,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/airtug"
     }
+   ],
+   "img": "hvy-airtug.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Airtug-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -272,12 +286,12 @@
     }
    ],
    "img": "declasse-akane.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-sonic",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Akane-GTAVI-FrontQuarter.png",
    "nettete": 57,
    "taille": [
-    831,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -338,12 +352,12 @@
     }
    ],
    "img": "karin-allander.webp",
-   "credit": "Rockstar Games, via Tracker.gg",
-   "creditUrl": "https://tracker.gg/gta6/vehicles",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Allander-GTAVI-FrontQuarter.png",
    "nettete": 987,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -436,11 +450,11 @@
    ],
    "img": "interstate-ambulance.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Ambulance",
+   "creditUrl": "https://gta.wiki/w/File:Ambulance-GTAVI-FrontQuarter.png",
    "nettete": 1396,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -541,6 +555,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/zion"
     }
+   ],
+   "img": "ubermacht-apoc.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/zion",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -630,6 +651,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/asterope-gz"
     }
+   ],
+   "img": "karin-asterope-gz.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/asterope-gz",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -659,12 +687,12 @@
     }
    ],
    "img": "pfister-astron.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/astron",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Astron-GTAVI-FrontQuarter.png",
    "nettete": 90,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -723,6 +751,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/excavator"
     }
+   ],
+   "img": "dinka-b3000-excavator.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:B3000Excavator-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -985,12 +1020,12 @@
     }
    ],
    "img": "cartwright-biff.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/biff",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Biff-GTAVI-FrontQuarter.png",
    "nettete": 138,
    "taille": [
-    830,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -1020,12 +1055,12 @@
     }
    ],
    "img": "bravado-bison.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/bison",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Bison-GTAVI-FrontQuarter.png",
    "nettete": 99,
    "taille": [
-    832,
-    467
+    1600,
+    900
    ]
   },
   {
@@ -1216,6 +1251,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/polaris-ranger"
     }
+   ],
+   "img": "mer-can-blast.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Blast-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -1369,12 +1411,12 @@
     }
    ],
    "img": "bravado-bogan.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-sebring-2nd-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Bogan-GTAVI-FrontQuarter.png",
    "nettete": 71,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -1401,11 +1443,11 @@
    ],
    "img": "maibatsu-boomazoom.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Peggy",
+   "creditUrl": "https://gta.wiki/w/File:Boomazoom-GTAVI-FrontQuarter.png",
    "nettete": 290,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -1435,12 +1477,12 @@
     }
    ],
    "img": "brute-boxville.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/boxville",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Boxville-GTAVI-FrontQuarter.png",
    "nettete": 103,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -1592,6 +1634,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/dozer"
     }
+   ],
+   "img": "hvy-bulldozer.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/dozer",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -1617,12 +1666,12 @@
     }
    ],
    "img": "declasse-burrito-98.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/burrito",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Burrito1998-GTAVI-FrontQuarter.png",
    "nettete": 168,
    "taille": [
-    831,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -1743,6 +1792,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/caddy"
     }
+   ],
+   "img": "maibatsu-caddy-82.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Caddy-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -1826,12 +1882,12 @@
     }
    ],
    "img": "vapid-caracara-4x4.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/caracara-4x4",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Caracara4x4-GTAVI-FrontQuarter.png",
    "nettete": 641,
    "taille": [
-    960,
-    730
+    1600,
+    900
    ]
   },
   {
@@ -1896,12 +1952,12 @@
     }
    ],
    "img": "grotti-carbonizzare.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/carbonizzare",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Carbonizzare-GTAVI-FrontQuarter.png",
    "nettete": 77,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -1962,12 +2018,12 @@
     }
    ],
    "img": "dinka-chavos-xs.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/honda-accord-10th-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:ChavosXS-GTAVI-FrontQuarter.png",
    "nettete": 150,
    "taille": [
-    830,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -2377,12 +2433,12 @@
     }
    ],
    "img": "ubermacht-cypher.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/cypher",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Cypher-GTAVI-FrontQuarter.png",
    "nettete": 365,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -2470,12 +2526,12 @@
     }
    ],
    "img": "whiffler-dashound.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/dashound",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Dashound-GTAVI-FrontQuarter.png",
    "nettete": 129,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -2530,6 +2586,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/deviant"
     }
+   ],
+   "img": "schyster-deviant-72.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Deviant-GTAVI-OfficialScreenshot-UltimateEdition-WymanCarCollection01.png",
+   "taille": [
+    993,
+    559
    ]
   },
   {
@@ -2720,6 +2783,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/dorado"
     }
+   ],
+   "img": "bravado-dorado.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/dorado",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3079,12 +3149,12 @@
     }
    ],
    "img": "karin-feroci-98.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/feroci",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Feroci1998-GTAVI-FrontQuarter.png",
    "nettete": 78,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -3143,6 +3213,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/fieldmaster"
     }
+   ],
+   "img": "jacksheepe-fieldmaster-99.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/fieldmaster",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3261,12 +3338,12 @@
     }
    ],
    "img": "piccia-furia.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/furia",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Furia-GTAVI-FrontQuarter.png",
    "nettete": 71,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -3371,6 +3448,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/granger"
     }
+   ],
+   "img": "declasse-granger.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/granger",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3501,12 +3585,12 @@
     }
    ],
    "img": "bravado-gresley-xt.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/dodge-durango-3rd-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:GresleyXT-GTAVI-FrontQuarter.png",
    "nettete": 56,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -3598,12 +3682,12 @@
     }
    ],
    "img": "pfister-growler.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/growler",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Growler-GTAVI-FrontQuarter.png",
    "nettete": 167,
    "taille": [
-    563,
-    321
+    1600,
+    900
    ]
   },
   {
@@ -3629,12 +3713,12 @@
     }
    ],
    "img": "annis-hellion-95.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/hellion",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Hellion1995-GTAVI-FrontQuarter.png",
    "nettete": 99,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -3658,6 +3742,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/hermes-50"
     }
+   ],
+   "img": "albany-hermes-50.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/hermes-50",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3681,6 +3772,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/hustler"
     }
+   ],
+   "img": "vapid-hustler-32.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/hustler",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3859,6 +3957,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/injection"
     }
+   ],
+   "img": "bf-injection-73.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/injection",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3917,6 +4022,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/isuzu-elf-250"
     }
+   ],
+   "img": "maibatsu-iota.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Iota-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -3973,12 +4085,12 @@
     }
    ],
    "img": "grotti-itali-rsx.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/itali-rsx",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:ItaliRSX-GTAVI-FrontQuarter.png",
    "nettete": 269,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -4037,6 +4149,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/journey"
     }
+   ],
+   "img": "osprey-journey-78.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Journey1978-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -4332,6 +4451,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/lectro"
     }
+   ],
+   "img": "principe-lectro.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/lectro",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -4384,12 +4510,12 @@
     }
    ],
    "img": "hvy-lifta.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/forklift",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Lifta-GTAVI-FrontQuarter.png",
    "nettete": 126,
    "taille": [
-    640,
-    358
+    1600,
+    900
    ]
   },
   {
@@ -4481,12 +4607,12 @@
     }
    ],
    "img": "vapid-lowline.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/ford-taurus",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Lowline-GTAVI-FrontQuarter.png",
    "nettete": 70,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -4716,6 +4842,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/marshall"
     }
+   ],
+   "img": "vapid-marshall.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/marshall",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -4745,12 +4878,12 @@
     }
    ],
    "img": "buckingham-maverick.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/maverick",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Maverick-GTAVI-FrontQuarter.png",
    "nettete": 519,
    "taille": [
-    2130,
-    1232
+    1600,
+    900
    ]
   },
   {
@@ -4900,12 +5033,12 @@
     }
    ],
    "img": "vapid-montagne.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-6th-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Montagne-GTAVI-FrontQuarter.png",
    "nettete": 123,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -4994,11 +5127,11 @@
    ],
    "img": "vapid-montagne-xl.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Montagne_XL",
+   "creditUrl": "https://gta.wiki/w/File:MontagneXL-GTAVI-FrontQuarter.png",
    "nettete": 1359,
    "taille": [
-    3840,
-    2160
+    1600,
+    900
    ]
   },
   {
@@ -5024,12 +5157,12 @@
     }
    ],
    "img": "willard-moocher-83.webp",
-   "credit": "Rockstar Games, via Tracker.gg",
-   "creditUrl": "https://tracker.gg/gta6/vehicles",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Moocher1983-GTAVI-FrontQuarter.png",
    "nettete": 1356,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -5086,12 +5219,12 @@
     }
    ],
    "img": "maibatsu-mule.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/mule",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Mule-GTAVI-FrontQuarter.png",
    "nettete": 124,
    "taille": [
-    831,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -5476,6 +5609,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/parkland-71"
     }
+   ],
+   "img": "declasse-parkland-71.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/parkland-71",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -5559,12 +5699,12 @@
     }
    ],
    "img": "jobuilt-phantom-custom-81.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/phantom-custom",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PhantomCustom1981-GTAVI-FrontQuarter.png",
    "nettete": 74,
    "taille": [
-    652,
-    320
+    1600,
+    900
    ]
   },
   {
@@ -5807,12 +5947,12 @@
     }
    ],
    "img": "vapid-police-lowline-interceptor.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-interceptor",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceLowline-GTAVI-FrontQuarter.png",
    "nettete": 256,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -5869,12 +6009,12 @@
     }
    ],
    "img": "vapid-police-montagne.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/ford-explorer-suv-police",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceMontagne-GTAVI-FrontQuarter.png",
    "nettete": 156,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -5966,12 +6106,12 @@
     }
    ],
    "img": "mtl-pumper.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/fire-truck",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Pumper-GTAVI-FrontQuarter.png",
    "nettete": 35,
    "taille": [
-    640,
-    354
+    1600,
+    900
    ]
   },
   {
@@ -6059,12 +6199,12 @@
     }
    ],
    "img": "taci-ragno.webp",
-   "credit": "Rockstar Games, via Tracker.gg",
-   "creditUrl": "https://tracker.gg/gta6/vehicles",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Ragno-GTAVI-FrontQuarter.png",
    "nettete": 1849,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -6125,12 +6265,12 @@
     }
    ],
    "img": "declasse-rancher-86.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/rancher",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Rancher1986-GTAVI-FrontQuarter.png",
    "nettete": 595,
    "taille": [
-    877,
-    677
+    1600,
+    900
    ]
   },
   {
@@ -6156,12 +6296,12 @@
     }
    ],
    "img": "karin-rebel-84.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/rebel",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Rebel-GTAVI-FrontQuarter.png",
    "nettete": 100,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -6282,6 +6422,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/rental-shuttle-bus"
     }
+   ],
+   "img": "brute-rental-bus.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:RentalBus-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -6309,6 +6456,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/rhino-tank"
     }
+   ],
+   "img": "hauners-rhino-tank.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/rhino-tank",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -6334,12 +6488,12 @@
     }
    ],
    "img": "rugger-rhode.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/contender-39st",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Rhode-GTAVI-FrontQuarter.png",
    "nettete": 620,
    "taille": [
-    831,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -6436,11 +6590,11 @@
    ],
    "img": "jobuilt-rubble.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Rubble",
+   "creditUrl": "https://gta.wiki/w/File:Rubble-GTAVI-FrontQuarter.png",
    "nettete": 1345,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -6470,12 +6624,12 @@
     }
    ],
    "img": "vapid-rumpo.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/rumpo",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Rumpo-GTAVI-FrontQuarter.png",
    "nettete": 282,
    "taille": [
-    608,
-    408
+    1600,
+    900
    ]
   },
   {
@@ -6627,6 +6781,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/sandking-xl"
     }
+   ],
+   "img": "vapid-sandking-xl.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:SandkingXL-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -6656,12 +6817,12 @@
     }
    ],
    "img": "vapid-sandking-xt.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/sandking-xt",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:SandkingXT-GTAVI-FrontQuarter.png",
    "nettete": 125,
    "taille": [
-    829,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -6790,6 +6951,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/sea-sparrow"
     }
+   ],
+   "img": "sea-sparrow.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/sea-sparrow",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -7001,12 +7169,12 @@
     }
    ],
    "img": "shifter.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/ford-transit-cargo-4th-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Shifter-GTAVI-FrontQuarter.png",
    "nettete": 90,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -7061,6 +7229,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/slamvan"
     }
+   ],
+   "img": "vapid-slamvan-56.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/slamvan",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -7086,12 +7261,12 @@
     }
    ],
    "img": "bravado-sojourn.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-town-country-5th-gen",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Sojourn-GTAVI-FrontQuarter.png",
    "nettete": 153,
    "taille": [
-    832,
-    466
+    1600,
+    900
    ]
   },
   {
@@ -7145,11 +7320,11 @@
    ],
    "img": "western-sovereign-107.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Western_Motorcycle_Company",
+   "creditUrl": "https://gta.wiki/w/File:Sovereign107-GTAVI-FrontQuarter.png",
    "nettete": 2744,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -7230,11 +7405,11 @@
    ],
    "img": "vapid-speedo.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Speedo",
+   "creditUrl": "https://gta.wiki/w/File:Speedo-GTAVI-FrontQuarter.png",
    "nettete": 329,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -7320,6 +7495,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/stanier"
     }
+   ],
+   "img": "vapid-stanier-98.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Stanier1998-GTAVI-FrontQuarter.png",
+   "taille": [
+    1600,
+    900
    ]
   },
   {
@@ -7504,12 +7686,12 @@
     }
    ],
    "img": "emperor-sultan.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/sultan",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Sultan-GTAVI-FrontQuarter.png",
    "nettete": 51,
    "taille": [
-    529,
-    256
+    1600,
+    900
    ]
   },
   {
@@ -7536,11 +7718,11 @@
    ],
    "img": "sirius-sungrazer-61.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Sungrazer",
+   "creditUrl": "https://gta.wiki/w/File:Sungrazer1961-GTAVI-FrontQuarter.png",
    "nettete": 908,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {
@@ -8023,12 +8205,12 @@
     }
    ],
    "img": "willard-trotter-95.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/rexhall-rose-air",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Trotter1995-GTAVI-FrontQuarter.png",
    "nettete": 128,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -8151,12 +8333,12 @@
     }
    ],
    "img": "albany-v-str.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/v-str",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:VSTR-GTAVI-FrontQuarter.png",
    "nettete": 86,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -8411,12 +8593,12 @@
     }
    ],
    "img": "declasse-walton-81.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/walton-l35",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Walton1981-GTAVI-FrontQuarter.jpg",
    "nettete": 813,
    "taille": [
-    832,
-    468
+    1600,
+    900
    ]
   },
   {
@@ -8700,6 +8882,13 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/yosemite-67"
     }
+   ],
+   "img": "declasse-yosemite-67.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/yosemite-67",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -8733,8 +8922,8 @@
    "creditUrl": "https://gta.wiki/w/File:Yosemite1500-GTAVI-FrontQuarter.png",
    "nettete": 1527,
    "taille": [
-    3840,
-    2160
+    1600,
+    900
    ]
   },
   {
@@ -8762,6 +8951,13 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/youga"
     }
+   ],
+   "img": "bravado-youga.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:YougaClassic-GTAVI-AnExtendedLook.png",
+   "taille": [
+    1262,
+    710
    ]
   },
   {
@@ -8818,12 +9014,12 @@
     }
    ],
    "img": "bravado-youga-xl-79.webp",
-   "credit": "Rockstar Games, via Tracker.gg",
-   "creditUrl": "https://tracker.gg/gta6/vehicles/youga-xl",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:YougaXL1979-GTAVI-FrontQuarter.png",
    "nettete": 1691,
    "taille": [
-    960,
-    540
+    1600,
+    900
    ]
   },
   {

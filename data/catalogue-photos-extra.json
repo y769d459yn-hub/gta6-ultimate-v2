@@ -1,0 +1,626 @@
+{
+ "hauners-apc": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/apc",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "hvy-airtug": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Airtug-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "ubermacht-apoc": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/zion",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "karin-asterope-gz": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/asterope-gz",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "dinka-b3000-excavator": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:B3000Excavator-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "hvy-bulldozer": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/dozer",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "maibatsu-caddy-82": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Caddy-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-dorado": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/dorado",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "jacksheepe-fieldmaster-99": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/fieldmaster",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "declasse-granger": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/granger",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "albany-hermes-50": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/hermes-50",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "vapid-hustler-32": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/hustler",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "bf-injection-73": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/injection",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "osprey-journey-78": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Journey1978-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "principe-lectro": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/lectro",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "vapid-marshall": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/marshall",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "declasse-parkland-71": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/parkland-71",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "hauners-rhino-tank": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/rhino-tank",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "vapid-sandking-xl": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:SandkingXL-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "sea-sparrow": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/sea-sparrow",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "vapid-slamvan-56": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/slamvan",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "vapid-stanier-98": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Stanier1998-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "declasse-yosemite-67": {
+  "credit": "Rockstar Games, via GTABase",
+  "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/yosemite-67",
+  "taille": [
+   832,
+   468
+  ]
+ },
+ "mer-can-blast": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Blast-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "maibatsu-iota": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Iota-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "brute-rental-bus": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:RentalBus-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "schyster-deviant-72": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Deviant-GTAVI-OfficialScreenshot-UltimateEdition-WymanCarCollection01.png",
+  "taille": [
+   993,
+   559
+  ]
+ },
+ "bravado-youga": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:YougaClassic-GTAVI-AnExtendedLook.png",
+  "taille": [
+   1262,
+   710
+  ]
+ },
+ "declasse-akane": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Akane-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "karin-allander": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Allander-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "interstate-ambulance": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Ambulance-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "pfister-astron": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Astron-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "cartwright-biff": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Biff-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-bison": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Bison-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-bogan": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Bogan-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "maibatsu-boomazoom": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Boomazoom-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "brute-boxville": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Boxville-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "declasse-burrito-98": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Burrito1998-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-caracara-4x4": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Caracara4x4-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "grotti-carbonizzare": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Carbonizzare-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "dinka-chavos-xs": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:ChavosXS-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "ubermacht-cypher": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Cypher-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "whiffler-dashound": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Dashound-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "karin-feroci-98": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Feroci1998-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "piccia-furia": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Furia-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-gresley-xt": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:GresleyXT-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "pfister-growler": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Growler-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "annis-hellion-95": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Hellion1995-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "grotti-itali-rsx": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:ItaliRSX-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "hvy-lifta": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Lifta-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-lowline": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Lowline-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "buckingham-maverick": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Maverick-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-montagne": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Montagne-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-montagne-xl": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:MontagneXL-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "willard-moocher-83": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Moocher1983-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "maibatsu-mule": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Mule-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "jobuilt-phantom-custom-81": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:PhantomCustom1981-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-police-lowline-interceptor": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:PoliceLowline-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-police-montagne": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:PoliceMontagne-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "mtl-pumper": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Pumper-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "taci-ragno": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Ragno-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "declasse-rancher-86": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Rancher1986-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "karin-rebel-84": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Rebel-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "rugger-rhode": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Rhode-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "jobuilt-rubble": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Rubble-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-rumpo": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Rumpo-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-sandking-xt": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:SandkingXT-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "shifter": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Shifter-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-sojourn": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Sojourn-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "western-sovereign-107": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Sovereign107-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "vapid-speedo": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Speedo-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "emperor-sultan": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Sultan-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "sirius-sungrazer-61": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Sungrazer1961-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "willard-trotter-95": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Trotter1995-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "albany-v-str": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:VSTR-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "declasse-walton-81": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Walton1981-GTAVI-FrontQuarter.jpg",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "declasse-yosemite-1500": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:Yosemite1500-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ },
+ "bravado-youga-xl-79": {
+  "credit": "Rockstar Games, via GTA Wiki",
+  "creditUrl": "https://gta.wiki/w/File:YougaXL1979-GTAVI-FrontQuarter.png",
+  "taille": [
+   1600,
+   900
+  ]
+ }
+}
