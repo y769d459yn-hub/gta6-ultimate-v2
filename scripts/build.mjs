@@ -198,7 +198,7 @@ const CURIOSITE = /lighthouse|oceanarium|casino|stadium|museum|golf club|mall$|r
 const proches = [];
 const NB_NOMS = {}; for (const g of GTADB) { const n = g.adr.split(', ')[0].replace(/\?$/, '').trim(); NB_NOMS[n] = (NB_NOMS[n] || 0) + 1; }
 const TRAD = { Lighthouse: 'Phare', 'Welcome Sign': 'Panneau de bienvenue', 'Football Stadium': 'Stade de football', 'Tennis Stadium': 'Stade de tennis', 'Submerged Tank': 'Char englouti', 'Vice City Sign': 'Panneau Vice City', 'Fake Tunnel Mural': 'Faux tunnel peint', 'Gas Station': 'Station-service', 'Pawn Shop': 'Prêteur sur gages', Hospital: 'Hôpital', Pharmacy: 'Pharmacie', 'Fire Station': 'Caserne de pompiers', 'Liquor Store': "Magasin d'alcool", Airfield: 'Aérodrome', 'Car Wash': 'Station de lavage', 'Hamlet Water Tower': "Château d'eau de Hamlet" };
-const tropProche = (lab, x, y) => proches.some((q) => q.lab === lab && Math.hypot(q.x - x, q.y - y) < 260);
+const tropProche = (lab, x, y, r = 260) => proches.some((q) => q.lab === lab && Math.hypot(q.x - x, q.y - y) < r);
 for (const g of GTADB) {
   if (GTADB_UTILISES.has(g.id) || g.tags.includes('demolished') || g.tags.includes('closed')) continue;
   const parts = g.adr.split(', ');
@@ -227,14 +227,24 @@ const OGM = fs.existsSync(path.join(ROOT, 'data', 'carte-ogm.json')) ? read('car
   const pres = (f, x, y, r) => Math.hypot(f.geometry.coordinates[0] - x, f.geometry.coordinates[1] - y) < r;
   const retirer = new Set();
   const out = [];
+  // même lieu sous deux noms proches (« Heath Tower » / « Heath Tower », « Phare · Catalan Key » / « Phare de Catalan Key »…)
+  const VIDES = new Set(['the', 'les', 'des', 'sign', 'panneau', 'park', 'parc', 'hotel', 'tower', 'tour', 'route', 'city', 'vice', 'club', 'motel', 'station', 'gare', 'marina', 'lieu']);
+  const mots = (t) => new Set(norm(t).split(' ').filter((w) => w.length >= 4 && !VIDES.has(w)));
+  const proches = (a, b) => { if (norm(a) === norm(b)) return true; let A = mots(a), B = mots(b); if (!A.size || !B.size) return false; if (A.size > B.size) [A, B] = [B, A]; return [...A].every((w) => B.has(w)); };
+  const vus = [];
   for (const o of OGM.lieux) {
-    // un repère du guide au même endroit (même catégorie) : on garde le nôtre
-    if (features.some((f) => f.properties.cat === o.c && !/^[sm]-/.test(f.properties.id) && pres(f, o.x, o.y, 60))) continue;
+    // un repère du guide au même endroit (même catégorie, ou même nom) : on garde le nôtre
+    if (features.some((f) => !/^[sm]-/.test(f.properties.id) && ((f.properties.cat === o.c && pres(f, o.x, o.y, 60)) || (o.c === 'lieux' && L[f.properties.id] && L[f.properties.id].type === 'batiment' && pres(f, o.x, o.y, 90) && proches(f.properties.nom, o.n))))) continue;
+    // doublon interne d'Open GTA 6 Map (même nom, même catégorie, au même endroit)
+    if (vus.some((v) => v.c === o.c && v.s === o.s && norm(v.n) === norm(o.n) && Math.hypot(v.x - o.x, v.y - o.y) < 15)) continue;
+    vus.push(o);
     // un repère GTADB équivalent : remplacé par celui-ci, mieux décrit
-    features.forEach((f, i) => { if (f.properties.cat === o.c && f.properties.id.startsWith('s-') && f.properties.service !== 'Lieu remarquable' && pres(f, o.x, o.y, 150)) retirer.add(i); });
+    features.forEach((f, i) => { if (f.properties.id.startsWith('s-') && ((f.properties.cat === o.c && f.properties.service !== 'Lieu remarquable' && pres(f, o.x, o.y, 150)) || (o.c === 'lieux' && pres(f, o.x, o.y, 150) && proches(f.properties.nom, o.n)))) retirer.add(i); });
     out.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [o.x, o.y] }, properties: { id: 'o-' + o.id, nom: o.n, cat: o.c, sous: o.s, service: o.s, region: null, statut: 'a-verifier', precision: 'zone', icon: o.i, desc: o.d || '', ...(o.en ? { en: 1 } : {}), ...(o.a ? { zone: o.a } : {}), ...(o.ph || o.d ? { ext: `https://fbritoferreira.github.io/gta6/l/${o.id}/`, ph: o.ph ? 1 : undefined } : {}), src: 'ogm' } });
   }
   for (const i of [...retirer].sort((a, b) => b - a)) features.splice(i, 1);
+  // repère GTADB qui double une fiche du guide (même nom, au même endroit)
+  for (let i = features.length - 1; i >= 0; i--) { const f = features[i]; if (f.properties.id.startsWith('s-') && features.some((g) => L[g.properties.id] && pres(g, ...f.geometry.coordinates, 90) && proches(g.properties.nom, f.properties.nom))) features.splice(i, 1); }
   features.push(...out);
 }
 // Missions : où elles se passent (repère du guide ou lieu GTADB)
@@ -1144,9 +1154,9 @@ for (const a of ACTUS) {
   <p class="answer"><span class="answer-k">${icon('shield')}Notre promesse</span>Des réponses courtes, des sources visibles.</p>
   <div class="actions"><a class="btn btn--primary" href="#sources">${icon('book')}Nos sources</a><a class="btn" href="#statuts">${icon('badge')}Nos statuts</a><a class="btn btn--ghost" href="#contact">${icon('mail')}Nous contacter</a></div>
   <section id="statuts" class="statuts">
-    <div class="st st--ok">${badge('confirme')}<p>Vérifié et validé humainement.</p></div>
-    <div class="st st--wait">${badge('a-verifier')}<p>Information non démontrée.</p></div>
-    <div class="st st--part">${badge('provisoire')}<p>Information partielle.</p></div>
+    <div class="st st--ok">${badge('confirme')}<p>Confirmé par plusieurs sources qui concordent.</p></div>
+    <div class="st st--wait">${badge('a-verifier')}<p>Donné par les guides, pas encore recoupé partout.</p></div>
+    <div class="st st--part">${badge('provisoire')}<p>Information partielle ou donnée par une seule source.</p></div>
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
@@ -1182,7 +1192,8 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
   const types = {}; for (const f of features) if (f.properties.src === 'ogm') { const k = f.properties.cat + '|' + f.properties.service; (types[k] ||= { ...f.properties, n: 0 }).n++; }
   for (const t of Object.values(types)) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
 }
-for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
+const dejaT = new Set(index.map((x) => norm(x.t)));
+for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
@@ -1198,6 +1209,14 @@ const popular = ['semer-la-police', 'argent-debut', 'sauvegarder', 'voyage-rapid
 fs.rmSync(OUT, { recursive: true, force: true });
 const write = (rel, content) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, content); };
 for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html', html);
+// pas deux résultats au même nom : on garde la page la plus complète (astuce, page, encyclopédie, véhicule, puis repère de carte)
+{
+  const PRIO = { astuce: 0, page: 1, personnage: 2, ency: 2, vehicule: 3, actu: 4, activite: 5, lieu: 6 };
+  const best = {};
+  index.forEach((x, i) => { const k = norm(x.t); if (!(k in best) || (PRIO[x.g] ?? 9) < (PRIO[index[best[k]].g] ?? 9)) best[k] = i; });
+  const garde = new Set(Object.values(best));
+  for (let i = index.length - 1; i >= 0; i--) if (!garde.has(i)) index.splice(i, 1);
+}
 write('data/index.json', JSON.stringify({ items: index, syn, popular }));
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 write('data/carte.json', JSON.stringify({

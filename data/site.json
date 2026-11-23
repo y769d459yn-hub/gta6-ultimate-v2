@@ -236,15 +236,15 @@
  "statuts": {
   "confirme": {
    "nom": "Confirmé",
-   "desc": "Vérifié et validé humainement."
+   "desc": "Confirmé par plusieurs sources qui concordent."
   },
   "a-verifier": {
    "nom": "À vérifier",
-   "desc": "Information non démontrée."
+   "desc": "Donné par les guides, pas encore recoupé partout."
   },
   "provisoire": {
    "nom": "Provisoire",
-   "desc": "Information partielle."
+   "desc": "Information partielle ou donnée par une seule source."
   }
  },
  "synonymes": {
