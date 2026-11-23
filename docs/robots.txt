@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /compte/
 Disallow: /favoris/
-Sitemap: https://y769d459yn-hub.github.io/gta6-ultimate-v2/sitemap.xml
+Sitemap: https://gta6facile.eu/sitemap.xml
