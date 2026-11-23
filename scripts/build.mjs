@@ -853,10 +853,40 @@ for (const v of VEHICULES) {
   }
   const p = 'dossiers/', R = R_(p);
   emit(p, layout({ p, title: 'Tous les guides GTA 6 : dossiers, astuces, codes et missions', desc: 'Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.', cls: 'p-list', crumbs: [['Accueil', ''], ['Tous les guides', p]],
-    body: `<section class="wrap section"><h1 class="h1">Tous les guides GTA 6</h1><p class="lead">Tout le site au même endroit : les dossiers complets, les astuces par thème, les codes, les missions, les véhicules et la carte.</p>
-  <h2 class="h3">${icon('star')}Dossiers complets</h2><div class="minis">${DOSSIERS.map((d) => relLien(`dossiers/${d.slug}/`, R)).join('')}</div>
-  <h2 class="h3">${icon('bolt')}Astuces par thème</h2><div class="minis">${site.categories.astuces.map((c) => `<a class="mini" href="${R}astuces/?cat=${c.id}" style="--c:${c.color}"><span class="mini-ico">${icon(c.icon)}</span><span><small>${ASTUCES.filter((x) => x.cat === c.id).length} astuces</small><b>${esc(c.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div>
-  <h2 class="h3">${icon('book')}Rubriques</h2><div class="minis">${[['codes/', 'Codes de triche', 'gamepad', '#ff2bd6', `${CODES.codes.length} codes`], ['missions/', 'Missions et solutions', 'flag', '#b44dff', 'Toute l\'histoire'], ['vehicules/', 'Véhicules', 'car', '#ffb547', 'Photos et emplacements'], ['carte/', 'Carte interactive', 'map', '#2de2e6', 'Tous les emplacements'], ['lieux/', 'Lieux', 'pin', '#3ddc84', 'Régions et quartiers'], ['encyclopedie/', 'Encyclopédie', 'book', '#9d7bff', 'Personnages et gameplay'], ['actualites/', 'Actualités', 'news', '#2de2e6', 'Les dernières infos']].map(([u, t, i, c, k]) => `<a class="mini" href="${R}${u}" style="--c:${c}"><span class="mini-ico">${icon(i)}</span><span><small>${esc(k)}</small><b>${esc(t)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>` }));
+    body: (() => {
+      const G = [
+        ['dossiers/codes-coffres/', 'secrets', 'Secrets', 'Codes de coffres', 'Combinaisons et emplacements', 'bank', '#ffb547', 'coffre code combinaison safe'],
+        ['dossiers/argent-rapide/', 'argent', 'Argent', 'Argent rapide', 'Méthodes et activités rentables', 'wallet', '#3ddc84', 'gagner argent vite braquage'],
+        ['dossiers/secrets/', 'secrets', 'Secrets', 'Secrets et Easter eggs', 'Lieux cachés et découvertes', 'sparkle', '#9d7bff', 'bigfoot ovni fantome easter egg'],
+        ['dossiers/100-pour-cent/', 'autres', 'Progression', 'Obtenir 100 %', 'Guide de progression complète', 'trophy', '#2de2e6', 'cent pour cent checklist collection'],
+        ['missions/', 'missions', 'Missions', 'Missions et solutions', 'Histoire et soluces détaillées', 'flag', '#ff5fa2', 'mission soluce chapitre histoire'],
+        ['vehicules/', 'vehicules', 'Véhicules', 'Véhicules rares', 'Voitures et emplacements', 'car', '#ffb547', 'voiture moto bateau avion'],
+        ['codes/', 'codes', 'Codes', 'Codes de triche', 'Astuces et codes sur console', 'gamepad', '#ff5fa2', 'triche cheat ps5 xbox'],
+        ['carte/', 'autres', 'Carte', 'Carte interactive', 'Repères et lieux à explorer', 'map', '#2de2e6', 'carte map emplacement'],
+        ['astuces/?cat=debuter', 'debutants', 'Débutants', 'Bien débuter', 'Conseils pour commencer', 'sprout', '#ffd23f', 'debut sauvegarder soigner'],
+        ['astuces/?cat=gameplay', 'autres', 'Combat', 'Armes et équipements', 'Armes, combats et police', 'target', '#9d7bff', 'arme combat police etoiles'],
+        ['astuces/?cat=argent', 'argent', 'Argent', 'Astuces argent', 'Braquages, ventes et cachettes', 'money', '#3ddc84', 'braquer vendre receleur'],
+        ['astuces/?cat=vehicules', 'vehicules', 'Véhicules', 'Astuces véhicules', 'Voler, garder et réparer', 'car', '#ffb547', 'voler garage reparer'],
+        ['astuces/?cat=exploration', 'autres', 'Exploration', 'Activités et exploration', 'Chasse, pêche, plongée, défis', 'compass', '#2de2e6', 'chasse peche plongee activite'],
+        ['astuces/?cat=missions', 'missions', 'Missions', 'Astuces missions', 'Planques, sauvegardes et rejouer', 'flag', '#ff5fa2', 'planque sauvegarde'],
+        ['encyclopedie/', 'autres', 'Découvrir', 'Encyclopédie', 'Personnages, régions et gameplay', 'book', '#9d7bff', 'personnage jason lucia'],
+        ['lieux/', 'autres', 'Découvrir', 'Lieux', 'Régions, quartiers et bâtiments', 'pin', '#3ddc84', 'region quartier vice city'],
+        ['actualites/', 'autres', 'Actualités', 'Actualités', 'Les dernières infos sur GTA 6', 'news', '#2de2e6', 'news sortie mise a jour']
+      ];
+      const F = [['', 'Tous'], ['argent', 'Argent'], ['missions', 'Missions'], ['vehicules', 'Véhicules'], ['secrets', 'Secrets'], ['codes', 'Codes'], ['debutants', 'Débutants'], ['autres', 'Autres']];
+      return `<section class="wrap section tg" data-tg>
+  <h1 class="h1">Tous les guides GTA 6</h1>
+  <p class="lead">Retrouve rapidement les astuces, solutions, secrets et guides de Leonida.</p>
+  <label class="tg-search">${icon('search')}<span class="sr-only">Rechercher un guide</span><input type="search" placeholder="Rechercher un guide…" autocomplete="off" data-tg-q></label>
+  <div class="tg-chips" role="group" aria-label="Filtrer">${F.map(([k, t], n) => `<button type="button" class="tg-chip" data-tg-f="${k}" aria-pressed="${n ? 'false' : 'true'}">${t}</button>`).join('')}</div>
+  <label class="tg-sort"><span class="sr-only">Trier</span><select data-tg-s><option value="conseil">Ordre conseillé</option><option value="az">De A à Z</option></select>${icon('chevron')}</label>
+  <ul class="tg-list" data-tg-list>${G.map(([u, f, lab, t, d, i, c, k], n) => `<li data-f="${f}" data-n="${n}" data-t="${esc(norm(t))}" data-k="${esc(norm([t, d, lab, k].join(' ')))}"><a class="tg-card" href="${R}${u}" style="--c:${c}"><span class="tg-ico">${icon(i)}</span><span class="tg-txt"><small>${esc(lab)}</small><b>${esc(t)}</b><span>${esc(d)}</span></span>${icon('chevron')}</a></li>`).join('')}</ul>
+  <p class="tg-empty" data-tg-empty hidden>Aucun guide ne correspond. Essaie un autre mot.</p>
+</section>
+<script>(()=>{const b=document.querySelector('[data-tg]');if(!b)return;const q=b.querySelector('[data-tg-q]'),s=b.querySelector('[data-tg-s]'),L=b.querySelector('[data-tg-list]'),E=b.querySelector('[data-tg-empty]');let f='';const n=(x)=>x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const run=()=>{const w=n(q.value).split(/\s+/).filter(Boolean);let k=0;const it=[...L.children];it.forEach((li)=>{const ok=(!f||li.dataset.f===f)&&w.every((x)=>li.dataset.k.includes(x));li.hidden=!ok;if(ok)k++});it.sort((a,c)=>s.value==='az'?a.dataset.t.localeCompare(c.dataset.t):a.dataset.n-c.dataset.n).forEach((li)=>L.appendChild(li));E.hidden=k>0};
+b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f=c.dataset.tgF;b.querySelectorAll('[data-tg-f]').forEach((x)=>x.setAttribute('aria-pressed',String(x===c)));run()}));q.addEventListener('input',run);s.addEventListener('change',run)})();</script>`;
+    })() }));
 }
 
 // ---------- CODES ----------
