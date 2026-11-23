@@ -86,6 +86,7 @@ const I = {
   layersmap: ['bob', '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>'],
   expand: ['pulse', '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>'],
   mail: ['bob', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'],
+  wallet: ['bob', '<path d="M4 7a2 2 0 0 1 2-2h11v4"/><path d="M4 7v11a2 2 0 0 0 2 2h14V9H6a2 2 0 0 1-2-2z"/><path d="M16 14.5h2"/>'],
   bookmark: ['bob', '<path d="M6 3h12v18l-6-4-6 4z"/>'],
   bell: ['wiggle', '<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>'],
   menu: ['pulse', '<path d="M4 7h16M4 12h16M7 17h13"/>'],

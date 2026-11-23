@@ -346,7 +346,10 @@ ${schema.map(ld).join('\n')}
   <div class="drawer-bg" data-menu-close></div>
   <nav class="drawer-in" aria-label="Menu">
     <div class="drawer-h"><b>Menu</b><button class="ibtn" type="button" data-menu-close aria-label="Fermer le menu">${icon('x')}</button></div>
-    ${[['', 'Accueil', 'home'], ['codes/', 'Codes de triche', 'gamepad'], ['dossiers/argent-rapide/', 'Gagner de l\'argent', 'money'], ['carte/', 'Carte interactive', 'map'], ['missions/', 'Missions et solutions', 'flag'], ['vehicules/', 'Véhicules', 'car'], ['astuces/', 'Astuces', 'bolt'], ['dossiers/', 'Tous les guides', 'bookmark'], ['lieux/', 'Lieux', 'pin'], ['encyclopedie/', 'Encyclopédie', 'book'], ['actualites/', 'Actualités', 'news'], ['favoris/', 'Mes favoris', 'heart'], ['compte/', 'Mon espace', 'user'], ['a-propos/', 'À propos et fiabilité', 'shield']].map(([u, t, i]) => `<a href="${R}${u}"${(u === '' ? p === '' : u && p.startsWith(u)) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span>${icon('chevron')}</a>`).join('')}
+    ${[['Explorer GTA 6', [['', 'Accueil', 'home', 'c'], ['codes/', 'Codes de triche', 'gamepad', 'p'], ['dossiers/argent-rapide/', 'Gagner de l\'argent', 'wallet', 'p'], ['dossiers/', 'Astuces et guides', 'bolt', 'c'], ['missions/', 'Missions et solutions', 'flag', 'c'], ['vehicules/', 'Véhicules', 'car', 'c'], ['carte/', 'Carte interactive', 'map', 'c']]],
+      ['Découvrir', [['encyclopedie/', 'Encyclopédie et lieux', 'book', 'c'], ['actualites/', 'Actualités', 'news', 'c']]],
+      ['Personnel', [['favoris/', 'Mes favoris', 'heart', 'p'], ['compte/', 'Mon espace', 'user', 'p']]],
+      ['', [['a-propos/', 'À propos et fiabilité', 'shield', 'c']]]].map(([titre, liens]) => `<div class="drawer-sec">${titre ? `<p class="drawer-t">${titre}</p>` : ''}${liens.map(([u, t, i, c]) => `<a class="drawer-a drawer-a--${c}" href="${R}${u}"${(u === '' ? p === '' : u && p.startsWith(u) && !(u === 'dossiers/' && p.startsWith('dossiers/argent'))) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span>${icon('chevron')}</a>`).join('')}</div>`).join('')}
   </nav>
 </div>
 <main id="main" class="page">

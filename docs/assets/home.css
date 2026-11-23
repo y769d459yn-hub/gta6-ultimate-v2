@@ -523,3 +523,18 @@ html.menu-open { overflow: hidden; }
 .hx-banner--img img { display: block; width: 100%; height: auto; max-width: 1600px; margin: 0 auto; }
 .home .hx-in { margin-top: 14px; }
 .v2 .home .top, .home .top { background: rgba(4, 3, 9, .92); }
+
+/* menu latéral v2 : sections titrées, séparateurs, icônes roses et cyan */
+.drawer-in { width: min(400px, 92vw); padding: 14px 22px calc(28px + env(safe-area-inset-bottom)); background: #0d0b1d; border-left: 1px solid rgba(255, 255, 255, .08); box-shadow: -20px 0 60px -10px rgba(0, 0, 0, .6); }
+.drawer-h { padding: 8px 0 18px; font: 700 1.5rem var(--fd); border-bottom: 1px solid rgba(255, 255, 255, .14); }
+.drawer-sec { padding: 14px 0 8px; border-bottom: 1px solid rgba(255, 255, 255, .14); }
+.drawer-sec:last-child { border-bottom: 0; }
+.drawer-t { margin: 4px 0 6px; font: 600 .78rem/1 var(--fd); letter-spacing: .08em; text-transform: uppercase; color: rgba(205, 200, 235, .62); }
+.drawer-in a.drawer-a { gap: 16px; padding: 15px 2px; border-radius: 0; font: 500 1.12rem var(--fd); color: #fff; }
+.drawer-in a.drawer-a > .ic:first-child { width: 22px; height: 22px; stroke-width: 1.7; }
+.drawer-in a.drawer-a--c > .ic:first-child { color: #5fe3df; }
+.drawer-in a.drawer-a--p > .ic:first-child { color: #ff7ac6; }
+.drawer-in a.drawer-a > .ic:last-child { width: 18px; height: 18px; color: rgba(255, 255, 255, .55); }
+.drawer-in a.drawer-a:hover { background: rgba(255, 255, 255, .04); }
+.drawer-in a.drawer-a[aria-current] { background: transparent; }
+.drawer-in a.drawer-a[aria-current] span { color: var(--cy); }
