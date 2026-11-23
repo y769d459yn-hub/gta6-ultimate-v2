@@ -280,6 +280,8 @@ const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'ca
 
 // ---------- layout ----------
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+const NOUVEAU = ACTUS.length && (new Date(site.majLe) - new Date(ACTUS[0].date)) / 864e5 <= 7;
+const BRAND_PALM = `<svg class="mark mark--palm" viewBox="0 0 48 40" aria-hidden="true"><defs><linearGradient id="pm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#ff2bd6"/><stop offset="1" stop-color="#b44dff"/></linearGradient></defs><path fill="url(#pm-g)" d="M23 13c-5-6-13-7-19-3 6-1 11 0 16 4-7-1-13 2-16 8 5-4 11-5 16-3-4 3-6 8-5 14l2 .5c-.5-6 1.5-10 5-13 .7 6 1 12 .2 19h3.4c.6-8 .2-14-1-20 4 2 7 6 7.5 11 2-6-1-11-6-14 6-1 11 1 15 5-2-7-9-10-16-8 4-4 10-5 15-3-5-5-13-4-18 1-1-4-4-7-8-8 3 2 5 5 5 8z"/></svg>`;
 function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [] }) {
   if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
   if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
@@ -326,7 +328,7 @@ ${schema.map(ld).join('\n')}
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
   <a class="brand" href="${R}" aria-label="${esc(M)} — accueil">
-    ${v2 ? BRAND_MARK : '<span class="brand-sun" aria-hidden="true"></span>'}
+    ${v2 ? BRAND_PALM : '<span class="brand-sun" aria-hidden="true"></span>'}
     <span class="brand-txt"><b>LEONIDA</b><i>guide</i></span>
   </a>
   <button class="search-trigger" type="button" data-open-search aria-label="Rechercher">
@@ -334,10 +336,19 @@ ${schema.map(ld).join('\n')}
   </button>
   <nav class="nav-desktop" aria-label="Principal">${nav.map(([u, t, i]) => `<a href="${R}${u}"${cur(u)}>${icon(i)}<span>${t}</span></a>`).join('')}</nav>
   <div class="top-actions">
+    <a class="ibtn" href="${R}dossiers/" aria-label="Tous les guides">${icon('bookmark')}</a>
     <a class="ibtn" href="${R}favoris/" aria-label="Mes favoris">${icon('heart')}<span class="count" data-fav-count hidden>0</span></a>
-    <a class="ibtn" href="${R}compte/" aria-label="Mon espace">${icon('user')}</a>
+    <a class="ibtn ibtn--bell" href="${R}actualites/" aria-label="Actualités${NOUVEAU ? ' (nouveautés)' : ''}">${icon('bell')}${NOUVEAU ? '<i class="dot" aria-hidden="true"></i>' : ''}</a>
+    <button class="ibtn" type="button" data-menu aria-expanded="false" aria-controls="menu" aria-label="Menu">${icon('menu')}</button>
   </div>
 </header>
+<div class="drawer" id="menu" hidden>
+  <div class="drawer-bg" data-menu-close></div>
+  <nav class="drawer-in" aria-label="Menu">
+    <div class="drawer-h"><b>Menu</b><button class="ibtn" type="button" data-menu-close aria-label="Fermer le menu">${icon('x')}</button></div>
+    ${[['', 'Accueil', 'home'], ['codes/', 'Codes de triche', 'gamepad'], ['dossiers/argent-rapide/', 'Gagner de l\'argent', 'money'], ['carte/', 'Carte interactive', 'map'], ['missions/', 'Missions et solutions', 'flag'], ['vehicules/', 'Véhicules', 'car'], ['astuces/', 'Astuces', 'bolt'], ['dossiers/', 'Tous les guides', 'bookmark'], ['lieux/', 'Lieux', 'pin'], ['encyclopedie/', 'Encyclopédie', 'book'], ['actualites/', 'Actualités', 'news'], ['favoris/', 'Mes favoris', 'heart'], ['compte/', 'Mon espace', 'user'], ['a-propos/', 'À propos et fiabilité', 'shield']].map(([u, t, i]) => `<a href="${R}${u}"${(u === '' ? p === '' : u && p.startsWith(u)) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span>${icon('chevron')}</a>`).join('')}
+  </nav>
+</div>
 <main id="main" class="page">
 ${deco}
 ${crumbHtml}
@@ -345,7 +356,7 @@ ${body}
 </main>
 <footer class="foot">
   <div class="foot-in">
-    <a class="brand brand--foot" href="${R}">${v2 ? BRAND_MARK.replace(/mk-g/g, 'mk-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
+    <a class="brand brand--foot" href="${R}">${v2 ? BRAND_PALM.replace(/pm-g/g, 'pm-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>LEONIDA</b><i>guide</i></span></a>
     <nav aria-label="Pied de page">
       <a href="${R}missions/">Missions et solutions</a><a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
     </nav>
@@ -463,64 +474,76 @@ function homePalms() {
       <span class="ht-txt"><b>${esc(t.label)}</b><small>${esc(fill(t.sousTitre, t.compteur))}</small></span>
       <span class="ht-go" aria-hidden="true">${icon('arrow-right')}</span>
     </a>`).join('');
+  const ph = (n) => `../photos/${n}.webp`; // chemin relatif à assets/home.css (variable CSS)
+  const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
+  const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
+  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547']];
+  const UNE = D_('argent-rapide');
+  const POP = [
+    ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'pegassi-infernus', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
+    ['dossiers/secrets/', 'Secrets', 'Secrets et Easter eggs de Leonida', 'mallard-flammes', '#9d7bff', 'Bigfoot, OVNI, fantômes…'],
+    ['dossiers/codes-coffres/', 'Coffres', 'Tous les codes de coffres', 'vapid-stanier-55', '#ffb547', 'Repaires de gangs et lieux secrets'],
+    ['dossiers/100-pour-cent/', '100 %', 'Finir GTA 6 à 100 %', 'kayak-crest', '#2de2e6', 'La checklist complète'],
+    ['astuces/voiture-rare/', 'Véhicules', 'Trouver une voiture rare', 'progen-emerus-royal-ruby', '#ffb547', 'Où sont garées les plus belles'],
+    ['carte/?cat=armes', 'Armes', 'Où trouver les armes', 'jets-militaires', '#ff5a5a', 'Armes au sol et armes uniques']
+  ];
+  const A0 = ACTUS[0];
+  const DERNIERS = [
+    [`actualites/${A0.slug}/`, 'Actualités', A0.titre, A0.bref, 'helicoptere-toits', '#2de2e6'],
+    ['vehicules/', 'Véhicules', 'Tous les véhicules de GTA 6', 'Photos, emplacements et comment les obtenir.', 'pfister-comet-s2', '#ffb547'],
+    ['astuces/?cat=debuter', 'Astuces', 'Les astuces pour bien débuter', 'Sauvegarder, se soigner, semer la police…', 'vapid-ganado', '#ff2bd6'],
+    ['missions/', 'Missions', 'Missions et solutions', `${vraiesM} missions principales, étape par étape.`, 'vapid-dominator-buggy', '#b44dff']
+  ];
+  const PINS = [['car', '#ff5a5a', 47, 30], ['question', '#9d7bff', 70, 46], ['palm', '#ff2bd6', 82, 22], ['star', '#3d8bff', 52, 72]];
   const body = `
-<section class="h-hero" aria-labelledby="h-title">
-  <div class="h-bg" aria-hidden="true">
-    <div class="h-glow"></div>
-    ${homeSun()}
-    <div class="h-floor"><div class="h-floor-grid"></div></div>
+<section class="hx" aria-labelledby="h-title">
+  <div class="hx-banner" style="--img:url(${ph('vedette')})">
     ${homePalms()}
+    <h1 class="hx-title" id="h-title"><span class="hx-k">Le guide ultime de</span><span class="hx-gta">GTA <em>6</em></span></h1>
+    <p class="hx-sub">Astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida.</p>
   </div>
-  <div class="wrap h-in">
-    <p class="h-kicker h-anim"><span class="h-dot"></span>${esc(H.hero.kicker)}<span class="h-sep">/</span>MAJ ${maj}</p>
-    <h1 class="h-title" id="h-title">${H.hero.titre.map((l) => `<span class="h-line h-line--${l.style}"${l.style === 'neon' ? ` data-text="${esc(l.texte)}"` : ''}>${esc(l.texte)}</span>`).join('')}</h1>
-    <button class="h-search h-anim" type="button" data-open-search aria-label="${esc(H.hero.recherche.label)}">
-      ${icon('search')}
-      <span class="h-search-ph"><span data-typer data-words='${esc(JSON.stringify(H.hero.recherche.suggestionsAnimees))}'>${esc(H.hero.recherche.placeholder)}</span><i class="h-caret"></i></span>
-      <kbd>/</kbd>
-      <span class="h-search-go">${icon('arrow-right')}</span>
-    </button>
-    <nav class="h-quick h-anim" aria-label="Recherches rapides">${H.hero.raccourcis.map((r) => r.href ? `<a href="${R}${r.href}">${icon(r.icon)}${esc(r.label)}</a>` : `<a href="${R}recherche/?q=${encodeURIComponent(r.q)}" data-q="${esc(r.q)}">${icon(r.icon)}${esc(r.label)}</a>`).join('')}</nav>
-    <nav class="h-tiles" aria-label="Catégories">${tilesHtml}</nav>
-    <p class="h-help h-anim">${icon('info')}${esc(H.aide)}</p>
+  <div class="wrap hx-in">
+    <button class="hx-search" type="button" data-open-search aria-label="Rechercher un code, une mission, un véhicule">${icon('search')}<span>Rechercher un code, une mission, un véhicule…</span>${icon('sparkle')}</button>
+    <nav class="hx-cats" aria-label="Rubriques">${CATS5.map(([u, t, i, c]) => `<a href="${R}${u}" style="--c:${c}">${icon(i)}<span>${t}</span></a>`).join('')}</nav>
   </div>
 </section>
 
-<section class="wrap h-now h-top" aria-labelledby="top-title">
-  <header class="h-head h-head--row"><p class="h-kicker"><span class="h-dot"></span>Les plus recherchés</p><a class="nbtn nbtn--ghost nbtn--sm" href="${R}dossiers/"><span>Tous les dossiers</span><i>${icon('arrow-right')}</i></a></header>
-  <h2 class="sr-only" id="top-title">Les plus recherchés</h2>
-  <ol class="h-rows">${TOP.map((t, i) => `<li><a class="h-row" href="${R}${t[0]}" style="--c:${t[4]}"><span class="h-row-n">${String(i + 1).padStart(2, '0')}</span><span class="h-row-ico">${icon(t[3])}</span><span class="h-row-t"><small>${esc(t[2])}</small><b>${esc(t[1])}</b></span><span class="h-row-go">${icon('arrow-right')}</span></a></li>`).join('')}</ol>
+<section class="wrap hx-sec" aria-labelledby="une-t">
+  <header class="hx-h"><h2 id="une-t"><i class="hx-bar"></i>À la une</h2><span class="hx-maj">${icon('check')}Mis à jour</span><a href="${R}dossiers/">Tout voir${icon('arrow-right')}</a></header>
+  <a class="hx-une" href="${R}dossiers/${UNE.slug}/" style="--c:${UNE.couleur}">
+    <span class="hx-une-img" style="--img:url(${ph('granforma-zorrusso')})"></span>
+    <span class="hx-une-t"><span class="hx-tag" style="--c:#3ddc84">Argent</span><b>Gagner de l'argent rapidement sur GTA 6</b><small>Les meilleures méthodes du début à la fin de l'histoire, et comment ne pas perdre ce que tu gagnes.</small></span>
+    <span class="hx-go">${icon('arrow-right')}</span>
+  </a>
 </section>
 
-<section class="wrap h-map" aria-labelledby="hm-title">
-  <header class="h-head">
-    <p class="h-kicker"><span class="h-dot h-dot--c"></span>${esc(H.carte.kicker)}</p>
-    <h2 class="h-h2" id="hm-title">${esc(H.carte.titre)}</h2>
-    <p class="h-lead">${esc(H.carte.texte)}</p>
-  </header>
-  <div class="hm" data-homemap data-center="${H.carte.vueInitiale.centre.join(',')}" data-zoom="${H.carte.vueInitiale.zoom}">
-    <div class="hm-stage" tabindex="0" role="application" aria-label="Carte interactive de Leonida : glisse pour naviguer, + et − pour zoomer"></div>
-    <p class="at-attrib">${ATTRIB_HTML(R)}</p>
-    <div class="hm-legend" role="group" aria-label="Afficher">${site.categories.carte.filter((c) => features.some((f) => f.properties.cat === c.id && f.properties.src !== 'ogm' && !f.properties.label)).map((c) => `<button type="button" class="hm-chip" data-cat="${c.id}" aria-pressed="true" style="--c:${c.color}"><i></i>${esc(c.nom)}</button>`).join('')}</div>
-    <div class="hm-ctrl">
-      <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
-      <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
-      <button type="button" class="hm-btn" data-z="reset" aria-label="Recentrer">${icon('expand')}</button>
-    </div>
-    <p class="hm-hint" hidden>Ctrl + molette pour zoomer</p>
-    <div class="hm-pop" hidden></div>
-    <span class="hm-corner hm-corner--tl"></span><span class="hm-corner hm-corner--tr"></span><span class="hm-corner hm-corner--bl"></span><span class="hm-corner hm-corner--br"></span>
+<section class="wrap hx-sec" aria-labelledby="pop-t" data-carousel>
+  <header class="hx-h"><h2 id="pop-t">${icon('stack')}Guides populaires</h2><a href="${R}dossiers/">Tout voir${icon('arrow-right')}</a></header>
+  <div class="hx-car">
+    <button class="hx-arr hx-arr--l" type="button" data-car="-1" aria-label="Guides précédents">${icon('chevron-left')}</button>
+    <ul class="hx-track" data-track>${POP.map(([u, tag, t, img, c, sub]) => `<li><a class="hx-card" href="${R}${u}" style="--c:${c};--img:url(${ph(img)})"><span class="hx-tag">${esc(tag)}</span><b>${esc(t)}</b><small>${esc(sub)}</small></a></li>`).join('')}</ul>
+    <button class="hx-arr hx-arr--r" type="button" data-car="1" aria-label="Guides suivants">${icon('chevron')}</button>
   </div>
-  <a class="nbtn nbtn--primary" href="${R}${H.carte.cta.href}"><span>${esc(H.carte.cta.label)}</span><i>${icon('arrow-right')}</i></a>
+  <div class="hx-dots" data-dots aria-hidden="true"></div>
 </section>
 
-<section class="wrap h-now" aria-labelledby="now-title">
-  <header class="h-head h-head--row"><p class="h-kicker"><span class="h-dot h-dot--g"></span>${esc(H.enCeMoment.titre)}</p><a class="nbtn nbtn--ghost nbtn--sm" href="${R}astuces/"><span>Toutes les astuces</span><i>${icon('arrow-right')}</i></a></header>
-  <h2 class="sr-only" id="now-title">${esc(H.enCeMoment.titre)}</h2>
-  <ol class="h-rows">${shortcuts.map((a, i) => { const c = cat('astuces', a.cat); return `<li><a class="h-row" href="${R}astuces/${a.slug}/" style="--c:${c.color === '#ff3d6e' ? '#ff2bd6' : c.color}"><span class="h-row-n">0${i + 1}</span><span class="h-row-ico">${icon(a.icon)}</span><span class="h-row-t"><small>${esc(c.nom)} · ${dureeNom(a.duree)}</small><b>${esc(a.court)}</b></span><span class="h-row-go">${icon('arrow-right')}</span></a></li>`; }).join('')}</ol>
+<section class="wrap hx-sec" aria-labelledby="der-t">
+  <header class="hx-h"><h2 id="der-t">${icon('guide')}Derniers guides</h2><a href="${R}astuces/">Tout voir${icon('arrow-right')}</a></header>
+  <ul class="hx-list">${DERNIERS.map(([u, tag, t, d, img, c]) => `<li><a class="hx-row" href="${R}${u}" style="--c:${c}"><span class="hx-row-img" style="--img:url(${ph(img)})"></span><span class="hx-tag">${esc(tag)}</span><span class="hx-row-t"><b>${esc(t)}</b><small>${esc(d)}</small></span><span class="hx-chev">${icon('chevron')}</span></a></li>`).join('')}</ul>
+</section>
+
+<section class="wrap hx-sec">
+  <a class="hx-map" href="${R}carte/">
+    <span class="hx-map-t"><b>${icon('pin')}Carte interactive de Leonida</b><small>Explore la carte de GTA 6 : missions, véhicules, lieux secrets, objets à collectionner et bien plus.</small><span class="hx-btn">${icon('map')}Ouvrir la carte${icon('arrow-right')}</span></span>
+    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/carte-apercu.webp" alt="" loading="lazy" decoding="async">${PINS.map(([i, c, x, y]) => `<i class="hx-pin" style="--c:${c};left:${x}%;top:${y}%">${icon(i)}</i>`).join('')}</span>
+  </a>
+</section>
+
+<section class="wrap hx-sec">
+  <a class="hx-all" href="${R}dossiers/"><span class="hx-all-ico">${icon('book')}</span><span><b>Tous les guides GTA 6</b><small>Retrouve l'ensemble des guides : astuces, secrets, codes, collection…</small></span><span class="hx-go">${icon('arrow-right')}</span></a>
 </section>`;
   emit(p, layout({
-    p, title: H.meta.title, desc: H.meta.description, cls: 'home', body, v2: true, scripts: ['atlas.js', 'home.js'], styles: ['atlas.css'],
+    p, title: H.meta.title, desc: H.meta.description, cls: 'home', body, v2: true, scripts: ['home.js'],
     schema: [
       { '@context': 'https://schema.org', '@type': 'WebSite', name: M, url: site.url + '/', inLanguage: 'fr-FR', potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${site.url}/recherche/?q={search_term_string}` }, 'query-input': 'required name=search_term_string' } },
       { '@context': 'https://schema.org', '@type': 'Organization', name: M, url: site.url + '/', logo: `${site.url}/favicon.svg` },
@@ -838,8 +861,11 @@ for (const v of VEHICULES) {
     }));
   }
   const p = 'dossiers/', R = R_(p);
-  emit(p, layout({ p, title: 'Dossiers GTA 6 : les guides complets', desc: 'Les guides complets de GTA 6 : codes de coffres, argent rapide, secrets et Easter eggs, 100 %.', cls: 'p-list', crumbs: [['Accueil', ''], ['Dossiers', p]],
-    body: `<section class="wrap section"><h1 class="h1">Dossiers GTA 6</h1><p class="lead">Les guides complets sur les sujets les plus recherchés.</p><div class="minis">${DOSSIERS.map((d) => relLien(`dossiers/${d.slug}/`, R)).join('')}</div></section>` }));
+  emit(p, layout({ p, title: 'Tous les guides GTA 6 : dossiers, astuces, codes et missions', desc: 'Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.', cls: 'p-list', crumbs: [['Accueil', ''], ['Tous les guides', p]],
+    body: `<section class="wrap section"><h1 class="h1">Tous les guides GTA 6</h1><p class="lead">Tout le site au même endroit : les dossiers complets, les astuces par thème, les codes, les missions, les véhicules et la carte.</p>
+  <h2 class="h3">${icon('star')}Dossiers complets</h2><div class="minis">${DOSSIERS.map((d) => relLien(`dossiers/${d.slug}/`, R)).join('')}</div>
+  <h2 class="h3">${icon('bolt')}Astuces par thème</h2><div class="minis">${site.categories.astuces.map((c) => `<a class="mini" href="${R}astuces/?cat=${c.id}" style="--c:${c.color}"><span class="mini-ico">${icon(c.icon)}</span><span><small>${ASTUCES.filter((x) => x.cat === c.id).length} astuces</small><b>${esc(c.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div>
+  <h2 class="h3">${icon('book')}Rubriques</h2><div class="minis">${[['codes/', 'Codes de triche', 'gamepad', '#ff2bd6', `${CODES.codes.length} codes`], ['missions/', 'Missions et solutions', 'flag', '#b44dff', 'Toute l\'histoire'], ['vehicules/', 'Véhicules', 'car', '#ffb547', 'Photos et emplacements'], ['carte/', 'Carte interactive', 'map', '#2de2e6', 'Tous les emplacements'], ['lieux/', 'Lieux', 'pin', '#3ddc84', 'Régions et quartiers'], ['encyclopedie/', 'Encyclopédie', 'book', '#9d7bff', 'Personnages et gameplay'], ['actualites/', 'Actualités', 'news', '#2de2e6', 'Les dernières infos']].map(([u, t, i, c, k]) => `<a class="mini" href="${R}${u}" style="--c:${c}"><span class="mini-ico">${icon(i)}</span><span><small>${esc(k)}</small><b>${esc(t)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>` }));
 }
 
 // ---------- CODES ----------

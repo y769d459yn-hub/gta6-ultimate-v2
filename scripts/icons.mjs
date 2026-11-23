@@ -85,7 +85,14 @@ const I = {
   share: ['bob', '<path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v7h14v-7"/>'],
   layersmap: ['bob', '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>'],
   expand: ['pulse', '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/>'],
-  mail: ['bob', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>']
+  mail: ['bob', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'],
+  bookmark: ['bob', '<path d="M6 3h12v18l-6-4-6 4z"/>'],
+  bell: ['wiggle', '<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>'],
+  menu: ['pulse', '<path d="M4 7h16M4 12h16M7 17h13"/>'],
+  chevron: ['bob', '<path d="m9 6 6 6-6 6"/>'],
+  'chevron-left': ['bob', '<path d="m15 6-6 6 6 6"/>'],
+  stack: ['bob', '<path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/>'],
+  guide: ['bob', '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>']
 };
 
 export function icon(name, cls = '') {

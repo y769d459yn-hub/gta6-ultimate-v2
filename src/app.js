@@ -419,3 +419,17 @@
   }
   loadGsap();
 })();
+
+// ---------- menu latéral (bouton ☰ de l'en-tête) ----------
+(() => {
+  const btn = document.querySelector('[data-menu]'), dr = document.getElementById('menu');
+  if (!btn || !dr) return;
+  const set = (open) => {
+    dr.hidden = !open; btn.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('menu-open', open);
+    if (open) { const a = dr.querySelector('a'); a && a.focus(); } else btn.focus();
+  };
+  btn.addEventListener('click', () => set(dr.hidden));
+  dr.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', () => set(false)));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !dr.hidden) set(false); });
+})();

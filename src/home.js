@@ -32,7 +32,7 @@
 
   // ---------- intro héro ----------
   function intro() {
-    if (!g || reduce) return;
+    if (!g || reduce || !$('.h-title')) return;
     const tl = g.timeline({ defaults: { ease: 'expo.out' } });
     const title = $('.h-title');
     g.set(title, { opacity: 1 });
@@ -106,6 +106,25 @@
     tl.call(() => { el.textContent = base; }).to({}, { duration: 1.6 });
   }
 
+  // ---------- carrousel « Guides populaires » ----------
+  function carousel() {
+    const box = $('[data-carousel]'); if (!box) return;
+    const track = $('[data-track]', box), dots = $('[data-dots]', box);
+    const pages = () => Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
+    const upd = () => {
+      const n = pages(), max = Math.max(1, track.scrollWidth - track.clientWidth);
+      const i = Math.round(track.scrollLeft / max * (n - 1)) || 0;
+      $$('i', dots).forEach((d, k) => d.classList.toggle('on', k === i));
+      $('[data-car="-1"]', box).disabled = track.scrollLeft < 4;
+      $('[data-car="1"]', box).disabled = track.scrollLeft > max - 4;
+    };
+    const drawDots = () => { dots.innerHTML = Array.from({ length: pages() }, () => '<i></i>').join(''); upd(); };
+    $$('[data-car]', box).forEach((b) => b.addEventListener('click', () => track.scrollBy({ left: +b.dataset.car * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' })));
+    track.addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true });
+    addEventListener('resize', drawDots);
+    drawDots();
+  }
+
   // ---------- « En ce moment » ----------
   function rowsFx() {
     if (!g || reduce || !window.ScrollTrigger) return;
@@ -153,5 +172,5 @@
     }).catch(() => { stage.textContent = 'Carte indisponible pour le moment.'; });
   }
 
-  intro(); tilesFx(); typer(); rowsFx(); homeMap();
+  intro(); tilesFx(); typer(); rowsFx(); homeMap(); carousel();
 })();
