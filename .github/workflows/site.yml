@@ -1,0 +1,70 @@
+# Construit et publie gta6facile.fr sur GitHub Pages.
+# - à chaque fusion sur main ;
+# - toutes les 10 minutes, pour mettre en ligne ce qui a été écrit dans l'administration
+#   (on ne republie que si ce contenu a changé) ;
+# - à la demande (onglet Actions > Publier le site > Run workflow).
+name: Publier le site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Récupérer le contenu de l'administration
+        id: contenu
+        run: node scripts/contenu.mjs
+
+      - name: Contenu déjà en ligne ?
+        id: deja
+        if: github.event_name == 'schedule'
+        run: |
+          en_ligne=$(curl -fsS --max-time 20 "https://gta6facile.fr/assets/publication.json?t=$(date +%s)" | sed -n 's/.*"sha":"\([0-9a-f]*\)".*/\1/p' || true)
+          if [ -n "$en_ligne" ] && [ "$en_ligne" = "${{ steps.contenu.outputs.sha }}" ]; then echo "rien=1" >> "$GITHUB_OUTPUT"; echo "Rien de nouveau."; fi
+
+      - name: Construire le site
+        if: steps.deja.outputs.rien != '1'
+        env:
+          CONTENU_SHA: ${{ steps.contenu.outputs.sha }}
+        run: |
+          if ! node scripts/build.mjs; then
+            echo "::warning::Le contenu de l'administration empêche la construction : publication sans ces modifications."
+            rm -f data-admin/contenu.json
+            CONTENU_ERREUR=1 node scripts/build.mjs
+          fi
+
+      - uses: actions/configure-pages@v5
+        if: steps.deja.outputs.rien != '1'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.deja.outputs.rien != '1'
+        with:
+          path: docs
+
+      - name: Mettre en ligne
+        id: deploiement
+        if: steps.deja.outputs.rien != '1'
+        uses: actions/deploy-pages@v4

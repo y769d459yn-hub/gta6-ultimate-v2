@@ -8,7 +8,48 @@ import { silhouette } from './silhouettes.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'docs');
-const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+const lireBrut = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+
+// ---------- contenu écrit depuis l'administration (data-admin/contenu.json, récupéré de Supabase avant le build) ----------
+// fichier → [nom de la collection, champ qui contient la liste (ou null), clé unique, champ titre]
+const COLLECTIONS = {
+  'actualites.json': ['actualites', null, 'slug', 'titre'], 'astuces.json': ['astuces', null, 'slug', 'titre'],
+  'codes.json': ['codes', 'codes', 'id', 'nom'], 'missions.json': ['missions', 'missions', 'id', 'nom'],
+  'dossiers.json': ['dossiers', 'dossiers', 'slug', 'titre'], 'encyclopedie.json': ['encyclopedie', null, 'slug', 'nom'],
+  'lieux.json': ['lieux', null, 'id', 'nom'], 'vehicules.json': ['vehicules', null, 'slug', 'nom']
+};
+const ADMIN_F = path.join(ROOT, 'data-admin', 'contenu.json');
+const ADMIN_ROWS = fs.existsSync(ADMIN_F) ? JSON.parse(fs.readFileSync(ADMIN_F, 'utf8')) : [];
+const ORIGINAUX = {}; // données d'origine (avant l'administration) pour l'écran admin
+let ADMIN_APPLIQUES = 0;
+const vide = (v) => (Array.isArray(v) ? [] : typeof v === 'string' ? '' : typeof v === 'number' ? 0 : typeof v === 'boolean' ? false : v && typeof v === 'object' ? {} : v);
+function appliquerAdmin(f, data) {
+  const c = COLLECTIONS[f]; if (!c) return data;
+  const [nom, champ, cle] = c;
+  const liste = champ ? data[champ] : data;
+  ORIGINAUX[nom] = JSON.parse(JSON.stringify(liste));
+  const types = {}; liste.forEach((x) => Object.entries(x).forEach(([k, v]) => { if (!(k in types)) types[k] = v; }));
+  const communs = Object.keys(types).filter((k) => liste.every((x) => k in x));
+  for (const r of ADMIN_ROWS.filter((x) => x.collection === nom)) {
+    const i = liste.findIndex((x) => String(x[cle]) === r.cle);
+    if (r.supprime) { if (i >= 0) { liste.splice(i, 1); ADMIN_APPLIQUES++; } continue; }
+    const n = { ...(i >= 0 ? liste[i] : Object.fromEntries(communs.map((k) => [k, vide(types[k])]))), ...(r.donnees || {}) };
+    n[cle] = typeof types[cle] === 'number' ? Number(r.cle) : r.cle;
+    // chaque champ garde le type attendu par le site (texte, liste, nombre, oui/non)
+    for (const [k, t] of Object.entries(types)) {
+      if (!(k in n)) continue;
+      const v = n[k];
+      if (Array.isArray(t) && !Array.isArray(v)) n[k] = typeof v === 'string' ? v.split('\n').map((x) => x.trim()).filter(Boolean) : [];
+      else if (typeof t === 'string' && typeof v !== 'string') n[k] = v == null ? '' : String(v);
+      else if (typeof t === 'number' && typeof v !== 'number') n[k] = Number(v) || 0;
+      else if (typeof t === 'boolean' && typeof v !== 'boolean') n[k] = !!v;
+    }
+    if (i >= 0) liste[i] = n; else liste.push(n);
+    ADMIN_APPLIQUES++;
+  }
+  return data;
+}
+const read = (f) => appliquerAdmin(f, lireBrut(f));
 
 const site = read('site.json');
 const SRC = read('sources.json');
@@ -1161,6 +1202,7 @@ for (const a of ACTUS) {
     <div data-auth-on hidden>
       <div class="auth-me"><span class="tile-ico">${icon('user')}</span><div><small>Connecté avec</small><b data-auth-email></b><span class="auth-sync" data-auth-sync>Synchronisation…</span></div></div>
       <form class="auth-form" data-auth-new data-form="nouveau" hidden><label>Nouveau mot de passe<input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label><button class="btn btn--primary" type="submit">${icon('check')}Enregistrer</button></form>
+      <a class="btn btn--primary auth-admin" href="${R}admin/" data-auth-admin hidden>${icon('shield')}Administration</a>
       <div class="auth-actions"><button class="btn" type="button" data-auth-out>${icon('arrow-left')}Me déconnecter</button><button class="btn btn--ghost auth-del" type="button" data-auth-del>${icon('x')}Supprimer mon compte</button></div>
     </div>
     <p class="auth-msg" data-auth-msg role="status" aria-live="polite" hidden></p>
@@ -1175,6 +1217,27 @@ for (const a of ACTUS) {
   </div>
 </section>`;
   emit(p, layout({ p, title: `Mon compte | ${M}`, desc: 'Accédez à vos favoris et préférences.', body, noindex: true, cls: 'p-account' }));
+}
+
+// ---------- ADMINISTRATION (page vide : tout est chargé après vérification du compte par Supabase) ----------
+{
+  const p = 'admin/', R = R_(p);
+  const body = `<section class="wrap section adm" data-admin>
+  <h1 class="h1">${icon('shield')}Administration</h1>
+  <p class="note" data-adm-etat>${icon('clock')}<span>Vérification de ton accès…</span></p>
+  <div data-adm-app hidden>
+    <div class="adm-pub" data-adm-pub></div>
+    <div class="adm-tabs" role="tablist">
+      <button type="button" role="tab" data-adm-tab="stats" aria-selected="true">${icon('star')}Statistiques</button>
+      <button type="button" role="tab" data-adm-tab="contenu" aria-selected="false">${icon('book')}Contenu</button>
+      <button type="button" role="tab" data-adm-tab="comptes" aria-selected="false">${icon('user')}Comptes</button>
+    </div>
+    <div data-adm-vue="stats"></div>
+    <div data-adm-vue="contenu" hidden></div>
+    <div data-adm-vue="comptes" hidden></div>
+  </div>
+</section>`;
+  emit(p, layout({ p, title: `Administration | ${M}`, desc: 'Espace réservé à l’administrateur.', body, noindex: true, cls: 'p-admin', scripts: ['admin.js'], crumbs: [['Accueil', ''], ['Administration', p]] }));
 }
 
 // ---------- A PROPOS ----------
@@ -1293,10 +1356,13 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
 write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'Leonida', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
-write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
+write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
+// administration : contenu d'origine (avant modifications) et état de la dernière publication
+write('assets/admin-donnees.json', JSON.stringify(Object.fromEntries(Object.entries(COLLECTIONS).map(([, [nom, , cle, titre]]) => [nom, { cle, titre, items: ORIGINAUX[nom] || [] }]))));
+write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA || '', date: new Date().toISOString(), modifications: ADMIN_APPLIQUES, erreur: process.env.CONTENU_ERREUR === '1' }));
 // adresse personnalisée (GitHub Pages)
 if (!site.url.includes('github.io')) write('CNAME', new URL(site.url).hostname + '\n');
 
