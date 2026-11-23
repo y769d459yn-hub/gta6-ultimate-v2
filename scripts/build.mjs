@@ -392,6 +392,7 @@ ${tabs.map(([u, t, i]) => u === '#search'
 <div class="toast" role="status" aria-live="polite" hidden></div>
 ${v2 ? ['gsap', 'ScrollTrigger', 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
 <script src="${R}assets/app.js" defer></script>
+<script src="${R}assets/compte.js" defer></script>
 ${scripts.map((s) => `<script src="${R}assets/${s}" defer></script>`).join('\n')}
 </body>
 </html>`;
@@ -1132,13 +1133,38 @@ for (const a of ACTUS) {
   const p = 'compte/', R = R_(p);
   const body = `<section class="wrap section" data-account data-total="${ASTUCES.length}">
   <h1 class="h1">Mon espace</h1>
-  <p class="lead">Retrouve tes repères.</p>
-  <div class="acc-login">
-    <button class="btn" type="button" disabled>${icon('user')}Me connecter <small>bientôt</small></button>
-    <button class="btn" type="button" disabled>${icon('plus')}Créer un compte <small>bientôt</small></button>
-    <span class="btn btn--primary btn--static">${icon('check')}Tu continues sans compte</span>
+  <p class="lead">Ton compte, tes favoris et ta progression.</p>
+  <div class="auth" data-auth>
+    <div data-auth-off>
+      <div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="connexion" aria-selected="true">Se connecter</button><button type="button" role="tab" data-auth-tab="inscription" aria-selected="false">Créer un compte</button></div>
+      <p class="auth-why">${icon('heart')}<span>Avec un compte, tes favoris et ta progression te suivent sur tous tes appareils. Sans compte, tout reste sur cet appareil.</span></p>
+      <form class="auth-form" data-auth-view="connexion" data-form="connexion">
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <label>Mot de passe<input type="password" name="mdp" autocomplete="current-password" required></label>
+        <button class="btn btn--primary" type="submit">${icon('user')}Me connecter</button>
+        <a href="#" class="auth-link" data-auth-go="oubli">Mot de passe oublié ?</a>
+      </form>
+      <form class="auth-form" data-auth-view="inscription" data-form="inscription" hidden>
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <label>Mot de passe <small>(8 caractères minimum)</small><input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label>
+        <label>Confirme le mot de passe<input type="password" name="mdp2" autocomplete="new-password" minlength="8" required></label>
+        <label class="auth-check"><input type="checkbox" name="ok"> <span>J'accepte que mon e-mail serve uniquement à mon compte Leonida Guide (voir <a href="${R}a-propos/#donnees">données personnelles</a>).</span></label>
+        <button class="btn btn--primary" type="submit">${icon('plus')}Créer mon compte</button>
+      </form>
+      <form class="auth-form" data-auth-view="oubli" data-form="oubli" hidden>
+        <p>Indique ton e-mail : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <button class="btn btn--primary" type="submit">${icon('mail')}Recevoir le lien</button>
+        <a href="#" class="auth-link" data-auth-go="connexion">Retour à la connexion</a>
+      </form>
+    </div>
+    <div data-auth-on hidden>
+      <div class="auth-me"><span class="tile-ico">${icon('user')}</span><div><small>Connecté avec</small><b data-auth-email></b><span class="auth-sync" data-auth-sync>Synchronisation…</span></div></div>
+      <form class="auth-form" data-auth-new data-form="nouveau" hidden><label>Nouveau mot de passe<input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label><button class="btn btn--primary" type="submit">${icon('check')}Enregistrer</button></form>
+      <div class="auth-actions"><button class="btn" type="button" data-auth-out>${icon('arrow-left')}Me déconnecter</button><button class="btn btn--ghost auth-del" type="button" data-auth-del>${icon('x')}Supprimer mon compte</button></div>
+    </div>
+    <p class="auth-msg" data-auth-msg role="status" aria-live="polite" hidden></p>
   </div>
-  <p class="note note--ok">${icon('shield')}<span>Tout reste sur ton appareil. Aucune donnée n'est envoyée, et aucun compte n'est nécessaire pour utiliser le site.</span></p>
   <div class="acc-grid">
     <a class="acc-card" href="${R}favoris/" style="--c:#ff2d87"><span class="tile-ico">${icon('heart')}</span><b>Mes favoris</b><span class="acc-big" data-acc-favs>0</span><small>enregistrés</small></a>
     <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico">${icon('trophy')}</span><b>Ma progression</b><div class="ring" data-ring style="--p:0"><span data-acc-done>0</span><small>/ ${ASTUCES.length}</small></div><small>astuces marquées « fait »</small><button class="link-btn" type="button" data-reset-done>Remettre à zéro</button></div>
@@ -1205,6 +1231,11 @@ for (const a of ACTUS) {
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
   <p>Les objets à collectionner, armes au sol, véhicules remarquables, braquages, commerces et activités viennent d'<a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous avons sélectionné les emplacements utiles, converti leurs positions sur notre carte et traduit en français les types, les noms et les indications des joueurs.</p>
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
+  <section id="donnees" class="related"><h2 class="h3">${icon('user')}Données personnelles</h2>
+    <p>Le site s'utilise sans compte : tes favoris et ta progression restent alors dans ton navigateur, rien n'est envoyé.</p>
+    <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées en Europe par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
+    <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées.</p>
+  </section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">Signale-le ici</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
 </section>`;
@@ -1291,6 +1322,10 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
 fs.writeFileSync(appJs, `window.LG_ICONS=${JSON.stringify(Object.fromEntries(Object.entries(iconDefs).map(([n, d]) => [n, d[1]])))};\n` + fs.readFileSync(appJs, 'utf8'));
+
+// comptes visiteurs : configuration publique de Supabase injectée en tête de compte.js
+const compteJs = path.join(OUT, 'assets', 'compte.js');
+fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\n` + fs.readFileSync(compteJs, 'utf8'));
 
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);

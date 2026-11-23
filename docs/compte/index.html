@@ -59,13 +59,38 @@
 
 <section class="wrap section" data-account data-total="64">
   <h1 class="h1">Mon espace</h1>
-  <p class="lead">Retrouve tes repères.</p>
-  <div class="acc-login">
-    <button class="btn" type="button" disabled><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>Me connecter <small>bientôt</small></button>
-    <button class="btn" type="button" disabled><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Créer un compte <small>bientôt</small></button>
-    <span class="btn btn--primary btn--static"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Tu continues sans compte</span>
+  <p class="lead">Ton compte, tes favoris et ta progression.</p>
+  <div class="auth" data-auth>
+    <div data-auth-off>
+      <div class="auth-tabs" role="tablist"><button type="button" role="tab" data-auth-tab="connexion" aria-selected="true">Se connecter</button><button type="button" role="tab" data-auth-tab="inscription" aria-selected="false">Créer un compte</button></div>
+      <p class="auth-why"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg><span>Avec un compte, tes favoris et ta progression te suivent sur tous tes appareils. Sans compte, tout reste sur cet appareil.</span></p>
+      <form class="auth-form" data-auth-view="connexion" data-form="connexion">
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <label>Mot de passe<input type="password" name="mdp" autocomplete="current-password" required></label>
+        <button class="btn btn--primary" type="submit"><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>Me connecter</button>
+        <a href="#" class="auth-link" data-auth-go="oubli">Mot de passe oublié ?</a>
+      </form>
+      <form class="auth-form" data-auth-view="inscription" data-form="inscription" hidden>
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <label>Mot de passe <small>(8 caractères minimum)</small><input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label>
+        <label>Confirme le mot de passe<input type="password" name="mdp2" autocomplete="new-password" minlength="8" required></label>
+        <label class="auth-check"><input type="checkbox" name="ok"> <span>J'accepte que mon e-mail serve uniquement à mon compte Leonida Guide (voir <a href="../a-propos/#donnees">données personnelles</a>).</span></label>
+        <button class="btn btn--primary" type="submit"><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Créer mon compte</button>
+      </form>
+      <form class="auth-form" data-auth-view="oubli" data-form="oubli" hidden>
+        <p>Indique ton e-mail : tu recevras un lien pour choisir un nouveau mot de passe.</p>
+        <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+        <button class="btn btn--primary" type="submit"><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Recevoir le lien</button>
+        <a href="#" class="auth-link" data-auth-go="connexion">Retour à la connexion</a>
+      </form>
+    </div>
+    <div data-auth-on hidden>
+      <div class="auth-me"><span class="tile-ico"><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></span><div><small>Connecté avec</small><b data-auth-email></b><span class="auth-sync" data-auth-sync>Synchronisation…</span></div></div>
+      <form class="auth-form" data-auth-new data-form="nouveau" hidden><label>Nouveau mot de passe<input type="password" name="mdp" autocomplete="new-password" minlength="8" required></label><button class="btn btn--primary" type="submit"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>Enregistrer</button></form>
+      <div class="auth-actions"><button class="btn" type="button" data-auth-out><svg class="ic " data-anim="drive" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5m6-6-6 6 6 6"/></svg>Me déconnecter</button><button class="btn btn--ghost auth-del" type="button" data-auth-del><svg class="ic " data-anim="spin" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>Supprimer mon compte</button></div>
+    </div>
+    <p class="auth-msg" data-auth-msg role="status" aria-live="polite" hidden></p>
   </div>
-  <p class="note note--ok"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Tout reste sur ton appareil. Aucune donnée n'est envoyée, et aucun compte n'est nécessaire pour utiliser le site.</span></p>
   <div class="acc-grid">
     <a class="acc-card" href="../favoris/" style="--c:#ff2d87"><span class="tile-ico"><svg class="ic " data-anim="pulse" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></span><b>Mes favoris</b><span class="acc-big" data-acc-favs>0</span><small>enregistrés</small></a>
     <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico"><svg class="ic " data-anim="bob" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v3M8 21h8M9 17h6v4H9z"/></svg></span><b>Ma progression</b><div class="ring" data-ring style="--p:0"><span data-acc-done>0</span><small>/ 64</small></div><small>astuces marquées « fait »</small><button class="link-btn" type="button" data-reset-done>Remettre à zéro</button></div>
@@ -111,6 +136,7 @@
 <script src="../assets/SplitText.min.js" defer></script>
 <script src="../assets/DrawSVGPlugin.min.js" defer></script>
 <script src="../assets/app.js" defer></script>
+<script src="../assets/compte.js" defer></script>
 <script src="../assets/pages.js" defer></script>
 </body>
 </html>

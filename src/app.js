@@ -237,6 +237,7 @@
     store.set('done', [...d]); syncDone();
   }));
   syncDone();
+  window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
@@ -352,6 +353,7 @@
       $$('[data-rm]', list).forEach((b) => b.addEventListener('click', () => { setFavs(favs().filter((x) => x.type + ':' + x.id !== b.dataset.rm)); toast('Retiré'); render(); }));
     }
     render();
+    document.addEventListener('lg:remote', render);
   }
 
   // ---------- compte ----------
@@ -365,6 +367,7 @@
       $('[data-ring]', acc).style.setProperty('--p', Math.round((d / total) * 100));
     };
     refresh();
+    document.addEventListener('lg:remote', refresh);
     $('[data-reset-done]', acc).addEventListener('click', () => { store.set('done', []); refresh(); toast('Progression remise à zéro'); });
     const prefs = store.get('prefs', {});
     const cur = { theme: prefs.theme || 'auto', motion: prefs.motion || 'on', size: prefs.size || '' };
