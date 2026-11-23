@@ -403,6 +403,10 @@
   ],
   "sources": [
    "keengamer-weapons"
+  ],
+  "monde": [
+   -3307,
+   -5045
   ]
  },
  {
@@ -442,6 +446,10 @@
   "sources": [
    "gamesgg-luxury",
    "detonated-cars"
+  ],
+  "monde": [
+   495,
+   1214
   ]
  },
  {
@@ -459,6 +467,10 @@
   ],
   "sources": [
    "gamesgg-luxury"
+  ],
+  "monde": [
+   1253,
+   1460
   ]
  },
  {
@@ -514,6 +526,10 @@
   ],
   "sources": [
    "gamesgg-luxury"
+  ],
+  "monde": [
+   1637,
+   2519
   ]
  },
  {
@@ -651,7 +667,11 @@
   "sources": [
    "gamesradar-activities"
   ],
-  "astuce": "chasse"
+  "astuce": "chasse",
+  "monde": [
+   -2791,
+   7377
+  ]
  },
  {
   "id": "planque-jason",

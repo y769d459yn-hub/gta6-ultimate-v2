@@ -1,9 +1,222 @@
 [
-  { "slug": "sortie-19-novembre-2026", "date": "2026-11-19", "statut": "officiel", "theme": "sortie", "titre": "GTA 6 est disponible sur PS5 et Xbox Series X|S", "bref": "Le jeu est sorti le 19 novembre 2026, à la date annoncée par Rockstar en novembre 2025.", "annonce": ["Sortie le 19 novembre 2026.", "Plateformes : PlayStation 5 et Xbox Series X|S."], "change": "Tu peux jouer dès maintenant. Nos astuces sont mises à jour au fil des découvertes.", "inconnu": ["Date d'une éventuelle version PC."], "sources": ["rockstar"], "liens": ["preparer-installation", "sauvegarder"] },
-  { "slug": "precharge-212-go", "date": "2026-11-17", "statut": "a-verifier", "theme": "technique", "titre": "Pré-chargement : environ 210 Go nécessaires", "bref": "Selon un relevé non officiel de la taille sur PS5, le jeu demande environ 210 Go d'espace libre.", "annonce": ["Espace requis : environ 210 Go sur PS5 (relevé non officiel).", "L'édition physique contient un code de téléchargement, pas de disque."], "change": "Prévois de la place, et un peu plus pour les mises à jour.", "inconnu": ["Taille après les premiers patchs."], "sources": ["gtabase-launch"], "liens": ["preparer-installation"] },
-  { "slug": "premiers-codes-decouverts", "date": "2026-11-21", "statut": "a-verifier", "theme": "astuces", "titre": "Les premiers codes identifiés", "bref": "Les joueurs auraient trouvé une partie des 61 codes. On les saisit au téléphone.", "annonce": ["Codes saisis au téléphone avec L1 + R1 / LB + RB et la croix directionnelle.", "Ils se débloquent après l'histoire."], "change": "Les codes bloquent la sauvegarde et les trophées : sauvegarde avant.", "inconnu": ["La liste complète et certains codes, différents selon les sites."], "sources": ["redbull-cheats", "gtacheatcodes"], "liens": ["entrer-un-code", "code-argent"] },
-  { "slug": "report-novembre-2026", "date": "2025-11-06", "statut": "officiel", "theme": "sortie", "titre": "Rockstar repousse GTA 6 au 19 novembre 2026", "bref": "Rockstar a déplacé la sortie du 26 mai 2026 au 19 novembre 2026.", "annonce": ["Nouvelle date : 19 novembre 2026."], "change": "Six mois d'attente en plus, pour peaufiner le jeu.", "inconnu": [], "sources": ["rockstar-newswire"], "liens": ["sortie-19-novembre-2026"] },
-  { "slug": "bande-annonce-2", "date": "2025-05-06", "statut": "officiel", "theme": "bande-annonce", "titre": "Deuxième bande-annonce et nouveaux personnages", "bref": "Rockstar a publié la deuxième bande-annonce et présenté plusieurs personnages et régions.", "annonce": ["Deuxième bande-annonce officielle.", "Présentation de personnages comme Cal, Boobie, Dre'Quan, Real Dimez, Raul et Brian."], "change": "On connaît mieux les personnages et les régions de Leonida.", "inconnu": [], "sources": ["rockstar"], "liens": ["jason-duval", "leonida"] },
-  { "slug": "report-mai-2026", "date": "2025-05-02", "statut": "officiel", "theme": "sortie", "titre": "Premier report : de 2025 au 26 mai 2026", "bref": "Prévu à l'automne 2025, le jeu a d'abord été repoussé au 26 mai 2026.", "annonce": ["Date annoncée à l'époque : 26 mai 2026."], "change": "Remplacé depuis par le report au 19 novembre 2026.", "inconnu": [], "sources": ["rockstar-newswire"], "liens": ["report-novembre-2026"] },
-  { "slug": "bande-annonce-1", "date": "2023-12-05", "statut": "officiel", "theme": "bande-annonce", "titre": "Première bande-annonce : retour à Vice City", "bref": "La première bande-annonce a confirmé Leonida, Vice City et le duo Jason–Lucia.", "annonce": ["Retour à Vice City, dans l'État de Leonida.", "Deux personnages principaux."], "change": "Le décor et les héros sont connus.", "inconnu": [], "sources": ["rockstar"], "liens": ["vice-city", "lucia-caminos"] }
+ {
+  "slug": "sortie-19-novembre-2026",
+  "date": "2026-11-19",
+  "statut": "officiel",
+  "theme": "sortie",
+  "titre": "GTA 6 est disponible sur PS5 et Xbox Series X|S",
+  "bref": "Le jeu est sorti le 19 novembre 2026, à la date annoncée par Rockstar en novembre 2025.",
+  "annonce": [
+   "Sortie le 19 novembre 2026.",
+   "Plateformes : PlayStation 5 et Xbox Series X|S."
+  ],
+  "change": "Tu peux jouer dès maintenant. Nos astuces sont mises à jour au fil des découvertes.",
+  "inconnu": [
+   "Date d'une éventuelle version PC."
+  ],
+  "sources": [
+   "rockstar"
+  ],
+  "liens": [
+   "preparer-installation",
+   "sauvegarder"
+  ]
+ },
+ {
+  "slug": "precharge-212-go",
+  "date": "2026-11-17",
+  "statut": "a-verifier",
+  "theme": "technique",
+  "titre": "Pré-chargement : environ 210 Go nécessaires",
+  "bref": "Selon un relevé non officiel de la taille sur PS5, le jeu demande environ 210 Go d'espace libre.",
+  "annonce": [
+   "Espace requis : environ 210 Go sur PS5 (relevé non officiel).",
+   "L'édition physique contient un code de téléchargement, pas de disque."
+  ],
+  "change": "Prévois de la place, et un peu plus pour les mises à jour.",
+  "inconnu": [
+   "Taille après les premiers patchs."
+  ],
+  "sources": [
+   "gtabase-launch"
+  ],
+  "liens": [
+   "preparer-installation"
+  ]
+ },
+ {
+  "slug": "premiers-codes-decouverts",
+  "date": "2026-11-21",
+  "statut": "a-verifier",
+  "theme": "astuces",
+  "titre": "Les premiers codes identifiés",
+  "bref": "Les joueurs ont trouvé les combinaisons de 19 codes sur 61. On les saisit au téléphone.",
+  "annonce": [
+   "Codes saisis au téléphone avec L1 + R1 / LB + RB et la croix directionnelle.",
+   "Ils se débloquent après l'histoire."
+  ],
+  "change": "Les codes bloquent la sauvegarde et les trophées : sauvegarde avant.",
+  "inconnu": [
+   "La liste complète et certains codes, différents selon les sites."
+  ],
+  "sources": [
+   "redbull-cheats",
+   "gtacheatcodes"
+  ],
+  "liens": [
+   "entrer-un-code",
+   "code-argent"
+  ]
+ },
+ {
+  "slug": "report-novembre-2026",
+  "date": "2025-11-06",
+  "statut": "officiel",
+  "theme": "sortie",
+  "titre": "Rockstar repousse GTA 6 au 19 novembre 2026",
+  "bref": "Rockstar a déplacé la sortie du 26 mai 2026 au 19 novembre 2026.",
+  "annonce": [
+   "Nouvelle date : 19 novembre 2026."
+  ],
+  "change": "Six mois d'attente en plus, pour peaufiner le jeu.",
+  "inconnu": [],
+  "sources": [
+   "rockstar-newswire"
+  ],
+  "liens": [
+   "sortie-19-novembre-2026"
+  ]
+ },
+ {
+  "slug": "bande-annonce-2",
+  "date": "2025-05-06",
+  "statut": "officiel",
+  "theme": "bande-annonce",
+  "titre": "Deuxième bande-annonce et nouveaux personnages",
+  "bref": "Rockstar a publié la deuxième bande-annonce et présenté plusieurs personnages et régions.",
+  "annonce": [
+   "Deuxième bande-annonce officielle.",
+   "Présentation de personnages comme Cal, Boobie, Dre'Quan, Real Dimez, Raul et Brian."
+  ],
+  "change": "On connaît mieux les personnages et les régions de Leonida.",
+  "inconnu": [],
+  "sources": [
+   "rockstar"
+  ],
+  "liens": [
+   "jason-duval",
+   "leonida"
+  ]
+ },
+ {
+  "slug": "report-mai-2026",
+  "date": "2025-05-02",
+  "statut": "officiel",
+  "theme": "sortie",
+  "titre": "Premier report : de 2025 au 26 mai 2026",
+  "bref": "Prévu à l'automne 2025, le jeu a d'abord été repoussé au 26 mai 2026.",
+  "annonce": [
+   "Date annoncée à l'époque : 26 mai 2026."
+  ],
+  "change": "Remplacé depuis par le report au 19 novembre 2026.",
+  "inconnu": [],
+  "sources": [
+   "rockstar-newswire"
+  ],
+  "liens": [
+   "report-novembre-2026"
+  ]
+ },
+ {
+  "slug": "bande-annonce-1",
+  "date": "2023-12-05",
+  "statut": "officiel",
+  "theme": "bande-annonce",
+  "titre": "Première bande-annonce : retour à Vice City",
+  "bref": "La première bande-annonce a confirmé Leonida, Vice City et le duo Jason–Lucia.",
+  "annonce": [
+   "Retour à Vice City, dans l'État de Leonida.",
+   "Deux personnages principaux."
+  ],
+  "change": "Le décor et les héros sont connus.",
+  "inconnu": [],
+  "sources": [
+   "rockstar"
+  ],
+  "liens": [
+   "vice-city",
+   "lucia-caminos"
+  ]
+ },
+ {
+  "slug": "ventes-premier-jour",
+  "date": "2026-11-20",
+  "statut": "officiel",
+  "theme": "sortie",
+  "titre": "3,79 milliards de dollars le premier jour",
+  "bref": "Selon Take-Two, GTA 6 a généré 3,79 milliards de dollars de ventes le jour de sa sortie, après 32,5 millions d'exemplaires vendus avant la sortie.",
+  "annonce": [
+   "3,79 milliards de dollars de ventes au détail le 19 novembre (estimation de Take-Two).",
+   "32,5 millions d'exemplaires vendus avant la sortie."
+  ],
+  "change": "C'est le plus gros lancement de l'histoire du divertissement, devant GTA 5.",
+  "inconnu": [
+   "Si ce chiffre inclut les précommandes.",
+   "Les ventes de la première semaine."
+  ],
+  "sources": [
+   "forbes-ventes"
+  ],
+  "liens": [
+   "sortie-19-novembre-2026"
+  ]
+ },
+ {
+  "slug": "mise-a-jour-1-002-002",
+  "date": "2026-11-23",
+  "statut": "a-verifier",
+  "theme": "technique",
+  "titre": "Mise à jour 1.002.002 disponible",
+  "bref": "Une petite mise à jour est sortie sur PS5 (environ 604 Mo) et Xbox Series (environ 1,6 Go), sans notes de patch de Rockstar.",
+  "annonce": [
+   "Version 1.002.002, après la 1.002.000 (13 novembre) et la 1.002.001 (16 novembre).",
+   "Environ 604 Mo sur PS5 et 1,6 Go sur Xbox Series X|S."
+  ],
+  "change": "Installe-la avant de jouer. Rockstar n'a pas détaillé les corrections.",
+  "inconnu": [
+   "Le contenu exact de la mise à jour.",
+   "La date de la prochaine."
+  ],
+  "sources": [
+   "beebom-patchs",
+   "happygamer-patch"
+  ],
+  "liens": [
+   "sauvegarder"
+  ]
+ },
+ {
+  "slug": "pas-de-mode-en-ligne",
+  "date": "2026-11-21",
+  "statut": "a-verifier",
+  "theme": "sortie",
+  "titre": "Pas de mode en ligne ni de version PC pour l'instant",
+  "bref": "GTA 6 est sorti en solo uniquement. Rockstar n'a donné aucune date pour un mode en ligne ni pour une version PC.",
+  "annonce": [
+   "Le jeu est vendu comme une expérience solo sur PS5 et Xbox Series X|S.",
+   "Aucune date officielle pour GTA 6 Online : 2027 est seulement une estimation de la presse."
+  ],
+  "change": "Attention aux arnaques : toute « version PC » proposée aujourd'hui est fausse.",
+  "inconnu": [
+   "La date du mode en ligne.",
+   "La date de la version PC."
+  ],
+  "sources": [
+   "vice-online",
+   "covers-online"
+  ],
+  "liens": [
+   "plateformes"
+  ]
+ }
 ]

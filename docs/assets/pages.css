@@ -378,3 +378,6 @@
   .dos-it:has(.dos-go) .dos-t { flex-basis: calc(100% - 140px); }
 }
 .v2 .mis--tache .mis-n { opacity: .65; font-size: .85em; }
+.vdlg-lo { margin: 6px 0 12px; padding-left: 18px; display: grid; gap: 6px; }
+.vdlg-lo small { color: var(--tx2); }
+.vdlg-map { display: inline-flex; align-items: center; gap: 8px; }

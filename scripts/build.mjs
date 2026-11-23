@@ -23,6 +23,7 @@ const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes
 // on n'affiche que les codes dont la combinaison est connue
 CODES.codes = CODES.codes.filter((c) => c.sequence.length);
 CODES.categories = CODES.categories.filter((k) => CODES.codes.some((c) => c.cat === k.id));
+const CAT_CARTE = fs.existsSync(path.join(ROOT, 'data', 'catalogue-carte.json')) ? read('catalogue-carte.json') : {};
 const CATALOGUE = fs.existsSync(path.join(ROOT, 'data', 'catalogue.json')) ? read('catalogue.json') : { vehicules: [], fiches: {} };
 // inspirations des véhicules (relevées en anglais) → français
 const INSP = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'traductions', 'inspirations.json'), 'utf8'));
@@ -700,7 +701,7 @@ function catCard(x, R) {
   </section>`).join('')}
   <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
   <dialog class="vdlg" aria-labelledby="vdlg-t"><div class="vdlg-in" data-vdlg></div></dialog>
-  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, vf: (VERIF[x.slug] || {}).statut, vt: verifTexte(x.slug), vn: (VERIF[x.slug] || {}).note, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources }))).replace(/</g, '\\u003c')}</script>
+  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, vf: (VERIF[x.slug] || {}).statut, vt: verifTexte(x.slug), vn: (VERIF[x.slug] || {}).note, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources, lo: (CAT_CARTE[x.slug] || []).map((id) => mapIndex[id]).filter(Boolean).slice(0, 6).map((f) => ({ id: f.properties.id, n: f.properties.nom, z: f.properties.zone || '', d: (f.properties.desc || '').slice(0, 140) })) }))).replace(/</g, '\\u003c')}</script>
   <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
 </section>`;

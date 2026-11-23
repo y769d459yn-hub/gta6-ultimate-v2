@@ -160,5 +160,23 @@
   "note": "Jet sur la base de Mile Zero",
   "credit": "Capture du jeu, via PC Gamer",
   "url": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-military-base-location/"
+ },
+ "jobuilt-hauler": {
+  "fichier": "jobuilt-hauler.webp",
+  "note": "",
+  "credit": "Rockstar Games, via GTA Wiki",
+  "url": "https://gta.wiki/w/File:Hauler-GTAVI-FrontQuarter.png"
+ },
+ "hauners-ridgway": {
+  "fichier": "hauners-ridgway.webp",
+  "note": "",
+  "credit": "Rockstar Games, via GTABase",
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/ridgway"
+ },
+ "lapwing-stolen-valor": {
+  "fichier": "lapwing-stolen-valor.webp",
+  "note": "Modèle 300-H (livrée standard)",
+  "credit": "Rockstar Games, via GTABase",
+  "url": "https://www.gtabase.com/fr/gta-6/vehicules/300-h"
  }
 }

@@ -92,8 +92,9 @@
         ${x.d ? `<p class="vdlg-d">${esc(x.d)}</p>` : ''}
         <dl class="vdlg-facts">${lignes.map(([i, k, v]) => `<div><dt>${ic(i)}${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
         ${x.vt ? `<p class="vdlg-verif vdlg-verif--${esc(x.vf)}">${ic(x.vf === 'confirme' ? 'check' : 'alert')}<span><b>Présence dans GTA 6 :</b> ${esc(x.vt)}${x.vn ? ` ${esc(x.vn)}` : ''}</span></p>` : ''}
-        <div class="vdlg-how ${x.o ? '' : 'is-unknown'}"><h3>${ic('pin')}Comment l'obtenir</h3>
-          <p>${x.o ? esc(x.o) : "Pas encore documenté. Le véhicule est bien confirmé dans GTA 6, mais personne n'a encore indiqué où le trouver à coup sûr. On complète dès que c'est vérifié."}</p></div>
+        <div class="vdlg-how ${x.o || (x.lo && x.lo.length) ? '' : 'is-unknown'}"><h3>${ic('pin')}Comment l'obtenir</h3>
+          ${x.lo && x.lo.length ? `<p>${x.o ? esc(x.o) + ' ' : ''}Repéré par les joueurs à ${x.lo.length > 1 ? x.lo.length + ' endroits' : 'un endroit précis'} :</p><ul class="vdlg-lo">${x.lo.map((l) => `<li><b>${esc(l.n)}</b>${l.z ? ` · ${esc(l.z)}` : ''}${l.d ? `<br><small>${esc(l.d)}</small>` : ''}</li>`).join('')}</ul><a class="btn btn--primary vdlg-map" href="${ROOT}carte/?focus=${encodeURIComponent(x.lo[0].id)}">${ic('map')}Voir sur la carte</a>`
+            : `<p>${x.o ? esc(x.o) : "Pas encore documenté. Le véhicule est bien confirmé dans GTA 6, mais personne n'a encore indiqué où le trouver à coup sûr. On complète dès que c'est vérifié."}</p>`}</div>
         <p class="vdlg-src">Sources : ${(x.src || []).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.nom)}</a>`).join(' · ')}</p>
       </div>`;
     box.querySelector('[data-x]').addEventListener('click', fermer);
