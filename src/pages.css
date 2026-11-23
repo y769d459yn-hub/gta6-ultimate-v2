@@ -408,3 +408,7 @@
 .tg-card > .ic:last-child { flex: none; width: 18px; height: 18px; color: var(--tx2); }
 .tg-empty { color: var(--tx2); text-align: center; margin-top: 16px; }
 @media (min-width: 900px) { .tg-list { grid-template-columns: 1fr 1fr; } }
+.tg-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 6px 0 14px; }
+.tg-head h2 { margin: 0; font: 600 1.25rem var(--fd); }
+.tg-head span { color: var(--tx2); font: 400 .95rem var(--fd); }
+.tg-card { padding: 14px 18px; }
