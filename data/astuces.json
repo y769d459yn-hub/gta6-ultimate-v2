@@ -1169,12 +1169,12 @@
   "cat": "exploration",
   "icon": "trophy",
   "titre": "Comment suivre les objets à collectionner ?",
-  "court": "Objets à collectionner",
+  "court": "Suivre sa progression",
   "reponse": "Le menu Progression du jeu montre ce qu'il te reste à trouver.",
   "etapes": [
    "Ouvre Pause, puis Progression.",
    "Choisis une catégorie : animaux, cartes, véhicules…",
-   "Coche ce que tu as trouvé dans tes favoris ici."
+   "Pour savoir où chercher, ouvre nos listes d’objets à collectionner : chaque emplacement s’ouvre sur la carte et se coche une fois trouvé."
   ],
   "asavoir": "Les totaux annoncés varient beaucoup d'une source à l'autre.",
   "duree": 1,

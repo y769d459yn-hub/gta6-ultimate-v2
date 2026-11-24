@@ -695,6 +695,7 @@ for (const a of ASTUCES) {
     <ol class="steps">${a.etapes.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t">${esc(s)}</span></li>`).join('')}</ol>
   </section>
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
+  ${a.slug === 'collection' ? `<a class="btn btn--primary btn--wide" href="${R}collection/">${icon('badge')}Voir les listes d'objets à collectionner</a>` : ''}
   <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}</div></section>
   ${sourcesBlock(a.sources)}
 </article>`;
@@ -1560,12 +1561,12 @@ for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' 
 const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 {
   const types = {}; for (const f of features) if (f.properties.src === 'ogm') { const k = f.properties.cat + '|' + f.properties.service; (types[k] ||= { ...f.properties, n: 0 }).n++; }
-  for (const t of Object.values(types)) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
+  for (const t of Object.values(types).filter((x) => x.cat !== 'collection')) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
 }
 const dejaT = new Set(index.map((x) => norm(x.t)));
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
-for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collection', k: norm(`${T.pluriel} ${T.nom} objet a collectionner collection emplacement tous liste`), d: 'Tous les emplacements, par secteur', u: `collection/${T.slug}/`, i: T.icon, c: '#ff2bd6', g: 'page', s: '', l: 'Objets à collectionner', m: 0 });
-push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'page', s: '', l: 'Page', m: 0 });
+for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collection', k: norm(`${T.pluriel} ${T.nom} objet a collectionner collection emplacement tous liste`), d: 'Tous les emplacements, par secteur', u: `collection/${T.slug}/`, i: T.icon, c: '#ff2bd6', g: 'astuce', s: '', l: 'Objets à collectionner', m: 0 });
+push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'astuce', s: '', l: 'Toutes les listes', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
