@@ -46,9 +46,12 @@ echo "adresses dans le sitemap : $(wc -l < /tmp/urls.txt)"
 echo "adresses hors du domaine : $(grep -vc "^https://$D/" /tmp/urls.txt)"
 
 titre "6. Toutes les pages du sitemap (vu par Googlebot)"
-cat /tmp/urls.txt | xargs -P 16 -I{} curl -sS -o /dev/null -A "$UA_GOOGLE" --max-time 30 -w '%{http_code} {}\n' {} > /tmp/codes.txt 2>&1
-echo "réponses : $(cut -d' ' -f1 /tmp/codes.txt | sort | uniq -c | tr '\n' ' ')"
-echo "pages en erreur (max 20) :"; grep -v '^200 ' /tmp/codes.txt | head -20
+cat /tmp/urls.txt | xargs -P 4 -I{} curl -sS -o /dev/null -A "$UA_GOOGLE" --max-time 30 -w '%{http_code} {}\n' {} > /tmp/codes.txt 2>&1
+echo "réponses (4 requêtes en parallèle) : $(cut -d' ' -f1 /tmp/codes.txt | sort | uniq -c | tr '\n' ' ')"
+echo "pages en erreur au premier passage (max 20) :"; grep -v '^200 ' /tmp/codes.txt | head -20
+echo "nouvel essai des pages en erreur, une par une, 5 s plus tard :"
+sleep 5
+grep -v '^200 ' /tmp/codes.txt | cut -d' ' -f2 | while read -r u; do curl -sS -o /dev/null -A "$UA_GOOGLE" --max-time 30 -w '    %{http_code} {}\n' "$u" | sed "s#{}#$u#"; sleep 1; done
 
 titre "7. Liens directs (navigateur iPhone puis Googlebot)"
 for p in missions/coming-home/ vehicules/pegassi-infernus/ vehicules/obey-8f-drafter/ astuces/semer-la-police/ collection/meteorite/ lieux/vice-city/ mentions-legales/ dossiers/100-pour-cent/ "carte/?focus=w-mtl-pumper-1" page-qui-nexiste-pas/; do
