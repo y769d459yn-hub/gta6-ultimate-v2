@@ -520,6 +520,47 @@ function sourcesBlock(ids) {
   if (!list.length) return '';
   return `<details class="sources"><summary>${icon('shield')}Sources (${list.length})</summary><ul>${list.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a>${s.official ? ' <span class="pill pill--ok">officiel</span>' : ''}</li>`).join('')}</ul><p class="muted">Consultées le ${fmtDate(site.majLe)}.</p></details>`;
 }
+// Véhicules : nature de chaque emplacement, d'après le type de repère de la source (rien n'est déduit au-delà)
+const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Lié à une demande (Moses ou Randy)', 'Location de véhicules': 'À louer' };
+const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : NATURE_V[f.properties.service] || 'Repère de la carte');
+const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
+// Un seul bloc en haut de fiche : la réponse, l'action principale, les favoris.
+// lieux : repères de la carte ; texte : emplacement décrit ; fiab : fiabilité de l'emplacement ; etapes : méthode d'obtention vérifiée par les sources de la fiche
+function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler }) {
+  const connu = lieux.length || texte;
+  const plusieurs = lieux.length > 1;
+  const spoil = (s) => /chapitre|«|mission/i.test(s);
+  return `<section class="ou-veh" id="ou" aria-labelledby="ou-t">
+    <h2 id="ou-t" class="h3">${icon('pin')}Où le trouver ?</h2>
+    ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
+    ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
+    ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits :</p>` : ''}
+    ${lieux.length && (plusieurs || !texte) ? `<ul class="vdlg-lo">${lieux.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}<br><small>${esc(natureLieu(f))} · source : ${esc(sourceLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>` : ''}
+    ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
+    <div class="actions actions--ou">
+      ${lieux.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lieux[0].properties.id}">${icon('map')}Voir l'emplacement</a>` : ''}
+      ${fav}
+      ${connu ? '' : `<a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Emplacement : ${nom}`)}&amp;body=${encodeURIComponent(`Véhicule : ${nom} (${site.url}/${signaler})\nOù je l'ai trouvé :\nSource ou capture, si tu en as une :\n`)}">${icon('mail')}Signaler un emplacement</a>`}
+    </div>
+    ${etapes && etapes.length ? `<h3 class="ou-h">${icon('list')}Comment l'obtenir</h3><ol class="steps">${etapes.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t${spoil(s) ? ' spoil' : ''}">${esc(s)}</span></li>`).join('')}</ol>` : ''}
+  </section>`;
+}
+// Fiabilité : trois questions séparées (le véhicule est-il dans le jeu ? l'emplacement est-il sûr ? comment l'obtenir ?)
+function blocFiab({ presence, emplacement, obtention }) {
+  return `<section class="fiab-veh" aria-labelledby="fi-t"><h2 id="fi-t" class="h3">${icon('shield')}Fiabilité</h2><dl class="facts facts--fiab">
+    <div><dt>${icon('check')}Présence dans GTA 6</dt><dd>${presence}</dd></div>
+    <div><dt>${icon('pin')}Emplacement</dt><dd>${emplacement}</dd></div>
+    <div><dt>${icon('list')}Méthode d'obtention</dt><dd>${obtention}</dd></div>
+  </dl></section>`;
+}
+// présence : une page de wiki ou de base de données de joueurs n'est pas une confirmation officielle de Rockstar
+const presenceTxt = (slug, srcIds = []) => {
+  const v = VERIF[slug] || {};
+  const preuves = (v.preuves || []), off = preuves.filter((x) => /rockstar/i.test(x)), joueurs = preuves.filter((x) => !/rockstar/i.test(x));
+  if (off.length || srcIds.some((id) => SRC[id] && SRC[id].official)) return `Confirmée par Rockstar Games (source officielle)${joueurs.length ? `, et par ${joueurs.join(', ')}` : ''}.${v.note ? ' ' + v.note : ''}`;
+  if (v.statut === 'confirme') return `Confirmée par des sources de joueurs${joueurs.length ? ` (${joueurs.join(', ')})` : ''}, pas par une annonce officielle de Rockstar.${v.note ? ' ' + v.note : ''}`;
+  return `À confirmer : vue seulement sur GTABase ou gta6guide.fr.${v.note ? ' ' + v.note : ''}`;
+};
 function favBtn(o) {
   return `<button class="btn btn--ghost fav" type="button" data-fav='${esc(JSON.stringify(o))}' aria-pressed="false">${icon('heart')}<span data-on="Dans mes favoris" data-off="Ajouter aux favoris">Ajouter aux favoris</span></button>`;
 }
@@ -771,7 +812,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
     const txt = norm([nom, kicker, classe, c.nom].join(' '));
     const bouton = focus ? `<a class="vc-ou" href="${R}carte/?focus=${focus}">${icon('map')}Où le trouver ?</a>`
       : comment ? `<a class="vc-ou vc-ou--txt" href="${R}vehicules/${slug}/#ou">${icon('pin')}Où le trouver ?</a>`
-      : `<span class="vc-ou vc-ou--off">${icon('question')}Emplacement pas encore connu</span>`;
+      : `<span class="vc-ou vc-ou--off">${icon('question')}Emplacement à vérifier</span>`;
     return `<article class="card card--veh card--v" style="--c:${c.color}" data-cat="${type}" data-grp="${groupe}" data-known="${known ? 1 : 0}" data-sur="${sur ? 1 : 0}" data-text="${esc(txt)}">
   <a class="vc-link" href="${R}vehicules/${slug}/"><span class="veh-art">${visu}<span class="veh-type">${esc(UN[classe] || classe)}</span></span>
   <span class="card-body"><span class="card-kicker">${esc(kicker)}</span><b class="card-title">${esc(nom)}</b>${sur ? '' : `<span class="vc-warn">${icon('alert')}Présence à confirmer</span>`}</span></a>
@@ -801,7 +842,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
   const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead">${total} véhicules. Touche <b>Où le trouver ?</b> pour ouvrir la carte au bon endroit (${nbOu} véhicules dont on connaît l'emplacement pour l'instant).</p>
+  <p class="lead veh-lead"><b>${total}</b> véhicules · <b>${nbOu}</b> avec un emplacement relevé. Touche <b>Où le trouver ?</b> pour ouvrir la carte.</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
     ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
@@ -810,13 +851,13 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
     <button class="chip chip--toggle" type="button" data-vtoggle="known" aria-pressed="false">${icon('pin')}Emplacement connu</button>
   </div>
   <nav class="vjump" aria-label="Aller à une catégorie">${groupes.map((g) => `<a href="#cat-${g.id}" data-jump="${g.id}">${esc(g.nom)}<small>${cartes[g.id].length}</small></a>`).join('')}</nav>
-  <p class="count-line" data-vcount aria-live="polite"></p>
+  <p class="count-line"><span data-vcount aria-live="polite"></span> <button class="lnk" type="button" data-vclear hidden>Effacer les filtres</button></p>
   ${groupes.map((g) => `<section class="vgrp" id="cat-${g.id}" data-vgrp="${g.id}" data-type="${g.type}" aria-labelledby="t-${g.id}">
     <h2 class="vgrp-h" id="t-${g.id}">${esc(g.nom)} <small data-vn>${cartes[g.id].length}</small></h2>
     <div class="grid">${cartes[g.id].sort((a, b) => a.o - b.o || a.n.localeCompare(b.n, 'fr')).map((c) => c.html).join('')}</div>
     <button class="btn btn--ghost vgrp-more" type="button" data-vmore hidden>${icon('plus')}<span></span></button>
   </section>`).join('')}
-  <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
+  <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. <button class="lnk" type="button" data-vclear>Effacer les filtres</button></p>
   <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>, recoupées avec GTA Wiki. Emplacements : repères de la carte (Open GTA 6 Map et GTA Wiki, relevés par la communauté). Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir tous les véhicules sur la carte</a>
 </section>`;
@@ -839,22 +880,19 @@ for (const v of VEHICULES) {
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a>${badge(v.dispo)}</div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
   </header>
-  <div class="actions">
-    <a class="btn btn--primary" href="#ou">${icon('pin')}Où le trouver ?</a>
-    ${onM ? `<a class="btn" href="${R}carte/?focus=v-${v.slug}">${icon('map')}Voir sur la carte</a>` : `<span class="btn btn--off" aria-disabled="true">${icon('map')}Position non vérifiée</span>`}
-    ${favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color })}
-  </div>
+  ${(() => {
+    const lieux = [onM && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).map((id) => mapIndex[id])].filter(Boolean);
+    const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
+    const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}` };
+    return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
+      + blocFiab({ presence: esc(presenceTxt(v.slug, v.sources)), emplacement: `${esc(statut(v.dispo).nom)} · ${esc(fiab.texte)}`, obtention: `${esc(statut(v.dispo).nom)} · étapes tirées des mêmes sources` });
+  })()}
   <dl class="facts">
     <div><dt>${icon(c.icon)}Type</dt><dd>${esc(c.nom)} · ${esc(v.sous)}</dd></div>
-    <div><dt>${icon('shield')}Disponibilité</dt><dd>${esc(statut(v.dispo).nom)}</dd></div>
-    ${VERIF[v.slug] ? `<div class="fact-verif fact-verif--${VERIF[v.slug].statut}"><dt>${icon(VERIF[v.slug].statut === 'confirme' ? 'check' : 'alert')}Présence dans GTA 6</dt><dd>${esc(verifTexte(v.slug))}${VERIF[v.slug].note ? ` <small>${esc(VERIF[v.slug].note)}</small>` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].fabricant ? `<div><dt>${icon('badge')}Marque</dt><dd>${esc(CATALOGUE.fiches[v.slug].fabricant)}${CATALOGUE.fiches[v.slug].classe ? ' · ' + esc(CATALOGUE.fiches[v.slug].classe) : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
-    <div id="ou"><dt>${icon('pin')}Emplacement</dt><dd>${l ? `<a href="${R}lieux/${l.id}/"><b>${esc(l.nom)}</b></a> — ` : '<b>Inconnu</b> — '}${esc(v.emplacement)}</dd></div>
   </dl>
-  <section class="steps-wrap" aria-labelledby="ob-t"><h2 id="ob-t" class="h3">${icon('list')}Comment l'obtenir</h2>
-    <ol class="steps">${v.obtenir.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t">${esc(s)}</span></li>`).join('')}</ol></section>
   ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Même type</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sourcesBlock(v.sources)}
@@ -885,24 +923,24 @@ for (const x of CATALOGUE.vehicules) {
   ].filter(Boolean);
   const body = `<article class="wrap fiche" style="--c:${c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    ${x.img ? `<figure class="veh-hero veh-hero--photo"><img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)} dans GTA 6"${wh('catalogue/' + x.img)} fetchpriority="high" decoding="async">${x.credit ? `<figcaption class="veh-credit">Image : ${x.creditUrl ? `<a href="${esc(x.creditUrl)}" target="_blank" rel="noopener nofollow">${esc(x.credit)}</a>` : esc(x.credit)}</figcaption>` : ''}</figure>` : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
+    ${x.img ? `<figure class="veh-hero veh-hero--photo"><img class="veh-photo" src="${R}catalogue/${x.img}"${fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img)) && (dimImg('catalogue/' + x.img) || [])[0] > 560 ? ` srcset="${R}catalogue-mini/${x.img} 560w, ${R}catalogue/${x.img} ${dimImg('catalogue/' + x.img)[0]}w" sizes="(min-width: 900px) 800px, 100vw"` : ''} alt="${esc(x.nom)} dans GTA 6"${wh('catalogue/' + x.img)} fetchpriority="high" decoding="async">${x.credit ? `<figcaption class="veh-credit">Image : ${x.creditUrl ? `<a href="${esc(x.creditUrl)}" target="_blank" rel="noopener nofollow">${esc(x.credit)}</a>` : esc(x.credit)}</figcaption>` : ''}</figure>` : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${x.type}">${icon(c.icon)}${esc(c.nom)}</a>${grp ? `<a class="pill" href="${R}vehicules/#cat-${x.groupe}">${esc(grp.nom)}</a>` : ''}</div>
     <h1 class="h1 h1--fiche">${esc(x.nom)}</h1>
   </header>
+  ${(() => {
+    const srcL = [...new Set(lo.map(sourceLieu))];
+    const fiab = { statut: 'a-verifier', texte: srcL.length ? `relevé par les joueurs, pas encore vérifié en jeu · ${srcL.join(', ')}` : x.obtenir ? 'décrit par GTA Wiki (wiki de joueurs), pas encore vérifié en jeu' : '' };
+    return blocOu({ nom: x.nom, R, lieux: lo, texte: x.obtenir || '', fiab, etapes: null, fav: favBtn({ id: x.slug, type: 'vehicule', t: x.nom, u: p, i: c.icon, c: c.color }), signaler: p })
+      + blocFiab({
+        presence: esc(presenceTxt(x.slug)),
+        emplacement: lo.length || x.obtenir ? `À vérifier · ${esc(fiab.texte)}` : 'Aucun emplacement relevé',
+        obtention: x.obtenir ? 'Décrite par GTA Wiki (wiki de joueurs), à vérifier en jeu' : 'Non documentée : on n’indique rien tant que ce n’est pas sourcé'
+      });
+  })()}
   <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(x.resume)}</p></section>
-  <div class="actions">
-    ${lo.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lo[0].properties.id}">${icon('map')}Où le trouver ?</a>` : ''}
-    ${favBtn({ id: x.slug, type: 'vehicule', t: x.nom, u: p, i: c.icon, c: c.color })}
-  </div>
   <dl class="facts">
     ${faits.map(([i, k, v]) => `<div><dt>${icon(i)}${k}</dt><dd>${v}</dd></div>`).join('')}
-    ${vf.statut ? `<div class="fact-verif fact-verif--${vf.statut}"><dt>${icon(sur ? 'check' : 'alert')}Présence dans GTA 6</dt><dd>${esc(verifTexte(x.slug))}${vf.note ? ` <small>${esc(vf.note)}</small>` : ''}</dd></div>` : ''}
   </dl>
-  <section class="steps-wrap" id="ou" aria-labelledby="ou-t"><h2 id="ou-t" class="h3">${icon('pin')}Où trouver ${esc(x.nom)} ?</h2>
-    ${x.obtenir ? `<p>${esc(x.obtenir)}</p>` : ''}
-    ${lo.length ? `<p>Repéré par les joueurs à ${lo.length > 1 ? `${lo.length} endroits` : 'un endroit précis'} :</p><ul class="vdlg-lo">${lo.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}${f.properties.desc && f.properties.desc !== x.obtenir ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>`
-    : x.obtenir ? '' : `<p>Pas encore documenté. ${sur ? 'Le véhicule est bien confirmé dans GTA 6, mais aucun emplacement fiable n’a encore été vérifié.' : 'Sa présence dans le jeu reste à confirmer.'} La fiche sera complétée dès qu’un emplacement sera vérifié.</p>`}
-  </section>
   ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
   ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
   ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
