@@ -35,7 +35,14 @@ for (const [p, h] of pages) {
     if (!fs.existsSync(t)) err(`lien cassé : ${p || '/'} → ${a}`);
   }
   // données structurées
-  for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch (e) { err(`JSON-LD invalide : ${p}`); } }
+  for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let j; try { j = JSON.parse(m[1]); } catch (e) { err(`JSON-LD invalide : ${p}`); continue; }
+    const liste = j['@type'] === 'ItemList' ? j : j.mainEntity && j.mainEntity['@type'] === 'ItemList' ? j.mainEntity : null;
+    for (const it of (liste && liste.itemListElement) || []) {
+      const u = it.url || (it.item && (it.item.url || it.item['@id'])) || (typeof it.item === 'string' ? it.item : '');
+      if (u && u.startsWith(BASE) && !pages.has(u.slice(BASE.length).split('#')[0])) err(`JSON-LD : élément de liste vers une page absente : ${p} → ${u}`);
+    }
+  }
   if (noindex || p === '404.html') continue;
   const t = decode((h.match(/<title>([^<]*)<\/title>/) || [])[1] || '');
   const d = decode((h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '');

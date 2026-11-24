@@ -27,6 +27,12 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2200);
   }
 
+  // ---------- consultés récemment (gardé sur cet appareil seulement, 8 pages au plus) ----------
+  if (document.body.classList.contains('p-fiche')) {
+    const h1 = $('h1'); const t = h1 && h1.textContent.trim();
+    if (t) { const u = location.pathname; store.set('recents', [{ u, t: t.slice(0, 90) }, ...store.get('recents', []).filter((r) => r.u !== u)].slice(0, 8)); }
+  }
+
   // ---------- application installable (PWA) : hors connexion ----------
   // seulement en https (ou en local) et quand la page déclare un manifeste ; les aperçus n'enregistrent rien
   if ('serviceWorker' in navigator && $('link[rel="manifest"]') && (location.protocol === 'https:' || /^(localhost|127\.)/.test(location.hostname))) {
@@ -413,12 +419,39 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   const acc = $('[data-account]');
   if (acc) {
     const total = +acc.dataset.total;
+    let ids = { mis: [], obj: [] };
+    try { ids = JSON.parse($('[data-acc-ids]', acc).textContent); } catch (e) { /* ignoré */ }
+    const lireLS = (k) => { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch (e) { return []; } };
+    const anneau = (sel, ring, liste, cle) => {
+      const fait = new Set(lireLS(cle)); const n = liste.filter((i) => fait.has(i)).length;
+      $(sel, acc).textContent = n; $(ring, acc).style.setProperty('--p', liste.length ? Math.round((n / liste.length) * 100) : 0);
+    };
     const refresh = () => {
       const d = store.get('done', []).length;
       $('[data-acc-favs]', acc).textContent = favs().length;
       $('[data-acc-done]', acc).textContent = d;
       $('[data-ring]', acc).style.setProperty('--p', Math.round((d / total) * 100));
+      anneau('[data-acc-mis]', '[data-ring-mis]', ids.mis, 'lg:missions');
+      anneau('[data-acc-obj]', '[data-ring-obj]', ids.obj, 'lg:carte-trouves');
+      const rec = store.get('recents', []); const box = $('[data-recents-box]', acc);
+      box.hidden = !rec.length;
+      $('[data-recents]', acc).innerHTML = rec.map((r) => `<li><a href="${escH(r.u)}">${escH(r.t)}</a></li>`).join('');
     };
+    $('[data-recents-clear]', acc).addEventListener('click', () => { store.set('recents', []); refresh(); toast('Historique effacé'); });
+    // portabilité : toutes les données du site gardées sur cet appareil, dans un fichier JSON
+    $('[data-export]', acc).addEventListener('click', () => {
+      const out = {};
+      try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith('lg:')) { const v = localStorage.getItem(k); try { out[k] = JSON.parse(v); } catch (e) { out[k] = v; } } } } catch (e) { /* stockage indisponible */ }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify({ site: location.origin, exporte: new Date().toISOString(), donnees: out }, null, 2)], { type: 'application/json' }));
+      a.download = 'gta6facile-mes-donnees.json'; document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    });
+    $('[data-wipe]', acc).addEventListener('click', () => {
+      if (!window.confirm('Effacer de cet appareil tes favoris, ta progression, ton historique et tes préférences ? Les données de ton compte en ligne ne sont pas touchées.')) return;
+      try { Object.keys(localStorage).filter((k) => k.startsWith('lg:') && !k.startsWith('lg:sb') && k !== 'lg:sans-mesure').forEach((k) => localStorage.removeItem(k)); } catch (e) { /* ignoré */ }
+      refresh(); toast('Données de cet appareil effacées');
+    });
     refresh();
     document.addEventListener('lg:remote', refresh);
     $('[data-reset-done]', acc).addEventListener('click', () => { store.set('done', []); refresh(); toast('Progression remise à zéro'); });

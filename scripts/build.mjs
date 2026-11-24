@@ -385,6 +385,12 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
   ];
   const cur = (u) => (p.startsWith(u) ? ' aria-current="page"' : '');
   const tabs = [['', 'Accueil', 'home'], ['astuces/', 'Astuces', 'bolt'], ['#search', 'Chercher', 'search'], ['carte/', 'Carte', 'map'], ['missions/', 'Missions', 'flag']];
+  // pages de listes : CollectionPage + la liste des fiches réellement liées dans la page (aucun élément invisible)
+  if (!noindex && ['codes/', 'missions/', 'vehicules/', 'collection/', 'lieux/', 'actualites/', 'dossiers/', 'encyclopedie/'].includes(p) && !schema.some((x) => /^(ItemList|CollectionPage)$/.test(x['@type']))) {
+    const fiches = [...new Set([...body.matchAll(new RegExp(`href="${R.replace(/\./g, '\\.')}${p}([a-z0-9-]+)/"`, 'g'))].map((m) => m[1]))];
+    schema = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, description: desc, url: canon, inLanguage: 'fr', isPartOf: { '@type': 'WebSite', name: M, url: site.url + '/' },
+      ...(fiches.length >= 2 ? { mainEntity: { '@type': 'ItemList', numberOfItems: fiches.length, itemListElement: fiches.map((f, i) => ({ '@type': 'ListItem', position: i + 1, url: `${canon}${f}/` })) } } : {}) }, ...schema];
+  }
   if (crumbs) schema = [...schema, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: `${site.url}/${c[1]}` })) }];
   const crumbHtml = crumbs ? `<nav class="crumbs" aria-label="Fil d'Ariane">${crumbs.map((c, i) => i < crumbs.length - 1 ? `<a href="${R}${c[1]}">${esc(c[0])}</a>${icon('arrow-right')}` : `<span aria-current="page">${esc(c[0])}</span>`).join('')}</nav>` : '';
   return `<!doctype html>
@@ -1482,11 +1488,19 @@ for (const a of ACTUS) {
   <div class="acc-grid">
     <a class="acc-card" href="${R}favoris/" style="--c:#ff2d87"><span class="tile-ico">${icon('heart')}</span><b>Mes favoris</b><span class="acc-big" data-acc-favs>0</span><small>enregistrés</small></a>
     <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico">${icon('trophy')}</span><b>Ma progression</b><div class="ring" data-ring style="--p:0"><span data-acc-done>0</span><small>/ ${ASTUCES.length}</small></div><small>astuces marquées « fait »</small><button class="link-btn" type="button" data-reset-done>Remettre à zéro</button></div>
+    <div class="acc-card" style="--c:#ffd23f"><span class="tile-ico">${icon('flag')}</span><b>Missions terminées</b><div class="ring" data-ring-mis style="--p:0"><span data-acc-mis>0</span><small>/ ${MISSIONS.missions.length}</small></div><a class="link-btn" href="${R}missions/">Voir les missions</a></div>
+    <div class="acc-card" style="--c:#ff2bd6"><span class="tile-ico">${icon('badge')}</span><b>Objets trouvés</b><div class="ring" data-ring-obj style="--p:0"><span data-acc-obj>0</span><small>/ ${COLL.reduce((n, t) => n + t.items.length, 0)}</small></div><a class="link-btn" href="${R}collection/">Voir les objets</a></div>
     <div class="acc-card acc-card--prefs" style="--c:#9b6bff"><span class="tile-ico">${icon('sliders')}</span><b>Mes préférences</b>
       <p class="sheet-l">Animations</p><div class="chips" data-pref="motion"><button class="chip" data-value="on" aria-pressed="false">Oui</button><button class="chip" data-value="off" aria-pressed="false">Réduites</button></div>
       <p class="sheet-l">Taille du texte</p><div class="chips" data-pref="size"><button class="chip" data-value="" aria-pressed="false">Normale</button><button class="chip" data-value="l" aria-pressed="false">Grande</button></div>
     </div>
   </div>
+  <section class="acc-sec" data-recents-box hidden><h2 class="h3">${icon('clock')}Consultés récemment</h2><ul class="acc-recents" data-recents></ul><button class="link-btn" type="button" data-recents-clear>Effacer cet historique</button></section>
+  <section class="acc-sec"><h2 class="h3">${icon('shield')}Mes données</h2>
+    <p class="muted small">Sans compte, tes favoris, ta progression et cet historique restent uniquement sur cet appareil. Tu peux les télécharger ou les effacer à tout moment.</p>
+    <div class="actions"><button class="btn" type="button" data-export>${icon('download')}Télécharger mes données</button><button class="btn btn--ghost" type="button" data-wipe>${icon('x')}Effacer mes données</button></div>
+  </section>
+  <script type="application/json" data-acc-ids>${JSON.stringify({ mis: MISSIONS.missions.map((m) => m.id), obj: COLL.flatMap((t) => t.items.map((i) => i.f.properties.id)) })}</script>
 </section>`;
   emit(p, layout({ p, title: `Mon compte | ${M}`, desc: 'Accédez à vos favoris et préférences.', body, noindex: true, cls: 'p-account' }));
 }
