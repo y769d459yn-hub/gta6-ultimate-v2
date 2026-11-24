@@ -15,7 +15,7 @@
   const stage = $('.atp-stage'), panel = $('[data-panel]'), top = $('.atp-top');
   const params = new URLSearchParams(location.search);
   let atlas, D, commu = [], commuCats = {}, cats = {}, regions = {}, sousNoms = {};
-  const shown = new Set(), state = { commu: false, fromList: false, sel: '', vide: true };
+  const shown = new Set(), state = { commu: false, fromList: false, sel: '', vide: true, vt: '', vm: '' };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
   // points marqués « trouvé » (gardés sur cet appareil)
   const KEY_T = 'lg:carte-trouves';
@@ -37,7 +37,7 @@
     atlas = window.Atlas(stage, {
       root: ROOT, tuiles: d.tuiles, carte: d, pad: padding(),
       onSelect: (f) => (f.commu ? openCommu(f) : openFeature(f)),
-      onRegion: openRegion, onBlank: closePanel, onView: countView
+      onRegion: openRegion, onBlank: closePanel, onView: countView, onCluster: openCluster
     });
     atlas.setCommu(commu); atlas.markFound(trouves);
     syncChips(); applyFilter();
@@ -49,15 +49,17 @@
     const f = focus && atlas.feats().find((x) => x.id === focus);
     if (only && cats[only] && !focus) setTimeout(() => openAnswer(only), 300);
     // arrivée par un lien (mission, lieu…) : le point est mis en avant, le reste s'efface
-    if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); if (params.get('mission')) solo(f); atlas.select(f, { fly: true, s: .45 }); }, 250);
+    if (f) setTimeout(() => { if (f.label) return openRegion(regions[f.id]); ensureShown(f); state.spot = f.id; atlas.spot(true); if (params.get('mission')) solo(f); atlas.select(f, { fly: innerWidth >= 900 || cote(), s: .45 }); }, 250);
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     bind();
     if (!f && !only && !params.get('region')) setTimeout(openHelp, 400); // à chaque ouverture : le mode d'emploi, carte vide
     if (g && !reduce) g.from('.atp-top > *, .atp-ctrl > *, .atp-regions > *', { opacity: 0, y: -10, duration: .6, stagger: .03, ease: 'expo.out' });
   }).catch(() => { stage.textContent = 'Carte indisponible pour le moment.'; });
 
+  const cote = () => innerWidth < 900 && innerWidth > innerHeight && innerHeight < 520; // téléphone en paysage
   function padding() {
-    const mob = innerWidth < 900;
+    const mob = innerWidth < 900 && !cote();
+    if (cote()) return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 6, bottom: 80, left: 10, right: panel.hidden ? 10 : Math.round(Math.min(innerWidth * .46, 380)) + 16 };
     return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mob ? 140 : 70, left: 10, right: mob ? 10 : (panel.hidden ? 70 : 430) };
   }
   function syncChips() {
@@ -69,7 +71,8 @@
     state.sel ? u.searchParams.set('cat', state.sel) : u.searchParams.delete('cat');
     u.searchParams.delete('focus'); history.replaceState(null, '', u);
   }
-  function applyFilter() { atlas.setFilter((f) => (state.solo ? f.id === state.solo : !state.vide && shown.has(f.cat))); atlas.showCommu(state.commu && !state.solo); countView(); }
+  const vOk = (f) => f.cat !== 'vehicules' || ((!state.vt || (f.vt || '?') === state.vt) && (!state.vm || f.vm === state.vm));
+  function applyFilter() { atlas.setFilter((f) => (state.solo ? f.id === state.solo : !state.vide && shown.has(f.cat) && vOk(f))); atlas.showCommu(state.commu && !state.solo); countView(); }
   // depuis une mission : on ne garde que son lieu ; le reste revient quand on choisit une catégorie
   function solo(f) {
     state.solo = f.id;
@@ -78,7 +81,7 @@
   }
   function unsolo() { if (!state.solo) return; state.solo = ''; state.spot = ''; $('[data-solo]').hidden = true; atlas.spot(false); }
   function choose(id) {
-    unsolo(); state.vide = false;
+    unsolo(); state.vide = false; if (id !== 'vehicules') { state.vt = ''; state.vm = ''; }
     state.sel = id || ''; shown.clear();
     if (id) shown.add(id); else Object.keys(cats).forEach((k) => shown.add(k));
     syncChips(); applyFilter();
@@ -88,18 +91,35 @@
   // ---------- panneau de détail ----------
   function showPanel(html) {
     const hv = $('[data-vide]'); if (hv) hv.hidden = true;
-    panel.innerHTML = html; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
-    if (innerWidth >= 900 && atlas) atlas.setPad(padding());
+    panel.classList.remove('pn-anim');
+    panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Agrandir le panneau"></button>${html}`; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
+    taillePanneau(showPanel.grand ? 'grand' : 'compact'); showPanel.grand = false;
+    $('[data-grip]', panel).addEventListener('click', () => { panel.classList.add('pn-anim'); taillePanneau(panel.dataset.taille === 'grand' ? 'compact' : 'grand'); });
+    if ((innerWidth >= 900 || cote()) && atlas) atlas.setPad(padding());
     $('[data-x]', panel).addEventListener('click', closePanel);
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { setTimeout(syncChips, 0); if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
-  // Téléphone : glisser la fiche vers le bas pour la fermer
+  function closePanel() { setTimeout(syncChips, 0); if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900 || cote()) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
+  // Téléphone : panneau compact par défaut (la carte reste visible), glisser vers le haut pour l'agrandir,
+  // vers le bas pour le réduire puis le fermer. Il s'arrête toujours au-dessus de la barre de navigation.
+  function taillePanneau(t) {
+    if (innerWidth >= 900 || cote()) { panel.style.maxHeight = ''; delete panel.dataset.taille; return; }
+    const bas = panel.getBoundingClientRect().bottom, haut = top.getBoundingClientRect().top;
+    const dispo = Math.max(140, bas - haut - 8);
+    panel.dataset.taille = t;
+    panel.style.maxHeight = Math.round(t === 'grand' ? dispo : Math.min(dispo * .42, 300)) + 'px';
+    const gr = $('[data-grip]', panel); if (gr) gr.setAttribute('aria-label', t === 'grand' ? 'Réduire le panneau' : 'Agrandir le panneau');
+  }
   let sw = null;
   panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
-  panel.addEventListener('touchmove', (e) => { if (!sw) return; sw.d = Math.max(0, e.touches[0].clientY - sw.y); panel.style.transform = `translateY(${sw.d}px)`; }, { passive: true });
-  panel.addEventListener('touchend', () => { if (!sw) return; const d = sw.d; sw = null; panel.style.transform = ''; if (d > 90) closePanel(); });
+  panel.addEventListener('touchmove', (e) => { if (!sw) return; sw.d = e.touches[0].clientY - sw.y; if (sw.d > 0) panel.style.transform = `translateY(${sw.d}px)`; }, { passive: true });
+  panel.addEventListener('touchend', () => {
+    if (!sw) return; const d = sw.d; sw = null; panel.style.transform = '';
+    panel.classList.add('pn-anim');
+    if (d < -40) taillePanneau('grand');
+    else if (d > 70) { if (panel.dataset.taille === 'grand') taillePanneau('compact'); else closePanel(); }
+  });
 
   // ---------- nombre de repères visibles (bouton Liste) ----------
   let cvT = 0;
@@ -108,6 +128,13 @@
   // ---------- précédent / suivant dans la même catégorie ----------
   function sameCat(f) { return atlas.feats().filter((x) => !x.label && x.cat === f.cat && shown.has(x.cat)).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')); }
   function nav(f) {
+    const siens = f.vs ? atlas.feats().filter((x) => x.vs === f.vs) : [];
+    if (siens.length > 1) {
+      const i = siens.findIndex((x) => x.id === f.id), prev = siens[(i - 1 + siens.length) % siens.length], next = siens[(i + 1) % siens.length];
+      return `<div class="pn-nav"><button type="button" class="pn-navb" data-go="${escH(prev.id)}" aria-label="Emplacement précédent">${ic('arrow-left')}</button>
+        <span class="pn-navn">Emplacement ${i + 1} / ${siens.length} <small>de ce véhicule</small></span>
+        <button type="button" class="pn-navb" data-go="${escH(next.id)}" aria-label="Emplacement suivant">${ic('arrow-right')}</button></div>`;
+    }
     const list = sameCat(f), i = list.findIndex((x) => x.id === f.id), c = cats[f.cat] || {};
     if (list.length < 2 && !state.fromList) return '';
     const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length];
@@ -141,14 +168,25 @@
   }
 
   // ---------- « Je cherche… » : la réponse, rangée par type ----------
+  const TYPES_V = { voitures: 'Voitures', motos: 'Motos', bateaux: 'Bateaux', avions: 'Avions', autres: 'Autres', '?': 'Type non précisé' };
+  function filtresV(tous) {
+    const n = (k, v) => tous.filter((f) => (k === 'vt' ? (f.vt || '?') : f.vm) === v && (k === 'vt' ? (!state.vm || f.vm === state.vm) : (!state.vt || (f.vt || '?') === state.vt))).length;
+    const modes = [...new Set(tous.map((f) => f.vm))].sort((a, b) => n('vm', b) - n('vm', a));
+    const chip = (k, v, lab) => `<button type="button" class="pn-fchip" data-vf="${k}" data-v="${escH(v)}" aria-pressed="${state[k] === v}">${escH(lab)} <small>${n(k, v)}</small></button>`;
+    return `<div class="pn-filt"><p class="pn-filt-k">Type de véhicule</p><div class="pn-fchips">${Object.keys(TYPES_V).filter((k) => tous.some((f) => (f.vt || '?') === k)).map((k) => chip('vt', k, TYPES_V[k])).join('')}</div>
+      <p class="pn-filt-k">Comment l'obtenir</p><div class="pn-fchips">${modes.map((m) => chip('vm', m, m)).join('')}</div></div>`;
+  }
   function openAnswer(id) {
     const c = cats[id]; if (!c) return;
-    const list = atlas.feats().filter((f) => f.cat === id && !f.label);
-    const by = {}; list.forEach((f) => { (by[sousNom(f)] ||= []).push(f); });
+    const tous = atlas.feats().filter((f) => f.cat === id && !f.label);
+    const list = tous.filter(vOk);
+    const veh = id === 'vehicules';
+    const by = {}; list.forEach((f) => { (by[veh ? (f.vn ? TYPES_V[f.vt] || 'Type non précisé' : 'Type non précisé') : sousNom(f)] ||= []).push(f); });
     const groups = Object.keys(by).sort((a, b) => by[b].length - by[a].length || a.localeCompare(b, 'fr'));
     const nf = list.filter((f) => trouves.has(f.id)).length;
     showPanel(`${head(c.icon, c.color, 'Je cherche : ' + c.q.toLowerCase(), c.sens)}
-      <div class="pn-ans-meta"><span>${list.length} endroit${list.length > 1 ? 's' : ''} sur la carte</span>${nf ? `<span class="pn-found-n">${ic('check')}${nf} trouvé${nf > 1 ? 's' : ''}</span>` : ''}</div>
+      <div class="pn-ans-meta"><span>${list.length} point${list.length > 1 ? 's' : ''} sur la carte${veh ? ` · ${new Set(list.filter((f) => f.vs).map((f) => f.vs)).size} véhicules différents identifiés` : ''}</span>${nf ? `<span class="pn-found-n">${ic('check')}${nf} trouvé${nf > 1 ? 's' : ''}</span>` : ''}</div>
+      ${veh ? filtresV(tous) : ''}${veh && (state.vt || state.vm) ? `<p class="pn-reset"><button type="button" class="pn-fchip pn-fchip--reset" data-vreset>${ic('x')}Réinitialiser les filtres</button></p>` : ''}
       ${groups.length > 1 ? `<div class="pn-jump">${groups.map((gn, i) => `<a href="#pn-g${i}">${escH(gn)} <small>${by[gn].length}</small></a>`).join('')}</div>` : ''}
       <p class="pn-hint">Touche un nom : la carte t'y emmène et te dit quoi faire.</p>
       ${groups.map((gn, i) => `<section class="pn-lg" id="pn-g${i}" style="--c:${c.color}"><h3><i></i>${escH(gn)} <small>${by[gn].length}</small></h3><ul>${by[gn].sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(li).join('')}</ul></section>`).join('')}
@@ -156,11 +194,19 @@
     bindPick('answer');
     $$('.pn-jump a', panel).forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); const t = $(a.getAttribute('href'), panel); if (t) panel.scrollTo({ top: t.offsetTop - 8, behavior: 'smooth' }); }));
     $('[data-allcats]', panel).addEventListener('click', () => { choose(''); closePanel(); });
+    $$('[data-vf]', panel).forEach((b) => b.addEventListener('click', () => { const k = b.dataset.vf; state[k] = state[k] === b.dataset.v ? '' : b.dataset.v; applyFilter(); const t = panel.dataset.taille; openAnswer(id); if (t) taillePanneau(t); }));
+    const rz = $('[data-vreset]', panel); if (rz) rz.addEventListener('click', () => { state.vt = ''; state.vm = ''; applyFilter(); const t = panel.dataset.taille; openAnswer(id); if (t) taillePanneau(t); });
+  }
+  // groupe de repères au même endroit (inséparables au zoom) : leur liste
+  function openCluster(m) {
+    const c = cats[m[0].cat] || {};
+    showPanel(`${head('list', c.color || '#ff2bd6', 'Au même endroit', `${m.length} repères ici`)}<p class="pn-hint">Ils sont trop proches pour être séparés sur la carte. Touche un nom.</p><section class="pn-lg" style="--c:${c.color || '#ff2bd6'}"><ul>${m.sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(li).join('')}</ul></section>`);
+    bindPick('list');
   }
 
   // ---------- aide : comment utiliser la carte + légende ----------
   function openHelp() {
-    store.set('lg-carte-aide', '1');
+    store.set('lg-carte-aide', '1'); showPanel.grand = true;
     const dot = (c, icn, cls = '') => `<span class="hl-dot ${cls}" style="--c:${c}">${ic(icn)}</span>`;
     showPanel(`${head('question', '#19d3e3', "Mode d'emploi", 'Comment utiliser la carte')}
       <ol class="hl-steps">
@@ -191,7 +237,8 @@
     const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : (f.desc || '').split('.')[0].replace(/^[^·]*· /, ''));
     const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : f.src === 'wiki' ? 'Position indiquée par GTA Wiki' : 'Position approximative (carte communautaire)';
     const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
-    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span></div>`;
+    const prec = f.precision === 'exacte' ? ['Position précise selon la source', 'pn-tag--ok'] : f.precision === 'region' ? ['Zone seulement, position non précise', 'pn-tag--warn'] : ['Position approximative', 'pn-tag--warn'];
+    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span><span class="pn-tag ${prec[1]}">${prec[0]}</span>${f.vm ? `<span class="pn-tag">${escH(f.vm)}</span>` : ''}</div>`;
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const body = t
       ? `${where}<div class="pn-tip" style="--c:${c.color}">${place ? `<p class="pn-tip-q">${ic('bolt')}${escH(t.titre)}</p>` : ''}<p class="pn-a">${escH(t.reponse)}</p>
@@ -226,7 +273,8 @@
     panel.classList.toggle('pn-peek', !!state.spot && innerWidth < 900);
     // la fiche s'ouvre en haut, titre visible ; ta mission est en tête de liste
     panel.scrollTop = 0;
-    if (innerWidth < 900) {
+    if (cote()) atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, state.spot ? .45 : .3));
+    else if (innerWidth < 900) {
       // le point se place au milieu de l'espace libre entre la barre du haut et la fiche
       const ts = Math.max(atlas.cam.s, state.spot ? .45 : .3), sr = stage.getBoundingClientRect();
       const y0 = top.getBoundingClientRect().bottom - sr.top, y1 = panel.getBoundingClientRect().top - sr.top;

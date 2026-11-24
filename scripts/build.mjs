@@ -1714,6 +1714,25 @@ const cats = (site.rechercheCategories || []).map((x) => {
   return { m: x.mots.map(norm), t: x.t, u: x.u, i: x.i, c: x.c, d: DNB[x.n] ? DNB[x.n](NB[x.n]) : '', a: x.actions };
 });
 write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats }));
+// Points véhicules : type du véhicule (d'après la fiche liée) séparé du mode d'obtention (d'après le type de repère de la source).
+// Aucune position n'est ajoutée ni déplacée ; un point sans fiche liée garde « type non précisé ».
+{
+  const lie = {}; for (const [slug, ids] of Object.entries(CAT_CARTE)) for (const id of ids) lie[id] ||= slug;
+  const MODE = (f) => {
+    const id = f.properties.id;
+    if (id.startsWith('v-')) return 'Repère du guide';
+    if (id.startsWith('w-')) return 'Position relevée (GTA Wiki)';
+    return { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Demande de Moses ou Randy', 'Location de véhicules': 'À louer', Concessionnaire: 'Concessionnaire' }[f.properties.service] || 'Autre repère';
+  };
+  for (const f of features) {
+    if (f.properties.cat !== 'vehicules' || f.properties.label) continue;
+    const id = f.properties.id, slug = id.startsWith('v-') ? id.slice(2) : lie[id];
+    const v = slug && (VEHICULES.find((x) => x.slug === slug) || CATALOGUE.vehicules.find((x) => x.slug === slug));
+    f.properties.vm = MODE(f);
+    f.properties.vt = v ? v.type : '';
+    if (v) { f.properties.vs = slug; f.properties.vn = v.nom; if (!f.properties.url) f.properties.url = `vehicules/${slug}/`; }
+  }
+}
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
