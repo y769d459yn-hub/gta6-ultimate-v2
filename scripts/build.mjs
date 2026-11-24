@@ -1441,7 +1441,7 @@ for (const a of ACTUS) {
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
   <section id="donnees" class="related"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p>Le site s'utilise sans compte : tes favoris et ta progression restent alors dans ton navigateur, rien n'est envoyé.</p>
-    <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
+    <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>, sur des serveurs situés en Irlande (Union européenne). Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
     <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées. ${site.editeur && site.editeur.nom ? `Tous les détails : <a href="${R}mentions-legales/#confidentialite">mentions légales et confidentialité</a>.` : ''}</p>
   </section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>${''} ou <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">signale-le sur GitHub</a>.</p></section>
@@ -1463,7 +1463,7 @@ if (site.editeur && site.editeur.nom) {
   </section>
   <section class="related"><h2 class="h3">${icon('shield')}Hébergement</h2>
     <p>Le site est hébergé par <b>GitHub, Inc.</b> (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — <a href="https://github.com" rel="noopener" target="_blank">github.com</a>.</p>
-    <p>Les comptes visiteurs sont hébergés par <b>Supabase</b> (<a href="https://supabase.com/privacy" rel="noopener" target="_blank">politique de confidentialité de Supabase</a>). Le nom de domaine est enregistré auprès d'OVHcloud.</p>
+    <p>Les comptes visiteurs sont hébergés par <b>Supabase</b>, sur des serveurs situés en Irlande, dans l'Union européenne (<a href="https://supabase.com/privacy" rel="noopener" target="_blank">politique de confidentialité de Supabase</a>). Le nom de domaine est enregistré auprès d'OVHcloud.</p>
   </section>
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
