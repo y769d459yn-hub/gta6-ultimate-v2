@@ -1118,12 +1118,13 @@
    "Signe la décharge.",
    "Vise la médaille d'or."
   ],
-  "asavoir": "Emplacements non vérifiés sur notre carte.",
+  "asavoir": "Pour le 100 %, il faut l'or aux 42 défis de stand de tir. Emplacements des stands non vérifiés sur notre carte.",
   "duree": 5,
   "niveau": "intermediaire",
   "statut": "provisoire",
   "sources": [
-   "gamesradar-activities"
+   "gamesradar-activities",
+   "gtawiki-100"
   ],
   "kw": [
    "tir",
@@ -1145,18 +1146,19 @@
   "icon": "ramp",
   "titre": "Combien y a-t-il de courses et de cascades ?",
   "court": "Courses et cascades",
-  "reponse": "Un guide recense 40 courses, 13 défis de course, 42 épreuves de drone et 397 cascades.",
+  "reponse": "Il y a 40 courses uniques, 13 défis de course, 42 contre-la-montre de drone et 397 cascades : 130 sauts, 202 passages sous les ponts, 40 vols en rase-mottes et 25 sauts BASE.",
   "etapes": [
    "Ouvre le menu Progression.",
    "Choisis une catégorie de défis.",
    "Suis le marqueur jusqu'au départ."
   ],
-  "asavoir": "Chiffres d'une seule source, non vérifiés.",
+  "asavoir": "Pour le 100 %, il faut gagner 30 courses, l'or à 10 défis de course, les 42 épreuves de drone et 300 cascades.",
   "duree": 2,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
-   "gamesradar-activities"
+   "gamesradar-activities",
+   "gtawiki-100"
   ],
   "kw": [
    "course",
@@ -1185,12 +1187,13 @@
    "Choisis une catégorie : animaux, cartes, véhicules…",
    "Pour savoir où chercher, ouvre nos listes d’objets à collectionner : chaque emplacement s’ouvre sur la carte et se coche une fois trouvé."
   ],
-  "asavoir": "Les totaux annoncés varient beaucoup d'une source à l'autre.",
+  "asavoir": "La liste complète du 100 % n'apparaît qu'une fois l'histoire terminée, dans Progression, rubrique Statistiques.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
-   "powerpyx"
+   "powerpyx",
+   "gtawiki-100"
   ],
   "kw": [
    "collection",
@@ -1672,7 +1675,7 @@
   "icon": "target",
   "titre": "Que sont les opérations illégales des gangs ?",
   "court": "Opérations des gangs",
-  "reponse": "Environ 40 planques (39 à 41 selon les guides), tenues par 8 gangs et des « autres criminels ». Neutralise les membres, prends l'argent du coffre et la drogue à revendre. Certaines cachent une arme ou un véhicule unique.",
+  "reponse": "39 opérations, tenues par 8 gangs et des « autres criminels ». Neutralise les membres, prends l'argent du coffre et la drogue à revendre. Certaines cachent une arme ou un véhicule unique.",
   "etapes": [
    "Repère une opération sur la carte.",
    "Neutralise tous les membres du gang.",
@@ -1684,7 +1687,8 @@
   "statut": "a-verifier",
   "sources": [
    "keengamer-illegal",
-   "g2a-money"
+   "g2a-money",
+   "gtawiki-100"
   ],
   "kw": [
    "gang",
