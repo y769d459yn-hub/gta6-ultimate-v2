@@ -418,7 +418,7 @@
 .auth.is-loading { opacity: .6; pointer-events: none; }
 .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.06); margin-bottom: 14px; }
 .auth-tabs button { height: 40px; border: 0; border-radius: 999px; background: transparent; color: var(--tx2); font: 600 .95rem var(--fd); cursor: pointer; }
-.auth-tabs button[aria-selected="true"] { background: var(--pk); color: #fff; box-shadow: 0 0 14px -4px var(--pk); }
+.auth-tabs button[aria-selected="true"] { background: var(--pk); color: #14060f; box-shadow: 0 0 14px -4px var(--pk); }
 .auth-why { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 14px; color: var(--tx2); font-size: .92rem; }
 .auth-why .ic { flex: none; width: 18px; height: 18px; color: var(--pk); margin-top: 2px; }
 .auth-form { display: grid; gap: 12px; }
@@ -496,3 +496,6 @@
 .adm-form select option { background: #140a22; }
 .vdlg-page { margin: 14px 0 6px; }
 .mis-bloque ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; line-height: 1.5; }
+
+/* étiquettes longues (ex. titre de chapitre) : retour à la ligne sur petit écran au lieu de déborder */
+.fiche-tags .pill { white-space: normal; height: auto; min-height: 27px; padding-block: 4px; max-width: 100%; line-height: 1.25; }

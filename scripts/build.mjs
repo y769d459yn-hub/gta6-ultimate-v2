@@ -84,6 +84,8 @@ for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiratio
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
+// date de mise à jour affichée (pied de page, plan du site) : la plus récente entre site.json, les actualités et l'administration
+site.majLe = [site.majLe, ...ACTUS.map((x) => x.date), ...ADMIN_ROWS.map((r) => String(r.maj || '').slice(0, 10))].filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= new Date().toISOString().slice(0, 10)).sort().pop();
 const CARTE = read('carte.json');
 const M = site.marque;
 const ACCUEIL = read('accueil.json');

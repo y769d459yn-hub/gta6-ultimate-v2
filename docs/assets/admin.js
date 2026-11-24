@@ -64,7 +64,9 @@
     const e = $('[data-adm-pub]');
     const depuis = PUB && PUB.date ? new Date(PUB.date) : null;
     const attente = LIGNES.filter((l) => !depuis || new Date(l.maj) > depuis).length;
-    e.innerHTML = `<p>${ic('refresh')}<span>Site mis à jour le <b>${date(PUB && PUB.date)}</b>.${attente ? ` <b class="adm-wait">${attente} modification${attente > 1 ? 's' : ''} en attente</b> : en ligne d’ici 10 à 20 minutes.` : ' Tout est en ligne.'}</span></p>` +
+    // modifications en attente depuis plus d'une heure : la publication automatique est probablement arrêtée
+    const vieille = LIGNES.filter((l) => depuis && new Date(l.maj) > depuis && Date.now() - new Date(l.maj) > 3600e3).length;
+    e.innerHTML = (vieille ? `<p class="adm-err">${ic('alert')}<span>${vieille} modification${vieille > 1 ? 's attendent' : ' attend'} depuis plus d’une heure. La publication automatique semble arrêtée : sur GitHub, onglet <b>Actions</b> → <b>Publier le site</b>, vérifie qu’elle est activée (GitHub la met en pause après 60 jours sans activité sur le dépôt) puis touche <b>Run workflow</b>.</span></p>` : '') + `<p>${ic('refresh')}<span>Site mis à jour le <b>${date(PUB && PUB.date)}</b>.${attente ? ` <b class="adm-wait">${attente} modification${attente > 1 ? 's' : ''} en attente</b> : en ligne d’ici 10 à 20 minutes.` : ' Tout est en ligne.'}</span></p>` +
       (PUB && PUB.erreur ? `<p class="adm-err">${ic('x')}<span>La dernière publication a échoué à cause d’une modification : le site est resté sur l’ancienne version. Vérifie tes dernières modifications.</span></p>` : '');
   }
 
