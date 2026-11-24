@@ -75,8 +75,8 @@
       else if (t.length >= 4 && q.startsWith(t)) s = .65;
       else if (q.length >= 6 && t.includes(q)) s = .6; // milieu de mot : seulement pour les mots longs (« lance » ne doit pas trouver « ambulance »)
       // faute de frappe : seulement si la première lettre est la même (évite « roquette » → « Coquette », « mourir » → « courir »)
-      else if (q.length >= 4 && q[0] === t[0] && lev(q, t, 1) <= 1) s = .7;
-      else if (q.length >= 7 && q[0] === t[0] && lev(q, t, 2) <= 2) s = .5;
+      else if (q.length >= 4 && q[0] === t[0] && lev(q, t, 1) <= 1) s = .6; // une faute supposée passe après un mot exact trouvé ailleurs dans la fiche
+      else if (q.length >= 7 && q[0] === t[0] && lev(q, t, 2) <= 2) s = .45;
       if (s > best) { best = s; if (s === 1) break; }
     }
     return best;
@@ -97,7 +97,7 @@
   }
   const SF = {
     voiture: (it) => it.g === 'vehicule',
-    mission: (it) => (it.g === 'astuce' && it.s === 'missions') || (it.g === 'ency' && it.s === 'histoire'),
+    mission: (it) => it.u.startsWith('missions/') || (it.g === 'astuce' && it.s === 'missions') || (it.g === 'ency' && it.s === 'histoire'),
     lieu: (it) => it.g === 'lieu',
     activite: (it) => it.g === 'activite' || (it.g === 'astuce' && it.s === 'exploration'),
     personnage: (it) => it.g === 'personnage'
@@ -108,7 +108,8 @@
     let pool = d.items;
     if (sf && SF[sf]) pool = pool.filter(SF[sf]);
     if (mapOnly) pool = pool.filter((it) => it.m);
-    if (!qn) return sf || mapOnly ? pool.slice(0, 30).map((it) => ({ it, s: 1 })) : [];
+    const PREMIER = { voiture: 'vehicules/', mission: 'missions/', lieu: 'lieux/', personnage: 'encyclopedie/' };
+    if (!qn) return sf || mapOnly ? pool.filter((it) => it.u !== 'missions/').sort((a, b) => (PREMIER[sf] && b.u.startsWith(PREMIER[sf])) - (PREMIER[sf] && a.u.startsWith(PREMIER[sf]))).slice(0, 30).map((it) => ({ it, s: 1 })) : [];
     const toks = queryTokens(qn);
     const alts = toks.map((t) => {
       const a = [[t, 1]];
@@ -146,6 +147,20 @@
     }
     return out.sort((a, b) => b.s - a.s).slice(0, 24);
   }
+  // mot général (« voiture », « code », « carte »…) : raccourci vers la rubrique, en premier
+  function categorie(q) {
+    const d = IDX; if (!d || !d.cats) return null;
+    const qn = norm(q); if (!qn) return null;
+    const toks = queryTokens(qn);
+    return d.cats.find((c) => c.m.includes(qn) || toks.every((t) => c.m.includes(t))) || null;
+  }
+  function catHTML(c) {
+    return `<div class="so-row so-row--cat" role="option"><a class="so-item so-best" href="${ROOT}${c.u}" style="--c:${c.c}">
+      <span class="mini-ico">${ic(c.i)}</span>
+      <span class="so-item-t"><small>Rubrique</small><b>${escH(c.t)}</b>${c.d ? `<span>${escH(c.d)}</span>` : ''}</span>
+      <span class="so-go">Voir ${ic('arrow-right')}</span></a>
+      ${c.a.length ? `<div class="so-pop so-acts">${c.a.map(([t, u, i]) => `<a href="${ROOT}${u}" style="--c:${c.c}">${ic(i)}${escH(t)}</a>`).join('')}</div>` : ''}</div>`;
+  }
   // surligne les mots cherchés (sans tenir compte des accents ni des majuscules)
   let hlToks = [];
   function hl(txt) {
@@ -158,24 +173,26 @@
     chars.forEach((c, k) => { if (on[k] && !open) { out += '<mark>'; open = true; } if (!on[k] && open) { out += '</mark>'; open = false; } out += escH(c); });
     return out + (open ? '</mark>' : '');
   }
-  function resultHTML(r, i) {
+  function resultHTML(r, i, debut = 0) {
     const it = r.it;
-    const best = i === 0;
+    const best = i === 0 && !debut;
     return `<div class="so-row" role="option" data-i="${i}"><a class="so-item${best ? ' so-best' : ''}" href="${ROOT}${it.u}" style="--c:${it.c}" data-i="${i}">
       <span class="mini-ico">${ic(it.i) || ic('pin')}</span>
-      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
+      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${best && it.r ? `<span class="so-rep"><em class="so-ok">${ic('check')}${escH(it.rs || 'Confirmé')}</em> ${hl(it.r)}</span>` : it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
   // aucun résultat : on le dit clairement, on propose un autre mot et de signaler le manque (2 gestes)
   function emptyHTML(q) {
     const sujet = encodeURIComponent('Recherche sans résultat : ' + q.trim().slice(0, 60));
     const corps = encodeURIComponent(`J'ai cherché « ${q.trim().slice(0, 120)} » sur GTA 6 Facile et je n'ai rien trouvé.\n\nCe que je voulais savoir :\n`);
+    const cats = (IDX && IDX.cats) || [];
     return `<div class="so-empty">${ic('question', 'ic-xl')}<p><b>Aucun résultat pour « ${escH(q.trim().slice(0, 60))} »</b></p><p>Essaie un mot plus court ou un autre mot (« voiture », « argent », le nom d'une mission…).</p>
-      ${window.LG_CONTACT ? `<a class="btn-s btn-s--ghost" href="mailto:${window.LG_CONTACT}?subject=${sujet}&body=${corps}">${ic('mail')}<span>Signaler ce qui manque</span></a>` : ''}</div>${popularHTML()}`;
+      </div><div class="so-pop so-empty-a"><a href="#so-input" role="button" data-so-modifier style="--c:#19d3e3">${ic('search')}Modifier la recherche</a>${window.LG_CONTACT ? `<a href="mailto:${window.LG_CONTACT}?subject=${sujet}&body=${corps}" style="--c:#ff2d87">${ic('mail')}Signaler un guide manquant</a>` : ''}</div>
+      ${cats.length ? `<p class="so-sec">Voir les rubriques</p><div class="so-pop">${cats.map((c) => `<a href="${ROOT}${c.u}" style="--c:${c.c}">${ic(c.i)}${escH(c.t)}</a>`).join('')}</div>` : ''}`;
   }
   function popularHTML() {
     const d = IDX; if (!d) return '';
-    return `<p class="so-sec">Les plus cherchés</p><div class="so-pop">${d.popular.map((p) => `<a href="${ROOT}${p.u}" style="--c:${p.c}">${ic(p.i)}${escH(p.t)}</a>`).join('')}</div>
+    return `<p class="so-sec">Les plus cherchés</p><div class="so-pop">${d.popular.map((p, k) => `<a href="${ROOT}${p.u}" style="--c:${p.c}"${k >= 4 ? ' hidden data-pop-plus' : ''}>${ic(p.i)}${escH(p.t)}</a>`).join('')}${d.popular.length > 4 ? `<button class="so-plus" type="button" data-pop-voir aria-expanded="false">Voir plus</button>` : ''}</div>
       <p class="so-sec">Raccourcis</p><div class="so-pop"><a href="${ROOT}carte/" style="--c:#19d3e3">${ic('map')}Carte</a><a href="${ROOT}vehicules/" style="--c:#ff9a1f">${ic('car')}Véhicules</a><a href="${ROOT}astuces/?cat=argent" style="--c:#3ddc84">${ic('money')}Argent</a><a href="${ROOT}astuces/?cat=debuter" style="--c:#ffd23f">${ic('sprout')}Débuter</a></div>`;
   }
   function bindSearchUI(input, results, chipsWrap, { onQuery } = {}) {
@@ -184,17 +201,23 @@
       const q = input.value;
       if (!q.trim() && !sf && !mapOnly) { results.innerHTML = popularHTML(); last = []; return; }
       last = search(q, { sf, mapOnly });
-      hlToks = norm(q).split(' ').filter((t) => t.length >= 2);
+      hlToks = norm(q).split(' ').filter((t) => t.length >= 2 && !STOP.has(t)); // pas de « la » surligné au milieu d'« ambulance »
+      const rub = !sf && !mapOnly ? categorie(q) : null;
       sel = 0;
       // recherche sans résultat : compteur anonyme (texte normalisé et tronqué) pour savoir quels contenus manquent
       clearTimeout(vide);
-      if (!last.length && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
-      results.innerHTML = last.length ? last.map(resultHTML).join('') : emptyHTML(q);
+      if (!last.length && !categorie(q) && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
+      results.innerHTML = rub ? catHTML(rub) + last.filter((r) => r.it.u !== rub.u).map((r, i) => resultHTML(r, i, 1)).join('') : last.length ? last.map((r, i) => resultHTML(r, i)).join('') : emptyHTML(q);
       mark();
       if (window.gsap && !reduceMotion()) gsap.from(results.querySelectorAll('.so-row'), { y: 10, opacity: 0, duration: .25, stagger: .02, ease: 'power2.out' });
       onQuery && onQuery(q);
     };
     const mark = () => $$('.so-item', results).forEach((a, i) => a.setAttribute('aria-selected', i === sel ? 'true' : 'false'));
+    results.addEventListener('click', (e) => {
+      const plus = e.target.closest('[data-pop-voir]');
+      if (plus) { $$('[data-pop-plus]', results).forEach((x) => { x.hidden = false; }); plus.remove(); }
+      if (e.target.closest('[data-so-modifier]')) { e.preventDefault(); input.focus(); input.select(); }
+    });
     let t; input.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => loadIndex().then(render), 60); });
     input.addEventListener('keydown', (e) => {
       const items = $$('.so-item', results);

@@ -16,10 +16,11 @@
   const groups = $$('[data-vgrp]').map((sec) => ({ sec, id: sec.dataset.vgrp, nom: sec.querySelector('.vgrp-h').firstChild.textContent.trim().toLowerCase(), cards: $$('.card', sec), more: $('[data-vmore]', sec), n: $('[data-vn]', sec), open: false }));
   const jumps = Object.fromEntries($$('[data-jump]').map((a) => [a.dataset.jump, a]));
   const params = new URLSearchParams(location.search);
-  const st = { type: params.get('cat') || '', t: {} };
+  const st = { type: params.get('cat') || '', t: { known: params.get('connu') === '1' } };
   const doors = $$('[data-vtype] [data-value]');
   const syncDoors = () => { doors.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.value === st.type))); $('[data-vtype]').classList.toggle('is-picked', !!st.type); };
   doors.forEach((b) => b.addEventListener('click', () => { st.type = st.type === b.dataset.value ? '' : b.dataset.value; syncDoors(); syncURL(); apply(); }));
+  $$('[data-vtoggle]').forEach((b) => b.setAttribute('aria-pressed', String(!!st.t[b.dataset.vtoggle])));
   $$('[data-vtoggle]').forEach((b) => b.addEventListener('click', () => { const k = b.dataset.vtoggle; st.t[k] = !st.t[k]; b.setAttribute('aria-pressed', String(!!st.t[k])); apply(); }));
   groups.forEach((g) => g.more.addEventListener('click', () => { g.open = !g.open; apply(); if (!g.open) g.sec.scrollIntoView({ block: 'start', behavior: 'smooth' }); }));
   if (input) { input.value = params.get('q') || ''; let tm; input.addEventListener('input', () => { clearTimeout(tm); tm = setTimeout(() => { syncURL(); apply(); }, 90); }); }
