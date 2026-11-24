@@ -1,5 +1,6 @@
 // Générateur statique : data/*.json + src/ → docs/ (GitHub Pages)
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { icon, iconDefs } from './icons.mjs';
@@ -83,6 +84,7 @@ for (const v of CATALOGUE.vehicules) v.inspiration = frInsp(v.inspiration);
 for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiration = frInsp(f.inspiration);
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
+const PERSO_ENC = Object.fromEntries(ENC.filter((e) => e.cat === 'personnages').map((e) => [e.nom, e.slug]));
 const MESURE = (site.mesure && /^[a-z0-9-]{2,40}$/.test(site.mesure.goatcounter || '') && site.mesure.goatcounter) || '';
 const CORR = fs.existsSync(path.join(ROOT, 'data', 'corrections.json')) ? read('corrections.json') : { corrections: [] };
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
@@ -117,6 +119,12 @@ const extrait = (txt = '', max = 120) => {
   const t = String(txt).replace(/\s+/g, ' ').trim(); if (t.length <= max) return t;
   const c = t.slice(0, max); const fin = Math.max(c.lastIndexOf('. '), c.lastIndexOf(' : '), c.lastIndexOf(' ; '));
   return fin >= 60 ? c.slice(0, fin + 1).trim() : c.slice(0, c.lastIndexOf(' ')).replace(/[,;:(]$/, '').trim() + '…';
+};
+// n voisins autour de l'élément (avant et après, en boucle) : chaque fiche reçoit des liens, pas seulement les premières de la liste
+const voisinsDe = (liste, el, n) => {
+  const i = liste.indexOf(el); if (i < 0 || liste.length < 2) return liste.filter((x) => x !== el).slice(0, n);
+  const out = []; for (let k = 1; out.length < Math.min(n, liste.length - 1); k++) { const a = liste[(i + Math.ceil(k / 2) * (k % 2 ? 1 : -1) + liste.length * 10) % liste.length]; if (a !== el && !out.includes(a)) out.push(a); }
+  return out;
 };
 const ld = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
 
@@ -378,7 +386,7 @@ const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'ca
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
 const NOUVEAU = ACTUS.length && (new Date(site.majLe) - new Date(ACTUS[0].date)) / 864e5 <= 7;
 const BRAND_PALM = `<svg class="mark mark--palm" viewBox="0 0 48 40" aria-hidden="true"><defs><linearGradient id="pm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#ff2bd6"/><stop offset="1" stop-color="#b44dff"/></linearGradient></defs><path fill="url(#pm-g)" d="M23 13c-5-6-13-7-19-3 6-1 11 0 16 4-7-1-13 2-16 8 5-4 11-5 16-3-4 3-6 8-5 14l2 .5c-.5-6 1.5-10 5-13 .7 6 1 12 .2 19h3.4c.6-8 .2-14-1-20 4 2 7 6 7.5 11 2-6-1-11-6-14 6-1 11 1 15 5-2-7-9-10-16-8 4-4 10-5 15-3-5-5-13-4-18 1-1-4-4-7-8-8 3 2 5 5 5 8z"/></svg>`;
-function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [] }) {
+function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [], image = '' }) {
   if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
   if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
   const deco = v2 && cls !== 'home' && cls !== 'p-atlas' ? `<div class="pg-deco" aria-hidden="true">${homeSun()}${homePalms()}</div>` : '';
@@ -407,14 +415,14 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="canonical" href="${canon}">`}
+${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canonical" href="${canon}">`}
 <meta name="theme-color" content="${v2 ? '#040309' : '#140a22'}">
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${esc(M)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${canon}">
-<meta property="og:image" content="${site.url}/assets/og.png">
+<meta property="og:image" content="${image ? site.url + '/' + image : site.url + '/assets/og.png'}">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
@@ -774,7 +782,7 @@ for (const a of ASTUCES) {
   </section>
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
   ${a.slug === 'collection' ? `<a class="btn btn--primary btn--wide" href="${R}collection/">${icon('badge')}Voir les listes d'objets à collectionner</a>` : ''}
-  <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}</div></section>
+  <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}${ENC.filter((e) => e.liens.includes(a.slug)).slice(0, 2).map((e) => `<a class="mini" href="${R}encyclopedie/${e.slug}/" style="--c:${cat('encyclopedie', e.cat).color}"><span class="mini-ico">${icon(e.icon)}</span><span><small>Encyclopédie</small><b>${esc(e.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
   ${sourcesBlock(a.sources)}
 </article>`;
   emit(p, layout({
@@ -897,7 +905,9 @@ for (const v of VEHICULES) {
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sourcesBlock(v.sources)}
 </article>`;
-  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(`Où trouver ${v.nom} dans GTA 6 :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article', scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
+  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(`Où trouver ${v.nom} dans GTA 6 :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article',
+    image: PHOTOS[v.slug] ? `photos/${PHOTOS[v.slug].fichier}` : '',
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${v.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(PHOTOS[v.slug] ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/photos/${PHOTOS[v.slug].fichier}`, ...(PHOTOS[v.slug].credit ? { creditText: PHOTOS[v.slug].credit } : {}) } } : {}) }], scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
 }
 
 // ---------- FICHES DU CATALOGUE (une page par véhicule ; non indexée tant que sa présence n'est pas confirmée) ----------
@@ -909,8 +919,11 @@ for (const x of CATALOGUE.vehicules) {
   const lo = (CAT_CARTE[x.slug] || []).map((id) => mapIndex[id]).filter(Boolean);
   const grp = (CATALOGUE.groupes || []).find((g) => g.id === x.groupe);
   const voisins = (l) => l.filter((y) => y.slug !== x.slug && (VERIF[y.slug] || {}).statut === 'confirme');
-  const memeGroupe = voisins(CATALOGUE.vehicules.filter((y) => y.groupe === x.groupe)).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || a.nom.localeCompare(b.nom, 'fr')).slice(0, 4);
-  const memeMarque = x.fabricant ? voisins(CATALOGUE.vehicules.filter((y) => y.fabricant === x.fabricant && !memeGroupe.includes(y))).slice(0, 4) : [];
+  const parNom = (l) => [...l].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+  const grpListe = parNom(CATALOGUE.vehicules.filter((y) => y.groupe === x.groupe && (y === x || (VERIF[y.slug] || {}).statut === 'confirme')));
+  const memeGroupe = voisinsDe(grpListe, x, 4);
+  const mqListe = x.fabricant ? parNom(CATALOGUE.vehicules.filter((y) => y.fabricant === x.fabricant && (y === x || (VERIF[y.slug] || {}).statut === 'confirme'))) : [];
+  const memeMarque = x.fabricant ? voisinsDe(mqListe, x, 6).filter((y) => !memeGroupe.includes(y)).slice(0, 4) : [];
   const mini = (y) => `<a class="mini" href="${R}vehicules/${y.slug}/" style="--c:${c.color}"><span class="mini-ico">${icon(cat('vehicules', y.type).icon)}</span><span><small>${esc(y.classe)}</small><b>${esc(y.nom)}</b></span>${icon('arrow-right')}</a>`;
   const faits = [
     x.fabricant && ['badge', 'Marque', esc(x.fabricant)],
@@ -948,7 +961,9 @@ for (const x of CATALOGUE.vehicules) {
   emit(p, layout({
     p, title: lo.length || x.obtenir ? titreSEO(`${x.nom} GTA 6 : où le trouver et caractéristiques`, `${x.nom} GTA 6 : où le trouver`, `${x.nom} dans GTA 6`) : titreSEO(`${x.nom} GTA 6 : fiche, photo et caractéristiques`, `${x.nom} GTA 6 : fiche et photo`, `${x.nom} dans GTA 6`),
     desc: descSEO(`${x.nom} dans GTA 6${x.fabricant ? ` (${x.fabricant})` : ''} : ${x.classe.toLowerCase()}${x.inspiration && x.inspiration !== x.nom && x.inspiration !== x.modele ? `, inspiré de ${x.inspiration}` : ''}${x.places ? `, ${x.places} places` : ''}${x.transmission ? `, ${x.transmission}` : ''}${x.poids ? `, ${x.poids}` : ''}.`, lo.length ? `Repéré à ${lo.length} endroit${lo.length > 1 ? 's' : ''} sur la carte.` : x.obtenir ? 'Comment l’obtenir.' : '', x.img ? 'Photo et caractéristiques.' : 'Caractéristiques et sources.'),
-    body, cls: 'p-fiche', ogType: 'article', noindex: !sur,
+    body, cls: 'p-fiche', ogType: 'article', noindex: !sur, image: x.img ? `catalogue/${x.img}` : '',
+    // la page décrit un véhicule du jeu : WebPage + image principale avec son crédit (pas de « Product », ce n'est pas un objet à vendre)
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${x.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(x.img ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/catalogue/${x.img}`, ...(x.credit ? { creditText: x.credit } : {}) } } : {}) }],
     crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [x.nom, p]]
   }));
 }
@@ -993,7 +1008,7 @@ const COLL = (() => {
   ${ordre.map((z) => `<section class="col-z" data-col-z><h2 class="vgrp-h">${z === '~' ? 'Secteur non indiqué' : esc(z)} <small>${groupes[z].length}</small></h2>${groupes[z].some((i) => i.estime) ? '<p class="muted small">Secteur estimé d’après les repères voisins pour certains objets : la position sur la carte est celle relevée par la communauté.</p>' : ''}<ul class="col-l">${groupes[z].sort((a, b) => a.f.properties.nom.localeCompare(b.f.properties.nom, 'fr')).map(ligne).join('')}</ul></section>`).join('')}
   <p class="empty" data-col-vide hidden>${icon('search')}Aucun objet ne correspond.</p>
   <p class="note">${icon('info')}<span>Emplacements relevés par la communauté : ${OGM_SRC}. Ils ne sont pas encore tous vérifiés en jeu. Une erreur ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>.</span></p>
-  <section class="related"><h2 class="h3">${icon('badge')}Autres objets à collectionner</h2><div class="minis">${COLL.filter((x) => x !== T).slice(0, 6).map((x) => `<a class="mini" href="${R}collection/${x.slug}/" style="--c:#ff2bd6"><span class="mini-ico">${icon(x.icon)}</span><span><small>${x.items.length} emplacements</small><b>${esc(x.pluriel)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
+  <section class="related"><h2 class="h3">${icon('badge')}Autres objets à collectionner</h2><div class="minis">${COLL.filter((x) => x !== T).map((x) => `<a class="mini" href="${R}collection/${x.slug}/" style="--c:#ff2bd6"><span class="mini-ico">${icon(x.icon)}</span><span><small>${x.items.length} emplacements</small><b>${esc(x.pluriel)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
 </section>`;
     emit(p, layout({
       p, title: titreSEO(`${T.pluriel} GTA 6 : tous les emplacements`, `${T.pluriel} GTA 6 : emplacements`), desc: descSEO(`Les ${T.items.length} emplacements de ${T.pluriel.toLowerCase()} repérés dans GTA 6, rangés par secteur, avec un lien vers la carte interactive et une case pour cocher ceux que tu as trouvés.`),
@@ -1104,7 +1119,7 @@ const COLL = (() => {
   </div>
   <dl class="facts">
     <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
-    ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${esc(m.donneur)}</dd></div>` : ''}
+    ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${m.donneur.split(', ').map((n) => PERSO_ENC[n] ? `<a href="${R}encyclopedie/${PERSO_ENC[n]}/">${esc(n)}</a>` : esc(n)).join(', ')}</dd></div>` : ''}
     ${m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
     ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
   </dl>
@@ -1123,6 +1138,7 @@ const COLL = (() => {
       p, title: titreSEO(`${m.nom} GTA 6 : solution de la mission`, `${m.nom} GTA 6 : solution`, `${m.nom} – GTA 6`),
       desc: descSEO(`Solution de la mission « ${m.nom} » (${chNom(m.chapitre)}) de GTA 6 :`, m.resume, 'Étapes détaillées et aide si tu es bloqué.'),
       body, cls: 'p-fiche', ogType: 'article',
+      schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${m.nom} : solution de la mission`, description: m.resume, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' } }],
       crumbs: [['Accueil', ''], ['Missions', 'missions/'], [m.nom, p]]
     }));
   }
@@ -1327,6 +1343,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   emit(p, layout({ p, title: 'Lieux GTA 6 : régions, quartiers et points d\u2019intérêt', desc: `Les ${LIEUX.length} lieux de GTA 6 par région et par type : où ils sont, comment y aller, les véhicules et les missions qui s'y trouvent.`, body, cls: 'p-list', crumbs: [['Accueil', ''], ['Lieux', 'lieux/']] }));
 }
 
+// personnages de l'encyclopédie, pour relier les missions qu'ils donnent
 // ---------- PAGES DES LIEUX (une URL par lieu) ----------
 for (const l of LIEUX) {
   const p = `lieux/${l.id}/`, R = R_(p);
@@ -1337,7 +1354,7 @@ for (const l of LIEUX) {
   const vg = vign(l.id, R);
   const vehs = VEHICULES.filter((v) => v.lieu === l.id || (l.type === 'region' && L[v.lieu] && L[v.lieu].region === l.id));
   const mis = [...new Set(MLIEUX.filter((e) => e.lieu === l.id).flatMap((e) => e.missions))].map((id) => MIS[id]).filter(Boolean).sort((a, b) => (a.num || 999) - (b.num || 999));
-  const dedans = LIEUX.filter((x) => x.id !== l.id && (l.type === 'region' ? x.region === l.id : zone && x.region === zone && x.type !== 'region')).slice(0, l.type === 'region' ? 24 : 6);
+  const dedans = l.type === 'region' ? LIEUX.filter((x) => x.id !== l.id && x.region === l.id).slice(0, 24) : zone ? voisinsDe(LIEUX.filter((x) => x.region === zone && x.type !== 'region'), l, 6) : [];
   const astuce = l.astuce && A[l.astuce];
   const mini = (u, ico, k, t, col) => `<a class="mini" href="${R}${u}" style="--c:${col}"><span class="mini-ico">${icon(ico)}</span><span><small>${esc(k)}</small><b>${esc(t)}</b></span>${icon('arrow-right')}</a>`;
   const body = `<article class="wrap fiche" style="--c:${c.color}">
@@ -1423,6 +1440,7 @@ for (const e of ENC) {
   </div>
   ${guides.length ? `<section class="related" id="guides"><h2 class="h3">${icon('bolt')}Guides liés</h2><div class="minis">${guides.map((s) => relCard(s, R)).join('')}</div></section>` : ''}
   ${fiches.length ? `<section class="related"><h2 class="h3">${icon('link')}Liens utiles</h2><div class="minis">${fiches.map((s) => relCard(s, R)).join('')}</div></section>` : ''}
+  ${(() => { const ms = e.cat === 'personnages' ? MISSIONS.missions.filter((m) => (m.donneur || '').split(', ').includes(e.nom)) : []; return ms.length ? `<section class="related"><h2 class="h3">${icon('flag')}Missions données par ${esc(e.nom.split(' ')[0])} (${ms.length})</h2><div class="minis">${ms.map((m) => `<a class="mini" href="${R}missions/${m.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${m.chapitre === 'prologue' ? 'Prologue' : `Chapitre ${m.chapitre}`}</small><b>${esc(m.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>` : ''; })()}
   ${sourcesBlock(e.sources)}
 </article>`;
   emit(p, layout({ p, title: `${e.nom} dans GTA 6 : informations et guide`, desc: `Informations claires sur ${e.nom} dans GTA 6, avec sources et distinction entre faits confirmés et hypothèses.`, body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Encyclopédie', 'encyclopedie/'], [c.nom, `encyclopedie/?cat=${e.cat}`], [e.nom, p]], schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${e.nom} dans GTA 6`, description: e.bref, inLanguage: 'fr', dateModified: site.majLe, about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' } }] }));
@@ -1831,7 +1849,22 @@ self.addEventListener('fetch', (e) => {
 `);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${(p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date) || site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+// lastmod : date à laquelle le contenu principal de la page a réellement changé (empreinte du <main>, gardée dans data/lastmod.json)
+const LM_F = path.join(ROOT, 'data', 'lastmod.json');
+const LM = fs.existsSync(LM_F) ? JSON.parse(fs.readFileSync(LM_F, 'utf8')) : {};
+const today = new Date().toISOString().slice(0, 10);
+const empreinte = (html) => crypto.createHash('sha1').update(((html.match(/<main[\s\S]*<\/main>/) || [html])[0]).replace(/\s+/g, ' ')).digest('hex').slice(0, 16);
+const LM2 = {};
+for (const { p, html } of indexable) {
+  const h = empreinte(html), old = LM[p];
+  const actu = p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date;
+  const verifie = p.startsWith('astuces/') && A[p.split('/')[1]] && A[p.split('/')[1]].verifie; // première fois : la date connue (actualité, vérification), sinon la dernière mise à jour du site
+  // contenu changé : date du jour en local ; sur GitHub (modification faite dans l'administration), date de cette modification (site.majLe), stable d'une publication à l'autre
+  LM2[p] = { h, d: old && old.h === h ? old.d : old ? (process.env.CI ? site.majLe : today) : (actu || verifie || site.majLe) };
+}
+if (!process.env.CI) fs.writeFileSync(LM_F, JSON.stringify(LM2, null, 0).replace(/},"/g, '},\n"') + '\n');
+const imgDe = (p) => { const s = p.match(/^vehicules\/([^/]+)\/$/); if (!s) return ''; const x = CATALOGUE.vehicules.find((y) => y.slug === s[1]); const f = x && x.img ? `catalogue/${x.img}` : PHOTOS[s[1]] ? `photos/${PHOTOS[s[1]].fichier}` : ''; return f ? `<image:image><image:loc>${site.url}/${f}</image:loc></image:image>` : ''; };
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${LM2[p].d}</lastmod>${imgDe(p)}</url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
 write('llms.txt', `# ${M}
 
