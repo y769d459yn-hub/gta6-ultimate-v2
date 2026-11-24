@@ -701,3 +701,5 @@ body.p-map { padding-bottom: 0; overflow: hidden; }
 :root[data-theme="day"] .acc-big, :root[data-theme="day"] .t30 summary, :root[data-theme="day"] .ring span { color: color-mix(in srgb, var(--c) 45%, #000); }
 :root[data-theme="day"] .pill--warn { color: #6e4e00; }
 :root[data-theme="day"] .done-flag { color: #075c30; }
+
+.so-item mark { background: rgba(255, 43, 214, .28); color: inherit; border-radius: 3px; padding: 0 1px; }

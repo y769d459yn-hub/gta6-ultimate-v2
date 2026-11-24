@@ -2,6 +2,7 @@
 <html lang="fr" data-theme="night" class="v2">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tous les guides GTA 6 : dossiers, astuces, codes et missions</title>
 <meta name="description" content="Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.">
@@ -69,6 +70,7 @@
 <script>(()=>{const b=document.querySelector('[data-tg]');if(!b)return;const q=b.querySelector('[data-tg-q]'),L=b.querySelector('[data-tg-list]'),E=b.querySelector('[data-tg-empty]'),C=b.querySelector('[data-tg-count]');let f='';const n=(x)=>x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
 const run=()=>{const w=n(q.value).split(/s+/).filter(Boolean);let k=0;[...L.children].forEach((li)=>{const ok=(!f||li.dataset.f===f)&&w.every((x)=>li.dataset.k.includes(x));li.hidden=!ok;if(ok)k++});C.textContent=k+(k>1?' résultats':' résultat');E.hidden=k>0};
 b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f=c.dataset.tgF;b.querySelectorAll('[data-tg-f]').forEach((x)=>x.setAttribute('aria-pressed',String(x===c)));run()}));q.addEventListener('input',run)})();</script>
+
 </main>
 <footer class="foot">
   <div class="foot-in">

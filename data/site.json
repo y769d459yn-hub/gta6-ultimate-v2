@@ -234,17 +234,25 @@
   ]
  },
  "statuts": {
+  "teste": {
+   "nom": "Testé en jeu",
+   "desc": "Vérifié directement en jeu par l’équipe, avec la date du test."
+  },
   "confirme": {
    "nom": "Confirmé",
-   "desc": "Confirmé par plusieurs sources qui concordent."
+   "desc": "Information officielle, ou au moins deux sources indépendantes qui concordent."
   },
   "a-verifier": {
    "nom": "À vérifier",
-   "desc": "Donné par les guides, pas encore recoupé partout."
+   "desc": "Informations insuffisantes ou contradictoires : pas encore recoupé."
   },
   "provisoire": {
    "nom": "Provisoire",
-   "desc": "Information partielle ou donnée par une seule source."
+   "desc": "Information partielle ou susceptible d’évoluer."
+  },
+  "obsolete": {
+   "nom": "Obsolète",
+   "desc": "Information invalidée, par exemple par une mise à jour du jeu."
   }
  },
  "synonymes": {
@@ -390,5 +398,9 @@
  "mesure": {
   "goatcounter": "gta6facile",
   "conservationMois": 25
+ },
+ "verification": {
+  "google": "",
+  "bing": ""
  }
 }

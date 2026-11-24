@@ -18,12 +18,15 @@
     maj();
   });
 
-  if (!code || refuse()) return;
-  if (navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
-  if (!/^https:$/.test(location.protocol) || /^(localhost|127\.)/.test(location.hostname)) return; // pas de comptage en local ni dans les aperçus
-  if (navigator.webdriver) return; // robots de test
+  const actif = () => code && !refuse() && navigator.doNotTrack !== '1' && window.doNotTrack !== '1' && navigator.globalPrivacyControl !== true
+    && /^https:$/.test(location.protocol) && !/^(localhost|127\.)/.test(location.hostname) && !navigator.webdriver; // ni en local, ni dans les aperçus, ni pour les robots de test
+  const envoyer = (params) => {
+    const url = `https://${code}.goatcounter.com/count?${new URLSearchParams({ ...params, rnd: Math.random().toString(36).slice(2) })}`;
+    if (navigator.sendBeacon) navigator.sendBeacon(url); else { const i = new Image(); i.src = url; }
+  };
+  // événements anonymes (recherche sans résultat, code copié…) : un nom court, jamais de donnée liée au visiteur
+  window.LG_EVT = (nom) => { if (actif()) envoyer({ p: String(nom).slice(0, 80), t: String(nom).slice(0, 80), e: 'true' }); };
+  if (!actif()) return;
   const ref = document.referrer && !document.referrer.startsWith(location.origin) ? document.referrer : '';
-  const q = new URLSearchParams({ p: location.pathname, r: ref, s: `${screen.width},${screen.height},${window.devicePixelRatio || 1}`, rnd: Math.random().toString(36).slice(2) });
-  const url = `https://${code}.goatcounter.com/count?${q}`;
-  if (navigator.sendBeacon) navigator.sendBeacon(url); else { const i = new Image(); i.src = url; }
+  envoyer({ p: location.pathname, r: ref, s: `${screen.width},${screen.height},${window.devicePixelRatio || 1}` });
 })();

@@ -84,6 +84,7 @@ for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiratio
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
 const MESURE = (site.mesure && /^[a-z0-9-]{2,40}$/.test(site.mesure.goatcounter || '') && site.mesure.goatcounter) || '';
+const CORR = fs.existsSync(path.join(ROOT, 'data', 'corrections.json')) ? read('corrections.json') : { corrections: [] };
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
 // date de mise à jour affichée (pied de page, plan du site) : la plus récente entre site.json, les actualités et l'administration
 site.majLe = [site.majLe, ...ACTUS.map((x) => x.date), ...ADMIN_ROWS.map((r) => String(r.maj || '').slice(0, 10))].filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= new Date().toISOString().slice(0, 10)).sort().pop();
@@ -115,7 +116,7 @@ const ld = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).re
 
 function badge(st) {
   const s = statut(st);
-  const ic = st === 'confirme' ? 'check' : st === 'provisoire' ? 'clock' : 'question';
+  const ic = st === 'confirme' || st === 'teste' ? 'check' : st === 'provisoire' ? 'clock' : st === 'obsolete' ? 'x' : 'question';
   return `<span class="badge b-${st}" title="${esc(s.desc)}">${icon(ic)}${esc(s.nom)}</span>`;
 }
 const niveauNom = (n) => (n === 'facile' ? 'Facile' : 'Intermédiaire');
@@ -390,6 +391,7 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
 <html lang="fr" data-theme="night"${v2 ? ' class="v2"' : ''}>
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">${p === '' && site.verification.google ? `\n<meta name="google-site-verification" content="${esc(site.verification.google)}">` : ''}${p === '' && site.verification.bing ? `\n<meta name="msvalidate.01" content="${esc(site.verification.bing)}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -445,6 +447,7 @@ ${schema.map(ld).join('\n')}
 ${deco}
 ${crumbHtml}
 ${body}
+${cls === 'p-fiche' && site.editeur && site.editeur.email ? `<p class="wrap signal"><a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent('Erreur sur la page : ' + title)}&amp;body=${encodeURIComponent('Page : ' + canon + '\n\nCe qui est faux ou manquant :\n\nSource (lien), si tu en as une :\n')}">${icon('alert')}Signaler une erreur sur cette page</a></p>` : ''}
 </main>
 <footer class="foot">
   <div class="foot-in">
@@ -586,7 +589,7 @@ function homePalms() {
 <section class="hx" aria-labelledby="h-title">
   <div class="hx-banner hx-banner--img">
     <img src="${R}assets/m-banniere-titre-1320.webp" srcset="${R}assets/m-banniere-titre-828.webp 828w, ${R}assets/m-banniere-titre-1320.webp 1320w, ${R}assets/m-banniere-titre.webp 2640w" sizes="(min-width: 1600px) 1600px, 100vw" width="2640" height="516" alt="" fetchpriority="high" decoding="async">
-    <h1 class="sr-only" id="h-title">Le guide ultime de GTA 6 : astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida</h1>
+    <h1 class="sr-only" id="h-title">GTA 6 : guides, astuces, codes de triche et carte interactive</h1>
   </div>
   <div class="wrap hx-in">
     <button class="hx-search" type="button" data-open-search aria-label="Rechercher un code, une mission, un véhicule">${icon('search')}<span>Rechercher un code, une mission, un véhicule…</span>${icon('sparkle')}</button>
@@ -697,6 +700,7 @@ for (const a of ASTUCES) {
     <div class="fiche-ico">${icon(a.icon, 'ic-xl')}</div>
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}astuces/?cat=${a.cat}">${icon(c.icon)}${esc(c.nom)}</a><span class="pill">${icon('clock')}${dureeNom(a.duree)}</span><span class="pill">${niveauNom(a.niveau)}</span>${badge(a.statut)}</div>
     <h1 class="h1 h1--fiche">${esc(a.titre)}</h1>
+    ${a.verifie ? `<p class="fiche-date">${icon('check')}Dernière vérification : <time datetime="${a.verifie}">${fmtDate(a.verifie)}</time></p>` : ''}
   </header>
   ${mapIds.length && vign(mapIds[0], R) ? `<a class="map-banner" href="${R}carte/?focus=${mapIds[0]}" style="--img:url(${vign(mapIds[0], R)})"><i></i><span>${icon('map')}Voir l'endroit sur la carte</span><small>Position approximative</small></a>` : ''}
   <section class="answer" id="solution" aria-label="Réponse">
@@ -724,7 +728,7 @@ for (const a of ASTUCES) {
     desc: descSEO(a.reponse, a.reponse.length < 90 ? a.etapes[0] : ''),
     body, cls: 'p-fiche', ogType: 'article',
     crumbs: [['Accueil', ''], ['Astuces', 'astuces/'], [c.nom, `astuces/?cat=${a.cat}`], [a.court, p]],
-    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.titre, description: a.reponse, dateModified: site.majLe, inLanguage: 'fr-FR', author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' }, mainEntityOfPage: `${site.url}/${p}` }]
+    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.titre, description: a.reponse, ...(a.verifie ? { dateModified: a.verifie } : {}), inLanguage: 'fr-FR', author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' }, mainEntityOfPage: `${site.url}/${p}` }]
   }));
 }
 
@@ -1146,7 +1150,12 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 {
   const p = 'codes/', R = R_(p);
   const FL = { haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' };
-  const fleches = (seq) => `<div class="code-seq" role="img" aria-label="Combinaison : ${seq.map((d) => FL[d]).join(', ')}">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i aria-hidden="true"></i>' : ''}`).join('')}</div>`;
+  const FLT = { haut: '↑', bas: '↓', gauche: '←', droite: '→' };
+  const texte = (seq) => seq.map((d) => FL[d]).join(', ');
+  const fleches = (seq) => `<div class="code-seq" aria-hidden="true">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i></i>' : ''}`).join('')}</div>
+    <p class="code-txt"><span class="code-txt-k">Combinaison (croix directionnelle) :</span> <span class="code-txt-v">${seq.map((d) => `${FLT[d]} ${FL[d]}`).join(' · ')}</span></p>
+    <button class="btn-s btn-s--ghost code-copy" type="button" data-copy-text="${esc(texte(seq))}">${icon('link')}<span>Copier la combinaison</span></button>`;
+  const confirme = (c) => c.confirme && c.sources.length >= 2;
   const C = CODES.codes, cats = CODES.categories;
   const connus = C.filter((c) => c.sequence.length).length;
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
@@ -1154,7 +1163,8 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
-    ${c.sequence.length ? `<p class="code-src ${c.confirme ? 'is-ok' : 'is-warn'}">${icon(c.confirme ? 'check' : 'alert')}${c.confirme ? `Combinaison confirmée par ${c.sources.length} guides` : `Combinaison donnée par un seul guide (${esc(c.sources.join(', '))}) : à vérifier`}</p>` : ''}
+    <p class="code-plat">${icon('gamepad')}PS5 et Xbox Series (même combinaison)</p>
+    ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${confirme(c) ? `Confirmée : ${esc(c.sources.join(', '))}` : `À vérifier : une seule source (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
@@ -1510,9 +1520,8 @@ for (const a of ACTUS) {
   <p class="answer"><span class="answer-k">${icon('shield')}Notre promesse</span>Des réponses courtes, des sources visibles.</p>
   <div class="actions"><a class="btn btn--primary" href="#sources">${icon('book')}Nos sources</a><a class="btn" href="#statuts">${icon('badge')}Nos statuts</a><a class="btn btn--ghost" href="#contact">${icon('mail')}Nous contacter</a></div>
   <section id="statuts" class="statuts">
-    <div class="st st--ok">${badge('confirme')}<p>Confirmé par plusieurs sources qui concordent.</p></div>
-    <div class="st st--wait">${badge('a-verifier')}<p>Donné par les guides, pas encore recoupé partout.</p></div>
-    <div class="st st--part">${badge('provisoire')}<p>Information partielle ou donnée par une seule source.</p></div>
+    ${['teste', 'confirme', 'a-verifier', 'provisoire', 'obsolete'].map((k) => `<div class="st st--${k === 'confirme' || k === 'teste' ? 'ok' : k === 'a-verifier' ? 'wait' : 'part'}">${badge(k)}<p>${esc(site.statuts[k].desc)}</p></div>`).join('')}
+    <p class="muted small">Règle du site : une information ne passe « confirmée » que si elle est officielle, ou si au moins deux sources indépendantes concordent sans contradiction. Le contrôle automatique du site refuse une astuce ou un code « confirmé » avec moins de deux sources. Une date « Dernière vérification » n'apparaît que lorsque l'information a réellement été revérifiée.</p>
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
@@ -1523,6 +1532,7 @@ for (const a of ACTUS) {
     <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>, sur des serveurs situés en Irlande (Union européenne). Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
     <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées. ${site.editeur && site.editeur.nom ? `Tous les détails : <a href="${R}mentions-legales/#confidentialite">mentions légales et confidentialité</a>.` : ''}</p>
   </section>
+  <section id="corrections" class="related"><h2 class="h3">${icon('refresh')}Corrections récentes</h2><ul class="corr">${CORR.corrections.map((x) => `<li><time datetime="${x.date}">${fmtDate(x.date)}</time> · <a href="${R}${x.page}">${esc(x.titre)}</a> : ${esc(x.texte)}</li>`).join('')}</ul></section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>${''} ou <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">signale-le sur GitHub</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
 </section>`;
@@ -1547,7 +1557,7 @@ if (site.editeur && site.editeur.nom) {
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
     <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie, ni publicité, ni bouton de réseau social${MESURE ? '' : ", ni outil de mesure d'audience"}.</p>
-    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
+    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent) et les combinaisons de codes copiées. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
       <p><b>Tu peux refuser à tout moment</b> : <button class="btn btn--ghost" type="button" data-mesure-refus aria-pressed="false">${icon('eye')}<span data-on="Tes visites ne sont plus comptées (annuler)" data-off="Ne pas compter mes visites">Ne pas compter mes visites</span></button></p></div>` : ''}
     <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
     <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
@@ -1655,6 +1665,29 @@ write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${(p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date) || site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
+write('llms.txt', `# ${M}
+
+> Guide francophone indépendant de GTA 6 (Grand Theft Auto VI, PS5 et Xbox Series) : solutions des missions, codes de triche, véhicules et où les trouver, objets à collectionner, lieux de Leonida et carte interactive. Chaque information indique ses sources et un statut de fiabilité (Testé en jeu, Confirmé, À vérifier, Provisoire, Obsolète). Site non affilié à Rockstar Games ni à Take-Two Interactive.
+
+## Rubriques principales
+- [Codes de triche](${site.url}/codes/) : combinaisons à la croix directionnelle, effet, déblocage, sources
+- [Missions et solutions](${site.url}/missions/) : ${MISSIONS.missions.length} missions, une page par mission avec la solution étape par étape
+- [Véhicules](${site.url}/vehicules/) : ${VEHICULES.length + CATALOGUE.vehicules.length} véhicules, avec l'emplacement quand il est connu
+- [Objets à collectionner](${site.url}/collection/) : listes par type et par secteur
+- [Lieux](${site.url}/lieux/) : régions, quartiers et bâtiments de Leonida
+- [Astuces](${site.url}/astuces/) : réponses courtes aux questions des joueurs
+- [Dossier 100 %](${site.url}/dossiers/100-pour-cent/) : les objectifs exacts de la complétion
+- [Gagner de l'argent](${site.url}/dossiers/argent-rapide/)
+- [Carte interactive](${site.url}/carte/)
+- [Actualités](${site.url}/actualites/)
+
+## Fiabilité
+- [Méthode, statuts et sources](${site.url}/a-propos/)
+- [Mentions légales et confidentialité](${site.url}/mentions-legales/)
+
+## Index complet
+- [Plan du site](${site.url}/sitemap.xml)
+`);
 // administration : contenu d'origine (avant modifications) et état de la dernière publication
 write('assets/admin-donnees.json', JSON.stringify(Object.fromEntries(Object.entries(COLLECTIONS).map(([, [nom, , cle, titre]]) => [nom, { cle, titre, items: ORIGINAUX[nom] || [] }]))));
 write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA || '', commit: process.env.GITHUB_SHA || '', date: new Date().toISOString(), modifications: ADMIN_APPLIQUES, erreur: process.env.CONTENU_ERREUR === '1' }));

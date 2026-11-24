@@ -115,12 +115,24 @@
     }
     return out.sort((a, b) => b.s - a.s).slice(0, 24);
   }
+  // surligne les mots cherchés (sans tenir compte des accents ni des majuscules)
+  let hlToks = [];
+  function hl(txt) {
+    const src = String(txt || ''); const chars = [...src];
+    const plat = chars.map((c) => c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase());
+    if (!hlToks.length || plat.some((c) => c.length !== 1)) return escH(src);
+    const p = plat.join(''); const on = new Array(chars.length).fill(false);
+    hlToks.forEach((t) => { let i = p.indexOf(t); while (i >= 0) { for (let k = i; k < i + t.length; k++) on[k] = true; i = p.indexOf(t, i + t.length); } });
+    let out = '', open = false;
+    chars.forEach((c, k) => { if (on[k] && !open) { out += '<mark>'; open = true; } if (!on[k] && open) { out += '</mark>'; open = false; } out += escH(c); });
+    return out + (open ? '</mark>' : '');
+  }
   function resultHTML(r, i) {
     const it = r.it;
     const best = i === 0;
     return `<div class="so-row" role="option" data-i="${i}"><a class="so-item${best ? ' so-best' : ''}" href="${ROOT}${it.u}" style="--c:${it.c}" data-i="${i}">
       <span class="mini-ico">${ic(it.i) || ic('pin')}</span>
-      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${escH(it.t)}</b>${it.d ? `<span>${escH(it.d)}</span>` : ''}</span>
+      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
   function popularHTML() {
@@ -129,12 +141,16 @@
       <p class="so-sec">Raccourcis</p><div class="so-pop"><a href="${ROOT}carte/" style="--c:#19d3e3">${ic('map')}Carte</a><a href="${ROOT}vehicules/" style="--c:#ff9a1f">${ic('car')}Véhicules</a><a href="${ROOT}astuces/?cat=argent" style="--c:#3ddc84">${ic('money')}Argent</a><a href="${ROOT}astuces/?cat=debuter" style="--c:#ffd23f">${ic('sprout')}Débuter</a></div>`;
   }
   function bindSearchUI(input, results, chipsWrap, { onQuery } = {}) {
-    let sf = null, mapOnly = false, sel = 0, last = [];
+    let sf = null, mapOnly = false, sel = 0, last = [], vide = null;
     const render = () => {
       const q = input.value;
       if (!q.trim() && !sf && !mapOnly) { results.innerHTML = popularHTML(); last = []; return; }
       last = search(q, { sf, mapOnly });
+      hlToks = norm(q).split(' ').filter((t) => t.length >= 2);
       sel = 0;
+      // recherche sans résultat : compteur anonyme (texte normalisé et tronqué) pour savoir quels contenus manquent
+      clearTimeout(vide);
+      if (!last.length && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
       results.innerHTML = last.length ? last.map(resultHTML).join('') : `<p class="so-empty">${ic('question', 'ic-xl')}<br>Essaie un autre mot</p>${popularHTML()}`;
       mark();
       if (window.gsap && !reduceMotion()) gsap.from(results.querySelectorAll('.so-row'), { y: 10, opacity: 0, duration: .25, stagger: .02, ease: 'power2.out' });
@@ -254,6 +270,12 @@
   window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------
+  // copier un texte (combinaison d'un code de triche…)
+  $$('[data-copy-text]').forEach((b) => b.addEventListener('click', async () => {
+    const t = b.dataset.copyText;
+    try { await navigator.clipboard.writeText(t); toast('Combinaison copiée'); } catch (e) { window.prompt('Copie la combinaison :', t); }
+    const art = b.closest('[id]'); if (window.LG_EVT && art) window.LG_EVT('code-copie/' + art.id);
+  }));
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
     const url = location.href.split('#')[0];
     try {
