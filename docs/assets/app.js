@@ -298,6 +298,7 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   function syncMis() {
     const d = misFaites();
     $$('[data-mission-faite]').forEach((b) => { const on = d.has(b.dataset.missionFaite); b.setAttribute('aria-pressed', on); const sp = b.querySelector('[data-on]'); if (sp) sp.textContent = on ? sp.dataset.on : sp.dataset.off; });
+    $$('[data-mission-suivante]').forEach((x) => { x.hidden = !$$('[data-mission-faite]').some((b) => d.has(b.dataset.missionFaite)); });
   }
   $$('[data-mission-faite]').forEach((b) => b.addEventListener('click', () => {
     const d = misFaites(), id = b.dataset.missionFaite;
@@ -307,6 +308,25 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   }));
   syncMis();
   document.addEventListener('lg:remote', syncMis);
+
+  // ---------- mode sans spoiler (préférence gardée sur l'appareil) : résumés et noms des missions suivantes floutés, un toucher pour lire ----------
+  function syncSpoil() {
+    const off = html.dataset.spoil === 'off';
+    $$('[data-spoil-tg]').forEach((b) => { b.setAttribute('aria-pressed', String(off)); const t = [...b.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim()); if (t) t.textContent = off ? 'Afficher les spoilers' : 'Masquer les spoilers'; });
+    if (!off) $$('.spoil.is-vu').forEach((e) => e.classList.toggle('is-vu', false));
+  }
+  $$('[data-spoil-tg]').forEach((b) => b.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const P = store.get('prefs', {}); P.spoil = html.dataset.spoil === 'off' ? '' : 'off'; store.set('prefs', P);
+    if (P.spoil) html.dataset.spoil = 'off'; else delete html.dataset.spoil;
+    syncSpoil(); toast(P.spoil ? 'Spoilers masqués : touche un texte flou pour le lire' : 'Spoilers affichés');
+  }));
+  document.addEventListener('click', (e) => {
+    const sp = html.dataset.spoil === 'off' && e.target.closest('.spoil:not(.is-vu)');
+    if (sp && sp.closest('a')) return; // dans un lien (mission suivante) : on suit le lien, la page révèle la suite
+    if (sp) { e.preventDefault(); e.stopPropagation(); sp.classList.add('is-vu'); }
+  }, true);
+  syncSpoil();
   window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------
@@ -464,6 +484,27 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
       a.download = 'gta6facile-mes-donnees.json'; document.body.append(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 2000);
     });
+    // import : fichier créé par « Télécharger mes données » ; les listes sont fusionnées (rien n'est perdu), les préférences remplacées
+    const imp = $('[data-import]', acc);
+    if (imp) imp.addEventListener('change', async () => {
+      const f = imp.files && imp.files[0]; imp.value = ''; if (!f) return;
+      try {
+        const j = JSON.parse(await f.text()); const d = j && j.donnees;
+        if (!d || typeof d !== 'object') throw new Error('format');
+        const LISTES = ['lg:favs', 'lg:done', 'lg:missions', 'lg:carte-trouves'];
+        let n = 0;
+        for (const k of LISTES) {
+          if (!Array.isArray(d[k])) continue;
+          const cur = lireLS(k); const cle = (x) => (x && typeof x === 'object' ? (x.type || '') + ':' + x.id : String(x));
+          const vus = new Set(cur.map(cle)); const ajout = d[k].filter((x) => (typeof x === 'string' || (x && x.id)) && !vus.has(cle(x)));
+          n += ajout.length; localStorage.setItem(k, JSON.stringify([...cur, ...ajout]));
+        }
+        if (d['lg:prefs'] && typeof d['lg:prefs'] === 'object') localStorage.setItem('lg:prefs', JSON.stringify(d['lg:prefs']));
+        if (Array.isArray(d['lg:recents']) && !store.get('recents', []).length) localStorage.setItem('lg:recents', JSON.stringify(d['lg:recents'].slice(0, 8)));
+        syncFavs(); refresh(); document.dispatchEvent(new CustomEvent('lg:remote'));
+        toast(n ? `${n} élément${n > 1 ? 's' : ''} importé${n > 1 ? 's' : ''}` : 'Rien de nouveau à importer');
+      } catch (e) { toast("Ce fichier n'est pas une sauvegarde de GTA 6 Facile", 'x'); }
+    });
     $('[data-wipe]', acc).addEventListener('click', () => {
       if (!window.confirm('Effacer de cet appareil tes favoris, ta progression, ton historique et tes préférences ? Les données de ton compte en ligne ne sont pas touchées.')) return;
       try { Object.keys(localStorage).filter((k) => k.startsWith('lg:') && !k.startsWith('lg:sb') && k !== 'lg:sans-mesure').forEach((k) => localStorage.removeItem(k)); } catch (e) { /* ignoré */ }
@@ -473,7 +514,7 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     document.addEventListener('lg:remote', refresh);
     $('[data-reset-done]', acc).addEventListener('click', () => { store.set('done', []); refresh(); toast('Progression remise à zéro'); });
     const prefs = store.get('prefs', {});
-    const cur = { theme: prefs.theme || 'auto', motion: prefs.motion || 'on', size: prefs.size || '' };
+    const cur = { theme: prefs.theme || 'auto', motion: prefs.motion || 'on', size: prefs.size || '', spoil: prefs.spoil || '' };
     $$('[data-pref]', acc).forEach((g) => {
       const k = g.dataset.pref;
       const mark = () => $$('[data-value]', g).forEach((b) => b.setAttribute('aria-pressed', b.dataset.value === cur[k]));
@@ -483,6 +524,7 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
         if (k === 'theme') html.dataset.theme = cur.theme === 'auto' ? (matchMedia('(prefers-color-scheme: light)').matches ? 'day' : 'night') : cur.theme;
         if (k === 'motion') { if (cur.motion === 'off') html.dataset.motion = 'off'; else delete html.dataset.motion; }
         if (k === 'size') { if (cur.size) html.dataset.size = cur.size; else delete html.dataset.size; }
+        if (k === 'spoil') { if (cur.spoil) html.dataset.spoil = cur.spoil; else delete html.dataset.spoil; syncSpoil(); }
         toast('Préférence enregistrée');
       }));
     });
