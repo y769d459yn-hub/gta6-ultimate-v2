@@ -407,6 +407,7 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${R}manifest.webmanifest">
+<link rel="apple-touch-icon" href="${R}assets/apple-touch-icon.png">
 ${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
@@ -1581,6 +1582,15 @@ if (site.editeur && site.editeur.nom) {
   emit('404.html', html);
 }
 
+// ---------- page hors connexion (servie par le service worker) ----------
+{
+  const body = `<section class="wrap section center"><p class="kicker">${icon('alert')}Hors connexion</p><h1 class="h1">Pas de connexion Internet.</h1><p class="lead">Cette page n'a pas encore été enregistrée sur ton appareil. Les pages déjà ouvertes restent consultables, dans la version de ta dernière visite : elles peuvent ne pas être à jour.</p><div class="actions actions--center"><a class="btn btn--primary" href="./">${icon('home')}Accueil</a><button class="btn" type="button" onclick="location.reload()">Réessayer</button></div></section>`;
+  let html = layout({ p: '', title: `Hors connexion | ${M}`, desc: 'Pas de connexion Internet.', body, noindex: true, cls: 'p-404' });
+  const base = new URL(site.url).pathname.replace(/\/$/, '') + '/';
+  html = html.replaceAll('href="./', `href="${base}`).replaceAll('src="./', `src="${base}`).replace('data-root="./"', `data-root="${base}"`);
+  emit('hors-ligne.html', html);
+}
+
 // ---------- index de recherche ----------
 const index = [];
 const push = (o) => index.push(o);
@@ -1660,7 +1670,63 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
-write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'GTA 6 Facile', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
+const BASEP = new URL(site.url).pathname.replace(/\/$/, '') + '/';
+write('manifest.webmanifest', JSON.stringify({
+  id: BASEP, name: M, short_name: 'GTA 6 Facile', lang: 'fr', dir: 'ltr',
+  description: 'Guide GTA 6 en français : missions, codes de triche, véhicules, objets à collectionner et carte interactive.',
+  start_url: BASEP, scope: BASEP, display: 'standalone', background_color: '#140a22', theme_color: '#140a22',
+  icons: [
+    { src: 'assets/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+    { src: 'assets/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+    { src: 'assets/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }
+  ],
+  shortcuts: [
+    { name: 'Carte interactive', url: BASEP + 'carte/' },
+    { name: 'Codes de triche', url: BASEP + 'codes/' },
+    { name: 'Missions', url: BASEP + 'missions/' }
+  ]
+}));
+// service worker : une version par publication (les anciens caches sont supprimés), réseau d'abord pour les pages et les données,
+// jamais de cache pour l'administration, les comptes ni les services extérieurs (Supabase, GoatCounter)
+const SW_VERSION = (process.env.GITHUB_SHA || '').slice(0, 10) || new Date().toISOString().replace(/\D/g, '').slice(0, 14);
+write('sw.js', `/* GTA 6 Facile, service worker (version ${SW_VERSION}) */
+'use strict';
+const V = '${SW_VERSION}', BASE = '${BASEP}';
+const PAGES = 'lg-pages-' + V, FICHIERS = 'lg-fichiers-' + V, IMAGES = 'lg-images-' + V;
+const ESSENTIELS = [BASE, BASE + 'hors-ligne.html', BASE + 'assets/app.css', BASE + 'assets/app.js', BASE + 'favicon.svg', BASE + 'assets/icon-192.png'];
+const JAMAIS = /\\/(admin|compte)\\/|publication\\.json|admin-donnees\\.json|sw\\.js$/;
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(PAGES).then((c) => c.addAll(ESSENTIELS)).then(() => self.skipWaiting())); });
+self.addEventListener('activate', (e) => {
+  e.waitUntil(caches.keys().then((k) => Promise.all(k.filter((n) => n.startsWith('lg-') && !n.endsWith('-' + V)).map((n) => caches.delete(n)))).then(() => self.clients.claim()));
+});
+async function limiter(nom, max) { const c = await caches.open(nom); const k = await c.keys(); for (let i = 0; i < k.length - max; i++) await c.delete(k[i]); }
+async function reseauDabord(req, nom) {
+  try {
+    const r = await fetch(req);
+    if (r.ok && r.type === 'basic') { const c = await caches.open(nom); c.put(req, r.clone()); }
+    return r;
+  } catch (err) {
+    const m = await caches.match(req, { ignoreSearch: req.mode === 'navigate' });
+    if (m) return m;
+    if (req.mode === 'navigate') return caches.match(BASE + 'hors-ligne.html');
+    throw err;
+  }
+}
+async function cacheDabord(req) {
+  const m = await caches.match(req); if (m) return m;
+  const r = await fetch(req);
+  if (r.ok && r.type === 'basic') { const c = await caches.open(IMAGES); await c.put(req, r.clone()); limiter(IMAGES, 400); }
+  return r;
+}
+self.addEventListener('fetch', (e) => {
+  const req = e.request; if (req.method !== 'GET') return;
+  const u = new URL(req.url);
+  if (u.origin !== location.origin || !u.pathname.startsWith(BASE) || JAMAIS.test(u.pathname)) return;
+  if (/\\.(webp|png|jpe?g|svg|gif|avif|woff2?|glb)$/.test(u.pathname)) e.respondWith(cacheDabord(req));
+  else e.respondWith(reseauDabord(req, req.mode === 'navigate' ? PAGES : FICHIERS));
+});
+`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${(p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date) || site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
