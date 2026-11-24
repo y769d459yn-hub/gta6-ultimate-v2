@@ -237,6 +237,20 @@
     store.set('done', [...d]); syncDone();
   }));
   syncDone();
+  // pages de mission : même liste que la page Missions (lg:missions), synchronisée avec le compte
+  const misFaites = () => { try { return new Set(JSON.parse(localStorage.getItem('lg:missions') || '[]')); } catch (e) { return new Set(); } };
+  function syncMis() {
+    const d = misFaites();
+    $$('[data-mission-faite]').forEach((b) => { const on = d.has(b.dataset.missionFaite); b.setAttribute('aria-pressed', on); const sp = b.querySelector('[data-on]'); if (sp) sp.textContent = on ? sp.dataset.on : sp.dataset.off; });
+  }
+  $$('[data-mission-faite]').forEach((b) => b.addEventListener('click', () => {
+    const d = misFaites(), id = b.dataset.missionFaite;
+    if (d.has(id)) d.delete(id); else { d.add(id); toast('Mission marquée comme faite'); }
+    try { localStorage.setItem('lg:missions', JSON.stringify([...d])); } catch (e) { /* mode privé */ }
+    syncMis();
+  }));
+  syncMis();
+  document.addEventListener('lg:remote', syncMis);
   window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------

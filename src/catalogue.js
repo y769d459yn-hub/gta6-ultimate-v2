@@ -95,6 +95,7 @@
         <div class="vdlg-how ${x.o || (x.lo && x.lo.length) ? '' : 'is-unknown'}"><h3>${ic('pin')}Comment l'obtenir</h3>
           ${x.lo && x.lo.length ? `<p>${x.o ? esc(x.o) + ' ' : ''}Repéré par les joueurs à ${x.lo.length > 1 ? x.lo.length + ' endroits' : 'un endroit précis'} :</p><ul class="vdlg-lo">${x.lo.map((l) => `<li><b>${esc(l.n)}</b>${l.z ? ` · ${esc(l.z)}` : ''}${l.d ? `<br><small>${esc(l.d)}</small>` : ''}</li>`).join('')}</ul><a class="btn btn--primary vdlg-map" href="${ROOT}carte/?focus=${encodeURIComponent(x.lo[0].id)}">${ic('map')}Voir sur la carte</a>`
             : `<p>${x.o ? esc(x.o) : "Pas encore documenté. Le véhicule est bien confirmé dans GTA 6, mais personne n'a encore indiqué où le trouver à coup sûr. On complète dès que c'est vérifié."}</p>`}</div>
+        <a class="btn btn--primary vdlg-page" href="${ROOT}vehicules/${esc(x.s)}/">${ic('arrow-right')}Voir la fiche complète</a>
         <p class="vdlg-src">Sources : ${(x.src || []).map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.nom)}</a>`).join(' · ')}</p>
       </div>`;
     box.querySelector('[data-x]').addEventListener('click', fermer);
@@ -105,7 +106,11 @@
   function fermer() { if (dlg.open) { if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open'); } }
   dlg.addEventListener('close', () => { const u = new URL(location.href); u.searchParams.delete('v'); history.replaceState(history.state, '', u); if (retour) retour.focus(); });
   dlg.addEventListener('click', (e) => { if (e.target === dlg) fermer(); });
-  document.querySelectorAll('[data-fiche]').forEach((b) => b.addEventListener('click', () => ouvrir(b.dataset.fiche, b)));
+  // la carte est un vrai lien vers la fiche : un simple toucher ouvre la fenêtre rapide, un appui long ou un nouvel onglet ouvre la page
+  document.querySelectorAll('[data-fiche]').forEach((b) => b.addEventListener('click', (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0 || !by[b.dataset.fiche]) return;
+    e.preventDefault(); ouvrir(b.dataset.fiche, b);
+  }));
   const v = params.get('v');
   if (v && by[v]) setTimeout(() => ouvrir(v, document.querySelector(`[data-fiche="${v}"]`)), 300);
 })();
