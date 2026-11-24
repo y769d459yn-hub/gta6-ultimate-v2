@@ -563,7 +563,7 @@ function homePalms() {
   const body = `
 <section class="hx" aria-labelledby="h-title">
   <div class="hx-banner hx-banner--img">
-    <img src="${R}assets/m-banniere-titre.webp" width="2640" height="516" alt="" fetchpriority="high" decoding="async">
+    <img src="${R}assets/m-banniere-titre-1320.webp" srcset="${R}assets/m-banniere-titre-828.webp 828w, ${R}assets/m-banniere-titre-1320.webp 1320w, ${R}assets/m-banniere-titre.webp 2640w" sizes="(min-width: 1600px) 1600px, 100vw" width="2640" height="516" alt="" fetchpriority="high" decoding="async">
     <h1 class="sr-only" id="h-title">Le guide ultime de GTA 6 : astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida</h1>
   </div>
   <div class="wrap hx-in">
