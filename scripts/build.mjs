@@ -488,7 +488,7 @@ ${tabs.map(([u, t, i]) => u === '#search'
   </div>
 </div>
 <div class="toast" role="status" aria-live="polite" hidden></div>
-${v2 ? ['gsap', 'ScrollTrigger', 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
+${v2 ? ['gsap', ...(cls === 'home' ? ['ScrollTrigger'] : []), 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
 <script src="${R}assets/app.js" defer></script>
 <script src="${R}assets/compte.js" defer></script>
 ${MESURE ? `<script src="${R}assets/mesure.js" defer data-gc="${MESURE}"></script>` : ''}
@@ -781,7 +781,10 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   for (const x of CATALOGUE.vehicules) {
     const sur = (VERIF[x.slug] || {}).statut === 'confirme';
     const focus = (CAT_CARTE[x.slug] || []).find((id) => mapIndex[id]) || null;
-    const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+    // liste : miniature de 560 px quand elle existe (scripts/miniatures.py), l'original pour les écrans très denses
+    const mini = x.img && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img));
+    const larg = x.img && (dimImg('catalogue/' + x.img) || [])[0];
+    const visu = x.img ? `<img class="veh-photo" src="${R}${mini ? 'catalogue-mini' : 'catalogue'}/${x.img}"${mini && larg ? ` srcset="${R}catalogue-mini/${x.img} 560w, ${R}catalogue/${x.img} ${larg}w" sizes="(min-width: 760px) 380px, 46vw"` : ''} alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
     (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
   }
   const groupes = GRP.filter((g) => cartes[g.id]);
@@ -1672,7 +1675,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
