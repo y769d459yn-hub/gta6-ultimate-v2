@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploiement.outputs.page_url }}
+      url: ${{ steps.deploiement.outputs.page_url || steps.deploiement2.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -42,8 +42,11 @@ jobs:
         id: deja
         if: github.event_name == 'schedule'
         run: |
-          en_ligne=$(curl -fsS --max-time 20 "https://gta6facile.fr/assets/publication.json?t=$(date +%s)" | sed -n 's/.*"sha":"\([0-9a-f]*\)".*/\1/p' || true)
-          if [ -n "$en_ligne" ] && [ "$en_ligne" = "${{ steps.contenu.outputs.sha }}" ]; then echo "rien=1" >> "$GITHUB_OUTPUT"; echo "Rien de nouveau."; fi
+          # on ne saute la publication que si le contenu admin ET la version du code en ligne sont déjà à jour
+          pub=$(curl -fsS --max-time 20 "https://gta6facile.fr/assets/publication.json?t=$(date +%s)" || true)
+          sha=$(echo "$pub" | sed -n 's/.*"sha":"\([0-9a-f]*\)".*/\1/p')
+          commit=$(echo "$pub" | sed -n 's/.*"commit":"\([0-9a-f]*\)".*/\1/p')
+          if [ -n "$sha" ] && [ "$sha" = "${{ steps.contenu.outputs.sha }}" ] && [ "$commit" = "$GITHUB_SHA" ]; then echo "rien=1" >> "$GITHUB_OUTPUT"; echo "Rien de nouveau."; fi
 
       - name: Construire le site
         if: steps.deja.outputs.rien != '1'
@@ -72,4 +75,15 @@ jobs:
       - name: Mettre en ligne
         id: deploiement
         if: steps.deja.outputs.rien != '1'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      # GitHub Pages échoue parfois de façon passagère (« Deployment failed, try again later ») : un second essai une minute plus tard
+      - name: Patienter avant un second essai
+        if: steps.deja.outputs.rien != '1' && steps.deploiement.outcome == 'failure'
+        run: sleep 60
+
+      - name: Mettre en ligne (second essai)
+        id: deploiement2
+        if: steps.deja.outputs.rien != '1' && steps.deploiement.outcome == 'failure'
         uses: actions/deploy-pages@v4
