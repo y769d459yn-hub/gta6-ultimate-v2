@@ -27,6 +27,22 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2200);
   }
 
+  // ---------- application installable (PWA) : hors connexion ----------
+  // seulement en https (ou en local) et quand la page déclare un manifeste ; les aperçus n'enregistrent rien
+  if ('serviceWorker' in navigator && $('link[rel="manifest"]') && (location.protocol === 'https:' || /^(localhost|127\.)/.test(location.hostname))) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register((document.body.dataset.root || './') + 'sw.js').catch(() => {}); });
+  }
+  // une page affichée sans connexion vient du cache : on le dit, pour ne pas la présenter comme à jour
+  function etatReseau() {
+    let b = $('.hors-ligne');
+    if (navigator.onLine) { if (b) b.remove(); return; }
+    if (b) return;
+    b = document.createElement('p'); b.className = 'hors-ligne'; b.setAttribute('role', 'status');
+    b.textContent = 'Hors connexion : tu consultes la version enregistrée lors de ta dernière visite, elle peut ne pas être à jour.';
+    document.body.prepend(b);
+  }
+  window.addEventListener('offline', etatReseau); window.addEventListener('online', etatReseau); etatReseau();
+
   // ---------- normalisation + recherche floue ----------
   const norm = (s = '') => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9$]+/g, ' ').trim();
   const STOP = new Set('ou le la les l un une des de du d comment quoi quel quelle quels quelles est ce c que qu qui pour avec dans sur en et a au aux je j tu il on mon ma mes faire fait peut peux veux trouver avoir gta 6 vi grand theft auto se s y sans par plus'.split(' '));

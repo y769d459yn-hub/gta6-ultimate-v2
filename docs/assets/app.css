@@ -703,3 +703,5 @@ body.p-map { padding-bottom: 0; overflow: hidden; }
 :root[data-theme="day"] .done-flag { color: #075c30; }
 
 .so-item mark { background: rgba(255, 43, 214, .28); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+.hors-ligne { margin: 0; padding: .55rem 1rem; background: #ffd23f; color: #140a22; font: 600 .85rem/1.4 var(--f-b, system-ui); text-align: center; }
