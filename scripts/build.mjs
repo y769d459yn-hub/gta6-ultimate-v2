@@ -416,7 +416,7 @@ ${schema.map(ld).join('\n')}
   <div class="drawer-bg" data-menu-close></div>
   <nav class="drawer-in" aria-label="Menu">
     <div class="drawer-h"><b>Menu</b><button class="ibtn" type="button" data-menu-close aria-label="Fermer le menu">${icon('x')}</button></div>
-    ${[['Explorer GTA 6', [['', 'Accueil', 'home', 'c'], ['codes/', 'Codes de triche', 'gamepad', 'p'], ['dossiers/argent-rapide/', 'Gagner de l\'argent', 'wallet', 'p'], ['dossiers/', 'Astuces et guides', 'bolt', 'c'], ['missions/', 'Missions et solutions', 'flag', 'c'], ['vehicules/', 'Véhicules', 'car', 'c'], ['carte/', 'Carte interactive', 'map', 'c']]],
+    ${[['Explorer GTA 6', [['', 'Accueil', 'home', 'c'], ['codes/', 'Codes de triche', 'gamepad', 'p'], ['dossiers/argent-rapide/', 'Gagner de l\'argent', 'wallet', 'p'], ['dossiers/', 'Astuces et guides', 'bolt', 'c'], ['missions/', 'Missions et solutions', 'flag', 'c'], ['vehicules/', 'Véhicules', 'car', 'c'], ['collection/', 'Objets à collectionner', 'badge', 'p'], ['carte/', 'Carte interactive', 'map', 'c']]],
       ['Découvrir', [['encyclopedie/', 'Encyclopédie et lieux', 'book', 'c'], ['actualites/', 'Actualités', 'news', 'c']]],
       ['Personnel', [['favoris/', 'Mes favoris', 'heart', 'p'], ['compte/', 'Mon espace', 'user', 'p']]],
       ['', [['a-propos/', 'À propos et fiabilité', 'shield', 'c']]]].map(([titre, liens]) => `<div class="drawer-sec">${titre ? `<p class="drawer-t">${titre}</p>` : ''}${liens.map(([u, t, i, c]) => `<a class="drawer-a drawer-a--${c}" href="${R}${u}"${(u === '' ? p === '' : u && p.startsWith(u) && !(u === 'dossiers/' && p.startsWith('dossiers/argent'))) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span>${icon('chevron')}</a>`).join('')}</div>`).join('')}
@@ -870,6 +870,64 @@ for (const x of CATALOGUE.vehicules) {
     body, cls: 'p-fiche', ogType: 'article', noindex: !sur,
     crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [x.nom, p]]
   }));
+}
+
+// ---------- OBJETS À COLLECTIONNER (une page par type ; repères communautaires Open GTA 6 Map, CC BY 4.0) ----------
+const COLL = (() => {
+  const PLURIEL = { 'Carte à collectionner': 'Cartes à collectionner', 'Scan WAiNK': 'Scans WAiNK', 'Caisse jaune': 'Caisses jaunes', 'Paquet caché': 'Paquets cachés', 'Magazine ou BD': 'Magazines et BD', 'Météorite': 'Météorites', 'Street art Ahol': 'Street art Ahol', 'Montre de luxe': 'Montres de luxe', 'Boîte à livres': 'Boîtes à livres', 'Playlist unique': 'Playlists uniques', 'Message dans une bouteille': 'Messages dans une bouteille', 'Conteneur SCOOP': 'Conteneurs SCOOP', 'Trésor': 'Trésors', 'Fresque 1010': 'Fresques 1010' };
+  const objets = features.filter((f) => f.properties.cat === 'collection');
+  const zones = features.filter((f) => f.properties.zone);
+  // secteur : celui de la source, sinon le repère nommé le plus proche (à moins de 500 m), signalé comme estimé
+  const secteur = (f) => {
+    if (f.properties.zone) return { z: f.properties.zone, estime: false };
+    const [x, y] = f.geometry.coordinates; let best = null, d = 500;
+    for (const g of zones) { const e = Math.hypot(g.geometry.coordinates[0] - x, g.geometry.coordinates[1] - y); if (e < d) { d = e; best = g; } }
+    return best ? { z: best.properties.zone, estime: true } : { z: '', estime: false };
+  };
+  const types = {};
+  for (const f of objets) {
+    const t = f.properties.service;
+    (types[t] ||= { nom: t, pluriel: PLURIEL[t] || t, slug: norm(t).replace(/ /g, '-'), icon: f.properties.icon, items: [] }).items.push({ f, ...secteur(f) });
+  }
+  return Object.values(types).sort((a, b) => b.items.length - a.items.length);
+})();
+{
+  const OGM_SRC = '<a href="https://github.com/fbritoferreira/gta6" rel="noopener nofollow" target="_blank">Open GTA 6 Map</a> (licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" rel="noopener nofollow" target="_blank">CC BY 4.0</a>)';
+  const total = COLL.reduce((n, t) => n + t.items.length, 0);
+  for (const T of COLL) {
+    const p = `collection/${T.slug}/`, R = R_(p);
+    const groupes = {};
+    for (const it of T.items) (groupes[it.z || '~'] ||= []).push(it);
+    const ordre = Object.keys(groupes).sort((a, b) => (a === '~') - (b === '~') || groupes[b].length - groupes[a].length || a.localeCompare(b, 'fr'));
+    const ligne = (it) => `<li class="col-it" data-id="${it.f.properties.id}" data-text="${esc(norm(it.f.properties.nom + ' ' + it.z + ' ' + (it.f.properties.desc || '')))}">
+      <button class="col-ok" type="button" data-trouve="${it.f.properties.id}" aria-pressed="false" aria-label="Marquer « ${esc(it.f.properties.nom)} » comme trouvé">${icon('check')}</button>
+      <span class="col-t"><b>${esc(it.f.properties.nom)}</b>${it.f.properties.desc ? `<small>${esc(it.f.properties.desc)}</small>` : ''}</span>
+      <a class="col-map" href="${R}carte/?focus=${it.f.properties.id}" aria-label="Voir « ${esc(it.f.properties.nom)} » sur la carte">${icon('map')}<span>Carte</span></a></li>`;
+    const body = `<section class="wrap section col" data-col style="--c:#ff2bd6">
+  <h1 class="h1">${esc(T.pluriel)} GTA 6 : tous les emplacements</h1>
+  <p class="lead">${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} repéré${T.items.length > 1 ? 's' : ''}, rangé${T.items.length > 1 ? 's' : ''} par secteur. Touche <b>Carte</b> pour voir l'endroit exact, et coche ce que tu as trouvé.</p>
+  <div class="col-prog" aria-live="polite"><span><b data-col-n>0</b> / ${T.items.length} trouvés</span><i class="col-bar"><i data-col-bar></i></i></div>
+  ${fieldFilter('Chercher un nom ou un secteur')}
+  <div class="filterbar"><button class="chip chip--toggle" type="button" data-col-cacher aria-pressed="false">${icon('eye')}Masquer les objets trouvés</button></div>
+  ${ordre.map((z) => `<section class="col-z" data-col-z><h2 class="vgrp-h">${z === '~' ? 'Secteur non indiqué' : esc(z)} <small>${groupes[z].length}</small></h2>${groupes[z].some((i) => i.estime) ? '<p class="muted small">Secteur estimé d’après les repères voisins pour certains objets : la position sur la carte est celle relevée par la communauté.</p>' : ''}<ul class="col-l">${groupes[z].sort((a, b) => a.f.properties.nom.localeCompare(b.f.properties.nom, 'fr')).map(ligne).join('')}</ul></section>`).join('')}
+  <p class="empty" data-col-vide hidden>${icon('search')}Aucun objet ne correspond.</p>
+  <p class="note">${icon('info')}<span>Emplacements relevés par la communauté : ${OGM_SRC}. Ils ne sont pas encore tous vérifiés en jeu. Une erreur ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>.</span></p>
+  <section class="related"><h2 class="h3">${icon('badge')}Autres objets à collectionner</h2><div class="minis">${COLL.filter((x) => x !== T).slice(0, 6).map((x) => `<a class="mini" href="${R}collection/${x.slug}/" style="--c:#ff2bd6"><span class="mini-ico">${icon(x.icon)}</span><span><small>${x.items.length} emplacements</small><b>${esc(x.pluriel)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
+</section>`;
+    emit(p, layout({
+      p, title: titreSEO(`${T.pluriel} GTA 6 : tous les emplacements`, `${T.pluriel} GTA 6 : emplacements`), desc: descSEO(`Les ${T.items.length} emplacements de ${T.pluriel.toLowerCase()} repérés dans GTA 6, rangés par secteur, avec un lien vers la carte interactive et une case pour cocher ceux que tu as trouvés.`),
+      body, cls: 'p-list', scripts: ['collection.js'], crumbs: [['Accueil', ''], ['Objets à collectionner', 'collection/'], [T.pluriel, p]]
+    }));
+  }
+  const p = 'collection/', R = R_(p);
+  const body = `<section class="wrap section" data-col-index>
+  <h1 class="h1">Objets à collectionner dans GTA 6</h1>
+  <p class="lead">${total} emplacements repérés, en ${COLL.length} types. Choisis un type pour voir la liste par secteur et ouvrir chaque emplacement sur la carte.</p>
+  <div class="minis">${COLL.map((x) => `<a class="mini" href="${R}collection/${x.slug}/" style="--c:#ff2bd6" data-col-type="${x.items.map((i) => i.f.properties.id).join(' ')}"><span class="mini-ico">${icon(x.icon)}</span><span><small data-col-compte="${x.items.length}">${x.items.length} emplacements</small><b>${esc(x.pluriel)}</b></span>${icon('arrow-right')}</a>`).join('')}</div>
+  <a class="btn btn--wide" href="${R}carte/?cat=collection">${icon('map')}Voir tous les objets sur la carte</a>
+  <p class="note">${icon('info')}<span>Emplacements relevés par la communauté : ${OGM_SRC}. Ils ne sont pas encore tous vérifiés en jeu.</span></p>
+</section>`;
+  emit(p, layout({ p, title: 'Objets à collectionner GTA 6 : tous les emplacements', desc: descSEO(`Les ${total} objets à collectionner de GTA 6 repérés sur la carte, par type : cartes, scans WAiNK, caisses jaunes, paquets cachés, météorites et plus.`), body, cls: 'p-list', scripts: ['collection.js'], crumbs: [['Accueil', ''], ['Objets à collectionner', p]] }));
 }
 
 // ---------- MISSIONS ET SOLUTIONS ----------
@@ -1506,6 +1564,8 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 }
 const dejaT = new Set(index.map((x) => norm(x.t)));
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
+for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collection', k: norm(`${T.pluriel} ${T.nom} objet a collectionner collection emplacement tous liste`), d: 'Tous les emplacements, par secteur', u: `collection/${T.slug}/`, i: T.icon, c: '#ff2bd6', g: 'page', s: '', l: 'Objets à collectionner', m: 0 });
+push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
