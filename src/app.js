@@ -73,9 +73,10 @@
       if (t === q) s = 1;
       else if (q.length >= 2 && t.startsWith(q)) s = .85;
       else if (t.length >= 4 && q.startsWith(t)) s = .65;
-      else if (q.length >= 4 && t.includes(q)) s = .6;
-      else if (q.length >= 4 && lev(q, t, 1) <= 1) s = .7;
-      else if (q.length >= 7 && lev(q, t, 2) <= 2) s = .5;
+      else if (q.length >= 6 && t.includes(q)) s = .6; // milieu de mot : seulement pour les mots longs (« lance » ne doit pas trouver « ambulance »)
+      // faute de frappe : seulement si la première lettre est la même (évite « roquette » → « Coquette », « mourir » → « courir »)
+      else if (q.length >= 4 && q[0] === t[0] && lev(q, t, 1) <= 1) s = .7;
+      else if (q.length >= 7 && q[0] === t[0] && lev(q, t, 2) <= 2) s = .5;
       if (s > best) { best = s; if (s === 1) break; }
     }
     return best;
@@ -131,9 +132,17 @@
       if (!total) continue;
       let s = total * Math.pow(Math.max(hit, .5) / toks.length, 2);
       if (it._tn.includes(qn)) s += 3;
-      if (it._tn.startsWith(qn)) s += 1;
+      if (it._tn === qn || it._tn.startsWith(qn + ' ')) s += 1; // le titre commence par le mot entier cherché
       if (it.g === 'page') s *= .6;
       out.push({ it, s });
+    }
+    // réponses directes : « 100 % », « jetski », « online »… passent en premier
+    const mots = new Set(qn.split(' '));
+    for (const [ph, u] of d.pins || []) {
+      if (!ph.split(' ').every((w) => mots.has(w))) continue;
+      const deja = out.find((r) => r.it.u === u);
+      if (deja) deja.s += 6;
+      else { const it = pool.find((x) => x.u === u); if (it) out.push({ it, s: 6 }); }
     }
     return out.sort((a, b) => b.s - a.s).slice(0, 24);
   }
@@ -157,6 +166,13 @@
       <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
+  // aucun résultat : on le dit clairement, on propose un autre mot et de signaler le manque (2 gestes)
+  function emptyHTML(q) {
+    const sujet = encodeURIComponent('Recherche sans résultat : ' + q.trim().slice(0, 60));
+    const corps = encodeURIComponent(`J'ai cherché « ${q.trim().slice(0, 120)} » sur GTA 6 Facile et je n'ai rien trouvé.\n\nCe que je voulais savoir :\n`);
+    return `<div class="so-empty">${ic('question', 'ic-xl')}<p><b>Aucun résultat pour « ${escH(q.trim().slice(0, 60))} »</b></p><p>Essaie un mot plus court ou un autre mot (« voiture », « argent », le nom d'une mission…).</p>
+      ${window.LG_CONTACT ? `<a class="btn-s btn-s--ghost" href="mailto:${window.LG_CONTACT}?subject=${sujet}&body=${corps}">${ic('mail')}<span>Signaler ce qui manque</span></a>` : ''}</div>${popularHTML()}`;
+  }
   function popularHTML() {
     const d = IDX; if (!d) return '';
     return `<p class="so-sec">Les plus cherchés</p><div class="so-pop">${d.popular.map((p) => `<a href="${ROOT}${p.u}" style="--c:${p.c}">${ic(p.i)}${escH(p.t)}</a>`).join('')}</div>
@@ -173,7 +189,7 @@
       // recherche sans résultat : compteur anonyme (texte normalisé et tronqué) pour savoir quels contenus manquent
       clearTimeout(vide);
       if (!last.length && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
-      results.innerHTML = last.length ? last.map(resultHTML).join('') : `<p class="so-empty">${ic('question', 'ic-xl')}<br>Essaie un autre mot</p>${popularHTML()}`;
+      results.innerHTML = last.length ? last.map(resultHTML).join('') : emptyHTML(q);
       mark();
       if (window.gsap && !reduceMotion()) gsap.from(results.querySelectorAll('.so-row'), { y: 10, opacity: 0, duration: .25, stagger: .02, ease: 'power2.out' });
       onQuery && onQuery(q);
@@ -259,7 +275,7 @@
     const b = e.target.closest('[data-fav]'); if (!b) return;
     e.preventDefault(); try { toggleFav(JSON.parse(b.dataset.fav)); } catch (err) { /* */ }
   });
-  window.LG = { toggleFav, syncFavs, toast, store, norm, lev, tokMatch, ic, ROOT, reduceMotion };
+  window.LG = { toggleFav, syncFavs, toast, store, norm, lev, tokMatch, ic, ROOT, reduceMotion, search, loadIndex };
   syncFavs();
 
   // ---------- « je l'ai fait » ----------

@@ -751,6 +751,7 @@ function vehCard(v, R) {
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
 }
+let VGROUPES = []; // catégories de la page Véhicules, aussi proposées par la recherche
 const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classiques': 'Sportive classique', 'Muscle cars': 'Muscle car', 'Coupés': 'Coupé', 'Berlines': 'Berline', 'Motos': 'Moto', 'Vélos': 'Vélo', 'Bateaux': 'Bateau', 'Hélicoptères': 'Hélicoptère', 'Avions': 'Avion', 'Police et urgences': 'Urgences', 'Militaires': 'Militaire', 'Vans et fourgons': 'Van', 'Utilitaires': 'Utilitaire', 'Industriels': 'Industriel', 'Taxis, bus et service': 'Service' };
 {
   const p = 'vehicules/', R = R_(p);
@@ -788,6 +789,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
     (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
   }
   const groupes = GRP.filter((g) => cartes[g.id]);
+  VGROUPES = groupes.map((g) => ({ id: g.id, nom: g.nom, type: g.type, n: cartes[g.id].length }));
   const total = VEHICULES.length + CATALOGUE.vehicules.length;
   const nbOu = Object.values(cartes).flat().filter((c) => c.html.includes('data-known="1"')).length;
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
@@ -1631,6 +1633,7 @@ for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: nor
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
+for (const g of VGROUPES) { const c = cat('vehicules', g.type) || {}; push({ t: `${g.nom} (${g.n})`, q: 'liste', k: norm(`${g.nom} ${UN[g.nom] || ''} ${c.nom || ''} vehicules liste tous`), d: `Tous les véhicules de cette catégorie, avec leur emplacement quand il est connu`, u: `vehicules/#cat-${g.id}`, i: c.icon || 'car', c: c.color || '#ff9a1f', g: 'vehicule', s: g.type, l: 'Liste de véhicules', m: 0 }); }
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
 
@@ -1649,7 +1652,12 @@ for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html
   const garde = new Set(Object.values(best));
   for (let i = index.length - 1; i >= 0; i--) if (!garde.has(i)) index.splice(i, 1);
 }
-write('data/index.json', JSON.stringify({ items: index, syn, popular }));
+// réponses directes : une recherche courante mène d'abord à la bonne page (seulement des pages qui existent)
+const pins = (site.reponsesDirectes || []).map(([q, u]) => {
+  if (!index.some((x) => x.u === u)) throw new Error(`réponse directe « ${q} » : ${u} n'est pas dans l'index de recherche`);
+  return [norm(q), u];
+});
+write('data/index.json', JSON.stringify({ items: index, syn, popular, pins }));
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
@@ -1679,7 +1687,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
-fs.writeFileSync(appJs, `window.LG_ICONS=${JSON.stringify(Object.fromEntries(Object.entries(iconDefs).map(([n, d]) => [n, d[1]])))};\n` + fs.readFileSync(appJs, 'utf8'));
+fs.writeFileSync(appJs, `window.LG_CONTACT=${JSON.stringify(site.editeur.email || '')};\nwindow.LG_ICONS=${JSON.stringify(Object.fromEntries(Object.entries(iconDefs).map(([n, d]) => [n, d[1]])))};\n` + fs.readFileSync(appJs, 'utf8'));
 
 // comptes visiteurs : configuration publique de Supabase injectée en tête de compte.js
 const compteJs = path.join(OUT, 'assets', 'compte.js');
