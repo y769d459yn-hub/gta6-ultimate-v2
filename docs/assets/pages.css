@@ -192,7 +192,7 @@
 /* ---------- Catalogue des véhicules ---------- */
 .v2 .veh-lead { max-width: 62ch; margin: 6px 0 14px; color: var(--tx2); }
 .v2 .veh-lead b { color: var(--tx); }
-.v2 button.card--cat { width: 100%; padding: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.v2 .card--cat { width: 100%; padding: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; text-decoration: none; }
 .v2 .pill--insp { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .v2 .veh-sources { margin-top: 18px; }
 .v2 .veh-sources a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
@@ -494,3 +494,5 @@
 .adm-form input[type="text"], .adm-form input[type="number"], .adm-form select { height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--hair2); background: rgba(0, 0, 0, .25); color: var(--tx); }
 .adm-form textarea { padding: 10px 14px; border-radius: 12px; border: 1px solid var(--hair2); background: rgba(0, 0, 0, .25); color: var(--tx); resize: vertical; line-height: 1.45; }
 .adm-form select option { background: #140a22; }
+.vdlg-page { margin: 14px 0 6px; }
+.mis-bloque ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; line-height: 1.5; }

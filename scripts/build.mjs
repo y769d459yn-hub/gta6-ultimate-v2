@@ -120,6 +120,32 @@ const dureeNom = (d) => (d <= 1 ? '1 min' : d <= 2 ? '2 min' : '5 min +');
 const dureeBucket = (d) => (d <= 2 ? 'court' : d <= 5 ? 'moyen' : 'long');
 
 // Résout une référence (slug) vers n'importe quel contenu
+// titre SEO : le premier choix de 62 caractères ou moins (Google coupe vers 60-65)
+function titreSEO(...choix) { const l = choix.filter(Boolean); return l.find((t) => t.length <= 62) || l[l.length - 1]; }
+// description : phrases réelles, coupées à un mot entier sous 158 caractères
+function descSEO(...morceaux) {
+  const t = morceaux.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
+  if (t.length <= 158) return t;
+  const c = t.slice(0, 155); return c.slice(0, c.lastIndexOf(' ')).replace(/[,;:\s]+$/, '') + '…';
+}
+// largeur et hauteur d'une image WebP (évite les sauts de mise en page sur iPhone)
+const DIMS = {};
+function dimImg(rel) {
+  if (rel in DIMS) return DIMS[rel];
+  let d = null;
+  try {
+    const b = fs.readFileSync(path.join(ROOT, 'src', rel));
+    if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+      const t = b.toString('ascii', 12, 16);
+      if (t === 'VP8 ') d = [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+      else if (t === 'VP8L') { const n = b.readUInt32LE(21); d = [(n & 0x3fff) + 1, ((n >>> 14) & 0x3fff) + 1]; }
+      else if (t === 'VP8X') d = [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+    }
+  } catch (e) { /* image absente */ }
+  return (DIMS[rel] = d);
+}
+const wh = (rel) => { const d = dimImg(rel); return d ? ` width="${d[0]}" height="${d[1]}"` : ''; };
+
 function ref(slug) {
   if (A[slug]) { const c = cat('astuces', A[slug].cat); return { t: A[slug].court, u: `astuces/${slug}/`, i: A[slug].icon, c: c.color, k: 'Astuce' }; }
   if (V[slug]) { const c = cat('vehicules', V[slug].type); return { t: V[slug].nom, u: `vehicules/${slug}/`, i: c.icon, c: c.color, k: 'Véhicule' }; }
@@ -145,8 +171,8 @@ for (const f of fs.existsSync(path.join(ROOT, 'src', 'photos')) ? fs.readdirSync
 const VUE_3D = false;
 const MODELES = VUE_3D && fs.existsSync(path.join(ROOT, 'data', 'modeles3d.json')) ? read('modeles3d.json').modeles : {};
 const RENDUS = new Set(VUE_3D && fs.existsSync(path.join(ROOT, 'src', 'rendus')) ? fs.readdirSync(path.join(ROOT, 'src', 'rendus')).map((f) => f.replace(/\.webp$/, '')) : []);
-const rendu = (v, R) => (RENDUS.has(v.slug) ? `<img class="veh-photo veh-rendu" src="${R}rendus/${v.slug}.webp" alt="${esc(v.nom)} en 3D" loading="lazy" decoding="async">` : '');
-const photoJeu = (v, R, extra = '') => `<img class="veh-photo${extra}" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}" loading="lazy" decoding="async">`;
+const rendu = (v, R) => (RENDUS.has(v.slug) ? `<img class="veh-photo veh-rendu" src="${R}rendus/${v.slug}.webp" alt="${esc(v.nom)} en 3D"${wh('rendus/' + v.slug + '.webp')} loading="lazy" decoding="async">` : '');
+const photoJeu = (v, R, extra = '') => `<img class="veh-photo${extra}" src="${R}photos/${PHOTOS[v.slug].fichier}" alt="${esc(v.nom)}${PHOTOS[v.slug].note ? ' — ' + esc(PHOTOS[v.slug].note) : ''}"${wh('photos/' + PHOTOS[v.slug].fichier)} loading="lazy" decoding="async">`;
 // Modèles 3D réalistes fournis (src/modeles/<slug>.glb) : remplacent le modèle simplifié dans la vue 3D
 const GLB = new Set(fs.existsSync(path.join(ROOT, 'src', 'modeles')) ? fs.readdirSync(path.join(ROOT, 'src', 'modeles')).filter((f) => f.endsWith('.glb')).map((f) => f.slice(0, -4)) : []);
 const vehVisuel = (v, R, cls = '') => PHOTOS[v.slug] ? photoJeu(v, R) : RENDUS.has(v.slug) ? rendu(v, R) : silhouette(v, cls);
@@ -197,7 +223,7 @@ for (const l of LIEUX) {
   if (!pos && l.region && precision === 'region') pos = autour(l.region, 380);
   if (!pos) continue;
   const mc = lieuMapCat(l);
-  const url = l.astuce ? `astuces/${l.astuce}/` : l.enc ? `encyclopedie/${l.enc}/` : `lieux/#${l.id}`;
+  const url = `lieux/${l.id}/`;
   features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: l.id, nom: l.nom, cat: mc, sous: mc === 'lieux' ? l.type : mc === 'activites' ? l.id : 'service', region: l.type === 'region' ? l.id : l.region, statut: l.statut, precision, icon: l.icon, desc: l.desc, url, acces: l.acces, service: l.service, tip: l.astuce ? tipAstuce(l.astuce) : undefined, ...(l.type === 'region' ? { label: true } : {}) } });
 }
 for (const v of VEHICULES) {
@@ -568,7 +594,7 @@ function homePalms() {
 <section class="wrap hx-sec">
   <a class="hx-map" href="${R}carte/">
     <span class="hx-map-t"><b>${icon('pin')}Carte interactive de Leonida</b><small>Explore la carte de GTA 6 : missions, véhicules, lieux secrets, objets à collectionner et bien plus.</small><span class="hx-btn">${icon('map')}Ouvrir la carte${icon('arrow-right')}</span></span>
-    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/m-carte.webp" alt="" loading="lazy" decoding="async"></span>
+    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/m-carte.webp" alt=""${wh('img/m-carte.webp')} loading="lazy" decoding="async"></span>
   </a>
 </section>
 
@@ -608,7 +634,7 @@ function palms() {
     <div class="so-results" id="rs-results" aria-live="polite"></div>
   </div>
 </section>`;
-  emit(p, layout({ p, title: 'Recherche GTA 6 : retrouver un véhicule, un lieu, une astuce', desc: 'Recherchez une astuce, un véhicule, un lieu ou une réponse GTA 6 depuis une seule barre de recherche.', body, cls: 'p-search' }));
+  emit(p, layout({ p, title: 'Recherche GTA 6 : retrouver un véhicule, un lieu, une astuce', desc: 'Recherchez une astuce, un véhicule, un lieu ou une réponse GTA 6 depuis une seule barre de recherche.', body, cls: 'p-search', noindex: true }));
 }
 
 // ---------- ASTUCES ----------
@@ -668,22 +694,14 @@ for (const a of ASTUCES) {
   </section>
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
   <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}</div></section>
-  <details class="more" id="questions"><summary>${icon('question')}Questions fréquentes</summary>
-    <h3>${esc(a.titre)}</h3><p>${esc(a.reponse)} ${esc(a.asavoir || '')}</p>
-    <h3>Combien de temps faut-il ?</h3><p>Compte environ ${dureeNom(a.duree)}. Difficulté : ${niveauNom(a.niveau).toLowerCase()}.</p>
-    <h3>Cette information est-elle fiable ?</h3><p>Statut : ${esc(statut(a.statut).nom)}. ${esc(statut(a.statut).desc)} Les sources sont listées ci-dessous.</p>
-  </details>
   ${sourcesBlock(a.sources)}
 </article>`;
   emit(p, layout({
-    p, title: `${a.titre.replace(/ \?$/, '').replace(/ dans GTA 6$/, '')} dans GTA 6 : solution pas à pas`.replace('GTA 6 dans GTA 6', 'GTA 6'),
-    desc: `${a.reponse}`.slice(0, 155),
+    p, title: ((t) => titreSEO(`${t} : solution pas à pas`, `${t} : la solution`, t))(/GTA 6/.test(a.titre) ? a.titre.replace(/ \?$/, '') : `${a.titre.replace(/ \?$/, '')} dans GTA 6`),
+    desc: descSEO(a.reponse, a.reponse.length < 90 ? a.etapes[0] : ''),
     body, cls: 'p-fiche', ogType: 'article',
     crumbs: [['Accueil', ''], ['Astuces', 'astuces/'], [c.nom, `astuces/?cat=${a.cat}`], [a.court, p]],
-    schema: [
-      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: a.titre, acceptedAnswer: { '@type': 'Answer', text: a.reponse + ' ' + a.etapes.join(' ') } }] },
-      { '@context': 'https://schema.org', '@type': 'HowTo', name: a.titre, totalTime: `PT${a.duree}M`, step: a.etapes.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: s })) }
-    ]
+    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.titre, description: a.reponse, dateModified: site.majLe, inLanguage: 'fr-FR', author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' }, mainEntityOfPage: `${site.url}/${p}` }]
   }));
 }
 
@@ -703,12 +721,12 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
 function catCard(x, R) {
   const c = cat('vehicules', x.type);
   const txt = norm([x.nom, x.classe, c.nom, x.inspiration || '', x.fabricant || ''].join(' '));
-  const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}" loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
-  return `<button class="card card--veh card--cat" type="button" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-sur="${(VERIF[x.slug] || {}).statut === 'confirme' ? 1 : 0}" data-map="0" data-text="${esc(txt)}" aria-haspopup="dialog">
+  const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+  return `<a class="card card--veh card--cat" href="${R}vehicules/${x.slug}/" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-sur="${(VERIF[x.slug] || {}).statut === 'confirme' ? 1 : 0}" data-map="0" data-text="${esc(txt)}">
   <span class="veh-art">${visu}<span class="veh-type">${esc(UN[x.classe] || x.classe)}</span></span>
   <span class="card-body"><span class="card-kicker">${esc(x.fabricant || c.nom)}</span><b class="card-title">${esc(x.modele || x.nom)}</b>
   <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}${x.obtenir ? `<span class="pill pill--ok">${icon('pin')}Où l'obtenir</span>` : ''}${(VERIF[x.slug] || {}).statut !== 'confirme' ? `<span class="pill pill--warn">${icon('question')}À confirmer</span>` : ''}</span></span>
-  <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></button>`;
+  <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></a>`;
 }
 {
   const p = 'vehicules/', R = R_(p);
@@ -747,7 +765,7 @@ function catCard(x, R) {
   <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète par catégorie, photos et emplacements', desc: `Les ${total} véhicules confirmés de GTA 6 rangés par catégorie : photo, marque, vraie voiture d'origine, caractéristiques et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules confirmés de GTA 6 rangés par catégorie : photo, marque, vraie voiture d'origine, caractéristiques et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -778,16 +796,68 @@ for (const v of VEHICULES) {
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].fabricant ? `<div><dt>${icon('badge')}Marque</dt><dd>${esc(CATALOGUE.fiches[v.slug].fabricant)}${CATALOGUE.fiches[v.slug].classe ? ' · ' + esc(CATALOGUE.fiches[v.slug].classe) : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
-    <div id="ou"><dt>${icon('pin')}Emplacement</dt><dd>${l ? `<b>${esc(l.nom)}</b> — ` : '<b>Inconnu</b> — '}${esc(v.emplacement)}</dd></div>
+    <div id="ou"><dt>${icon('pin')}Emplacement</dt><dd>${l ? `<a href="${R}lieux/${l.id}/"><b>${esc(l.nom)}</b></a> — ` : '<b>Inconnu</b> — '}${esc(v.emplacement)}</dd></div>
   </dl>
   <section class="steps-wrap" aria-labelledby="ob-t"><h2 id="ob-t" class="h3">${icon('list')}Comment l'obtenir</h2>
     <ol class="steps">${v.obtenir.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t">${esc(s)}</span></li>`).join('')}</ol></section>
   ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Même type</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
-  <details class="more"><summary>${icon('info')}En savoir plus</summary><p>${esc(v.nom)} (${esc(c.nom.toLowerCase())}, ${esc(v.sous.toLowerCase())}) dans GTA 6. Emplacement signalé : ${esc(v.emplacement)} Statut : ${esc(statut(v.dispo).nom.toLowerCase())}. Ne jamais se fier à un emplacement non vérifié pour une mission chronométrée.</p></details>
   ${sourcesBlock(v.sources)}
 </article>`;
-  emit(p, layout({ p, title: `${v.nom} GTA 6 : emplacement et comment l'obtenir`, desc: `Localisation, informations et méthode d'obtention de ${v.nom} dans GTA 6, selon les sources disponibles.`, body, cls: 'p-fiche', ogType: 'article', scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
+  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(`Où trouver ${v.nom} dans GTA 6 :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article', scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
+}
+
+// ---------- FICHES DU CATALOGUE (une page par véhicule ; non indexée tant que sa présence n'est pas confirmée) ----------
+for (const x of CATALOGUE.vehicules) {
+  const p = `vehicules/${x.slug}/`, R = R_(p);
+  const c = cat('vehicules', x.type);
+  const vf = VERIF[x.slug] || {};
+  const sur = vf.statut === 'confirme';
+  const lo = (CAT_CARTE[x.slug] || []).map((id) => mapIndex[id]).filter(Boolean);
+  const grp = (CATALOGUE.groupes || []).find((g) => g.id === x.groupe);
+  const voisins = (l) => l.filter((y) => y.slug !== x.slug && (VERIF[y.slug] || {}).statut === 'confirme');
+  const memeGroupe = voisins(CATALOGUE.vehicules.filter((y) => y.groupe === x.groupe)).sort((a, b) => (b.img ? 1 : 0) - (a.img ? 1 : 0) || a.nom.localeCompare(b.nom, 'fr')).slice(0, 4);
+  const memeMarque = x.fabricant ? voisins(CATALOGUE.vehicules.filter((y) => y.fabricant === x.fabricant && !memeGroupe.includes(y))).slice(0, 4) : [];
+  const mini = (y) => `<a class="mini" href="${R}vehicules/${y.slug}/" style="--c:${c.color}"><span class="mini-ico">${icon(cat('vehicules', y.type).icon)}</span><span><small>${esc(y.classe)}</small><b>${esc(y.nom)}</b></span>${icon('arrow-right')}</a>`;
+  const faits = [
+    x.fabricant && ['badge', 'Marque', esc(x.fabricant)],
+    ['sparkle', 'Catégorie', `<a href="${R}vehicules/#cat-${x.groupe}">${esc(x.classe)}</a>`],
+    x.inspiration && ['car', 'Inspiré de', esc(x.inspiration)],
+    x.places && ['user', 'Places', esc(x.places)],
+    (x.transmission || x.rapports) && ['sliders', 'Transmission', [x.transmission, x.rapports ? `${x.rapports} rapports` : ''].filter(Boolean).map(esc).join(' · ')],
+    x.poids && ['shield', 'Poids', esc(x.poids)],
+    x.aussi && ['replay', 'Déjà présent dans', esc(x.aussi)]
+  ].filter(Boolean);
+  const body = `<article class="wrap fiche" style="--c:${c.color}">
+  <header class="fiche-head fiche-head--veh" data-reveal-group>
+    ${x.img ? `<figure class="veh-hero veh-hero--photo"><img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)} dans GTA 6"${wh('catalogue/' + x.img)} fetchpriority="high" decoding="async">${x.credit ? `<figcaption class="veh-credit">Image : ${x.creditUrl ? `<a href="${esc(x.creditUrl)}" target="_blank" rel="noopener nofollow">${esc(x.credit)}</a>` : esc(x.credit)}</figcaption>` : ''}</figure>` : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
+    <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${x.type}">${icon(c.icon)}${esc(c.nom)}</a>${grp ? `<a class="pill" href="${R}vehicules/#cat-${x.groupe}">${esc(grp.nom)}</a>` : ''}</div>
+    <h1 class="h1 h1--fiche">${esc(x.nom)}</h1>
+  </header>
+  <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(x.resume)}</p></section>
+  <div class="actions">
+    ${lo.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lo[0].properties.id}">${icon('map')}Voir sur la carte</a>` : ''}
+    ${favBtn({ id: x.slug, type: 'vehicule', t: x.nom, u: p, i: c.icon, c: c.color })}
+  </div>
+  <dl class="facts">
+    ${faits.map(([i, k, v]) => `<div><dt>${icon(i)}${k}</dt><dd>${v}</dd></div>`).join('')}
+    ${vf.statut ? `<div class="fact-verif fact-verif--${vf.statut}"><dt>${icon(sur ? 'check' : 'alert')}Présence dans GTA 6</dt><dd>${esc(verifTexte(x.slug))}${vf.note ? ` <small>${esc(vf.note)}</small>` : ''}</dd></div>` : ''}
+  </dl>
+  <section class="steps-wrap" id="ou" aria-labelledby="ou-t"><h2 id="ou-t" class="h3">${icon('pin')}Où trouver ${esc(x.nom)} ?</h2>
+    ${x.obtenir ? `<p>${esc(x.obtenir)}</p>` : ''}
+    ${lo.length ? `<p>Repéré par les joueurs à ${lo.length > 1 ? `${lo.length} endroits` : 'un endroit précis'} :</p><ul class="vdlg-lo">${lo.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}${f.properties.desc ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>`
+    : x.obtenir ? '' : `<p>Pas encore documenté. ${sur ? 'Le véhicule est bien confirmé dans GTA 6, mais aucun emplacement fiable n’a encore été vérifié.' : 'Sa présence dans le jeu reste à confirmer.'} La fiche sera complétée dès qu’un emplacement sera vérifié.</p>`}
+  </section>
+  ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
+  ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
+  ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
+</article>`;
+  emit(p, layout({
+    p, title: lo.length || x.obtenir ? titreSEO(`${x.nom} GTA 6 : où le trouver et caractéristiques`, `${x.nom} GTA 6 : où le trouver`, `${x.nom} dans GTA 6`) : titreSEO(`${x.nom} GTA 6 : fiche, photo et caractéristiques`, `${x.nom} GTA 6 : fiche et photo`, `${x.nom} dans GTA 6`),
+    desc: descSEO(`${x.nom} dans GTA 6${x.fabricant ? ` (${x.fabricant})` : ''} : ${x.classe.toLowerCase()}${x.inspiration && x.inspiration !== x.nom && x.inspiration !== x.modele ? `, inspiré de ${x.inspiration}` : ''}${x.places ? `, ${x.places} places` : ''}${x.transmission ? `, ${x.transmission}` : ''}${x.poids ? `, ${x.poids}` : ''}.`, lo.length ? `Repéré à ${lo.length} endroit${lo.length > 1 ? 's' : ''} sur la carte.` : x.obtenir ? 'Comment l’obtenir.' : '', x.img ? 'Photo et caractéristiques.' : 'Caractéristiques et sources.'),
+    body, cls: 'p-fiche', ogType: 'article', noindex: !sur,
+    crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [x.nom, p]]
+  }));
 }
 
 // ---------- MISSIONS ET SOLUTIONS ----------
@@ -805,7 +875,7 @@ for (const v of VEHICULES) {
       <h3 class="mis-h">${icon('list')}Étape par étape</h3>
       <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
       ${m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
-      <div class="mis-act"><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
+      <div class="mis-act"><a class="btn-s btn-s--ghost" href="${R}missions/${m.id}/">${icon('link')}<span>Page de la mission</span></a><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
       <p class="mis-src">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.join(', ')}.` : `Mission listée par ${m.sources[0]} seulement.`}</p>
     </div>
   </details>`;
@@ -846,7 +916,61 @@ for (const v of VEHICULES) {
   </section>
   <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par GTA 6 Facile.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Missions GTA 6 : toutes les missions et leurs solutions, chapitre par chapitre`, desc: `Toutes les missions de GTA 6 (histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
+  emit(p, layout({ p, title: 'Missions GTA 6 : toutes les solutions, chapitre par chapitre', desc: `Toutes les missions de GTA 6 (histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
+}
+
+// ---------- PAGES DES MISSIONS (une URL par mission) ----------
+{
+  const MS = MISSIONS.missions, CH = MISSIONS.chapitres;
+  const chNom = (id) => (id === 'prologue' ? 'Prologue' : `Chapitre ${id}`);
+  const PERS = { jason: 'Jason', lucia: 'Lucia' };
+  const histoire = MS.filter((m) => !m.facultative);
+  for (const m of MS) {
+    const p = `missions/${m.id}/`, R = R_(p);
+    const ch = CH.find((c) => c.id === m.chapitre) || {};
+    const lieux = MLIEUX.filter((e) => e.missions.includes(m.id) && e.lieu && L[e.lieu]).map((e) => L[e.lieu]);
+    const memeLieu = [...new Set(MLIEUX.filter((e) => e.missions.includes(m.id)).flatMap((e) => e.missions))].filter((id) => id !== m.id && MIS[id]).map((id) => MIS[id]).slice(0, 4);
+    const i = histoire.indexOf(m);
+    const prec = i > 0 ? histoire[i - 1] : null, suiv = i >= 0 && i < histoire.length - 1 ? histoire[i + 1] : null;
+    const memeChap = m.facultative ? MS.filter((x) => x.chapitre === m.chapitre && x.facultative && x.id !== m.id).slice(0, 4) : [];
+    const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
+    const tags = [m.facultative ? 'Facultative' : m.tache ? 'Petite tâche' : 'Histoire principale', m.manquable ? 'Peut être manquée' : ''].filter(Boolean);
+    const body = `<article class="wrap fiche" style="--c:#ff3d6e">
+  <header class="fiche-head" data-reveal-group>
+    <div class="fiche-ico">${icon('flag', 'ic-xl')}</div>
+    <div class="fiche-tags"><a class="pill pill--cat" href="${R}missions/#ch-${m.chapitre}">${icon('flag')}${chNom(m.chapitre)}${ch.titre && m.chapitre !== 'prologue' ? ` · ${esc(ch.titre)}` : ''}</a>${tags.map((t) => `<span class="pill">${esc(t)}</span>`).join('')}${m.num ? `<span class="pill">Mission ${m.num}</span>` : ''}</div>
+    <h1 class="h1 h1--fiche">${esc(m.nom)} : solution de la mission</h1>
+    ${m.nomEn && m.nomEn !== m.nom ? `<p class="muted">Nom anglais : ${esc(m.nomEn)}</p>` : ''}
+  </header>
+  <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(m.resume)}</p></section>
+  <div class="actions">
+    <a class="btn btn--primary" href="#etapes">${icon('list')}Voir la solution</a>
+    ${missionsSur[m.id] ? `<a class="btn" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}Voir sur la carte</a>` : ''}
+    <button class="btn btn--ghost" type="button" data-mission-faite="${m.id}" aria-pressed="false">${icon('check')}<span data-on="Mission faite" data-off="J'ai fini cette mission">J'ai fini cette mission</span></button>
+  </div>
+  <dl class="facts">
+    <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
+    ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${esc(m.donneur)}</dd></div>` : ''}
+    ${m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
+    ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
+  </dl>
+  <section class="steps-wrap" id="etapes" aria-labelledby="et-t">
+    <h2 id="et-t" class="h3">${icon('list')}Solution étape par étape</h2>
+    <ol class="steps">${m.etapes.map((e, n) => `<li class="step"><span class="step-n">${n + 1}</span><span class="step-t">${esc(e)}</span></li>`).join('')}</ol>
+  </section>
+  ${m.bloque.length ? `<section class="steps-wrap mis-bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></section>` : ''}
+  ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, 'Mission précédente') : ''}${suiv ? lienM(suiv, 'Mission suivante') : ''}</div></nav>` : ''}
+  ${memeChap.length ? `<section class="related"><h2 class="h3">${icon('plus')}Autres missions facultatives du ${chNom(m.chapitre).toLowerCase()}</h2><div class="minis">${memeChap.map((x) => lienM(x, 'Facultative')).join('')}</div></section>` : ''}
+  ${memeLieu.length ? `<section class="related"><h2 class="h3">${icon('pin')}Au même endroit</h2><div class="minis">${memeLieu.map((x) => lienM(x, chNom(x.chapitre))).join('')}</div></section>` : ''}
+  <p class="muted small">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.map(esc).join(', ')}.` : `Mission listée par ${esc(m.sources[0])}.`} Étapes rédigées par ${M}. <a href="${R}missions/">Toutes les missions</a></p>
+</article>`;
+    emit(p, layout({
+      p, title: titreSEO(`${m.nom} GTA 6 : solution de la mission`, `${m.nom} GTA 6 : solution`, `${m.nom} – GTA 6`),
+      desc: descSEO(`Solution de la mission « ${m.nom} » (${chNom(m.chapitre)}) de GTA 6 :`, m.resume, 'Étapes détaillées et aide si tu es bloqué.'),
+      body, cls: 'p-fiche', ogType: 'article',
+      crumbs: [['Accueil', ''], ['Missions', 'missions/'], [m.nom, p]]
+    }));
+  }
 }
 
 // ---------- DOSSIERS (pages piliers) ----------
@@ -888,7 +1012,7 @@ for (const v of VEHICULES) {
   ${D.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${D.sources.length})</summary><ul>${D.sources.map(([n, u]) => `<li><a href="${u}" rel="nofollow noopener" target="_blank">${esc(n)}</a></li>`).join('')}</ul><p class="muted">Relevé du 23/11/2026. Textes rédigés par GTA 6 Facile.</p></details>` : ''}
 </article>`;
     emit(p, layout({
-      p, title: D.seo, desc: D.desc, body, cls: 'p-fiche', ogType: 'article',
+      p, title: titreSEO(D.seo, `${D.titre}`), desc: descSEO(D.desc), body, cls: 'p-fiche', ogType: 'article',
       crumbs: [['Accueil', ''], ['Dossiers', 'dossiers/'], [D.court, p]],
       schema: [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: D.titre, acceptedAnswer: { '@type': 'Answer', text: D.reponse } }, ...D.faq.map(([q, r]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: r } }))] }]
     }));
@@ -967,7 +1091,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   </section>
   <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : les ${C.length} codes et comment les débloquer`, desc: `Les ${connus} codes de triche de GTA 6 sur PS5 et Xbox dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
+  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : les ${C.length} codes`, desc: `Les ${connus} codes de triche de GTA 6 sur PS5 et Xbox dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -1016,10 +1140,10 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     return `<article class="card card--lieu" id="${l.id}" style="--c:${color}" data-cat="${l.type}" data-zone="${l.region || ''}" data-ver="${l.statut === 'confirme' ? 'oui' : 'non'}" data-map="${m ? 1 : 0}" data-alpha="${esc(norm(l.nom))}" data-text="${esc(txt)}">
     ${vg ? `<a class="card-map" href="${R}carte/?focus=${l.id}" style="--img:url(${vg})" aria-label="Voir ${esc(l.nom)} sur la carte"><i></i></a>` : ''}
     <span class="card-ico">${icon(l.icon)}</span>
-    <span class="card-body"><span class="card-kicker">${esc(c.nom.replace(/s$/, '').replace("Points d'intérêt", "Point d'intérêt"))}${reg && l.type !== 'region' ? ` · ${esc(reg.nom)}` : ''}</span><b class="card-title">${esc(l.nom)}</b>
+    <span class="card-body"><span class="card-kicker">${esc(c.nom.replace(/s$/, '').replace("Points d'intérêt", "Point d'intérêt"))}${reg && l.type !== 'region' ? ` · ${esc(reg.nom)}` : ''}</span><b class="card-title"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></b>
     <span class="card-desc">${esc(l.desc)}${l.acces ? ` <i>${icon('compass')}${esc(l.acces)}</i>` : ''}</span>
     <span class="card-meta">${badge(l.statut)}</span></span>
-    <span class="card-actions">${m ? `<a class="card-cta" href="${R}carte/?focus=${l.id}">${icon('map')}Voir sur la carte</a>` : `<span class="card-cta card-cta--off">${icon('question')}Position non vérifiée</span>`}${l.enc ? `<a class="card-cta" href="${R}encyclopedie/${l.enc}/">${icon('book')}Fiche</a>` : ''}<button class="card-cta fav fav--mini" type="button" data-fav='${esc(JSON.stringify({ id: l.id, type: 'lieu', t: l.nom, u: m ? `carte/?focus=${l.id}` : `lieux/#${l.id}`, i: l.icon, c: color }))}' aria-pressed="false" aria-label="Favori : ${esc(l.nom)}">${icon('heart')}</button></span>
+    <span class="card-actions">${m ? `<a class="card-cta" href="${R}carte/?focus=${l.id}">${icon('map')}Voir sur la carte</a>` : `<span class="card-cta card-cta--off">${icon('question')}Position non vérifiée</span>`}${l.enc ? `<a class="card-cta" href="${R}encyclopedie/${l.enc}/">${icon('book')}Fiche</a>` : ''}<button class="card-cta fav fav--mini" type="button" data-fav='${esc(JSON.stringify({ id: l.id, type: 'lieu', t: l.nom, u: `lieux/${l.id}/`, i: l.icon, c: color }))}' aria-pressed="false" aria-label="Favori : ${esc(l.nom)}">${icon('heart')}</button></span>
   </article>`;
   };
   const body = `<section class="wrap section" data-list>
@@ -1039,7 +1163,53 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   ${moreBtn}
   <a class="btn btn--wide" href="${R}carte/">${icon('map')}Ouvrir la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Lieux GTA 6 : régions, quartiers et points d\u2019intérêt', desc: 'Retrouvez les lieux de GTA 6 par région et par type, avec les informations de localisation disponibles.', body, cls: 'p-list', crumbs: [['Accueil', ''], ['Lieux', 'lieux/']] }));
+  emit(p, layout({ p, title: 'Lieux GTA 6 : régions, quartiers et points d\u2019intérêt', desc: `Les ${LIEUX.length} lieux de GTA 6 par région et par type : où ils sont, comment y aller, les véhicules et les missions qui s'y trouvent.`, body, cls: 'p-list', crumbs: [['Accueil', ''], ['Lieux', 'lieux/']] }));
+}
+
+// ---------- PAGES DES LIEUX (une URL par lieu) ----------
+for (const l of LIEUX) {
+  const p = `lieux/${l.id}/`, R = R_(p);
+  const c = cat('lieux', l.type);
+  const reg = l.region && REG[l.region] && l.region !== l.id ? REG[l.region] : null;
+  const zone = l.type === 'region' ? l.id : l.region;
+  const m = onMap(l.id);
+  const vg = vign(l.id, R);
+  const vehs = VEHICULES.filter((v) => v.lieu === l.id || (l.type === 'region' && L[v.lieu] && L[v.lieu].region === l.id));
+  const mis = [...new Set(MLIEUX.filter((e) => e.lieu === l.id).flatMap((e) => e.missions))].map((id) => MIS[id]).filter(Boolean).sort((a, b) => (a.num || 999) - (b.num || 999));
+  const dedans = LIEUX.filter((x) => x.id !== l.id && (l.type === 'region' ? x.region === l.id : zone && x.region === zone && x.type !== 'region')).slice(0, l.type === 'region' ? 24 : 6);
+  const astuce = l.astuce && A[l.astuce];
+  const mini = (u, ico, k, t, col) => `<a class="mini" href="${R}${u}" style="--c:${col}"><span class="mini-ico">${icon(ico)}</span><span><small>${esc(k)}</small><b>${esc(t)}</b></span>${icon('arrow-right')}</a>`;
+  const body = `<article class="wrap fiche" style="--c:${c.color}">
+  <header class="fiche-head" data-reveal-group>
+    <div class="fiche-ico">${icon(l.icon, 'ic-xl')}</div>
+    <div class="fiche-tags"><a class="pill pill--cat" href="${R}lieux/?cat=${l.type}">${icon(c.icon)}${esc(c.nom.replace(/s$/, '').replace("Points d'intérêt", "Point d'intérêt"))}</a>${reg ? `<a class="pill" href="${R}lieux/${reg.id}/">${icon('pin')}${esc(reg.nom)}</a>` : ''}${badge(l.statut)}</div>
+    <h1 class="h1 h1--fiche">${esc(l.nom)}</h1>
+  </header>
+  ${vg && m ? `<a class="map-banner" href="${R}carte/?focus=${l.id}" style="--img:url(${vg})"><i></i><span>${icon('map')}Voir sur la carte</span><small>${l.precision === 'exacte' ? 'Position vérifiée' : 'Position approximative'}</small></a>` : ''}
+  <section class="answer"><span class="answer-k">${icon('pin')}${l.type === 'region' ? 'La région' : 'Le lieu'}</span><p>${esc(l.desc)}</p></section>
+  <div class="actions">
+    ${m ? `<a class="btn btn--primary" href="${R}carte/?focus=${l.id}">${icon('map')}Voir sur la carte</a>` : `<span class="btn btn--off" aria-disabled="true">${icon('map')}Position non vérifiée</span>`}
+    ${l.enc && E[l.enc] ? `<a class="btn" href="${R}encyclopedie/${l.enc}/">${icon('book')}Fiche encyclopédie</a>` : ''}
+    ${favBtn({ id: l.id, type: 'lieu', t: l.nom, u: p, i: l.icon, c: c.color })}
+  </div>
+  <dl class="facts">
+    ${l.acces ? `<div><dt>${icon('compass')}Comment y aller</dt><dd>${esc(l.acces)}</dd></div>` : ''}
+    ${reg ? `<div><dt>${icon('pin')}Région</dt><dd><a href="${R}lieux/${reg.id}/">${esc(reg.nom)}</a></dd></div>` : ''}
+    ${l.service ? `<div><dt>${icon('bolt')}On y trouve</dt><dd>${esc(l.service)}</dd></div>` : ''}
+    <div><dt>${icon('shield')}Fiabilité</dt><dd>${esc(statut(l.statut).nom)}${l.precision ? ` · position ${l.precision === 'exacte' ? 'vérifiée' : l.precision === 'zone' ? 'à l’échelle de la zone' : 'approximative'}` : ''}</dd></div>
+  </dl>
+  ${astuce ? `<section class="related"><h2 class="h3">${icon('bolt')}Le guide pour ce lieu</h2><div class="minis">${relCard(l.astuce, R)}</div></section>` : ''}
+  ${mis.length ? `<section class="related"><h2 class="h3">${icon('flag')}Missions ici</h2><div class="minis">${mis.slice(0, 8).map((x) => mini(`missions/${x.id}/`, 'flag', x.chapitre === 'prologue' ? 'Prologue' : `Chapitre ${x.chapitre}`, x.nom, '#ff3d6e')).join('')}</div></section>` : ''}
+  ${vehs.length ? `<section class="related"><h2 class="h3">${icon('car')}Véhicules à trouver ${l.type === 'region' ? 'dans la région' : 'ici'}</h2><div class="minis">${vehs.slice(0, 8).map((v) => relCard(v.slug, R)).join('')}</div></section>` : ''}
+  ${dedans.length ? `<section class="related"><h2 class="h3">${icon('pin')}${l.type === 'region' ? 'Dans cette région' : 'À proximité, dans la même région'}</h2><div class="minis">${dedans.map((x) => mini(`lieux/${x.id}/`, x.icon, cat('lieux', x.type).nom.replace(/s$/, ''), x.nom, cat('lieux', x.type).color)).join('')}</div></section>` : ''}
+  ${sourcesBlock(l.sources)}
+</article>`;
+  emit(p, layout({
+    p, title: titreSEO(l.type === 'region' ? `${l.nom} GTA 6 : la région, ses lieux et missions` : `${l.nom} GTA 6 : où c'est et comment y aller`, `${l.nom} GTA 6 : où c'est`, `${l.nom} – GTA 6`),
+    desc: descSEO(`${l.nom} dans GTA 6${reg ? ` (${reg.nom})` : ''} :`, l.desc, l.acces || '', m ? 'Position sur la carte interactive.' : '', mis.length ? `${mis.length} mission${mis.length > 1 ? 's' : ''} ici.` : ''),
+    body, cls: 'p-fiche', ogType: 'article',
+    crumbs: [['Accueil', ''], ['Lieux', 'lieux/'], ...(reg ? [[reg.nom, `lieux/${reg.id}/`]] : []), [l.nom, p]]
+  }));
 }
 
 // ---------- ENCYCLOPEDIE ----------
@@ -1148,7 +1318,7 @@ for (const a of ACTUS) {
   ${similar.length ? `<section class="related"><h2 class="h3">${icon('news')}Sur le même thème</h2><div class="minis">${similar.map((s) => relCard(s.slug, R)).join('')}</div></section>` : ''}
   ${src ? `<p class="muted small">${icon('shield')}Source : <a href="${src.u}" rel="nofollow noopener" target="_blank">${esc(src.u)}</a> — information du ${fmtDate(a.date)}.</p>` : ''}
 </article>`;
-  emit(p, layout({ p, title: `${a.titre} — GTA 6 : l'essentiel en bref`, desc: `Résumé clair : ${a.bref}`.slice(0, 158), body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Actualités', 'actualites/'], [a.titre, p]], schema: [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: a.titre, datePublished: a.date, dateModified: site.majLe, description: a.bref, inLanguage: 'fr', isBasedOn: src ? src.u : undefined }] }));
+  emit(p, layout({ p, title: titreSEO(...(/GTA 6/.test(a.titre) ? [`${a.titre} : l'essentiel`, a.titre] : [`${a.titre} – GTA 6 : l'essentiel`, `${a.titre} – GTA 6`, `GTA 6 : ${a.titre}`])), desc: descSEO(a.bref, a.change), body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Actualités', 'actualites/'], [a.titre, p]], schema: [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: a.titre, datePublished: a.date, dateModified: site.majLe, description: a.bref, inLanguage: 'fr', isBasedOn: src ? src.u : undefined }] }));
 }
 
 // ---------- FAVORIS ----------
@@ -1282,9 +1452,9 @@ for (const a of ACTUS) {
 const index = [];
 const push = (o) => index.push(o);
 for (const a of ASTUCES) { const c = cat('astuces', a.cat); push({ t: a.court, q: a.titre, k: norm([a.kw.join(' '), c.nom].join(' ')), d: a.reponse.slice(0, 90), u: `astuces/${a.slug}/`, i: a.icon, c: c.color, g: 'astuce', s: a.cat, l: c.nom, m: (astuceMap[a.slug] || []).length ? 1 : 0 }); }
-for (const x of CATALOGUE.vehicules) { const c = cat('vehicules', x.type); push({ t: x.nom, q: x.classe, k: norm([x.nom, x.fabricant || '', x.classe, c.nom, x.inspiration || '', 'vehicule'].join(' ')), d: x.inspiration ? `Inspiré de ${x.inspiration}` : x.classe, u: `vehicules/?v=${x.slug}`, i: c.icon, c: c.color, g: 'vehicule', s: x.type, l: 'Véhicule · ' + x.classe, m: 0, f: '' }); }
+for (const x of CATALOGUE.vehicules) { const c = cat('vehicules', x.type); push({ t: x.nom, q: x.classe, k: norm([x.nom, x.fabricant || '', x.classe, c.nom, x.inspiration || '', 'vehicule'].join(' ')), d: x.inspiration ? `Inspiré de ${x.inspiration}` : x.classe, u: `vehicules/${x.slug}/`, i: c.icon, c: c.color, g: 'vehicule', s: x.type, l: 'Véhicule · ' + x.classe, m: 0, f: '' }); }
 for (const v of VEHICULES) { const c = cat('vehicules', v.type); const l = L[v.lieu]; push({ t: v.nom, q: v.sous, k: norm([v.kw.join(' '), c.nom, 'vehicule voiture', l ? l.nom : ''].join(' ')), d: v.emplacement.slice(0, 90), u: `vehicules/${v.slug}/`, i: c.icon, c: v.color || c.color, g: 'vehicule', s: v.type, l: 'Véhicule · ' + c.nom, m: vehOnMap(v.slug) ? 1 : 0, f: vehOnMap(v.slug) ? 'v-' + v.slug : '' }); }
-for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: l.desc.slice(0, 90), u: onMap(l.id) ? `carte/?focus=${l.id}` : `lieux/#${l.id}`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
+for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: l.desc.slice(0, 90), u: `lieux/${l.id}/`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
@@ -1295,7 +1465,7 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 const dejaT = new Set(index.map((x) => norm(x.t)));
 for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
-for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/#${m.id}`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
+for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
@@ -1356,9 +1526,9 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
 write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'GTA 6 Facile', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
-write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /compte/\nDisallow: /favoris/\nSitemap: ${site.url}/sitemap.xml\n`);
+write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${(p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date) || site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
 // administration : contenu d'origine (avant modifications) et état de la dernière publication
 write('assets/admin-donnees.json', JSON.stringify(Object.fromEntries(Object.entries(COLLECTIONS).map(([, [nom, , cle, titre]]) => [nom, { cle, titre, items: ORIGINAUX[nom] || [] }]))));
