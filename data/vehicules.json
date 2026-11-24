@@ -107,8 +107,7 @@
   "emplacement": "Sous un auvent de Slator Towing, à Salton.",
   "obtenir": [
    "Va chez Slator Towing à Salton.",
-   "Regarde sous l'auvent.",
-   "Prends-la."
+   "Regarde sous l'auvent."
   ],
   "kw": [
    "phoenix",
@@ -131,7 +130,6 @@
   "emplacement": "Dans un hangar à Watson Bay.",
   "obtenir": [
    "Va au hangar de Watson Bay.",
-   "Monte à bord.",
    "Décolle depuis la piste la plus proche."
   ],
   "kw": [
@@ -154,9 +152,7 @@
   "lieu": "watson-bay",
   "emplacement": "Signalé à Watson Bay.",
   "obtenir": [
-   "Va à Watson Bay.",
-   "Suis le repère du véhicule.",
-   "Vérifie son état avant de le prendre."
+   "Va à Watson Bay."
   ],
   "kw": [
    "lapwing",
@@ -177,7 +173,6 @@
   "emplacement": "Signalé à Watson Bay.",
   "obtenir": [
    "Va à Watson Bay.",
-   "Suis le repère du véhicule.",
    "Range-le dans un garage."
   ],
   "kw": [
@@ -199,8 +194,7 @@
   "emplacement": "Fréquent dans les marais de Grassrivers. Il apparaît dans les bandes-annonces officielles.",
   "obtenir": [
    "Va dans les marais de Grassrivers.",
-   "Cherche les pontons et les cabanes.",
-   "Monte à bord."
+   "Cherche les pontons et les cabanes."
   ],
   "kw": [
    "airboat",
@@ -223,8 +217,7 @@
   "emplacement": "Sur les plages et les marinas. Position exacte non vérifiée.",
   "obtenir": [
    "Va vers une plage ou une marina.",
-   "Repère les jet-skis amarrés.",
-   "Monte à bord."
+   "Repère les jet-skis amarrés."
   ],
   "kw": [
    "jetski",
@@ -246,8 +239,7 @@
   "emplacement": "Dans les marinas et le port. Position exacte non vérifiée.",
   "obtenir": [
    "Va vers une marina ou un port.",
-   "Repère un hors-bord amarré.",
-   "Prends-le."
+   "Repère un hors-bord amarré."
   ],
   "kw": [
    "speedboat",
@@ -416,8 +408,7 @@
   "emplacement": "Au ponton de Washington Beach, au chapitre 4 (édition Ultimate).",
   "obtenir": [
    "Atteins le chapitre 4.",
-   "Va au ponton de Washington Beach.",
-   "Monte à bord."
+   "Va au ponton de Washington Beach."
   ],
   "kw": [
    "bateau",
@@ -491,8 +482,7 @@
   "emplacement": "Au chapitre 5, vers les Pegassi Residences de Tequesta Retreat (édition Ultimate).",
   "obtenir": [
    "Atteins le chapitre 5.",
-   "Suis la tâche dans la section Exploration de la carte.",
-   "Récupère la voiture."
+   "Suis la tâche dans la section Exploration de la carte."
   ],
   "kw": [
    "cheetah",
@@ -614,8 +604,7 @@
   "emplacement": "Vue sur les captures officielles. Courante en ville.",
   "obtenir": [
    "Attends dans un quartier aisé.",
-   "Repère la berline.",
-   "Prends-la."
+   "Repère la berline."
   ],
   "kw": [
    "tailgater",
@@ -710,8 +699,7 @@
   "emplacement": "Sur la presqu'île nord-ouest de Capri, réputée pour ses supercars garées.",
   "obtenir": [
    "Va sur la presqu'île nord-ouest de Capri.",
-   "Scanne les voitures avec WAiNK.",
-   "Ouvre-la avec le bon outil et pars vite."
+   "Scanne les voitures avec WAiNK."
   ],
   "kw": [
    "zorrusso",

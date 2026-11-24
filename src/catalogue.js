@@ -57,8 +57,15 @@
       total += ok.length; if (ok.length) nGroupes++;
     }
     $('[data-vcount]').textContent = `${total} véhicule${total > 1 ? 's' : ''} · ${nGroupes} catégorie${nGroupes > 1 ? 's' : ''}`;
+    const filtre = !!(st.type || Object.values(st.t).some(Boolean) || toks.length);
+    $$('[data-vclear]').forEach((x) => { if (x.closest('.count-line')) x.hidden = !filtre; });
     $('[data-vempty]').hidden = total > 0;
   }
+  $$('[data-vclear]').forEach((x) => x.addEventListener('click', () => {
+    st.type = ''; st.t = {}; if (input) input.value = '';
+    $$('[data-vtoggle]').forEach((t) => t.setAttribute('aria-pressed', 'false'));
+    syncDoors(); syncURL(); apply();
+  }));
   syncDoors(); apply();
 
   // anciens liens partagés (?v=slug, l'ancienne fenêtre d'infos) : on ouvre la fiche du véhicule

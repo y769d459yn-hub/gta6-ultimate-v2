@@ -554,3 +554,19 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .spoil-line { margin: 8px 0 0; }
 #bloque { scroll-margin-top: 90px; }
 #bloque:target { outline: 2px solid var(--pink, #ff2d87); outline-offset: 4px; border-radius: 14px; }
+
+/* fiche véhicule : « Où le trouver ? » juste sous le titre */
+.ou-veh { margin: 4px 0 22px; padding: 16px; border-radius: var(--r, 18px); background: var(--card); border: 1px solid color-mix(in srgb, var(--c) 45%, var(--line)); }
+.ou-veh h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+.ou-fiab { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 8px; }
+.ou-fiab small { color: var(--muted); font-size: .8rem; }
+.ou-txt { margin: 0 0 10px; }
+.ou-n { margin: 0 0 4px; font-weight: 700; }
+.ou-h { display: flex; align-items: center; gap: 8px; margin: 16px 0 8px; font-size: 1rem; }
+.actions--ou { margin: 12px 0 0; }
+.actions--ou > .btn { flex: 1 1 auto; justify-content: center; white-space: nowrap; min-height: 48px; }
+.fiab-veh { margin: 0 0 22px; }
+.fiab-veh h2 { display: flex; align-items: center; gap: 8px; }
+.count-line [data-vclear] { margin-left: 6px; }
+.actions--ou > .btn { flex-direction: row; gap: 8px; align-items: center; }
+.actions.actions--ou .btn--ghost { flex: 1 1 auto; flex-direction: row; gap: 8px; height: auto; min-height: 48px; padding: 0 16px; font-size: inherit; white-space: nowrap; line-height: 1.2; }
