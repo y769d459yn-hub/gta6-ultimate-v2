@@ -1639,7 +1639,7 @@ write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="htt
 write('.nojekyll', '');
 // administration : contenu d'origine (avant modifications) et état de la dernière publication
 write('assets/admin-donnees.json', JSON.stringify(Object.fromEntries(Object.entries(COLLECTIONS).map(([, [nom, , cle, titre]]) => [nom, { cle, titre, items: ORIGINAUX[nom] || [] }]))));
-write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA || '', date: new Date().toISOString(), modifications: ADMIN_APPLIQUES, erreur: process.env.CONTENU_ERREUR === '1' }));
+write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA || '', commit: process.env.GITHUB_SHA || '', date: new Date().toISOString(), modifications: ADMIN_APPLIQUES, erreur: process.env.CONTENU_ERREUR === '1' }));
 // adresse personnalisée (GitHub Pages)
 if (!site.url.includes('github.io')) write('CNAME', new URL(site.url).hostname + '\n');
 
