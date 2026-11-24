@@ -1731,6 +1731,8 @@ write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats
     f.properties.vm = MODE(f);
     f.properties.vt = v ? v.type : '';
     if (v) { f.properties.vs = slug; f.properties.vn = v.nom; if (!f.properties.url) f.properties.url = `vehicules/${slug}/`; }
+    // courte indication pour l'obtenir : seulement les fiches du guide dont l'emplacement est « Confirmé » ou « Testé en jeu »
+    if (id.startsWith('v-') && v && ['confirme', 'teste'].includes(v.dispo) && v.obtenir && v.obtenir.length) f.properties.ob = v.obtenir.slice(0, 2).join(' ');
   }
 }
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };

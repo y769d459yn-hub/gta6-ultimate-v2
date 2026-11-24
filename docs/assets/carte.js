@@ -23,7 +23,16 @@
   const saveT = () => store.set(KEY_T, JSON.stringify([...trouves]));
   // ce qu'on cherche souvent : la plus proche, depuis n'importe quel point
   const BESOINS = [[['Armurerie'], 'gun', 'Armurerie'], [['Hôpital'], 'heart', 'Hôpital'], [['Station-service'], 'bolt', 'Station-service'], [['Garage auto', "Pay 'n' Spray"], 'spray', 'Garage ou Pay \'n\' Spray'], [['Vêtements'], 'user', 'Vêtements'], [['Planque'], 'home', 'Planque']];
-  const foundTxt = (f, on) => (f.cat === 'collection' ? (on ? 'Trouvé !' : "Je l'ai trouvé") : (on ? 'Trouvé !' : "J'y suis allé"));
+  // « Je l'ai trouvé » pour un objet ; « Point visité » ailleurs (pour ne pas le confondre avec « véhicule trouvé ») ; même progression enregistrée
+  const foundTxt = (f, on) => (f.cat === 'collection' ? (on ? 'Trouvé !' : "Je l'ai trouvé") : (on ? 'Visité' : 'Point visité'));
+  // Fiabilité : « Vérifié en jeu » (statut testé, jamais automatique), « Signalé » (une source donne la position), « À vérifier » (zone seulement, provisoire, ou fiche du guide non confirmée)
+  const sourceTxt = (f) => (/^o-/.test(f.id) ? 'Open GTA 6 Map (joueurs)' : /^w-/.test(f.id) ? 'GTA Wiki (joueurs)' : /^s-/.test(f.id) ? 'GTADB (joueurs)' : 'fiche du guide');
+  function fiab(f) {
+    const pos = f.precision === 'exacte' ? 'position précise selon la source' : f.precision === 'region' ? 'zone seulement' : 'position approximative';
+    if (f.statut === 'teste') return { n: 'Vérifié en jeu', cls: 'pn-tag--ok', t: pos };
+    if (f.precision === 'region' || f.statut === 'provisoire' || (/^v-/.test(f.id) && f.statut !== 'confirme')) return { n: 'À vérifier', cls: 'pn-tag--warn', t: `${pos} · ${sourceTxt(f)}` };
+    return { n: 'Signalé', cls: 'pn-tag--info', t: `${pos} · ${sourceTxt(f)}` };
+  }
   const km = (d) => (d < 950 ? `${Math.max(100, Math.round(d / 100) * 100)} m` : `${(d / 1000).toFixed(1).replace('.', ',')} km`);
   const sousLigne = (f) => { const z = f.zone || f.lieuNom || (regions[f.region] || {}).nom || ''; return z && !f.nom.includes(z.split(',')[0]) ? z : (f.service || (f.tip ? f.tip.titre : '') || z); };
   const sousNom = (f) => f.service || sousNoms[f.cat + ':' + f.sous] || (cats[f.cat] || {}).nom || '';
@@ -93,8 +102,10 @@
     const hv = $('[data-vide]'); if (hv) hv.hidden = true;
     panel.classList.remove('pn-anim');
     panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Agrandir le panneau"></button>${html}`; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
-    taillePanneau(showPanel.grand ? 'grand' : 'compact'); showPanel.grand = false;
-    $('[data-grip]', panel).addEventListener('click', () => { panel.classList.add('pn-anim'); taillePanneau(panel.dataset.taille === 'grand' ? 'compact' : 'grand'); });
+    taillePanneau(showPanel.grand ? 'grand' : showPanel.moyen ? 'moyen' : 'compact'); showPanel.grand = false; showPanel.moyen = false;
+    const bascule = () => { panel.classList.add('pn-anim'); taillePanneau(panel.dataset.taille === 'grand' ? 'compact' : 'grand'); };
+    $('[data-grip]', panel).addEventListener('click', bascule);
+    const tg = $('[data-tg]', panel); if (tg) tg.addEventListener('click', bascule);
     if ((innerWidth >= 900 || cote()) && atlas) atlas.setPad(padding());
     $('[data-x]', panel).addEventListener('click', closePanel);
     LG.syncFavs && LG.syncFavs();
@@ -108,8 +119,8 @@
     const bas = panel.getBoundingClientRect().bottom, haut = top.getBoundingClientRect().top;
     const dispo = Math.max(140, bas - haut - 8);
     panel.dataset.taille = t;
-    panel.style.maxHeight = Math.round(t === 'grand' ? dispo : Math.min(dispo * .42, 300)) + 'px';
-    const gr = $('[data-grip]', panel); if (gr) gr.setAttribute('aria-label', t === 'grand' ? 'Réduire le panneau' : 'Agrandir le panneau');
+    panel.style.maxHeight = Math.round(t === 'grand' ? dispo : t === 'moyen' ? Math.min(dispo * .66, 380) : Math.min(dispo * .42, 300)) + 'px'; // « moyen » : un point choisi, l'essentiel visible sans faire défiler
+    [$('[data-grip]', panel), $('[data-tg]', panel)].forEach((x) => x && x.setAttribute('aria-label', t === 'grand' ? 'Réduire le panneau' : 'Agrandir le panneau'));
   }
   let sw = null;
   panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
@@ -184,11 +195,11 @@
     const by = {}; list.forEach((f) => { (by[veh ? (f.vn ? TYPES_V[f.vt] || 'Type non précisé' : 'Type non précisé') : sousNom(f)] ||= []).push(f); });
     const groups = Object.keys(by).sort((a, b) => by[b].length - by[a].length || a.localeCompare(b, 'fr'));
     const nf = list.filter((f) => trouves.has(f.id)).length;
-    showPanel(`${head(c.icon, c.color, 'Je cherche : ' + c.q.toLowerCase(), c.sens)}
-      <div class="pn-ans-meta"><span>${list.length} point${list.length > 1 ? 's' : ''} sur la carte${veh ? ` · ${new Set(list.filter((f) => f.vs).map((f) => f.vs)).size} véhicules différents identifiés` : ''}</span>${nf ? `<span class="pn-found-n">${ic('check')}${nf} trouvé${nf > 1 ? 's' : ''}</span>` : ''}</div>
+    showPanel(`${head(c.icon, c.color, 'Je cherche', c.q)}
+      <div class="pn-ans-meta"><span><b>${list.length}</b> emplacement${list.length > 1 ? 's' : ''}${veh ? ` · ${new Set(list.filter((f) => f.vs).map((f) => f.vs)).size} véhicules identifiés` : ''}</span>${nf ? `<span class="pn-found-n">${ic('check')}${nf} trouvé${nf > 1 ? 's' : ''}</span>` : ''}</div>
       ${veh ? filtresV(tous) : ''}${veh && (state.vt || state.vm) ? `<p class="pn-reset"><button type="button" class="pn-fchip pn-fchip--reset" data-vreset>${ic('x')}Réinitialiser les filtres</button></p>` : ''}
-      ${groups.length > 1 ? `<div class="pn-jump">${groups.map((gn, i) => `<a href="#pn-g${i}">${escH(gn)} <small>${by[gn].length}</small></a>`).join('')}</div>` : ''}
-      <p class="pn-hint">Touche un nom : la carte t'y emmène et te dit quoi faire.</p>
+      ${groups.length > 1 && !veh ? `<div class="pn-jump">${groups.map((gn, i) => `<a href="#pn-g${i}">${escH(gn)} <small>${by[gn].length}</small></a>`).join('')}</div>` : ''}
+      <p class="pn-hint">Touche un nom pour le voir sur la carte.</p>
       ${groups.map((gn, i) => `<section class="pn-lg" id="pn-g${i}" style="--c:${c.color}"><h3><i></i>${escH(gn)} <small>${by[gn].length}</small></h3><ul>${by[gn].sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(li).join('')}</ul></section>`).join('')}
       <div class="pn-act"><button type="button" class="nbtn" data-allcats><span>Tout afficher</span><i>${ic('map')}</i></button></div>`);
     bindPick('answer');
@@ -221,32 +232,40 @@
         <li><span class="hl-dot hl-cl" style="--ring:conic-gradient(#39ff88 0 40%,#ff9a1f 40% 70%,#ffd23f 70%)"><b>12</b></span><span><b>Un rond avec un chiffre ?</b>Il regroupe plusieurs points. Touche-le pour zoomer dessus.</span></li>
         <li><span class="hl-dot hl-gest">${ic('expand')}</span><span><b>Zoome et déplace-toi</b>Pince avec deux doigts (ou molette, ou + et −). Glisse pour te déplacer.</span></li>
         <li><span class="hl-dot hl-gest">${ic('list')}</span><span><b>Tu préfères une liste ?</b>Le bouton « Liste » montre tous les points visibles à l'écran.</span></li>
-        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ce que tu as trouvé</b>Les boutons « Je l'ai trouvé » et « J'y suis allé » gardent ta progression sur cet appareil.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('check')}</span><span><b>Coche ta progression</b>« Je l'ai trouvé » pour un objet, « Point visité » pour un autre endroit : c'est gardé sur cet appareil.</span></li>
+        <li><span class="hl-dot hl-gest">${ic('shield')}</span><span><b>Fiabilité d'une position</b>« Vérifié en jeu » : contrôlé dans le jeu. « Signalé » : une source (souvent des joueurs) donne cette position. « À vérifier » : zone seulement ou information non confirmée.</span></li>
       </ol>
       <div class="pn-act"><button type="button" class="nbtn nbtn--primary" data-ok><span>C'est parti</span><i>${ic('arrow-right')}</i></button></div>`);
     $('[data-ok]', panel).addEventListener('click', closePanel);
   }
-  const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
+  const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
   function openFeature(f) {
     if (state.spot && state.spot !== f.id) { state.spot = ''; atlas.spot(false); panel.classList.remove('pn-peek'); }
     const c = cats[f.cat] || {}; const r = regions[f.region]; const st = STAT[f.statut] || STAT['a-verifier'];
     const favType = f.cat === 'vehicules' ? 'vehicule' : 'lieu';
-    const fav = { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
+    const fav = f.vs ? { id: f.vs, type: 'vehicule', t: f.vn || f.nom, u: f.url, i: f.icon, c: c.color } : { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' && f.url ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
     const t = f.tip;
     const place = /^[sm]-/.test(f.id) || (f.service && f.cat !== 'vehicules'); // un endroit : son nom en titre, l'astuce en dessous
     const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : (f.desc || '').split('.')[0].replace(/^[^·]*· /, ''));
     const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : f.src === 'wiki' ? 'Position indiquée par GTA Wiki' : 'Position approximative (carte communautaire)';
     const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
     const prec = f.precision === 'exacte' ? ['Position précise selon la source', 'pn-tag--ok'] : f.precision === 'region' ? ['Zone seulement, position non précise', 'pn-tag--warn'] : ['Position approximative', 'pn-tag--warn'];
-    const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span><span class="pn-tag ${prec[1]}">${prec[0]}</span>${f.vm ? `<span class="pn-tag">${escH(f.vm)}</span>` : ''}</div>`;
+    const fb = fiab(f);
+    const tags = `<div class="pn-tags"><span class="pn-tag ${fb.cls}">${fb.n}</span><span class="pn-tag ${prec[1]}">${prec[0]}</span>${f.vm ? `<span class="pn-tag">${escH(f.vm)}</span>` : ''}</div>`;
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
-    const body = t
+    const veh = f.cat === 'vehicules';
+    const corpsV = `<p class="pn-fi"><span class="pn-tag ${fb.cls}">${fb.n}</span><small>${escH(fb.t)}</small></p>
+      <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Fiche du véhicule</span><i>${ic('arrow-right')}</i></a>` : ''}${favBtn}</div>
+
+      ${f.ob ? `<p class="pn-ob">${ic('check')}<span><b>Pour l'obtenir :</b> ${escH(f.ob)}</span></p>` : ''}
+      ${f.desc && f.desc !== f.ob ? `<p class="pn-en"><small>${ic('info')}${/^v-/.test(f.id) ? 'Emplacement indiqué sur la fiche' : `Indication des joueurs${f.en ? ', en anglais' : ''}`} :</small>${escH(f.desc)}</p>` : ''}`;
+    const body = veh ? corpsV : t
       ? `${where}<div class="pn-tip" style="--c:${c.color}">${place ? `<p class="pn-tip-q">${ic('bolt')}${escH(t.titre)}</p>` : ''}<p class="pn-a">${escH(t.reponse)}</p>
          <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}${t.lien}"><span>${escH(t.libelle)}</span><i>${ic('arrow-right')}</i></a>${favBtn}</div>
          <ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol></div>${tags}`
       : `${where}${f.missions || !f.desc ? '' : f.en ? `<p class="pn-en"><small>${ic('info')}Indication des joueurs, en anglais :</small>${escH(f.desc || '')}</p>` : `<p>${escH(f.desc || '')}</p>`}
          <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Voir la fiche</span><i>${ic('arrow-right')}</i></a>` : f.ext ? `<a class="nbtn${f.ph ? ' nbtn--primary' : ''}" href="${f.ext}" target="_blank" rel="noopener"><span>${f.ph ? 'Voir la photo du lieu' : 'Source du repère'}</span><i>${ic(f.ph ? 'eye' : 'arrow-right')}</i></a>` : f.src === 'ogm' ? '' : `<a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a>`}${favBtn}</div>${tags}`;
-    const quoi = t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
+    const quoi = veh ? [f.vt ? TYPES_V[f.vt] : 'Véhicule', f.vm].filter(Boolean).join(' · ') : t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
     const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
     const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
     const mis = f.missions ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/${escH(m.id)}/">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
@@ -258,7 +277,8 @@
     const proche = prox ? `<details class="pn-near"${innerWidth >= 900 ? ' open' : ''}><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
     const isT = trouves.has(f.id);
     const outils = `<div class="pn-tools"><button type="button" class="pn-tool" data-found aria-pressed="${isT}">${ic('check')}<span>${foundTxt(f, isT)}</span></button><button type="button" class="pn-tool" data-share>${ic('share')}<span>Partager</span></button></div>`;
-    showPanel(`${head(f.icon, c.color, quoi, t && !place ? t.titre : f.nom)}${img}${mis}${body}${outils}${proche}${nav(f)}`);
+    showPanel.moyen = true;
+    showPanel(`${head(f.icon, c.color, quoi, veh ? f.nom : t && !place ? t.titre : f.nom)}${veh ? '' : img}${mis}${body}${veh ? img : ''}${outils}${proche}${nav(f)}`);
     bindNav();
     $('[data-found]', panel).addEventListener('click', (e) => {
       const b = e.currentTarget, on = !trouves.has(f.id);

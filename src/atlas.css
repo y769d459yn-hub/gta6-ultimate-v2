@@ -312,3 +312,17 @@
   .atp-panel::before { display: none; }
   .atp-panel .pn-grip { display: none; }
 }
+
+/* fiche d'un point : fiabilité, indication vérifiée ; bouton agrandir / réduire ; « Sources » masqué derrière un panneau ouvert */
+.atp-panel .pn-tag--info { border-color: rgba(25, 211, 227, .6); color: #8ff1fa; }
+.atp-panel .pn-fi { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 10px 0 0; }
+.atp-panel .pn-fi small { display: inline; }
+.atp-panel .pn-ob { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; color: var(--tx, #fff); }
+.atp-panel .pn-ob .ic { width: 16px; height: 16px; flex: none; margin-top: 3px; color: #7dffb3; }
+.atp-panel .pn-h { grid-template-columns: auto 1fr auto auto; }
+.atp-panel .pn-tg { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--hair2, rgba(255, 255, 255, .14)); background: transparent; color: var(--tx, #fff); cursor: pointer; }
+.atp-panel .pn-tg .ic { width: 16px; height: 16px; rotate: -90deg; transition: rotate .2s; }
+.atp-panel[data-taille="grand"] .pn-tg .ic { rotate: 90deg; }
+@media (min-width: 900px) { .atp-panel .pn-tg { display: none; } }
+@media (max-width: 899px) and (orientation: landscape) and (max-height: 519px) { .atp-panel .pn-tg { display: none; } }
+@media (max-width: 899px) { .has-panel .at-attrib--page { display: none; } }

@@ -1,6 +1,6 @@
-/* GTA 6 Facile, service worker (version 20261124212043) */
+/* GTA 6 Facile, service worker (version 20261124213039) */
 'use strict';
-const V = '20261124212043', BASE = '/';
+const V = '20261124213039', BASE = '/';
 const PAGES = 'lg-pages-' + V, FICHIERS = 'lg-fichiers-' + V, IMAGES = 'lg-images-' + V;
 const ESSENTIELS = [BASE, BASE + 'hors-ligne.html', BASE + 'assets/app.css', BASE + 'assets/app.js', BASE + 'favicon.svg', BASE + 'assets/icon-192.png'];
 const JAMAIS = /\/(admin|compte)\/|publication\.json|admin-donnees\.json|sw\.js$/;
