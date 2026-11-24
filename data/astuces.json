@@ -104,7 +104,8 @@
   "voir": [
    "sauvegarder",
    "rejouer-mission"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "rejouer-mission",
@@ -286,7 +287,8 @@
   "voir": [
    "etoiles-clignotantes",
    "ce-que-sait-la-police"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "etoiles-clignotantes",
@@ -320,7 +322,8 @@
   "voir": [
    "semer-la-police",
    "ce-que-sait-la-police"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "ce-que-sait-la-police",
@@ -359,7 +362,8 @@
   "voir": [
    "semer-la-police",
    "pay-n-spray"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "eviter-arrestation",
@@ -426,7 +430,8 @@
   "voir": [
    "ce-que-sait-la-police",
    "voiture-tracee"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "voiture-tracee",
@@ -823,7 +828,8 @@
    "dossier:argent-rapide",
    "voiture-rare",
    "argent-debut"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "braquer-bijouteries",
@@ -1138,7 +1144,8 @@
   "voir": [
    "meilleures-armes-debut",
    "chasse"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "defis-cascades",
@@ -1173,7 +1180,8 @@
    "dossier:100-pour-cent",
    "collection",
    "activites-eau"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "collection",
@@ -1209,7 +1217,8 @@
    "dossier:100-pour-cent",
    "defis-cascades",
    "voiture-rare"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "ouvrir-compte-bancaire",
@@ -1243,7 +1252,8 @@
   "voir": [
    "garder-son-argent",
    "meilleures-armes-debut"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "planque-perdue",
@@ -1276,7 +1286,8 @@
   "voir": [
    "sauvegarde-par-chapitre",
    "garder-son-argent"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "codes-connus",
@@ -1525,7 +1536,8 @@
   "voir": [
    "augmenter-stats",
    "semer-la-police"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "reparer-voiture-gratuit",
@@ -1705,7 +1717,8 @@
    "dossier:codes-coffres",
    "argent-debut",
    "codes-coffres"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "planques",
@@ -1743,7 +1756,8 @@
   "voir": [
    "sauvegarde-par-chapitre",
    "planque-perdue"
-  ]
+  ],
+  "verifie": "2026-11-24"
  },
  {
   "slug": "trouver-helicoptere",

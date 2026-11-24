@@ -27,6 +27,28 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 2200);
   }
 
+  // ---------- consultés récemment (gardé sur cet appareil seulement, 8 pages au plus) ----------
+  if (document.body.classList.contains('p-fiche')) {
+    const h1 = $('h1'); const t = h1 && h1.textContent.trim();
+    if (t) { const u = location.pathname; store.set('recents', [{ u, t: t.slice(0, 90) }, ...store.get('recents', []).filter((r) => r.u !== u)].slice(0, 8)); }
+  }
+
+  // ---------- application installable (PWA) : hors connexion ----------
+  // seulement en https (ou en local) et quand la page déclare un manifeste ; les aperçus n'enregistrent rien
+  if ('serviceWorker' in navigator && $('link[rel="manifest"]') && (location.protocol === 'https:' || /^(localhost|127\.)/.test(location.hostname))) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register((document.body.dataset.root || './') + 'sw.js').catch(() => {}); });
+  }
+  // une page affichée sans connexion vient du cache : on le dit, pour ne pas la présenter comme à jour
+  function etatReseau() {
+    let b = $('.hors-ligne');
+    if (navigator.onLine) { if (b) b.remove(); return; }
+    if (b) return;
+    b = document.createElement('p'); b.className = 'hors-ligne'; b.setAttribute('role', 'status');
+    b.textContent = 'Hors connexion : tu consultes la version enregistrée lors de ta dernière visite, elle peut ne pas être à jour.';
+    document.body.prepend(b);
+  }
+  window.addEventListener('offline', etatReseau); window.addEventListener('online', etatReseau); etatReseau();
+
   // ---------- normalisation + recherche floue ----------
   const norm = (s = '') => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9$]+/g, ' ').trim();
   const STOP = new Set('ou le la les l un une des de du d comment quoi quel quelle quels quelles est ce c que qu qui pour avec dans sur en et a au aux je j tu il on mon ma mes faire fait peut peux veux trouver avoir gta 6 vi grand theft auto se s y sans par plus'.split(' '));
@@ -116,12 +138,24 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     }
     return out.sort((a, b) => b.s - a.s).slice(0, 24);
   }
+  // surligne les mots cherchés (sans tenir compte des accents ni des majuscules)
+  let hlToks = [];
+  function hl(txt) {
+    const src = String(txt || ''); const chars = [...src];
+    const plat = chars.map((c) => c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase());
+    if (!hlToks.length || plat.some((c) => c.length !== 1)) return escH(src);
+    const p = plat.join(''); const on = new Array(chars.length).fill(false);
+    hlToks.forEach((t) => { let i = p.indexOf(t); while (i >= 0) { for (let k = i; k < i + t.length; k++) on[k] = true; i = p.indexOf(t, i + t.length); } });
+    let out = '', open = false;
+    chars.forEach((c, k) => { if (on[k] && !open) { out += '<mark>'; open = true; } if (!on[k] && open) { out += '</mark>'; open = false; } out += escH(c); });
+    return out + (open ? '</mark>' : '');
+  }
   function resultHTML(r, i) {
     const it = r.it;
     const best = i === 0;
     return `<div class="so-row" role="option" data-i="${i}"><a class="so-item${best ? ' so-best' : ''}" href="${ROOT}${it.u}" style="--c:${it.c}" data-i="${i}">
       <span class="mini-ico">${ic(it.i) || ic('pin')}</span>
-      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${escH(it.t)}</b>${it.d ? `<span>${escH(it.d)}</span>` : ''}</span>
+      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
   function popularHTML() {
@@ -130,12 +164,16 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
       <p class="so-sec">Raccourcis</p><div class="so-pop"><a href="${ROOT}carte/" style="--c:#19d3e3">${ic('map')}Carte</a><a href="${ROOT}vehicules/" style="--c:#ff9a1f">${ic('car')}Véhicules</a><a href="${ROOT}astuces/?cat=argent" style="--c:#3ddc84">${ic('money')}Argent</a><a href="${ROOT}astuces/?cat=debuter" style="--c:#ffd23f">${ic('sprout')}Débuter</a></div>`;
   }
   function bindSearchUI(input, results, chipsWrap, { onQuery } = {}) {
-    let sf = null, mapOnly = false, sel = 0, last = [];
+    let sf = null, mapOnly = false, sel = 0, last = [], vide = null;
     const render = () => {
       const q = input.value;
       if (!q.trim() && !sf && !mapOnly) { results.innerHTML = popularHTML(); last = []; return; }
       last = search(q, { sf, mapOnly });
+      hlToks = norm(q).split(' ').filter((t) => t.length >= 2);
       sel = 0;
+      // recherche sans résultat : compteur anonyme (texte normalisé et tronqué) pour savoir quels contenus manquent
+      clearTimeout(vide);
+      if (!last.length && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
       results.innerHTML = last.length ? last.map(resultHTML).join('') : `<p class="so-empty">${ic('question', 'ic-xl')}<br>Essaie un autre mot</p>${popularHTML()}`;
       mark();
       if (window.gsap && !reduceMotion()) gsap.from(results.querySelectorAll('.so-row'), { y: 10, opacity: 0, duration: .25, stagger: .02, ease: 'power2.out' });
@@ -255,6 +293,12 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------
+  // copier un texte (combinaison d'un code de triche…)
+  $$('[data-copy-text]').forEach((b) => b.addEventListener('click', async () => {
+    const t = b.dataset.copyText;
+    try { await navigator.clipboard.writeText(t); toast('Combinaison copiée'); } catch (e) { window.prompt('Copie la combinaison :', t); }
+    const art = b.closest('[id]'); if (window.LG_EVT && art) window.LG_EVT('code-copie/' + art.id);
+  }));
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
     const url = location.href.split('#')[0];
     try {
@@ -375,12 +419,39 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   const acc = $('[data-account]');
   if (acc) {
     const total = +acc.dataset.total;
+    let ids = { mis: [], obj: [] };
+    try { ids = JSON.parse($('[data-acc-ids]', acc).textContent); } catch (e) { /* ignoré */ }
+    const lireLS = (k) => { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch (e) { return []; } };
+    const anneau = (sel, ring, liste, cle) => {
+      const fait = new Set(lireLS(cle)); const n = liste.filter((i) => fait.has(i)).length;
+      $(sel, acc).textContent = n; $(ring, acc).style.setProperty('--p', liste.length ? Math.round((n / liste.length) * 100) : 0);
+    };
     const refresh = () => {
       const d = store.get('done', []).length;
       $('[data-acc-favs]', acc).textContent = favs().length;
       $('[data-acc-done]', acc).textContent = d;
       $('[data-ring]', acc).style.setProperty('--p', Math.round((d / total) * 100));
+      anneau('[data-acc-mis]', '[data-ring-mis]', ids.mis, 'lg:missions');
+      anneau('[data-acc-obj]', '[data-ring-obj]', ids.obj, 'lg:carte-trouves');
+      const rec = store.get('recents', []); const box = $('[data-recents-box]', acc);
+      box.hidden = !rec.length;
+      $('[data-recents]', acc).innerHTML = rec.map((r) => `<li><a href="${escH(r.u)}">${escH(r.t)}</a></li>`).join('');
     };
+    $('[data-recents-clear]', acc).addEventListener('click', () => { store.set('recents', []); refresh(); toast('Historique effacé'); });
+    // portabilité : toutes les données du site gardées sur cet appareil, dans un fichier JSON
+    $('[data-export]', acc).addEventListener('click', () => {
+      const out = {};
+      try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.startsWith('lg:')) { const v = localStorage.getItem(k); try { out[k] = JSON.parse(v); } catch (e) { out[k] = v; } } } } catch (e) { /* stockage indisponible */ }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify({ site: location.origin, exporte: new Date().toISOString(), donnees: out }, null, 2)], { type: 'application/json' }));
+      a.download = 'gta6facile-mes-donnees.json'; document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    });
+    $('[data-wipe]', acc).addEventListener('click', () => {
+      if (!window.confirm('Effacer de cet appareil tes favoris, ta progression, ton historique et tes préférences ? Les données de ton compte en ligne ne sont pas touchées.')) return;
+      try { Object.keys(localStorage).filter((k) => k.startsWith('lg:') && !k.startsWith('lg:sb') && k !== 'lg:sans-mesure').forEach((k) => localStorage.removeItem(k)); } catch (e) { /* ignoré */ }
+      refresh(); toast('Données de cet appareil effacées');
+    });
     refresh();
     document.addEventListener('lg:remote', refresh);
     $('[data-reset-done]', acc).addEventListener('click', () => { store.set('done', []); refresh(); toast('Progression remise à zéro'); });

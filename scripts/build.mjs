@@ -84,6 +84,7 @@ for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiratio
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
 const MESURE = (site.mesure && /^[a-z0-9-]{2,40}$/.test(site.mesure.goatcounter || '') && site.mesure.goatcounter) || '';
+const CORR = fs.existsSync(path.join(ROOT, 'data', 'corrections.json')) ? read('corrections.json') : { corrections: [] };
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
 // date de mise à jour affichée (pied de page, plan du site) : la plus récente entre site.json, les actualités et l'administration
 site.majLe = [site.majLe, ...ACTUS.map((x) => x.date), ...ADMIN_ROWS.map((r) => String(r.maj || '').slice(0, 10))].filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= new Date().toISOString().slice(0, 10)).sort().pop();
@@ -115,7 +116,7 @@ const ld = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).re
 
 function badge(st) {
   const s = statut(st);
-  const ic = st === 'confirme' ? 'check' : st === 'provisoire' ? 'clock' : 'question';
+  const ic = st === 'confirme' || st === 'teste' ? 'check' : st === 'provisoire' ? 'clock' : st === 'obsolete' ? 'x' : 'question';
   return `<span class="badge b-${st}" title="${esc(s.desc)}">${icon(ic)}${esc(s.nom)}</span>`;
 }
 const niveauNom = (n) => (n === 'facile' ? 'Facile' : 'Intermédiaire');
@@ -384,12 +385,19 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
   ];
   const cur = (u) => (p.startsWith(u) ? ' aria-current="page"' : '');
   const tabs = [['', 'Accueil', 'home'], ['astuces/', 'Astuces', 'bolt'], ['#search', 'Chercher', 'search'], ['carte/', 'Carte', 'map'], ['missions/', 'Missions', 'flag']];
+  // pages de listes : CollectionPage + la liste des fiches réellement liées dans la page (aucun élément invisible)
+  if (!noindex && ['codes/', 'missions/', 'vehicules/', 'collection/', 'lieux/', 'actualites/', 'dossiers/', 'encyclopedie/'].includes(p) && !schema.some((x) => /^(ItemList|CollectionPage)$/.test(x['@type']))) {
+    const fiches = [...new Set([...body.matchAll(new RegExp(`href="${R.replace(/\./g, '\\.')}${p}([a-z0-9-]+)/"`, 'g'))].map((m) => m[1]))];
+    schema = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, description: desc, url: canon, inLanguage: 'fr', isPartOf: { '@type': 'WebSite', name: M, url: site.url + '/' },
+      ...(fiches.length >= 2 ? { mainEntity: { '@type': 'ItemList', numberOfItems: fiches.length, itemListElement: fiches.map((f, i) => ({ '@type': 'ListItem', position: i + 1, url: `${canon}${f}/` })) } } : {}) }, ...schema];
+  }
   if (crumbs) schema = [...schema, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c[0], item: `${site.url}/${c[1]}` })) }];
   const crumbHtml = crumbs ? `<nav class="crumbs" aria-label="Fil d'Ariane">${crumbs.map((c, i) => i < crumbs.length - 1 ? `<a href="${R}${c[1]}">${esc(c[0])}</a>${icon('arrow-right')}` : `<span aria-current="page">${esc(c[0])}</span>`).join('')}</nav>` : '';
   return `<!doctype html>
 <html lang="fr" data-theme="night"${v2 ? ' class="v2"' : ''}>
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">${p === '' && site.verification.google ? `\n<meta name="google-site-verification" content="${esc(site.verification.google)}">` : ''}${p === '' && site.verification.bing ? `\n<meta name="msvalidate.01" content="${esc(site.verification.bing)}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -405,6 +413,7 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : `<link rel="can
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${R}manifest.webmanifest">
+<link rel="apple-touch-icon" href="${R}assets/apple-touch-icon.png">
 ${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
@@ -445,6 +454,7 @@ ${schema.map(ld).join('\n')}
 ${deco}
 ${crumbHtml}
 ${body}
+${cls === 'p-fiche' && site.editeur && site.editeur.email ? `<p class="wrap signal"><a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent('Erreur sur la page : ' + title)}&amp;body=${encodeURIComponent('Page : ' + canon + '\n\nCe qui est faux ou manquant :\n\nSource (lien), si tu en as une :\n')}">${icon('alert')}Signaler une erreur sur cette page</a></p>` : ''}
 </main>
 <footer class="foot">
   <div class="foot-in">
@@ -478,7 +488,7 @@ ${tabs.map(([u, t, i]) => u === '#search'
   </div>
 </div>
 <div class="toast" role="status" aria-live="polite" hidden></div>
-${v2 ? ['gsap', 'ScrollTrigger', 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
+${v2 ? ['gsap', ...(cls === 'home' ? ['ScrollTrigger'] : []), 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
 <script src="${R}assets/app.js" defer></script>
 <script src="${R}assets/compte.js" defer></script>
 ${MESURE ? `<script src="${R}assets/mesure.js" defer data-gc="${MESURE}"></script>` : ''}
@@ -586,7 +596,7 @@ function homePalms() {
 <section class="hx" aria-labelledby="h-title">
   <div class="hx-banner hx-banner--img">
     <img src="${R}assets/m-banniere-titre-1320.webp" srcset="${R}assets/m-banniere-titre-828.webp 828w, ${R}assets/m-banniere-titre-1320.webp 1320w, ${R}assets/m-banniere-titre.webp 2640w" sizes="(min-width: 1600px) 1600px, 100vw" width="2640" height="516" alt="" fetchpriority="high" decoding="async">
-    <h1 class="sr-only" id="h-title">Le guide ultime de GTA 6 : astuces, codes, carte interactive, véhicules, missions et tous les secrets de Leonida</h1>
+    <h1 class="sr-only" id="h-title">GTA 6 : guides, astuces, codes de triche et carte interactive</h1>
   </div>
   <div class="wrap hx-in">
     <button class="hx-search" type="button" data-open-search aria-label="Rechercher un code, une mission, un véhicule">${icon('search')}<span>Rechercher un code, une mission, un véhicule…</span>${icon('sparkle')}</button>
@@ -697,6 +707,7 @@ for (const a of ASTUCES) {
     <div class="fiche-ico">${icon(a.icon, 'ic-xl')}</div>
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}astuces/?cat=${a.cat}">${icon(c.icon)}${esc(c.nom)}</a><span class="pill">${icon('clock')}${dureeNom(a.duree)}</span><span class="pill">${niveauNom(a.niveau)}</span>${badge(a.statut)}</div>
     <h1 class="h1 h1--fiche">${esc(a.titre)}</h1>
+    ${a.verifie ? `<p class="fiche-date">${icon('check')}Dernière vérification : <time datetime="${a.verifie}">${fmtDate(a.verifie)}</time></p>` : ''}
   </header>
   ${mapIds.length && vign(mapIds[0], R) ? `<a class="map-banner" href="${R}carte/?focus=${mapIds[0]}" style="--img:url(${vign(mapIds[0], R)})"><i></i><span>${icon('map')}Voir l'endroit sur la carte</span><small>Position approximative</small></a>` : ''}
   <section class="answer" id="solution" aria-label="Réponse">
@@ -724,7 +735,7 @@ for (const a of ASTUCES) {
     desc: descSEO(a.reponse, a.reponse.length < 90 ? a.etapes[0] : ''),
     body, cls: 'p-fiche', ogType: 'article',
     crumbs: [['Accueil', ''], ['Astuces', 'astuces/'], [c.nom, `astuces/?cat=${a.cat}`], [a.court, p]],
-    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.titre, description: a.reponse, dateModified: site.majLe, inLanguage: 'fr-FR', author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' }, mainEntityOfPage: `${site.url}/${p}` }]
+    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.titre, description: a.reponse, ...(a.verifie ? { dateModified: a.verifie } : {}), inLanguage: 'fr-FR', author: { '@type': 'Organization', name: M, url: site.url + '/' }, publisher: { '@type': 'Organization', name: M, url: site.url + '/' }, mainEntityOfPage: `${site.url}/${p}` }]
   }));
 }
 
@@ -770,7 +781,10 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   for (const x of CATALOGUE.vehicules) {
     const sur = (VERIF[x.slug] || {}).statut === 'confirme';
     const focus = (CAT_CARTE[x.slug] || []).find((id) => mapIndex[id]) || null;
-    const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+    // liste : miniature de 560 px quand elle existe (scripts/miniatures.py), l'original pour les écrans très denses
+    const mini = x.img && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img));
+    const larg = x.img && (dimImg('catalogue/' + x.img) || [])[0];
+    const visu = x.img ? `<img class="veh-photo" src="${R}${mini ? 'catalogue-mini' : 'catalogue'}/${x.img}"${mini && larg ? ` srcset="${R}catalogue-mini/${x.img} 560w, ${R}catalogue/${x.img} ${larg}w" sizes="(min-width: 760px) 380px, 46vw"` : ''} alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
     (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
   }
   const groupes = GRP.filter((g) => cartes[g.id]);
@@ -1146,7 +1160,12 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 {
   const p = 'codes/', R = R_(p);
   const FL = { haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' };
-  const fleches = (seq) => `<div class="code-seq" role="img" aria-label="Combinaison : ${seq.map((d) => FL[d]).join(', ')}">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i aria-hidden="true"></i>' : ''}`).join('')}</div>`;
+  const FLT = { haut: '↑', bas: '↓', gauche: '←', droite: '→' };
+  const texte = (seq) => seq.map((d) => FL[d]).join(', ');
+  const fleches = (seq) => `<div class="code-seq" aria-hidden="true">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i></i>' : ''}`).join('')}</div>
+    <p class="code-txt"><span class="code-txt-k">Combinaison (croix directionnelle) :</span> <span class="code-txt-v">${seq.map((d) => `${FLT[d]} ${FL[d]}`).join(' · ')}</span></p>
+    <button class="btn-s btn-s--ghost code-copy" type="button" data-copy-text="${esc(texte(seq))}">${icon('link')}<span>Copier la combinaison</span></button>`;
+  const confirme = (c) => c.confirme && c.sources.length >= 2;
   const C = CODES.codes, cats = CODES.categories;
   const connus = C.filter((c) => c.sequence.length).length;
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
@@ -1154,7 +1173,8 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
-    ${c.sequence.length ? `<p class="code-src ${c.confirme ? 'is-ok' : 'is-warn'}">${icon(c.confirme ? 'check' : 'alert')}${c.confirme ? `Combinaison confirmée par ${c.sources.length} guides` : `Combinaison donnée par un seul guide (${esc(c.sources.join(', '))}) : à vérifier`}</p>` : ''}
+    <p class="code-plat">${icon('gamepad')}PS5 et Xbox Series (même combinaison)</p>
+    ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${confirme(c) ? `Confirmée : ${esc(c.sources.join(', '))}` : `À vérifier : une seule source (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
@@ -1471,11 +1491,19 @@ for (const a of ACTUS) {
   <div class="acc-grid">
     <a class="acc-card" href="${R}favoris/" style="--c:#ff2d87"><span class="tile-ico">${icon('heart')}</span><b>Mes favoris</b><span class="acc-big" data-acc-favs>0</span><small>enregistrés</small></a>
     <div class="acc-card" style="--c:#3ddc84"><span class="tile-ico">${icon('trophy')}</span><b>Ma progression</b><div class="ring" data-ring style="--p:0"><span data-acc-done>0</span><small>/ ${ASTUCES.length}</small></div><small>astuces marquées « fait »</small><button class="link-btn" type="button" data-reset-done>Remettre à zéro</button></div>
+    <div class="acc-card" style="--c:#ffd23f"><span class="tile-ico">${icon('flag')}</span><b>Missions terminées</b><div class="ring" data-ring-mis style="--p:0"><span data-acc-mis>0</span><small>/ ${MISSIONS.missions.length}</small></div><a class="link-btn" href="${R}missions/">Voir les missions</a></div>
+    <div class="acc-card" style="--c:#ff2bd6"><span class="tile-ico">${icon('badge')}</span><b>Objets trouvés</b><div class="ring" data-ring-obj style="--p:0"><span data-acc-obj>0</span><small>/ ${COLL.reduce((n, t) => n + t.items.length, 0)}</small></div><a class="link-btn" href="${R}collection/">Voir les objets</a></div>
     <div class="acc-card acc-card--prefs" style="--c:#9b6bff"><span class="tile-ico">${icon('sliders')}</span><b>Mes préférences</b>
       <p class="sheet-l">Animations</p><div class="chips" data-pref="motion"><button class="chip" data-value="on" aria-pressed="false">Oui</button><button class="chip" data-value="off" aria-pressed="false">Réduites</button></div>
       <p class="sheet-l">Taille du texte</p><div class="chips" data-pref="size"><button class="chip" data-value="" aria-pressed="false">Normale</button><button class="chip" data-value="l" aria-pressed="false">Grande</button></div>
     </div>
   </div>
+  <section class="acc-sec" data-recents-box hidden><h2 class="h3">${icon('clock')}Consultés récemment</h2><ul class="acc-recents" data-recents></ul><button class="link-btn" type="button" data-recents-clear>Effacer cet historique</button></section>
+  <section class="acc-sec"><h2 class="h3">${icon('shield')}Mes données</h2>
+    <p class="muted small">Sans compte, tes favoris, ta progression et cet historique restent uniquement sur cet appareil. Tu peux les télécharger ou les effacer à tout moment.</p>
+    <div class="actions"><button class="btn" type="button" data-export>${icon('download')}Télécharger mes données</button><button class="btn btn--ghost" type="button" data-wipe>${icon('x')}Effacer mes données</button></div>
+  </section>
+  <script type="application/json" data-acc-ids>${JSON.stringify({ mis: MISSIONS.missions.map((m) => m.id), obj: COLL.flatMap((t) => t.items.map((i) => i.f.properties.id)) })}</script>
 </section>`;
   emit(p, layout({ p, title: `Mon compte | ${M}`, desc: 'Accédez à vos favoris et préférences.', body, noindex: true, cls: 'p-account' }));
 }
@@ -1510,9 +1538,8 @@ for (const a of ACTUS) {
   <p class="answer"><span class="answer-k">${icon('shield')}Notre promesse</span>Des réponses courtes, des sources visibles.</p>
   <div class="actions"><a class="btn btn--primary" href="#sources">${icon('book')}Nos sources</a><a class="btn" href="#statuts">${icon('badge')}Nos statuts</a><a class="btn btn--ghost" href="#contact">${icon('mail')}Nous contacter</a></div>
   <section id="statuts" class="statuts">
-    <div class="st st--ok">${badge('confirme')}<p>Confirmé par plusieurs sources qui concordent.</p></div>
-    <div class="st st--wait">${badge('a-verifier')}<p>Donné par les guides, pas encore recoupé partout.</p></div>
-    <div class="st st--part">${badge('provisoire')}<p>Information partielle ou donnée par une seule source.</p></div>
+    ${['teste', 'confirme', 'a-verifier', 'provisoire', 'obsolete'].map((k) => `<div class="st st--${k === 'confirme' || k === 'teste' ? 'ok' : k === 'a-verifier' ? 'wait' : 'part'}">${badge(k)}<p>${esc(site.statuts[k].desc)}</p></div>`).join('')}
+    <p class="muted small">Règle du site : une information ne passe « confirmée » que si elle est officielle, ou si au moins deux sources indépendantes concordent sans contradiction. Le contrôle automatique du site refuse une astuce ou un code « confirmé » avec moins de deux sources. Une date « Dernière vérification » n'apparaît que lorsque l'information a réellement été revérifiée.</p>
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
@@ -1523,6 +1550,7 @@ for (const a of ACTUS) {
     <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>, sur des serveurs situés en Irlande (Union européenne). Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
     <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées. ${site.editeur && site.editeur.nom ? `Tous les détails : <a href="${R}mentions-legales/#confidentialite">mentions légales et confidentialité</a>.` : ''}</p>
   </section>
+  <section id="corrections" class="related"><h2 class="h3">${icon('refresh')}Corrections récentes</h2><ul class="corr">${CORR.corrections.map((x) => `<li><time datetime="${x.date}">${fmtDate(x.date)}</time> · <a href="${R}${x.page}">${esc(x.titre)}</a> : ${esc(x.texte)}</li>`).join('')}</ul></section>
   <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>${''} ou <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">signale-le sur GitHub</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
 </section>`;
@@ -1547,7 +1575,7 @@ if (site.editeur && site.editeur.nom) {
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
     <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie, ni publicité, ni bouton de réseau social${MESURE ? '' : ", ni outil de mesure d'audience"}.</p>
-    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
+    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent) et les combinaisons de codes copiées. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
       <p><b>Tu peux refuser à tout moment</b> : <button class="btn btn--ghost" type="button" data-mesure-refus aria-pressed="false">${icon('eye')}<span data-on="Tes visites ne sont plus comptées (annuler)" data-off="Ne pas compter mes visites">Ne pas compter mes visites</span></button></p></div>` : ''}
     <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
     <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
@@ -1569,6 +1597,15 @@ if (site.editeur && site.editeur.nom) {
   const base = new URL(site.url).pathname.replace(/\/$/, '') + '/';
   html = html.replaceAll('href="./', `href="${base}`).replaceAll('src="./', `src="${base}`).replace('data-root="./"', `data-root="${base}"`);
   emit('404.html', html);
+}
+
+// ---------- page hors connexion (servie par le service worker) ----------
+{
+  const body = `<section class="wrap section center"><p class="kicker">${icon('alert')}Hors connexion</p><h1 class="h1">Pas de connexion Internet.</h1><p class="lead">Cette page n'a pas encore été enregistrée sur ton appareil. Les pages déjà ouvertes restent consultables, dans la version de ta dernière visite : elles peuvent ne pas être à jour.</p><div class="actions actions--center"><a class="btn btn--primary" href="./">${icon('home')}Accueil</a><button class="btn" type="button" onclick="location.reload()">Réessayer</button></div></section>`;
+  let html = layout({ p: '', title: `Hors connexion | ${M}`, desc: 'Pas de connexion Internet.', body, noindex: true, cls: 'p-404' });
+  const base = new URL(site.url).pathname.replace(/\/$/, '') + '/';
+  html = html.replaceAll('href="./', `href="${base}`).replaceAll('src="./', `src="${base}`).replace('data-root="./"', `data-root="${base}"`);
+  emit('hors-ligne.html', html);
 }
 
 // ---------- index de recherche ----------
@@ -1638,7 +1675,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
@@ -1650,11 +1687,90 @@ fs.writeFileSync(compteJs, `window.LG_SB=${JSON.stringify(site.comptes || {})};\
 
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff2d87"/><stop offset="1" stop-color="#8a3ffc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#140a22"/><circle cx="32" cy="30" r="18" fill="url(#g)"/><path d="M14 36h36M16 41h32M20 46h24" stroke="#140a22" stroke-width="3"/></svg>`;
 write('favicon.svg', favicon);
-write('manifest.webmanifest', JSON.stringify({ name: M, short_name: 'GTA 6 Facile', start_url: './', display: 'standalone', background_color: '#140a22', theme_color: '#140a22', icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }] }));
+const BASEP = new URL(site.url).pathname.replace(/\/$/, '') + '/';
+write('manifest.webmanifest', JSON.stringify({
+  id: BASEP, name: M, short_name: 'GTA 6 Facile', lang: 'fr', dir: 'ltr',
+  description: 'Guide GTA 6 en français : missions, codes de triche, véhicules, objets à collectionner et carte interactive.',
+  start_url: BASEP, scope: BASEP, display: 'standalone', background_color: '#140a22', theme_color: '#140a22',
+  icons: [
+    { src: 'assets/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+    { src: 'assets/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+    { src: 'assets/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }
+  ],
+  shortcuts: [
+    { name: 'Carte interactive', url: BASEP + 'carte/' },
+    { name: 'Codes de triche', url: BASEP + 'codes/' },
+    { name: 'Missions', url: BASEP + 'missions/' }
+  ]
+}));
+// service worker : une version par publication (les anciens caches sont supprimés), réseau d'abord pour les pages et les données,
+// jamais de cache pour l'administration, les comptes ni les services extérieurs (Supabase, GoatCounter)
+const SW_VERSION = (process.env.GITHUB_SHA || '').slice(0, 10) || new Date().toISOString().replace(/\D/g, '').slice(0, 14);
+write('sw.js', `/* GTA 6 Facile, service worker (version ${SW_VERSION}) */
+'use strict';
+const V = '${SW_VERSION}', BASE = '${BASEP}';
+const PAGES = 'lg-pages-' + V, FICHIERS = 'lg-fichiers-' + V, IMAGES = 'lg-images-' + V;
+const ESSENTIELS = [BASE, BASE + 'hors-ligne.html', BASE + 'assets/app.css', BASE + 'assets/app.js', BASE + 'favicon.svg', BASE + 'assets/icon-192.png'];
+const JAMAIS = /\\/(admin|compte)\\/|publication\\.json|admin-donnees\\.json|sw\\.js$/;
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(PAGES).then((c) => c.addAll(ESSENTIELS)).then(() => self.skipWaiting())); });
+self.addEventListener('activate', (e) => {
+  e.waitUntil(caches.keys().then((k) => Promise.all(k.filter((n) => n.startsWith('lg-') && !n.endsWith('-' + V)).map((n) => caches.delete(n)))).then(() => self.clients.claim()));
+});
+async function limiter(nom, max) { const c = await caches.open(nom); const k = await c.keys(); for (let i = 0; i < k.length - max; i++) await c.delete(k[i]); }
+async function reseauDabord(req, nom) {
+  try {
+    const r = await fetch(req);
+    if (r.ok && r.type === 'basic') { const c = await caches.open(nom); c.put(req, r.clone()); }
+    return r;
+  } catch (err) {
+    const m = await caches.match(req, { ignoreSearch: req.mode === 'navigate' });
+    if (m) return m;
+    if (req.mode === 'navigate') return caches.match(BASE + 'hors-ligne.html');
+    throw err;
+  }
+}
+async function cacheDabord(req) {
+  const m = await caches.match(req); if (m) return m;
+  const r = await fetch(req);
+  if (r.ok && r.type === 'basic') { const c = await caches.open(IMAGES); await c.put(req, r.clone()); limiter(IMAGES, 400); }
+  return r;
+}
+self.addEventListener('fetch', (e) => {
+  const req = e.request; if (req.method !== 'GET') return;
+  const u = new URL(req.url);
+  if (u.origin !== location.origin || !u.pathname.startsWith(BASE) || JAMAIS.test(u.pathname)) return;
+  if (/\\.(webp|png|jpe?g|svg|gif|avif|woff2?|glb)$/.test(u.pathname)) e.respondWith(cacheDabord(req));
+  else e.respondWith(reseauDabord(req, req.mode === 'navigate' ? PAGES : FICHIERS));
+});
+`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`);
 const indexable = pages.filter(({ p, html }) => !p.endsWith('.html') && !html.includes('noindex'));
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(({ p }) => `<url><loc>${site.url}/${p}</loc><lastmod>${(p.startsWith('actualites/') && N[p.split('/')[1]] && N[p.split('/')[1]].date) || site.majLe}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('.nojekyll', '');
+write('llms.txt', `# ${M}
+
+> Guide francophone indépendant de GTA 6 (Grand Theft Auto VI, PS5 et Xbox Series) : solutions des missions, codes de triche, véhicules et où les trouver, objets à collectionner, lieux de Leonida et carte interactive. Chaque information indique ses sources et un statut de fiabilité (Testé en jeu, Confirmé, À vérifier, Provisoire, Obsolète). Site non affilié à Rockstar Games ni à Take-Two Interactive.
+
+## Rubriques principales
+- [Codes de triche](${site.url}/codes/) : combinaisons à la croix directionnelle, effet, déblocage, sources
+- [Missions et solutions](${site.url}/missions/) : ${MISSIONS.missions.length} missions, une page par mission avec la solution étape par étape
+- [Véhicules](${site.url}/vehicules/) : ${VEHICULES.length + CATALOGUE.vehicules.length} véhicules, avec l'emplacement quand il est connu
+- [Objets à collectionner](${site.url}/collection/) : listes par type et par secteur
+- [Lieux](${site.url}/lieux/) : régions, quartiers et bâtiments de Leonida
+- [Astuces](${site.url}/astuces/) : réponses courtes aux questions des joueurs
+- [Dossier 100 %](${site.url}/dossiers/100-pour-cent/) : les objectifs exacts de la complétion
+- [Gagner de l'argent](${site.url}/dossiers/argent-rapide/)
+- [Carte interactive](${site.url}/carte/)
+- [Actualités](${site.url}/actualites/)
+
+## Fiabilité
+- [Méthode, statuts et sources](${site.url}/a-propos/)
+- [Mentions légales et confidentialité](${site.url}/mentions-legales/)
+
+## Index complet
+- [Plan du site](${site.url}/sitemap.xml)
+`);
 // administration : contenu d'origine (avant modifications) et état de la dernière publication
 write('assets/admin-donnees.json', JSON.stringify(Object.fromEntries(Object.entries(COLLECTIONS).map(([, [nom, , cle, titre]]) => [nom, { cle, titre, items: ORIGINAUX[nom] || [] }]))));
 write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA || '', commit: process.env.GITHUB_SHA || '', date: new Date().toISOString(), modifications: ADMIN_APPLIQUES, erreur: process.env.CONTENU_ERREUR === '1' }));

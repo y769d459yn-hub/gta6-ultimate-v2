@@ -2,6 +2,7 @@
 <html lang="fr" data-theme="night" class="v2">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tous les guides GTA 6 : dossiers, astuces, codes et missions</title>
 <meta name="description" content="Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.">
@@ -17,12 +18,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="preload" href="../assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/app.css">
 <link rel="stylesheet" href="../assets/home.css">
 <link rel="stylesheet" href="../assets/pages.css">
 <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Tous les guides GTA 6 : dossiers, astuces, codes et missions","description":"Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.","url":"https://gta6facile.fr/dossiers/","inLanguage":"fr","isPartOf":{"@type":"WebSite","name":"GTA 6 Facile","url":"https://gta6facile.fr/"},"mainEntity":{"@type":"ItemList","numberOfItems":4,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://gta6facile.fr/dossiers/argent-rapide/"},{"@type":"ListItem","position":2,"url":"https://gta6facile.fr/dossiers/codes-coffres/"},{"@type":"ListItem","position":3,"url":"https://gta6facile.fr/dossiers/secrets/"},{"@type":"ListItem","position":4,"url":"https://gta6facile.fr/dossiers/100-pour-cent/"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://gta6facile.fr/"},{"@type":"ListItem","position":2,"name":"Tous les guides","item":"https://gta6facile.fr/dossiers/"}]}</script>
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
@@ -69,6 +72,7 @@
 <script>(()=>{const b=document.querySelector('[data-tg]');if(!b)return;const q=b.querySelector('[data-tg-q]'),L=b.querySelector('[data-tg-list]'),E=b.querySelector('[data-tg-empty]'),C=b.querySelector('[data-tg-count]');let f='';const n=(x)=>x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
 const run=()=>{const w=n(q.value).split(/s+/).filter(Boolean);let k=0;[...L.children].forEach((li)=>{const ok=(!f||li.dataset.f===f)&&w.every((x)=>li.dataset.k.includes(x));li.hidden=!ok;if(ok)k++});C.textContent=k+(k>1?' résultats':' résultat');E.hidden=k>0};
 b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f=c.dataset.tgF;b.querySelectorAll('[data-tg-f]').forEach((x)=>x.setAttribute('aria-pressed',String(x===c)));run()}));q.addEventListener('input',run)})();</script>
+
 </main>
 <footer class="foot">
   <div class="foot-in">
@@ -101,7 +105,6 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 </div>
 <div class="toast" role="status" aria-live="polite" hidden></div>
 <script src="../assets/gsap.min.js" defer></script>
-<script src="../assets/ScrollTrigger.min.js" defer></script>
 <script src="../assets/SplitText.min.js" defer></script>
 <script src="../assets/DrawSVGPlugin.min.js" defer></script>
 <script src="../assets/app.js" defer></script>

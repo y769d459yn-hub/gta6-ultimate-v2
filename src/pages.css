@@ -530,3 +530,19 @@
 .v2 .col-map { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(45, 226, 230, .5); color: #5fe3df; font-weight: 700; font-size: .88rem; text-decoration: none; }
 .v2 .col-map .ic { width: 18px; height: 18px; }
 @media (max-width: 380px) { .v2 .col-map span { display: none; } .v2 .col-map { padding: 0 10px; } }
+
+/* codes : combinaison lisible en texte, plateformes, copie */
+.v2 .code-txt { margin: 6px 0 0; font: 600 .95rem/1.5 var(--f-b); letter-spacing: 0; text-transform: none; }
+.v2 .code-txt-k { display: block; font-size: .8rem; font-weight: 600; color: var(--tx2); }
+.v2 .code-txt-v { font-variant-numeric: tabular-nums; }
+.v2 .code-plat { display: flex; align-items: center; gap: 6px; margin: 6px 0 0; font-size: .82rem; color: var(--tx2); }
+.v2 .code-plat .ic { width: 16px; height: 16px; }
+.v2 .code-copy { margin-top: 8px; min-height: 40px; }
+/* fiches : date de vérification, signalement d'erreur, nouveaux statuts, corrections */
+.v2 .fiche-date { display: flex; align-items: center; gap: 6px; margin: 8px 0 0; font-size: .85rem; color: var(--tx2); }
+.v2 .fiche-date .ic { width: 16px; height: 16px; color: var(--green, #3ddc84); }
+.v2 .signal { margin-top: 8px; margin-bottom: 24px; }
+.v2 .b-teste { border-color: rgba(45, 226, 230, .55); color: #7ff4f6; }
+.v2 .b-obsolete { border-color: rgba(255, 80, 110, .55); color: #ff9fb2; }
+.v2 .corr { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; line-height: 1.5; }
+.v2 .corr time { color: var(--tx2); }

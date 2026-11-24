@@ -1,0 +1,22 @@
+# GTA 6 Facile
+
+> Guide francophone indépendant de GTA 6 (Grand Theft Auto VI, PS5 et Xbox Series) : solutions des missions, codes de triche, véhicules et où les trouver, objets à collectionner, lieux de Leonida et carte interactive. Chaque information indique ses sources et un statut de fiabilité (Testé en jeu, Confirmé, À vérifier, Provisoire, Obsolète). Site non affilié à Rockstar Games ni à Take-Two Interactive.
+
+## Rubriques principales
+- [Codes de triche](https://gta6facile.fr/codes/) : combinaisons à la croix directionnelle, effet, déblocage, sources
+- [Missions et solutions](https://gta6facile.fr/missions/) : 135 missions, une page par mission avec la solution étape par étape
+- [Véhicules](https://gta6facile.fr/vehicules/) : 312 véhicules, avec l'emplacement quand il est connu
+- [Objets à collectionner](https://gta6facile.fr/collection/) : listes par type et par secteur
+- [Lieux](https://gta6facile.fr/lieux/) : régions, quartiers et bâtiments de Leonida
+- [Astuces](https://gta6facile.fr/astuces/) : réponses courtes aux questions des joueurs
+- [Dossier 100 %](https://gta6facile.fr/dossiers/100-pour-cent/) : les objectifs exacts de la complétion
+- [Gagner de l'argent](https://gta6facile.fr/dossiers/argent-rapide/)
+- [Carte interactive](https://gta6facile.fr/carte/)
+- [Actualités](https://gta6facile.fr/actualites/)
+
+## Fiabilité
+- [Méthode, statuts et sources](https://gta6facile.fr/a-propos/)
+- [Mentions légales et confidentialité](https://gta6facile.fr/mentions-legales/)
+
+## Index complet
+- [Plan du site](https://gta6facile.fr/sitemap.xml)

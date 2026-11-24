@@ -35,7 +35,14 @@ for (const [p, h] of pages) {
     if (!fs.existsSync(t)) err(`lien cassé : ${p || '/'} → ${a}`);
   }
   // données structurées
-  for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch (e) { err(`JSON-LD invalide : ${p}`); } }
+  for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let j; try { j = JSON.parse(m[1]); } catch (e) { err(`JSON-LD invalide : ${p}`); continue; }
+    const liste = j['@type'] === 'ItemList' ? j : j.mainEntity && j.mainEntity['@type'] === 'ItemList' ? j.mainEntity : null;
+    for (const it of (liste && liste.itemListElement) || []) {
+      const u = it.url || (it.item && (it.item.url || it.item['@id'])) || (typeof it.item === 'string' ? it.item : '');
+      if (u && u.startsWith(BASE) && !pages.has(u.slice(BASE.length).split('#')[0])) err(`JSON-LD : élément de liste vers une page absente : ${p} → ${u}`);
+    }
+  }
   if (noindex || p === '404.html') continue;
   const t = decode((h.match(/<title>([^<]*)<\/title>/) || [])[1] || '');
   const d = decode((h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '');
@@ -64,6 +71,17 @@ if (urls.length !== indexables) err(`sitemap : ${urls.length} adresses pour ${in
 const robots = fs.readFileSync(path.join(OUT, 'robots.txt'), 'utf8');
 if (!robots.includes(`Sitemap: ${BASE}sitemap.xml`)) err('robots.txt : ligne Sitemap absente');
 if (/Disallow: \/\s*$/m.test(robots)) err('robots.txt bloque tout le site');
+
+// fiabilité : « confirmé » exige au moins deux sources (méthode du site), et seulement des statuts connus
+const lire = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+const statuts = Object.keys(site.statuts);
+for (const a of lire('astuces.json')) {
+  if (!statuts.includes(a.statut)) err(`astuce ${a.slug} : statut inconnu « ${a.statut} »`);
+  if (a.statut === 'confirme' && (a.sources || []).length < 2) err(`astuce ${a.slug} : « confirmé » avec moins de deux sources`);
+  if (a.verifie && !/^\d{4}-\d{2}-\d{2}$/.test(a.verifie)) err(`astuce ${a.slug} : date de vérification invalide`);
+}
+for (const c of lire('codes.json').codes) if (c.confirme && (c.sources || []).length < 2) err(`code ${c.id} : « confirmé » avec moins de deux sources`);
+if (!fs.existsSync(path.join(OUT, 'llms.txt'))) err('llms.txt absent');
 
 console.log(`${pages.size} pages · ${urls.length} dans le plan du site · ${erreurs.length} erreur(s) · ${alertes.length} alerte(s)`);
 for (const a of alertes.slice(0, 20)) console.log('  alerte :', a);

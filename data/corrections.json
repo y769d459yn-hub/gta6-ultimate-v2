@@ -1,0 +1,35 @@
+{
+ "info": "Corrections de contenu publiées sur le site, les plus récentes en premier.",
+ "corrections": [
+  {
+   "date": "2026-11-24",
+   "page": "codes/",
+   "titre": "Codes de triche",
+   "texte": "Le code « joueur-04 » n’avait qu’une seule source : il passe de « confirmé » à « à vérifier »."
+  },
+  {
+   "date": "2026-11-24",
+   "page": "dossiers/100-pour-cent/",
+   "titre": "Dossier 100 %",
+   "texte": "Réécrit d’après la liste officielle (GTA Wiki) : les 28 missions facultatives ne font pas partie du 100 % (il faut 100 tâches facultatives), et les objectifs sont donnés avec les quantités réellement demandées."
+  },
+  {
+   "date": "2026-11-24",
+   "page": "astuces/pay-n-spray/",
+   "titre": "Pay ’n’ Spray",
+   "texte": "Les guides se contredisaient : repeindre la voiture efface l’indice « véhicule reconnu » (GTA Wiki)."
+  },
+  {
+   "date": "2026-11-24",
+   "page": "astuces/se-soigner/",
+   "titre": "Se soigner",
+   "texte": "« Soin complet » retiré : l’effet du Zombix diminue si on en prend plusieurs à la suite (GTA Wiki)."
+  },
+  {
+   "date": "2026-11-24",
+   "page": "vehicules/",
+   "titre": "Véhicules",
+   "texte": "« Emplacements vérifiés » remplacé par « emplacement connu » : ces positions viennent de sources communautaires."
+  }
+ ]
+}

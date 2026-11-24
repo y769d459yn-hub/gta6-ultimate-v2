@@ -1,0 +1,22 @@
+# Diagnostic de publication (DNS, HTTPS, redirections, robots.txt, sitemap, liens directs) lancé depuis un serveur GitHub.
+# Lecture seule : ne publie et ne modifie rien. Se lance sur une proposition de modification ou à la demande.
+name: Diagnostic de publication
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Diagnostic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/diagnostic.sh 2>&1 | tee diagnostic.txt

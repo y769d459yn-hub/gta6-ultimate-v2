@@ -19,8 +19,15 @@
     const split = new SplitText(h1, { type: 'words,chars', wordsClass: 'w' });
     g.from(split.chars, { yPercent: 60, opacity: 0, duration: .8, stagger: .012, ease: 'expo.out', onComplete: () => split.revert() });
   }
-  if (window.DrawSVGPlugin && window.ScrollTrigger) {
-    window.ScrollTrigger.batch('.veh-svg', { once: true, start: 'top 92%', onEnter: (els) => g.from(els.map((e) => [...e.querySelectorAll('path, circle')]).flat(), { drawSVG: '0%', duration: 1.2, stagger: .01, ease: 'power2.inOut' }) });
+  // silhouettes qui se dessinent à l'entrée dans l'écran : IntersectionObserver (pas de mesure de toute la page comme ScrollTrigger)
+  const svgs = document.querySelectorAll('.veh-svg');
+  if (window.DrawSVGPlugin && svgs.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      const els = entries.filter((e) => e.isIntersecting).map((e) => e.target); if (!els.length) return;
+      els.forEach((e) => io.unobserve(e));
+      g.from(els.map((e) => [...e.querySelectorAll('path, circle')]).flat(), { drawSVG: '0%', duration: 1.2, stagger: .01, ease: 'power2.inOut' });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    svgs.forEach((e) => io.observe(e));
   }
   g.fromTo('.map-banner, .veh-hero', { opacity: 0, scale: .98 }, { opacity: 1, scale: 1, duration: .9, ease: 'expo.out', clearProps: 'transform' });
   const icons = document.querySelectorAll('.fiche-ico .ic > *, .door-ico .ic > *');
