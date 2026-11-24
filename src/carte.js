@@ -189,7 +189,7 @@
     const t = f.tip;
     const place = /^[sm]-/.test(f.id) || (f.service && f.cat !== 'vehicules'); // un endroit : son nom en titre, l'astuce en dessous
     const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : (f.desc || '').split('.')[0].replace(/^[^·]*· /, ''));
-    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : 'Position approximative (carte communautaire)';
+    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : f.src === 'wiki' ? 'Position indiquée par GTA Wiki' : 'Position approximative (carte communautaire)';
     const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
     const tags = `<div class="pn-tags"><span class="pn-tag ${st[1]}">${st[0]}</span></div>`;
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;

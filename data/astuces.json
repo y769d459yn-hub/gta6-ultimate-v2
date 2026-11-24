@@ -84,13 +84,14 @@
    "N'écrase jamais l'ancien.",
    "Pour revenir en arrière, recharge l'emplacement voulu."
   ],
-  "asavoir": "Certaines missions retirent une planque pour toujours. Sauvegarde juste avant.",
+  "asavoir": "Certaines missions retirent une planque pour toujours : la maison de Jason après « Douce maison », le Starlet Motel après « Départ ». Sauvegarde juste avant.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
    "consolyte-save",
-   "gamespot-tips"
+   "gamespot-tips",
+   "gtawiki-planques"
   ],
   "kw": [
    "chapitre",
@@ -263,10 +264,11 @@
   "asavoir": "Tirer sur des policiers fait monter la pression. Fuis plutôt que de te battre.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
    "gtabase-wanted",
-   "gamespot-tips"
+   "gamespot-tips",
+   "gtawiki-wanted"
   ],
   "kw": [
    "police",
@@ -294,16 +296,17 @@
   "court": "Étoiles qui clignotent",
   "reponse": "Les policiers t'ont perdu de vue et te cherchent. Reste caché et les étoiles finissent par disparaître.",
   "etapes": [
-   "Étoiles pleines = ils te voient.",
-   "Étoiles qui clignotent = ils te cherchent.",
-   "Reste hors de vue 30 à 60 secondes à faible niveau : les étoiles disparaissent."
+   "Étoiles pleines = les policiers te voient.",
+   "Étoiles qui clignotent = ils t'ont perdu de vue et te cherchent.",
+   "Étoiles rouges = tu es encore dans leur zone de recherche : sors-en sans te faire voir."
   ],
-  "asavoir": "Plus il y a d'étoiles, plus elles mettent de temps à disparaître.",
+  "asavoir": "Étoiles grises : la police n'est pas encore sur place mais a ta description. Étoiles vides : un crime a été signalé, sans description de toi.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "gtabase-wanted"
+   "gtabase-wanted",
+   "gtawiki-wanted"
   ],
   "kw": [
    "etoiles",
@@ -325,19 +328,23 @@
   "icon": "eye",
   "titre": "Que signifient les icônes rouges sous les étoiles ?",
   "court": "Icônes sous les étoiles",
-  "reponse": "Elles montrent ce que la police sait de toi : ta voiture, ta tenue ou ton visage. Change l'élément repéré pour qu'ils te perdent.",
+  "reponse": "Elles montrent ce que la police sait de toi : ton visage, ta tenue, ton véhicule, ton arme, une caméra de surveillance qui t'a filmé, ou le fait que vous êtes deux. Fais disparaître chaque indice pour qu'ils te perdent.",
   "etapes": [
-   "Regarde les icônes rouges sous les étoiles.",
-   "Voiture repérée : change de véhicule.",
-   "Tenue ou visage repéré : change de vêtements, de chapeau ou d'apparence."
+   "Visage : change de coiffure, ou porte un masque pendant le crime et retire-le après.",
+   "Tenue : change de vêtements en boutique, à la planque, ou avec des habits de rechange rangés dans le coffre.",
+   "Véhicule : repeins-le, détruis-le à l'écart, ou change de voiture.",
+   "Arme : range ou jette l'arme utilisée.",
+   "Caméra : détruis-la ou efface l'enregistrement quand c'est possible.",
+   "À deux : sépare Jason et Lucia."
   ],
-  "asavoir": "Le système exact peut différer selon les sources.",
+  "asavoir": "Moins la police a d'indices, plus il est facile de lui échapper.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
    "gtabase-wanted",
-   "gamespot-tips"
+   "gamespot-tips",
+   "gtawiki-wanted"
   ],
   "kw": [
    "icone",
@@ -394,18 +401,19 @@
   "icon": "spray",
   "titre": "Le Pay 'n' Spray efface-t-il les étoiles ?",
   "court": "Pay 'n' Spray",
-  "reponse": "Repeindre ta voiture empêche la police de la reconnaître. Les guides ne sont pas d'accord : certains disent que ça efface aussi les étoiles, d'autres non.",
+  "reponse": "Repeindre ta voiture efface l'indice « véhicule reconnu » sous les étoiles : la police ne la reconnaît plus.",
   "etapes": [
    "Sème d'abord les policiers qui te voient.",
    "Entre dans un Pay 'n' Spray.",
    "Ressors avec la voiture repeinte."
   ],
-  "asavoir": "Information contradictoire, à confirmer en jeu.",
+  "asavoir": "Pour perdre complètement la police, efface aussi les autres indices (tenue, visage…) et sors de la zone de recherche.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "provisoire",
+  "statut": "confirme",
   "sources": [
-   "gtabase-wanted"
+   "gtabase-wanted",
+   "gtawiki-wanted"
   ],
   "kw": [
    "pay n spray",
@@ -792,14 +800,15 @@
    "Vérifie qu'elle n'a pas de traceur (appli WAiNK).",
    "Livre-la chez Watkins Auto Parts, puis attends environ 2 minutes avant la suivante."
   ],
-  "asavoir": "Pas de limite par jour, mais une courte attente entre deux ventes. Une voiture abîmée rapporte moins.",
+  "asavoir": "Pas de limite par jour, mais une courte attente entre deux ventes. Une voiture abîmée rapporte moins. Moses peut aussi immatriculer une voiture volée pour que tu la gardes, et te laisse ranger un véhicule de plus au Port Gellhorn Station Garage.",
   "duree": 5,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
    "consolepulse-money",
    "rarethief-sell",
-   "g2a-money"
+   "g2a-money",
+   "gtawiki-moses"
   ],
   "kw": [
    "vendre",
@@ -1211,12 +1220,13 @@
    "Lance la mission « Buck Me ».",
    "Ouvre BuckMe pour déposer ton argent."
   ],
-  "asavoir": "Les guides placent ce déblocage à la fin du chapitre 1 ou au chapitre 2.",
+  "asavoir": "La mission se passe à l'agence Fleeca de Key Lento : la banque refuse d'ouvrir un compte classique à Jason et Lucia, d'où les comptes BuckMe.",
   "duree": 2,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "beebom-apps"
+   "beebom-apps",
+   "gtawiki-buckme"
   ],
   "kw": [
    "buck me",
@@ -1244,12 +1254,13 @@
    "Récupère ce qui t'intéresse dans la planque.",
    "Lance la mission."
   ],
-  "asavoir": "Deux missions au moins sont concernées, selon un guide.",
+  "asavoir": "La maison de Jason (débloquée par la mission « Partie de pêche ») n'est plus accessible après « Douce maison », et le Starlet Motel (débloqué par « Heure de sortie ») après « Départ ».",
   "duree": 1,
   "niveau": "facile",
-  "statut": "a-verifier",
+  "statut": "confirme",
   "sources": [
-   "consolyte-save"
+   "consolyte-save",
+   "gtawiki-planques"
   ],
   "kw": [
    "planque",
@@ -1482,18 +1493,19 @@
   "icon": "heart",
   "titre": "Comment se soigner dans GTA 6 ?",
   "court": "Se soigner",
-  "reponse": "Ta vie remonte seule jusqu'à la ligne blanche de la barre. Au-delà, prends du Zombix (soin complet), mange ou bois, ou dors à la planque.",
+  "reponse": "Ta vie remonte seule jusqu'à la ligne blanche de la barre. Au-delà, prends du Zombix, mange ou bois, ou dors à la planque.",
   "etapes": [
    "Mets-toi à l'abri : la vie remonte jusqu'à la ligne blanche.",
    "Utilise un Zombix (armoires à pharmacie, épiceries, corps).",
    "Avant un gros combat, mange un aliment au cœur orange : il donne de la vie en plus."
   ],
-  "asavoir": "Cœur rose = soigne jusqu'au maximum. Cœur orange = vie temporaire en plus. L'adrénaline réduit les dégâts pendant un moment.",
+  "asavoir": "Cœur rose = soigne jusqu'au maximum. Cœur orange = vie temporaire en plus. L'adrénaline réduit les dégâts pendant un moment. Prendre plusieurs Zombix à la suite en réduit l'effet pendant un moment.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
-   "gtabase-heal"
+   "gtabase-heal",
+   "gtawiki-zombix"
   ],
   "kw": [
    "soigner",
@@ -1703,14 +1715,15 @@
    "Repère-la sur la carte du jeu grâce à l'icône maison.",
    "On ne peut pas acheter de planque : seulement des garages."
   ],
-  "asavoir": "En changeant de chapitre, l'ancienne planque n'est plus accessible. Un guide en signale une cinquième au chapitre 5 (Pegassi Residences), non confirmée.",
+  "asavoir": "La maison de Jason se débloque avec « Partie de pêche », le Starlet Motel avec « Heure de sortie », la planque de Bayside avec « Bienvenue à Vice City » (selon GTA Wiki). L'ancienne planque n'est plus accessible ensuite. Un guide en signale une cinquième au chapitre 5 (Pegassi Residences), non confirmée.",
   "duree": 1,
   "niveau": "facile",
   "statut": "a-verifier",
   "sources": [
    "timesaver-safehouses",
    "gtabase-properties",
-   "gtadb"
+   "gtadb",
+   "gtawiki-planques"
   ],
   "kw": [
    "planque",
