@@ -104,13 +104,32 @@
         });
       }
       // repères du guide, regroupés en écran
-      const R = 34, cl = [];
-      st.feats.filter((f) => !f.label && st.filter(f)).forEach((f) => {
+      // 1) regroupement par proximité à l'écran ; 2) chaque groupe recentré sur ses membres ;
+      // 3) deux groupes qui se toucheraient fusionnent (aucun repère n'est retiré, seulement regroupé)
+      const R = 34, taille = (n) => (n === 1 ? 34 : Math.min(52, 38 + Math.sqrt(n) * 2.2));
+      let cl = [];
+      const vis = st.feats.filter((f) => !f.label && st.filter(f));
+      const [vx0, vy1] = toWorld(-80, -80), [vx1, vy0] = toWorld(W + 80, H + 80); // hors écran : regroupé sans calcul fin
+      vis.forEach((f) => {
         const [sx, sy] = toScreen(f.x, f.y);
-        if (f.id === st.active) { cl.push({ sx, sy, m: [f], solo: 1 }); return; }
-        const c = cl.find((c) => !c.solo && Math.hypot(c.sx - sx, c.sy - sy) < R);
-        if (c) { c.m.push(f); } else cl.push({ sx, sy, m: [f] });
+        if (f.id === st.active) { cl.push({ sx, sy, m: [f], p: [[sx, sy]], solo: 1 }); return; }
+        const loin = f.x < vx0 || f.x > vx1 || f.y < vy0 || f.y > vy1;
+        const c = cl.find((c) => !c.solo && Math.hypot(c.sx - sx, c.sy - sy) < (loin ? R * 3 : R));
+        if (c) { c.m.push(f); c.p.push([sx, sy]); } else cl.push({ sx, sy, m: [f], p: [[sx, sy]] });
       });
+      const centre = (c) => { c.sx = c.p.reduce((t, q) => t + q[0], 0) / c.p.length; c.sy = c.p.reduce((t, q) => t + q[1], 0) / c.p.length; };
+      cl.forEach(centre);
+      for (let pass = 0, chg = true; chg && pass < 8; pass++) {
+        chg = false;
+        for (let i = 0; i < cl.length; i++) {
+          const a = cl[i]; if (!a || a.solo) continue;
+          for (let j = i + 1; j < cl.length; j++) {
+            const b = cl[j]; if (!b || b.solo) continue;
+            if (Math.hypot(a.sx - b.sx, a.sy - b.sy) < (taille(a.m.length) + taille(b.m.length)) / 2 + 4) { a.m.push(...b.m); a.p.push(...b.p); centre(a); cl[j] = null; chg = true; }
+          }
+        }
+        cl = cl.filter(Boolean);
+      }
       cl.forEach((c, i) => {
         const el = document.createElement('button'); el.type = 'button';
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
@@ -132,7 +151,10 @@
           el.style.setProperty('--c', (cats[parts[0][0]] || {}).color || '#ff2bd6');
           el.style.setProperty('--sz', Math.min(52, 38 + Math.sqrt(c.m.length) * 2.2) + 'px');
           el.setAttribute('aria-label', `${c.m.length} repères ici (${parts.map(([k, n]) => `${n} ${((cats[k] || {}).nom || k).toLowerCase()}`).join(', ')}) : toucher pour zoomer`);
-          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); fit(c.m, 2.6); });
+          // repères trop proches pour être séparés même au zoom maximum : la liste s'ouvre au lieu de zoomer
+          const xs = c.m.map((f) => f.x), ys = c.m.map((f) => f.y);
+          const serres = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) * sMax < 30;
+          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); if ((serres || cam.s >= sMax * .97) && o.onCluster) o.onCluster(c.m); else fit(c.m, 2.6); });
         }
         add(el, x, y);
       });
