@@ -712,3 +712,12 @@ body.p-map { padding-bottom: 0; overflow: hidden; }
 .acc-recents a { display: block; padding: 10px 12px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); color: inherit; text-decoration: none; font-weight: 600; }
 .so-empty p { margin: 6px 0; }
 .so-empty .btn-s { margin-top: 6px; }
+
+/* recherche : extraits sur deux lignes, réponse vérifiée, raccourci de rubrique, « Voir plus » */
+.so-item-t span { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.so-item-t .so-rep { -webkit-line-clamp: 4; color: var(--tx2, var(--muted)); }
+.so-ok { display: inline-flex; align-items: center; gap: 3px; font-style: normal; font-weight: 800; font-size: .72rem; color: #3ddc84; vertical-align: 1px; }
+.so-ok .ic { width: 13px; height: 13px; }
+.so-acts { margin: 8px 0 4px; }
+.so-plus { height: 40px; padding: 0 14px; border-radius: 999px; background: none; border: 1.5px dashed var(--line2); color: var(--tx2, var(--muted)); font-weight: 700; font-size: .88rem; cursor: pointer; }
+.so-empty-a { justify-content: center; margin: 4px 0 6px; }

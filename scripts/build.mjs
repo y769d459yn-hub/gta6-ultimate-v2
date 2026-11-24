@@ -112,6 +112,12 @@ const byId = (arr, key = 'slug') => Object.fromEntries(arr.map((x) => [x[key], x
 const A = byId(ASTUCES), V = byId(VEHICULES), L = byId(LIEUX, 'id'), E = byId(ENC), N = byId(ACTUS);
 const REG = Object.fromEntries(LIEUX.filter((l) => l.type === 'region').map((r) => [r.id, r]));
 const fmtDate = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+// extrait de recherche : l'information dès les premiers mots, coupé à une fin de phrase ou de mot (jamais au milieu d'un mot)
+const extrait = (txt = '', max = 120) => {
+  const t = String(txt).replace(/\s+/g, ' ').trim(); if (t.length <= max) return t;
+  const c = t.slice(0, max); const fin = Math.max(c.lastIndexOf('. '), c.lastIndexOf(' : '), c.lastIndexOf(' ; '));
+  return fin >= 60 ? c.slice(0, fin + 1).trim() : c.slice(0, c.lastIndexOf(' ')).replace(/[,;:(]$/, '').trim() + '…';
+};
 const ld = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
 
 function badge(st) {
@@ -1618,11 +1624,11 @@ if (site.editeur && site.editeur.nom) {
 // ---------- index de recherche ----------
 const index = [];
 const push = (o) => index.push(o);
-for (const a of ASTUCES) { const c = cat('astuces', a.cat); push({ t: a.court, q: a.titre, k: norm([a.kw.join(' '), c.nom].join(' ')), d: a.reponse.slice(0, 90), u: `astuces/${a.slug}/`, i: a.icon, c: c.color, g: 'astuce', s: a.cat, l: c.nom, m: (astuceMap[a.slug] || []).length ? 1 : 0 }); }
+for (const a of ASTUCES) { const c = cat('astuces', a.cat); push({ t: a.court, q: a.titre, k: norm([a.kw.join(' '), c.nom].join(' ')), d: extrait(a.reponse), ...(['confirme', 'teste'].includes(a.statut) ? { r: extrait(a.reponse, 260), rs: site.statuts[a.statut].nom || a.statut } : {}), u: `astuces/${a.slug}/`, i: a.icon, c: c.color, g: 'astuce', s: a.cat, l: c.nom, m: (astuceMap[a.slug] || []).length ? 1 : 0 }); }
 for (const x of CATALOGUE.vehicules) { const c = cat('vehicules', x.type); push({ t: x.nom, q: x.classe, k: norm([x.nom, x.fabricant || '', x.classe, c.nom, x.inspiration || '', 'vehicule'].join(' ')), d: x.inspiration ? `Inspiré de ${x.inspiration}` : x.classe, u: `vehicules/${x.slug}/`, i: c.icon, c: c.color, g: 'vehicule', s: x.type, l: 'Véhicule · ' + x.classe, m: 0, f: '' }); }
-for (const v of VEHICULES) { const c = cat('vehicules', v.type); const l = L[v.lieu]; push({ t: v.nom, q: v.sous, k: norm([v.kw.join(' '), c.nom, 'vehicule voiture', l ? l.nom : ''].join(' ')), d: v.emplacement.slice(0, 90), u: `vehicules/${v.slug}/`, i: c.icon, c: v.color || c.color, g: 'vehicule', s: v.type, l: 'Véhicule · ' + c.nom, m: vehOnMap(v.slug) ? 1 : 0, f: vehOnMap(v.slug) ? 'v-' + v.slug : '' }); }
-for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: l.desc.slice(0, 90), u: `lieux/${l.id}/`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
-for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: e.bref.slice(0, 90), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
+for (const v of VEHICULES) { const c = cat('vehicules', v.type); const l = L[v.lieu]; push({ t: v.nom, q: v.sous, k: norm([v.kw.join(' '), c.nom, 'vehicule voiture', l ? l.nom : ''].join(' ')), d: extrait(v.emplacement), u: `vehicules/${v.slug}/`, i: c.icon, c: v.color || c.color, g: 'vehicule', s: v.type, l: 'Véhicule · ' + c.nom, m: vehOnMap(v.slug) ? 1 : 0, f: vehOnMap(v.slug) ? 'v-' + v.slug : '' }); }
+for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat === 'activites'; push({ t: l.nom, q: '', k: norm([l.kw.join(' '), c.nom, act ? 'activite' : 'lieu', l.region && REG[l.region] ? REG[l.region].nom : ''].join(' ')), d: extrait(l.desc), u: `lieux/${l.id}/`, i: l.icon, c: c.color, g: act ? 'activite' : 'lieu', s: l.type, l: act ? 'Activité' : 'Lieu · ' + c.nom, m: onMap(l.id) ? 1 : 0, f: onMap(l.id) ? l.id : '' }); }
+for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: extrait(e.bref), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
 {
@@ -1630,14 +1636,14 @@ const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
   for (const t of Object.values(types).filter((x) => x.cat !== 'collection')) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
 }
 const dejaT = new Set(index.map((x) => norm(x.t)));
-for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: p.desc.slice(0, 90), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
+for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: extrait(p.desc), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collection', k: norm(`${T.pluriel} ${T.nom} objet a collectionner collection emplacement tous liste`), d: 'Tous les emplacements, par secteur', u: `collection/${T.slug}/`, i: T.icon, c: '#ff2bd6', g: 'astuce', s: '', l: 'Objets à collectionner', m: 0 });
 push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'astuce', s: '', l: 'Toutes les listes', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
-for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: m.resume, u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
+for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: extrait(m.resume), u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
-for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
-for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
+for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: extrait(d.reponse), u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
+for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, ...(c.confirme && c.sources.length >= 2 ? { r: `${c.effet} Combinaison : ${c.sequence.map((x) => ({ haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' }[x] || x)).join(', ')}.`, rs: 'Confirmé' } : {}), u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
 for (const g of VGROUPES) { const c = cat('vehicules', g.type) || {}; push({ t: `${g.nom} (${g.n})`, q: 'liste', k: norm(`${g.nom} ${UN[g.nom] || ''} ${c.nom || ''} vehicules liste tous`), d: `Tous les véhicules de cette catégorie, avec leur emplacement quand il est connu`, u: `vehicules/#cat-${g.id}`, i: c.icon || 'car', c: c.color || '#ff9a1f', g: 'vehicule', s: g.type, l: 'Liste de véhicules', m: 0 }); }
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
@@ -1662,7 +1668,14 @@ const pins = (site.reponsesDirectes || []).map(([q, u]) => {
   if (!index.some((x) => x.u === u)) throw new Error(`réponse directe « ${q} » : ${u} n'est pas dans l'index de recherche`);
   return [norm(q), u];
 });
-write('data/index.json', JSON.stringify({ items: index, syn, popular, pins }));
+const NB = { vehicules: VEHICULES.length + CATALOGUE.vehicules.length, missions: MISSIONS.missions.length, carte: features.length, codes: CODES.codes.length, collection: COLL.reduce((n, t) => n + t.items.length, 0), astuces: ASTUCES.length, lieux: LIEUX.length };
+const DNB = { vehicules: (n) => `${n} véhicules, avec l'emplacement quand il est connu`, missions: (n) => `${n} missions, la solution étape par étape`, carte: (n) => `${n} repères : lieux, véhicules, objets`, codes: (n) => `${n} codes, avec la combinaison et le déblocage`, collection: (n) => `${n} emplacements, par type et par secteur`, astuces: (n) => `${n} réponses courtes aux questions des joueurs`, lieux: (n) => `${n} lieux de Leonida` };
+const existe = (u) => pages.some(({ p }) => p === u.split(/[?#]/)[0]);
+const cats = (site.rechercheCategories || []).map((x) => {
+  for (const u of [x.u, ...x.actions.map((a) => a[1])]) if (!existe(u)) throw new Error(`raccourci de recherche : ${u} n'existe pas`);
+  return { m: x.mots.map(norm), t: x.t, u: x.u, i: x.i, c: x.c, d: DNB[x.n] ? DNB[x.n](NB[x.n]) : '', a: x.actions };
+});
+write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats }));
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,

@@ -513,5 +513,179 @@
    "vehicule police",
    "vehicules/#cat-urgences"
   ]
+ ],
+ "rechercheCategories": [
+  {
+   "mots": [
+    "voiture",
+    "voitures",
+    "vehicule",
+    "vehicules",
+    "auto",
+    "autos",
+    "bagnole",
+    "caisse",
+    "car",
+    "cars"
+   ],
+   "t": "Tous les véhicules",
+   "u": "vehicules/",
+   "i": "car",
+   "c": "#ff9a1f",
+   "n": "vehicules",
+   "actions": [
+    [
+     "Emplacement connu",
+     "vehicules/?connu=1",
+     "pin"
+    ],
+    [
+     "Sur la carte",
+     "carte/?cat=vehicules",
+     "map"
+    ]
+   ]
+  },
+  {
+   "mots": [
+    "mission",
+    "missions",
+    "soluce",
+    "solution",
+    "solutions",
+    "histoire",
+    "walkthrough"
+   ],
+   "t": "Toutes les missions",
+   "u": "missions/",
+   "i": "flag",
+   "c": "#ff3d6e",
+   "n": "missions",
+   "actions": [
+    [
+     "Rejouer une mission",
+     "astuces/rejouer-mission/",
+     "replay"
+    ]
+   ]
+  },
+  {
+   "mots": [
+    "carte",
+    "map",
+    "plan",
+    "carte interactive"
+   ],
+   "t": "Carte interactive",
+   "u": "carte/",
+   "i": "map",
+   "c": "#19d3e3",
+   "n": "carte",
+   "actions": [
+    [
+     "Objets à collectionner",
+     "carte/?cat=collection",
+     "badge"
+    ],
+    [
+     "Véhicules",
+     "carte/?cat=vehicules",
+     "car"
+    ]
+   ]
+  },
+  {
+   "mots": [
+    "code",
+    "codes",
+    "triche",
+    "triches",
+    "cheat",
+    "cheats",
+    "code de triche",
+    "codes de triche"
+   ],
+   "t": "Codes de triche",
+   "u": "codes/",
+   "i": "code",
+   "c": "#9b6bff",
+   "n": "codes",
+   "actions": [
+    [
+     "Entrer un code",
+     "astuces/entrer-un-code/",
+     "gamepad"
+    ],
+    [
+     "Code 250 000 $",
+     "astuces/code-argent/",
+     "money"
+    ]
+   ]
+  },
+  {
+   "mots": [
+    "objet",
+    "objets",
+    "collection",
+    "collectionner",
+    "collectible",
+    "collectibles",
+    "objets a collectionner"
+   ],
+   "t": "Objets à collectionner",
+   "u": "collection/",
+   "i": "badge",
+   "c": "#ff2bd6",
+   "n": "collection",
+   "actions": [
+    [
+     "Sur la carte",
+     "carte/?cat=collection",
+     "map"
+    ]
+   ]
+  },
+  {
+   "mots": [
+    "astuce",
+    "astuces",
+    "conseil",
+    "conseils",
+    "aide",
+    "guide",
+    "guides"
+   ],
+   "t": "Toutes les astuces",
+   "u": "astuces/",
+   "i": "bolt",
+   "c": "#ffd23f",
+   "n": "astuces",
+   "actions": []
+  },
+  {
+   "mots": [
+    "lieu",
+    "lieux",
+    "endroit",
+    "endroits",
+    "ville",
+    "villes",
+    "region",
+    "regions"
+   ],
+   "t": "Tous les lieux",
+   "u": "lieux/",
+   "i": "pin",
+   "c": "#3ddc84",
+   "n": "lieux",
+   "actions": [
+    [
+     "Sur la carte",
+     "carte/?cat=lieux",
+     "map"
+    ]
+   ]
+  }
  ]
 }
