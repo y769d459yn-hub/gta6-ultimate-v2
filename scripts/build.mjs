@@ -83,6 +83,7 @@ for (const v of CATALOGUE.vehicules) v.inspiration = frInsp(v.inspiration);
 for (const f of Object.values(CATALOGUE.fiches)) if (f.inspiration) f.inspiration = frInsp(f.inspiration);
 const LIEUX = read('lieux.json');
 const ENC = read('encyclopedie.json');
+const MESURE = (site.mesure && /^[a-z0-9-]{2,40}$/.test(site.mesure.goatcounter || '') && site.mesure.goatcounter) || '';
 const ACTUS = read('actualites.json').sort((a, b) => b.date.localeCompare(a.date));
 // date de mise à jour affichée (pied de page, plan du site) : la plus récente entre site.json, les actualités et l'administration
 site.majLe = [site.majLe, ...ACTUS.map((x) => x.date), ...ADMIN_ROWS.map((r) => String(r.maj || '').slice(0, 10))].filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d <= new Date().toISOString().slice(0, 10)).sort().pop();
@@ -462,6 +463,7 @@ ${tabs.map(([u, t, i]) => u === '#search'
 ${v2 ? ['gsap', 'ScrollTrigger', 'SplitText', 'DrawSVGPlugin'].map((n) => `<script src="${R}assets/${n}.min.js" defer></script>`).join('\n') : ''}
 <script src="${R}assets/app.js" defer></script>
 <script src="${R}assets/compte.js" defer></script>
+${MESURE ? `<script src="${R}assets/mesure.js" defer data-gc="${MESURE}"></script>` : ''}
 ${scripts.map((s) => `<script src="${R}assets/${s}" defer></script>`).join('\n')}
 </body>
 </html>`;
@@ -1526,7 +1528,9 @@ if (site.editeur && site.editeur.nom) {
   </section>
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
-    <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie publicitaire, ni outil de mesure d'audience, ni bouton de réseau social.</p>
+    <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie, ni publicité, ni bouton de réseau social${MESURE ? '' : ", ni outil de mesure d'audience"}.</p>
+    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
+      <p><b>Tu peux refuser à tout moment</b> : <button class="btn btn--ghost" type="button" data-mesure-refus aria-pressed="false">${icon('eye')}<span data-on="Tes visites ne sont plus comptées (annuler)" data-off="Ne pas compter mes visites">Ne pas compter mes visites</span></button></p></div>` : ''}
     <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
     <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
     <p><b>Tes droits :</b> accès, rectification, effacement, portabilité, limitation et opposition. Écris à ${mail}. Tu peux aussi adresser une réclamation à la <a href="https://www.cnil.fr/fr/plaintes" rel="noopener" target="_blank">CNIL</a>.</p>
