@@ -418,7 +418,7 @@ ${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="fo
 <link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
 <link rel="stylesheet" href="${R}assets/app.css">${v2 ? `\n<link rel="stylesheet" href="${R}assets/home.css">` : ''}${styles.map((f) => `\n<link rel="stylesheet" href="${R}assets/${f}">`).join('')}
-<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size}catch(e){}</script>
+<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size;if(P.spoil==='off')document.documentElement.dataset.spoil='off'}catch(e){}</script>
 ${schema.map(ld).join('\n')}
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
@@ -751,6 +751,7 @@ function vehCard(v, R) {
   <span class="card-meta">${badge(v.dispo)}${l ? `<span class="pill">${icon('pin')}${esc(l.nom)}</span>` : `<span class="pill pill--warn">${icon('question')}Position non vérifiée</span>`}</span></span>
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
 }
+let VGROUPES = []; // catégories de la page Véhicules, aussi proposées par la recherche
 const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classiques': 'Sportive classique', 'Muscle cars': 'Muscle car', 'Coupés': 'Coupé', 'Berlines': 'Berline', 'Motos': 'Moto', 'Vélos': 'Vélo', 'Bateaux': 'Bateau', 'Hélicoptères': 'Hélicoptère', 'Avions': 'Avion', 'Police et urgences': 'Urgences', 'Militaires': 'Militaire', 'Vans et fourgons': 'Van', 'Utilitaires': 'Utilitaire', 'Industriels': 'Industriel', 'Taxis, bus et service': 'Service' };
 {
   const p = 'vehicules/', R = R_(p);
@@ -788,6 +789,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
     (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
   }
   const groupes = GRP.filter((g) => cartes[g.id]);
+  VGROUPES = groupes.map((g) => ({ id: g.id, nom: g.nom, type: g.type, n: cartes[g.id].length }));
   const total = VEHICULES.length + CATALOGUE.vehicules.length;
   const nbOu = Object.values(cartes).flat().filter((c) => c.html.includes('data-known="1"')).length;
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
@@ -975,7 +977,7 @@ const COLL = (() => {
   const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}${m.tache ? ' mis--tache' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
     <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable || m.tache ? `<small>${[m.facultative ? 'facultative' : '', m.tache ? 'petite tâche' : '', m.manquable ? '<em>peut être manquée</em>' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
     <div class="mis-b">
-      <p class="mis-r">${esc(m.resume)}</p>
+      <p class="mis-r spoil">${esc(m.resume)}</p>
       <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
       <h3 class="mis-h">${icon('list')}Étape par étape</h3>
       <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
@@ -999,6 +1001,7 @@ const COLL = (() => {
     <button class="chip" type="button" data-mch="" aria-pressed="true">Tous</button>
     ${CH.map((c) => `<button class="chip" type="button" data-mch="${c.id}" aria-pressed="false">${c.id === 'prologue' ? 'Prologue' : `Chap. ${c.id}`}</button>`).join('')}
   </div>
+  <p class="spoil-line"><button class="chip" type="button" data-spoil-tg aria-pressed="false">${icon('eye')}Masquer les spoilers</button></p>
   <div class="filterbar" role="group" aria-label="Options d'affichage">
     <button class="chip chip--toggle" type="button" data-mopt aria-pressed="true">${icon('plus')}Facultatives</button>
     <button class="chip chip--toggle" type="button" data-mhide aria-pressed="false">${icon('eye')}Masquer les missions faites</button>
@@ -1038,7 +1041,7 @@ const COLL = (() => {
     const i = histoire.indexOf(m);
     const prec = i > 0 ? histoire[i - 1] : null, suiv = i >= 0 && i < histoire.length - 1 ? histoire[i + 1] : null;
     const memeChap = m.facultative ? MS.filter((x) => x.chapitre === m.chapitre && x.facultative && x.id !== m.id).slice(0, 4) : [];
-    const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
+    const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b${k === 'Mission suivante' ? ' class="spoil"' : ''}>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
     const tags = [m.facultative ? 'Facultative' : m.tache ? 'Petite tâche' : 'Histoire principale', m.manquable ? 'Peut être manquée' : ''].filter(Boolean);
     const body = `<article class="wrap fiche" style="--c:#ff3d6e">
   <header class="fiche-head" data-reveal-group>
@@ -1047,11 +1050,13 @@ const COLL = (() => {
     <h1 class="h1 h1--fiche">${esc(m.nom)} : solution de la mission</h1>
     ${m.nomEn && m.nomEn !== m.nom ? `<p class="muted">Nom anglais : ${esc(m.nomEn)}</p>` : ''}
   </header>
-  <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(m.resume)}</p></section>
+  <section class="answer"><span class="answer-k">${icon('bolt')}En bref<button class="lnk spoil-tg" type="button" data-spoil-tg aria-pressed="false">Masquer les spoilers</button></span><p class="spoil">${esc(m.resume)}</p></section>
   <div class="actions">
     <a class="btn btn--primary" href="#etapes">${icon('list')}Voir la solution</a>
+    <a class="btn" href="#bloque">${icon('question')}Je suis bloqué</a>
     ${missionsSur[m.id] ? `<a class="btn" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}Voir sur la carte</a>` : ''}
     <button class="btn btn--ghost" type="button" data-mission-faite="${m.id}" aria-pressed="false">${icon('check')}<span data-on="Mission faite" data-off="J'ai fini cette mission">J'ai fini cette mission</span></button>
+    ${suiv ? `<a class="btn btn--primary" href="${R}missions/${suiv.id}/" data-mission-suivante hidden>${icon('arrow-right')}<span>Mission suivante : <span class="spoil">${esc(suiv.nom)}</span></span></a>` : ''}
   </div>
   <dl class="facts">
     <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
@@ -1063,7 +1068,8 @@ const COLL = (() => {
     <h2 id="et-t" class="h3">${icon('list')}Solution étape par étape</h2>
     <ol class="steps">${m.etapes.map((e, n) => `<li class="step"><span class="step-n">${n + 1}</span><span class="step-t">${esc(e)}</span></li>`).join('')}</ol>
   </section>
-  ${m.bloque.length ? `<section class="steps-wrap mis-bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></section>` : ''}
+  <section class="steps-wrap mis-bloque" id="bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2>${m.bloque.length ? `<ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul>` : `<p>Pas encore d'astuce pour cette mission. Relis l'étape où tu t'arrêtes ci-dessus, et dis-nous où tu bloques : on complète la fiche.</p>`}
+    <p><a class="btn-s btn-s--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Bloqué sur la mission ${m.nom}`)}&amp;body=${encodeURIComponent(`Mission : ${m.nom} (${site.url}/${p})\nÉtape où je bloque :\n`)}">${icon('mail')}<span>Je bloque encore : nous écrire</span></a></p></section>
   ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, 'Mission précédente') : ''}${suiv ? lienM(suiv, 'Mission suivante') : ''}</div></nav>` : ''}
   ${memeChap.length ? `<section class="related"><h2 class="h3">${icon('plus')}Autres missions facultatives du ${chNom(m.chapitre).toLowerCase()}</h2><div class="minis">${memeChap.map((x) => lienM(x, 'Facultative')).join('')}</div></section>` : ''}
   ${memeLieu.length ? `<section class="related"><h2 class="h3">${icon('pin')}Au même endroit</h2><div class="minis">${memeLieu.map((x) => lienM(x, chNom(x.chapitre))).join('')}</div></section>` : ''}
@@ -1495,13 +1501,14 @@ for (const a of ACTUS) {
     <div class="acc-card" style="--c:#ff2bd6"><span class="tile-ico">${icon('badge')}</span><b>Objets trouvés</b><div class="ring" data-ring-obj style="--p:0"><span data-acc-obj>0</span><small>/ ${COLL.reduce((n, t) => n + t.items.length, 0)}</small></div><a class="link-btn" href="${R}collection/">Voir les objets</a></div>
     <div class="acc-card acc-card--prefs" style="--c:#9b6bff"><span class="tile-ico">${icon('sliders')}</span><b>Mes préférences</b>
       <p class="sheet-l">Animations</p><div class="chips" data-pref="motion"><button class="chip" data-value="on" aria-pressed="false">Oui</button><button class="chip" data-value="off" aria-pressed="false">Réduites</button></div>
+      <p class="sheet-l">Résumés des missions (spoilers)</p><div class="chips" data-pref="spoil"><button class="chip" data-value="" aria-pressed="false">Afficher</button><button class="chip" data-value="off" aria-pressed="false">Masquer</button></div>
       <p class="sheet-l">Taille du texte</p><div class="chips" data-pref="size"><button class="chip" data-value="" aria-pressed="false">Normale</button><button class="chip" data-value="l" aria-pressed="false">Grande</button></div>
     </div>
   </div>
   <section class="acc-sec" data-recents-box hidden><h2 class="h3">${icon('clock')}Consultés récemment</h2><ul class="acc-recents" data-recents></ul><button class="link-btn" type="button" data-recents-clear>Effacer cet historique</button></section>
   <section class="acc-sec"><h2 class="h3">${icon('shield')}Mes données</h2>
-    <p class="muted small">Sans compte, tes favoris, ta progression et cet historique restent uniquement sur cet appareil. Tu peux les télécharger ou les effacer à tout moment.</p>
-    <div class="actions"><button class="btn" type="button" data-export>${icon('download')}Télécharger mes données</button><button class="btn btn--ghost" type="button" data-wipe>${icon('x')}Effacer mes données</button></div>
+    <p class="muted small">Sans compte, tes favoris, ta progression et cet historique restent uniquement sur cet appareil. Tu peux les télécharger, les remettre sur un autre appareil avec « Importer un fichier », ou les effacer à tout moment.</p>
+    <div class="actions"><button class="btn" type="button" data-export>${icon('download')}Télécharger mes données</button><label class="btn">${icon('plus')}Importer un fichier<input type="file" accept=".json,application/json" data-import hidden></label><button class="btn btn--ghost" type="button" data-wipe>${icon('x')}Effacer mes données</button></div>
   </section>
   <script type="application/json" data-acc-ids>${JSON.stringify({ mis: MISSIONS.missions.map((m) => m.id), obj: COLL.flatMap((t) => t.items.map((i) => i.f.properties.id)) })}</script>
 </section>`;
@@ -1631,6 +1638,7 @@ for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: nor
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: d.reponse, u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
+for (const g of VGROUPES) { const c = cat('vehicules', g.type) || {}; push({ t: `${g.nom} (${g.n})`, q: 'liste', k: norm(`${g.nom} ${UN[g.nom] || ''} ${c.nom || ''} vehicules liste tous`), d: `Tous les véhicules de cette catégorie, avec leur emplacement quand il est connu`, u: `vehicules/#cat-${g.id}`, i: c.icon || 'car', c: c.color || '#ff9a1f', g: 'vehicule', s: g.type, l: 'Liste de véhicules', m: 0 }); }
 push({ t: 'Carte interactive', q: 'map', k: 'carte map plan leonida', d: 'Tous les repères', u: 'carte/', i: 'map', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
 push({ t: 'Mes favoris', q: '', k: 'favoris coeur enregistre', d: '', u: 'favoris/', i: 'heart', c: '#ff2d87', g: 'page', s: '', l: 'Page', m: 0 });
 
@@ -1649,7 +1657,12 @@ for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html
   const garde = new Set(Object.values(best));
   for (let i = index.length - 1; i >= 0; i--) if (!garde.has(i)) index.splice(i, 1);
 }
-write('data/index.json', JSON.stringify({ items: index, syn, popular }));
+// réponses directes : une recherche courante mène d'abord à la bonne page (seulement des pages qui existent)
+const pins = (site.reponsesDirectes || []).map(([q, u]) => {
+  if (!index.some((x) => x.u === u)) throw new Error(`réponse directe « ${q} » : ${u} n'est pas dans l'index de recherche`);
+  return [norm(q), u];
+});
+write('data/index.json', JSON.stringify({ items: index, syn, popular, pins }));
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
@@ -1679,7 +1692,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
-fs.writeFileSync(appJs, `window.LG_ICONS=${JSON.stringify(Object.fromEntries(Object.entries(iconDefs).map(([n, d]) => [n, d[1]])))};\n` + fs.readFileSync(appJs, 'utf8'));
+fs.writeFileSync(appJs, `window.LG_CONTACT=${JSON.stringify(site.editeur.email || '')};\nwindow.LG_ICONS=${JSON.stringify(Object.fromEntries(Object.entries(iconDefs).map(([n, d]) => [n, d[1]])))};\n` + fs.readFileSync(appJs, 'utf8'));
 
 // comptes visiteurs : configuration publique de Supabase injectée en tête de compte.js
 const compteJs = path.join(OUT, 'assets', 'compte.js');

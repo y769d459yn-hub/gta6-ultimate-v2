@@ -52,6 +52,7 @@
     $$('[data-adm-vue]').forEach((v) => { v.hidden = v.dataset.admVue !== n; });
   }
 
+  const GC = (document.querySelector('script[data-gc]') || { dataset: {} }).dataset.gc || ''; // code GoatCounter du site
   async function rechargerLignes() {
     const { data } = await sb.from('contenu').select('collection,cle,donnees,supprime,maj').order('maj', { ascending: false });
     LIGNES = data || [];
@@ -85,7 +86,8 @@
     ${top(`${ic('heart')}Les plus ajoutés en favoris`, s.top_favs, (x) => `<a href="${ROOT}${esc(x.u || '')}">${esc(x.t || x.id)}</a> <small class="muted">${TYPES[x.type] || esc(x.type || '')}</small>`)}
     ${top(`${ic('flag')}Missions les plus terminées`, s.top_missions, (x) => esc(titre('missions', x.id)))}
     ${top(`${ic('check')}Astuces les plus marquées « faites »`, s.top_faites, (x) => esc(titre('astuces', x.id)))}
-    <p class="muted small">Les visites du site (nombre de visiteurs, recherches Google) se trouvent dans Google Search Console.</p>`;
+    ${GC ? `<section class="adm-card"><h2 class="h3">${ic('search')}Recherches sans résultat</h2><p class="muted small">Ce que les visiteurs cherchent sur le site sans rien trouver : ce sont les contenus qui manquent. Compté de façon anonyme, sans cookie, par GoatCounter (ainsi que les combinaisons de codes copiées).</p><p><a class="btn-s" href="https://${GC}.goatcounter.com/?filter=recherche-sans-resultat" target="_blank" rel="noopener">${ic('arrow-right')}<span>Voir les recherches sans résultat</span></a> <a class="btn-s btn-s--ghost" href="https://${GC}.goatcounter.com/?filter=code-copie" target="_blank" rel="noopener"><span>Codes copiés</span></a></p></section>` : ''}
+    <p class="muted small">Visites du site : GoatCounter${GC ? ` (<a href="https://${GC}.goatcounter.com/" target="_blank" rel="noopener">tableau de bord</a>)` : ''}. Recherches Google : Google Search Console.</p>`;
   }
 
   // ---------- comptes ----------

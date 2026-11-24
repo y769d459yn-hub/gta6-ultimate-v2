@@ -384,6 +384,51 @@
    "nouveau",
    "premiers pas",
    "bases"
+  ],
+  "planque": [
+   "maison",
+   "appartement",
+   "propriete",
+   "logement",
+   "acheter maison"
+  ],
+  "soigner": [
+   "sante",
+   "vie",
+   "mourir",
+   "mort",
+   "wasted",
+   "blesse"
+  ],
+  "tank": [
+   "char",
+   "char d assaut",
+   "blinde",
+   "rhino"
+  ],
+  "100 %": [
+   "100 pour cent",
+   "100 pourcent",
+   "completion",
+   "platine",
+   "trophee",
+   "trophees",
+   "tout finir",
+   "a long road"
+  ],
+  "en ligne": [
+   "online",
+   "gta online",
+   "multijoueur",
+   "multi",
+   "jouer a plusieurs"
+  ],
+  "semer": [
+   "perdre",
+   "echapper",
+   "fuir",
+   "se debarrasser",
+   "esquiver"
   ]
  },
  "comptes": {
@@ -402,5 +447,71 @@
  "verification": {
   "google": "",
   "bing": ""
- }
+ },
+ "reponsesDirectes": [
+  [
+   "100",
+   "dossiers/100-pour-cent/"
+  ],
+  [
+   "completion",
+   "dossiers/100-pour-cent/"
+  ],
+  [
+   "platine",
+   "dossiers/100-pour-cent/"
+  ],
+  [
+   "trophee",
+   "dossiers/100-pour-cent/"
+  ],
+  [
+   "online",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "en ligne",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "multijoueur",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "pc",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "tank",
+   "vehicules/hauners-rhino-tank/"
+  ],
+  [
+   "char",
+   "vehicules/hauners-rhino-tank/"
+  ],
+  [
+   "jetski",
+   "vehicules/jet-ski/"
+  ],
+  [
+   "jet ski",
+   "vehicules/jet-ski/"
+  ],
+  [
+   "bloque",
+   "missions/"
+  ],
+  [
+   "solution",
+   "missions/"
+  ],
+  [
+   "voiture police",
+   "vehicules/#cat-urgences"
+  ],
+  [
+   "vehicule police",
+   "vehicules/#cat-urgences"
+  ]
+ ]
 }

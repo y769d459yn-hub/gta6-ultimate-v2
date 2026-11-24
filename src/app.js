@@ -73,9 +73,10 @@
       if (t === q) s = 1;
       else if (q.length >= 2 && t.startsWith(q)) s = .85;
       else if (t.length >= 4 && q.startsWith(t)) s = .65;
-      else if (q.length >= 4 && t.includes(q)) s = .6;
-      else if (q.length >= 4 && lev(q, t, 1) <= 1) s = .7;
-      else if (q.length >= 7 && lev(q, t, 2) <= 2) s = .5;
+      else if (q.length >= 6 && t.includes(q)) s = .6; // milieu de mot : seulement pour les mots longs (« lance » ne doit pas trouver « ambulance »)
+      // faute de frappe : seulement si la première lettre est la même (évite « roquette » → « Coquette », « mourir » → « courir »)
+      else if (q.length >= 4 && q[0] === t[0] && lev(q, t, 1) <= 1) s = .7;
+      else if (q.length >= 7 && q[0] === t[0] && lev(q, t, 2) <= 2) s = .5;
       if (s > best) { best = s; if (s === 1) break; }
     }
     return best;
@@ -131,9 +132,17 @@
       if (!total) continue;
       let s = total * Math.pow(Math.max(hit, .5) / toks.length, 2);
       if (it._tn.includes(qn)) s += 3;
-      if (it._tn.startsWith(qn)) s += 1;
+      if (it._tn === qn || it._tn.startsWith(qn + ' ')) s += 1; // le titre commence par le mot entier cherché
       if (it.g === 'page') s *= .6;
       out.push({ it, s });
+    }
+    // réponses directes : « 100 % », « jetski », « online »… passent en premier
+    const mots = new Set(qn.split(' '));
+    for (const [ph, u] of d.pins || []) {
+      if (!ph.split(' ').every((w) => mots.has(w))) continue;
+      const deja = out.find((r) => r.it.u === u);
+      if (deja) deja.s += 6;
+      else { const it = pool.find((x) => x.u === u); if (it) out.push({ it, s: 6 }); }
     }
     return out.sort((a, b) => b.s - a.s).slice(0, 24);
   }
@@ -157,6 +166,13 @@
       <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
+  // aucun résultat : on le dit clairement, on propose un autre mot et de signaler le manque (2 gestes)
+  function emptyHTML(q) {
+    const sujet = encodeURIComponent('Recherche sans résultat : ' + q.trim().slice(0, 60));
+    const corps = encodeURIComponent(`J'ai cherché « ${q.trim().slice(0, 120)} » sur GTA 6 Facile et je n'ai rien trouvé.\n\nCe que je voulais savoir :\n`);
+    return `<div class="so-empty">${ic('question', 'ic-xl')}<p><b>Aucun résultat pour « ${escH(q.trim().slice(0, 60))} »</b></p><p>Essaie un mot plus court ou un autre mot (« voiture », « argent », le nom d'une mission…).</p>
+      ${window.LG_CONTACT ? `<a class="btn-s btn-s--ghost" href="mailto:${window.LG_CONTACT}?subject=${sujet}&body=${corps}">${ic('mail')}<span>Signaler ce qui manque</span></a>` : ''}</div>${popularHTML()}`;
+  }
   function popularHTML() {
     const d = IDX; if (!d) return '';
     return `<p class="so-sec">Les plus cherchés</p><div class="so-pop">${d.popular.map((p) => `<a href="${ROOT}${p.u}" style="--c:${p.c}">${ic(p.i)}${escH(p.t)}</a>`).join('')}</div>
@@ -173,7 +189,7 @@
       // recherche sans résultat : compteur anonyme (texte normalisé et tronqué) pour savoir quels contenus manquent
       clearTimeout(vide);
       if (!last.length && norm(q).length >= 3) vide = setTimeout(() => { if (window.LG_EVT && input.value === q) window.LG_EVT('recherche-sans-resultat/' + norm(q).slice(0, 40)); }, 1500);
-      results.innerHTML = last.length ? last.map(resultHTML).join('') : `<p class="so-empty">${ic('question', 'ic-xl')}<br>Essaie un autre mot</p>${popularHTML()}`;
+      results.innerHTML = last.length ? last.map(resultHTML).join('') : emptyHTML(q);
       mark();
       if (window.gsap && !reduceMotion()) gsap.from(results.querySelectorAll('.so-row'), { y: 10, opacity: 0, duration: .25, stagger: .02, ease: 'power2.out' });
       onQuery && onQuery(q);
@@ -259,7 +275,7 @@
     const b = e.target.closest('[data-fav]'); if (!b) return;
     e.preventDefault(); try { toggleFav(JSON.parse(b.dataset.fav)); } catch (err) { /* */ }
   });
-  window.LG = { toggleFav, syncFavs, toast, store, norm, lev, tokMatch, ic, ROOT, reduceMotion };
+  window.LG = { toggleFav, syncFavs, toast, store, norm, lev, tokMatch, ic, ROOT, reduceMotion, search, loadIndex };
   syncFavs();
 
   // ---------- « je l'ai fait » ----------
@@ -280,6 +296,7 @@
   function syncMis() {
     const d = misFaites();
     $$('[data-mission-faite]').forEach((b) => { const on = d.has(b.dataset.missionFaite); b.setAttribute('aria-pressed', on); const sp = b.querySelector('[data-on]'); if (sp) sp.textContent = on ? sp.dataset.on : sp.dataset.off; });
+    $$('[data-mission-suivante]').forEach((x) => { x.hidden = !$$('[data-mission-faite]').some((b) => d.has(b.dataset.missionFaite)); });
   }
   $$('[data-mission-faite]').forEach((b) => b.addEventListener('click', () => {
     const d = misFaites(), id = b.dataset.missionFaite;
@@ -289,6 +306,25 @@
   }));
   syncMis();
   document.addEventListener('lg:remote', syncMis);
+
+  // ---------- mode sans spoiler (préférence gardée sur l'appareil) : résumés et noms des missions suivantes floutés, un toucher pour lire ----------
+  function syncSpoil() {
+    const off = html.dataset.spoil === 'off';
+    $$('[data-spoil-tg]').forEach((b) => { b.setAttribute('aria-pressed', String(off)); const t = [...b.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim()); if (t) t.textContent = off ? 'Afficher les spoilers' : 'Masquer les spoilers'; });
+    if (!off) $$('.spoil.is-vu').forEach((e) => e.classList.toggle('is-vu', false));
+  }
+  $$('[data-spoil-tg]').forEach((b) => b.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    const P = store.get('prefs', {}); P.spoil = html.dataset.spoil === 'off' ? '' : 'off'; store.set('prefs', P);
+    if (P.spoil) html.dataset.spoil = 'off'; else delete html.dataset.spoil;
+    syncSpoil(); toast(P.spoil ? 'Spoilers masqués : touche un texte flou pour le lire' : 'Spoilers affichés');
+  }));
+  document.addEventListener('click', (e) => {
+    const sp = html.dataset.spoil === 'off' && e.target.closest('.spoil:not(.is-vu)');
+    if (sp && sp.closest('a')) return; // dans un lien (mission suivante) : on suit le lien, la page révèle la suite
+    if (sp) { e.preventDefault(); e.stopPropagation(); sp.classList.add('is-vu'); }
+  }, true);
+  syncSpoil();
   window.LG.syncDone = syncDone;
 
   // ---------- copier le lien ----------
@@ -446,6 +482,27 @@
       a.download = 'gta6facile-mes-donnees.json'; document.body.append(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 2000);
     });
+    // import : fichier créé par « Télécharger mes données » ; les listes sont fusionnées (rien n'est perdu), les préférences remplacées
+    const imp = $('[data-import]', acc);
+    if (imp) imp.addEventListener('change', async () => {
+      const f = imp.files && imp.files[0]; imp.value = ''; if (!f) return;
+      try {
+        const j = JSON.parse(await f.text()); const d = j && j.donnees;
+        if (!d || typeof d !== 'object') throw new Error('format');
+        const LISTES = ['lg:favs', 'lg:done', 'lg:missions', 'lg:carte-trouves'];
+        let n = 0;
+        for (const k of LISTES) {
+          if (!Array.isArray(d[k])) continue;
+          const cur = lireLS(k); const cle = (x) => (x && typeof x === 'object' ? (x.type || '') + ':' + x.id : String(x));
+          const vus = new Set(cur.map(cle)); const ajout = d[k].filter((x) => (typeof x === 'string' || (x && x.id)) && !vus.has(cle(x)));
+          n += ajout.length; localStorage.setItem(k, JSON.stringify([...cur, ...ajout]));
+        }
+        if (d['lg:prefs'] && typeof d['lg:prefs'] === 'object') localStorage.setItem('lg:prefs', JSON.stringify(d['lg:prefs']));
+        if (Array.isArray(d['lg:recents']) && !store.get('recents', []).length) localStorage.setItem('lg:recents', JSON.stringify(d['lg:recents'].slice(0, 8)));
+        syncFavs(); refresh(); document.dispatchEvent(new CustomEvent('lg:remote'));
+        toast(n ? `${n} élément${n > 1 ? 's' : ''} importé${n > 1 ? 's' : ''}` : 'Rien de nouveau à importer');
+      } catch (e) { toast("Ce fichier n'est pas une sauvegarde de GTA 6 Facile", 'x'); }
+    });
     $('[data-wipe]', acc).addEventListener('click', () => {
       if (!window.confirm('Effacer de cet appareil tes favoris, ta progression, ton historique et tes préférences ? Les données de ton compte en ligne ne sont pas touchées.')) return;
       try { Object.keys(localStorage).filter((k) => k.startsWith('lg:') && !k.startsWith('lg:sb') && k !== 'lg:sans-mesure').forEach((k) => localStorage.removeItem(k)); } catch (e) { /* ignoré */ }
@@ -455,7 +512,7 @@
     document.addEventListener('lg:remote', refresh);
     $('[data-reset-done]', acc).addEventListener('click', () => { store.set('done', []); refresh(); toast('Progression remise à zéro'); });
     const prefs = store.get('prefs', {});
-    const cur = { theme: prefs.theme || 'auto', motion: prefs.motion || 'on', size: prefs.size || '' };
+    const cur = { theme: prefs.theme || 'auto', motion: prefs.motion || 'on', size: prefs.size || '', spoil: prefs.spoil || '' };
     $$('[data-pref]', acc).forEach((g) => {
       const k = g.dataset.pref;
       const mark = () => $$('[data-value]', g).forEach((b) => b.setAttribute('aria-pressed', b.dataset.value === cur[k]));
@@ -465,6 +522,7 @@
         if (k === 'theme') html.dataset.theme = cur.theme === 'auto' ? (matchMedia('(prefers-color-scheme: light)').matches ? 'day' : 'night') : cur.theme;
         if (k === 'motion') { if (cur.motion === 'off') html.dataset.motion = 'off'; else delete html.dataset.motion; }
         if (k === 'size') { if (cur.size) html.dataset.size = cur.size; else delete html.dataset.size; }
+        if (k === 'spoil') { if (cur.spoil) html.dataset.spoil = cur.spoil; else delete html.dataset.spoil; syncSpoil(); }
         toast('Préférence enregistrée');
       }));
     });

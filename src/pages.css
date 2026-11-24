@@ -546,3 +546,11 @@
 .v2 .b-obsolete { border-color: rgba(255, 80, 110, .55); color: #ff9fb2; }
 .v2 .corr { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; line-height: 1.5; }
 .v2 .corr time { color: var(--tx2); }
+
+/* mode sans spoiler : texte flouté jusqu'au toucher */
+html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none; cursor: pointer; }
+.spoil-tg { margin-left: auto; font-size: .78rem; }
+.answer-k { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.spoil-line { margin: 8px 0 0; }
+#bloque { scroll-margin-top: 90px; }
+#bloque:target { outline: 2px solid var(--pink, #ff2d87); outline-offset: 4px; border-radius: 14px; }
