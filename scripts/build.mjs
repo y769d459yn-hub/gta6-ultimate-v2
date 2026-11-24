@@ -431,7 +431,7 @@ ${body}
   <div class="foot-in">
     <a class="brand brand--foot" href="${R}">${v2 ? BRAND_PALM.replace(/pm-g/g, 'pm-f') : '<span class="brand-sun" aria-hidden="true"></span>'}<span class="brand-txt"><b>GTA 6</b><i>facile</i></span></a>
     <nav aria-label="Pied de page">
-      <a href="${R}missions/">Missions et solutions</a><a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a><a href="${R}compte/">Mon espace</a>
+      <a href="${R}missions/">Missions et solutions</a><a href="${R}astuces/">Astuces GTA 6</a><a href="${R}vehicules/">Véhicules</a><a href="${R}carte/">Carte interactive</a><a href="${R}lieux/">Lieux</a><a href="${R}encyclopedie/">Encyclopédie</a><a href="${R}codes/">Codes</a><a href="${R}actualites/">Actualités</a><a href="${R}a-propos/">À propos et fiabilité</a>${site.editeur && site.editeur.nom ? `<a href="${R}mentions-legales/">Mentions légales et confidentialité</a>` : ''}<a href="${R}compte/">Mon espace</a>
     </nav>
     <p class="disclaimer">Site indépendant, non affilié à Rockstar Games ni Take-Two. Grand Theft Auto est une marque de Take-Two Interactive. Mis à jour le ${fmtDate(site.majLe)}.</p>
   </div>
@@ -720,39 +720,51 @@ function vehCard(v, R) {
   <span class="card-cta">Où le trouver ? ${icon('arrow-right')}</span></a>`;
 }
 const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classiques': 'Sportive classique', 'Muscle cars': 'Muscle car', 'Coupés': 'Coupé', 'Berlines': 'Berline', 'Motos': 'Moto', 'Vélos': 'Vélo', 'Bateaux': 'Bateau', 'Hélicoptères': 'Hélicoptère', 'Avions': 'Avion', 'Police et urgences': 'Urgences', 'Militaires': 'Militaire', 'Vans et fourgons': 'Van', 'Utilitaires': 'Utilitaire', 'Industriels': 'Industriel', 'Taxis, bus et service': 'Service' };
-function catCard(x, R) {
-  const c = cat('vehicules', x.type);
-  const txt = norm([x.nom, x.classe, c.nom, x.inspiration || '', x.fabricant || ''].join(' '));
-  const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
-  return `<a class="card card--veh card--cat" href="${R}vehicules/${x.slug}/" data-fiche="${x.slug}" style="--c:${c.color}" data-cat="${x.type}" data-grp="${x.groupe}" data-photo="${x.img ? 1 : 0}" data-known="${x.obtenir ? 1 : 0}" data-sur="${(VERIF[x.slug] || {}).statut === 'confirme' ? 1 : 0}" data-map="0" data-text="${esc(txt)}">
-  <span class="veh-art">${visu}<span class="veh-type">${esc(UN[x.classe] || x.classe)}</span></span>
-  <span class="card-body"><span class="card-kicker">${esc(x.fabricant || c.nom)}</span><b class="card-title">${esc(x.modele || x.nom)}</b>
-  <span class="card-meta">${x.inspiration ? `<span class="pill pill--insp">${icon('car')}${esc(x.inspiration.length > 34 ? x.inspiration.slice(0, 32) + '…' : x.inspiration)}</span>` : `<span class="pill">${icon('check')}Confirmé dans le jeu</span>`}${x.obtenir ? `<span class="pill pill--ok">${icon('pin')}Où l'obtenir</span>` : ''}${(VERIF[x.slug] || {}).statut !== 'confirme' ? `<span class="pill pill--warn">${icon('question')}À confirmer</span>` : ''}</span></span>
-  <span class="card-cta">Voir les infos ${icon('arrow-right')}</span></a>`;
-}
 {
   const p = 'vehicules/', R = R_(p);
   const GRP = CATALOGUE.groupes || [];
   const grpDe = (v) => (CATALOGUE.fiches[v.slug] || {}).groupe || 'service';
-  // une carte par véhicule, rangée dans sa catégorie : nos fiches (emplacement connu) d'abord, puis les photos nettes, puis le reste
+  // Une carte = une photo, un nom, et un seul bouton « Où le trouver ? » qui ouvre la carte sur le repère vérifié.
+  // Sans repère vérifié : le texte d'obtention s'il existe, sinon « Emplacement non vérifié » (rien n'est inventé).
+  const vCard = ({ slug, nom, kicker, classe, type, groupe, visu, sur, focus, comment }) => {
+    const c = cat('vehicules', type);
+    const known = !!(focus || comment);
+    const txt = norm([nom, kicker, classe, c.nom].join(' '));
+    const bouton = focus ? `<a class="vc-ou" href="${R}carte/?focus=${focus}">${icon('map')}Où le trouver ?</a>`
+      : comment ? `<a class="vc-ou vc-ou--txt" href="${R}vehicules/${slug}/#ou">${icon('pin')}Où le trouver ?</a>`
+      : `<span class="vc-ou vc-ou--off">${icon('question')}Emplacement non vérifié</span>`;
+    return `<article class="card card--veh card--v" style="--c:${c.color}" data-cat="${type}" data-grp="${groupe}" data-known="${known ? 1 : 0}" data-sur="${sur ? 1 : 0}" data-text="${esc(txt)}">
+  <a class="vc-link" href="${R}vehicules/${slug}/"><span class="veh-art">${visu}<span class="veh-type">${esc(UN[classe] || classe)}</span></span>
+  <span class="card-body"><span class="card-kicker">${esc(kicker)}</span><b class="card-title">${esc(nom)}</b>${sur ? '' : `<span class="vc-warn">${icon('alert')}Présence à confirmer</span>`}</span></a>
+  ${bouton}
+</article>`;
+  };
   const cartes = {};
-  for (const v of VEHICULES) (cartes[grpDe(v)] ||= []).push({ o: 0, n: v.nom, o: (VERIF[v.slug] || {}).statut === 'non-confirme' ? 9 : 0, html: vehCard(v, R).replace('class="card card--veh"', `class="card card--veh card--fiche" data-grp="${grpDe(v)}" data-photo="1" data-known="1" data-sur="${(VERIF[v.slug] || {}).statut === 'confirme' ? 1 : 0}"`) });
-  for (const x of CATALOGUE.vehicules) (cartes[x.groupe] ||= []).push({ o: ((VERIF[x.slug] || {}).statut !== 'confirme' ? 10 : 0) + (x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: catCard(x, R) });
+  for (const v of VEHICULES) {
+    const f = CATALOGUE.fiches[v.slug] || {};
+    const sur = (VERIF[v.slug] || {}).statut === 'confirme';
+    const focus = vehOnMap(v.slug) ? 'v-' + v.slug : null;
+    (cartes[grpDe(v)] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : 1), n: v.nom, html: vCard({ slug: v.slug, nom: v.nom, kicker: f.fabricant || cat('vehicules', v.type).nom, classe: f.classe || v.sous, type: v.type, groupe: grpDe(v), visu: vehVisuel(v, R), sur, focus, comment: !!v.emplacement }) });
+  }
+  for (const x of CATALOGUE.vehicules) {
+    const sur = (VERIF[x.slug] || {}).statut === 'confirme';
+    const focus = (CAT_CARTE[x.slug] || []).find((id) => mapIndex[id]) || null;
+    const visu = x.img ? `<img class="veh-photo" src="${R}catalogue/${x.img}" alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+    (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
+  }
   const groupes = GRP.filter((g) => cartes[g.id]);
   const total = VEHICULES.length + CATALOGUE.vehicules.length;
+  const nbOu = Object.values(cartes).flat().filter((c) => c.html.includes('data-known="1"')).length;
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
   const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead"><b>${total} véhicules</b> rangés par catégorie. Dans chaque catégorie, ceux dont on sait où les trouver passent en premier. Chaque véhicule a été vérifié : ${Object.values(VERIF).filter((v) => v.statut === 'confirme').length} sont confirmés par GTA Wiki ou le site officiel de Rockstar, les autres portent l'étiquette « À confirmer ». Tape un nom, une marque ou même une vraie voiture (« Porsche », « Corvette »…).</p>
+  <p class="lead veh-lead">${total} véhicules. Touche <b>Où le trouver ?</b> pour ouvrir la carte au bon endroit (${nbOu} emplacements vérifiés pour l'instant).</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
     ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
   </div>
   <div class="filterbar">
     <button class="chip chip--toggle" type="button" data-vtoggle="known" aria-pressed="false">${icon('pin')}Emplacement connu</button>
-    <button class="chip chip--toggle" type="button" data-vtoggle="sur" aria-pressed="false">${icon('check')}Confirmés seulement</button>
-    <button class="chip chip--toggle" type="button" data-vtoggle="photo" aria-pressed="false">${icon('eye')}Avec photo</button>
-    <button class="chip chip--toggle" type="button" data-vtoggle="map" aria-pressed="false">${icon('map')}Sur la carte</button>
   </div>
   <nav class="vjump" aria-label="Aller à une catégorie">${groupes.map((g) => `<a href="#cat-${g.id}" data-jump="${g.id}">${esc(g.nom)}<small>${cartes[g.id].length}</small></a>`).join('')}</nav>
   <p class="count-line" data-vcount aria-live="polite"></p>
@@ -762,12 +774,10 @@ function catCard(x, R) {
     <button class="btn btn--ghost vgrp-more" type="button" data-vmore hidden>${icon('plus')}<span></span></button>
   </section>`).join('')}
   <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
-  <dialog class="vdlg" aria-labelledby="vdlg-t"><div class="vdlg-in" data-vdlg></div></dialog>
-  <script type="application/json" id="catalogue-data">${JSON.stringify(CATALOGUE.vehicules.map((x) => ({ s: x.slug, n: x.nom, f: x.fabricant, m: x.modele, c: x.classe, t: x.type, i: x.inspiration, p: x.places, w: x.poids, tr: x.transmission, r: x.rapports, a: x.aussi, o: x.obtenir, d: x.resume, vf: (VERIF[x.slug] || {}).statut, vt: verifTexte(x.slug), vn: (VERIF[x.slug] || {}).note, img: x.img, cr: x.credit, cu: x.creditUrl, src: x.sources, lo: (CAT_CARTE[x.slug] || []).map((id) => mapIndex[id]).filter(Boolean).slice(0, 6).map((f) => ({ id: f.properties.id, n: f.properties.nom, z: f.properties.zone || '', d: (f.properties.desc || '').slice(0, 140) })) }))).replace(/</g, '\\u003c')}</script>
-  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
-  <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir les véhicules sur la carte</a>
+  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>, recoupées avec GTA Wiki. Emplacements : repères vérifiés de la carte. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
+  <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir tous les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules confirmés de GTA 6 rangés par catégorie : photo, marque, vraie voiture d'origine, caractéristiques et emplacement quand il est connu.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules de GTA 6 avec photo, et un bouton pour ouvrir la carte à l'endroit où les trouver (${nbOu} emplacements vérifiés).`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -838,7 +848,7 @@ for (const x of CATALOGUE.vehicules) {
   </header>
   <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(x.resume)}</p></section>
   <div class="actions">
-    ${lo.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lo[0].properties.id}">${icon('map')}Voir sur la carte</a>` : ''}
+    ${lo.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lo[0].properties.id}">${icon('map')}Où le trouver ?</a>` : ''}
     ${favBtn({ id: x.slug, type: 'vehicule', t: x.nom, u: p, i: c.icon, c: c.color })}
   </div>
   <dl class="facts">
@@ -1431,13 +1441,43 @@ for (const a of ACTUS) {
   <details class="sources"><summary>${icon('shield')}Toutes les sources (${allSrc.length})</summary><ul>${allSrc.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a></li>`).join('')}</ul></details></section>
   <section id="donnees" class="related"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p>Le site s'utilise sans compte : tes favoris et ta progression restent alors dans ton navigateur, rien n'est envoyé.</p>
-    <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées en Europe par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
-    <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées.</p>
+    <p>Si tu crées un compte, on enregistre uniquement ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, pour te les rendre sur tous tes appareils. Ces données sont hébergées par <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>. Elles ne sont ni vendues, ni partagées, ni utilisées pour de la publicité.</p>
+    <p>Tu peux supprimer ton compte à tout moment depuis <a href="${R}compte/">Mon espace</a> : toutes tes données en ligne sont alors effacées. ${site.editeur && site.editeur.nom ? `Tous les détails : <a href="${R}mentions-legales/#confidentialite">mentions légales et confidentialité</a>.` : ''}</p>
   </section>
-  <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">Signale-le ici</a>.</p></section>
+  <section id="contact" class="related"><h2 class="h3">${icon('mail')}Nous contacter</h2><p>Une erreur, un emplacement à corriger ? Écris à <a href="mailto:${site.editeur.email}">${site.editeur.email}</a>${''} ou <a href="https://github.com/y769d459yn-hub/gta6-ultimate-v2/issues" rel="noopener" target="_blank">signale-le sur GitHub</a>.</p></section>
   <p class="note">${icon('info')}<span>Site indépendant, non affilié à Rockstar Games ni Take-Two. Les pictogrammes et la carte néon sont des créations du site. Les images de véhicules appartiennent à Rockstar Games : leur origine est indiquée sous chaque image.</span></p>
 </section>`;
   emit(p, layout({ p, title: `À propos : méthode et fiabilité | ${M}`, desc: 'Découvrez comment les informations GTA 6 sont vérifiées et comment reconnaître les contenus confirmés.', body, cls: 'p-about', crumbs: [['Accueil', ''], ['À propos', 'a-propos/']] }));
+}
+
+// ---------- MENTIONS LÉGALES ET CONFIDENTIALITÉ (générée seulement quand l'éditeur est renseigné dans data/site.json) ----------
+if (site.editeur && site.editeur.nom) {
+  const p = 'mentions-legales/', R = R_(p);
+  const E = site.editeur;
+  const mail = `<a href="mailto:${E.email}">${E.email}</a>`;
+  const body = `<article class="wrap fiche legal">
+  <h1 class="h1">Mentions légales et confidentialité</h1>
+  <section class="related"><h2 class="h3">${icon('user')}Éditeur du site</h2>
+    <p><b>${esc(E.nom)}</b>, particulier. Directeur de la publication : ${esc(E.nom)}.<br>Contact : ${mail}</p>
+    <p>${M} (${site.url.replace('https://', '')}) est un guide de fan, indépendant, non affilié à Rockstar Games ni à Take-Two Interactive.</p>
+  </section>
+  <section class="related"><h2 class="h3">${icon('shield')}Hébergement</h2>
+    <p>Le site est hébergé par <b>GitHub, Inc.</b> (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — <a href="https://github.com" rel="noopener" target="_blank">github.com</a>.</p>
+    <p>Les comptes visiteurs sont hébergés par <b>Supabase</b> (<a href="https://supabase.com/privacy" rel="noopener" target="_blank">politique de confidentialité de Supabase</a>). Le nom de domaine est enregistré auprès d'OVHcloud.</p>
+  </section>
+  <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
+    <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
+    <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie publicitaire, ni outil de mesure d'audience, ni bouton de réseau social.</p>
+    <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
+    <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
+    <p><b>Tes droits :</b> accès, rectification, effacement, portabilité, limitation et opposition. Écris à ${mail}. Tu peux aussi adresser une réclamation à la <a href="https://www.cnil.fr/fr/plaintes" rel="noopener" target="_blank">CNIL</a>.</p>
+  </section>
+  <section class="related"><h2 class="h3">${icon('book')}Propriété intellectuelle</h2>
+    <p>Grand Theft Auto, GTA et les noms, images et marques liés au jeu appartiennent à Take-Two Interactive et Rockstar Games. Les images du jeu sont utilisées à titre d'illustration, avec leur origine indiquée sous chaque image. Les textes, pictogrammes et la carte néon sont des créations du site.</p>
+  </section>
+  <p class="muted small">Dernière mise à jour : ${fmtDate(site.majLe)}.</p>
+</article>`;
+  emit(p, layout({ p, title: `Mentions légales et confidentialité | ${M}`, desc: `Éditeur, hébergement, données personnelles et droits des visiteurs de ${M}.`, body, cls: 'p-about', crumbs: [['Accueil', ''], ['Mentions légales', p]] }));
 }
 
 // ---------- 404 ----------
