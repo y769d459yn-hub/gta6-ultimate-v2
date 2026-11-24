@@ -7,7 +7,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/build.mjs && python3 -m http.server 8080 --directory docs",
-    "build:3d": "esbuild tools/3d/index.js --bundle --minify --format=iife --target=es2020 --legal-comments=none --outfile=src/vehicule3d.js && node tools/rendus3d.cjs"
+    "build:3d": "esbuild tools/3d/index.js --bundle --minify --format=iife --target=es2020 --legal-comments=none --outfile=src/vehicule3d.js && node tools/rendus3d.cjs",
+    "test": "node scripts/build.mjs && node scripts/verifier.mjs"
   },
   "engines": {
     "node": ">=18"

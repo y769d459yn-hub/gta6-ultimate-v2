@@ -56,6 +56,11 @@ jobs:
             CONTENU_ERREUR=1 node scripts/build.mjs
           fi
 
+      - name: Contrôler le site (avertissement seulement)
+        if: steps.deja.outputs.rien != '1'
+        continue-on-error: true
+        run: node scripts/verifier.mjs
+
       - uses: actions/configure-pages@v5
         if: steps.deja.outputs.rien != '1'
 
