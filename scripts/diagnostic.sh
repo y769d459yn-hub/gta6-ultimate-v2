@@ -60,3 +60,13 @@ for p in missions/coming-home/ vehicules/pegassi-infernus/ vehicules/obey-8f-dra
     echo "$(cat /tmp/c) $p | $(grep -o '<title>[^<]*' /tmp/p.html | head -1 | cut -c8- | cut -c1-70) | robots: $(grep -o '<meta name="robots" content="[^"]*' /tmp/p.html | cut -d'"' -f4)"
   done
 done
+
+titre "8. Version publiée et nouveautés (application installable, IA, miniatures)"
+echo "publication.json : $(curl -sS --max-time 20 "https://$D/assets/publication.json?t=$(date +%s)" | cut -c1-200)"
+for f in sw.js hors-ligne.html manifest.webmanifest llms.txt assets/icon-192.png assets/icon-512.png assets/icon-maskable-512.png assets/apple-touch-icon.png catalogue-mini/emperor-sultan.webp; do
+  echo "$(curl -sS -o /tmp/f -A "$UA_NAV" --max-time 20 -w '%{http_code} %{content_type} %{size_download}o' "https://$D/$f") $f"
+done
+echo "sw.js : $(curl -sS --max-time 20 "https://$D/sw.js" | head -1)"
+echo "manifeste : $(curl -sS --max-time 20 "https://$D/manifest.webmanifest" | cut -c1-160)"
+echo "accueil : $(grep -o '<h1[^>]*>[^<]*' /tmp/accueil.html | head -1) | $(grep -c 'apple-touch-icon' /tmp/accueil.html) lien apple-touch-icon"
+curl -sS --max-time 20 "https://$D/codes/" -o /tmp/codes.html; echo "codes : $(grep -c 'code-copy' /tmp/codes.html) boutons Copier | $(grep -o 'Combinaison (croix directionnelle) : [^<]*' /tmp/codes.html | head -1 | cut -c1-120)"
