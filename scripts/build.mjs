@@ -318,6 +318,24 @@ const OGM = fs.existsSync(path.join(ROOT, 'data', 'carte-ogm.json')) ? read('car
   for (let i = features.length - 1; i >= 0; i--) { const f = features[i]; if (f.properties.id.startsWith('s-') && features.some((g) => L[g.properties.id] && pres(g, ...f.geometry.coordinates, 90) && proches(g.properties.nom, f.properties.nom))) features.splice(i, 1); }
   features.push(...out);
 }
+// Véhicules du catalogue : emplacements relevés sur GTA Wiki (texte + repères aux coordonnées du wiki, même repère que la carte)
+const WIKI_V = fs.existsSync(path.join(ROOT, 'data', 'catalogue-wiki.json')) ? read('catalogue-wiki.json') : { vehicules: {} };
+for (const [slug, w] of Object.entries(WIKI_V.vehicules)) {
+  const x = CATALOGUE.vehicules.find((v) => v.slug === slug);
+  if (!x) { console.warn(`catalogue-wiki : véhicule inconnu « ${slug} », ignoré`); continue; }
+  const src = { nom: `GTA Wiki (${w.page})`, url: WIKI_V.source.url + encodeURIComponent(w.page.replace(/ /g, '_')) };
+  if (w.obtenir && !x.obtenir) x.obtenir = w.obtenir;
+  if (!(x.sources || []).some((s) => s.url === src.url)) x.sources = [...(x.sources || []), src];
+  const ids = [];
+  (w.points || []).forEach(([px, py, titre], i) => {
+    const id = `w-${slug}-${i + 1}`;
+    features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [px, py] }, properties: { id, nom: titre, cat: 'vehicules', sous: x.type, service: 'Véhicule', region: null, statut: 'a-verifier', precision: 'exacte', icon: cat('vehicules', x.type).icon, desc: w.obtenir, url: `vehicules/${slug}/`, src: 'wiki' } });
+    ids.push(id);
+  });
+  if (w.repere) ids.push(w.repere);
+  if (ids.length) CAT_CARTE[slug] = [...ids, ...(CAT_CARTE[slug] || [])];
+}
+
 // Missions : où elles se passent (repère du guide ou lieu GTADB)
 const MLIEUX = fs.existsSync(path.join(ROOT, 'data', 'carte-missions.json')) ? read('carte-missions.json').lieux : [];
 const MIS = Object.fromEntries(MISSIONS.missions.map((m) => [m.id, m]));
@@ -728,14 +746,14 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   const GRP = CATALOGUE.groupes || [];
   const grpDe = (v) => (CATALOGUE.fiches[v.slug] || {}).groupe || 'service';
   // Une carte = une photo, un nom, et un seul bouton « Où le trouver ? » qui ouvre la carte sur le repère vérifié.
-  // Sans repère vérifié : le texte d'obtention s'il existe, sinon « Emplacement non vérifié » (rien n'est inventé).
+  // Sans repère : le texte d'obtention s'il existe, sinon « Emplacement pas encore connu » (rien n'est inventé).
   const vCard = ({ slug, nom, kicker, classe, type, groupe, visu, sur, focus, comment }) => {
     const c = cat('vehicules', type);
     const known = !!(focus || comment);
     const txt = norm([nom, kicker, classe, c.nom].join(' '));
     const bouton = focus ? `<a class="vc-ou" href="${R}carte/?focus=${focus}">${icon('map')}Où le trouver ?</a>`
       : comment ? `<a class="vc-ou vc-ou--txt" href="${R}vehicules/${slug}/#ou">${icon('pin')}Où le trouver ?</a>`
-      : `<span class="vc-ou vc-ou--off">${icon('question')}Emplacement non vérifié</span>`;
+      : `<span class="vc-ou vc-ou--off">${icon('question')}Emplacement pas encore connu</span>`;
     return `<article class="card card--veh card--v" style="--c:${c.color}" data-cat="${type}" data-grp="${groupe}" data-known="${known ? 1 : 0}" data-sur="${sur ? 1 : 0}" data-text="${esc(txt)}">
   <a class="vc-link" href="${R}vehicules/${slug}/"><span class="veh-art">${visu}<span class="veh-type">${esc(UN[classe] || classe)}</span></span>
   <span class="card-body"><span class="card-kicker">${esc(kicker)}</span><b class="card-title">${esc(nom)}</b>${sur ? '' : `<span class="vc-warn">${icon('alert')}Présence à confirmer</span>`}</span></a>
@@ -761,7 +779,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
   const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead">${total} véhicules. Touche <b>Où le trouver ?</b> pour ouvrir la carte au bon endroit (${nbOu} emplacements vérifiés pour l'instant).</p>
+  <p class="lead veh-lead">${total} véhicules. Touche <b>Où le trouver ?</b> pour ouvrir la carte au bon endroit (${nbOu} véhicules dont on connaît l'emplacement pour l'instant).</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
     ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
@@ -777,10 +795,10 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
     <button class="btn btn--ghost vgrp-more" type="button" data-vmore hidden>${icon('plus')}<span></span></button>
   </section>`).join('')}
   <p class="empty" data-vempty hidden>${icon('search')}Aucun véhicule ne correspond. Essaie un autre mot.</p>
-  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>, recoupées avec GTA Wiki. Emplacements : repères vérifiés de la carte. Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
+  <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>, recoupées avec GTA Wiki. Emplacements : repères de la carte (Open GTA 6 Map et GTA Wiki, relevés par la communauté). Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir tous les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules de GTA 6 avec photo, et un bouton pour ouvrir la carte à l'endroit où les trouver (${nbOu} emplacements vérifiés).`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules de GTA 6 avec photo, et un bouton pour ouvrir la carte à l'endroit où les trouver (${nbOu} emplacements connus).`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -860,7 +878,7 @@ for (const x of CATALOGUE.vehicules) {
   </dl>
   <section class="steps-wrap" id="ou" aria-labelledby="ou-t"><h2 id="ou-t" class="h3">${icon('pin')}Où trouver ${esc(x.nom)} ?</h2>
     ${x.obtenir ? `<p>${esc(x.obtenir)}</p>` : ''}
-    ${lo.length ? `<p>Repéré par les joueurs à ${lo.length > 1 ? `${lo.length} endroits` : 'un endroit précis'} :</p><ul class="vdlg-lo">${lo.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}${f.properties.desc ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>`
+    ${lo.length ? `<p>Repéré par les joueurs à ${lo.length > 1 ? `${lo.length} endroits` : 'un endroit précis'} :</p><ul class="vdlg-lo">${lo.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}${f.properties.desc && f.properties.desc !== x.obtenir ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>`
     : x.obtenir ? '' : `<p>Pas encore documenté. ${sur ? 'Le véhicule est bien confirmé dans GTA 6, mais aucun emplacement fiable n’a encore été vérifié.' : 'Sa présence dans le jeu reste à confirmer.'} La fiche sera complétée dès qu’un emplacement sera vérifié.</p>`}
   </section>
   ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}

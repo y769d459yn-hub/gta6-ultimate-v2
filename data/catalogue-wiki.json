@@ -1,0 +1,19 @@
+{
+ "info": "Emplacements de véhicules du catalogue relevés sur GTA Wiki (sections « Locations » propres à GTA VI, coordonnées des cartes LeonidaDayMap, même repère que notre carte). Textes rédigés en français par GTA 6 Facile à partir de ces pages. Relevé du 24/11/2026. Licence des textes de GTA Wiki : CC BY-SA 3.0.",
+ "source": { "nom": "GTA Wiki", "url": "https://gta.wiki/wiki/" },
+ "vehicules": {
+  "declasse-akane": { "page": "Akane", "obtenir": "Courante autour de Key Lento." },
+  "bravado-bison-900-95": { "page": "Bison 900", "obtenir": "Très courant autour de Key Lento. Une version noire, avec une baignoire à l'arrière et des autocollants MyWays, est garée à l'endroit indiqué sur la carte.", "points": [[-2017, -5351, "Bison 900 noir (baignoire et autocollants MyWays)"]] },
+  "bravado-bogan": { "page": "Bogan", "obtenir": "Courant à Key Lento." },
+  "vapid-dominator-gt": { "page": "Dominator GT", "obtenir": "Apparaît dans la circulation à Key Lento." },
+  "bravado-dorado": { "page": "Dorado", "obtenir": "Apparaît sur la Sunbelt Highway, à Key Lento." },
+  "karin-feroci-98": { "page": "Feroci", "obtenir": "Assez courante à Key Lento, surtout sur la Sunbelt Highway." },
+  "fathom-fr36": { "page": "FR36", "obtenir": "Souvent visible autour de Key Lento." },
+  "pfister-growler": { "page": "Growler", "obtenir": "Peut apparaître autour de Downtown Vice City, plus souvent la nuit." },
+  "lure-predator-l35p": { "page": "L35P", "obtenir": "Jason en possède un, amarré au ponton de sa maison. Cal Hampton en a un aussi, au ponton de la sienne." },
+  "lure-predator-l35p-police-boat": { "page": "L35P (police)", "obtenir": "Une version aux couleurs de la police de Watson Bay est posée sur une remorque à l'endroit indiqué sur la carte.", "points": [[-5216, -3289, "L35P de la police de Watson Bay (sur remorque)"]] },
+  "mtl-pumper": { "page": "Pumper", "obtenir": "Cinq sont garés devant la caserne de pompiers de Hamlet, et quatre devant celle de Key Lento.", "points": [[-3242, -3058, "Pumpers de la caserne de Hamlet"], [-1881, -5341, "Pumpers de la caserne de Key Lento"]] },
+  "hauners-rhino-tank": { "page": "Rhino", "obtenir": "Se trouve à la base aérienne de Mile Zero : le voler donne immédiatement 3 étoiles de recherche. Il apparaît aussi aux barrages de police à 6 étoiles, où il ouvre le feu.", "repere": "mile-zero" },
+  "vapid-shuttle": { "page": "Shuttle", "obtenir": "Souvent en circulation autour de Key Lento." }
+ }
+}
