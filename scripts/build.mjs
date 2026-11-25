@@ -1334,7 +1334,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
     <li><span class="howto-n">3</span><span>${icon('phone')}<b>Tape-le au téléphone</b> Sors le téléphone, maintiens L1 et appuie sur R1 (PS5) ou LB + RB (Xbox), puis tape les flèches avec la croix.</span></li>
   </ol>
-  <p class="note note--warn">${icon('alert')}<span>Un code actif <b>bloque la sauvegarde et les trophées</b> jusqu'à ce que tu quittes le jeu. Sauvegarde avant d'utiliser un code. Les codes sont les mêmes sur PS5 et Xbox ; il n'y a pas encore de version PC.</span></p>
+  <p class="note note--warn">${icon('alert')}<span>Un code actif <b>bloque la sauvegarde et les trophées</b> jusqu'à ce que tu quittes le jeu. Sauvegarde avant d'utiliser un code.</span></p>
   ${fieldFilter('Chercher un code : argent, munitions, tank…')}
   <div class="filterbar" role="group" aria-label="Filtrer les codes">
     <button class="chip" type="button" data-ccat="" aria-pressed="true">Tous <small>${C.length}</small></button>
