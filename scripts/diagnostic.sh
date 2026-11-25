@@ -98,3 +98,4 @@ curl -sS --max-time 20 "https://$D/missions/?t=$(date +%s)" -o /tmp/ml.html; ech
 
 titre "13. Page Codes allégée"
 curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/cz.html; echo "codes : $(grep -c 'dont la combinaison a été relevée' /tmp/cz.html) intro (0 attendu) | $(grep -c 'mêmes sur PS5 et Xbox' /tmp/cz.html) phrase PS5/Xbox (0 attendu)"
+echo "contexte : $(grep -o ".\{160\}mêmes sur PS5 et Xbox.\{80\}" /tmp/cz.html | head -2)"; echo "en-têtes : $(curl -sSI --max-time 20 "https://$D/codes/" | grep -i -E "last-modified|age:|x-cache" | tr "\r\n" "  ")"
