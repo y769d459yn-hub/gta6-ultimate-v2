@@ -63,6 +63,8 @@ const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.stat
 const MISSIONS = fs.existsSync(path.join(ROOT, 'data', 'missions.json')) ? read('missions.json') : { chapitres: [], missions: [] };
 // Ordre des missions : position selon chaque source ; « ecart » = les sources ne donnent pas le même ordre dans le chapitre
 const MORDRE = fs.existsSync(path.join(ROOT, 'data', 'missions-ordre.json')) ? read('missions-ordre.json').missions : {};
+// Compléments des fiches de missions (objectif, condition, erreurs fréquentes, récompense annoncée) : d'après le guide GTABase, non vérifiés en jeu
+const MGUIDE = fs.existsSync(path.join(ROOT, 'data', 'missions-guide.json')) ? read('missions-guide.json') : { missions: {} };
 const ordreAVerifier = (m) => !!(MORDRE[m.id] && MORDRE[m.id].ecart.length);
 const ORDRE_NOTE = "GTABase présente sa liste « dans l'ordre chronologique », mais l'a réordonnée entre le 22 et le 25/11/2026 ; GTA Wiki n'explique pas son classement. Aucune source ne dit s'il s'agit de l'ordre de l'histoire ou de l'ordre de déblocage, ni si certaines missions peuvent se faire dans un ordre libre.";
 // rang d'une mission dans son chapitre, selon une source (liste ou gtabase)
@@ -1162,6 +1164,17 @@ const COLL = (() => {
     const memeChap = m.facultative ? MS.filter((x) => x.chapitre === m.chapitre && x.facultative && x.id !== m.id).slice(0, 4) : [];
     const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b${k.startsWith('Mission suivante') ? ' class="spoil"' : ''}>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
     const tags = [m.facultative ? 'Facultative' : m.tache ? 'Petite tâche' : 'Histoire principale', m.manquable ? 'Peut être manquée' : ''].filter(Boolean);
+    // fiche enrichie : solution rapide d'abord, conditions ensuite, explications complémentaires repliées en bas
+    const G = MGUIDE.missions[m.id];
+    const suivSure = suiv && !ordreAVerifier(m) && !ordreAVerifier(suiv);
+    const facts = `<dl class="facts">
+    <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
+    ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${m.donneur.split(', ').map((n) => PERSO_ENC[n] ? `<a href="${R}encyclopedie/${PERSO_ENC[n]}/">${esc(n)}</a>` : esc(n)).join(', ')}</dd></div>` : ''}
+    ${G && G.avant ? `<div><dt>${icon('clock')}Débloquée</dt><dd>${G.apres && MIS[G.apres] ? `${esc(G.avant)} <a href="${R}missions/${G.apres}/">Voir « ${esc(MIS[G.apres].nom)} »</a>` : esc(G.avant)}</dd></div>` : ''}
+    ${G && G.cent ? `<div><dt>${icon('trophy')}Pour le 100 %</dt><dd>Obligatoire${m.facultative ? ', même si elle est facultative' : ''} (selon GTABase)${m.manquable ? '. <b>Peut être manquée</b> : fais-la dès qu\u2019elle est proposée.' : ''}</dd></div>` : ''}
+    ${!G && m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
+    ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
+  </dl>`;
     const body = `<article class="wrap fiche" style="--c:#ff3d6e">
   <header class="fiche-head" data-reveal-group>
     <div class="fiche-ico">${icon('flag', 'ic-xl')}</div>
@@ -1169,27 +1182,37 @@ const COLL = (() => {
     <h1 class="h1 h1--fiche">${esc(m.nom)} : solution de la mission</h1>
     ${m.nomEn && m.nomEn !== m.nom ? `<p class="muted">Nom anglais : ${esc(m.nomEn)}</p>` : ''}
   </header>
-  <section class="answer"><span class="answer-k">${icon('bolt')}En bref<button class="lnk spoil-tg" type="button" data-spoil-tg aria-pressed="false">Masquer les spoilers</button></span><p class="spoil">${esc(m.resume)}</p></section>
+  <section class="answer"><span class="answer-k">${icon(G ? 'flag' : 'bolt')}${G ? 'Objectif' : 'En bref'}<button class="lnk spoil-tg" type="button" data-spoil-tg aria-pressed="false">Masquer les spoilers</button></span><p class="spoil">${esc(G ? G.objectif : m.resume)}</p></section>
   <div class="actions">
     <a class="btn btn--primary" href="#etapes">${icon('list')}Voir la solution</a>
     <a class="btn" href="#bloque">${icon('question')}Je suis bloqué</a>
     ${missionsSur[m.id] ? `<a class="btn" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}Voir sur la carte</a>` : ''}
     <button class="btn btn--ghost" type="button" data-mission-faite="${m.id}" aria-pressed="false">${icon('check')}<span data-on="Mission faite" data-off="J'ai fini cette mission">J'ai fini cette mission</span></button>
-    ${suiv ? `<a class="btn btn--primary" href="${R}missions/${suiv.id}/" data-mission-suivante hidden>${icon('arrow-right')}<span>Mission suivante : <span class="spoil">${esc(suiv.nom)}</span></span></a>` : ''}
+    ${suiv && (!G || suivSure) ? `<a class="btn btn--primary" href="${R}missions/${suiv.id}/" data-mission-suivante hidden>${icon('arrow-right')}<span>Mission suivante : <span class="spoil">${esc(suiv.nom)}</span></span></a>` : ''}
   </div>
-  <dl class="facts">
-    <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
-    ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${m.donneur.split(', ').map((n) => PERSO_ENC[n] ? `<a href="${R}encyclopedie/${PERSO_ENC[n]}/">${esc(n)}</a>` : esc(n)).join(', ')}</dd></div>` : ''}
-    ${m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
-    ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
-  </dl>
+  ${G ? `  <section class="steps-wrap" id="etapes" aria-labelledby="et-t">
+    <h2 id="et-t" class="h3">${icon('list')}${G ? 'Solution rapide' : 'Solution étape par étape'}</h2>
+    <ol class="steps">${m.etapes.map((e, n) => `<li class="step"><span class="step-n">${n + 1}</span><span class="step-t">${esc(e)}</span></li>`).join('')}</ol>
+    ${G ? `<p class="muted small">${icon('info')}Étapes rédigées d'après le guide de GTABase (relevé du 22/11/2026), pas encore vérifiées en jeu.</p>` : ''}
+  </section>
+  <section class="related" aria-labelledby="av-t"><h2 id="av-t" class="h3">${icon('flag')}Avant de commencer</h2>
+  ${facts}</section>
+  <section class="steps-wrap mis-bloque" id="bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2><ul>${G.erreurs.map((e) => `<li><b>${esc(e.p)}</b> ${esc(e.s)}</li>`).join('')}</ul>
+    <p><a class="btn-s btn-s--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Bloqué sur la mission ${m.nom}`)}&amp;body=${encodeURIComponent(`Mission : ${m.nom} (${site.url}/${p})\nÉtape où je bloque :\n`)}">${icon('mail')}<span>Je bloque encore : nous écrire</span></a></p></section>
+  ${ordreAVerifier(m) ? ordreSources(m) : ''}
+  <details class="more"><summary>${icon('book')}Explications complémentaires</summary>
+    ${(G.plus || []).length ? `<ul>${G.plus.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+    <p><b>Récompense :</b> ${G.recompense ? `${esc(G.recompense)}, selon GTABase. Montant non vérifié en jeu.${G.recompenseNote ? ` ${esc(G.recompenseNote)}` : ''}` : 'aucune indiquée par GTABase.'}</p>
+    <p>Source : ${esc(MGUIDE.source)}. Traduit et résumé par ${M}.</p>
+  </details>` : `${facts}
   ${ordreAVerifier(m) ? ordreSources(m) : ''}
   <section class="steps-wrap" id="etapes" aria-labelledby="et-t">
-    <h2 id="et-t" class="h3">${icon('list')}Solution étape par étape</h2>
+    <h2 id="et-t" class="h3">${icon('list')}${G ? 'Solution rapide' : 'Solution étape par étape'}</h2>
     <ol class="steps">${m.etapes.map((e, n) => `<li class="step"><span class="step-n">${n + 1}</span><span class="step-t">${esc(e)}</span></li>`).join('')}</ol>
+    ${G ? `<p class="muted small">${icon('info')}Étapes rédigées d'après le guide de GTABase (relevé du 22/11/2026), pas encore vérifiées en jeu.</p>` : ''}
   </section>
   <section class="steps-wrap mis-bloque" id="bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2>${m.bloque.length ? `<ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul>` : `<p>Pas encore d'astuce pour cette mission. Relis l'étape où tu t'arrêtes ci-dessus, et dis-nous où tu bloques : on complète la fiche.</p>`}
-    <p><a class="btn-s btn-s--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Bloqué sur la mission ${m.nom}`)}&amp;body=${encodeURIComponent(`Mission : ${m.nom} (${site.url}/${p})\nÉtape où je bloque :\n`)}">${icon('mail')}<span>Je bloque encore : nous écrire</span></a></p></section>
+    <p><a class="btn-s btn-s--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Bloqué sur la mission ${m.nom}`)}&amp;body=${encodeURIComponent(`Mission : ${m.nom} (${site.url}/${p})\nÉtape où je bloque :\n`)}">${icon('mail')}<span>Je bloque encore : nous écrire</span></a></p></section>`}
   ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, ordreAVerifier(m) || ordreAVerifier(prec) ? 'Mission précédente dans notre liste (ordre à vérifier)' : 'Mission précédente') : ''}${suiv ? lienM(suiv, ordreAVerifier(m) || ordreAVerifier(suiv) ? 'Mission suivante dans notre liste (ordre à vérifier)' : 'Mission suivante') : ''}</div></nav>` : ''}
   ${memeChap.length ? `<section class="related"><h2 class="h3">${icon('plus')}Autres missions facultatives du ${chNom(m.chapitre).toLowerCase()}</h2><div class="minis">${memeChap.map((x) => lienM(x, 'Facultative')).join('')}</div></section>` : ''}
   ${memeLieu.length ? `<section class="related"><h2 class="h3">${icon('pin')}Au même endroit</h2><div class="minis">${memeLieu.map((x) => lienM(x, chNom(x.chapitre))).join('')}</div></section>` : ''}

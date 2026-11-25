@@ -1,0 +1,124 @@
+{
+ "info": "Compléments des fiches de missions (prototype sur 5 missions). Tout vient du guide détaillé de GTABase relevé le 22/11/2026 (vendor/missions/gtabase-detail.json), traduit et résumé par le site. Rien n'a été vérifié en jeu. objectif : but de la mission ; avant : condition de déblocage, seulement quand GTABase la donne ; cent : « Required for 100% » selon GTABase ; erreurs : problème fréquent et solution ; plus : explications complémentaires ; recompense : montant indiqué par GTABase (non vérifié) ; recompenseNote : réserve sur ce montant.",
+ "source": "GTABase, guide de la mission (relevé du 22/11/2026)",
+ "missions": {
+  "gone-fishing": {
+   "objectif": "Récupérer en bateau les colis largués par l'avion de Donnie, puis libérer Donnie, capturé par le gang des Kingfishers, et s'enfuir en hydravion.",
+   "avant": "Première mission du chapitre 1, juste après le Prologue (selon GTABase et GTA Wiki).",
+   "cent": true,
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la cabane de Donnie.",
+     "s": "Elle est au fond du camp, près de la grande éolienne. Maintiens le stick droit : la caméra se tourne vers elle."
+    },
+    {
+     "p": "Les gardes te repèrent.",
+     "s": "Reste accroupi et étrangle-les par derrière. Tu peux aussi passer en force avec une arme : la mission continue."
+    },
+    {
+     "p": "Tu as oublié l'argent de la caravane.",
+     "s": "Objectif facultatif qui ne se rattrape pas : la caravane est sur le chemin de l'avion, avec une séquence de boutons à réussir à l'intérieur."
+    }
+   ],
+   "plus": [
+    "Accroupi, clique le stick gauche pour avancer plus vite sans bruit.",
+    "Après avoir assommé la brute, ramasse le Zombix (objet de soin) et équipe une arme.",
+    "Pour te poser, ralentis, amerris, puis avance sur l'eau jusqu'à la marina de Brian."
+   ],
+   "recompense": "100 à 220 $ selon le déroulement, et 1 déblocage"
+  },
+  "lab-fees": {
+   "objectif": "Encaisser le loyer qu'une boutique de souvenirs doit à Brian, puis déposer dans le local de Brian l'acide reçu à la place.",
+   "cent": true,
+   "erreurs": [
+    {
+     "p": "La boutique est fermée.",
+     "s": "C'est normal : appelle Brian avec le téléphone, cela lance la mission."
+    },
+    {
+     "p": "Tu as oublié le code de la porte du labo.",
+     "s": "0420. Il est aussi écrit sur un bloc-notes dans la même pièce."
+    },
+    {
+     "p": "Tu ne trouves pas le local de Brian.",
+     "s": "Icône verte sur la carte, plus au sud. Code de la porte : 7700."
+    },
+    {
+     "p": "Tu n'as pas reçu l'argent.",
+     "s": "Sans compte en banque à ce moment de l'histoire, la somme arrive plus tard dans la boîte aux lettres devant la maison de Jason."
+    }
+   ],
+   "plus": [
+    "Le vendeur sort une batte : appuie sur Triangle (PS5) ou Y (Xbox) pour la lui prendre et le menacer.",
+    "Tu peux vider la caisse avant de partir."
+   ],
+   "recompense": "600 $, déposés plus tard dans la boîte aux lettres de Jason"
+  },
+  "steal-the-scooter": {
+   "objectif": "Voler le scooter électrique de Peggy, la voisine de Shirley, et le rentrer chez Shirley.",
+   "avant": "Environ un jour (dans le jeu) après « Le rhum de Shirley » : Shirley interpelle Jason.",
+   "apres": "get-shirleys-rum",
+   "cent": true,
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas le scooter.",
+     "s": "Chez Peggy, derrière la maison de Shirley, de l'autre côté de l'eau : il est garé dans l'allée, près de l'escalier. Traverse à la nage ou fais le tour par la route."
+    },
+    {
+     "p": "Peggy te poursuit.",
+     "s": "Elle tombe à mi-chemin : continue simplement."
+    },
+    {
+     "p": "La mission ne se termine pas.",
+     "s": "Shirley ouvre la porte de son porche : entre dedans avec le scooter."
+    }
+   ],
+   "plus": [
+    "Peggy voit mal et ne reconnaît pas Jason : tu peux lui mentir ou partir sans répondre."
+   ]
+  },
+  "deposit-cash-into-buckme": {
+   "objectif": "Déposer une partie de ton argent liquide sur ton compte BuckMe, à n'importe quel distributeur.",
+   "cent": true,
+   "erreurs": [
+    {
+     "p": "Aucun marqueur sur la carte.",
+     "s": "C'est normal : la tâche est dans la liste des missions (carte, icône en forme de livre)."
+    },
+    {
+     "p": "Tu ne trouves pas de distributeur.",
+     "s": "Dans l'appli BuckMe du téléphone, choisis « ATM Finder – Set Destination » : le plus proche est marqué. Il y en a un juste à côté de la maison de Jason."
+    }
+   ],
+   "plus": [
+    "L'argent liquide est perdu quand tu meurs ; celui du compte reste à l'abri. Sans liquide sur toi, les achats sont payés directement par BuckMe."
+   ]
+  },
+  "daily-driver": {
+   "objectif": "Reprendre pour Moses un Canis Crawler de 1982 que des clients n'ont pas payé, et le livrer à son garage.",
+   "avant": "Peu après la mission « Moses » : il t'envoie la photo de la voiture par SMS.",
+   "apres": "moses",
+   "cent": true,
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quelle voiture prendre.",
+     "s": "La jeep blanche au milieu de la zone de recherche, près de l'ancien bâtiment Traders' Union. La photo est dans les messages du téléphone."
+    },
+    {
+     "p": "Des ennemis gardent la voiture.",
+     "s": "Élimine-les, ou monte directement dans la voiture et pars."
+    },
+    {
+     "p": "La récompense est plus basse que prévu.",
+     "s": "Elle baisse si le Crawler est abîmé : conduis prudemment jusqu'au garage."
+    }
+   ],
+   "plus": [
+    "Entre avec la voiture dans le garage de Moses, à Port Gellhorn, pour terminer la mission.",
+    "Peu après, Moses t'offre le garage de Port Gellhorn et l'appli Vice City Real Estate s'installe : elle permet d'acheter d'autres garages."
+   ],
+   "recompense": "jusqu'à 1 375 $ (moins si le Crawler est abîmé), et 2 déblocages",
+   "recompenseNote": "Le même guide indique ailleurs 1 250 $ plus 500 $ si la voiture est en bon état, soit 1 750 $ : les deux chiffres ne concordent pas."
+  }
+ }
+}

@@ -34,7 +34,7 @@ M = {
     ["Rien à faire : Dunk appelle au bout de quelques heures de jeu."],
     ["Pas de marqueur : continue les autres missions en attendant."]),
 49: ("Voiture de tous les jours", "Voler un Canis Crawler de 1982 pour Moses.",
-    ["Trouve le Crawler blanc près de l'ancien bâtiment Traders' Union.", "Livre-le au garage de Moses."],
+    ["Ouvre la photo envoyée par Moses : c'est une jeep blanche, un Canis Crawler de 1982.", "Trouve-la au milieu de la zone de recherche, près de l'ancien bâtiment Traders' Union.", "Élimine les ennemis ou pars directement avec la voiture.", "Entre avec la voiture dans le garage de Moses, à Port Gellhorn, en l'abîmant le moins possible."],
     ["Abîme-le le moins possible : jusqu'à 500 $ de bonus s'il est en bon état."]),
 50: ("Retard de paiement", "Payer les 900 $ de la chambre.",
     ["Gagne 900 $ avec les autres missions du chapitre 2.", "Paie Linda à la réception."],
