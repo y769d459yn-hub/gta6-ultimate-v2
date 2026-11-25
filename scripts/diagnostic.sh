@@ -95,3 +95,6 @@ titre "12. Fiches de missions"
 curl -sS --max-time 20 "https://$D/missions/ambulance-chaser/?t=$(date +%s)" -o /tmp/mf.html; echo "fiche : $(grep -c 'Solution rapide' /tmp/mf.html) solution rapide | $(grep -c 'Avant de commencer' /tmp/mf.html) avant de commencer | $(grep -c 'Explications complémentaires' /tmp/mf.html) complément | $(grep -c 'data-mission-suivante' /tmp/mf.html) bouton suivante (1 attendu)"
 curl -sS --max-time 20 "https://$D/missions/lab-fees/?t=$(date +%s)" -o /tmp/mf2.html; echo "ordre à vérifier : $(grep -c 'data-mission-suivante' /tmp/mf2.html) bouton suivante (0 attendu)"
 curl -sS --max-time 20 "https://$D/missions/?t=$(date +%s)" -o /tmp/ml.html; echo "liste : $(grep -o 'selon GTABase, non vérifiée' /tmp/ml.html | wc -l) récompenses marquées non vérifiées"
+
+titre "13. Page Codes allégée"
+curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/cz.html; echo "codes : $(grep -c 'dont la combinaison a été relevée' /tmp/cz.html) intro (0 attendu) | $(grep -c 'mêmes sur PS5 et Xbox' /tmp/cz.html) phrase PS5/Xbox (0 attendu)"
