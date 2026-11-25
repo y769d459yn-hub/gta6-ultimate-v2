@@ -32,6 +32,14 @@
     if (t) { const u = location.pathname; store.set('recents', [{ u, t: t.slice(0, 90) }, ...store.get('recents', []).filter((r) => r.u !== u)].slice(0, 8)); }
   }
 
+  // ---------- renvois aux sources (encyclopédie) : ouvre le bloc dépliable avant d'y aller ----------
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a.ref[href^="#src-"]'); if (!a) return;
+    const li = document.getElementById(a.getAttribute('href').slice(1)); if (!li) return;
+    const d = li.closest('details'); if (d) d.open = true;
+  });
+  if (/^#src-/.test(location.hash)) { const li = document.getElementById(location.hash.slice(1)); const d = li && li.closest('details'); if (d) d.open = true; }
+
   // ---------- application installable (PWA) : hors connexion ----------
   // seulement en https (ou en local) et quand la page déclare un manifeste ; les aperçus n'enregistrent rien
   if ('serviceWorker' in navigator && $('link[rel="manifest"]') && (location.protocol === 'https:' || /^(localhost|127\.)/.test(location.hostname))) {
@@ -71,7 +79,7 @@
     for (const t of toks) {
       let s = 0;
       if (t === q) s = 1;
-      else if (q.length >= 2 && t.startsWith(q)) s = .85;
+      else if (q.length >= 2 && t.startsWith(q) && (q.length >= 3 || !/\d/.test(t))) s = .85; // « pc » ne doit pas trouver « PC60 »
       else if (t.length >= 4 && q.startsWith(t)) s = .65;
       else if (q.length >= 6 && t.includes(q)) s = .6; // milieu de mot : seulement pour les mots longs (« lance » ne doit pas trouver « ambulance »)
       // faute de frappe : seulement si la première lettre est la même (évite « roquette » → « Coquette », « mourir » → « courir »)
@@ -135,17 +143,19 @@
       if (it._tn.includes(qn)) s += 3;
       if (it._tn === qn || it._tn.startsWith(qn + ' ')) s += 1; // le titre commence par le mot entier cherché
       if (it.g === 'page') s *= .6;
-      out.push({ it, s });
+      out.push({ it, s, tout: hit >= toks.length });
     }
     // réponses directes : « 100 % », « jetski », « online »… passent en premier
     const mots = new Set(qn.split(' '));
     for (const [ph, u] of d.pins || []) {
       if (!ph.split(' ').every((w) => mots.has(w))) continue;
       const deja = out.find((r) => r.it.u === u);
-      if (deja) deja.s += 6;
-      else { const it = pool.find((x) => x.u === u); if (it) out.push({ it, s: 6 }); }
+      if (deja) { deja.s += 6; deja.pin = 1; }
+      else { const it = pool.find((x) => x.u === u); if (it) out.push({ it, s: 6, pin: 1 }); }
     }
-    return out.sort((a, b) => b.s - a.s).slice(0, 24);
+    // une réponse directe trouvée : on retire les résultats qui ne contiennent pas tous les mots cherchés (« sortie pc » ≠ « Journée de sortie »)
+    const res = out.some((r) => r.pin) ? out.filter((r) => r.pin || r.tout) : out;
+    return res.sort((a, b) => b.s - a.s).slice(0, 24);
   }
   // mot général (« voiture », « code », « carte »…) : raccourci vers la rubrique, en premier
   function categorie(q) {
@@ -178,7 +188,7 @@
     const best = i === 0 && !debut;
     return `<div class="so-row" role="option" data-i="${i}"><a class="so-item${best ? ' so-best' : ''}" href="${ROOT}${it.u}" style="--c:${it.c}" data-i="${i}">
       <span class="mini-ico">${ic(it.i) || ic('pin')}</span>
-      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${best && it.r ? `<span class="so-rep"><em class="so-ok">${ic('check')}${escH(it.rs || 'Confirmé')}</em> ${hl(it.r)}</span>` : it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
+      <span class="so-item-t"><small>${best ? 'Meilleur résultat · ' : ''}${escH(it.l)}</small><b>${hl(it.t)}</b>${best && it.r ? `<span class="so-rep"><em class="${it.rw ? 'so-ok so-nc' : 'so-ok'}">${ic(it.rw ? 'alert' : 'check')}${escH(it.rs || 'Confirmé')}</em> ${hl(it.r)}</span>` : it.d ? `<span>${hl(it.d)}</span>` : ''}</span>
       <span class="so-go">Voir ${ic('arrow-right')}</span></a></div>`;
   }
   // aucun résultat : on le dit clairement, on propose un autre mot et de signaler le manque (2 gestes)

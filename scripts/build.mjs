@@ -61,6 +61,24 @@ const VEHICULES = read('vehicules.json');
 const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'verification.json'), 'utf8')).vehicules : {};
 const verifTexte = (s) => { const v = VERIF[s]; if (!v) return ''; return v.statut === 'confirme' ? (v.preuves.length ? `Confirmé par ${v.preuves.join(' et ')}` : 'Type de véhicule confirmé') : v.statut === 'non-confirme' ? 'Non confirmé' : 'À confirmer : vu seulement sur GTABase ou gta6guide.fr'; };
 const MISSIONS = fs.existsSync(path.join(ROOT, 'data', 'missions.json')) ? read('missions.json') : { chapitres: [], missions: [] };
+// Ordre des missions : position selon chaque source ; « ecart » = les sources ne donnent pas le même ordre dans le chapitre
+const MORDRE = fs.existsSync(path.join(ROOT, 'data', 'missions-ordre.json')) ? read('missions-ordre.json').missions : {};
+const ordreAVerifier = (m) => !!(MORDRE[m.id] && MORDRE[m.id].ecart.length);
+const ORDRE_NOTE = "GTABase présente sa liste « dans l'ordre chronologique », mais l'a réordonnée entre le 22 et le 25/11/2026 ; GTA Wiki n'explique pas son classement. Aucune source ne dit s'il s'agit de l'ordre de l'histoire ou de l'ordre de déblocage, ni si certaines missions peuvent se faire dans un ordre libre.";
+// rang d'une mission dans son chapitre, selon une source (liste ou gtabase)
+const rangChap = (m, k) => {
+  const v = MORDRE[m.id] && MORDRE[m.id][k]; if (!v) return null;
+  // numéros consécutifs dans chaque source : rang = numéro − premier numéro du chapitre + 1 (les missions en plus chez GTABase comptent)
+  const premier = Math.min(...MISSIONS.missions.filter((x) => x.chapitre === m.chapitre && MORDRE[x.id] && MORDRE[x.id][k]).map((x) => MORDRE[x.id][k]));
+  return v - premier + 1;
+};
+function ordreSources(m) {
+  const o = MORDRE[m.id]; if (!o) return '';
+  const lignes = [`<li>Notre liste : n° ${o.liste}, ${rangChap(m, 'liste')}<sup>e</sup> du chapitre (ordre publié par GTABase le 22/11/2026)</li>`,
+    `<li>GTABase, liste du 25/11/2026 : ${o.gtabase ? `n° ${o.gtabase}, ${rangChap(m, 'gtabase')}<sup>e</sup> du chapitre` : 'absente'} (avec 2 missions de plus)</li>`,
+    `<li>GTA Wiki : ${o.wiki ? `${o.wiki.rang}<sup>e</sup> du chapitre` : 'pas encore listée'} (page en cours de rédaction, sans explication du classement)</li>`];
+  return `<details class="more"><summary>${icon('info')}Position selon les sources</summary><ul>${lignes.join('')}</ul><p>${ORDRE_NOTE} Nous n'avons pas tranché.</p></details>`;
+}
 const CODES = fs.existsSync(path.join(ROOT, 'data', 'codes.json')) ? read('codes.json') : { categories: [], codes: [] };
 // on n'affiche que les codes dont la combinaison est connue
 CODES.codes = CODES.codes.filter((c) => c.sequence.length);
@@ -531,6 +549,36 @@ function sourcesBlock(ids) {
   const list = ids.map((id) => SRC[id]).filter(Boolean);
   if (!list.length) return '';
   return `<details class="sources"><summary>${icon('shield')}Sources (${list.length})</summary><ul>${list.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a>${s.official ? ' <span class="pill pill--ok">officiel</span>' : s.fiabilite === 'faible' ? ' <span class="pill">source faible</span>' : s.fiabilite === 'agregateur' ? ' <span class="pill">reprend d\u2019autres guides</span>' : ''}</li>`).join('')}</ul><p class="muted">Une source marquée « faible » ou « reprend d’autres guides » ne compte pas pour confirmer une information.</p></details>`;
+}
+// Encyclopédie : références numérotées par affirmation, détail dans un bloc dépliable en bas de fiche
+// v = oui (citation relue), partiel (ne confirme qu'une partie), non (page inaccessible lors de la vérification : non revérifiée)
+const REFS_DATE = '25/11/2026';
+function encyRefs(e) {
+  const ordre = [];
+  (e.refs || []).flat().forEach((x) => { if (SRC[x.s] && !ordre.includes(x.s)) ordre.push(x.s); });
+  const autres = e.sources.filter((id) => SRC[id] && !ordre.includes(id));
+  const num = (id) => ordre.indexOf(id) + 1;
+  const marque = (i) => {
+    const r = (e.refs || [])[i] || [];
+    const sup = [...new Set(r.map((x) => x.s))].filter((id) => SRC[id]).map((id) => {
+      const nv = r.filter((x) => x.s === id).every((x) => x.v === 'non');
+      return `<a class="ref${nv ? ' ref--nv' : ''}" href="#src-${e.slug}-${num(id)}" aria-label="Source ${num(id)}${nv ? ', non revérifiée' : ''}">${num(id)}</a>`;
+    }).join('');
+    const sure = r.some((x) => x.v === 'oui' && !(SRC[x.s].fiabilite));
+    return `${sup ? `<sup class="refs">${sup}</sup>` : ''}${sure ? '' : ' <span class="ref-av">(à revérifier)</span>'}`;
+  };
+  const pill = (s) => (s.official ? ' <span class="pill pill--ok">officiel</span>' : s.fiabilite === 'faible' ? ' <span class="pill">source faible</span>' : s.fiabilite === 'agregateur' ? ' <span class="pill">reprend d’autres guides</span>' : '');
+  const item = (id) => {
+    const s = SRC[id];
+    const lignes = [];
+    (e.refs || []).forEach((r, i) => r.filter((x) => x.s === id).forEach((x) => lignes.push(`<li><b>Affirmation ${i + 1}</b> · ${x.v === 'oui' ? `relue le ${REFS_DATE}` : x.v === 'partiel' ? `confirme seulement une partie (relue le ${REFS_DATE})` : `page inaccessible lors de notre vérification du ${REFS_DATE} : non revérifiée`}${x.q ? ` : <q lang="en">${esc(x.q)}</q>` : ''}${x.n ? `<br><small>${esc(x.n)}</small>` : ''}</li>`)));
+    return `<li id="src-${e.slug}-${num(id)}"><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a>${pill(s)}${lignes.length ? `<ul class="refs-l">${lignes.join('')}</ul>` : ''}</li>`;
+  };
+  const bloc = ordre.length + autres.length ? `<details class="sources" id="sources-${e.slug}"><summary>${icon('shield')}Sources détaillées (${ordre.length + autres.length})</summary>
+  <p class="muted">Les numéros après chaque affirmation renvoient à cette liste. Une affirmation suivie de « à revérifier » n'a pas pu être relue dans une source indépendante.</p>
+  <ol class="refs-src">${ordre.map(item).join('')}</ol>${autres.length ? `<p class="muted">Autres sources consultées pour cette fiche :</p><ul>${autres.map((id) => `<li><a href="${SRC[id].u}" rel="nofollow noopener" target="_blank">${esc(SRC[id].n)}</a>${pill(SRC[id])}</li>`).join('')}</ul>` : ''}
+  <p class="muted">Une source marquée « faible » ou « reprend d’autres guides » ne compte pas pour confirmer une information. Citations en anglais, telles que publiées.</p></details>` : '';
+  return { marque, bloc };
 }
 // Véhicules : nature de chaque emplacement, d'après le type de repère de la source (rien n'est déduit au-delà)
 const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Lié à une demande (Moses ou Randy)', 'Location de véhicules': 'À louer' };
@@ -1044,8 +1092,8 @@ const COLL = (() => {
   const princ = MS.filter((m) => !m.facultative).length, fac = MS.length - princ, taches = MS.filter((m) => m.tache).length, vraies = princ - taches;
   const chNom = (c) => (c.id === 'prologue' ? 'Prologue' : `Chapitre ${c.id}`);
   const PERS = { jason: 'Jason', lucia: 'Lucia' };
-  const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}${m.tache ? ' mis--tache' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}" data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
-    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable || m.tache ? `<small>${[m.facultative ? 'facultative' : '', m.tache ? 'petite tâche' : '', m.manquable ? '<em>peut être manquée</em>' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
+  const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}${m.tache ? ' mis--tache' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}"${ordreAVerifier(m) ? ' data-ov="1"' : ''} data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
+    <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable || m.tache || ordreAVerifier(m) ? `<small>${[m.facultative ? 'facultative' : '', m.tache ? 'petite tâche' : '', m.manquable ? '<em>peut être manquée</em>' : '', ordreAVerifier(m) ? 'ordre à vérifier' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
     <div class="mis-b">
       <p class="mis-r spoil">${esc(m.resume)}</p>
       <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
@@ -1058,7 +1106,8 @@ const COLL = (() => {
   </details>`;
   const body = `<section class="wrap section missions" data-missions>
   <h1 class="h1">Missions et solutions</h1>
-  <p class="lead">L'histoire dans l'ordre et par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <p class="lead">L'histoire par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <p class="note">${icon('alert')}<span><b>Ordre des missions :</b> nos numéros suivent la liste publiée par GTABase le 22/11/2026. Depuis, GTABase et GTA Wiki donnent un ordre différent pour ${MS.filter(ordreAVerifier).length} missions, marquées « ordre à vérifier ». ${ORDRE_NOTE}</span></p>
   <div class="mis-now" data-mnow>
     <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
     <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>
@@ -1111,12 +1160,12 @@ const COLL = (() => {
     const i = histoire.indexOf(m);
     const prec = i > 0 ? histoire[i - 1] : null, suiv = i >= 0 && i < histoire.length - 1 ? histoire[i + 1] : null;
     const memeChap = m.facultative ? MS.filter((x) => x.chapitre === m.chapitre && x.facultative && x.id !== m.id).slice(0, 4) : [];
-    const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b${k === 'Mission suivante' ? ' class="spoil"' : ''}>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
+    const lienM = (x, k) => `<a class="mini" href="${R}missions/${x.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${esc(k)}</small><b${k.startsWith('Mission suivante') ? ' class="spoil"' : ''}>${esc(x.nom)}</b></span>${icon('arrow-right')}</a>`;
     const tags = [m.facultative ? 'Facultative' : m.tache ? 'Petite tâche' : 'Histoire principale', m.manquable ? 'Peut être manquée' : ''].filter(Boolean);
     const body = `<article class="wrap fiche" style="--c:#ff3d6e">
   <header class="fiche-head" data-reveal-group>
     <div class="fiche-ico">${icon('flag', 'ic-xl')}</div>
-    <div class="fiche-tags"><a class="pill pill--cat" href="${R}missions/#ch-${m.chapitre}">${icon('flag')}${chNom(m.chapitre)}${ch.titre && m.chapitre !== 'prologue' ? ` · ${esc(ch.titre)}` : ''}</a>${tags.map((t) => `<span class="pill">${esc(t)}</span>`).join('')}${m.num ? `<span class="pill">Mission ${m.num}</span>` : ''}</div>
+    <div class="fiche-tags"><a class="pill pill--cat" href="${R}missions/#ch-${m.chapitre}">${icon('flag')}${chNom(m.chapitre)}${ch.titre && m.chapitre !== 'prologue' ? ` · ${esc(ch.titre)}` : ''}</a>${tags.map((t) => `<span class="pill">${esc(t)}</span>`).join('')}${m.num ? `<span class="pill">Mission ${m.num}${ordreAVerifier(m) ? ' · ordre à vérifier' : ''}</span>` : ''}</div>
     <h1 class="h1 h1--fiche">${esc(m.nom)} : solution de la mission</h1>
     ${m.nomEn && m.nomEn !== m.nom ? `<p class="muted">Nom anglais : ${esc(m.nomEn)}</p>` : ''}
   </header>
@@ -1134,13 +1183,14 @@ const COLL = (() => {
     ${m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
     ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
   </dl>
+  ${ordreAVerifier(m) ? ordreSources(m) : ''}
   <section class="steps-wrap" id="etapes" aria-labelledby="et-t">
     <h2 id="et-t" class="h3">${icon('list')}Solution étape par étape</h2>
     <ol class="steps">${m.etapes.map((e, n) => `<li class="step"><span class="step-n">${n + 1}</span><span class="step-t">${esc(e)}</span></li>`).join('')}</ol>
   </section>
   <section class="steps-wrap mis-bloque" id="bloque" aria-labelledby="bl-t"><h2 id="bl-t" class="h3">${icon('question')}Si tu es bloqué</h2>${m.bloque.length ? `<ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul>` : `<p>Pas encore d'astuce pour cette mission. Relis l'étape où tu t'arrêtes ci-dessus, et dis-nous où tu bloques : on complète la fiche.</p>`}
     <p><a class="btn-s btn-s--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Bloqué sur la mission ${m.nom}`)}&amp;body=${encodeURIComponent(`Mission : ${m.nom} (${site.url}/${p})\nÉtape où je bloque :\n`)}">${icon('mail')}<span>Je bloque encore : nous écrire</span></a></p></section>
-  ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, 'Mission précédente') : ''}${suiv ? lienM(suiv, 'Mission suivante') : ''}</div></nav>` : ''}
+  ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, ordreAVerifier(m) || ordreAVerifier(prec) ? 'Mission précédente dans notre liste (ordre à vérifier)' : 'Mission précédente') : ''}${suiv ? lienM(suiv, ordreAVerifier(m) || ordreAVerifier(suiv) ? 'Mission suivante dans notre liste (ordre à vérifier)' : 'Mission suivante') : ''}</div></nav>` : ''}
   ${memeChap.length ? `<section class="related"><h2 class="h3">${icon('plus')}Autres missions facultatives du ${chNom(m.chapitre).toLowerCase()}</h2><div class="minis">${memeChap.map((x) => lienM(x, 'Facultative')).join('')}</div></section>` : ''}
   ${memeLieu.length ? `<section class="related"><h2 class="h3">${icon('pin')}Au même endroit</h2><div class="minis">${memeLieu.map((x) => lienM(x, chNom(x.chapitre))).join('')}</div></section>` : ''}
   <p class="muted small">${icon('info')}${misSrc(m)} <a href="${R}missions/">Toutes les missions</a></p>
@@ -1239,8 +1289,8 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   const FL = { haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' };
   const FLT = { haut: '↑', bas: '↓', gauche: '←', droite: '→' };
   const texte = (seq) => seq.map((d) => FL[d]).join(', ');
-  const fleches = (seq) => `<div class="code-seq" aria-hidden="true">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i></i>' : ''}`).join('')}</div>
-    <p class="code-txt"><span class="code-txt-k">Combinaison (croix directionnelle) :</span> <span class="code-txt-v">${seq.map((d) => `${FLT[d]} ${FL[d]}`).join(' · ')}</span></p>
+  const fleches = (seq, k = 'Combinaison (croix directionnelle) :') => `<div class="code-seq" aria-hidden="true">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i></i>' : ''}`).join('')}</div>
+    <p class="code-txt"><span class="code-txt-k">${k}</span> <span class="code-txt-v">${seq.map((d) => `${FLT[d]} ${FL[d]}`).join(' · ')}</span></p>
     <button class="btn-s btn-s--ghost code-copy" type="button" data-copy-text="${esc(texte(seq))}">${icon('link')}<span>Copier la combinaison</span></button>`;
   const confirme = (c) => c.confirme && !c.contradiction && indepNoms(c.sources).length >= 2;
   const C = CODES.codes, cats = CODES.categories;
@@ -1248,7 +1298,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
     <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3></div></header>
     <p class="code-effet">${esc(c.effet)}</p>
-    ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
+    ${c.variantes ? `<p class="code-tba">${icon('alert')}Deux combinaisons différentes circulent, aucune n'est vérifiée en jeu.</p>${c.variantes.map((v, i) => `<div class="code-var">${fleches(v.sequence, `Version ${'AB'[i]}, selon ${esc(v.sources.join(' et '))} (${v.sequence.length} flèches, non vérifiée) :`)}</div>`).join('')}` : c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
     <p class="code-plat">${icon('gamepad')}Combinaison relevée sur PS5. Sur Xbox Series, c'est la même croix directionnelle, mais toutes les sources ne le précisent pas.</p>
     ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${c.contradiction ? `Contradictoire : ${esc(c.contradiction)}` : confirme(c) ? `Recoupée par deux sources distinctes : ${esc(indepNoms(c.sources).join(', '))}${c.sources.some((n) => NON_INDEP[n]) ? ` (et ${esc(c.sources.filter((n) => NON_INDEP[n]).join(', '))}, qui reprend d'autres guides)` : ''}` : `À vérifier : une seule source (hors agrégateurs) (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026${c.note ? `<br>${esc(c.note)}` : ''}</p>` : ''}
@@ -1438,6 +1488,7 @@ for (const e of ENC) {
   const lieu = e.lieu && onMap(e.lieu);
   const guides = e.liens.filter((s) => A[s] || V[s]);
   const fiches = e.liens.filter((s) => !A[s] && !V[s]);
+  const refs = encyRefs(e);
   const body = `<article class="wrap fiche" style="--c:${c.color}">
   <header class="fiche-head" data-reveal-group>
     <div class="fiche-ico">${icon(e.icon, 'ic-xl')}</div>
@@ -1452,13 +1503,13 @@ for (const e of ENC) {
     <a class="btn btn--ghost" href="${R}encyclopedie/?cat=${e.cat}">${icon('arrow-left')}Retour à la catégorie</a>
   </div>
   <div class="split">
-    <section class="known"><h2 class="h3">${icon('check')}Ce qu'on sait</h2><ul>${e.sait.map((s) => `<li>${esc(s)}</li>`).join('')}</ul></section>
+    <section class="known"><h2 class="h3">${icon('check')}Ce qu'on sait</h2><ul>${e.sait.map((s, i) => `<li>${esc(s)}${refs.marque(i)}</li>`).join('')}</ul></section>
     <section class="unknown"><h2 class="h3">${icon('question')}Ce qui reste incertain</h2><ul>${e.incertain.map((s) => `<li>${esc(s)}</li>`).join('') || '<li>Rien de notable.</li>'}</ul></section>
   </div>
   ${guides.length ? `<section class="related" id="guides"><h2 class="h3">${icon('bolt')}Guides liés</h2><div class="minis">${guides.map((s) => relCard(s, R)).join('')}</div></section>` : ''}
   ${fiches.length ? `<section class="related"><h2 class="h3">${icon('link')}Liens utiles</h2><div class="minis">${fiches.map((s) => relCard(s, R)).join('')}</div></section>` : ''}
   ${(() => { const ms = e.cat === 'personnages' ? MISSIONS.missions.filter((m) => (m.donneur || '').split(', ').includes(e.nom)) : []; return ms.length ? `<section class="related"><h2 class="h3">${icon('flag')}Missions données par ${esc(e.nom.split(' ')[0])} (${ms.length})</h2><div class="minis">${ms.map((m) => `<a class="mini" href="${R}missions/${m.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${m.chapitre === 'prologue' ? 'Prologue' : `Chapitre ${m.chapitre}`}</small><b>${esc(m.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>` : ''; })()}
-  ${sourcesBlock(e.sources)}
+  ${refs.bloc}
 </article>`;
   emit(p, layout({ p, title: `${e.nom} dans GTA 6 : informations et guide`, desc: descSEO(`${e.nom} dans GTA 6 :`, e.bref, 'Ce qui est confirmé et ce qui reste incertain, avec les sources.'), body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Encyclopédie', 'encyclopedie/'], [c.nom, `encyclopedie/?cat=${e.cat}`], [e.nom, p]], schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${e.nom} dans GTA 6`, description: e.bref, inLanguage: 'fr', dateModified: site.majLe, about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' } }] }));
 }
@@ -1737,6 +1788,12 @@ for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html
   index.forEach((x, i) => { const k = norm(x.t); if (!(k in best) || (PRIO[x.g] ?? 9) < (PRIO[index[best[k]].g] ?? 9)) best[k] = i; });
   const garde = new Set(Object.values(best));
   for (let i = index.length - 1; i >= 0; i--) if (!garde.has(i)) index.splice(i, 1);
+}
+// réponse « pas encore confirmé » : affichée en tête de recherche, en orange, jamais comme une réponse vérifiée
+for (const [u, r] of Object.entries(site.reponsesNonConfirmees || {})) {
+  const x = index.find((y) => y.u === u);
+  if (!x) throw new Error(`réponse non confirmée : ${u} n'est pas dans l'index de recherche`);
+  Object.assign(x, { r, rs: 'Pas encore confirmé', rw: 1 });
 }
 // réponses directes : une recherche courante mène d'abord à la bonne page (seulement des pages qui existent)
 const pins = (site.reponsesDirectes || []).map(([q, u]) => {

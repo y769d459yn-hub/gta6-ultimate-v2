@@ -85,9 +85,24 @@ for (const a of lire('astuces.json')) {
   if (a.statut === 'teste' && !(a.preuve && a.preuve.date && a.preuve.plateforme && a.preuve.lien)) err(`astuce ${a.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
   if (a.verifie && !/^\d{4}-\d{2}-\d{2}$/.test(a.verifie)) err(`astuce ${a.slug} : date de vérification invalide`);
 }
+// encyclopédie : chaque affirmation « Ce qu'on sait » a au moins une référence ; une citation pour chaque source relue
+for (const e of lire('encyclopedie.json')) {
+  if (!Array.isArray(e.refs) || e.refs.length !== e.sait.length) { err(`encyclopédie ${e.slug} : références absentes ou non alignées sur « Ce qu'on sait »`); continue; }
+  e.refs.forEach((r, i) => {
+    if (!r.length) err(`encyclopédie ${e.slug} : affirmation ${i + 1} sans source`);
+    for (const x of r) {
+      if (!SRCJ[x.s]) err(`encyclopédie ${e.slug} : source inconnue « ${x.s} »`);
+      if (!['oui', 'partiel', 'non'].includes(x.v)) err(`encyclopédie ${e.slug} : niveau de vérification inconnu « ${x.v} »`);
+      if (x.v !== 'non' && !x.q) err(`encyclopédie ${e.slug} : source relue sans citation (affirmation ${i + 1})`);
+    }
+  });
+  if (e.statut === 'confirme' && !e.refs.flat().some((x) => x.v === 'oui' && SRCJ[x.s] && !SRCJ[x.s].fiabilite)) err(`encyclopédie ${e.slug} : « confirmé » sans aucune affirmation relue dans une source indépendante`);
+}
 for (const c of lire('codes.json').codes) {
   if (c.confirme && indNoms(c.sources).length < 2) err(`code ${c.id} : « confirmé » sans deux sources indépendantes`);
   if (c.confirme && c.contradiction) err(`code ${c.id} : « confirmé » alors qu'une contradiction est notée`);
+  if (c.contradiction && /essaie les deux/i.test(c.contradiction)) err(`code ${c.id} : une combinaison contradictoire ne doit pas être présentée comme sûre de fonctionner`);
+  if (c.variantes && (c.variantes.length < 2 || c.confirme)) err(`code ${c.id} : variantes mal décrites (au moins deux, jamais « confirmé »)`);
 }
 for (const x of lire('vehicules.json')) {
   if (x.dispo === 'confirme' && indIds(x.sources).length < 2) err(`véhicule ${x.slug} : emplacement « confirmé » sans deux sources indépendantes`);
