@@ -76,4 +76,11 @@ echo "publication.json : $(curl -sS --max-time 20 "https://$D/assets/publication
 curl -sS --max-time 20 "https://$D/data/index.json" -o /tmp/idx.json; echo "index de recherche : $(grep -o '"pins":\[[^]]*' /tmp/idx.json | cut -c1-90) | listes de véhicules : $(grep -o 'Liste de véhicules' /tmp/idx.json | wc -l)"
 curl -sS --max-time 20 "https://$D/missions/gone-fishing/" -o /tmp/m.html; echo "mission : $(grep -c 'href="#bloque"' /tmp/m.html) bouton Je suis bloqué | $(grep -c 'data-mission-suivante' /tmp/m.html) Mission suivante | $(grep -c 'data-spoil-tg' /tmp/m.html) interrupteur spoilers"
 curl -sS --max-time 20 "https://$D/compte/" -o /tmp/c.html; echo "Mon espace : $(grep -c 'data-import' /tmp/c.html) import | $(grep -c 'data-pref="spoil"' /tmp/c.html) préférence spoilers"
-echo "app.js : $(curl -sS --max-time 20 "https://$D/assets/app.js" | grep -c 'Signaler ce qui manque') message sans résultat"
+echo "app.js : $(curl -sS --max-time 20 "https://$D/assets/app.js" | grep -c 'Signaler un guide manquant') message sans résultat"
+
+titre "10. Corrections de fiabilité (audit du 25/11)"
+curl -sS --max-time 20 "https://$D/codes/" -o /tmp/c.html; echo "codes : $(grep -c 'Contradictoire' /tmp/c.html) code contradictoire | $(grep -o 'Recoupée par deux sources distinctes' /tmp/c.html | wc -l) codes recoupés"
+curl -sS --max-time 20 "https://$D/vehicules/moto-sportive/" -o /tmp/v.html; echo "moto sportive : $(grep -c 'Conseils pour le trouver' /tmp/v.html) conseils | $(grep -o 'b-a-verifier' /tmp/v.html | head -1)"
+curl -sS --max-time 20 "https://$D/astuces/semer-la-police/" -o /tmp/a.html; echo "date de consultation inventée : $(grep -c 'Consultées le [0-9]' /tmp/a.html) (0 attendu)"
+curl -sS --max-time 20 "https://$D/collection/playlist-unique/" -o /tmp/p.html; echo "playlists : $(grep -c '2 playlists uniques' /tmp/p.html) note d'écart"
+curl -sS --max-time 20 "https://$D/a-propos/" -o /tmp/ap.html; echo "historique : $(grep -o '2026-11-25' /tmp/ap.html | wc -l) corrections du 25/11"

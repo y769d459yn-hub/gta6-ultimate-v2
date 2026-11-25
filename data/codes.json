@@ -398,7 +398,41 @@
     "gta6guide.fr"
    ],
    "argent": false,
-   "contradiction": "GTA Wiki donne 8 flèches (Bas, Haut, Gauche, Gauche, Droite, Bas, Bas, Haut) ; GTABase et gta6guide.fr en donnent 9, avec un Bas de plus à la fin. Essaie les deux si l'une ne marche pas."
+   "contradiction": "GTA Wiki donne 8 flèches ; GTABase et gta6guide.fr en donnent 9, avec un Bas de plus à la fin. Aucune des deux versions n'a été vérifiée en jeu : il est possible qu'aucune ne fonctionne.",
+   "variantes": [
+    {
+     "sources": [
+      "GTABase",
+      "gta6guide.fr"
+     ],
+     "sequence": [
+      "bas",
+      "haut",
+      "gauche",
+      "gauche",
+      "droite",
+      "bas",
+      "bas",
+      "haut",
+      "bas"
+     ]
+    },
+    {
+     "sources": [
+      "GTA Wiki"
+     ],
+     "sequence": [
+      "bas",
+      "haut",
+      "gauche",
+      "gauche",
+      "droite",
+      "bas",
+      "bas",
+      "haut"
+     ]
+    }
+   ]
   },
   {
    "id": "combat-20",

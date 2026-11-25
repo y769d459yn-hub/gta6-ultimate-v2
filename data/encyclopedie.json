@@ -19,7 +19,38 @@
   "statut": "confirme",
   "sources": [
    "rockstar",
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "gtabase-stats"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Jason wants an easy life, but things just keep getting harder."
+    },
+    {
+     "s": "gtabase-stats",
+     "v": "oui",
+     "q": "improve these stats for both playable characters"
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "partiel",
+     "q": "Jason and Lucia have always known the deck is stacked against them.",
+     "n": "Texte officiel qui les présente ensemble ; il ne détaille pas le contenu de chaque bande-annonce."
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -30,7 +61,7 @@
   "bref": "La première héroïne principale d'un GTA en 3D, jouable avec Jason.",
   "sait": [
    "Personnage jouable confirmé.",
-   "La première bande-annonce la montre en prison."
+   "Rockstar indique qu'elle a été incarcérée au pénitencier de Leonida, puis libérée."
   ],
   "incertain": [
    "Son parcours complet n'est pas raconté ici, pour éviter les spoilers."
@@ -42,7 +73,33 @@
   "statut": "confirme",
   "sources": [
    "rockstar",
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "gtabase-stats"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Fresh out of prison and ready to change the odds in her favor, Lucia’s committed to her plan"
+    },
+    {
+     "s": "gtabase-stats",
+     "v": "oui",
+     "q": "improve these stats for both playable characters"
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Fighting for her family landed her in the Leonida Penitentiary. Sheer luck got her out."
+    }
+   ]
   ]
  },
  {
@@ -62,7 +119,21 @@
   ],
   "statut": "confirme",
   "sources": [
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Cal is at the low tide of America and happy there."
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -83,7 +154,21 @@
   ],
   "statut": "confirme",
   "sources": [
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Boobie is a local Vice City legend — and acts like it."
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -104,7 +189,21 @@
   ],
   "statut": "confirme",
   "sources": [
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Dre'Quan was always more of a hustler than a gangster."
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -124,7 +223,21 @@
   ],
   "statut": "confirme",
   "sources": [
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Bae-Luxe and Roxy aka Real Dimez have been friends since high school"
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -144,7 +257,21 @@
   ],
   "statut": "confirme",
   "sources": [
-   "pcgamer-chars"
+   "pcgamer-chars",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Raul’s a seasoned bank robber always on the hunt for talent"
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -167,7 +294,27 @@
   "statut": "confirme",
   "sources": [
    "pcgamer-chars",
-   "g2a-money"
+   "g2a-money",
+   "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Brian's a classic drug runner from the golden age of smuggling in the Keys."
+    },
+    {
+     "s": "pcgamer-chars",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "g2a-money",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -191,7 +338,21 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": null
+  "lieu": null,
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia, Mount Kalaga",
+     "n": "Une page officielle par région dans la rubrique « Only in Leonida »."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ]
+  ]
  },
  {
   "slug": "vice-city",
@@ -200,8 +361,9 @@
   "nom": "Vice City",
   "bref": "La métropole de Leonida, inspirée de Miami.",
   "sait": [
-   "Ville principale du jeu, sur la côte sud-est.",
-   "Elle est décrite par Rockstar comme le cœur de Leonida."
+   "Ville principale du jeu.",
+   "Située sur la côte sud-est de Leonida, selon PC Gamer.",
+   "Rockstar la décrit comme « la capitale du soleil et de la fête » de l'Amérique."
   ],
   "incertain": [
    "La liste des quartiers diffère selon les guides."
@@ -215,7 +377,33 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "vice-city"
+  "lieu": "vice-city",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "The glamour, hustle, and greed of America captured in a single city."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Vice City is still the sun and fun capital of America."
+    }
+   ]
+  ]
  },
  {
   "slug": "leonida-keys",
@@ -238,7 +426,21 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "leonida-keys"
+  "lieu": "leonida-keys",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Life in this tropical archipelago isn’t flashy but it’s easy.",
+     "n": "Une image officielle de la page montre un pont reliant deux îles."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ]
+  ]
  },
  {
   "slug": "grassrivers",
@@ -261,7 +463,20 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "grassrivers"
+  "lieu": "grassrivers",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "The gators may be the most famous attraction, but there are far deadlier predators and weirder discoveries among the mangroves."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ]
+  ]
  },
  {
   "slug": "port-gellhorn",
@@ -270,7 +485,8 @@
   "nom": "Port Gellhorn",
   "bref": "Une ville portuaire en déclin, sur la côte du Golfe.",
   "sait": [
-   "Région confirmée au nord-ouest de l'État."
+   "Région confirmée par Rockstar : une ancienne station de vacances, avec motels bon marché et attractions fermées.",
+   "Située au nord-ouest de l'État, selon PC Gamer."
   ],
   "incertain": [
    "Ses lieux exacts."
@@ -283,7 +499,22 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "port-gellhorn"
+  "lieu": "port-gellhorn",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Cheap motels, shut-down attractions, and empty strip malls won’t bring the tourists back"
+    }
+   ],
+   [
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ]
+  ]
  },
  {
   "slug": "ambrosia",
@@ -292,7 +523,8 @@
   "nom": "Ambrosia",
   "bref": "Une région rurale au bord du lac Leonida.",
   "sait": [
-   "La raffinerie Allied Crystal domine son horizon."
+   "La raffinerie Allied Crystal domine son horizon.",
+   "Rockstar la situe « au cœur de Leonida »."
   ],
   "incertain": [
    "Les villes qui en font partie."
@@ -306,7 +538,28 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "ambrosia"
+  "lieu": "ambrosia",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "The Allied Crystal sugar refinery provides the jobs, while the local biker gang provides almost everything else.",
+     "n": "Le texte officiel dit que la raffinerie fournit les emplois ; « domine son horizon » vient des images officielles."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "In the heart of Leonida, American industry and old school values still reign supreme"
+    }
+   ]
+  ]
  },
  {
   "slug": "mount-kalaga",
@@ -315,10 +568,11 @@
   "nom": "Mount Kalaga",
   "bref": "Un parc national au nord de Leonida.",
   "sait": [
-   "Région confirmée : forêts et nature."
+   "Région confirmée : forêts et nature.",
+   "Rockstar la place contre la frontière nord de l'État et y cite la chasse, la pêche et les pistes tout-terrain."
   ],
   "incertain": [
-   "Les activités qu'on peut y faire."
+   "Le détail des activités disponibles en jeu."
   ],
   "liens": [
    "ambrosia"
@@ -328,7 +582,27 @@
    "rockstar",
    "pcgamer-map"
   ],
-  "lieu": "mount-kalaga"
+  "lieu": "mount-kalaga",
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "In the lush surrounding backwoods, hillbilly mystics and paranoid radicals live far from the prying eyes of the government."
+    },
+    {
+     "s": "pcgamer-map",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "A national landmark up against the state’s northern border, Mount Kalaga offers prime hunting, fishing, and off-road trails."
+    }
+   ]
+  ]
  },
  {
   "slug": "vehicules-remarquables",
@@ -337,7 +611,7 @@
   "nom": "Véhicules remarquables",
   "bref": "Des véhicules rares garés à des endroits fixes.",
   "sait": [
-   "Les guides en recensent environ 139."
+   "GTABase en recense 251 sur sa carte (relevé du 25/11/2026)."
   ],
   "incertain": [
    "La liste n'est pas encore complète."
@@ -349,6 +623,16 @@
   "statut": "a-verifier",
   "sources": [
    "gtabase-map"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gtabase-map",
+     "v": "oui",
+     "q": "All GTA 6 Standout Vehicle Locations (251)",
+     "n": "Notre fiche indiquait « environ 139 » : chiffre mis à jour d'après la carte GTABase."
+    }
+   ]
   ]
  },
  {
@@ -358,10 +642,10 @@
   "nom": "Garages",
   "bref": "Ils servent à stocker tes véhicules. On les achète avec Vice City Real Estate.",
   "sait": [
-   "L'appli se débloque après la première quête de Moses (chapitre 2)."
+   "L'appli Vice City Real Estate s'installe peu après la mission « Daily Driver » du chapitre 2 (le vol du Crawler pour Moses)."
   ],
   "incertain": [
-   "Les prix exacts : 8 garages entre 4 000 et 40 000 $, selon les guides."
+   "Les prix exacts : 8 garages entre 4 000 et 40 000 $ selon GTABase, pas encore vérifiés en jeu."
   ],
   "liens": [
    "stocker-vehicules",
@@ -369,7 +653,21 @@
   ],
   "statut": "a-verifier",
   "sources": [
-   "beebom-apps"
+   "beebom-apps",
+   "gtabase-properties"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gtabase-properties",
+     "v": "oui",
+     "q": "Shortly after the Chapter 2 mission Daily Driver (stealing the Crawler for Moses), the Vice City Real Estate app is installed on your phone."
+    },
+    {
+     "s": "beebom-apps",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -392,6 +690,32 @@
   "statut": "a-verifier",
   "sources": [
    "gtabase-wanted"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gtabase-wanted",
+     "v": "oui",
+     "q": "They have visual on you and your identity is known."
+    },
+    {
+     "s": "gtabase-wanted",
+     "v": "oui",
+     "q": "If you leave their search radius without being spotted, your Wanted Stars flash and you'll eventually lose them."
+    }
+   ],
+   [
+    {
+     "s": "gtabase-wanted",
+     "v": "oui",
+     "q": "How to clear: get a quick respray or find a new ride."
+    },
+    {
+     "s": "gtabase-wanted",
+     "v": "oui",
+     "q": "How to clear: change your clothes."
+    }
+   ]
   ]
  },
  {
@@ -411,7 +735,22 @@
   ],
   "statut": "a-verifier",
   "sources": [
-   "beebom-apps"
+   "beebom-apps",
+   "gtabase-properties"
+  ],
+  "refs": [
+   [
+    {
+     "s": "beebom-apps",
+     "v": "non"
+    },
+    {
+     "s": "gtabase-properties",
+     "v": "partiel",
+     "q": "the Vice City Real Estate app is installed on your phone",
+     "n": "Confirme seulement l'appli Vice City Real Estate."
+    }
+   ]
   ]
  },
  {
@@ -438,6 +777,57 @@
    "gtabase-cheats",
    "gtawiki-cheats",
    "gta6guide-cheats"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gtabase-cheats",
+     "v": "oui",
+     "q": "The Cheats list only appears after you finish the story, under Progress Menu > Cheats"
+    },
+    {
+     "s": "gtawiki-cheats",
+     "v": "oui",
+     "q": "Once the story has been completed, a Cheats list appears in the Progress menu"
+    },
+    {
+     "s": "gta6guide-cheats",
+     "v": "oui",
+     "q": "Après l’histoire : Progression > Triche."
+    }
+   ],
+   [
+    {
+     "s": "gtawiki-cheats",
+     "v": "oui",
+     "q": "every cheat in it has its own unlock requirement, most of which are tied to the post-game 100% completion"
+    },
+    {
+     "s": "gtabase-cheats",
+     "v": "oui",
+     "q": "for example, completing 100 workouts for the Body Armor cheat"
+    }
+   ],
+   [
+    {
+     "s": "gtabase-cheats",
+     "v": "oui",
+     "q": "Using a cheat in GTA 6 disables Trophies and also disables saving the game until you quit."
+    },
+    {
+     "s": "gtawiki-cheats",
+     "v": "partiel",
+     "q": "prevents the player from saving the game for as long as the cheat is active",
+     "n": "GTA Wiki dit « tant que le code est actif », pas « jusqu'à ce que tu quittes le jeu »."
+    }
+   ],
+   [
+    {
+     "s": "gtabase-cheats",
+     "v": "oui",
+     "q": "None of the 61 cheats in GTA 6 makes you invincible, and there's no health cheat either."
+    }
+   ]
   ]
  },
  {
@@ -460,6 +850,20 @@
   "statut": "a-verifier",
   "sources": [
    "consolyte-save"
+  ],
+  "refs": [
+   [
+    {
+     "s": "consolyte-save",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "consolyte-save",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -481,6 +885,18 @@
   "sources": [
    "gamespot-travel",
    "dotesports-travel"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gamespot-travel",
+     "v": "non"
+    },
+    {
+     "s": "dotesports-travel",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -502,6 +918,15 @@
   "statut": "confirme",
   "sources": [
    "rockstar"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Jason and Lucia have always known the deck is stacked against them."
+    }
+   ]
   ]
  },
  {
@@ -524,6 +949,18 @@
   "sources": [
    "consolyte-save",
    "g2a-money"
+  ],
+  "refs": [
+   [
+    {
+     "s": "consolyte-save",
+     "v": "non"
+    },
+    {
+     "s": "g2a-money",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -535,7 +972,7 @@
   "sait": [
    "Développé par Rockstar Games et édité par Take-Two Interactive.",
    "Plateformes de sortie : PlayStation 5 et Xbox Series X|S.",
-   "Plus gros lancement du divertissement : 3,79 milliards de dollars le premier jour, selon Take-Two."
+   "3,79 milliards de dollars de ventes le premier jour, selon Forbes qui cite Take-Two. Chiffre non vérifié par nos soins dans le communiqué de Take-Two."
   ],
   "incertain": [
    "Aucune version PC n'a de date annoncée."
@@ -546,7 +983,31 @@
   ],
   "statut": "confirme",
   "sources": [
-   "rockstar"
+   "rockstar",
+   "forbes-ventes"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "partiel",
+     "q": "Grand Theft Auto VI is now available worldwide",
+     "n": "Site officiel de Rockstar Games ; Take-Two n'est pas cité dans les textes relevés."
+    }
+   ],
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Grand Theft Auto VI is now available worldwide for PlayStation 5 and XBOX Series X|S."
+    }
+   ],
+   [
+    {
+     "s": "forbes-ventes",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -556,7 +1017,8 @@
   "nom": "Plateformes",
   "bref": "PS5 et Xbox Series X|S.",
   "sait": [
-   "Les codes sont identiques sur PS5 et Xbox."
+   "GTA 6 est sorti sur PlayStation 5 et Xbox Series X|S, selon Rockstar.",
+   "gta6guide.fr donne la même suite de flèches sur PS5 et sur Xbox Series : seuls les noms des gâchettes changent (L1/LB, R1/RB). Rockstar n'a pas publié de liste officielle."
   ],
   "incertain": [
    "Version PC : aucune date officielle (méfie-toi des fausses versions PC).",
@@ -569,7 +1031,29 @@
   "statut": "confirme",
   "sources": [
    "rockstar",
-   "redbull-cheats"
+   "redbull-cheats",
+   "gta6guide-cheats"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstar",
+     "v": "oui",
+     "q": "Grand Theft Auto VI is now available worldwide for PlayStation 5 and XBOX Series X|S."
+    }
+   ],
+   [
+    {
+     "s": "gta6guide-cheats",
+     "v": "partiel",
+     "q": "maintenez L1/LB et appuyez sur R1/RB, puis saisissez la séquence directionnelle",
+     "n": "Site qui reprend d'autres guides : ne compte pas comme confirmation."
+    },
+    {
+     "s": "redbull-cheats",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -592,6 +1076,20 @@
   "statut": "a-verifier",
   "sources": [
    "rockstarintel-controls"
+  ],
+  "refs": [
+   [
+    {
+     "s": "rockstarintel-controls",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "rockstarintel-controls",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -601,7 +1099,7 @@
   "nom": "Statistiques",
   "bref": "Force, Cardio et Focus, chacune jusqu'au niveau 4.",
   "sait": [
-   "La Force augmente la vie maximale, le Cardio l'endurance.",
+   "La musculation augmente la santé maximale ; le cardio (course, vélo, natation…) augmente l'endurance.",
    "La forme baisse si on saute les séances."
   ],
   "incertain": [
@@ -614,6 +1112,27 @@
   "statut": "a-verifier",
   "sources": [
    "gtabase-stats"
+  ],
+  "refs": [
+   [
+    {
+     "s": "gtabase-stats",
+     "v": "oui",
+     "q": "you need strength training to increase your health bar permanently"
+    },
+    {
+     "s": "gtabase-stats",
+     "v": "oui",
+     "q": "Jason and Lucia can build stamina by running, cycling, swimming, or kayaking around Leonida"
+    }
+   ],
+   [
+    {
+     "s": "gtabase-stats",
+     "v": "oui",
+     "q": "your fitness can also drop if you skip your workout window too many times"
+    }
+   ]
   ]
  },
  {
@@ -635,6 +1154,14 @@
   "statut": "a-verifier",
   "sources": [
    "keengamer-illegal"
+  ],
+  "refs": [
+   [
+    {
+     "s": "keengamer-illegal",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -657,6 +1184,18 @@
   "sources": [
    "redbull-ultimate",
    "mobalytics-ultimate"
+  ],
+  "refs": [
+   [
+    {
+     "s": "redbull-ultimate",
+     "v": "non"
+    },
+    {
+     "s": "mobalytics-ultimate",
+     "v": "non"
+    }
+   ]
   ]
  },
  {
@@ -670,7 +1209,7 @@
    "On ne peut pas acheter de planque, seulement des garages."
   ],
   "incertain": [
-   "Une cinquième planque au chapitre 5 (Pegassi Residences), citée par un seul guide."
+   "Une cinquième planque au chapitre 5 (Pegassi Residences) est citée par un seul guide ; GTABase classe Pegassi Residences parmi les garages offerts par l'histoire."
   ],
   "liens": [
    "planques",
@@ -681,6 +1220,27 @@
    "timesaver-safehouses",
    "gtabase-properties"
   ],
-  "lieu": "planque-jason"
+  "lieu": "planque-jason",
+  "refs": [
+   [
+    {
+     "s": "gtabase-properties",
+     "v": "partiel",
+     "q": "the Bayside apartment on Catalan Boulevard is their home after the move to Vice City in Chapter 3, and in Chapter 4 they move on to Ocean Beach",
+     "n": "GTABase confirme Key Lento, le Starlet Motel, Bayside et Ocean Beach, sans nommer l'hôtel Y ni Boobie."
+    },
+    {
+     "s": "timesaver-safehouses",
+     "v": "non"
+    }
+   ],
+   [
+    {
+     "s": "gtabase-properties",
+     "v": "oui",
+     "q": "Safehouses can't be bought: they unlock as the story moves on."
+    }
+   ]
+  ]
  }
 ]

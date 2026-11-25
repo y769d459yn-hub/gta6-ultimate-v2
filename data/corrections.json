@@ -3,6 +3,42 @@
  "corrections": [
   {
    "date": "2026-11-25",
+   "page": "encyclopedie/vice-city/",
+   "titre": "Encyclopédie : Vice City",
+   "texte": "La phrase « décrite par Rockstar comme le cœur de Leonida » était fausse : ce texte officiel parle d'Ambrosia. Remplacée par la description officielle de Vice City (« la capitale du soleil et de la fête »). La position « côte sud-est » reste affichée, signalée « à revérifier »."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "encyclopedie/gta-vi/",
+   "titre": "Encyclopédie : GTA VI",
+   "texte": "Le chiffre de 3,79 milliards de dollars était attribué à Rockstar ; il vient de Forbes, qui cite Take-Two. Il est maintenant présenté comme non vérifié par nos soins."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "encyclopedie/",
+   "titre": "Encyclopédie : sources par affirmation",
+   "texte": "Chaque affirmation « Ce qu'on sait » renvoie maintenant à ses sources, avec la citation relue le 25/11/2026. Les affirmations dont la source n'a pas pu être relue portent la mention « à revérifier ». Corrigés d'après les sources : Lucia (pénitencier, texte officiel), statistiques (musculation et cardio), garages (appli après « Daily Driver »), véhicules remarquables (251 selon GTABase), plateformes (codes PS5/Xbox), Port Gellhorn, Mount Kalaga, Ambrosia, planques (Pegassi Residences)."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "missions/",
+   "titre": "Missions : ordre à vérifier",
+   "texte": "Nos numéros suivent la liste GTABase du 22/11/2026. GTABase (liste du 25/11) et GTA Wiki donnent un ordre différent pour 42 missions dans leur chapitre : elles portent la mention « ordre à vérifier », avec la position donnée par chaque source. Aucune numérotation n'a été changée."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "codes/",
+   "titre": "Code « Force des attaques »",
+   "texte": "Les deux combinaisons (9 flèches selon GTABase et gta6guide.fr, 8 selon GTA Wiki) sont affichées séparément, toutes deux « non vérifiées ». La phrase « Essaie les deux si l'une ne marche pas » est retirée : rien ne garantit que l'une fonctionne."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "actualites/pas-de-mode-en-ligne/",
+   "titre": "Recherche « PC » et « online »",
+   "texte": "La recherche affiche en premier une réponse « Pas encore confirmé » : aucune version PC ni aucun mode en ligne annoncés par Rockstar. Les résultats sans rapport (bateau « PC60 », missions « de sortie ») ne s'affichent plus pour ces recherches."
+  },
+  {
+   "date": "2026-11-25",
    "page": "codes/",
    "titre": "Codes de triche",
    "texte": "« Force des attaques » passe de « confirmé » à « contradictoire » : GTA Wiki donne 8 flèches, GTABase et gta6guide.fr en donnent 9. gta6guide.fr, qui reprend d’autres guides, ne compte plus comme confirmation indépendante."

@@ -482,6 +482,38 @@
    "actualites/pas-de-mode-en-ligne/"
   ],
   [
+   "pc",
+   "encyclopedie/plateformes/"
+  ],
+  [
+   "online",
+   "encyclopedie/plateformes/"
+  ],
+  [
+   "en ligne",
+   "encyclopedie/plateformes/"
+  ],
+  [
+   "multijoueur",
+   "encyclopedie/plateformes/"
+  ],
+  [
+   "steam",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "sortie pc",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "version pc",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
+   "gta online",
+   "actualites/pas-de-mode-en-ligne/"
+  ],
+  [
    "tank",
    "vehicules/hauners-rhino-tank/"
   ],
@@ -690,5 +722,9 @@
  ],
  "sourcesNonIndependantes": {
   "gta6guide.fr": "Agrégateur : indique « Documenté par les guides » (dernière vérification au 18/11/2026, avant la sortie). Ne compte pas comme confirmation indépendante."
+ },
+ "reponsesNonConfirmees": {
+  "actualites/pas-de-mode-en-ligne/": "Rockstar n'a annoncé ni version PC ni mode en ligne. Ses pages officielles, relues le 25/11/2026, présentent le jeu sur PS5 et Xbox Series X|S seulement. Toute date qui circule n'est pas officielle.",
+  "encyclopedie/plateformes/": "Seules la PS5 et la Xbox Series X|S sont officielles. Version PC et mode en ligne : aucune annonce de Rockstar à ce jour."
  }
 }

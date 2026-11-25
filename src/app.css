@@ -403,6 +403,15 @@ details.more h3 { font-size: .95rem; margin: 8px 0 2px; }
 details.more p, details.sources p { color: var(--tx2); font-size: .9rem; margin: 0 0 10px; }
 details.sources ul { margin: 0 0 8px; padding-left: 1.1em; display: grid; gap: 6px; font-size: .9rem; }
 details.sources a, .muted a, .related p a { text-decoration: underline; text-underline-offset: 3px; }
+/* encyclopédie : renvois aux sources, discrets */
+sup.refs { display: inline-flex; gap: 3px; margin-left: 4px; vertical-align: super; font-size: .68rem; line-height: 1; }
+sup.refs .ref { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 6px; background: var(--bg2); border: 1px solid var(--line); color: var(--tx2); font-weight: 700; text-decoration: none; }
+sup.refs .ref--nv { border-style: dashed; color: var(--muted); }
+.ref-av { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+details.sources ol.refs-src { margin: 0 0 8px; padding-left: 1.4em; display: grid; gap: 10px; font-size: .9rem; }
+details.sources ol.refs-src li:target { outline: 2px solid var(--c, currentColor); outline-offset: 4px; border-radius: 4px; }
+details.sources ul.refs-l { margin: 6px 0 0; padding-left: 1em; display: grid; gap: 6px; color: var(--tx2); font-size: .85rem; }
+details.sources ul.refs-l q { font-style: italic; }
 
 /* ---------- Vides / toasts ---------- */
 .empty { display: grid; justify-items: center; gap: 8px; text-align: center; padding: 34px 16px; border-radius: var(--r); border: 2px dashed var(--line2); color: var(--tx2); }
@@ -718,6 +727,8 @@ body.p-map { padding-bottom: 0; overflow: hidden; }
 .so-item-t .so-rep { -webkit-line-clamp: 4; color: var(--tx2, var(--muted)); }
 .so-ok { display: inline-flex; align-items: center; gap: 3px; font-style: normal; font-weight: 800; font-size: .72rem; color: #3ddc84; vertical-align: 1px; }
 .so-ok .ic { width: 13px; height: 13px; }
+.so-nc { color: #ffb547; }
 .so-acts { margin: 8px 0 4px; }
 .so-plus { height: 40px; padding: 0 14px; border-radius: 999px; background: none; border: 1.5px dashed var(--line2); color: var(--tx2, var(--muted)); font-weight: 700; font-size: .88rem; cursor: pointer; }
 .so-empty-a { justify-content: center; margin: 4px 0 6px; }
+.code-var + .code-var { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }

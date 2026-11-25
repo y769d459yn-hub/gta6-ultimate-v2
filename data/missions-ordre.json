@@ -1,0 +1,938 @@
+{
+ "info": "Position de chaque mission numérotée selon les sources, relevée le 25/11/2026. « liste » = numéro affiché sur le site (ordre publié par GTABase le 22/11/2026). « gtabase » = numéro sur la liste GTABase du 25/11/2026, présentée comme « in chronological order » (elle compte 2 missions de plus). « wiki » = rang dans le chapitre sur la page Missions de GTA Wiki (page en cours de rédaction, chapitres 4 et 5 incomplets ; elle n'explique pas son classement). « ecart » = sources dont l'ordre relatif, dans le chapitre, diffère de notre liste. Aucune source ne dit si son ordre est celui de l'histoire, du déblocage ou un simple classement. Généré à partir des relevés de l'audit.",
+ "releve": "2026-11-25",
+ "missions": {
+  "prologue": {
+   "liste": 1,
+   "gtabase": 1,
+   "wiki": {
+    "chapitre": "Prologue",
+    "rang": 1
+   },
+   "ecart": []
+  },
+  "gone-fishing": {
+   "liste": 2,
+   "gtabase": 2,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 1
+   },
+   "ecart": []
+  },
+  "gear-up": {
+   "liste": 3,
+   "gtabase": 3,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 5
+   },
+   "ecart": [
+    "wiki"
+   ]
+  },
+  "just-a-scratch": {
+   "liste": 4,
+   "gtabase": 7,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 6
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "lab-fees": {
+   "liste": 5,
+   "gtabase": 5,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 3
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "unwanted-attention": {
+   "liste": 6,
+   "gtabase": 4,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 2
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "pipework": {
+   "liste": 7,
+   "gtabase": 6,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 4
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "hey-arnold": {
+   "liste": 8,
+   "gtabase": 8,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 8
+   },
+   "ecart": []
+  },
+  "island-dreams": {
+   "liste": 9,
+   "gtabase": 9,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 9
+   },
+   "ecart": []
+  },
+  "feng-shui": {
+   "liste": 10,
+   "gtabase": 10,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 10
+   },
+   "ecart": []
+  },
+  "coming-home": {
+   "liste": 11,
+   "gtabase": 11,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 12
+   },
+   "ecart": []
+  },
+  "buck-me": {
+   "liste": 12,
+   "gtabase": 13,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 14
+   },
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "clean-up-after-donnie": {
+   "liste": 13,
+   "gtabase": 12,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 15
+   },
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "down-to-earth": {
+   "liste": 14,
+   "gtabase": 14,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 16
+   },
+   "ecart": []
+  },
+  "clear-skies": {
+   "liste": 15,
+   "gtabase": 18,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 18
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "deposit-cash-into-buckme": {
+   "liste": 16,
+   "gtabase": 15,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "save-for-the-future": {
+   "liste": 17,
+   "gtabase": 16,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "day-release": {
+   "liste": 18,
+   "gtabase": 17,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 17
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "building-a-life": {
+   "liste": 19,
+   "gtabase": 19,
+   "wiki": null,
+   "ecart": []
+  },
+  "swamped": {
+   "liste": 20,
+   "gtabase": 20,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 20
+   },
+   "ecart": []
+  },
+  "don-gone": {
+   "liste": 21,
+   "gtabase": 21,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 21
+   },
+   "ecart": []
+  },
+  "recalibration": {
+   "liste": 22,
+   "gtabase": 22,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 23
+   },
+   "ecart": []
+  },
+  "tourist-trap": {
+   "liste": 23,
+   "gtabase": 23,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 25
+   },
+   "ecart": []
+  },
+  "home-sweet-home": {
+   "liste": 24,
+   "gtabase": 24,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 27
+   },
+   "ecart": []
+  },
+  "discharge-time": {
+   "liste": 25,
+   "gtabase": 25,
+   "wiki": {
+    "chapitre": "Chapter 1: Just Like Paradise",
+    "rang": 29
+   },
+   "ecart": []
+  },
+  "whats-in-the-bag": {
+   "liste": 26,
+   "gtabase": 26,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 1
+   },
+   "ecart": []
+  },
+  "ambulance-chaser": {
+   "liste": 27,
+   "gtabase": 27,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 2
+   },
+   "ecart": []
+  },
+  "take-care-of-jason": {
+   "liste": 28,
+   "gtabase": 28,
+   "wiki": null,
+   "ecart": []
+  },
+  "overnight-charges": {
+   "liste": 29,
+   "gtabase": 29,
+   "wiki": null,
+   "ecart": []
+  },
+  "just-moved-in": {
+   "liste": 30,
+   "gtabase": 30,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 3
+   },
+   "ecart": []
+  },
+  "girls-trip": {
+   "liste": 31,
+   "gtabase": 31,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 5
+   },
+   "ecart": []
+  },
+  "moses": {
+   "liste": 32,
+   "gtabase": 32,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 7
+   },
+   "ecart": []
+  },
+  "new-look": {
+   "liste": 33,
+   "gtabase": 33,
+   "wiki": null,
+   "ecart": []
+  },
+  "how-do-i-look": {
+   "liste": 34,
+   "gtabase": 34,
+   "wiki": null,
+   "ecart": []
+  },
+  "painkiller-supplier": {
+   "liste": 35,
+   "gtabase": 35,
+   "wiki": null,
+   "ecart": []
+  },
+  "daily-driver": {
+   "liste": 36,
+   "gtabase": 36,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 9
+   },
+   "ecart": []
+  },
+  "behind-on-payments": {
+   "liste": 37,
+   "gtabase": 37,
+   "wiki": null,
+   "ecart": []
+  },
+  "slam-dunk": {
+   "liste": 38,
+   "gtabase": 38,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 11
+   },
+   "ecart": []
+  },
+  "breakfast-run": {
+   "liste": 39,
+   "gtabase": 39,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 12
+   },
+   "ecart": []
+  },
+  "coffee-break": {
+   "liste": 40,
+   "gtabase": 40,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 13
+   },
+   "ecart": []
+  },
+  "prepare-for-vice-city": {
+   "liste": 41,
+   "gtabase": 41,
+   "wiki": null,
+   "ecart": []
+  },
+  "afternoon-delight": {
+   "liste": 42,
+   "gtabase": 42,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 15
+   },
+   "ecart": []
+  },
+  "checking-out": {
+   "liste": 43,
+   "gtabase": 43,
+   "wiki": {
+    "chapitre": "Chapter 2: Paradise Lost",
+    "rang": 17
+   },
+   "ecart": []
+  },
+  "welcome-to-vice-city": {
+   "liste": 44,
+   "gtabase": 44,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 1
+   },
+   "ecart": []
+  },
+  "dealers-choice": {
+   "liste": 45,
+   "gtabase": 45,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 2
+   },
+   "ecart": []
+  },
+  "meet-the-heders": {
+   "liste": 46,
+   "gtabase": 46,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 10
+   },
+   "ecart": [
+    "wiki"
+   ]
+  },
+  "dubious-provenance": {
+   "liste": 47,
+   "gtabase": 47,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 3
+   },
+   "ecart": [
+    "wiki"
+   ]
+  },
+  "mami-knows-best": {
+   "liste": 48,
+   "gtabase": 48,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 7
+   },
+   "ecart": [
+    "wiki"
+   ]
+  },
+  "south-leonida-real-estate": {
+   "liste": 49,
+   "gtabase": 70,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 8
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "here-kitty-kitty": {
+   "liste": 50,
+   "gtabase": 50,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 5
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "send-money-to-lorena": {
+   "liste": 51,
+   "gtabase": 51,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "car-service": {
+   "liste": 52,
+   "gtabase": 52,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 11
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "send-more-money-to-lorena": {
+   "liste": 53,
+   "gtabase": 53,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "top-billing": {
+   "liste": 54,
+   "gtabase": 54,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 26
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "boobie-time": {
+   "liste": 55,
+   "gtabase": 55,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 6
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "first-impressions": {
+   "liste": 56,
+   "gtabase": 57,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 13
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "caught-slipping": {
+   "liste": 57,
+   "gtabase": 58,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 25
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "crosstown-traffic": {
+   "liste": 58,
+   "gtabase": 59,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 15
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "credit-check": {
+   "liste": 59,
+   "gtabase": 60,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 16
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "steal-the-zorrusso-for-randy": {
+   "liste": 60,
+   "gtabase": null,
+   "wiki": null,
+   "ecart": []
+  },
+  "sinfrontera-national-bank": {
+   "liste": 61,
+   "gtabase": 62,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 17
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "security-expert": {
+   "liste": 62,
+   "gtabase": 63,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 19
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "heist-planning": {
+   "liste": 63,
+   "gtabase": 64,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "ride-or-die": {
+   "liste": 64,
+   "gtabase": 65,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 28
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "company-property": {
+   "liste": 65,
+   "gtabase": 66,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 22
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "the-missing-link": {
+   "liste": 66,
+   "gtabase": 67,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 24
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "safe-word": {
+   "liste": 67,
+   "gtabase": 68,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 23
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "cooties": {
+   "liste": 68,
+   "gtabase": 69,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 30
+   },
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "bricked-up": {
+   "liste": 69,
+   "gtabase": 72,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 33
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "hidden-charges": {
+   "liste": 70,
+   "gtabase": 71,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 31
+   },
+   "ecart": [
+    "gtabase",
+    "wiki"
+   ]
+  },
+  "the-cartel-heist": {
+   "liste": 71,
+   "gtabase": 73,
+   "wiki": {
+    "chapitre": "Chapter 3: Tits Ass Drug Money",
+    "rang": 35
+   },
+   "ecart": []
+  },
+  "ocean-beach": {
+   "liste": 72,
+   "gtabase": 74,
+   "wiki": {
+    "chapitre": "Chapter 4: Vice City, Baby",
+    "rang": 1
+   },
+   "ecart": []
+  },
+  "another-life": {
+   "liste": 73,
+   "gtabase": 75,
+   "wiki": {
+    "chapitre": "Chapter 4: Vice City, Baby",
+    "rang": 2
+   },
+   "ecart": []
+  },
+  "pool-day": {
+   "liste": 74,
+   "gtabase": 76,
+   "wiki": null,
+   "ecart": []
+  },
+  "company-cars": {
+   "liste": 75,
+   "gtabase": 77,
+   "wiki": {
+    "chapitre": "Chapter 4: Vice City, Baby",
+    "rang": 4
+   },
+   "ecart": []
+  },
+  "lawyer-up": {
+   "liste": 76,
+   "gtabase": 78,
+   "wiki": {
+    "chapitre": "Chapter 4: Vice City, Baby",
+    "rang": 6
+   },
+   "ecart": []
+  },
+  "party-hard": {
+   "liste": 77,
+   "gtabase": 79,
+   "wiki": null,
+   "ecart": []
+  },
+  "heavy-lifting": {
+   "liste": 78,
+   "gtabase": 80,
+   "wiki": null,
+   "ecart": []
+  },
+  "photo-shoot": {
+   "liste": 79,
+   "gtabase": 81,
+   "wiki": null,
+   "ecart": []
+  },
+  "making-gainz": {
+   "liste": 80,
+   "gtabase": 82,
+   "wiki": null,
+   "ecart": []
+  },
+  "watch-it": {
+   "liste": 81,
+   "gtabase": 84,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "cash-injections": {
+   "liste": 82,
+   "gtabase": 85,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "amateur-hour": {
+   "liste": 83,
+   "gtabase": 86,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "dirty-work": {
+   "liste": 84,
+   "gtabase": 87,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "too-much-baggage": {
+   "liste": 85,
+   "gtabase": 83,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "adventures-in-babysitting": {
+   "liste": 86,
+   "gtabase": 88,
+   "wiki": null,
+   "ecart": []
+  },
+  "fresh-evidence": {
+   "liste": 87,
+   "gtabase": 89,
+   "wiki": null,
+   "ecart": []
+  },
+  "power-play": {
+   "liste": 88,
+   "gtabase": 90,
+   "wiki": null,
+   "ecart": []
+  },
+  "childs-play": {
+   "liste": 89,
+   "gtabase": 91,
+   "wiki": null,
+   "ecart": []
+  },
+  "headliners": {
+   "liste": 90,
+   "gtabase": 92,
+   "wiki": null,
+   "ecart": []
+  },
+  "close-surveillance": {
+   "liste": 91,
+   "gtabase": 93,
+   "wiki": null,
+   "ecart": []
+  },
+  "delivery-method": {
+   "liste": 92,
+   "gtabase": 94,
+   "wiki": null,
+   "ecart": []
+  },
+  "team-building": {
+   "liste": 93,
+   "gtabase": 95,
+   "wiki": null,
+   "ecart": []
+  },
+  "fully-catered": {
+   "liste": 94,
+   "gtabase": 96,
+   "wiki": null,
+   "ecart": []
+  },
+  "vcia-takedown": {
+   "liste": 95,
+   "gtabase": 97,
+   "wiki": null,
+   "ecart": []
+  },
+  "tie-up-loose-ends": {
+   "liste": 96,
+   "gtabase": 98,
+   "wiki": null,
+   "ecart": []
+  },
+  "sunset": {
+   "liste": 97,
+   "gtabase": 99,
+   "wiki": null,
+   "ecart": []
+  },
+  "starting-from-zero": {
+   "liste": 98,
+   "gtabase": 100,
+   "wiki": null,
+   "ecart": []
+  },
+  "bird-in-the-hand": {
+   "liste": 99,
+   "gtabase": 101,
+   "wiki": null,
+   "ecart": []
+  },
+  "taking-liberties": {
+   "liste": 100,
+   "gtabase": 102,
+   "wiki": null,
+   "ecart": []
+  },
+  "vc-baby": {
+   "liste": 101,
+   "gtabase": 104,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "doggie-bag": {
+   "liste": 102,
+   "gtabase": 103,
+   "wiki": null,
+   "ecart": [
+    "gtabase"
+   ]
+  },
+  "operation-savage-glory": {
+   "liste": 103,
+   "gtabase": 105,
+   "wiki": null,
+   "ecart": []
+  },
+  "honest-abe": {
+   "liste": 104,
+   "gtabase": 106,
+   "wiki": null,
+   "ecart": []
+  },
+  "unfinished-business": {
+   "liste": 105,
+   "gtabase": 107,
+   "wiki": null,
+   "ecart": []
+  },
+  "protective-custody": {
+   "liste": 106,
+   "gtabase": 108,
+   "wiki": null,
+   "ecart": []
+  },
+  "the-end-of-the-road": {
+   "liste": 107,
+   "gtabase": 109,
+   "wiki": null,
+   "ecart": []
+  }
+ }
+}

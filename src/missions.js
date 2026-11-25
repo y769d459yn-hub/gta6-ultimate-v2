@@ -35,6 +35,7 @@
       const t = next.querySelector('.mis-t b').textContent, num = next.dataset.num;
       txt.innerHTML = '';
       txt.append('Prochaine mission : ', Object.assign(document.createElement('b'), { textContent: `${num}. ${t}` }));
+      if (next.dataset.ov) txt.append(' (ordre à vérifier : les sources ne donnent pas toutes le même ordre)');
       a.hidden = false; a.href = `#${next.id}`; a.dataset.target = next.id;
     }
     apply();
