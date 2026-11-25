@@ -1,6 +1,7 @@
 /* GTA 6 Facile — styles de la carte (accueil et page carte), direction « néon de nuit » */
 .at-tiles, .at-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .at-tiles { z-index: 0; } .at-layer { z-index: 1; pointer-events: none; }
+.at-tiles, .at-layer { overflow: clip; } /* le calque ne doit jamais défiler (un repère qui prend le focus le décalerait de la carte) */
 .at-tile { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; user-select: none; -webkit-user-drag: none; image-rendering: auto; transition: opacity .35s; }
 
 .at-lbl { --c: #ff2bd6; position: absolute; left: 0; top: 0; translate: -50% -160%; pointer-events: auto; padding: 4px 8px; border-radius: 999px; background: rgba(5, 4, 11, .7); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); font: 600 .78rem/1 var(--fm, monospace); letter-spacing: .06em; text-transform: uppercase; color: #fff; white-space: nowrap; text-shadow: 0 0 10px #000; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); transition: opacity .3s, border-color .3s; }
@@ -39,6 +40,7 @@
 .atp-stage.is-drag { cursor: grabbing; }
 .atp-top { position: absolute; left: max(12px, env(safe-area-inset-left)); right: max(12px, env(safe-area-inset-right)); top: 10px; display: grid; gap: 8px; max-width: 620px; pointer-events: none; z-index: 5; }
 .atp-top > * { pointer-events: auto; }
+.atp-top { grid-template-columns: minmax(0, 1fr); } /* un texte long ne doit jamais élargir le haut de la carte */
 .atp-search { display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 16px; border-radius: 999px; background: rgba(9, 8, 15, .9); border: 1px solid var(--hair3, rgba(255, 255, 255, .24)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 16px 40px -16px #000; }
 .atp-search:focus-within { border-color: var(--pk, #ff2bd6); box-shadow: 0 0 0 3px rgba(255, 43, 214, .15), 0 0 26px -10px var(--pk, #ff2bd6); }
 .atp-search .ic { width: 20px; height: 20px; color: var(--pk, #ff2bd6); }
@@ -271,6 +273,17 @@
 .at-beam { position: absolute; left: 50%; top: 50%; width: 150px; height: 150px; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--c) 38%, transparent) 0, transparent 70%); pointer-events: none; animation: at-beam 2.4s ease-in-out infinite; }
 @keyframes at-beam { 0%, 100% { opacity: .55; scale: .85; } 50% { opacity: 1; scale: 1.1; } }
 .at-dot.is-spot .at-dot-n { translate: -50% 14px; padding: 5px 10px; font-size: .86rem; background: var(--c); color: #07060c; border-color: var(--c); }
+/* point de la communauté choisi */
+.at-c.is-on { z-index: 6; }
+.at-c.is-on::before { width: 14px; height: 14px; box-shadow: 0 0 0 3px #05040b, 0 0 0 6px var(--c), 0 0 26px 4px var(--c); }
+.at-c.is-on span { background: var(--c); color: #07060c; font-weight: 700; }
+/* rappel du repère choisi quand la fiche est fermée */
+.atp-solo.atp-keep { border-color: #19d3e3; box-shadow: 0 0 22px -8px #19d3e3; }
+.atp-solo.atp-keep > .ic { color: #19d3e3; }
+.atp-solo.atp-keep b { color: #fff; }
+.atp-solo.atp-keep span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atp-solo.atp-keep button { background: #19d3e3; }
+.atp-solo.atp-keep button.atp-keep-x { width: 40px; padding: 0; justify-content: center; background: transparent; color: var(--tx2, #c7c2e0); border: 1px solid rgba(255, 255, 255, .18); }
 @media (prefers-reduced-motion: reduce) { .at-beam, .at-dot.is-spot::after { animation: none; } }
 .atp-panel .pn-mis li.is-cur a { border-color: #ff3d6e; background: rgba(255, 61, 110, .18); box-shadow: 0 0 0 1px #ff3d6e, 0 0 22px -8px #ff3d6e; position: relative; padding-top: 22px; }
 .atp-panel .pn-mis-cur { position: absolute; left: 10px; top: 6px; font: 700 .66rem/1 var(--fm, monospace); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: #ff8fab; }

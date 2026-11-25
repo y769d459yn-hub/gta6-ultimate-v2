@@ -1369,6 +1369,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
       <button type="button" class="atp-chip atp-chip--commu" data-commu aria-pressed="false" style="--c:#c7c2e0"><i></i>Lieux de la communauté<small data-n="commu"></small></button>
     </div>
     <div class="atp-vide" data-vide hidden role="status">${icon('search')}<span><b>La carte est vide pour l'instant.</b> Touche ce que tu cherches juste au-dessus (une voiture, une arme, un objet…) pour afficher les lieux.</span></div>
+    <div class="atp-solo atp-keep" data-keep hidden role="status">${icon('pin')}<span>Repère choisi : <b data-keep-nom></b></span><button type="button" data-keep-voir>${icon('arrow-right')}Voir</button><button type="button" class="atp-keep-x" data-keep-off aria-label="Effacer le repère choisi">${icon('x')}</button></div>
     <div class="atp-solo" data-solo hidden role="status">${icon('flag')}<span>Seul le lieu de ta mission est affiché : <b data-solo-nom></b>.<i class="atp-solo-more"> Choisis ce que tu cherches pour voir le reste.</i></span><button type="button" data-solo-off>${icon('map')}Tout afficher</button></div>
   </div>
   <div class="atp-ctrl">

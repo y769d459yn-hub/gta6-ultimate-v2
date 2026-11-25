@@ -45,7 +45,7 @@
     const only = params.get('cat'); if (only && cats[only]) { state.vide = false; state.sel = only; shown.clear(); shown.add(only); }
     atlas = window.Atlas(stage, {
       root: ROOT, tuiles: d.tuiles, carte: d, pad: padding(),
-      onSelect: (f) => (f.commu ? openCommu(f) : openFeature(f)),
+      onSelect: (f, o2 = {}) => { state.choisi = f; garde(false); const r = f.commu ? openCommu(f) : openFeature(f); visible(f, o2.fly ? 1050 : 380); return r; },
       onRegion: openRegion, onBlank: closePanel, onView: countView, onCluster: openCluster
     });
     atlas.setCommu(commu); atlas.markFound(trouves);
@@ -99,7 +99,7 @@
 
   // ---------- panneau de détail ----------
   function showPanel(html) {
-    const hv = $('[data-vide]'); if (hv) hv.hidden = true;
+    const hv = $('[data-vide]'); if (hv) hv.hidden = true; garde(false);
     panel.classList.remove('pn-anim');
     panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Agrandir le panneau"></button>${html}`; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
     taillePanneau(showPanel.grand ? 'grand' : showPanel.moyen ? 'moyen' : 'compact'); showPanel.grand = false; showPanel.moyen = false;
@@ -111,7 +111,26 @@
     LG.syncFavs && LG.syncFavs();
     if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
   }
-  function closePanel() { setTimeout(syncChips, 0); if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900 || cote()) atlas.setPad(padding()); if (!state.solo) atlas.clearActive(); } }
+  // repère choisi : il reste marqué sur la carte quand la fiche se ferme, avec un rappel pour le rouvrir ou l'effacer
+  function garde(on) {
+    const k = $('[data-keep]'); if (!k) return;
+    k.hidden = !on || !state.choisi;
+    if (!k.hidden) $('[data-keep-nom]', k).textContent = state.choisi.nom || state.choisi.n || '';
+    if (!k.hidden) visible(state.choisi);
+  }
+  // le repère choisi doit être visible : entre la barre du haut et la fiche (ou le bas de l'écran), sans changer le zoom
+  function visible(f, attente = 380) {
+    if (!atlas || !f || f.x == null) return;
+    setTimeout(() => {
+      const r = atlas.stage.getBoundingClientRect(), [sx, sy] = atlas.toScreen(f.x, f.y), [fx, fy] = atlas.toScreen(atlas.cam.x, atlas.cam.y);
+      const hautEl = $('.atp-top'), haut = (hautEl ? hautEl.getBoundingClientRect().bottom - r.top : 80) + 28;
+      const bas = (!panel.hidden && !(innerWidth >= 900 || cote()) ? panel.getBoundingClientRect().top - r.top : r.height - 150) - 28;
+      if (sy >= haut && sy <= bas && sx >= 36 && sx <= r.width - 36) return;
+      const tx = r.width / 2, ty = bas > haut ? (haut + bas) / 2 - 18 : r.height / 2; // un peu plus haut : le nom s’affiche sous le repère
+      atlas.flyTo(f.x - (tx - fx) / atlas.cam.s, f.y + (ty - fy) / atlas.cam.s, atlas.cam.s, .7);
+    }, attente);
+  }
+  function closePanel() { setTimeout(syncChips, 0); if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900 || cote()) atlas.setPad(padding()); if (!state.solo && atlas.active() == null && !state.choisi) atlas.clearActive(); }  garde(true); }
   // Téléphone : panneau compact par défaut (la carte reste visible), glisser vers le haut pour l'agrandir,
   // vers le bas pour le réduire puis le fermer. Il s'arrête toujours au-dessus de la barre de navigation.
   function taillePanneau(t) {
@@ -371,6 +390,8 @@
     }));
     $('[data-all]').addEventListener('click', () => { choose(''); closePanel(); atlas.reset(); });
     $('[data-solo-off]').addEventListener('click', () => { choose(''); closePanel(); });
+    $('[data-keep-voir]').addEventListener('click', () => { const f = state.choisi; if (!f) return; if (!f.commu) ensureShown(f); atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); });
+    $('[data-keep-off]').addEventListener('click', () => { state.choisi = null; garde(false); atlas.clearActive(); });
     $('[data-commu]').addEventListener('click', () => {
       if (state.solo) { unsolo(); choose(''); }
       state.commu = !state.commu; syncChips(); applyFilter();
