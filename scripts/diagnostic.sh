@@ -90,3 +90,8 @@ curl -sS --max-time 20 "https://$D/encyclopedie/vice-city/?t=$(date +%s)" -o /tm
 curl -sS --max-time 20 "https://$D/missions/?t=$(date +%s)" -o /tmp/ms.html; echo "missions : $(grep -o 'ordre à vérifier' /tmp/ms.html | wc -l) mentions « ordre à vérifier »"
 curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/c2.html; echo "code Force des attaques : $(grep -c 'Version A' /tmp/c2.html) version A | $(grep -c 'Version B' /tmp/c2.html) version B | $(grep -c 'Essaie les deux' /tmp/c2.html) « Essaie les deux » (0 attendu)"
 curl -sS --max-time 20 "https://$D/data/index.json?t=$(date +%s)" -o /tmp/i2.json; echo "recherche : $(grep -o 'Pas encore confirm' /tmp/i2.json | wc -l) réponses « Pas encore confirmé »"
+
+titre "12. Fiches de missions"
+curl -sS --max-time 20 "https://$D/missions/ambulance-chaser/?t=$(date +%s)" -o /tmp/mf.html; echo "fiche : $(grep -c 'Solution rapide' /tmp/mf.html) solution rapide | $(grep -c 'Avant de commencer' /tmp/mf.html) avant de commencer | $(grep -c 'Explications complémentaires' /tmp/mf.html) complément | $(grep -c 'data-mission-suivante' /tmp/mf.html) bouton suivante (1 attendu)"
+curl -sS --max-time 20 "https://$D/missions/lab-fees/?t=$(date +%s)" -o /tmp/mf2.html; echo "ordre à vérifier : $(grep -c 'data-mission-suivante' /tmp/mf2.html) bouton suivante (0 attendu)"
+curl -sS --max-time 20 "https://$D/missions/?t=$(date +%s)" -o /tmp/ml.html; echo "liste : $(grep -o 'selon GTABase, non vérifiée' /tmp/ml.html | wc -l) récompenses marquées non vérifiées"

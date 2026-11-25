@@ -1329,7 +1329,6 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
-  <p class="lead"><b>${C.length} codes de triche de GTA 6 (PS5 et Xbox)</b> dont la combinaison a été relevée par les joueurs et les guides : <b>${C.filter(confirme).length}</b> sont recoupées par deux sources distinctes (hors agrégateurs), les autres restent à vérifier ou sont contradictoires. Pour chaque code : ce qu'il fait, comment le débloquer, les flèches à taper et les sources. Rockstar n'a pas publié de liste officielle.</p>
   <ol class="howto">
     <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste des codes apparaît dans le menu Progression.</span></li>
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
