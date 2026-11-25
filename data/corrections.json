@@ -3,6 +3,12 @@
  "corrections": [
   {
    "date": "2026-11-25",
+   "page": "missions/",
+   "titre": "Fiches de missions",
+   "texte": "Chaque fiche commence par l'objectif et la solution rapide, puis les conditions de déblocage et les erreurs fréquentes. Les récompenses sont désormais signalées « selon GTABase, non vérifiées en jeu » (le guide se contredit par exemple sur « Voiture de tous les jours »). La mission suivante n'est proposée que si son ordre est sûr."
+  },
+  {
+   "date": "2026-11-25",
    "page": "encyclopedie/vice-city/",
    "titre": "Encyclopédie : Vice City",
    "texte": "La phrase « décrite par Rockstar comme le cœur de Leonida » était fausse : ce texte officiel parle d'Ambrosia. Remplacée par la description officielle de Vice City (« la capitale du soleil et de la fête »). La position « côte sud-est » reste affichée, signalée « à revérifier »."

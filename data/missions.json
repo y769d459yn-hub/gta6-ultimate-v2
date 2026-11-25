@@ -166,7 +166,7 @@
    "resume": "Encaisser le loyer d'une boutique de souvenirs qui cache un labo d'acide.",
    "etapes": [
     "Va à la boutique : elle est fermée, appelle Brian.",
-    "Ouvre la porte du coin avec le code 0420 et prends l'acide.",
+    "Parle au vendeur, puis ouvre la porte du coin avec le code 0420 et prends l'acide.",
     "Rappelle Brian.",
     "Range l'acide dans son local (icône verte), code de la porte : 7700."
    ],
@@ -753,7 +753,7 @@
    "recompense": "",
    "resume": "Petite tâche sans marqueur sur la carte.",
    "etapes": [
-    "Trouve un distributeur.",
+    "Trouve un distributeur : dans l'appli BuckMe, « ATM Finder – Set Destination » marque le plus proche.",
     "Dépose une partie de ton argent liquide."
    ],
    "bloque": [
@@ -1413,8 +1413,10 @@
    "recompense": "Jusqu'à 1 375 $ (moins si le Crawler est abîmé) · 2 déblocages",
    "resume": "Voler un Canis Crawler de 1982 pour Moses.",
    "etapes": [
-    "Trouve le Crawler blanc près de l'ancien bâtiment Traders' Union.",
-    "Livre-le au garage de Moses."
+    "Ouvre la photo envoyée par Moses : c'est une jeep blanche, un Canis Crawler de 1982.",
+    "Trouve-la au milieu de la zone de recherche, près de l'ancien bâtiment Traders' Union.",
+    "Élimine les ennemis ou pars directement avec la voiture.",
+    "Entre avec la voiture dans le garage de Moses, à Port Gellhorn, en l'abîmant le moins possible."
    ],
    "bloque": [
     "Abîme-le le moins possible : jusqu'à 500 $ de bonus s'il est en bon état."

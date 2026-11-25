@@ -85,6 +85,16 @@ for (const a of lire('astuces.json')) {
   if (a.statut === 'teste' && !(a.preuve && a.preuve.date && a.preuve.plateforme && a.preuve.lien)) err(`astuce ${a.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
   if (a.verifie && !/^\d{4}-\d{2}-\d{2}$/.test(a.verifie)) err(`astuce ${a.slug} : date de vérification invalide`);
 }
+// fiches de missions : objectif et aide obligatoires ; liens de déblocage valides ; pas de « 100 % » repris sans texte explicite
+{
+  const MG = lire('missions-guide.json').missions, MIDS = new Set(lire('missions.json').missions.map((m) => m.id));
+  for (const [id, g] of Object.entries(MG)) {
+    if (!MIDS.has(id)) err(`fiche mission ${id} : mission inconnue`);
+    if (!g.objectif || !(g.erreurs || []).length) err(`fiche mission ${id} : objectif ou aide manquants`);
+    if (g.apres && !MIDS.has(g.apres)) err(`fiche mission ${id} : mission de déblocage inconnue « ${g.apres} »`);
+    if (g.cent !== undefined && typeof g.cent !== 'string') err(`fiche mission ${id} : « 100 % » doit être un texte tiré du guide`);
+  }
+}
 // encyclopédie : chaque affirmation « Ce qu'on sait » a au moins une référence ; une citation pour chaque source relue
 for (const e of lire('encyclopedie.json')) {
   if (!Array.isArray(e.refs) || e.refs.length !== e.sait.length) { err(`encyclopédie ${e.slug} : références absentes ou non alignées sur « Ce qu'on sait »`); continue; }

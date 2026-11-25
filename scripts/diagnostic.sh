@@ -84,3 +84,9 @@ curl -sS --max-time 20 "https://$D/vehicules/moto-sportive/" -o /tmp/v.html; ech
 curl -sS --max-time 20 "https://$D/astuces/semer-la-police/" -o /tmp/a.html; echo "date de consultation inventée : $(grep -c 'Consultées le [0-9]' /tmp/a.html) (0 attendu)"
 curl -sS --max-time 20 "https://$D/collection/playlist-unique/" -o /tmp/p.html; echo "playlists : $(grep -c '2 playlists uniques' /tmp/p.html) note d'écart"
 curl -sS --max-time 20 "https://$D/a-propos/" -o /tmp/ap.html; echo "historique : $(grep -o '2026-11-25' /tmp/ap.html | wc -l) corrections du 25/11"
+
+titre "11. Fiabilité, suite (missions, encyclopédie, recherche, code contradictoire)"
+curl -sS --max-time 20 "https://$D/encyclopedie/vice-city/?t=$(date +%s)" -o /tmp/e.html; echo "encyclopédie : $(grep -c 'Sources détaillées' /tmp/e.html) bloc Sources détaillées | $(grep -o 'class="ref' /tmp/e.html | wc -l) renvois | $(grep -c 'cœur de Leonida' /tmp/e.html) « cœur de Leonida » (0 attendu)"
+curl -sS --max-time 20 "https://$D/missions/?t=$(date +%s)" -o /tmp/ms.html; echo "missions : $(grep -o 'ordre à vérifier' /tmp/ms.html | wc -l) mentions « ordre à vérifier »"
+curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/c2.html; echo "code Force des attaques : $(grep -c 'Version A' /tmp/c2.html) version A | $(grep -c 'Version B' /tmp/c2.html) version B | $(grep -c 'Essaie les deux' /tmp/c2.html) « Essaie les deux » (0 attendu)"
+curl -sS --max-time 20 "https://$D/data/index.json?t=$(date +%s)" -o /tmp/i2.json; echo "recherche : $(grep -o 'Pas encore confirm' /tmp/i2.json | wc -l) réponses « Pas encore confirmé »"
