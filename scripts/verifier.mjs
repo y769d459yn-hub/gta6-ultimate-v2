@@ -95,6 +95,8 @@ for (const a of lire('astuces.json')) {
     if (g.cent !== undefined && typeof g.cent !== 'string') err(`fiche mission ${id} : « 100 % » doit être un texte tiré du guide`);
   }
 }
+// codes contradictoires (coffres, triche) : jamais de conseil qui laisse croire qu'un des codes marche à coup sûr
+for (const f of ['dossiers.json', 'codes.json', 'astuces.json']) if (/essaie les deux|essaie-le si|confirm[ée]s par plusieurs guides/i.test(JSON.stringify(lire(f)))) err(`${f} : code contradictoire présenté comme sûr (« essaie les deux » ou « confirmés par plusieurs guides »)`);
 // encyclopédie : chaque affirmation « Ce qu'on sait » a au moins une référence ; une citation pour chaque source relue
 for (const e of lire('encyclopedie.json')) {
   if (!Array.isArray(e.refs) || e.refs.length !== e.sait.length) { err(`encyclopédie ${e.slug} : références absentes ou non alignées sur « Ce qu'on sait »`); continue; }

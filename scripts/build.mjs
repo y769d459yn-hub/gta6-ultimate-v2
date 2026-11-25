@@ -400,6 +400,37 @@ const communaute = GTADB.filter((g) => g.adr && !g.adr.startsWith('?') && !g.tag
   return { i: g.id, n: TR_COMMU[n0] || n0, z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
 });
 const mapIndex = Object.fromEntries(features.map((f) => [f.properties.id, f]));
+// Listes de repères sur une page (armes uniques, véhicules remarquables) : texte lisible par Google, rangé par secteur, comme les pages de collection
+function secteurDe(f) {
+  if (f.properties.zone) return { z: f.properties.zone, estime: false };
+  const [x, y] = f.geometry.coordinates; let best = null, d = 500;
+  for (const g of features) { if (!g.properties.zone) continue; const e = Math.hypot(g.geometry.coordinates[0] - x, g.geometry.coordinates[1] - y); if (e < d) { d = e; best = g; } }
+  return best ? { z: best.properties.zone, estime: true } : { z: '', estime: false };
+}
+const LISTES_ASTUCE = {
+  'armes-gratuites': { titre: 'armes uniques signalées', filtre: (f) => f.properties.cat === 'armes' && f.properties.service === 'Arme unique' },
+  'voiture-rare': { titre: 'véhicules remarquables signalés', filtre: (f) => /^o-standout-vehicle-/.test(f.properties.id) },
+};
+function listeRepères(slug, R) {
+  const L = LISTES_ASTUCE[slug]; if (!L) return '';
+  const items = features.filter(L.filtre).map((f) => ({ f, ...secteurDe(f) }));
+  if (!items.length) return '';
+  const groupes = {}; for (const it of items) (groupes[it.z || '~'] ||= []).push(it);
+  const ordre = Object.keys(groupes).sort((a, b) => (a === '~') - (b === '~') || groupes[b].length - groupes[a].length || a.localeCompare(b, 'fr'));
+  const lie = {}; for (const [s, ids] of Object.entries(CAT_CARTE)) for (const id of ids) lie[id] ||= s;
+  const ligne = (it) => { const pr = it.f.properties, fiche = lie[pr.id] ? `vehicules/${lie[pr.id]}/` : pr.url && /^vehicules\//.test(pr.url) ? pr.url : null;
+    return `<li class="col-it col-it--sans"><span class="col-t"><b>${fiche ? `<a href="${R}${fiche}">${esc(pr.nom)}</a>` : esc(pr.nom)}</b>${pr.desc ? `<small>${esc(pr.desc)}</small>` : ''}</span><a class="col-map" href="${R}carte/?focus=${pr.id}" aria-label="Voir « ${esc(pr.nom)} » sur la carte">${icon('map')}<span>Carte</span></a></li>`; };
+  return `<section class="col" aria-labelledby="li-t" style="--c:#ff2bd6"><h2 id="li-t" class="h3">${icon('pin')}Les ${items.length} ${L.titre}, par secteur</h2>
+  <p class="muted small">${icon('info')}Positions relevées par une carte de joueurs (Open GTA 6 Map), approximatives et pas encore vérifiées en jeu.</p>
+  ${ordre.map((z) => `<section class="col-z"><h3 class="vgrp-h">${z === '~' ? 'Secteur non indiqué' : esc(z)} <small>${groupes[z].length}</small></h3>${groupes[z].some((i) => i.estime) ? '<p class="muted small">Secteur estimé d’après les repères voisins pour certains éléments.</p>' : ''}<ul class="col-l">${groupes[z].map(ligne).join('')}</ul></section>`).join('')}</section>`;
+}
+// coffres de la carte : le code donné par les guides et un lien vers le dossier des codes (sans le présenter comme vérifié)
+for (const D of DOSSIERS.filter((d) => d.slug === 'codes-coffres')) for (const sec of D.sections) for (const it of sec.items || []) {
+  const f = it.carte && it.code && mapIndex[it.carte]; if (!f) continue;
+  const pr = f.properties;
+  if (!pr.url) pr.url = 'dossiers/codes-coffres/';
+  if (!(pr.desc || '').includes(it.code.split(' ')[0])) pr.desc = `Code : ${it.code}, selon les guides (non vérifié en jeu).${pr.desc ? ' ' + pr.desc : ''}`;
+}
 const onMap = (id) => !!mapIndex[id];
 const vehOnMap = (slug) => !!mapIndex['v-' + slug];
 // astuce → repères carte liés
@@ -584,7 +615,16 @@ function encyRefs(e) {
 }
 // Véhicules : nature de chaque emplacement, d'après le type de repère de la source (rien n'est déduit au-delà)
 const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Lié à une demande (Moses ou Randy)', 'Location de véhicules': 'À louer' };
-const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : NATURE_V[f.properties.service] || 'Repère de la carte');
+// « Véhicule remarquable » des cartes de joueurs : une version unique (livrée ou préparation spéciale), pas le modèle de série
+const unique = (f) => /^o-standout-vehicle-/.test(f.properties.id);
+const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : unique(f) ? 'Version unique (livrée spéciale), garée à cet endroit' : NATURE_V[f.properties.service] || 'Repère de la carte');
+// emplacement d'une fiche (article) et repère d'une carte de joueurs au même endroit : deux sources concordent, sans vérification en jeu
+function concorde(slug, ids = []) {
+  const v = mapIndex['v-' + slug]; if (!v) return null;
+  let best = null;
+  for (const id of ids) { const f = mapIndex[id]; if (!f || !/^o-/.test(id)) continue; const d = Math.hypot(f.geometry.coordinates[0] - v.geometry.coordinates[0], f.geometry.coordinates[1] - v.geometry.coordinates[1]); if (d < 400 && (!best || d < best.d)) best = { d, f }; }
+  return best;
+}
 const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
 // Un seul bloc en haut de fiche : la réponse, l'action principale, les favoris.
 // lieux : repères de la carte ; texte : emplacement décrit ; fiab : fiabilité de l'emplacement ; etapes : méthode d'obtention vérifiée par les sources de la fiche
@@ -597,6 +637,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
     ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
     ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits :</p>` : ''}
+    ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
     ${lieux.length && (plusieurs || !texte) ? `<ul class="vdlg-lo">${lieux.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}<br><small>${esc(natureLieu(f))} · source : ${esc(sourceLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
@@ -841,6 +882,7 @@ for (const a of ASTUCES) {
   </section>
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
   ${a.slug === 'collection' ? `<a class="btn btn--primary btn--wide" href="${R}collection/">${icon('badge')}Voir les listes d'objets à collectionner</a>` : ''}
+  ${listeRepères(a.slug, R)}
   <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}${ENC.filter((e) => e.liens.includes(a.slug)).slice(0, 2).map((e) => `<a class="mini" href="${R}encyclopedie/${e.slug}/" style="--c:${cat('encyclopedie', e.cat).color}"><span class="mini-ico">${icon(e.icon)}</span><span><small>Encyclopédie</small><b>${esc(e.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
   ${sourcesBlock(a.sources)}
 </article>`;
@@ -951,7 +993,8 @@ for (const v of VEHICULES) {
   ${(() => {
     const lieux = [onM && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).map((id) => mapIndex[id])].filter(Boolean);
     const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
-    const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}` };
+    const cc = concorde(v.slug, CAT_CARTE[v.slug]);
+    const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}${cc ? ` · même endroit sur Open GTA 6 Map (carte de joueurs, à ~${Math.max(10, Math.round(cc.d / 10) * 10)} m) : deux sources concordent, non vérifié en jeu` : ''}` };
     return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, conseil: !!v.conseil, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
       + blocFiab({ presence: esc(presenceTxt(v.slug, v.sources)), emplacement: `${esc(statut(v.dispo).nom)} · ${esc(fiab.texte)}`, obtention: `${esc(statut(v.dispo).nom)} · étapes tirées des mêmes sources` });
   })()}

@@ -3,6 +3,18 @@
  "corrections": [
   {
    "date": "2026-11-25",
+   "page": "vehicules/",
+   "titre": "Emplacements des véhicules",
+   "texte": "Deux repères ouvraient la mauvaise fiche : le « '65 Dominator » est maintenant sur la fiche Vapid Dominator '65, la « '64 Coquette » sur la fiche Invetero Coquette '64. 39 repères de la carte de joueurs sont reliés à la fiche de leur modèle. Les « véhicules remarquables » sont présentés comme des versions uniques, pas comme le modèle de série."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "dossiers/codes-coffres/",
+   "titre": "Codes de coffres",
+   "texte": "« Codes fixes confirmés par plusieurs guides » devient « donnés par plusieurs guides » : ces guides se recopient peut-être. Kingpin Bowling et Saber Shipping affichent les deux codes donnés, sans « essaie les deux ». Le code de la Fleeca de Key Lento est signalé comme pouvant changer."
+  },
+  {
+   "date": "2026-11-25",
    "page": "missions/",
    "titre": "Fiches de missions",
    "texte": "Chaque fiche commence par l'objectif et la solution rapide, puis les conditions de déblocage et les erreurs fréquentes. Les récompenses sont désormais signalées « selon GTABase, non vérifiées en jeu » (le guide se contredit par exemple sur « Voiture de tous les jours »). La mission suivante n'est proposée que si son ordre est sûr."
