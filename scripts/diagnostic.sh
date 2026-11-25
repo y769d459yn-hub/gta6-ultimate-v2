@@ -103,3 +103,4 @@ echo "contexte : $(grep -o ".\{0,200\}mêmes sur PS5 et Xbox.\{0,120\}" /tmp/cz.
 titre "14. Favoris des codes et Jet"
 curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/cf.html; echo "codes : $(grep -o 'class="code-fav' /tmp/cf.html | wc -l) cœurs (19 attendus)"
 curl -sS --max-time 20 "https://$D/vehicules/jet/?t=$(date +%s)" -o /tmp/jet.html; echo "jet : $(grep -c 'aéroport international de Vice City' /tmp/jet.html) emplacement GTA Wiki"
+echo "codes : $(grep -o 'class="code-src' /tmp/cf.html | wc -l) mentions sous les codes (0 attendu) | $(grep -c 'code-plat' /tmp/cf.html) ligne plateforme (0 attendu)"
