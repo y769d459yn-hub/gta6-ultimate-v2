@@ -12,13 +12,13 @@
    "reponse": "Ça dépend du coffre. Les coffres des braquages (magasins, banques, bijouteries) changent de code à chaque partie et même à chaque braquage : cherche la note avec le mode Focus. Les coffres des repaires de gangs, des lieux secrets et de certaines missions ont un code fixe : ils sont listés ci-dessous.",
    "sections": [
     {
-     "titre": "Codes fixes confirmés par plusieurs guides",
+     "titre": "Codes fixes donnés par plusieurs guides",
      "icon": "check",
      "items": [
       {
        "t": "Kingpin Bowling (Port Gellhorn)",
-       "code": "0300",
-       "d": "Coffre du petit bureau, au coin nord-est. Un guide donne 0330 : essaie-le si 0300 ne marche pas.",
+       "code": "0300 / 0330",
+       "d": "Coffre du petit bureau, au coin nord-est. Les guides ne donnent pas le même code (0300 ou 0330) ; aucun des deux n'a été vérifié en jeu.",
        "carte": "o-safe-015"
       },
       {
@@ -42,7 +42,7 @@
       {
        "t": "Caravane de Cottonmouth Lake",
        "code": "44017",
-       "d": "Le code est caché près des cartes postales accrochées au mur.",
+       "d": "Le code est caché près des cartes postales accrochées au mur. Aussi indiqué sur Open GTA 6 Map (carte de joueurs).",
        "carte": "o-safe-041"
       },
       {
@@ -60,12 +60,12 @@
       {
        "t": "Avant-poste de Pelican Valley",
        "code": "0072",
-       "d": "Coffre de l'avant-poste. Le code 0212 ouvre une porte près du ponton, pas un coffre."
+       "d": "Coffre de l'avant-poste. Le code 0212 ouvre une porte près du ponton, pas un coffre. Aussi indiqué sur Open GTA 6 Map (carte de joueurs)."
       },
       {
        "t": "Delights (Port Gellhorn)",
        "code": "2008",
-       "d": "Coffre du cabaret.",
+       "d": "Coffre du cabaret. Aussi donné par le guide de mission de GTABase.",
        "carte": "m-delights"
       },
       {
@@ -73,12 +73,13 @@
        "code": "955214",
        "d": "Code donné par plusieurs guides."
       }
-     ]
+     ],
+     "intro": "Ces codes sont donnés par plusieurs guides, qui se recopient peut-être : ce n'est pas une confirmation. Aucun n'a été vérifié en jeu par GTA 6 Facile."
     },
     {
      "titre": "Coffres des bijouteries de Yasmani (missions)",
      "icon": "flag",
-     "intro": "Ces codes font partie des missions de Yasmani : ils sont les mêmes pour tout le monde.",
+     "intro": "Ces codes font partie des missions de Yasmani : ils sont les mêmes pour tout le monde. Aussi donné par le guide de mission de GTABase.",
      "items": [
       {
        "t": "Richardson Jewelry & Diamonds",
@@ -107,36 +108,38 @@
       },
       {
        "t": "Saber Shipping Facility (Vice City)",
-       "code": "1122 ou 1965",
-       "d": "Les guides ne sont pas d'accord : essaie les deux.",
+       "code": "1122 / 1965",
+       "d": "Les guides ne donnent pas le même code ; aucun des deux n'a été vérifié en jeu.",
        "carte": "o-safe-026"
       },
       {
        "t": "Coffre de Stormy",
        "code": "7869",
-       "carte": "o-safe-053"
+       "carte": "o-safe-053",
+       "d": "Aussi indiqué sur Open GTA 6 Map (carte de joueurs)."
       },
       {
        "t": "Chambre 115",
        "code": "4242",
-       "d": "Le même code est donné par l'homme dans la salle de bain du motel (carte « Los Santos Panic »).",
+       "d": "Le même code est donné par l'homme dans la salle de bain du motel (carte « Los Santos Panic »). Aussi indiqué sur Open GTA 6 Map (carte de joueurs).",
        "carte": "o-safe-055"
       },
       {
        "t": "Taudis",
        "code": "9790",
-       "carte": "o-safe-058"
+       "carte": "o-safe-058",
+       "d": "Aussi indiqué sur Open GTA 6 Map (carte de joueurs)."
       },
       {
        "t": "Kalinga .50 (Black Eagle Import)",
        "code": "789987 puis 031462",
-       "d": "Le premier code ouvre la porte, le second le coffre où est l'arme.",
+       "d": "Le premier code ouvre la porte, le second le coffre où est l'arme. Aussi indiqué sur Open GTA 6 Map (carte de joueurs).",
        "carte": "o-weapon-spawn-050"
       },
       {
        "t": "Maison abandonnée (carte « Dunks Exclusive »)",
        "code": "23554",
-       "d": "Entre par le toit : la carte est dans le coffre.",
+       "d": "Entre par le toit : la carte est dans le coffre. Aussi indiqué sur Open GTA 6 Map (carte de joueurs).",
        "carte": "o-collectible-card-113"
       },
       {
@@ -147,7 +150,7 @@
       {
        "t": "Trappe de la tour (Hamlet)",
        "code": "2341",
-       "d": "Porte au bas de la tour, vers la salle d'opérations.",
+       "d": "Porte au bas de la tour, vers la salle d'opérations. Aussi indiqué sur Open GTA 6 Map (carte de joueurs).",
        "carte": "o-comics-002"
       },
       {
@@ -157,7 +160,7 @@
       {
        "t": "Fleeca Bank de Key Lento",
        "code": "1747",
-       "d": "Attention : les coffres de banque changent souvent de code. Si celui-ci ne marche pas, cherche la note.",
+       "d": "Code relevé par Open GTA 6 Map (carte de joueurs). Les guides indiquent aussi que les coffres de banque changent de code à chaque braquage : celui-ci peut donc ne pas marcher. Dans ce cas, cherche la note avec le mode Focus.",
        "carte": "o-safe-049"
       }
      ]

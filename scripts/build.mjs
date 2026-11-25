@@ -400,6 +400,13 @@ const communaute = GTADB.filter((g) => g.adr && !g.adr.startsWith('?') && !g.tag
   return { i: g.id, n: TR_COMMU[n0] || n0, z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
 });
 const mapIndex = Object.fromEntries(features.map((f) => [f.properties.id, f]));
+// coffres de la carte : le code donné par les guides et un lien vers le dossier des codes (sans le présenter comme vérifié)
+for (const D of DOSSIERS.filter((d) => d.slug === 'codes-coffres')) for (const sec of D.sections) for (const it of sec.items || []) {
+  const f = it.carte && it.code && mapIndex[it.carte]; if (!f) continue;
+  const pr = f.properties;
+  if (!pr.url) pr.url = 'dossiers/codes-coffres/';
+  if (!(pr.desc || '').includes(it.code.split(' ')[0])) pr.desc = `Code : ${it.code}, selon les guides (non vérifié en jeu).${pr.desc ? ' ' + pr.desc : ''}`;
+}
 const onMap = (id) => !!mapIndex[id];
 const vehOnMap = (slug) => !!mapIndex['v-' + slug];
 // astuce → repères carte liés
