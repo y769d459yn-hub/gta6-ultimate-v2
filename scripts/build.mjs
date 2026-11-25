@@ -400,6 +400,30 @@ const communaute = GTADB.filter((g) => g.adr && !g.adr.startsWith('?') && !g.tag
   return { i: g.id, n: TR_COMMU[n0] || n0, z: parts.slice(1).join(', '), x: Math.round(g.x), y: Math.round(g.y), c, d: g.adr.includes('?') || g.tags.includes('unconfirmed') ? 1 : 0 };
 });
 const mapIndex = Object.fromEntries(features.map((f) => [f.properties.id, f]));
+// Listes de repères sur une page (armes uniques, véhicules remarquables) : texte lisible par Google, rangé par secteur, comme les pages de collection
+function secteurDe(f) {
+  if (f.properties.zone) return { z: f.properties.zone, estime: false };
+  const [x, y] = f.geometry.coordinates; let best = null, d = 500;
+  for (const g of features) { if (!g.properties.zone) continue; const e = Math.hypot(g.geometry.coordinates[0] - x, g.geometry.coordinates[1] - y); if (e < d) { d = e; best = g; } }
+  return best ? { z: best.properties.zone, estime: true } : { z: '', estime: false };
+}
+const LISTES_ASTUCE = {
+  'armes-gratuites': { titre: 'armes uniques signalées', filtre: (f) => f.properties.cat === 'armes' && f.properties.service === 'Arme unique' },
+  'voiture-rare': { titre: 'véhicules remarquables signalés', filtre: (f) => /^o-standout-vehicle-/.test(f.properties.id) },
+};
+function listeRepères(slug, R) {
+  const L = LISTES_ASTUCE[slug]; if (!L) return '';
+  const items = features.filter(L.filtre).map((f) => ({ f, ...secteurDe(f) }));
+  if (!items.length) return '';
+  const groupes = {}; for (const it of items) (groupes[it.z || '~'] ||= []).push(it);
+  const ordre = Object.keys(groupes).sort((a, b) => (a === '~') - (b === '~') || groupes[b].length - groupes[a].length || a.localeCompare(b, 'fr'));
+  const lie = {}; for (const [s, ids] of Object.entries(CAT_CARTE)) for (const id of ids) lie[id] ||= s;
+  const ligne = (it) => { const pr = it.f.properties, fiche = lie[pr.id] ? `vehicules/${lie[pr.id]}/` : pr.url && /^vehicules\//.test(pr.url) ? pr.url : null;
+    return `<li class="col-it col-it--sans"><span class="col-t"><b>${fiche ? `<a href="${R}${fiche}">${esc(pr.nom)}</a>` : esc(pr.nom)}</b>${pr.desc ? `<small>${esc(pr.desc)}</small>` : ''}</span><a class="col-map" href="${R}carte/?focus=${pr.id}" aria-label="Voir « ${esc(pr.nom)} » sur la carte">${icon('map')}<span>Carte</span></a></li>`; };
+  return `<section class="col" aria-labelledby="li-t" style="--c:#ff2bd6"><h2 id="li-t" class="h3">${icon('pin')}Les ${items.length} ${L.titre}, par secteur</h2>
+  <p class="muted small">${icon('info')}Positions relevées par une carte de joueurs (Open GTA 6 Map), approximatives et pas encore vérifiées en jeu.</p>
+  ${ordre.map((z) => `<section class="col-z"><h3 class="vgrp-h">${z === '~' ? 'Secteur non indiqué' : esc(z)} <small>${groupes[z].length}</small></h3>${groupes[z].some((i) => i.estime) ? '<p class="muted small">Secteur estimé d’après les repères voisins pour certains éléments.</p>' : ''}<ul class="col-l">${groupes[z].map(ligne).join('')}</ul></section>`).join('')}</section>`;
+}
 // coffres de la carte : le code donné par les guides et un lien vers le dossier des codes (sans le présenter comme vérifié)
 for (const D of DOSSIERS.filter((d) => d.slug === 'codes-coffres')) for (const sec of D.sections) for (const it of sec.items || []) {
   const f = it.carte && it.code && mapIndex[it.carte]; if (!f) continue;
@@ -858,6 +882,7 @@ for (const a of ASTUCES) {
   </section>
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
   ${a.slug === 'collection' ? `<a class="btn btn--primary btn--wide" href="${R}collection/">${icon('badge')}Voir les listes d'objets à collectionner</a>` : ''}
+  ${listeRepères(a.slug, R)}
   <section class="related" aria-labelledby="va-t"><h2 id="va-t" class="h3">${icon('sparkle')}Voir aussi</h2><div class="minis">${a.voir.map((s) => relCard(s, R)).join('')}${ENC.filter((e) => e.liens.includes(a.slug)).slice(0, 2).map((e) => `<a class="mini" href="${R}encyclopedie/${e.slug}/" style="--c:${cat('encyclopedie', e.cat).color}"><span class="mini-ico">${icon(e.icon)}</span><span><small>Encyclopédie</small><b>${esc(e.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
   ${sourcesBlock(a.sources)}
 </article>`;

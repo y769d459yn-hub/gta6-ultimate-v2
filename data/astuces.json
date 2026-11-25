@@ -578,8 +578,8 @@
   "court": "Armes uniques gratuites",
   "reponse": "Le SM-69 Cruel Huntsman et l'Akulus Swamp Bait sont signalés à Pelican Valley. Le pistolet silencieux Assassin Nipper .38 est signalé dans les Permit Keys.",
   "etapes": [
-   "Va dans la zone indiquée.",
-   "Fouille les bâtiments et les campements.",
+   "Choisis une arme dans la liste ci-dessous.",
+   "Touche « Carte » pour voir où elle est signalée.",
    "Ramasse l'arme puis sauvegarde."
   ],
   "asavoir": "Emplacements non vérifiés. Certains guides donnent d'autres endroits.",
@@ -873,13 +873,13 @@
   "icon": "sparkle",
   "titre": "Comment trouver une voiture rare ?",
   "court": "Voitures rares",
-  "reponse": "Les véhicules remarquables sont garés à des endroits fixes, comme des garages, des docks ou des aéroports. La liste est sur notre page Véhicules.",
+  "reponse": "Les véhicules remarquables sont garés à des endroits fixes, comme des garages, des docks ou des aéroports. La liste des emplacements relevés par les joueurs est juste en dessous, par secteur.",
   "etapes": [
-   "Choisis un véhicule dans la page Véhicules.",
-   "Ouvre « Où le trouver ? ».",
+   "Choisis un véhicule dans la liste ci-dessous.",
+   "Touche « Carte » pour voir où il est garé, ou ouvre sa fiche quand elle existe.",
    "Scanne-le avec WAiNK, vole-le, puis range-le dans un garage."
   ],
-  "asavoir": "Les guides parlent de 139 emplacements de véhicules remarquables.",
+  "asavoir": "GTABase recense 251 véhicules remarquables sur sa carte (relevé du 25/11/2026). Notre liste reprend ceux relevés par une carte de joueurs : ce sont des versions uniques, à la position approximative et pas encore vérifiée en jeu.",
   "duree": 5,
   "niveau": "intermediaire",
   "statut": "a-verifier",
