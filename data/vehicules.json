@@ -189,7 +189,7 @@
   "nom": "Hydroglisseur (airboat)",
   "type": "bateaux",
   "sous": "Marais",
-  "dispo": "confirme",
+  "dispo": "a-verifier",
   "lieu": "grassrivers",
   "emplacement": "Fréquent dans les marais de Grassrivers. Il apparaît dans les bandes-annonces officielles.",
   "obtenir": [
@@ -227,7 +227,8 @@
   "sources": [
    "gamesradar-activities"
   ],
-  "color": "#19e3d1"
+  "color": "#19e3d1",
+  "conseil": true
  },
  {
   "slug": "vedette",
@@ -250,14 +251,15 @@
   "sources": [
    "rockstar"
   ],
-  "color": "#19d3e3"
+  "color": "#19d3e3",
+  "conseil": true
  },
  {
   "slug": "moto-sportive",
   "nom": "Moto sportive",
   "type": "motos",
   "sous": "Sportive",
-  "dispo": "confirme",
+  "dispo": "a-verifier",
   "lieu": null,
   "emplacement": "Fréquente en circulation, surtout en ville. Pas d'emplacement fixe.",
   "obtenir": [
@@ -273,7 +275,8 @@
   "sources": [
    "rockstar"
   ],
-  "color": "#ff7a3d"
+  "color": "#ff7a3d",
+  "conseil": true
  },
  {
   "slug": "dinka-enduro",
@@ -551,7 +554,7 @@
   "nom": "Pfister Comet S2 Cabrio",
   "type": "voitures",
   "sous": "Sportive",
-  "dispo": "confirme",
+  "dispo": "a-verifier",
   "lieu": null,
   "emplacement": "Vue dans la première bande-annonce. En circulation, pas d'emplacement fixe connu.",
   "obtenir": [
@@ -568,14 +571,15 @@
   "sources": [
    "thegamer-vehicles"
   ],
-  "color": "#ff2bd6"
+  "color": "#ff2bd6",
+  "conseil": true
  },
  {
   "slug": "jobuilt-hauler",
   "nom": "JoBuilt Hauler",
   "type": "autres",
   "sous": "Camion",
-  "dispo": "confirme",
+  "dispo": "a-verifier",
   "lieu": null,
   "emplacement": "Vu sur les captures officielles. En circulation sur les routes de l'État.",
   "obtenir": [
@@ -592,14 +596,15 @@
   "sources": [
    "thegamer-vehicles"
   ],
-  "color": "#3ddc84"
+  "color": "#3ddc84",
+  "conseil": true
  },
  {
   "slug": "obey-tailgater-s",
   "nom": "Obey Tailgater S",
   "type": "voitures",
   "sous": "Berline",
-  "dispo": "confirme",
+  "dispo": "a-verifier",
   "lieu": null,
   "emplacement": "Vue sur les captures officielles. Courante en ville.",
   "obtenir": [
@@ -614,7 +619,8 @@
   "sources": [
    "thegamer-vehicles"
   ],
-  "color": "#19d3e3"
+  "color": "#19d3e3",
+  "conseil": true
  },
  {
   "slug": "imponte-ruiner",

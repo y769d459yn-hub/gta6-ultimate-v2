@@ -47,7 +47,8 @@
  },
  "g2a-money": {
   "n": "G2A News",
-  "u": "https://www.g2a.com/news/gta-6-news/gta-6-money-making-guide/"
+  "u": "https://www.g2a.com/news/gta-6-news/gta-6-money-making-guide/",
+  "fiabilite": "faible"
  },
  "keengamer-money": {
   "n": "KeenGamer",
@@ -59,11 +60,13 @@
  },
  "cheatcc": {
   "n": "CheatCC",
-  "u": "https://www.cheatcc.com/articles/gta-6-cheats/"
+  "u": "https://www.cheatcc.com/articles/gta-6-cheats/",
+  "fiabilite": "faible"
  },
  "gtacheatcodes": {
   "n": "GTAcheat.codes",
-  "u": "https://gtacheat.codes/"
+  "u": "https://gtacheat.codes/",
+  "fiabilite": "faible"
  },
  "pcguide-cheats": {
   "n": "PC Guide",
@@ -235,7 +238,8 @@
  },
  "stealthy-steal": {
   "n": "Stealthy Gaming",
-  "u": "https://stealthygaming.com/gta-6-how-to-steal-cars/"
+  "u": "https://stealthygaming.com/gta-6-how-to-steal-cars/",
+  "fiabilite": "faible"
  },
  "keengamer-stash": {
   "n": "KeenGamer",
@@ -243,7 +247,8 @@
  },
  "vicepulse-cash": {
   "n": "VicePulse",
-  "u": "https://vicepulse.org/gta-6/money/hidden-cash"
+  "u": "https://vicepulse.org/gta-6/money/hidden-cash",
+  "fiabilite": "faible"
  },
  "dotesports-stash": {
   "n": "Dot Esports",
@@ -251,11 +256,13 @@
  },
  "consolepulse-money": {
   "n": "ConsolePulse",
-  "u": "https://consolepulse.com/playstation/gta/guides/gta-6-make-money-fast"
+  "u": "https://consolepulse.com/playstation/gta/guides/gta-6-make-money-fast",
+  "fiabilite": "faible"
  },
  "rarethief-sell": {
   "n": "Rare Thief",
-  "u": "https://rarethief.com/where-to-sell-cars-in-gta-vi/"
+  "u": "https://rarethief.com/where-to-sell-cars-in-gta-vi/",
+  "fiabilite": "faible"
  },
  "pcgamer-money": {
   "n": "PC Gamer",
@@ -298,7 +305,8 @@
  "gta6guide-cheats": {
   "n": "gta6guide.fr — codes",
   "u": "https://gta6guide.fr/gta-6/codes-triche",
-  "official": false
+  "official": false,
+  "fiabilite": "agregateur"
  },
  "forbes-ventes": {
   "n": "Forbes : 3,8 milliards de dollars le premier jour",
@@ -323,7 +331,8 @@
  "covers-online": {
   "n": "Covers : date de GTA 6 Online",
   "u": "https://www.covers.com/entertainment/gta-6-online-release-date",
-  "official": false
+  "official": false,
+  "fiabilite": "faible"
  },
  "gtawiki-wanted": {
   "n": "GTA Wiki : Wanted Level in GTA VI",

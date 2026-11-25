@@ -1,0 +1,8 @@
+{
+ "info": "Écarts connus entre le relevé des joueurs (Open GTA 6 Map) et la liste du 100 % de GTA Wiki. Affichés tels quels, sans trancher.",
+ "notes": {
+  "playlist-unique": "GTA Wiki compte 2 playlists uniques pour le 100 %, alors que le relevé des joueurs en place 7. Nous ne savons pas encore lesquelles comptent : à vérifier.",
+  "magazine-ou-bd": "GTA Wiki compte 34 magazines, livres et BD (dont 7 boîtes à livres) pour le 100 %. Le relevé des joueurs place 74 emplacements : un même titre peut se trouver à plusieurs endroits. Écart non vérifié.",
+  "scan-waink": "Le 100 % demande 100 scans WAiNK ; le relevé des joueurs en place 95 pour l'instant. La liste est donc incomplète."
+ }
+}

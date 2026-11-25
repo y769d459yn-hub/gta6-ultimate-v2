@@ -687,5 +687,8 @@
     ]
    ]
   }
- ]
+ ],
+ "sourcesNonIndependantes": {
+  "gta6guide.fr": "Agrégateur : indique « Documenté par les guides » (dernière vérification au 18/11/2026, avant la sortie). Ne compte pas comme confirmation indépendante."
+ }
 }

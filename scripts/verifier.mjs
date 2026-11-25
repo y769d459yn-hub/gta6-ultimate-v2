@@ -75,12 +75,25 @@ if (/Disallow: \/\s*$/m.test(robots)) err('robots.txt bloque tout le site');
 // fiabilité : « confirmé » exige au moins deux sources (méthode du site), et seulement des statuts connus
 const lire = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
 const statuts = Object.keys(site.statuts);
+// sources indépendantes : ni agrégateur, ni source faible (data/sources.json → fiabilite ; data/site.json → sourcesNonIndependantes)
+const SRCJ = lire('sources.json'), NONIND = site.sourcesNonIndependantes || {};
+const indIds = (ids = []) => [...new Set(ids)].filter((id) => SRCJ[id] && !SRCJ[id].fiabilite);
+const indNoms = (n = []) => [...new Set(n)].filter((x) => !NONIND[x]);
 for (const a of lire('astuces.json')) {
   if (!statuts.includes(a.statut)) err(`astuce ${a.slug} : statut inconnu « ${a.statut} »`);
-  if (a.statut === 'confirme' && (a.sources || []).length < 2) err(`astuce ${a.slug} : « confirmé » avec moins de deux sources`);
+  if (a.statut === 'confirme' && indIds(a.sources).length < 2 && !(a.sources || []).some((id) => SRCJ[id] && SRCJ[id].official)) err(`astuce ${a.slug} : « confirmé » sans deux sources indépendantes (ni officielle)`);
+  if (a.statut === 'teste' && !(a.preuve && a.preuve.date && a.preuve.plateforme && a.preuve.lien)) err(`astuce ${a.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
   if (a.verifie && !/^\d{4}-\d{2}-\d{2}$/.test(a.verifie)) err(`astuce ${a.slug} : date de vérification invalide`);
 }
-for (const c of lire('codes.json').codes) if (c.confirme && (c.sources || []).length < 2) err(`code ${c.id} : « confirmé » avec moins de deux sources`);
+for (const c of lire('codes.json').codes) {
+  if (c.confirme && indNoms(c.sources).length < 2) err(`code ${c.id} : « confirmé » sans deux sources indépendantes`);
+  if (c.confirme && c.contradiction) err(`code ${c.id} : « confirmé » alors qu'une contradiction est notée`);
+}
+for (const x of lire('vehicules.json')) {
+  if (x.dispo === 'confirme' && indIds(x.sources).length < 2) err(`véhicule ${x.slug} : emplacement « confirmé » sans deux sources indépendantes`);
+  if (x.dispo === 'teste' && !(x.preuve && x.preuve.date && x.preuve.plateforme && x.preuve.lien)) err(`véhicule ${x.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
+}
+if ([...pages.values()].some((h) => /Consultées le \d/.test(h))) err('date de consultation des sources affichée sans être réelle');
 if (!fs.existsSync(path.join(OUT, 'llms.txt'))) err('llms.txt absent');
 
 console.log(`${pages.size} pages · ${urls.length} dans le plan du site · ${erreurs.length} erreur(s) · ${alertes.length} alerte(s)`);

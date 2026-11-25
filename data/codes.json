@@ -81,7 +81,8 @@
    "sources": [
     "GTABase"
    ],
-   "argent": false
+   "argent": false,
+   "note": "GTA Wiki indique que cette combinaison n’a pas encore été trouvée (relevé du 25/11/2026)."
   },
   {
    "id": "joueur-03",
@@ -127,7 +128,8 @@
    "sources": [
     "GTABase"
    ],
-   "argent": false
+   "argent": false,
+   "note": "GTA Wiki indique que cette combinaison n’a pas encore été trouvée (relevé du 25/11/2026)."
   },
   {
    "id": "joueur-05",
@@ -390,12 +392,13 @@
     "haut",
     "bas"
    ],
-   "confirme": true,
+   "confirme": false,
    "sources": [
     "GTABase",
     "gta6guide.fr"
    ],
-   "argent": false
+   "argent": false,
+   "contradiction": "GTA Wiki donne 8 flèches (Bas, Haut, Gauche, Gauche, Droite, Bas, Bas, Haut) ; GTABase et gta6guide.fr en donnent 9, avec un Bas de plus à la fin. Essaie les deux si l'une ne marche pas."
   },
   {
    "id": "combat-20",

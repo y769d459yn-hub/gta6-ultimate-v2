@@ -2,6 +2,48 @@
  "info": "Corrections de contenu publiées sur le site, les plus récentes en premier.",
  "corrections": [
   {
+   "date": "2026-11-25",
+   "page": "codes/",
+   "titre": "Codes de triche",
+   "texte": "« Force des attaques » passe de « confirmé » à « contradictoire » : GTA Wiki donne 8 flèches, GTABase et gta6guide.fr en donnent 9. gta6guide.fr, qui reprend d’autres guides, ne compte plus comme confirmation indépendante."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "vehicules/",
+   "titre": "Véhicules",
+   "texte": "Cinq emplacements « confirmés » ne reposaient que sur une source, souvent une bande-annonce : moto sportive, hydroglisseur, Pfister Comet S2, Jobuilt Hauler, Obey Tailgater S. Ils passent « à vérifier », et les méthodes générales sont présentées comme des conseils."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "astuces/",
+   "titre": "Astuces",
+   "texte": "« Vendre des voitures à Moses » et « Essence » passent « à vérifier » : leurs sources, hors GTA Wiki, sont de faible qualité. Les sources faibles sont désormais signalées et ne comptent plus pour confirmer."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "actualites/ventes-premier-jour/",
+   "titre": "Ventes du premier jour",
+   "texte": "Le chiffre de 3,79 milliards de dollars vient de Forbes, qui cite Take-Two : l’actualité passe de « officiel » à « à vérifier » tant que le communiqué de Take-Two n’est pas vérifié."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "missions/",
+   "titre": "Missions",
+   "texte": "Les fiches distinguent l’existence de la mission (recoupée ou non) de ses étapes, récompense et aide, rédigées d’après les guides et pas encore vérifiées en jeu."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "collection/",
+   "titre": "Objets à collectionner",
+   "texte": "Les positions sont présentées comme « relevées par les joueurs (approximatives) » et non plus « exactes ». Les écarts avec la liste du 100 % (playlists, magazines, scans WAiNK) sont expliqués sur les pages concernées."
+  },
+  {
+   "date": "2026-11-25",
+   "page": "a-propos/",
+   "titre": "Sources",
+   "texte": "La date « Consultées le … », identique sur toutes les pages et qui ne correspondait pas à une vraie consultation, est retirée."
+  },
+  {
    "date": "2026-11-24",
    "page": "codes/",
    "titre": "Codes de triche",

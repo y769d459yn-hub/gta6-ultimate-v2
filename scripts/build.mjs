@@ -110,6 +110,11 @@ const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<
 const norm = (s = '') => String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9$]+/g, ' ').trim();
 const cat = (group, id) => site.categories[group].find((c) => c.id === id) || { id, nom: id, icon: 'info', color: '#ff2d87' };
 const statut = (id) => site.statuts[id] || site.statuts['a-verifier'];
+// Une source compte pour confirmer seulement si elle est indépendante : ni agrégateur qui reprend les autres guides, ni site de faible qualité
+const NON_INDEP = site.sourcesNonIndependantes || {};
+const indepNoms = (noms = []) => [...new Set(noms)].filter((n) => !NON_INDEP[n]);
+const indepIds = (ids = []) => [...new Set(ids)].filter((id) => SRC[id] && !SRC[id].fiabilite);
+const COLL_NOTES = fs.existsSync(path.join(ROOT, 'data', 'collection-notes.json')) ? read('collection-notes.json').notes : {};
 const byId = (arr, key = 'slug') => Object.fromEntries(arr.map((x) => [x[key], x]));
 const A = byId(ASTUCES), V = byId(VEHICULES), L = byId(LIEUX, 'id'), E = byId(ENC), N = byId(ACTUS);
 const REG = Object.fromEntries(LIEUX.filter((l) => l.type === 'region').map((r) => [r.id, r]));
@@ -363,7 +368,7 @@ for (const e of MLIEUX) {
   const id = 'm-' + (e.lieu || norm(e.nom).replace(/ /g, '-'));
   ms.forEach((m) => { missionsSur[m.id] ||= id; });
   const ch = [...new Set(ms.map((m) => (m.chapitre === 'prologue' ? 'Prologue' : 'chap. ' + m.chapitre)))].join(', ');
-  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id, nom: e.nom || base.properties.nom, cat: 'missions', sous: 'Mission', region: base ? base.properties.region : null, statut: 'confirme', precision: base ? base.properties.precision : 'zone', icon: 'flag', desc: `${ms.length} mission${ms.length > 1 ? 's' : ''} ici (${ch}) : ${ms.map((m) => m.nom).join(', ')}.`, service: `${ms.length} mission${ms.length > 1 ? 's' : ''}`, missions: ms.map((m) => ({ id: m.id, n: m.num, t: m.nom, c: m.chapitre, r: m.resume })) } });
+  features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id, nom: e.nom || base.properties.nom, cat: 'missions', sous: 'Mission', region: base ? base.properties.region : null, statut: 'a-verifier', precision: base ? base.properties.precision : 'zone', icon: 'flag', desc: `${ms.length} mission${ms.length > 1 ? 's' : ''} ici (${ch}) : ${ms.map((m) => m.nom).join(', ')}.`, service: `${ms.length} mission${ms.length > 1 ? 's' : ''}`, missions: ms.map((m) => ({ id: m.id, n: m.num, t: m.nom, c: m.chapitre, r: m.resume })) } });
 }
 // Couche communautaire : lieux nommés et positionnés de GTADB
 const COMMU_CATS = CARTE.communaute.categories;
@@ -525,7 +530,7 @@ function relCard(slug, R) {
 function sourcesBlock(ids) {
   const list = ids.map((id) => SRC[id]).filter(Boolean);
   if (!list.length) return '';
-  return `<details class="sources"><summary>${icon('shield')}Sources (${list.length})</summary><ul>${list.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a>${s.official ? ' <span class="pill pill--ok">officiel</span>' : ''}</li>`).join('')}</ul><p class="muted">Consultées le ${fmtDate(site.majLe)}.</p></details>`;
+  return `<details class="sources"><summary>${icon('shield')}Sources (${list.length})</summary><ul>${list.map((s) => `<li><a href="${s.u}" rel="nofollow noopener" target="_blank">${esc(s.n)}</a>${s.official ? ' <span class="pill pill--ok">officiel</span>' : s.fiabilite === 'faible' ? ' <span class="pill">source faible</span>' : s.fiabilite === 'agregateur' ? ' <span class="pill">reprend d\u2019autres guides</span>' : ''}</li>`).join('')}</ul><p class="muted">Une source marquée « faible » ou « reprend d’autres guides » ne compte pas pour confirmer une information.</p></details>`;
 }
 // Véhicules : nature de chaque emplacement, d'après le type de repère de la source (rien n'est déduit au-delà)
 const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Lié à une demande (Moses ou Randy)', 'Location de véhicules': 'À louer' };
@@ -533,7 +538,7 @@ const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée
 const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
 // Un seul bloc en haut de fiche : la réponse, l'action principale, les favoris.
 // lieux : repères de la carte ; texte : emplacement décrit ; fiab : fiabilité de l'emplacement ; etapes : méthode d'obtention vérifiée par les sources de la fiche
-function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler }) {
+function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conseil = false }) {
   const connu = lieux.length || texte;
   const plusieurs = lieux.length > 1;
   const spoil = (s) => /chapitre|«|mission/i.test(s);
@@ -549,7 +554,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler }) {
       ${fav}
       ${connu ? '' : `<a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Emplacement : ${nom}`)}&amp;body=${encodeURIComponent(`Véhicule : ${nom} (${site.url}/${signaler})\nOù je l'ai trouvé :\nSource ou capture, si tu en as une :\n`)}">${icon('mail')}Signaler un emplacement</a>`}
     </div>
-    ${etapes && etapes.length ? `<h3 class="ou-h">${icon('list')}Comment l'obtenir</h3><ol class="steps">${etapes.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t${spoil(s) ? ' spoil' : ''}">${esc(s)}</span></li>`).join('')}</ol>` : ''}
+    ${etapes && etapes.length ? `<h3 class="ou-h">${icon('list')}${conseil ? 'Conseils pour le trouver' : "Comment l'obtenir"}</h3>${conseil ? '<p class="muted small">Pas de méthode précise connue : ce sont des conseils généraux, pas une procédure vérifiée.</p>' : ''}<ol class="steps">${etapes.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t${spoil(s) ? ' spoil' : ''}">${esc(s)}</span></li>`).join('')}</ol>` : ''}
   </section>`;
 }
 // Fiabilité : trois questions séparées (le véhicule est-il dans le jeu ? l'emplacement est-il sûr ? comment l'obtenir ?)
@@ -563,9 +568,12 @@ function blocFiab({ presence, emplacement, obtention }) {
 // présence : une page de wiki ou de base de données de joueurs n'est pas une confirmation officielle de Rockstar
 const presenceTxt = (slug, srcIds = []) => {
   const v = VERIF[slug] || {};
-  const preuves = (v.preuves || []), off = preuves.filter((x) => /rockstar/i.test(x)), joueurs = preuves.filter((x) => !/rockstar/i.test(x));
-  if (off.length || srcIds.some((id) => SRC[id] && SRC[id].official)) return `Confirmée par Rockstar Games (source officielle)${joueurs.length ? `, et par ${joueurs.join(', ')}` : ''}.${v.note ? ' ' + v.note : ''}`;
-  if (v.statut === 'confirme') return `Confirmée par des sources de joueurs${joueurs.length ? ` (${joueurs.join(', ')})` : ''}, pas par une annonce officielle de Rockstar.${v.note ? ' ' + v.note : ''}`;
+  const preuves = (v.preuves || []), off = preuves.filter((x) => /rockstar/i.test(x));
+  const cat = CATALOGUE.vehicules.find((x) => x.slug === slug) || CATALOGUE.fiches[slug] || {};
+  const joueurs = indepNoms([...preuves.filter((x) => !/rockstar/i.test(x)), ...(cat.sources || []).map((s) => s.nom)]);
+  if (off.length || srcIds.some((id) => SRC[id] && SRC[id].official)) return `Confirmée par Rockstar Games (source officielle)${joueurs.length ? `, et relevée par ${joueurs.join(', ')}` : ''}.${v.note ? ' ' + v.note : ''}`;
+  if (v.statut === 'confirme' && joueurs.length >= 2) return `Recoupée par ${joueurs.join(' et ')} (bases de données de joueurs), pas par une annonce officielle de Rockstar.${v.note ? ' ' + v.note : ''}`;
+  if (v.statut === 'confirme') return `Signalée par ${joueurs.join(', ') || 'une base de joueurs'} seulement, pas encore recoupée.${v.note ? ' ' + v.note : ''}`;
   return `À confirmer : vue seulement sur GTABase ou gta6guide.fr.${v.note ? ' ' + v.note : ''}`;
 };
 function favBtn(o) {
@@ -768,6 +776,7 @@ for (const a of ASTUCES) {
   <section class="answer" id="solution" aria-label="Réponse">
     <span class="answer-k">${icon('bolt')}Réponse</span>
     <p>${esc(a.reponse)}</p>
+    ${!['confirme', 'teste'].includes(a.statut) && /\d/.test(a.reponse) ? `<p class="muted small">${icon('info')}Les chiffres de cette réponse viennent des guides cités et n'ont pas encore été vérifiés en jeu.</p>` : ''}
   </section>
   <div class="actions">
     <a class="btn btn--primary" href="#etapes">${icon('list')}Voir la solution</a>
@@ -893,7 +902,7 @@ for (const v of VEHICULES) {
     const lieux = [onM && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).map((id) => mapIndex[id])].filter(Boolean);
     const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
     const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}` };
-    return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
+    return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, conseil: !!v.conseil, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
       + blocFiab({ presence: esc(presenceTxt(v.slug, v.sources)), emplacement: `${esc(statut(v.dispo).nom)} · ${esc(fiab.texte)}`, obtention: `${esc(statut(v.dispo).nom)} · étapes tirées des mêmes sources` });
   })()}
   <dl class="facts">
@@ -1002,7 +1011,8 @@ const COLL = (() => {
       <a class="col-map" href="${R}carte/?focus=${it.f.properties.id}" aria-label="Voir « ${esc(it.f.properties.nom)} » sur la carte">${icon('map')}<span>Carte</span></a></li>`;
     const body = `<section class="wrap section col" data-col style="--c:#ff2bd6">
   <h1 class="h1">${esc(T.pluriel)} GTA 6 : les emplacements</h1>
-  <p class="lead">${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} repéré${T.items.length > 1 ? 's' : ''}, rangé${T.items.length > 1 ? 's' : ''} par secteur. Touche <b>Carte</b> pour voir l'endroit exact, et coche ce que tu as trouvé.</p>
+  <p class="lead">${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} repéré${T.items.length > 1 ? 's' : ''}, rangé${T.items.length > 1 ? 's' : ''} par secteur. Touche <b>Carte</b> pour voir la position relevée par les joueurs (approximative), et coche ce que tu as trouvé.</p>
+  ${COLL_NOTES[T.slug] ? `<p class="note">${icon('alert')}<span>${esc(COLL_NOTES[T.slug])}</span></p>` : ''}
   <div class="col-prog" aria-live="polite"><span><b data-col-n>0</b> / ${T.items.length} trouvés</span><i class="col-bar"><i data-col-bar></i></i></div>
   ${fieldFilter('Chercher un nom ou un secteur')}
   <div class="filterbar"><button class="chip chip--toggle" type="button" data-col-cacher aria-pressed="false">${icon('eye')}Masquer les objets trouvés</button></div>
@@ -1043,7 +1053,7 @@ const COLL = (() => {
       <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
       ${m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
       <div class="mis-act"><a class="btn-s btn-s--ghost" href="${R}missions/${m.id}/">${icon('link')}<span>Page de la mission</span></a><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
-      <p class="mis-src">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.join(', ')}.` : `Mission listée par ${m.sources[0]} seulement.`}</p>
+      <p class="mis-src">${icon('info')}${misSrc(m)}</p>
     </div>
   </details>`;
   const body = `<section class="wrap section missions" data-missions>
@@ -1133,7 +1143,7 @@ const COLL = (() => {
   ${prec || suiv ? `<nav class="related" aria-label="Missions de l'histoire"><h2 class="h3">${icon('flag')}Dans l'histoire</h2><div class="minis">${prec ? lienM(prec, 'Mission précédente') : ''}${suiv ? lienM(suiv, 'Mission suivante') : ''}</div></nav>` : ''}
   ${memeChap.length ? `<section class="related"><h2 class="h3">${icon('plus')}Autres missions facultatives du ${chNom(m.chapitre).toLowerCase()}</h2><div class="minis">${memeChap.map((x) => lienM(x, 'Facultative')).join('')}</div></section>` : ''}
   ${memeLieu.length ? `<section class="related"><h2 class="h3">${icon('pin')}Au même endroit</h2><div class="minis">${memeLieu.map((x) => lienM(x, chNom(x.chapitre))).join('')}</div></section>` : ''}
-  <p class="muted small">${icon('info')}${m.sources.length > 1 ? `Mission confirmée par ${m.sources.map(esc).join(', ')}.` : `Mission listée par ${esc(m.sources[0])}.`} Étapes rédigées par ${M}. <a href="${R}missions/">Toutes les missions</a></p>
+  <p class="muted small">${icon('info')}${misSrc(m)} <a href="${R}missions/">Toutes les missions</a></p>
 </article>`;
     emit(p, layout({
       p, title: titreSEO(`${m.nom} GTA 6 : solution de la mission`, `${m.nom} GTA 6 : solution`, `${m.nom} – GTA 6`),
@@ -1232,7 +1242,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   const fleches = (seq) => `<div class="code-seq" aria-hidden="true">${seq.map((d, i) => `<span class="dp dp--${d}">${icon('arrow-right')}</span>${i < seq.length - 1 ? '<i></i>' : ''}`).join('')}</div>
     <p class="code-txt"><span class="code-txt-k">Combinaison (croix directionnelle) :</span> <span class="code-txt-v">${seq.map((d) => `${FLT[d]} ${FL[d]}`).join(' · ')}</span></p>
     <button class="btn-s btn-s--ghost code-copy" type="button" data-copy-text="${esc(texte(seq))}">${icon('link')}<span>Copier la combinaison</span></button>`;
-  const confirme = (c) => c.confirme && c.sources.length >= 2;
+  const confirme = (c) => c.confirme && !c.contradiction && indepNoms(c.sources).length >= 2;
   const C = CODES.codes, cats = CODES.categories;
   const connus = C.filter((c) => c.sequence.length).length;
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
@@ -1240,12 +1250,12 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
-    <p class="code-plat">${icon('gamepad')}PS5 et Xbox Series : les sources donnent la même combinaison</p>
-    ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${confirme(c) ? `Confirmée : ${esc(c.sources.join(', '))}` : `À vérifier : une seule source (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026</p>` : ''}
+    <p class="code-plat">${icon('gamepad')}Combinaison relevée sur PS5. Sur Xbox Series, c'est la même croix directionnelle, mais toutes les sources ne le précisent pas.</p>
+    ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${c.contradiction ? `Contradictoire : ${esc(c.contradiction)}` : confirme(c) ? `Recoupée par deux sources distinctes : ${esc(indepNoms(c.sources).join(', '))}${c.sources.some((n) => NON_INDEP[n]) ? ` (et ${esc(c.sources.filter((n) => NON_INDEP[n]).join(', '))}, qui reprend d'autres guides)` : ''}` : `À vérifier : une seule source (hors agrégateurs) (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026${c.note ? `<br>${esc(c.note)}` : ''}</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
-  <p class="lead"><b>${C.length} codes de triche de GTA 6 (PS5 et Xbox)</b> dont la combinaison a été relevée par les joueurs et les guides : <b>${C.filter(confirme).length}</b> sont recoupées par au moins deux sources, les autres restent à vérifier. Pour chaque code : ce qu'il fait, comment le débloquer, les flèches à taper et les sources. Rockstar n'a pas publié de liste officielle.</p>
+  <p class="lead"><b>${C.length} codes de triche de GTA 6 (PS5 et Xbox)</b> dont la combinaison a été relevée par les joueurs et les guides : <b>${C.filter(confirme).length}</b> sont recoupées par deux sources distinctes (hors agrégateurs), les autres restent à vérifier ou sont contradictoires. Pour chaque code : ce qu'il fait, comment le débloquer, les flèches à taper et les sources. Rockstar n'a pas publié de liste officielle.</p>
   <ol class="howto">
     <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste des codes apparaît dans le menu Progression.</span></li>
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
@@ -1269,7 +1279,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   </section>
   <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : ${C.length} codes relevés`, desc: `${connus} codes de triche de GTA 6 relevés par les joueurs, dont ${C.filter(confirme).length} recoupés par au moins deux guides : effet, déblocage, flèches à taper et sources de chaque code.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
+  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : ${C.length} codes relevés`, desc: `${connus} codes de triche de GTA 6 relevés par les joueurs, dont ${C.filter(confirme).length} recoupés par deux sources distinctes : effet, déblocage, flèches et sources de chaque code.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -1345,6 +1355,12 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 }
 
 // personnages de l'encyclopédie, pour relier les missions qu'ils donnent
+// Missions : l'existence est recoupée (ou non) ; les étapes, la récompense et l'aide sont rédigées d'après les guides, sans vérification en jeu
+function misSrc(m) {
+  const ind = indepNoms(m.sources), agr = m.sources.filter((n) => NON_INDEP[n]);
+  const ex = ind.length >= 2 ? `Existence de la mission recoupée par ${esc(ind.join(' et '))}.` : `Mission listée par ${esc(ind.join(', ') || m.sources[0])}${agr.length ? ` (et ${esc(agr.join(', '))}, qui reprend d'autres guides)` : ''} : pas encore recoupée par une source indépendante.`;
+  return `${ex} Étapes, récompense et aide rédigées par ${M} d'après les guides cités, pas encore vérifiées en jeu.`;
+}
 // ---------- PAGES DES LIEUX (une URL par lieu) ----------
 for (const l of LIEUX) {
   const p = `lieux/${l.id}/`, R = R_(p);
@@ -1609,7 +1625,7 @@ for (const a of ACTUS) {
   <div class="actions"><a class="btn btn--primary" href="#sources">${icon('book')}Nos sources</a><a class="btn" href="#statuts">${icon('badge')}Nos statuts</a><a class="btn btn--ghost" href="#contact">${icon('mail')}Nous contacter</a></div>
   <section id="statuts" class="statuts">
     ${['teste', 'confirme', 'a-verifier', 'provisoire', 'obsolete'].map((k) => `<div class="st st--${k === 'confirme' || k === 'teste' ? 'ok' : k === 'a-verifier' ? 'wait' : 'part'}">${badge(k)}<p>${esc(site.statuts[k].desc)}</p></div>`).join('')}
-    <p class="muted small">Règle du site : une information ne passe « confirmée » que si elle est officielle, ou si au moins deux sources indépendantes concordent sans contradiction. Le contrôle automatique du site refuse une astuce ou un code « confirmé » avec moins de deux sources. Une date « Dernière vérification » n'apparaît que lorsque l'information a réellement été revérifiée.</p>
+    <p class="muted small">Règle du site : une information ne passe « confirmée » que si elle est officielle, ou si au moins deux sources indépendantes concordent sans contradiction. Un site qui reprend d'autres guides (agrégateur) ou une source de faible qualité ne compte pas. « Testé en jeu » exige une preuve : date, plateforme et lien vers une capture ou une vidéo. Le contrôle automatique du site refuse une astuce, un code ou un emplacement de véhicule « confirmé » sans deux sources indépendantes, ou un code contradictoire noté « confirmé ». Une date « Dernière vérification » n'apparaît que lorsque l'information a réellement été revérifiée.</p>
   </section>
   <section id="sources" class="related"><h2 class="h3">${icon('book')}Nos sources</h2><p>Les annonces officielles de Rockstar Games d'abord. Ensuite, les guides de sites spécialisés, recoupés quand c'est possible. Chaque fiche liste ses sources.</p>
   <p>La carte interactive utilise la carte communautaire <a href="https://map.gtadb.org" target="_blank" rel="noopener">« Yanis v18 — GTA VI Community Map »</a> et le catalogue de lieux de GTADB et de ses contributeurs, sous licence <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Nous l'avons recolorée, retiré sa légende et redécoupée. C'est une reconstruction de fans, approximative, et non la carte officielle de Rockstar Games.</p>
