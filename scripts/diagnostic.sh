@@ -107,4 +107,4 @@ echo "codes : $(grep -o 'class="code-src' /tmp/cf.html | wc -l) mentions sous le
 
 titre "15. Carte : repère choisi gardé"
 curl -sS --max-time 20 "https://$D/carte/?t=$(date +%s)" -o /tmp/ca.html; echo "carte : $(grep -c 'data-keep' /tmp/ca.html) rappel repère choisi"
-echo "carte.js : $(curl -sS --max-time 20 "https://$D/assets/carte.js?t=$(date +%s)" | grep -c 'data-keep-voir') bouton Voir | atlas.css : $(curl -sS --max-time 20 "https://$D/assets/atlas.css?t=$(date +%s)" | grep -c 'overflow:clip') calque bloqué"
+echo "carte.js : $(curl -sS --max-time 20 "https://$D/assets/carte.js?t=$(date +%s)" | grep -c 'data-keep-voir') bouton Voir | atlas.css : $(curl -sS --max-time 20 "https://$D/assets/atlas.css?t=$(date +%s)" | grep -c 'overflow: \?clip') calque bloqué"
