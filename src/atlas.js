@@ -12,6 +12,8 @@
     const tilesEl = document.createElement('div'); tilesEl.className = 'at-tiles';
     const layer = document.createElement('div'); layer.className = 'at-layer';
     stage.append(tilesEl, layer);
+    // sécurité pour les navigateurs sans overflow: clip : le calque des repères reste toujours calé sur la carte
+    [tilesEl, layer].forEach((el) => el.addEventListener('scroll', () => { if (el.scrollLeft || el.scrollTop) { el.scrollLeft = 0; el.scrollTop = 0; } }));
     stage.style.background = T.fond;
 
     const B = C.bornes;
@@ -95,10 +97,11 @@
         const cell = cam.s >= .35 ? 0 : 26, grid = new Map();
         st.commu.forEach((p) => {
           if (p.x < wx0 || p.x > wx1 || p.y < wy0 || p.y > wy1 || !st.commuFilter(p)) return;
-          if (cell) { const [sx, sy] = toScreen(p.x, p.y); const k = Math.floor(sx / cell) + ':' + Math.floor(sy / cell); if (grid.has(k)) return; grid.set(k, 1); }
-          const el = document.createElement('button'); el.type = 'button'; el.className = 'at-c at-c--' + p.c + (p.d ? ' at-c--d' : '');
+          const choisi = st.activeC === p.x + ':' + p.y;
+          if (cell && !choisi) { const [sx, sy] = toScreen(p.x, p.y); const k = Math.floor(sx / cell) + ':' + Math.floor(sy / cell); if (grid.has(k)) return; grid.set(k, 1); }
+          const el = document.createElement('button'); el.type = 'button'; el.className = 'at-c at-c--' + p.c + (p.d ? ' at-c--d' : '') + (choisi ? ' is-on' : '');
           el.setAttribute('aria-label', p.n);
-          if (cam.s >= .45) { el.classList.add('at-c--lbl'); el.innerHTML = `<span>${escH(p.n)}</span>`; }
+          if (cam.s >= .45 || choisi) { el.classList.add('at-c--lbl'); el.innerHTML = `<span>${escH(p.n)}</span>`; }
           el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); select({ ...p, commu: true }); });
           add(el, p.x, p.y);
         });
@@ -135,9 +138,9 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 || (st.spot && f.id === st.active) ? ' at-dot--lbl' : '') + (st.spot && f.id === st.active ? ' is-spot' : '');
+          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 || f.id === st.active ? ' at-dot--lbl' : '') + (f.id === st.active ? ' is-spot' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
-          el.innerHTML = `${st.spot && f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${cam.s >= .2 || (st.spot && f.id === st.active) ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
+          el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${cam.s >= .2 || f.id === st.active ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
           el.setAttribute('aria-label', `${f.nom} (${(cats[f.cat] || {}).nom || ''})`);
           el.dataset.id = f.id;
@@ -197,7 +200,7 @@
     }
     function reset() { flyTo(C.vueInitiale.centre[0], C.vueInitiale.centre[1], sMin); }
     function select(f, opts = {}) {
-      st.active = f.commu ? null : f.id;
+      st.active = f.commu ? null : f.id; st.activeC = f.commu ? f.x + ':' + f.y : null;
       if (opts.fly) flyTo(f.x, f.y, Math.max(cam.s, opts.s || .3)); else render(true);
       o.onSelect && o.onSelect(f, opts);
     }
@@ -282,7 +285,7 @@
       setCommu(list) { st.commu = list; render(true); },
       showCommu(on) { st.showCommu = on; render(true); },
       setCommuFilter(fn) { st.commuFilter = fn; render(true); },
-      clearActive() { st.active = null; render(true); },
+      clearActive() { st.active = null; st.activeC = null; render(true); },
       markFound(set) { st.found = set; render(true); },
       spot(on) { if (!!st.spot === !!on) return; st.spot = !!on; layer.classList.toggle('has-spot', !!on); render(true); },
       feats: () => st.feats, nodes: () => nodes, layer, stage, toScreen,
