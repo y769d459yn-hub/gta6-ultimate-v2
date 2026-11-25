@@ -1097,11 +1097,11 @@ const COLL = (() => {
   const carte = (m) => `<details class="mis${m.facultative ? ' mis--opt' : ''}${m.tache ? ' mis--tache' : ''}" id="${m.id}" data-ch="${m.chapitre}" data-opt="${m.facultative ? 1 : 0}" data-num="${m.num || ''}"${ordreAVerifier(m) ? ' data-ov="1"' : ''} data-text="${esc(norm([m.nom, m.nomEn, m.resume, m.donneur, ...m.etapes].join(' ')))}">
     <summary><span class="mis-n">${m.num ? m.num : icon('plus')}</span><span class="mis-t"><b>${esc(m.nom)}</b>${m.facultative || m.manquable || m.tache || ordreAVerifier(m) ? `<small>${[m.facultative ? 'facultative' : '', m.tache ? 'petite tâche' : '', m.manquable ? '<em>peut être manquée</em>' : '', ordreAVerifier(m) ? 'ordre à vérifier' : ''].filter(Boolean).join(' · ')}</small>` : ''}</span><span class="mis-done" aria-hidden="true">${icon('check')}</span></summary>
     <div class="mis-b">
-      <p class="mis-r spoil">${esc(m.resume)}</p>
-      <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)}</span></li>` : ''}</ul>
+      <p class="mis-r spoil">${esc(MGUIDE.missions[m.id] ? MGUIDE.missions[m.id].objectif : m.resume)}</p>
+      <ul class="mis-meta">${m.donneur ? `<li>${icon('phone')}<span><b>Donnée par</b> ${esc(m.donneur)}</span></li>` : ''}<li>${icon('user')}<span><b>Tu joues</b> ${m.perso.map((x) => PERS[x]).join(' et ')}</span></li>${m.recompense ? `<li>${icon('money')}<span><b>Récompense</b> ${esc(m.recompense)} <small>(selon GTABase, non vérifiée)</small></span></li>` : ''}</ul>
       <h3 class="mis-h">${icon('list')}Étape par étape</h3>
       <ol class="mis-steps">${m.etapes.map((e) => `<li>${esc(e)}</li>`).join('')}</ol>
-      ${m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
+      ${MGUIDE.missions[m.id] ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${MGUIDE.missions[m.id].erreurs.map((e) => `<li><b>${esc(e.p)}</b> ${esc(e.s)}</li>`).join('')}</ul></div>` : m.bloque.length ? `<div class="mis-help"><h3 class="mis-h">${icon('question')}Si tu es bloqué</h3><ul>${m.bloque.map((e) => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
       <div class="mis-act"><a class="btn-s btn-s--ghost" href="${R}missions/${m.id}/">${icon('link')}<span>Page de la mission</span></a><button class="btn-s" type="button" data-mdone aria-pressed="false">${icon('check')}<span>Mission faite</span></button>${missionsSur[m.id] ? `<a class="btn-s btn-s--ghost" href="${R}carte/?focus=${missionsSur[m.id]}&amp;mission=${m.id}">${icon('map')}<span>Voir sur la carte</span></a>` : ''}${m.facultative ? '' : `<button class="btn-s btn-s--ghost" type="button" data-mhere>${icon('flag')}<span>J'en suis là</span></button>`}</div>
       <p class="mis-src">${icon('info')}${misSrc(m)}</p>
     </div>
@@ -1171,7 +1171,8 @@ const COLL = (() => {
     <div><dt>${icon('user')}Tu joues</dt><dd>${m.perso.map((x) => PERS[x] || x).join(' et ')}</dd></div>
     ${m.donneur ? `<div><dt>${icon('phone')}Donnée par</dt><dd>${m.donneur.split(', ').map((n) => PERSO_ENC[n] ? `<a href="${R}encyclopedie/${PERSO_ENC[n]}/">${esc(n)}</a>` : esc(n)).join(', ')}</dd></div>` : ''}
     ${G && G.avant ? `<div><dt>${icon('clock')}Débloquée</dt><dd>${G.apres && MIS[G.apres] ? `${esc(G.avant)} <a href="${R}missions/${G.apres}/">Voir « ${esc(MIS[G.apres].nom)} »</a>` : esc(G.avant)}</dd></div>` : ''}
-    ${G && G.cent ? `<div><dt>${icon('trophy')}Pour le 100 %</dt><dd>Obligatoire${m.facultative ? ', même si elle est facultative' : ''} (selon GTABase)${m.manquable ? '. <b>Peut être manquée</b> : fais-la dès qu\u2019elle est proposée.' : ''}</dd></div>` : ''}
+    ${G && (G.manque || m.manquable) ? `<div><dt>${icon('alert')}Peut être manquée</dt><dd>${esc(G.manque || 'Oui, selon GTABase : fais-la dès qu\u2019elle est proposée.')}</dd></div>` : ''}
+    ${G && G.cent ? `<div><dt>${icon('trophy')}Pour le 100 %</dt><dd>${esc(G.cent)}</dd></div>` : ''}
     ${!G && m.recompense ? `<div><dt>${icon('money')}Récompense</dt><dd>${esc(m.recompense)}</dd></div>` : ''}
     ${lieux.length ? `<div><dt>${icon('pin')}Lieu</dt><dd>${lieux.map((l) => `<a href="${R}lieux/${l.id}/">${esc(l.nom)}</a>`).join(', ')}</dd></div>` : ''}
   </dl>`;
@@ -1202,7 +1203,7 @@ const COLL = (() => {
   ${ordreAVerifier(m) ? ordreSources(m) : ''}
   <details class="more"><summary>${icon('book')}Explications complémentaires</summary>
     ${(G.plus || []).length ? `<ul>${G.plus.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
-    <p><b>Récompense :</b> ${G.recompense ? `${esc(G.recompense)}, selon GTABase. Montant non vérifié en jeu.${G.recompenseNote ? ` ${esc(G.recompenseNote)}` : ''}` : 'aucune indiquée par GTABase.'}</p>
+    <p><b>Récompense :</b> ${G.recompense || m.recompense ? `${esc(G.recompense || m.recompense)}, selon GTABase. Montant non vérifié en jeu.${G.recompenseNote ? ` ${esc(G.recompenseNote)}` : ''}` : 'aucune indiquée par GTABase.'}</p>
     <p>Source : ${esc(MGUIDE.source)}. Traduit et résumé par ${M}.</p>
   </details>` : `${facts}
   ${ordreAVerifier(m) ? ordreSources(m) : ''}

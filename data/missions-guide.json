@@ -1,11 +1,10 @@
 {
- "info": "Compléments des fiches de missions (prototype sur 5 missions). Tout vient du guide détaillé de GTABase relevé le 22/11/2026 (vendor/missions/gtabase-detail.json), traduit et résumé par le site. Rien n'a été vérifié en jeu. objectif : but de la mission ; avant : condition de déblocage, seulement quand GTABase la donne ; cent : « Required for 100% » selon GTABase ; erreurs : problème fréquent et solution ; plus : explications complémentaires ; recompense : montant indiqué par GTABase (non vérifié) ; recompenseNote : réserve sur ce montant.",
+ "info": "Compléments des fiches de missions. Tout vient du guide détaillé de GTABase relevé le 22/11/2026 (vendor/missions/gtabase-detail.json), traduit et résumé par le site, sans vérification en jeu. objectif : but de la mission ; avant/apres : condition de déblocage, seulement quand le guide la donne ; manque : si et quand la mission peut être manquée ; cent : seulement quand le texte du guide parle explicitement du 100 % (le champ « Required for 100% » de ses fiches vaut « Yes » pour toutes les missions, y compris quand son texte dit le contraire, il n'est donc pas repris) ; erreurs : problème fréquent et solution ; plus : explications complémentaires ; recompense : montant indiqué par le guide (sinon, la récompense de data/missions.json), non vérifié.",
  "source": "GTABase, guide de la mission (relevé du 22/11/2026)",
  "missions": {
   "gone-fishing": {
    "objectif": "Récupérer en bateau les colis largués par l'avion de Donnie, puis libérer Donnie, capturé par le gang des Kingfishers, et s'enfuir en hydravion.",
    "avant": "Première mission du chapitre 1, juste après le Prologue (selon GTABase et GTA Wiki).",
-   "cent": true,
    "erreurs": [
     {
      "p": "Tu ne trouves pas la cabane de Donnie.",
@@ -29,7 +28,6 @@
   },
   "lab-fees": {
    "objectif": "Encaisser le loyer qu'une boutique de souvenirs doit à Brian, puis déposer dans le local de Brian l'acide reçu à la place.",
-   "cent": true,
    "erreurs": [
     {
      "p": "La boutique est fermée.",
@@ -58,7 +56,6 @@
    "objectif": "Voler le scooter électrique de Peggy, la voisine de Shirley, et le rentrer chez Shirley.",
    "avant": "Environ un jour (dans le jeu) après « Le rhum de Shirley » : Shirley interpelle Jason.",
    "apres": "get-shirleys-rum",
-   "cent": true,
    "erreurs": [
     {
      "p": "Tu ne trouves pas le scooter.",
@@ -75,11 +72,12 @@
    ],
    "plus": [
     "Peggy voit mal et ne reconnaît pas Jason : tu peux lui mentir ou partir sans répondre."
-   ]
+   ],
+   "cent": "Non, selon le texte du guide GTABase sur les missions de Shirley (sa fiche indique pourtant l'inverse) : à vérifier.",
+   "manque": "Oui : les deux missions de Shirley ne se font qu'au chapitre 1 et disparaissent dès que tu commences « Piège à touristes »."
   },
   "deposit-cash-into-buckme": {
    "objectif": "Déposer une partie de ton argent liquide sur ton compte BuckMe, à n'importe quel distributeur.",
-   "cent": true,
    "erreurs": [
     {
      "p": "Aucun marqueur sur la carte.",
@@ -98,7 +96,6 @@
    "objectif": "Reprendre pour Moses un Canis Crawler de 1982 que des clients n'ont pas payé, et le livrer à son garage.",
    "avant": "Peu après la mission « Moses » : il t'envoie la photo de la voiture par SMS.",
    "apres": "moses",
-   "cent": true,
    "erreurs": [
     {
      "p": "Tu ne sais pas quelle voiture prendre.",
@@ -119,6 +116,2254 @@
    ],
    "recompense": "jusqu'à 1 375 $ (moins si le Crawler est abîmé), et 2 déblocages",
    "recompenseNote": "Le même guide indique ailleurs 1 250 $ plus 500 $ si la voiture est en bon état, soit 1 750 $ : les deux chiffres ne concordent pas."
+  },
+  "prologue": {
+   "objectif": "Lucia, en prison, revit en flash-back le braquage qui l'y a menée : suivre le gardien, braquer la boutique de prêts, fuir la police puis revenir au café.",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à semer la police.",
+     "s": "C'est voulu : la poursuite est scriptée. Au bout d'un moment, le jeu revient tout seul au bureau de la conseillère."
+    },
+    {
+     "p": "Lucia se fait arrêter en revenant au café.",
+     "s": "C'est normal et inévitable : l'arrestation fait partie de l'histoire."
+    },
+    {
+     "p": "Un client t'attrape dans la boutique.",
+     "s": "Réussis la séquence de boutons qui s'affiche pour te dégager."
+    }
+   ],
+   "plus": [
+    "Si Lucia n'a plus de vie pendant le Prologue, la scène d'arrestation change (elle part en ambulance), sans autre conséquence.",
+    "La mission enchaîne directement sur « Partie de pêche »."
+   ]
+  },
+  "gear-up": {
+   "objectif": "Acheter une arme longue à l'Ammu-Nation proche de la maison de Jason, puis survivre à l'attaque des Kingfishers à la sortie.",
+   "erreurs": [
+    {
+     "p": "Tu n'as pas assez d'argent pour le fusil tactique.",
+     "s": "Prends le fusil à pompe, moins cher : les deux conviennent."
+    },
+    {
+     "p": "Tu meurs pendant l'embuscade.",
+     "s": "Pas de problème : tu réapparais chez toi et la mission se termine quand même, sans conséquence."
+    }
+   ],
+   "plus": [
+    "Trois Kingfishers arrivent en camionnette dès que tu sors du magasin : prépare-toi avant de franchir la porte."
+   ]
+  },
+  "unwanted-attention": {
+   "objectif": "Récupérer, avec Cal, l'Imponte Phoenix de la fourrière de Hamlet (un paiement dû à Brian est dans son coffre), semer la police, la repeindre et la livrer.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la voiture dans la fourrière.",
+     "s": "C'est la voiture de sport rouge au fond, accrochée à une dépanneuse : monte dans la dépanneuse pour la décrocher, puis prends la Phoenix."
+    },
+    {
+     "p": "La police te repère à la sortie.",
+     "s": "C'est scripté : elle te voit toujours. Si un garde essaie de te sortir de la voiture, appuie vite sur le bouton indiqué, puis sors de la zone de recherche sans casser la voiture."
+    },
+    {
+     "p": "Des policiers arrivent alors que tu as assommé les gardes.",
+     "s": "Normal : la police remarque qu'ils ne répondent plus. Reste discret, ou prends la voiture et pars vite."
+    },
+    {
+     "p": "La police te reconnaît encore.",
+     "s": "Change de chapeau et de lunettes avec la roue d'objets (icônes blanches = tenue inconnue) ou achète une tenue au magasin d'armes voisin."
+    }
+   ],
+   "plus": [
+    "Pour entrer : escalade la clôture, puis les conteneurs du coin du fond. Autre accès : l'ascenseur au fond du terrain mène au toit.",
+    "La couleur choisie au Pay 'n' Spray n'a aucune importance.",
+    "Ramasse les 150 $ laissés par Brian dans l'arrière-salle du garage.",
+    "Cal installe sur ton téléphone une appli qui capte la radio de la police."
+   ],
+   "recompense": "150 $ à ramasser dans le garage de Brian"
+  },
+  "pipework": {
+   "objectif": "Encaisser le loyer de Mandy, une locataire de Brian, qui refuse de payer tant que son évier est bouché.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la ventouse.",
+     "s": "Elle est par terre dans la salle de bain, en face de la chambre."
+    },
+    {
+     "p": "Tu ne sais pas comment déboucher l'évier.",
+     "s": "Utilise la ventouse avec le stick droit, puis la clé sur le tuyau."
+    }
+   ],
+   "plus": [
+    "En sortant, ramasse la boîte de cigares jetée dans la rue : elle contient le cigare Macizo.",
+    "Plus tard, en repassant devant chez Mandy, une petite scène avec sa voisine peut se déclencher (hors mission). Il n'y a pas de relation amoureuse possible avec Mandy."
+   ]
+  },
+  "just-a-scratch": {
+   "objectif": "Faire réparer la Ganado de Jason chez Joey, au garage Coastal Auto Care.",
+   "erreurs": [
+    {
+     "p": "Tu as déjà détruit la Ganado.",
+     "s": "Fais une sauvegarde manuelle et recharge-la depuis le menu Pause : tu réapparais chez toi avec la voiture garée devant."
+    },
+    {
+     "p": "Tu ne sais pas quoi choisir au garage.",
+     "s": "Prends « Full Engine » (réparation gratuite), puis Cosmetics > Respray et n'importe quelle couleur."
+    }
+   ],
+   "plus": [
+    "Édition Ultimate : dans Pro Builds > Full Kits, la « Retro Build – Ultimate Edition » est gratuite (facultatif).",
+    "La Ganado sera remplacée plus tard dans l'histoire : les améliorations achetées seront perdues."
+   ]
+  },
+  "get-shirleys-rum": {
+   "objectif": "Acheter une bouteille de rhum pour Shirley, la voisine de Jason, au magasin d'alcool Three Sheets.",
+   "avant": "Quand « Plomberie » est débloquée, Shirley t'interpelle quand tu passes devant chez elle.",
+   "apres": "pipework",
+   "manque": "Oui : les deux missions de Shirley ne se font qu'au chapitre 1 et disparaissent dès que tu commences « Piège à touristes ».",
+   "cent": "Non, selon le texte du guide GTABase : les deux missions de Shirley ne comptent ni pour un trophée ni pour le 100 %.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quoi demander au vendeur.",
+     "s": "Vise-le avec le Focus et demande le rhum de Shirley."
+    }
+   ],
+   "plus": [
+    "Tu peux aussi l'interroger sur les bruits d'oiseaux à l'arrière : cela marque une opération illégale (trafic d'animaux) à visiter plus tard."
+   ]
+  },
+  "hey-arnold": {
+   "objectif": "Retrouver Arnold, le courtier de Brian qui ne répond plus, avec Cal.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Arnold.",
+     "s": "La zone de recherche est à Maroon Key : prends la première route à gauche, il est devant un petit bâtiment près de la station radar."
+    },
+    {
+     "p": "La poursuite est difficile.",
+     "s": "Tu peux tirer en conduisant et utiliser le ralenti. Quand la voiture s'arrête, poursuis-le à pied jusqu'aux docks."
+    }
+   ],
+   "plus": [
+    "À la fin, tu choisis le sort d'Arnold : le tuer ou le laisser partir à la nage. Le choix change ton profil criminel.",
+    "Les sauts acrobatiques restent marqués sur la carte : filtre la carte sur l'icône Exploration (loupe) pour les voir."
+   ]
+  },
+  "island-dreams": {
+   "objectif": "Guider un enterrement de vie de garçon en plongée jusqu'à une épave pour Kenton, et y chercher trois trésors.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas le trésor.",
+     "s": "Prends le détecteur de métaux dans la roue d'armes et nage dans la zone rose jusqu'à ce que sa lumière passe du rouge au vert : un coffre doré apparaît au fond."
+    },
+    {
+     "p": "Un requin attaque Dobbs.",
+     "s": "Prends le harpon Arras Bullhead (à gauche dans la roue d'armes) et touche le requin deux fois. Si tu ne tires pas, seule la scène finale change."
+    }
+   ],
+   "plus": [
+    "Pour plonger, interagis avec l'équipement jaune à l'arrière du bateau. La barre verte en haut à gauche indique ton oxygène.",
+    "En plongée, nager près des poissons suffit à les étudier (ils comptent pour les 100 animaux du 100 %)."
+   ]
+  },
+  "feng-shui": {
+   "objectif": "Passer la soirée chez Jason avec Cal : déplacer les meubles et jouer à deux jeux vidéo avant le retour de Lucia.",
+   "avant": "Peu après « Hé, Arnold ! » : Cal t'envoie un SMS et un marqueur apparaît chez Jason.",
+   "apres": "hey-arnold",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à gagner à Street Trash III.",
+     "s": "C'est impossible : laisse le minuteur aller au bout, ou perds tout de suite."
+    },
+    {
+     "p": "Tu ne sais pas quoi faire dans Tenebrae Lux.",
+     "s": "Rien d'obligatoire : avance vers le phare, Jason quitte le jeu au bout d'un moment."
+    }
+   ]
+  },
+  "pick-up-groceries": {
+   "objectif": "Acheter trois produits à l'épicerie de Key Lento et les ranger chez Jason avant l'arrivée de Lucia.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quoi acheter.",
+     "s": "N'importe quels trois produits marqués en rose (points roses sur la mini-carte)."
+    },
+    {
+     "p": "Tu cherches la caisse.",
+     "s": "Inutile : chaque produit est payé dès que tu le prends en rayon."
+    }
+   ],
+   "plus": [
+    "Mets les sacs dans le coffre, rentre chez Jason, puis porte-les à l'intérieur."
+   ]
+  },
+  "buy-flowers": {
+   "objectif": "Commander des fleurs pour Lucia au stand du sud de Key Lento ; elles sont livrées à la maison.",
+   "erreurs": [
+    {
+     "p": "Tu hésites entre les deux bouquets.",
+     "s": "Les deux plaisent à Lucia ; le vendeur commente ton choix, et le guide conseille les roses (25 $, contre 10 $ pour le grand bouquet)."
+    }
+   ]
+  },
+  "buy-lucia-a-necklace": {
+   "objectif": "Acheter à Lucia une chaîne en or gravée du prénom de son fils, à la bijouterie The Siren's Chest (sud de Key Lento).",
+   "erreurs": [
+    {
+     "p": "Tu n'as pas assez d'argent.",
+     "s": "Le collier coûte 475 $ : braque quelques caisses de magasins avant."
+    }
+   ],
+   "plus": [
+    "Achat utile : au chapitre 2, Lucia peut donner ce collier en garantie, ce qui facilite une mission plus tard."
+   ]
+  },
+  "get-the-chop": {
+   "objectif": "Changer de coupe de cheveux (ou de barbe) au salon Barnacle Beauties, à côté de la bijouterie.",
+   "erreurs": [
+    {
+     "p": "Tu veux retrouver une ancienne coupe.",
+     "s": "Les coiffures ne restent pas débloquées comme les vêtements : il faut la payer à nouveau."
+    }
+   ]
+  },
+  "get-lucias-clothes": {
+   "objectif": "Récupérer des vêtements pour Lucia auprès de son amie Andy, au bar Manatee's Rest de Key Lento.",
+   "avant": "Quelque temps après « Feng shui » : Andy t'appelle (« Unknown Caller »).",
+   "apres": "feng-shui",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Andy.",
+     "s": "Demande au barman : c'est la femme qui nettoie les tables."
+    }
+   ],
+   "plus": [
+    "Garde le sac dans le coffre et emporte-le pour aller chercher Lucia à la prison (« Retour à la maison »). Conduis prudemment pour ne pas le perdre."
+   ]
+  },
+  "catch-a-bigger-fish": {
+   "objectif": "Pêcher un poisson-perroquet (stoplight parrotfish) de plus de 2 livres au point marqué de Gambit Bay, pour battre Cal.",
+   "avant": "Après « Feng shui » : Cal t'envoie un défi par SMS.",
+   "apres": "feng-shui",
+   "erreurs": [
+    {
+     "p": "Tu n'as plus de bateau.",
+     "s": "Au chapitre 1, utilise celui amarré chez Jason ; ensuite, prends n'importe quel bateau (les quais du Rusty Anchor en ont souvent)."
+    },
+    {
+     "p": "Le bateau dérive pendant que tu pêches.",
+     "s": "Ouvre le menu du véhicule et choisis « Anchor » (ancre)."
+    }
+   ],
+   "plus": [
+    "Le leurre de base (Small Saltwater Lure) suffit.",
+    "Le défi reste disponible après le chapitre 1."
+   ]
+  },
+  "coming-home": {
+   "objectif": "Aller chercher Lucia à sa sortie de prison à Hamlet, puis fêter son retour au Rusty Anchor.",
+   "avant": "Le matin après « Feng shui », Lucia appelle ; il faut ensuite attendre son second appel.",
+   "apres": "feng-shui",
+   "erreurs": [
+    {
+     "p": "Lucia n'appelle pas.",
+     "s": "Dors chez Jason jusqu'au lendemain matin. Si l'appel ne vient pas, dors encore ou roule en attendant."
+    },
+    {
+     "p": "Tu ne sais pas comment gagner la bagarre.",
+     "s": "Garde la parade quand les épaules de l'adversaire commencent à tourner, puis contre-attaque."
+    }
+   ],
+   "plus": [
+    "Avant l'appel, fais les 5 missions facultatives (courses, fleurs, collier, coiffeur, vêtements de Lucia) : selon le guide, la relation démarre alors à 3 cœurs sur 4. Tu peux aussi réparer la maison (mur de la chambre, escalier, toit, rambarde du balcon) : Lucia le remarque.",
+    "Au bar, commande deux bières Pindayho (6 $) et apporte-les à Lucia, derrière le bar.",
+    "Laver les mains de Jason au lavabo du bar donne un bonus temporaire de Focus."
+   ]
+  },
+  "clean-up-after-donnie": {
+   "objectif": "Retrouver la cocaïne d'un colis perdu par Donnie, volée par un gang, et la livrer à la caravane de Donnie.",
+   "avant": "Le matin après « Retour à la maison » : Donnie appelle Jason.",
+   "apres": "coming-home",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas le colis.",
+     "s": "Demande au pêcheur sur le ponton : il est sur la rive, sous un toit."
+    },
+    {
+     "p": "Tu ne trouves pas la cabane.",
+     "s": "Elle est marquée un peu plus au sud : prends le bateau garé près du colis."
+    },
+    {
+     "p": "Tu n'as pas reçu l'argent.",
+     "s": "Les 600 $ arrivent plus tard dans la boîte aux lettres devant la maison de Jason."
+    }
+   ],
+   "plus": [
+    "La caravane de Donnie est marquée par une icône de clôture verte à Key Lento : dépose le sac dans le conteneur."
+   ],
+   "recompense": "600 $, dans la boîte aux lettres de Jason"
+  },
+  "buck-me": {
+   "objectif": "Ouvrir un compte bancaire pour Lucia : la banque refuse, et on vous propose l'appli BuckMe.",
+   "avant": "Environ une demi-journée après « Retour à la maison » : Lucia appelle Jason.",
+   "apres": "coming-home",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas l'appli.",
+     "s": "C'est l'icône violette « B » sur le téléphone."
+    },
+    {
+     "p": "Tu ne sais pas comment épargner.",
+     "s": "Dans BuckMe, menu Checking Account, choisis « Buck Yourself » pour verser les 100 $ sur l'épargne familiale (Family Savings)."
+    }
+   ],
+   "plus": [
+    "L'argent de l'épargne familiale ne peut jamais être retiré, mais il ne peut pas non plus être perdu. Chaque objectif débloque des réductions. Le premier est à 5 000 $.",
+    "L'argent liquide est perdu quand tu meurs : dépose-le régulièrement aux distributeurs."
+   ]
+  },
+  "down-to-earth": {
+   "objectif": "Récupérer en hydravion un colis de contrebande avec Lucia, le larguer en trois points, puis rentrer avant le contrôleur judiciaire de Lucia.",
+   "avant": "Une fois « Ménage après Donnie » et « Buck Me » terminées.",
+   "apres": "buck-me",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas comment nettoyer le bateau.",
+     "s": "Ramasse le nettoyeur haute pression par terre et asperge jusqu'à ce que toute la saleté verte disparaisse."
+    },
+    {
+     "p": "Les garde-côtes interviennent.",
+     "s": "C'est prévu : Lucia lâche le 3e colis en vol."
+    },
+    {
+     "p": "Le contrôleur arrive chez Jason.",
+     "s": "Cache la drogue dans la machine à laver sous la maison pendant que Lucia le retient, puis rejoins-la."
+    }
+   ],
+   "plus": [
+    "Viser les bras et les jambes des contrebandiers les laisse en vie (réputation « professionnelle ») ; les tuer donne une réputation plus violente. Les deux marchent.",
+    "La mission débloque le premier des 18 lieux de méditation."
+   ]
+  },
+  "meditate-with-lucia": {
+   "objectif": "Méditer avec Lucia sur le balcon de la maison de Jason.",
+   "avant": "Le matin après « Retour sur terre » : parle à Lucia dans la cuisine (pas de marqueur).",
+   "apres": "down-to-earth",
+   "manque": "Oui : seulement au chapitre 1.",
+   "cent": "Non nécessaire, selon le guide : le 100 % demande 15 méditations sur 18. Elle compte pour le trophée des 18 méditations.",
+   "erreurs": [
+    {
+     "p": "Rien ne se passe.",
+     "s": "Suis Lucia sur le balcon : une notification de quête facultative (porte rose sur fond noir) apparaît en haut à droite. Vise Lucia et choisis « Accept »."
+    }
+   ]
+  },
+  "find-the-lost-drugs": {
+   "objectif": "Fouiller quatre zones du marais pour retrouver des colis de drogue perdus, puis les vendre à Brian ou Donnie.",
+   "avant": "Après « Retour sur terre » : un appel lance la mission.",
+   "apres": "down-to-earth",
+   "erreurs": [
+    {
+     "p": "Un colis est coincé dans un arbre.",
+     "s": "Zone la plus au sud, sur la plage : élimine les trois ennemis et tire sur le colis pour le faire tomber."
+    },
+    {
+     "p": "Des alligators bloquent les colis.",
+     "s": "Troisième zone : tire pour les faire fuir, les deux colis sont tout près."
+    },
+    {
+     "p": "Le colis de la zone nord est vide.",
+     "s": "Entre dans la cabane, élimine les deux ennemis et prends la demi-brique de cocaïne."
+    }
+   ],
+   "plus": [
+    "Les colis bipent et ont une lumière jaune clignotante.",
+    "Zone des maisons brûlées : un colis devant la 2e maison (en venant de l'est), un dans la maison isolée au nord, un dans la piscine bleue pour enfants au sud-ouest.",
+    "Fais-la avant « Ciel dégagé » pour gagner le plus."
+   ],
+   "recompense": "3 400 $ en vendant à Donnie, ou 2 720 $ à Brian, si tu la fais avant « Ciel dégagé »"
+  },
+  "save-for-the-future": {
+   "objectif": "Verser de l'argent sur l'épargne familiale BuckMe pour atteindre l'objectif suivant et débloquer de nouveaux avantages.",
+   "erreurs": [
+    {
+     "p": "Aucun marqueur sur la carte.",
+     "s": "Normal : la tâche dure toute l'histoire. Elle est dans la liste des missions."
+    },
+    {
+     "p": "Le prochain objectif n'apparaît pas.",
+     "s": "Il se débloque en avançant dans l'histoire."
+    }
+   ],
+   "plus": [
+    "Elle n'est pas nécessaire pour avancer dans l'histoire.",
+    "Conseil du guide : avoir au moins 5 000 $ d'épargne avant « Recalibrage » et « Piège à touristes », car tu perds tout l'argent liquide que tu portes."
+   ]
+  },
+  "day-release": {
+   "objectif": "Passer une journée de fête avec Kat et Mattia : yacht, course de jet-skis, puis soirée à Vice City.",
+   "avant": "Après « Retour sur terre » : Kat et Mattia appellent.",
+   "apres": "down-to-earth",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Mattia sur le yacht.",
+     "s": "Il est dans la pièce au milieu du pont le plus bas, deux ponts sous ton point de départ."
+    },
+    {
+     "p": "Tu perds la course de jet-skis.",
+     "s": "Aucune importance pour la suite."
+    }
+   ],
+   "plus": [
+    "Lunettes de soleil gratuites pour Lucia, à ne pas manquer : en cherchant Mattia, va au pont du milieu et parle au couple près de la rambarde, vers l'escalier qui descend. Impossible de les obtenir plus tard.",
+    "Emmener Lucia sur le jet-ski et lui tenir la main pendant la soirée améliorent votre relation.",
+    "La robe choisie est purement esthétique."
+   ]
+  },
+  "clock-out": {
+   "objectif": "Aller chercher Lucia au centre communautaire de Key Lento et la ramener avant 16 h.",
+   "avant": "Le lendemain de « Journée de sortie », si Lucia appelle. L'appel ne vient pas toujours (il faut peut-être une relation à 3 cœurs sur 4).",
+   "apres": "day-release",
+   "erreurs": [
+    {
+     "p": "La mission échoue.",
+     "s": "Il faut récupérer Lucia avant 16 h (heure sur la mini-carte, le téléphone et la carte)."
+    },
+    {
+     "p": "Lucia refuse de rentrer.",
+     "s": "Viens en voiture (une voiture volée suffit) : à pied, elle refuse."
+    }
+   ]
+  },
+  "clear-skies": {
+   "objectif": "Escorter en hydravion l'avion de Pilot Pete, puis sauver Donnie, capturé par le gang de motards Final Chapter.",
+   "avant": "Après « Retour sur terre » : Brian appelle.",
+   "apres": "down-to-earth",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à décoller.",
+     "s": "Roule depuis le bord de la route jusque dans l'eau et décolle de là : depuis la route, c'est plus risqué."
+    },
+    {
+     "p": "Tu ne sais pas comment escorter l'avion.",
+     "s": "Vole juste au-dessus de l'avion de Pete pour cacher sa signature radar, jusqu'à la piste du marais."
+    },
+    {
+     "p": "La mission échoue pendant le sauvetage.",
+     "s": "Donnie ne doit pas mourir : protège-le, sinon retour au point de contrôle."
+    }
+   ],
+   "plus": [
+    "Si tu n'as pas de fusil à pompe, fouille les corps après la fusillade : l'un d'eux porte un Shrewsbury Hobo.",
+    "Bon endroit pour scanner plusieurs motos avec l'appli WAiNK."
+   ]
+  },
+  "building-a-life": {
+   "objectif": "Monter une table basse avec Lucia chez Jason.",
+   "avant": "Commence dès la fin de « Ciel dégagé ».",
+   "apres": "clear-skies",
+   "erreurs": [
+    {
+     "p": "La table est mal montée.",
+     "s": "C'est prévu : Jason s'en rend compte, il faut la démonter puis remettre le plateau en verre (dans le carton derrière Lucia)."
+    }
+   ]
+  },
+  "ring-the-bell": {
+   "objectif": "Boire un verre avec Cal au Rusty Anchor, puis le ramener chez lui sain et sauf.",
+   "avant": "Après « Journée de sortie », Cal t'envoie un SMS en route vers la marina : va au Rusty Anchor avant de retrouver Brian pour « Submergé ».",
+   "apres": "day-release",
+   "manque": "Oui : seulement au chapitre 1, avant « Submergé ».",
+   "erreurs": [
+    {
+     "p": "La mission se termine sans récompense.",
+     "s": "Si tu refuses deux fois de le raccompagner, ou si tu le laisses en route, il n'y a pas de récompense."
+    },
+    {
+     "p": "La voiture est difficile à conduire.",
+     "s": "Jason a bu les verres de Cal : roule lentement."
+    }
+   ],
+   "plus": [
+    "Plus tard, Cal te dit d'aller chercher son prix au Rusty Anchor : cela débloque le T-shirt blanc et la casquette du Rusty Anchor, impossibles à acheter si tu sautes cette mission."
+   ]
+  },
+  "swamped": {
+   "objectif": "Accompagner Brian au camp des Kingfishers, survivre à leur embuscade et sauver Lori.",
+   "avant": "Une fois « Journée de sortie », « Ciel dégagé » et « Construire une vie » terminées : va dans l'arrière-salle de la marina de Brian.",
+   "apres": "building-a-life",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à sauter sur le bateau de Lori.",
+     "s": "Colle-toi juste à côté de son bateau et maintiens le bouton. Trop loin, le saut ne se déclenche pas et ton moteur finit détruit."
+    },
+    {
+     "p": "Tu ne sais pas où aller après l'embuscade.",
+     "s": "Suis Brian (point vert sur la mini-carte), puis prends l'hélicoptère à gauche de la zone."
+    }
+   ],
+   "plus": [
+    "De retour chez toi, parler à Lucia de la retraite de Brian améliore votre relation."
+   ]
+  },
+  "don-gone": {
+   "objectif": "Vider la caravane de Donnie pour faire croire qu'il a quitté la ville, puis faire disparaître sa voiture.",
+   "erreurs": [
+    {
+     "p": "Il te manque des affaires à ranger.",
+     "s": "Le ralenti les met en évidence : photo au mur au-dessus du lit, horaires de vol sur la table de nuit, vêtements sur l'étagère, papiers d'identité à droite de la porte, message sur le téléphone, carte sur le frigo."
+    },
+    {
+     "p": "Trois hommes t'attendent dehors.",
+     "s": "Fuis avec la voiture de Donnie ou bats-les."
+    }
+   ],
+   "plus": [
+    "Avant de détruire la voiture, ouvre le coffre : le revolver unique H&L .38 de Donnie y est. Sinon, il est perdu.",
+    "Pour détruire la voiture : verse le bidon d'essence du coffre et mets-y le feu, ou jette-la dans l'océan."
+   ]
+  },
+  "donnies-lost-drugs": {
+   "objectif": "Plonger jusqu'au bateau coulé de Donnie au large de Corsair Key, récupérer la drogue et la vendre.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas l'épave.",
+     "s": "Plonge dans la partie sud-est de la zone rose : le bateau est au fond. Ouvre le compartiment arrière."
+    },
+    {
+     "p": "C'est trop loin à la nage.",
+     "s": "Vole un des bateaux près du rivage."
+    }
+   ],
+   "plus": [
+    "Revends le sac au local de Brian."
+   ],
+   "recompense": "1 200 $ à la revente au local de Brian"
+  },
+  "recalibration": {
+   "objectif": "Remonter le moral de Cal : lui apporter des bières, pêcher et griller du poisson avec lui.",
+   "avant": "Pendant ou après « Donnie est parti » : Lucia appelle, la mission commence en rentrant chez Jason.",
+   "apres": "don-gone",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à pêcher.",
+     "s": "Lance, tourne le stick droit dans le sens horaire et appuie quand ça mord. Ensuite, pousse le stick gauche à l'opposé du poisson et tourne vite le stick droit."
+    },
+    {
+     "p": "Le poisson brûle.",
+     "s": "Retourne chaque morceau jusqu'à ce que les deux côtés soient cuits."
+    }
+   ],
+   "plus": [
+    "Attention : la mission suivante, « Piège à touristes », est un point de non-retour. Tu ne joueras plus Jason avant longtemps, tu perds ton argent liquide et la maison de Key Lento disparaît. Avant, termine ce que tu veux faire en Jason, mets au moins 5 000 $ sur l'épargne et fais une sauvegarde manuelle à part."
+   ]
+  },
+  "tourist-trap": {
+   "objectif": "Récupérer pour Mattia un sac dans un casier du Visitor Center, puis fuir avec Jason blessé.",
+   "avant": "Quand tu es prêt : parle à Lucia, qui ramasse des déchets sur la plage au sud de Key Lento. Point de non-retour du chapitre 1.",
+   "erreurs": [
+    {
+     "p": "Vous êtes arrêtés.",
+     "s": "C'est prévu dans l'histoire."
+    },
+    {
+     "p": "Lucia meurt vite.",
+     "s": "Elle commence avec sa vie et son Focus de base : joue prudemment. En sortant de la salle d'interrogatoire, prends le fusil à pompe Moreland 850 du policier à terre."
+    }
+   ],
+   "plus": [
+    "Tuer des policiers ici n'affecte pas ton profil criminel : cela fait partie de l'histoire.",
+    "Tu perds tout l'argent liquide que tu portes en commençant cette mission (selon le guide)."
+   ]
+  },
+  "home-sweet-home": {
+   "objectif": "Avec Lucia, récupérer des affaires chez Jason puis échapper à la chasse à l'homme dans Key Lento.",
+   "avant": "Commence juste après « Piège à touristes ».",
+   "apres": "tourist-trap",
+   "erreurs": [
+    {
+     "p": "Tu cherches l'argent dans la maison.",
+     "s": "Il n'y a pas le temps : sors par la porte d'entrée avant l'explosion."
+    },
+    {
+     "p": "La police te repère.",
+     "s": "Reste accroupi dans l'obscurité jusqu'à la route principale, puis vole une voiture ou continue à pied hors de vue."
+    }
+   ],
+   "plus": [
+    "Avant de partir, prends la photo de Tomás sur la petite étagère à gauche de la porte.",
+    "Si tu appelles Andy et rejoins sa voiture sans être repéré, Lucia débloque la veste d'Andy (sinon elle est perdue)."
+   ]
+  },
+  "discharge-time": {
+   "objectif": "Faire sortir Jason de l'hôpital de Vice City sous les tirs, puis fuir en ambulance.",
+   "avant": "Commence à la fin de « Douce maison ».",
+   "apres": "home-sweet-home",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la chambre de Jason.",
+     "s": "Chambre 203, au 2e étage : monte l'escalier à gauche et suis la ligne rose au sol."
+    },
+    {
+     "p": "Jason tombe au sol.",
+     "s": "Rampe jusqu'à l'arme : Lucia arrive avec l'ambulance."
+    }
+   ],
+   "plus": [
+    "Chaque tir au fusil à pompe fait reculer le fauteuil roulant.",
+    "Cette mission termine le chapitre 1 ; le chapitre 2 commence directement."
+   ]
+  },
+  "whats-in-the-bag": {
+   "objectif": "Au motel de Port Gellhorn, examiner avec Lucia ce que contenait le sac du casier.",
+   "avant": "Le chapitre 2 commence juste après « Heure de sortie ».",
+   "apres": "discharge-time",
+   "erreurs": [
+    {
+     "p": "Tu veux revoir les objets.",
+     "s": "Après la cinématique, va dans la salle de bain et interagis avec la cachette sous la baignoire."
+    }
+   ],
+   "plus": [
+    "Retourne la statuette pour lire la note dessous.",
+    "Le chapitre 2 se joue surtout avec Lucia, le temps que Jason se remette."
+   ]
+  },
+  "ambulance-chaser": {
+   "objectif": "Retrouver l'ambulance de l'évasion, cachée dans une grange près du motel, et la détruire avant que la police la trouve.",
+   "avant": "La mission est marquée dès ta première sortie de la chambre après « Qu'y a-t-il dans le sac ? ».",
+   "apres": "whats-in-the-bag",
+   "manque": "Oui : si tu ne la fais pas avant « Slam Dunk », la police trouve l'ambulance et l'objectif disparaît.",
+   "erreurs": [
+    {
+     "p": "Des drogués partent avec l'ambulance.",
+     "s": "Prends le quad dans la grange et suis-les : l'ambulance finit par s'arrêter seule contre un arbre, plus au sud."
+    },
+    {
+     "p": "Tu n'arrives pas à l'arrêter.",
+     "s": "Utilise le Focus de combat : les pneus s'allument en jaune, vise-les."
+    },
+    {
+     "p": "Tu ne sais pas comment la détruire.",
+     "s": "Verse le bidon d'essence rouge et choisis « Ignite », ou recule et tire sur une bouteille d'oxygène à l'arrière."
+    }
+   ],
+   "plus": [
+    "Pour entrer dans la grange, à l'est du Starlet Motel, prends l'escalier à l'arrière.",
+    "L'explosion alerte la police : pars tout de suite.",
+    "Échouer abîme la relation de Jason et Lucia et peut augmenter le loyer du motel."
+   ]
+  },
+  "take-care-of-jason": {
+   "objectif": "Passer voir Jason dans sa chambre du Starlet Motel régulièrement, jusqu'à sa guérison.",
+   "erreurs": [
+    {
+     "p": "Aucun marqueur sur la carte.",
+     "s": "Normal : elle est dans la liste des missions (Carte > Histoire) et dure tout le chapitre 2."
+    },
+    {
+     "p": "La mission ne se termine pas.",
+     "s": "Elle se termine seule après « Petit-déjeuner express ». Reviens au motel quand son icône devient rose."
+    }
+   ],
+   "plus": [
+    "Entre deux visites, les haltères au bord de la piscine du motel entraînent la force de Lucia et augmentent sa santé."
+   ]
+  },
+  "overnight-charges": {
+   "objectif": "Passer à la réception du motel : Linda, la gérante, exige le paiement de la chambre.",
+   "erreurs": [
+    {
+     "p": "Tu n'as pas de quoi payer.",
+     "s": "Normal (tu commences avec 146 $). Si Jason a acheté le collier au chapitre 1, Lucia le laisse en garantie et la mission se termine."
+    }
+   ],
+   "plus": [
+    "Linda veut le loyer plus 10 %, soit 900 $. Tu récupères le collier en payant plus tard (« Retard de paiement »).",
+    "Examine la carte au mur de la réception : toute la zone de Port Gellhorn apparaît sur ta carte.",
+    "Regarde aussi le prospectus (mission facultative de la ferme McKittrick) et les avis de disparition au mur."
+   ]
+  },
+  "just-moved-in": {
+   "objectif": "Acheter les huit produits de la liste à la supérette Alpha, en face du motel, et les rapporter dans la chambre.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas tous les produits.",
+     "s": "Ils sont marqués sur la mini-carte : soda, barres protéinées, fruits, soupe, gaze, bandanas, tondeuse, trousse de maquillage."
+    },
+    {
+     "p": "Tu cherches la caisse.",
+     "s": "Inutile : chaque produit est payé dès que tu le prends."
+    }
+   ],
+   "plus": [
+    "Les courses coûtent 55 $ et améliorent la relation de Jason et Lucia."
+   ]
+  },
+  "girls-trip": {
+   "objectif": "Trouver de vrais antidouleurs pour Jason, avec l'aide de Vicki.",
+   "avant": "Après « Frais de nuit » et « Tout juste installés ».",
+   "apres": "just-moved-in",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas à qui parler.",
+     "s": "Zach, qui regarde par les fenêtres entre ta chambre et la réception, t'envoie chez Vicki, chambre 10."
+    },
+    {
+     "p": "Les cachets ne marchent pas.",
+     "s": "Ce sont du Zombix ordinaire : retourne voir Vicki à la chambre 10."
+    },
+    {
+     "p": "Dunk n'est pas chez lui.",
+     "s": "Va au chantier naval : ses amis disent qu'il est au lavage auto."
+    },
+    {
+     "p": "Les Kolts t'attaquent au lavage auto.",
+     "s": "Choisis deux fois « Defuse » pour calmer le jeu sans combat, ou bats-toi. Puis lève le rideau et poursuis la voiture de Dunk."
+    }
+   ],
+   "plus": [
+    "Après cette mission, le chapitre 2 s'ouvre : vole d'abord une voiture et apporte-la à Moses pour avoir ton propre véhicule."
+   ],
+   "recompense": "aucune ; Vicki demande 50 $ pour les premiers cachets"
+  },
+  "pick-up-a-gun": {
+   "objectif": "Acheter une arme à l'Ammu-Nation de Port Gellhorn, ou reprendre gratuitement une des tiennes dans le casier vert.",
+   "avant": "Marquée après « Virée entre filles ».",
+   "apres": "girls-trip",
+   "erreurs": [
+    {
+     "p": "Tu n'as pas assez d'argent.",
+     "s": "Reprendre une arme dans le casier (Weapons Locker) ne coûte rien. La moins chère en magasin est le Scorpio Nipper .38 à 495 $."
+    }
+   ],
+   "plus": [
+    "Les missions facultatives apparaissent en icônes noires à lettres roses sur la carte.",
+    "Édition Ultimate : tu peux changer certaines armes pour leur variante dorée."
+   ]
+  },
+  "moses": {
+   "objectif": "Apporter une voiture au garage de Moses, apprendre à repérer les traceurs et faire immatriculer une voiture volée pour Lucia.",
+   "avant": "Après « Virée entre filles ».",
+   "apres": "girls-trip",
+   "erreurs": [
+    {
+     "p": "Moses refuse ta voiture.",
+     "s": "Elle a un traceur, ou elle a été volée trop près du garage. Vole une voiture sans traceur sur la route principale de Port Gellhorn."
+    },
+    {
+     "p": "Tu ne sais pas si une voiture a un traceur.",
+     "s": "Scanne-la avec l'appli WAiNK : le coin en bas à droite l'indique."
+    },
+    {
+     "p": "Tu n'arrives pas à ouvrir la voiture.",
+     "s": "Avec le Slim Jim, interagis avec la porte et incline le stick droit jusqu'à ce que la barre passe du blanc au rose."
+    }
+   ],
+   "plus": [
+    "Repeins la voiture, puis choisis « Register » : elle devient le véhicule personnel de Lucia.",
+    "Voitures bon marché : souvent sans traceur. Gamme moyenne : traceur standard. Supercars : traceur avancé (il faut l'outil du chapitre 3).",
+    "Revendre à Moses des voitures sans traceur est le moyen le plus rapide de gagner de l'argent au chapitre 2. Prends des voitures garées seules, loin des routes passantes."
+   ]
+  },
+  "new-look": {
+   "objectif": "Changer la coiffure de Lucia au salon Pearl House de Port Gellhorn.",
+   "erreurs": [
+    {
+     "p": "Tu n'as pas assez d'argent.",
+     "s": "Prévois environ 150 $. Sinon, vole un passant, braque une caisse ou revends des objets de collection au prêteur sur gages."
+    }
+   ],
+   "plus": [
+    "Lucia peut aussi se faire elle-même le chignon « Wavy Topknot » devant un miroir, si ses cheveux sont assez longs."
+   ]
+  },
+  "how-do-i-look": {
+   "objectif": "Acheter à Lucia un haut et un bas au magasin Bargain World, au sud de Port Gellhorn.",
+   "erreurs": [
+    {
+     "p": "Tu as peu d'argent.",
+     "s": "La tenue la moins chère est l'ensemble Bargain World du mannequin, à 46 $."
+    }
+   ]
+  },
+  "painkiller-supplier": {
+   "objectif": "Attendre les deux appels de Dunk, qui cherche des antidouleurs pour Jason.",
+   "avant": "Apparaît dans la liste des missions après « Virée entre filles ».",
+   "apres": "girls-trip",
+   "erreurs": [
+    {
+     "p": "Dunk n'appelle pas.",
+     "s": "Fais les autres missions disponibles (Prendre une arme, Moses, Nouvelle coiffure, Comment je suis ?, Chasseur d'ambulance) : le temps passe plus vite. Tu peux aussi essayer de l'appeler toi-même."
+    },
+    {
+     "p": "La mission ne se termine pas après le premier appel.",
+     "s": "Elle devient « Dunk Will Be in Touch » : il faut attendre un second appel, qui débloque « Slam Dunk »."
+    }
+   ],
+   "plus": [
+    "Trois chats vivent autour du Starlet Motel : caresse-les et nourris-les pour un bonus de Focus."
+   ]
+  },
+  "behind-on-payments": {
+   "objectif": "Payer à Linda la chambre du motel et récupérer le collier de Lucia s'il était en garantie.",
+   "avant": "Après « Frais de nuit ».",
+   "apres": "overnight-charges",
+   "erreurs": [
+    {
+     "p": "Il te manque de l'argent.",
+     "s": "Fais d'abord les autres missions du chapitre 2. Après « Moses », revendre des voitures volées rapporte vite."
+    },
+    {
+     "p": "Le loyer a augmenté.",
+     "s": "Selon le guide : 900 $ si tu as parlé à Linda tout de suite, 1 080 $ si elle est venue à la chambre. Il peut encore augmenter si tu tardes trop."
+    }
+   ]
+  },
+  "slam-dunk": {
+   "objectif": "Avec Dunk, enlever le docteur Bill pour obtenir de vrais antidouleurs auprès du gang des Kolts.",
+   "avant": "Après les deux appels de Dunk (« T'as des cachets ? »).",
+   "apres": "painkiller-supplier",
+   "erreurs": [
+    {
+     "p": "Les Kolts ouvrent le feu aux docks.",
+     "s": "C'est prévu : recule vite, sors de l'enceinte et sème-les."
+    },
+    {
+     "p": "La fusillade à l'aérodrome est difficile.",
+     "s": "Reste à couvert et soigne-toi au Zombix. Élimine aussi les ennemis dans les bâtiments, puis entre dans le bâtiment central."
+    }
+   ],
+   "plus": [
+    "Fouille le corps de Bill avant de partir : environ 1 000 $ de plus.",
+    "Le lendemain, Dunk t'envoie 1 700 $ et marque deux braquages sur la carte."
+   ]
+  },
+  "breakfast-run": {
+   "objectif": "Jason guéri, enchaîner avec Lucia une série de braquages de petits commerces, puis semer la police.",
+   "avant": "Après « Slam Dunk », attends l'appel de Jason (environ une demi-journée) puis retourne au motel quand son icône devient rose.",
+   "apres": "slam-dunk",
+   "erreurs": [
+    {
+     "p": "Tu as peur de manquer de temps.",
+     "s": "Le minuteur d'une minute suffit largement : menace le personnel, prends l'argent posé sur le comptoir."
+    },
+    {
+     "p": "Tu n'arrives pas à semer la police.",
+     "s": "Prends les petits chemins de terre."
+    }
+   ],
+   "plus": [
+    "Jason redevient jouable après cette mission."
+   ]
+  },
+  "coffee-break": {
+   "objectif": "Offrir un café à Lucia dans la cuisine du motel et décider ensemble de la suite.",
+   "avant": "Commence juste après « Petit-déjeuner express ».",
+   "apres": "breakfast-run",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la cuisine.",
+     "s": "Droit devant en sortant, dans le coin sud du motel. Le café coûte 2 $ à la machine."
+    }
+   ],
+   "plus": [
+    "Le plan choisi ne change rien : tous les travaux suivants apparaissent en même temps.",
+    "Tu peux maintenant passer librement de Jason à Lucia (maintiens Droite sur la croix).",
+    "Compte BuckMe Silver : 100 000 $ de plafond, trajets RydeMe 20 % moins chers, et 2 000 $ d'intérêts si tu avais épargné 5 000 $ au chapitre 1."
+   ]
+  },
+  "thrillbillies": {
+   "objectif": "Participer à une course de motocross au Thrillbilly Mud Club sans finir dernier, pour impressionner Billy.",
+   "avant": "Marquée après « Pause café ».",
+   "apres": "coffee-break",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quelle moto louer.",
+     "s": "La Sanchez coûte plus cher mais va plus vite ; une meilleure place rembourse la différence."
+    },
+    {
+     "p": "Tu tombes de la moto.",
+     "s": "Évite les voitures."
+    }
+   ],
+   "plus": [
+    "Achète d'abord des vêtements pour Jason et Lucia à la boutique de souvenirs de l'entrée."
+   ],
+   "recompense": "2 500 $ pour la 1re place, moins pour les suivantes (environ 625 $ pour la 3e)"
+  },
+  "twist-wrist-smash-grab": {
+   "objectif": "Aider Billy et sa bande à braquer un fourgon blindé à moto.",
+   "avant": "Quelques heures (dans le jeu) après « Thrillbillies » : Billy t'envoie un SMS.",
+   "apres": "thrillbillies",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à arrêter le fourgon.",
+     "s": "Pas besoin de tirer : suis-le, il finit par percuter un arbre tout seul."
+    },
+    {
+     "p": "Tu ne sais pas comment ouvrir le fourgon.",
+     "s": "Pose une charge explosive à l'arrière et fais-la sauter, puis prends le sac."
+    }
+   ],
+   "plus": [
+    "La Highwayman Sanchez prêtée par Billy est excellente en tout-terrain : gare-la dans un garage puis fais-la immatriculer chez Moses pour la garder."
+   ]
+  },
+  "hit-avery-pawn": {
+   "objectif": "Braquer le prêteur sur gages Avery Pawn de Port Gellhorn, semer la police et revendre le butin.",
+   "avant": "Un des quatre travaux marqués après « Pause café ».",
+   "apres": "coffee-break",
+   "erreurs": [
+    {
+     "p": "Tu ne connais pas le code du coffre.",
+     "s": "Menace le personnel : il peut te le donner. Le guide a eu 6943, mais le code peut changer d'une partie à l'autre."
+    },
+    {
+     "p": "La police arrive vite.",
+     "s": "Dès que tu casses une vitrine ou une porte, tu as 2 étoiles : pars vite si tu veux éviter la police, quitte à prendre moins."
+    }
+   ],
+   "plus": [
+    "Revends le sac chez Dunk, à Port Gellhorn (facultatif mais nécessaire pour toucher l'argent)."
+   ]
+  },
+  "hit-kingpin-bowling": {
+   "objectif": "Braquer le bowling tenu par le gang des Kolts, avec ton partenaire, puis fuir.",
+   "avant": "Un des quatre travaux marqués après « Pause café ».",
+   "apres": "coffee-break",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à ouvrir le coffre.",
+     "s": "Il faut des bombes collantes, à acheter à l'Ammu-Nation avant."
+    },
+    {
+     "p": "Le bâtiment est plein d'ennemis.",
+     "s": "Appelle ton partenaire (maintiens Droite sur la croix), prends 5 Zombix et recharge ton gilet pare-balles avant."
+    }
+   ],
+   "plus": [
+    "Trophée « Let's Go Bowling » : il faut prendre les trois objets de valeur principaux. Il ne peut pas être manqué : le bowling se remplit à nouveau quelques semaines plus tard (au chapitre 3)."
+   ]
+  },
+  "impounded-vehicle": {
+   "objectif": "Récupérer la voiture de Lucia à la fourrière de Port Gellhorn, près du commissariat.",
+   "avant": "La voiture est mise en fourrière automatiquement après « Petit-déjeuner express ».",
+   "apres": "breakfast-run",
+   "erreurs": [
+    {
+     "p": "La police te poursuit.",
+     "s": "C'est prévu (2 étoiles) : fonce à travers la clôture, monte dans la voiture de Lucia (icône verte) et sème-les."
+    }
+   ],
+   "plus": [
+    "Plus tard, une voiture laissée dans une zone de recherche après un crime part en fourrière. L'appli Scooter Bros permet de la récupérer contre paiement."
+   ]
+  },
+  "prepare-for-vice-city": {
+   "objectif": "Réunir au moins 15 000 $ avant de partir pour Vice City.",
+   "erreurs": [
+    {
+     "p": "La dernière mission du chapitre n'apparaît pas.",
+     "s": "Il faut 15 000 $ et avoir fini les autres missions principales : ta chambre de motel est alors marquée."
+    },
+    {
+     "p": "Tu ne sais pas comment gagner l'argent.",
+     "s": "Fais les travaux marqués sur la carte : Thrillbillies, Coup de poignet, Braquer Avery Pawn, Braquer le Kingpin Bowling, Véhicule en fourrière et Délice de l'après-midi."
+    }
+   ],
+   "plus": [
+    "Dépose ton argent sur BuckMe au fur et à mesure pour ne pas le perdre si tu meurs."
+   ]
+  },
+  "afternoon-delight": {
+   "objectif": "Braquer avec Vicki le coffre du club Delights de son patron, puis fuir les motards.",
+   "avant": "Quelque temps après « Pause café » : Vicki vous appelle.",
+   "apres": "coffee-break",
+   "erreurs": [
+    {
+     "p": "Le videur refuse Jason.",
+     "s": "C'est la soirée des femmes : seule Lucia entre. Avec Jason, attends que les deux videurs de l'arrière s'éloignent, escalade la clôture et passe par la porte ouverte."
+    },
+    {
+     "p": "Tu as oublié le code du coffre.",
+     "s": "2008."
+    }
+   ],
+   "plus": [
+    "Faire danser Jason ou non ne change que le déroulement de la mission. S'il danse, il faudra lui racheter des vêtements avant de retrouver Vicki."
+   ],
+   "recompense": "10 000 $ envoyés par Vicki sur BuckMe le lendemain"
+  },
+  "checking-out": {
+   "objectif": "Quitter le motel sous l'attaque des policiers corrompus et rejoindre Vice City.",
+   "avant": "Avec 15 000 $ et toutes les missions principales disponibles terminées : ton partenaire appelle. Interagis avec la porte de la salle de bain de la chambre.",
+   "apres": "prepare-for-vice-city",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à sauter dans la voiture de Jason.",
+     "s": "Colle-toi à la voiture et maintiens Carré (PS5) ou B (Xbox)."
+    },
+    {
+     "p": "Jason a disparu des objectifs et tu ne peux plus semer la police.",
+     "s": "Bug signalé par le guide après une mort pendant la poursuite à moto : recommence la mission."
+    }
+   ],
+   "plus": [
+    "Prends le fusil à pompe sur le lit au début.",
+    "Vise les pneus des voitures qui vous poursuivent.",
+    "Partir sans Lucia est possible mais abîme votre relation."
+   ]
+  },
+  "welcome-to-vice-city": {
+   "objectif": "Arriver à Vice City et retrouver Dre'Quan, l'ami de lycée de Jason, au club Jack of Hearts, puis s'installer dans l'appartement prêté par Boobie.",
+   "avant": "Le chapitre 3 commence juste après « Départ ».",
+   "apres": "checking-out",
+   "erreurs": [
+    {
+     "p": "Le videur ne te laisse pas entrer.",
+     "s": "Fais le tour du bâtiment jusqu'à l'entrée de l'autre côté : Dre'Quan sort te chercher."
+    },
+    {
+     "p": "Tu ne trouves pas l'appartement.",
+     "s": "Gare-toi sur la place couverte, fais le tour jusqu'à l'entrée principale, monte au 2e étage : c'est la première porte en face."
+    }
+   ],
+   "plus": [
+    "La place couverte de l'appartement garde tes voitures pendant tout le chapitre.",
+    "Après la mission, Moses t'écrit : les Pay 'n' Spray peuvent maintenant acheter et immatriculer les voitures à traceur standard."
+   ]
+  },
+  "dealers-choice": {
+   "objectif": "Accompagner Dre'Quan pour une transaction de drogue, en échange de l'appartement.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Dre'Quan.",
+     "s": "Au Jack of Hearts, monte l'escalier, passe la porte du haut : il est dans la cabine d'enregistrement du studio."
+    },
+    {
+     "p": "Un homme t'attaque au retour.",
+     "s": "Il attaque quoi que tu dises : assomme-le à mains nues, puis remonte en voiture."
+    }
+   ],
+   "plus": [
+    "Produit coupé ou pur : le choix ne change que le déroulement de la mission.",
+    "Une transaction sans violence donne un bonus de réputation « professionnelle »."
+   ]
+  },
+  "meet-the-heders": {
+   "objectif": "Dîner avec Brian et Lori, puis, avec Lucia, voler un conteneur au port et livrer la voiture qu'il contient.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas le bon conteneur.",
+     "s": "Un conteneur jaune marqué SCOOP, en haut de la pile du milieu. Découpe le cadenas en gardant la barre dans la zone marquée."
+    },
+    {
+     "p": "Tu n'arrives pas à monter sur la remorque.",
+     "s": "Prends une moto à proximité, rapproche-toi en évitant les tirs, puis saute quand tu es assez près."
+    },
+    {
+     "p": "Tu ne sais pas comment sortir la voiture.",
+     "s": "Monte dedans et maintiens le bouton : elle défonce le conteneur en marche arrière."
+    }
+   ],
+   "plus": [
+    "Au restaurant, commande le Surf and Turf que demande Lucia : petit bonus de relation.",
+    "Les autres conteneurs SCOOP s'ouvrent aussi ; le premier contient un cigare et 600 $.",
+    "Jason et Lucia gardent ensuite la disqueuse. Le nitro s'active en maintenant le stick gauche (L3)."
+   ]
+  },
+  "dubious-provenance": {
+   "objectif": "Faire expertiser la statuette chez un antiquaire de Capri, puis retrouver Benedict Halifax, qui a disparu avec.",
+   "avant": "Interagis avec le sac dans le placard de l'appartement de Bayside.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas comment entrer dans la boutique fermée.",
+     "s": "Par l'arrière : prends l'escalier, saute sur le toit bas et entre par la fenêtre au-dessus du climatiseur. Ouvre la porte à Jason, puis fouille le tiroir du bureau, coin nord."
+    },
+    {
+     "p": "Tu n'arrives pas à rattraper Halifax en bateau.",
+     "s": "Approche-toi en Seashark et maintiens le bouton pour sauter sur son bateau."
+    },
+    {
+     "p": "Tu n'as pas pu jouer les parties 2 et 3.",
+     "s": "Il fallait donner la statuette à Halifax. Sinon, l'objectif de l'appeler disparaît à la fin du chapitre 3."
+    }
+   ],
+   "plus": [
+    "En échange, Halifax te laisse sa montre Crowex Octane « Bobby Ambrose » (Accessoires > Montres, dans une garde-robe).",
+    "Après la mission, environ 2 500 $ de bijoux et de liquide sont dans le conteneur, et la Hustler '32 garée là peut être gardée ou vendue."
+   ]
+  },
+  "mami-knows-best": {
+   "objectif": "Avec Lucia, aider sa mère Mia à préparer sa première maison à vendre, à Hamlet.",
+   "erreurs": [
+    {
+     "p": "Un alligator attrape Mia.",
+     "s": "Tire dessus vite pour la sauver."
+    },
+    {
+     "p": "Tu ne sais pas comment détruire la maison du gang.",
+     "s": "Monte dans la pelleteuse de l'autre côté de la rue ; ferme la pince pour attraper les voitures."
+    }
+   ]
+  },
+  "get-your-wheels": {
+   "objectif": "Récupérer une voiture à Vice City : celles de Jason et Lucia ont été mises en fourrière à la fin du chapitre 2.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas laquelle récupérer.",
+     "s": "Récupérer la voiture d'un seul personnage suffit à finir la mission ; tu peux reprendre les deux."
+    }
+   ]
+  },
+  "south-leonida-real-estate": {
+   "objectif": "Retrouver Mia, enlevée par le gang M7, et la sortir de là.",
+   "erreurs": [
+    {
+     "p": "Les ravisseurs te repèrent.",
+     "s": "Suis-les de loin : si le marqueur au-dessus de leur voiture se remplit de jaune, tu es trop près."
+    },
+    {
+     "p": "Tu manques d'armes face à Viper.",
+     "s": "Tu n'as que ton pistolet de départ : ramasse les armes des ennemis tombés."
+    }
+   ],
+   "plus": [
+    "Conduis prudemment pendant la visite des propriétés."
+   ],
+   "recompense": "2 000 $ de commission de Mia, versés après de nombreux jours de jeu"
+  },
+  "here-kitty-kitty": {
+   "objectif": "Retrouver pour Tyrone un homme nommé Charles.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas où est Charles.",
+     "s": "Paie 20 $ à l'homme près de la porte (en liquide), ou fouille l'appartement : le ticket de la friperie Aline's dans la chambre donne l'adresse."
+    },
+    {
+     "p": "Des sans-abri t'attaquent.",
+     "s": "Assomme-les à mains nues plutôt que de tirer."
+    }
+   ],
+   "plus": [
+    "En haut, Charles saute par-dessus le mur : redescends par l'escalier et fouille-le."
+   ]
+  },
+  "send-money-to-lorena": {
+   "objectif": "Envoyer de l'argent à Lorena depuis le téléphone.",
+   "erreurs": [
+    {
+     "p": "Tu cherches où aller.",
+     "s": "Nulle part : ouvre le téléphone et envoie l'argent."
+    }
+   ]
+  },
+  "car-service": {
+   "objectif": "Avec Lucia, voler une Schafter V12 dans un atelier de démontage et la livrer à Leonida Auto World pour Raul.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas comment entrer discrètement.",
+     "s": "Monte sur la camionnette blanche côté nord et longe le toit métallique autour de la cour."
+    },
+    {
+     "p": "Tu ne trouves pas la voiture.",
+     "s": "Au milieu de la zone couverte, à côté de la petite pièce."
+    }
+   ],
+   "plus": [
+    "Le coffre d'une voiture près du départ contient des grenades aveuglantes et un pistolet Klose K17 silencieux.",
+    "Ne tire pas sur le chien sauf s'il t'attaque : blesser un chien pèse beaucoup sur ton profil criminel.",
+    "Randy devient ensuite un point de dépôt de véhicules."
+   ]
+  },
+  "send-more-money-to-lorena": {
+   "objectif": "Envoyer un second versement à Lorena depuis le téléphone.",
+   "erreurs": [
+    {
+     "p": "Tu cherches où aller.",
+     "s": "Nulle part : même procédure que la première fois, depuis le téléphone."
+    }
+   ]
+  },
+  "top-billing": {
+   "objectif": "Retrouver Roxy, des Real Dimez, partie fâchée, et la ramener avant le concert.",
+   "erreurs": [
+    {
+     "p": "Jacki bloque la porte de Roxy.",
+     "s": "Va dans la cuisine, de l'autre côté de la maison, et laisse sortir son chien dans le jardin : Jacki s'en occupe."
+    },
+    {
+     "p": "Tu ne trouves pas comment couper le courant.",
+     "s": "En Jason, ouvre le boîtier électrique vert au coin du trottoir et bascule l'interrupteur sur son côté gauche."
+    }
+   ]
+  },
+  "boobie-time": {
+   "objectif": "Servir de chauffeur à Boobie pour ses tournées, puis récupérer son sac d'argent volé.",
+   "erreurs": [
+    {
+     "p": "Les voleurs filent sur la rivière.",
+     "s": "Poursuis-les en Seashark : ils finissent par tourner en rond dans un cul-de-sac. Passe ensuite sur le sac pour le ramasser."
+    }
+   ],
+   "plus": [
+    "Maintiens R3 (stick droit) pour observer ce qui se passe dans la voiture.",
+    "Yasmani devient ensuite receleur : il paie mieux les bijoux et les billets marqués."
+   ]
+  },
+  "yasmanis-jewelry-jobs": {
+   "objectif": "Voler un bijou précis dans le coffre de trois bijouteries de Vice City pour Yasmani.",
+   "erreurs": [
+    {
+     "p": "Tu ne connais pas les codes des coffres.",
+     "s": "Casa de Empeño : 1680. Richardson Jewelry : 6815. Donovan Banks & Co. : 0104."
+    },
+    {
+     "p": "L'alarme se déclenche à chaque fois.",
+     "s": "Livre le premier bijou à Yasmani tout de suite : il te donne le Snap Gun, qui ouvre les portes sans alarme."
+    }
+   ],
+   "plus": [
+    "Commence par Casa de Empeño (pas de porte arrière, petit magasin).",
+    "Dans chaque magasin, efface les vidéos au boîtier de sécurité pour que la police n'ait pas ton signalement."
+   ]
+  },
+  "first-impressions": {
+   "objectif": "Rencontrer Raul et l'aider à échapper à la police.",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à ouvrir le garage.",
+     "s": "Code du panneau : 2404."
+    },
+    {
+     "p": "Tu n'arrives pas à semer la police.",
+     "s": "Saute le pont à moitié levé vers Rialto Islands, puis change de véhicule au parking marqué."
+    }
+   ],
+   "plus": [
+    "Pour garder un profil « professionnel », vise les pneus et les moteurs des voitures de police, et les jambes des policiers."
+   ]
+  },
+  "caught-slipping": {
+   "objectif": "Rattraper les deux voleurs entrés dans l'appartement.",
+   "erreurs": [
+    {
+     "p": "Les voleurs vont trop vite.",
+     "s": "Sors une arme, active le Focus et tire dans les jambes."
+    }
+   ],
+   "plus": [
+    "La mission se termine au garde-meuble Big House Storage acheté par Jason."
+   ]
+  },
+  "crosstown-traffic": {
+   "objectif": "Lucia file un membre de gang dans le métro pendant que Jason détourne un bateau avec Karim.",
+   "erreurs": [
+    {
+     "p": "Lucia rate son métro.",
+     "s": "C'est prévu : cours sous les voies aériennes jusqu'à la station suivante et monte dans la dernière voiture."
+    },
+    {
+     "p": "Tu n'arrives pas à suivre les bateaux.",
+     "s": "Reste sur les chemins de terre le long de la rive."
+    },
+    {
+     "p": "L'hélicoptère te gêne.",
+     "s": "Vise le pilote à travers le pare-brise."
+    }
+   ],
+   "plus": [
+    "Appuie sur le bouton d'arrêt d'urgence à l'arrière du train avant la station suivante.",
+    "Dans le bateau, ouvre les sièges arrière : fusil d'assaut et gilet pare-balles, munitions illimitées."
+   ]
+  },
+  "credit-check": {
+   "objectif": "Rencontrer l'équipe de Raul et braquer trois agences Fleeca.",
+   "erreurs": [
+    {
+     "p": "Tu oublies le masque.",
+     "s": "Équipe-le depuis l'inventaire avant d'entrer dans chaque banque."
+    },
+    {
+     "p": "Ton sac est plein.",
+     "s": "Passe à l'autre personnage : le pillage va plus vite avec un seul sac."
+    },
+    {
+     "p": "Tu ne sais pas ouvrir le coffre de la 2e banque.",
+     "s": "Menace le guichetier pour avoir le code, fais sauter la porte intérieure, puis ouvre le petit coffre avec le code ou une autre charge."
+    }
+   ],
+   "plus": [
+    "Le Dye Pack Jammer pris sur le bureau permet désormais de voler des billets marqués.",
+    "Dernière banque : ne t'occupe pas du coffre, la police arrive déjà. Séparez-vous pour diviser la police."
+   ]
+  },
+  "steal-the-zorrusso-for-randy": {
+   "objectif": "Voler une Zorrusso à traceur avancé dans le parking des Hathaway Apartments et la livrer à Randy.",
+   "erreurs": [
+    {
+     "p": "Tu ne peux pas voler la voiture.",
+     "s": "Installe le Key Cloner depuis le téléphone (key_cloner_v1.6.9), puis utilise-le sur la porte comme le Slim Jim."
+    },
+    {
+     "p": "La police arrive pendant la livraison.",
+     "s": "Le traceur avancé (icône rouge) envoie ta position si tu roules trop lentement : garde de la vitesse. Il se coupe près du garage de Randy."
+    }
+   ],
+   "plus": [
+    "La voiture est au rez-de-chaussée, côté est. Escalade le mur pour entrer.",
+    "Randy présente ensuite sa liste de voitures rares (facultative, mais nécessaire pour un trophée)."
+   ],
+   "recompense": "10 000 $ de bonus si la voiture arrive intacte"
+  },
+  "race-against-yago": {
+   "objectif": "Gagner la course « Freeway Run » contre Yago à Salton.",
+   "manque": "Oui : la mission disparaît quand le sablier est écoulé. Vas-y dès le message de Yago.",
+   "cent": "Non, selon le guide : elle ne compte ni pour un trophée ni pour le 100 %.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quelle course choisir.",
+     "s": "Parle à Santiago et choisis la deuxième, Freeway Run. Loue une voiture sur place."
+    }
+   ],
+   "recompense": "selon ta place, jusqu'à 3 800 $ pour la victoire"
+  },
+  "sinfrontera-national-bank": {
+   "objectif": "Repérer la sécurité de la banque Sinfrontera National Bank avec Lucia, en vue du braquage.",
+   "avant": "Une fois « Vérification de crédit » terminée : Raul te contacte.",
+   "apres": "credit-check",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas quoi inspecter.",
+     "s": "Active le Focus et maintiens le bouton d'inspection sur 4 éléments : les caméras au-dessus du comptoir, l'homme en costume rose juste derrière Jason, les deux gardes près des ascenseurs, le panneau de sécurité entre les deux ascenseurs."
+    },
+    {
+     "p": "La mission ne se termine pas.",
+     "s": "Quand tout est inspecté, Raul t'appelle à l'étage : rejoins-le avec Andrea et assieds-toi."
+    }
+   ]
+  },
+  "security-expert": {
+   "objectif": "Enlever Nicole Park, experte en sécurité, chez elle à Waning Sands, et l'amener à la salle de préparation.",
+   "avant": "Commence dès la fin de « Sinfrontera National Bank ».",
+   "apres": "sinfrontera-national-bank",
+   "erreurs": [
+    {
+     "p": "Les gardes te repèrent.",
+     "s": "Reste juste derrière Jason, y compris en portant Nicole."
+    },
+    {
+     "p": "Tu ne trouves pas Nicole.",
+     "s": "Traverse le couloir jusqu'aux chambres : porte fermée de la chambre au nord-est."
+    }
+   ],
+   "plus": [
+    "Mets Nicole dans le coffre de ta voiture et pars vite."
+   ]
+  },
+  "heist-planning": {
+   "objectif": "Suivre la préparation du braquage : il suffit de jouer les missions de préparation.",
+   "avant": "Apparaît après « Sinfrontera National Bank » et « Expert en sécurité ».",
+   "apres": "security-expert",
+   "erreurs": [
+    {
+     "p": "Il n'y a rien à faire.",
+     "s": "Normal : elle se termine en jouant « Propriété de l'entreprise », « Mot de sécurité », « Le chaînon manquant » et « Charges cachées »."
+    }
+   ]
+  },
+  "ride-or-die": {
+   "objectif": "Aider Dre'Quan à se venger de DWNPLY en volant sa voiture.",
+   "avant": "Environ un jour après « Vérification de crédit » : Dre'Quan envoie un SMS à Jason.",
+   "apres": "credit-check",
+   "erreurs": [
+    {
+     "p": "Les baskets coûtent trop cher.",
+     "s": "Essaie de marchander : le vendeur part. Suis-le dehors, prends un ballon de basket au stand à droite et lance-le sur lui : il lâche le sac. Gratuit au lieu de 1 580 $."
+    },
+    {
+     "p": "Le videur bloque l'accès VIP.",
+     "s": "Regarde-le et choisis « Show Shoes »."
+    },
+    {
+     "p": "Tu ne trouves pas la voiture.",
+     "s": "Utilise le klaxon de la clé et suis le son : côté est du parking, sur une place VIP éclairée."
+    },
+    {
+     "p": "Un homme saute sur le capot.",
+     "s": "Zigzague à gauche et à droite."
+    }
+   ]
+  },
+  "company-property": {
+   "objectif": "Aider Brian à récupérer une livraison d'armes de Pilot Pete, puis échapper à la descente de l'IAA.",
+   "avant": "Après « Expert en sécurité » : va au Skeeter's, au sud de Hamlet.",
+   "apres": "security-expert",
+   "erreurs": [
+    {
+     "p": "Le camion perd des caisses.",
+     "s": "Tire sur les véhicules avant qu'ils ne percutent le camion, et ne recharge que quand rien n'est juste derrière."
+    },
+    {
+     "p": "L'avion ne décolle pas.",
+     "s": "Sors du hangar, tourne à gauche sur la piste à pleine vitesse et tire sur le manche le plus tôt possible."
+    },
+    {
+     "p": "Tu ne sais pas où atterrir.",
+     "s": "Pose l'avion dans le champ coloré à droite de la rivière."
+    }
+   ],
+   "plus": [
+    "Les caisses sauvées décident du nombre d'explosifs dans « Charges cachées ». Toutes les garder donne aussi un bonus « professionnel ».",
+    "Dans le hangar, en face de la porte : fusil d'assaut et soins."
+   ]
+  },
+  "the-missing-link": {
+   "objectif": "Avec Andrea, attirer et assommer Monty, un homme de main du cartel, lors d'un combat de coqs, puis l'interroger avec Raul.",
+   "avant": "Après « Propriété de l'entreprise » : va seule en Lucia au Sloppy Molly's, à Watson Bay.",
+   "apres": "company-property",
+   "erreurs": [
+    {
+     "p": "Monty meurt pendant l'interrogatoire.",
+     "s": "Ne le plonge pas jusqu'au fond du bassin : monte ou descends-le seulement quand Raul le demande."
+    },
+    {
+     "p": "Des tireurs arrivent dans la grande salle.",
+     "s": "Surveille le garage à droite : d'autres ennemis entrent en voiture."
+    }
+   ],
+   "plus": [
+    "Après le premier ennemi, retourne dans la salle des photos : le pistolet de Monty est par terre. Variante d'arme obtenable uniquement ici.",
+    "Répondre à toutes les questions sans tuer Monty donne un bonus « professionnel »."
+   ]
+  },
+  "safe-word": {
+   "objectif": "Voler un coffre d'entraînement chez Gil, à Peacock Estates, et s'entraîner à l'ouvrir pour le braquage.",
+   "avant": "Après « Propriété de l'entreprise » : parle à Nicole au QG de Raul, à Stockyard.",
+   "apres": "company-property",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas le coffre.",
+     "s": "Bureau de Gil : premières doubles portes, puis portes fermées à droite du couloir. Le tiroir gauche du bureau contient la télécommande qui fait apparaître le coffre."
+    },
+    {
+     "p": "Tu rates le perçage.",
+     "s": "Garde la jauge de droite stable et corrige quand celle de gauche monte ; la lumière de la perceuse ne doit pas devenir rouge."
+    },
+    {
+     "p": "Le câble touche les parois.",
+     "s": "Guide-le sans toucher le câble lui-même ni les murs, jusqu'à l'anneau doré."
+    }
+   ],
+   "plus": [
+    "Évite les cyclistes et les tombes du cimetière en traînant le coffre : les percuter donne un profil « psychopathe ».",
+    "Entraîne-toi autant que tu veux : c'est le même système que le braquage de fin de chapitre."
+   ],
+   "recompense": "1 500 $ et le pistolet Kalinga .50 de Gil, dans le coffre d'entraînement"
+  },
+  "cooties": {
+   "objectif": "Avec Lucia, tourner le clip « Cooties » des Real Dimez avec la voiture volée de DWNPLY, puis la ramener au studio.",
+   "avant": "Quelques jours (dans le jeu) après « À la vie, à la mort » : Dre'Quan appelle.",
+   "apres": "ride-or-die",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à drifter.",
+     "s": "Maintiens l'accélérateur et utilise le stick pour tourner autour du cercle."
+    },
+    {
+     "p": "La bande de DWNPLY te poursuit.",
+     "s": "Roule jusqu'à ce qu'aucune voiture ne te suive et que tu sois sorti de la zone rouge."
+    }
+   ]
+  },
+  "this-is-a-free-call-from": {
+   "objectif": "Aller chercher Shayna, une amie de prison de Lucia, et la conduire chez son copain Raph.",
+   "avant": "Passe en Lucia dans ou près de Hamlet : Shayna lui envoie un SMS.",
+   "manque": "Oui : disponible peu de temps. Fais-la dès qu'elle est marquée.",
+   "cent": "Non, selon le guide.",
+   "erreurs": [
+    {
+     "p": "Tu veux le meilleur gain.",
+     "s": "Pendant la dispute, ramasse les objets de valeur (table de la cuisine, chambre de droite). Si tu élimines les membres du gang, Shayna te laisse la moitié de la drogue."
+    }
+   ],
+   "recompense": "environ 1 500 $ d'objets, plus de la drogue : environ 1 200 $ en laissant partir le gang, environ 5 000 $ en l'éliminant"
+  },
+  "bricked-up": {
+   "objectif": "Récupérer pour Boobie des briques de cocaïne aux Venture Apartments, puis s'échapper de la descente de police.",
+   "avant": "Une fois « Charges cachées » et les autres missions principales du chapitre 3 terminées : Boobie t'attend dans l'appartement.",
+   "apres": "hidden-charges",
+   "erreurs": [
+    {
+     "p": "Ta voiture part en fourrière.",
+     "s": "Gare-la hors de la zone rouge de la carte, comme le conseille Lucia."
+    },
+    {
+     "p": "L'ascenseur s'arrête.",
+     "s": "Appuie vite sur le bouton pour forcer les portes."
+    },
+    {
+     "p": "Tu n'y vois rien au 3e étage.",
+     "s": "Prends une arme de policier avec lampe torche."
+    }
+   ],
+   "plus": [
+    "Avant de quitter la première pièce, prends le sac rouge au bout de la table : ce sont les briques de Boobie.",
+    "Un hélicoptère te suit dès le début : éloigne-toi le plus possible et évite les barrages."
+   ],
+   "recompense": "3 500 $ de Boobie si tu prends le sac rouge"
+  },
+  "hidden-charges": {
+   "objectif": "Poser des explosifs sur les antennes-relais de Vice City pour couper les communications pendant le braquage.",
+   "avant": "Marquée « Prepping the Explosives » après « Propriété de l'entreprise », mais Karim n'appelle qu'une fois « Cooties » et la plupart des missions principales terminées.",
+   "apres": "cooties",
+   "erreurs": [
+    {
+     "p": "Tu n'as que deux charges.",
+     "s": "Normal si tu as perdu des caisses dans « Propriété de l'entreprise » : une charge de moins par caisse perdue."
+    },
+    {
+     "p": "Les ouvriers te dénoncent (antenne ouest).",
+     "s": "C'est un chantier : va vite, l'ascenseur est à l'intérieur à gauche."
+    },
+    {
+     "p": "Tu ne sais pas comment partir du toit.",
+     "s": "Prends un parachute dans la caisse sur le toit, saute et sors de la zone de recherche."
+    }
+   ],
+   "plus": [
+    "Répartir le travail entre Jason et Lucia va plus vite et améliore leur relation.",
+    "Chaque charge posée donne plus de temps pendant « Le braquage du cartel »."
+   ]
+  },
+  "the-cartel-heist": {
+   "objectif": "Braquer la Sinfrontera National Bank avec l'équipe de Raul et s'enfuir.",
+   "avant": "Quand « Charges cachées » et le reste du chapitre 3 sont terminés : Raul convoque l'équipe à Stockyard.",
+   "apres": "hidden-charges",
+   "erreurs": [
+    {
+     "p": "Tu manques de temps.",
+     "s": "Avec les trois antennes détruites, tu as près de 11 minutes avant la police. Occupe-toi d'abord des clients que Karim signale vers la sortie."
+    },
+    {
+     "p": "Tu rates l'ouverture du coffre.",
+     "s": "Mêmes étapes que dans « Mot de sécurité », mais les deux jauges bougent. Pour le câble, la ligne passe derrière un virage très serré à droite."
+    },
+    {
+     "p": "L'hélicoptère te poursuit.",
+     "s": "Tire au lance-grenades quand il est juste derrière le bus, ou vise le pilote avec le Focus."
+    }
+   ],
+   "plus": [
+    "Dans le coffre, prends d'abord les grosses liasses : elles valent bien plus que les billets en vrac.",
+    "Si un garde sort une arme, tire dans sa main plutôt que de le tuer pour garder un profil « professionnel »."
+   ]
+  },
+  "ocean-beach": {
+   "objectif": "Quitter l'appartement de Bayside et s'installer dans la suite de l'hôtel Y, à Ocean Beach.",
+   "avant": "Après « Le braquage du cartel » : retourne à l'appartement de Bayside.",
+   "apres": "the-cartel-heist",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la chambre.",
+     "s": "Chambre 701 : ascenseur jusqu'au 7e étage, à gauche, tout au bout du couloir."
+    },
+    {
+     "p": "La mission ne se termine pas.",
+     "s": "Quand Lucia parle du champagne sur le balcon, prends deux verres sur le comptoir et apporte-lui en un."
+    }
+   ],
+   "plus": [
+    "Le voiturier prend ta voiture à l'entrée : entre simplement.",
+    "La garde-robe de la chambre propose de nouvelles tenues à partir de ce chapitre."
+   ]
+  },
+  "another-life": {
+   "objectif": "Revivre en flash-back, avec Lucia, sa dernière matinée avec son fils Tomás.",
+   "avant": "Commence juste après « Ocean Beach ».",
+   "apres": "ocean-beach",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas comment calmer Tomás.",
+     "s": "Ramène-le au salon, interagis avec les objets, puis monte le son de la radio sur le comptoir quand c'est demandé."
+    }
+   ]
+  },
+  "pool-day": {
+   "objectif": "Passer une journée à la piscine de l'hôtel avec Lucia.",
+   "avant": "Commence juste après « Une autre vie » : va sur le balcon de la suite parler à Lucia (pas de marqueur habituel).",
+   "apres": "another-life",
+   "erreurs": [
+    {
+     "p": "Lucia te rappelle quand tu sors.",
+     "s": "Va d'abord lui parler sur le balcon."
+    },
+    {
+     "p": "Tu ne sais pas quoi commander.",
+     "s": "Un Tequila Sunrise, au bar à droite de la piscine."
+    }
+   ],
+   "plus": [
+    "Eddie Acosta t'invite à une fête : accepter ou non, la mission facultative apparaît quand même."
+   ]
+  },
+  "attend-eddie-acostas-party": {
+   "objectif": "Se rendre à la fête d'Eddie Acosta, qui se révèle être une arnaque aux cryptomonnaies sur un toit.",
+   "avant": "Quelques jours après « Journée piscine » : Eddie t'envoie une invitation. Va seul, avec Jason ou Lucia.",
+   "apres": "pool-day",
+   "erreurs": [
+    {
+     "p": "Eddie t'enferme sur le toit.",
+     "s": "Refuse ses 50 000 $ (ou tire : la porte est blindée). Pour descendre, prends la moto à pleine vitesse sur les panneaux solaires pour sauter sur le toit voisin, puis l'ascenseur."
+    },
+    {
+     "p": "Tu as payé.",
+     "s": "Tu ne reçois qu'un NFT sans valeur : le guide déconseille de payer."
+    }
+   ],
+   "plus": [
+    "Eddie n'a que cette mission ; elle ne compte pas parmi les rencontres « Strangers & Freaks »."
+   ]
+  },
+  "company-cars": {
+   "objectif": "Choisir deux voitures offertes par Valentina chez Status Auto Imports, puis faire la course jusqu'à l'hôtel.",
+   "avant": "Après « Journée piscine » : parle à Santino, le concierge, dans le hall. Le marqueur peut afficher un cadenas, mais la mission démarre quand même.",
+   "apres": "pool-day",
+   "erreurs": [
+    {
+     "p": "Tu hésites sur les voitures.",
+     "s": "La Pfister Comet S2 a les meilleures performances de base ; le pick-up ou le SUV forment une paire plus équilibrée. Les deux voitures sont à toi ensuite."
+    }
+   ],
+   "plus": [
+    "Les dégâts pendant la course n'ont pas d'importance.",
+    "Le service voiturier de l'hôtel sert de taxi gratuit depuis l'entrée."
+   ]
+  },
+  "lawyer-up": {
+   "objectif": "Rencontrer l'avocat Abe Gonzalez dans son bureau du centre-ville.",
+   "avant": "Après « Journée piscine » : Valentina appelle.",
+   "apres": "pool-day",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Abe.",
+     "s": "Parle à la réceptionniste, puis à Sandy au fond du bureau ; Abe est à l'étage."
+    }
+   ]
+  },
+  "party-hard": {
+   "objectif": "Protéger la star de télénovela Andrés de León à une soirée, puis le sauver de ses ravisseurs.",
+   "avant": "Après « Prendre un avocat ».",
+   "apres": "lawyer-up",
+   "erreurs": [
+    {
+     "p": "Tout l'étage te tombe dessus.",
+     "s": "Avec Lucia, élimine les ennemis un par un, à couvert, au pistolet silencieux (sans munitions de réserve). Une arme bruyante alerte tout l'étage."
+    },
+    {
+     "p": "Tu ne vois pas les ennemis.",
+     "s": "Active le Focus sans viser : il montre les ennemis proches."
+    },
+    {
+     "p": "Tu ne sais pas où atterrir.",
+     "s": "Sur l'héliport du toit du siège de Megamundo."
+    }
+   ],
+   "plus": [
+    "Attention à ne pas toucher les otages en dessous."
+   ]
+  },
+  "heavy-lifting": {
+   "objectif": "Remettre le disque dur à Raul, puis infiltrer la salle de sport Ajax Gym pour espionner l'équipe de Kordell Grant.",
+   "avant": "Peu après « Prendre un avocat » : Raul demande le disque dur.",
+   "apres": "lawyer-up",
+   "erreurs": [
+    {
+     "p": "Les culturistes te repèrent pendant la filature.",
+     "s": "Reste assez loin pour que le marqueur reste blanc. S'il jaunit, lâche l'accélérateur et laisse une voiture passer entre vous."
+    },
+    {
+     "p": "Tu ne trouves pas Nate.",
+     "s": "Au salon de bronzage, deuxième cabine à droite. Bloque le banc de bronzage avec la sangle ramassée par terre."
+    }
+   ],
+   "plus": [
+    "Le disque dur est dans le casier du garde-meuble : prends l'ascenseur.",
+    "Sur le tapis de course, appuie régulièrement sur le bouton pour garder le rythme."
+   ]
+  },
+  "its-a-date": {
+   "objectif": "Emmener Jason et Lucia boire un verre ensemble au Courtyard Bar de Stockyard.",
+   "avant": "Marquée juste après « Poids lourds ». Viens avec les deux personnages ensemble.",
+   "apres": "heavy-lifting",
+   "erreurs": [
+    {
+     "p": "Le rendez-vous ne se termine pas.",
+     "s": "Achète un verre, puis ressors dans la rue."
+    }
+   ],
+   "plus": [
+    "La sauter n'a pas de conséquence, mais elle améliore facilement la relation."
+   ]
+  },
+  "photo-shoot": {
+   "objectif": "Photographier les Real Dimez en hélicoptère, puis sauver Dre'Quan, enlevé par le gang Cash City.",
+   "avant": "Après « Fête à tout prix » : Dre'Quan te contacte.",
+   "apres": "party-hard",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à arrêter la voiture des ravisseurs.",
+     "s": "Impossible ici : garde-la en vue. Après le deuxième saut, les voitures qui rejoignent la poursuite, elles, peuvent être abattues."
+    },
+    {
+     "p": "Des renforts arrivent sous l'autoroute.",
+     "s": "Surveille les voitures à droite et les portes de garage à gauche."
+    }
+   ]
+  },
+  "bad-driver": {
+   "objectif": "Retrouver Felipe, qui a abandonné l'équipe pendant le braquage du cartel, dans un bar de Millport.",
+   "avant": "Après « Fête à tout prix » : Andrea te prévient.",
+   "apres": "party-hard",
+   "manque": "Oui : elle disparaît si tu commences « Jeu de pouvoir » avant de la faire.",
+   "erreurs": [
+    {
+     "p": "Felipe s'enfuit.",
+     "s": "Tire-lui dans les jambes ou le dos pour le ralentir, puis frappe-le pour qu'il se rende."
+    }
+   ],
+   "plus": [
+    "À la fin, tu choisis de le tuer ou de le laisser partir."
+   ]
+  },
+  "making-gainz": {
+   "objectif": "Avec Lucia, gagner la confiance de Nate et de l'équipe de Kordell à la salle Ajax Gym.",
+   "avant": "Quelques jours (dans le jeu) après « Poids lourds » : va seule en Lucia à la salle de préparation.",
+   "apres": "heavy-lifting",
+   "erreurs": [
+    {
+     "p": "Nate ne fait pas attention à Lucia.",
+     "s": "Parle-lui plusieurs fois, près des bancs de musculation."
+    },
+    {
+     "p": "Tu ne sais plus quoi faire à la fin.",
+     "s": "Sur le Trauma Floor, change-toi au casier de droite, parle à Nate, puis entraîne-toi près de Raina, puis près de Nate et Francisco, puis au soulevé de terre sur la scène."
+    }
+   ],
+   "plus": [
+    "À partir de cette mission, Jason et Lucia ne peuvent plus être vus ensemble en public jusqu'à « Coup à l'aéroport VCIA » : fais avant les activités de couple qui te tiennent à cœur."
+   ]
+  },
+  "too-much-baggage": {
+   "objectif": "Infiltrer l'aéroport comme bagagiste avec Jason, repérer les lieux et poser un micro.",
+   "avant": "Après « Faire du muscle ».",
+   "apres": "making-gainz",
+   "erreurs": [
+    {
+     "p": "Les bagages tombent.",
+     "s": "Maintiens le bouton et relâche un peu avant la zone du milieu : la barre continue d'avancer après."
+    },
+    {
+     "p": "Tu ne trouves pas où poser le micro.",
+     "s": "Longe le mur vers le sud jusqu'aux dernières doubles portes à gauche, suis le mur de gauche, porte bleue du bureau de sécurité, puis toilettes à droite : derrière la cuvette."
+    }
+   ],
+   "plus": [
+    "Pendant le trajet avec Omar, regarde chaque boîte blanche jusqu'à ce qu'elle devienne verte."
+   ]
+  },
+  "watch-it": {
+   "objectif": "Aider Dre'Quan à impressionner Royce Jones, le patron du club VYB.",
+   "avant": "Après « Faire du muscle ».",
+   "apres": "making-gainz",
+   "erreurs": [
+    {
+     "p": "Une voiture d'hommes armés arrive.",
+     "s": "Élimine-les, ainsi que ceux de l'escalier, puis pars avant la police."
+    }
+   ],
+   "plus": [
+    "Chez Nola, choisis une des deux tenues : Dre'Quan paie et prend l'autre."
+   ]
+  },
+  "cash-injections": {
+   "objectif": "Avec Lucia, accompagner Nate pour une vente de Synthol qui tourne mal, et récupérer sa voiture volée.",
+   "avant": "Après « L'heure des amateurs » : Nate écrit à Lucia. Appelle-le, ou attends environ un jour son appel.",
+   "apres": "amateur-hour",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à arrêter le voleur.",
+     "s": "Impossible en tirant : reste derrière lui jusqu'au motel."
+    },
+    {
+     "p": "Des tireurs au motel.",
+     "s": "Surveille l'étage du motel et les portes latérales."
+    }
+   ]
+  },
+  "amateur-hour": {
+   "objectif": "Avec Lucia, aider Cisco à récupérer l'argent qu'un réalisateur lui doit.",
+   "avant": "Après le premier entraînement avec l'équipe : parle à Francisco sur la scène du Trauma Floor.",
+   "apres": "making-gainz",
+   "erreurs": [
+    {
+     "p": "Le camping-car ne s'arrête pas.",
+     "s": "Vise les pneus : une fois crevés, il s'arrête presque tout de suite."
+    }
+   ]
+  },
+  "dirty-work": {
+   "objectif": "Piéger Raina avec des photos compromettantes pour faire pression sur elle.",
+   "avant": "Une fois « Trop de bagages » et « Injections de cash » terminées : va à la salle de préparation.",
+   "apres": "cash-injections",
+   "erreurs": [
+    {
+     "p": "Tu ne vois rien par la fenêtre.",
+     "s": "Les conteneurs indiqués par Jason donnent une vue directe sur les fenêtres du motel."
+    },
+    {
+     "p": "Jason cède à Raina.",
+     "s": "Appuie sur le bouton chaque fois qu'il apparaît."
+    }
+   ]
+  },
+  "adventures-in-babysitting": {
+   "objectif": "Avec Jason, assurer la sécurité d'Andrés de León en boîte de nuit, puis le protéger d'une attaque.",
+   "avant": "Quelque temps après « Faire du muscle ».",
+   "apres": "making-gainz",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Andrés.",
+     "s": "Ses amis t'indiquent les toilettes, de l'autre côté de la piste : il est dans la dernière cabine."
+    },
+    {
+     "p": "Tu n'arrives pas à abattre les hélicoptères.",
+     "s": "Vise le rotor de queue au fusil d'assaut (munitions illimitées), puis au lance-roquettes, attends que le carré devienne rouge avant de tirer."
+    },
+    {
+     "p": "Jason perd vite sa vie sur le toit de la voiture.",
+     "s": "Surveille sa santé : il encaisse beaucoup de dégâts à cet endroit."
+    }
+   ],
+   "plus": [
+    "Attention aux civils qui fuient pendant la fusillade si tu veux garder un bon profil criminel."
+   ]
+  },
+  "fresh-evidence": {
+   "objectif": "Avec Dre'Quan, s'introduire dans la villa de Dante pour copier des vidéos compromettantes.",
+   "avant": "Une fois « Regarde-le » et « Baby-sitting » terminées.",
+   "apres": "adventures-in-babysitting",
+   "erreurs": [
+    {
+     "p": "Le tigre bloque le couloir.",
+     "s": "Prends la viande crue dans le frigo du salon (à droite) et lance-la à travers la pièce."
+    },
+    {
+     "p": "Deux gardes bloquent l'ascenseur.",
+     "s": "Va au bar par le mur à droite de la piscine, prends une bouteille et lance-la à gauche des gardes."
+    },
+    {
+     "p": "Tu ne sais pas quel objet mettre dans le mur.",
+     "s": "Le jouet avec une main tenant un micro : le bleu, au milieu, tout à droite."
+    }
+   ],
+   "plus": [
+    "La carte d'accès est sur la table de chevet à gauche du lit.",
+    "Fuis avec le bateau de Dante et sème la police."
+   ]
+  },
+  "power-play": {
+   "objectif": "Avec Lucia, aider l'équipe de Kordell à braquer un fourgon blindé, pendant que Jason photographie leurs plans.",
+   "avant": "Après « Jeu d'enfant ».",
+   "apres": "childs-play",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas les plans.",
+     "s": "Retourne le tableau blanc et photographie son dos : c'est là que sont les vrais plans."
+    },
+    {
+     "p": "Tu es bloqué en volant une voiture.",
+     "s": "Ne prends pas une voiture tournée vers toi : cours au bout de la zone et prends la petite voiture tournée vers le bas de la route. Prends la première à droite sur l'autoroute pour éviter le barrage."
+    }
+   ],
+   "plus": [
+    "Pour entrer avec Jason : échelle à droite du bâtiment, traverse le toit, descends au niveau inférieur de l'autre côté, puis Snap Gun sur la porte de droite au rez-de-chaussée."
+   ]
+  },
+  "childs-play": {
+   "objectif": "Aider Andrés à récupérer son fils Rafa, enlevé.",
+   "avant": "Après « Nouvelles preuves » : Andrés appelle.",
+   "apres": "fresh-evidence",
+   "erreurs": [
+    {
+     "p": "La carte affiche un minuteur.",
+     "s": "Ce n'en est pas un : tu devras juste la faire avant de terminer les autres missions précédant « Jeu de pouvoir »."
+    },
+    {
+     "p": "Tu ne trouves pas Rafa.",
+     "s": "Dans la pièce à l'étage du bâtiment en face, sous la rangée de lumières rouges de la passerelle. Marque les ennemis aux jumelles avant."
+    },
+    {
+     "p": "Lucia vise mal.",
+     "s": "Normal : elle porte Rafa. Couvre-le pendant qu'il descend l'échelle."
+    }
+   ]
+  },
+  "headliners": {
+   "objectif": "Aider Dre'Quan à réussir la soirée de lancement du club VYB avec les Real Dimez.",
+   "erreurs": [
+    {
+     "p": "Tu ne sais pas qui mettre aux tables VIP.",
+     "s": "Conseil du guide : Donatello Lambrini (le plus d'abonnés), le développeur de jeux (la plus grosse offre) et KD."
+    },
+    {
+     "p": "Tu dois libérer une table.",
+     "s": "Si le développeur de jeux est là, déplace-le : tu gardes ses 50 000 $ et il l'accepte le mieux."
+    },
+    {
+     "p": "Le grand costaud te bat.",
+     "s": "C'est le bagarreur le plus dur du jeu : esquive ses coups et sois patient. Plus tard, tu peux prendre un couteau sur le comptoir."
+    }
+   ],
+   "plus": [
+    "Jason gagne ses poings américains (Brass Knuckles) à la fin du combat."
+   ]
+  },
+  "close-surveillance": {
+   "objectif": "Piloter un drone espion pour écouter Nate et Francisco et placer des caméras chez Omar.",
+   "avant": "Après « Jeu de pouvoir » : va en Jason au dernier étage du parking marqué d'Ocean Beach.",
+   "apres": "power-play",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas les culturistes.",
+     "s": "Sur le toit du bar The Calique, sous le petit abri blanc côté nord."
+    },
+    {
+     "p": "Omar te repère.",
+     "s": "Surveille l'indicateur et reste dans une autre pièce ; s'il vient vers toi, cache le drone et attends qu'il parte."
+    },
+    {
+     "p": "Tu ne sais pas où placer les caméras.",
+     "s": "Salon : près de la télé et sur l'étagère en face. Cuisine : coin du comptoir, haut du frigo, étagère près de l'entrée. Chambre : étagère à droite du lit."
+    }
+   ],
+   "plus": [
+    "Le drone garde sa hauteur seul : les gâchettes servent à monter et descendre.",
+    "Ramener le drone à la camionnette donne un bonus « professionnel »."
+   ]
+  },
+  "delivery-method": {
+   "objectif": "Infiltrer l'aéroport en livreur pour pirater la base de données de la sécurité.",
+   "avant": "Après « Jeu de pouvoir » : va en Jason à la salle de préparation.",
+   "apres": "power-play",
+   "erreurs": [
+    {
+     "p": "Tu ne peux pas monter à l'étage.",
+     "s": "Déclenche l'alarme incendie derrière l'accueil et attends que tout le monde sorte."
+    },
+    {
+     "p": "Tu te fais prendre.",
+     "s": "Va vite : si tu traînes, quelqu'un revient et tu es signalé pour intrusion. L'ordinateur est dans le bureau au fond à gauche."
+    }
+   ]
+  },
+  "team-building": {
+   "objectif": "Avec Lucia, faire ses preuves auprès de Kordell dans un combat en cage clandestin.",
+   "avant": "Après « Jeu de pouvoir » : Kordell donne rendez-vous à Ajax Gym.",
+   "apres": "power-play",
+   "erreurs": [
+    {
+     "p": "Tu perds le combat en cage.",
+     "s": "Pare et esquive avec le bouton affiché, puis contre-attaque : bien caler tes esquives facilite beaucoup ces combats."
+    }
+   ]
+  },
+  "fully-catered": {
+   "objectif": "Voler un camion de traiteur à l'aéroport et préparer les sacs de faux billets pour le braquage.",
+   "erreurs": [
+    {
+     "p": "Les employés te signalent.",
+     "s": "Contourne le bâtiment par la droite sans te faire voir, monte sur le toit, puis descends à gauche du camion du milieu. Le Slim Jim ouvre le camion rapidement."
+    }
+   ]
+  },
+  "vcia-takedown": {
+   "objectif": "Braquer la chambre forte de l'aéroport de Vice City avec l'équipe de Kordell, puis doubler l'équipe.",
+   "erreurs": [
+    {
+     "p": "Tu manques de temps sur le toit.",
+     "s": "5 minutes : élimine les gardes discrètement au pistolet silencieux. Le terminal est dans la zone grillagée du niveau supérieur."
+    },
+    {
+     "p": "Tu n'arrives pas à monter dans l'avion.",
+     "s": "Avec Jason, place-toi à droite de l'avion, près du train d'atterrissage."
+    },
+    {
+     "p": "Kordell attrape Lucia.",
+     "s": "Suis les boutons affichés, puis tire quand il est traîné vers la porte ouverte."
+    }
+   ],
+   "plus": [
+    "Raina tombe plus facilement que le costaud de « Têtes d'affiche ».",
+    "Tirer dans la jambe d'Omar ou l'assommer plutôt que le tuer donne un bonus « professionnel ».",
+    "Tu peux garder la mitrailleuse LMG-6 de Francisco ramassée à la fin."
+   ]
+  },
+  "tie-up-loose-ends": {
+   "objectif": "Attendre des nouvelles sur la vente du disque dur après le braquage de l'aéroport.",
+   "avant": "Commence après « Coup à l'aéroport VCIA ».",
+   "apres": "vcia-takedown",
+   "erreurs": [
+    {
+     "p": "Raul n'appelle jamais.",
+     "s": "C'est normal. C'est Valentina qui appelle : rappelle-la (ou sélectionne l'objectif sur la carte) pour accélérer. Un mot t'attend ensuite à l'accueil de l'hôtel Y."
+    }
+   ],
+   "plus": [
+    "Elle ne peut pas être manquée : elle se termine quand « Coucher de soleil » commence.",
+    "En attendant, la mission facultative de Yasmani « C'est là qu'est l'argent… » est disponible."
+   ]
+  },
+  "thats-where-the-money-is": {
+   "objectif": "Suivre un fourgon de transport de fonds jusqu'à une banque et en braquer la chambre forte, pour Yasmani.",
+   "avant": "Après « Coup à l'aéroport VCIA » : Yasmani te donne un tuyau.",
+   "apres": "vcia-takedown",
+   "erreurs": [
+    {
+     "p": "Le chauffeur te repère.",
+     "s": "Garde tes distances en suivant le fourgon."
+    },
+    {
+     "p": "Ton sac est plein.",
+     "s": "Donne le sac plein à ton partenaire ou passe à lui pour continuer à ramasser."
+    },
+    {
+     "p": "Tu n'arrives pas à semer la police (4 étoiles).",
+     "s": "La banque n'a pas de sortie arrière. Laisse ton partenaire conduire et tire. Une fois hors de vue, gare-toi loin de la route principale, change de voiture, enlève ton déguisement et mets chapeau et lunettes."
+    }
+   ],
+   "plus": [
+    "Yasmani vend ensuite des tuyaux sur les fourgons pour recommencer."
+   ],
+   "recompense": "environ 80 000 $ si tu prends tous les billets marqués"
+  },
+  "sunset": {
+   "objectif": "Retrouver Raul sur son bateau à la marina, puis échapper à la police avec Lucia.",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Raul.",
+     "s": "Dans la petite salle de bain, derrière la deuxième porte à gauche du bateau."
+    },
+    {
+     "p": "La fusillade sur les quais est trop dure.",
+     "s": "Abats l'hélicoptère tôt, passe de Jason à Lucia pour qu'ils se couvrent, et ne reste jamais à découvert."
+    },
+    {
+     "p": "Tu manques de munitions sur le bateau.",
+     "s": "Prends des armes dans l'armoire du bateau."
+    }
+   ]
+  },
+  "starting-from-zero": {
+   "objectif": "Récupérer le disque dur auprès d'Andrea et la statuette au garde-meuble, puis rencontrer Giorgio Gallo.",
+   "avant": "Enchaîne directement après « Coucher de soleil ».",
+   "apres": "sunset",
+   "erreurs": [
+    {
+     "p": "La police te repère en allant au stade.",
+     "s": "Andrea part alors et laisse le disque dur à récupérer. Changer de tenue dans un magasin avant aide à passer inaperçu."
+    },
+    {
+     "p": "Tu ne trouves pas Andrea.",
+     "s": "Dans les tribunes, vers l'extrémité sud-ouest du stade."
+    },
+    {
+     "p": "On te demande de tirer sur Mattia.",
+     "s": "L'arme n'est pas chargée : Mattia n'est pas blessé, quoi que tu fasses."
+    }
+   ],
+   "plus": [
+    "Laisse ta voiture au stade : prends celle garée devant le bâtiment des bateaux, au sud."
+   ]
+  },
+  "bird-in-the-hand": {
+   "objectif": "Pour Giorgio Gallo, repérer une base des garde-côtes, puis s'infiltrer de nuit dans une base militaire pour voler un hélicoptère.",
+   "avant": "Commence juste après « Repartir de zéro ».",
+   "apres": "starting-from-zero",
+   "erreurs": [
+    {
+     "p": "Les soldats te repèrent dans la base.",
+     "s": "Reste dans l'ombre : ils ne te voient pas. Marque les ennemis, ou siffle pour en attirer un et l'assommer. Le milieu des routes est assez calme."
+    },
+    {
+     "p": "Tu ne sais pas comment entrer dans le hangar.",
+     "s": "Monte dans le camion indiqué par Vinny (assomme le soldat accroupi à l'arrière), puis grimpe aux échelles sur le côté du hangar jusqu'à la trappe du toit."
+    },
+    {
+     "p": "Tu n'arrives pas à abattre les avions.",
+     "s": "Au lance-roquettes, garde chaque avion en visée jusqu'à ce que le carré devienne rouge, puis tire."
+    }
+   ],
+   "plus": [
+    "Les lunettes de vision nocturne se mettent et s'enlèvent à volonté.",
+    "Atteindre la trappe sans être repéré donne un bonus « professionnel ».",
+    "Le penthouse de Giorgio est ta base jusqu'à la fin de l'histoire."
+   ]
+  },
+  "taking-liberties": {
+   "objectif": "Écouter la proposition de Giorgio dans son spa, puis le suivre jusqu'à son bureau.",
+   "avant": "Suit « Un tiens vaut mieux… ».",
+   "apres": "bird-in-the-hand",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas Giorgio.",
+     "s": "Dans le spa, la pièce marquée à côté de la salle de sport."
+    }
+   ],
+   "plus": [
+    "Ensuite, deux missions se débloquent : « Doggy bag » (Vinny) et « VC Baby » (Mattia)."
+   ]
+  },
+  "doggie-bag": {
+   "objectif": "Avec Lucia, monter discrètement à bord d'un paquebot, endormir le chien Rocco et l'emporter jusqu'à l'hélicoptère.",
+   "avant": "Débloquée après « Prendre des libertés ».",
+   "apres": "taking-liberties",
+   "erreurs": [
+    {
+     "p": "Tu te fais repérer en montant à bord.",
+     "s": "Prends le couloir de gauche, ouvre la porte bleue « Storage » au Snap Gun, assomme l'employé, puis attends que les gardes quittent la passerelle."
+    },
+    {
+     "p": "Tu ne trouves pas Rocco.",
+     "s": "Près de la piscine, à l'arrière (sud-est), entouré de gardes. Les passerelles du bas sont plus éloignées des patrouilles."
+    },
+    {
+     "p": "Tu as peur de tuer les gardes.",
+     "s": "Le pistolet silencieux de Lucia tire des balles non mortelles : une balle dans la tête les assomme."
+    }
+   ],
+   "plus": [
+    "Laisse Rocco s'approcher, vise-le avec le Focus et donne-lui le biscuit drogué.",
+    "Pour rejoindre l'hélicoptère, longe le bord du pont jusqu'à l'arrière."
+   ]
+  },
+  "vc-baby": {
+   "objectif": "Si tu acceptes, voler la clé de voiture de Dardan et conduire Mattia à l'hôpital à temps.",
+   "avant": "Débloquée après « Prendre des libertés ».",
+   "apres": "taking-liberties",
+   "erreurs": [
+    {
+     "p": "Tu ne trouves pas la clé.",
+     "s": "Quand Lucia jette le téléphone de Dardan dans la piscine, prends la clé sur le canapé où il était assis."
+    },
+    {
+     "p": "Tu arrives trop tard.",
+     "s": "Un peu moins de 4 minutes : c'est large si tu conduis prudemment et n'abîmes pas la voiture."
+    }
+   ],
+   "plus": [
+    "Refuser d'aider termine la mission tout de suite : seule la scène finale change.",
+    "Arriver à temps donne le meilleur bonus de la mission."
+   ]
+  },
+  "operation-savage-glory": {
+   "objectif": "Avec l'équipe de Vinny, détruire un cargo rival et voler une cargaison à la base des garde-côtes.",
+   "erreurs": [
+    {
+     "p": "Tu ne vois pas les ennemis sur le cargo.",
+     "s": "Repère la lumière de leurs armes ; en approchant, Kevin les éclaire avec le projecteur."
+    },
+    {
+     "p": "Tu ne sais pas comment poser la charge sur le pilier.",
+     "s": "Fais glisser l'appareil sur le mur jusqu'à ce que la lumière arrière devienne vert vif, puis pose la charge. Pareil de l'autre côté."
+    },
+    {
+     "p": "Le filet heurte une tour ou le train.",
+     "s": "Quand Kevin prévient, passe du côté droit du filet."
+    }
+   ],
+   "plus": [
+    "Hélicoptère ennemi à gauche du cargo : abats-le dès qu'il apparaît.",
+    "Au lance-grenades (munitions illimitées), les hélicoptères qui suivent restent assez stables : cibles faciles.",
+    "À la fin, tu récupères tout ce que tu avais avant le chapitre 5."
+   ]
+  },
+  "honest-abe": {
+   "objectif": "Rencontrer Abe dans son bureau pour négocier un accord.",
+   "avant": "Commence juste après « Opération Savage Glory ».",
+   "apres": "operation-savage-glory",
+   "erreurs": [
+    {
+     "p": "Il ne se passe rien.",
+     "s": "La mission est une seule cinématique : ensuite, le monde ouvert est de nouveau entièrement disponible."
+    }
+   ]
+  },
+  "unfinished-business": {
+   "objectif": "Finir ce que tu veux en monde ouvert, puis signer l'accord d'Abe quand tu es prêt.",
+   "avant": "Commence juste après « Honnête Abe ».",
+   "apres": "honest-abe",
+   "erreurs": [
+    {
+     "p": "Il te manque de l'argent.",
+     "s": "Les honoraires d'Abe sont de 150 000 $, payés par BuckMe : réunis-les avant d'aller à son bureau."
+    },
+    {
+     "p": "Tu n'es pas prêt pour la fin.",
+     "s": "Quand le jeu demande si tu veux terminer l'histoire, choisis « Postpone » pour rester en monde ouvert."
+    }
+   ],
+   "plus": [
+    "Point de non-retour : après la signature, l'histoire part vers le final. Termine ce qui t'intéresse et fais une sauvegarde manuelle à part avant."
+   ]
+  },
+  "protective-custody": {
+   "objectif": "Survivre, avec Jason et Lucia séparés, à une embuscade de policiers corrompus, puis se retrouver face à Méndez.",
+   "avant": "Commence après la signature de l'accord d'Abe (« Affaires en suspens »). Elle enchaîne avec « Le bout de la route » jusqu'au générique.",
+   "apres": "unfinished-business",
+   "erreurs": [
+    {
+     "p": "Tu n'arrives pas à mettre la boule 8.",
+     "s": "Fais rebondir la boule blanche trois fois sur les bandes."
+    },
+    {
+     "p": "Tu manques de munitions au commissariat.",
+     "s": "Tu commences avec un seul chargeur : passe sur les ennemis tombés pour en ramasser. L'armurerie, à droite dans le couloir, a des armes longues et un gilet."
+    },
+    {
+     "p": "Méndez est trop résistant.",
+     "s": "Reste à couvert quand il tire ; vise sa tête au-dessus de l'arme dès que possible. Fouille les coffres des véhicules : armes, gilets, soins."
+    }
+   ],
+   "plus": [
+    "Fais une sauvegarde manuelle à part avant le final : les missions ne se rejouent pas et la sauvegarde automatique est écrasée après chaque mission.",
+    "Le choix final face à Méndez détermine une des fins. Attendre environ une minute fait apparaître une seconde option.",
+    "Selon le guide, la meilleure fin demande une relation « Hot Together », 2 000 000 $ d'épargne familiale et des profils criminels « propres »."
+   ]
+  },
+  "the-end-of-the-road": {
+   "objectif": "Mission finale : récupérer le disque dur dans le penthouse de Giorgio, puis fuir vers un aérodrome.",
+   "avant": "Suit directement « Garde à vue ».",
+   "apres": "protective-custody",
+   "erreurs": [
+    {
+     "p": "La mission est longue et difficile.",
+     "s": "Environ 25 minutes avant le choix final : à la marina de Brian, prends gilets et grenades, toutes les armes exposées sont à toi."
+    },
+    {
+     "p": "Tu ne sais pas comment rejoindre le bureau.",
+     "s": "Traverse l'étage et escalade la partie effondrée vers l'étage du dessus, puis contourne par les ascenseurs."
+    },
+    {
+     "p": "Lucia tombe de la grue.",
+     "s": "Cours au bout de la grue et saute juste quand elle commence à tomber."
+    }
+   ],
+   "plus": [
+    "Au pont, la fin dépend surtout de ta sauvegarde (relation, épargne, profils criminels), pas seulement du bouton choisi.",
+    "Après le générique, le jeu te ramène juste avant le final : tu peux le rejouer pour une autre fin."
+   ]
   }
  }
 }
