@@ -55,7 +55,8 @@
 ],
 "vapid-marshall": [
 "o-standout-vehicle-020",
-"o-vehicle-spawn-008"
+"o-vehicle-spawn-008",
+"o-standout-vehicle-113"
 ],
 "brute-boxville": [
 "o-standout-vehicle-021",
@@ -72,8 +73,7 @@
 "o-standout-vehicle-028"
 ],
 "vapid-dominator": [
-"o-standout-vehicle-029",
-"o-vehicle-spawn-013"
+"o-standout-vehicle-029"
 ],
 "lcc-avarus": [
 "o-standout-vehicle-030",
@@ -122,8 +122,7 @@
 "o-standout-vehicle-135"
 ],
 "invetero-coquette": [
-"o-standout-vehicle-053",
-"o-standout-vehicle-087"
+"o-standout-vehicle-053"
 ],
 "dundreary-chino-65": [
 "o-standout-vehicle-054"
@@ -209,7 +208,8 @@
 "o-standout-vehicle-094"
 ],
 "western-sovereign-107": [
-"o-vehicle-spawn-009"
+"o-vehicle-spawn-009",
+"o-standout-vehicle-100"
 ],
 "swamp-blaster": [
 "o-standout-vehicle-097"
@@ -261,5 +261,98 @@
 ],
 "buckingham-swift": [
 "o-standout-vehicle-147"
+],
+"vapid-dominator-65": [
+"o-vehicle-spawn-013"
+],
+"invetero-coquette-64": [
+"o-standout-vehicle-087"
+],
+"maibatsu-penumbra-ff": [
+"o-standout-vehicle-086"
+],
+"progen-emerus-royal-ruby": [
+"o-standout-vehicle-044"
+],
+"imponte-ruiner": [
+"o-standout-vehicle-098"
+],
+"imponte-phoenix-bloodbath": [
+"o-standout-vehicle-062"
+],
+"pegassi-tempesta": [
+"o-vehicle-spawn-024",
+"o-vehicle-spawn-039",
+"o-vehicle-spawn-007",
+"o-vehicle-request-002",
+"o-vehicle-spawn-018",
+"o-standout-vehicle-089",
+"o-standout-vehicle-090",
+"o-standout-vehicle-042"
+],
+"pegassi-infernus": [
+"o-standout-vehicle-102",
+"o-standout-vehicle-022",
+"o-vehicle-request-011"
+],
+"granforma-zorrusso": [
+"o-vehicle-request-013",
+"o-standout-vehicle-068"
+],
+"bravado-gauntlet-hellfire": [
+"o-vehicle-request-016"
+],
+"bravado-gauntlet-custom-69": [
+"o-standout-vehicle-127"
+],
+"dinka-enduro": [
+"o-vehicle-spawn-022"
+],
+"hauners-ridgway": [
+"o-standout-vehicle-063"
+],
+"lapwing-stolen-valor": [
+"o-standout-vehicle-066"
+],
+"mer-can-outlaw": [
+"o-standout-vehicle-110"
+],
+"gallivanter-baller-ii": [
+"o-standout-vehicle-119"
+],
+"buckingham-jubilee": [
+"o-standout-vehicle-145"
+],
+"bombora-s23": [
+"o-vehicle-spawn-012"
+],
+"grotti-cheetah-95": [
+"o-standout-vehicle-101",
+"o-vehicle-spawn-030"
+],
+"grotti-itali-rsx": [
+"o-vehicle-spawn-029"
+],
+"vapid-riata-classic": [
+"o-vehicle-spawn-036"
+],
+"schyster-woodland-85": [
+"o-standout-vehicle-095"
+],
+"shitzu-squalo": [
+"o-standout-vehicle-093"
+],
+"vapid-ganado": [
+"o-standout-vehicle-046"
+],
+"airgator-airboat-09": [
+"o-standout-vehicle-079",
+"o-standout-vehicle-043"
+],
+"mallard-flammes": [
+"o-standout-vehicle-111"
+],
+"declasse-bobcat-xl-84": [
+"o-standout-vehicle-061"
 ]
 }

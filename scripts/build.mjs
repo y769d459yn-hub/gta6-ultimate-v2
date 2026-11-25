@@ -584,7 +584,16 @@ function encyRefs(e) {
 }
 // Véhicules : nature de chaque emplacement, d'après le type de repère de la source (rien n'est déduit au-delà)
 const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule qui apparaît ici': 'Apparaît à cet endroit', 'Véhicule à commander': 'Lié à une demande (Moses ou Randy)', 'Location de véhicules': 'À louer' };
-const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : NATURE_V[f.properties.service] || 'Repère de la carte');
+// « Véhicule remarquable » des cartes de joueurs : une version unique (livrée ou préparation spéciale), pas le modèle de série
+const unique = (f) => /^o-standout-vehicle-/.test(f.properties.id);
+const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : unique(f) ? 'Version unique (livrée spéciale), garée à cet endroit' : NATURE_V[f.properties.service] || 'Repère de la carte');
+// emplacement d'une fiche (article) et repère d'une carte de joueurs au même endroit : deux sources concordent, sans vérification en jeu
+function concorde(slug, ids = []) {
+  const v = mapIndex['v-' + slug]; if (!v) return null;
+  let best = null;
+  for (const id of ids) { const f = mapIndex[id]; if (!f || !/^o-/.test(id)) continue; const d = Math.hypot(f.geometry.coordinates[0] - v.geometry.coordinates[0], f.geometry.coordinates[1] - v.geometry.coordinates[1]); if (d < 400 && (!best || d < best.d)) best = { d, f }; }
+  return best;
+}
 const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
 // Un seul bloc en haut de fiche : la réponse, l'action principale, les favoris.
 // lieux : repères de la carte ; texte : emplacement décrit ; fiab : fiabilité de l'emplacement ; etapes : méthode d'obtention vérifiée par les sources de la fiche
@@ -597,6 +606,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
     ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
     ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits :</p>` : ''}
+    ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
     ${lieux.length && (plusieurs || !texte) ? `<ul class="vdlg-lo">${lieux.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}<br><small>${esc(natureLieu(f))} · source : ${esc(sourceLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
@@ -951,7 +961,8 @@ for (const v of VEHICULES) {
   ${(() => {
     const lieux = [onM && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).map((id) => mapIndex[id])].filter(Boolean);
     const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
-    const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}` };
+    const cc = concorde(v.slug, CAT_CARTE[v.slug]);
+    const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}${cc ? ` · même endroit sur Open GTA 6 Map (carte de joueurs, à ~${Math.max(10, Math.round(cc.d / 10) * 10)} m) : deux sources concordent, non vérifié en jeu` : ''}` };
     return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, conseil: !!v.conseil, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
       + blocFiab({ presence: esc(presenceTxt(v.slug, v.sources)), emplacement: `${esc(statut(v.dispo).nom)} · ${esc(fiab.texte)}`, obtention: `${esc(statut(v.dispo).nom)} · étapes tirées des mêmes sources` });
   })()}
