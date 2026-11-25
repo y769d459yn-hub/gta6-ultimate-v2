@@ -270,6 +270,10 @@
 .v2 .code-ico { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); color: var(--c); }
 .v2 .code-ico .ic { width: 20px; height: 20px; }
 .v2 .code-h h3 { margin: 0; font: 600 1.08rem/1.2 var(--fd); color: var(--tx); }
+/* favori d'un code : cœur rond en haut à droite de la carte */
+.v2 .code-fav { flex: none; display: grid; place-items: center; width: 44px; height: 44px; margin-left: auto; border-radius: 50%; border: 1px solid var(--hair2, rgba(255, 255, 255, .14)); background: transparent; cursor: pointer; }
+.v2 .code-fav .ic { width: 20px; height: 20px; }
+.v2 .code-fav[aria-pressed="true"] { border-color: var(--pink); }
 .v2 .code-h small { font: 500 .74rem/1.2 var(--fm); color: var(--tx2); }
 .v2 .code-effet { margin: 0; font: 500 .95rem/1.45 var(--fd); color: var(--tx); }
 .v2 .code-seq { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 10px; border-radius: 12px; background: rgba(0, 0, 0, .35); border: 1px solid var(--hair, rgba(255, 255, 255, .08)); }

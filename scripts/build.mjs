@@ -1320,7 +1320,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   const C = CODES.codes, cats = CODES.categories;
   const connus = C.filter((c) => c.sequence.length).length;
   const carte = (c, k) => `<article class="code" id="${c.id}" style="--c:${k.color}" data-cat="${c.cat}" data-seq="${c.sequence.length ? 1 : 0}" data-text="${esc(norm([c.nom, c.nomEn, c.effet, c.deblocage, k.nom].join(' ')))}">
-    <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3></div></header>
+    <header class="code-h"><span class="code-ico">${icon(k.icon)}</span><div><h3>${esc(c.nom)}</h3></div><button class="code-fav fav--mini" type="button" data-fav='${esc(JSON.stringify({ id: c.id, type: 'code', t: c.nom, u: `codes/#${c.id}`, i: k.icon, c: k.color }))}' aria-pressed="false" aria-label="Favori : code ${esc(c.nom)}">${icon('heart')}</button></header>
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.variantes ? `<p class="code-tba">${icon('alert')}Deux combinaisons différentes circulent, aucune n'est vérifiée en jeu.</p>${c.variantes.map((v, i) => `<div class="code-var">${fleches(v.sequence, `Version ${'AB'[i]}, selon ${esc(v.sources.join(' et '))} (${v.sequence.length} flèches, non vérifiée) :`)}</div>`).join('')}` : c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
@@ -1597,10 +1597,11 @@ for (const a of ACTUS) {
   const body = `<section class="wrap section" data-favs>
   <h1 class="h1">Mes favoris</h1>
   <p class="lead">Retrouve ce que tu as enregistré.</p>
-  <div class="doors doors--3" role="group" aria-label="Type" data-fav-filter>
+  <div class="doors doors--4" role="group" aria-label="Type" data-fav-filter>
     <button class="door" type="button" data-value="astuce" aria-pressed="false" style="--c:#ff2d87"><span class="door-ico">${icon('bolt')}</span><span>Astuces</span><small data-fc="astuce">0</small></button>
     <button class="door" type="button" data-value="vehicule" aria-pressed="false" style="--c:#ff9a1f"><span class="door-ico">${icon('car')}</span><span>Véhicules</span><small data-fc="vehicule">0</small></button>
     <button class="door" type="button" data-value="lieu" aria-pressed="false" style="--c:#19d3e3"><span class="door-ico">${icon('pin')}</span><span>Lieux</span><small data-fc="lieu">0</small></button>
+    <button class="door" type="button" data-value="code" aria-pressed="false" style="--c:#9b6bff"><span class="door-ico">${icon('code')}</span><span>Codes</span><small data-fc="code">0</small></button>
   </div>
   <div class="filterbar"><label class="sort">${icon('sliders')}<select data-fav-sort aria-label="Trier"><option value="recent">Récent</option><option value="alpha">A → Z</option></select></label></div>
   <div class="list" data-fav-list></div>
