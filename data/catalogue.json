@@ -1,5 +1,5 @@
 {
- "info": "Catalogue des véhicules confirmés de GTA 6. Sources : GTABase et gta6guide.fr (relevés du 22/11/2026). Généré par tools/catalogue.py.",
+ "info": "Catalogue des véhicules recensés dans GTA 6 (présence vérifiée séparément dans verification.json). Sources : GTABase et gta6guide.fr (relevés du 22/11/2026). Généré par tools/catalogue.py.",
  "groupes": [
   {
    "id": "supercars",
