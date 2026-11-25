@@ -104,3 +104,7 @@ titre "14. Favoris des codes et Jet"
 curl -sS --max-time 20 "https://$D/codes/?t=$(date +%s)" -o /tmp/cf.html; echo "codes : $(grep -o 'class="code-fav' /tmp/cf.html | wc -l) cœurs (19 attendus)"
 curl -sS --max-time 20 "https://$D/vehicules/jet/?t=$(date +%s)" -o /tmp/jet.html; echo "jet : $(grep -c 'aéroport international de Vice City' /tmp/jet.html) emplacement GTA Wiki"
 echo "codes : $(grep -o 'class="code-src' /tmp/cf.html | wc -l) mentions sous les codes (0 attendu) | $(grep -c 'code-plat' /tmp/cf.html) ligne plateforme (0 attendu)"
+
+titre "15. Carte : repère choisi gardé"
+curl -sS --max-time 20 "https://$D/carte/?t=$(date +%s)" -o /tmp/ca.html; echo "carte : $(grep -c 'data-keep' /tmp/ca.html) rappel repère choisi"
+echo "carte.js : $(curl -sS --max-time 20 "https://$D/assets/carte.js?t=$(date +%s)" | grep -c 'data-keep-voir') bouton Voir | atlas.css : $(curl -sS --max-time 20 "https://$D/assets/atlas.css?t=$(date +%s)" | grep -c 'overflow:clip') calque bloqué"
