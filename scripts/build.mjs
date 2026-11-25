@@ -428,8 +428,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${R}manifest.webmanifest">
 <link rel="apple-touch-icon" href="${R}assets/apple-touch-icon.png">
-${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+${v2 ? `<link rel="preload" href="${R}assets/inter-tight-latin-var.woff2" as="font" type="font/woff2" crossorigin>${cls === 'home' ? '' : `\n<link rel="preload" href="${R}assets/jetbrains-mono-latin-var.woff2" as="font" type="font/woff2" crossorigin>`}` : `<link rel="preload" href="${R}assets/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${R}assets/anton-latin.woff2" as="font" type="font/woff2" crossorigin>`}
 <link rel="stylesheet" href="${R}assets/app.css">${v2 ? `\n<link rel="stylesheet" href="${R}assets/home.css">` : ''}${styles.map((f) => `\n<link rel="stylesheet" href="${R}assets/${f}">`).join('')}
 <script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('ready-fallback')},1600);try{var P=JSON.parse(localStorage.getItem('lg:prefs')||'{}');var t=P.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme: light)').matches?'day':'night';document.documentElement.dataset.theme=t;if(P.motion==='off')document.documentElement.dataset.motion='off';if(P.size)document.documentElement.dataset.size=P.size;if(P.spoil==='off')document.documentElement.dataset.spoil='off'}catch(e){}</script>
@@ -634,7 +633,8 @@ function homePalms() {
       <span class="ht-go" aria-hidden="true">${icon('arrow-right')}</span>
     </a>`).join('');
   // chemins relatifs à assets/home.css (variable CSS) : images de la maquette (m-…) dans assets/, photos du jeu dans photos/
-  const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : `../photos/${n}.webp`);
+  // photos : version allégée de 720 px pour les fonds des cartes (scripts/vignettes-accueil.py), sinon l'originale
+  const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : fs.existsSync(path.join(ROOT, 'src', 'img', `hx-${n}.webp`)) ? `hx-${n}.webp` : `../photos/${n}.webp`);
   const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
   const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
   const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547']];
@@ -681,7 +681,7 @@ function homePalms() {
 <section class="wrap hx-sec">
   <a class="hx-map" href="${R}carte/">
     <span class="hx-map-t"><b>${icon('pin')}Carte interactive de Leonida</b><small>Explore la carte de GTA 6 : missions, véhicules, lieux secrets, objets à collectionner et bien plus.</small><span class="hx-btn">${icon('map')}Ouvrir la carte${icon('arrow-right')}</span></span>
-    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/m-carte.webp" alt=""${wh('img/m-carte.webp')} loading="lazy" decoding="async"></span>
+    <span class="hx-map-img" aria-hidden="true"><img src="${R}assets/m-carte.webp" srcset="${R}assets/m-carte-480.webp 480w, ${R}assets/m-carte.webp 872w" sizes="(min-width: 900px) 440px, 40vw" alt=""${wh('img/m-carte.webp')} loading="lazy" decoding="async"></span>
   </a>
 </section>
 
