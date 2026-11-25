@@ -14,6 +14,7 @@
   "lure-predator-l35p-police-boat": { "page": "L35P (police)", "obtenir": "Une version aux couleurs de la police de Watson Bay est posée sur une remorque à l'endroit indiqué sur la carte.", "points": [[-5216, -3289, "L35P de la police de Watson Bay (sur remorque)"]] },
   "mtl-pumper": { "page": "Pumper", "obtenir": "Cinq sont garés devant la caserne de pompiers de Hamlet, et quatre devant celle de Key Lento.", "points": [[-3242, -3058, "Pumpers de la caserne de Hamlet"], [-1881, -5341, "Pumpers de la caserne de Key Lento"]] },
   "hauners-rhino-tank": { "page": "Rhino", "obtenir": "Se trouve à la base aérienne de Mile Zero : le voler donne immédiatement 3 étoiles de recherche. Il apparaît aussi aux barrages de police à 6 étoiles, où il ouvre le feu.", "repere": "mile-zero" },
-  "vapid-shuttle": { "page": "Shuttle", "obtenir": "Souvent en circulation autour de Key Lento." }
+  "vapid-shuttle": { "page": "Shuttle", "obtenir": "Souvent en circulation autour de Key Lento." },
+  "jet": { "page": "Jet", "obtenir": "Plusieurs sont garés autour de l'aéroport international de Vice City (VCIA) ; on en voit souvent décoller et atterrir." }
  }
 }
