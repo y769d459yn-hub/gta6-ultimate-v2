@@ -1324,7 +1324,6 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.variantes ? `<p class="code-tba">${icon('alert')}Deux combinaisons différentes circulent, aucune n'est vérifiée en jeu.</p>${c.variantes.map((v, i) => `<div class="code-var">${fleches(v.sequence, `Version ${'AB'[i]}, selon ${esc(v.sources.join(' et '))} (${v.sequence.length} flèches, non vérifiée) :`)}</div>`).join('')}` : c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
-    ${c.sequence.length && !confirme(c) ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${c.contradiction ? `Contradictoire : ${esc(c.contradiction)}` : confirme(c) ? `Recoupée par deux sources distinctes : ${esc(indepNoms(c.sources).join(', '))}${c.sources.some((n) => NON_INDEP[n]) ? ` (et ${esc(c.sources.filter((n) => NON_INDEP[n]).join(', '))}, qui reprend d'autres guides)` : ''}` : `À vérifier : une seule source (hors agrégateurs) (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026${c.note ? `<br>${esc(c.note)}` : ''}</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
