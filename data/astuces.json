@@ -808,7 +808,7 @@
   "asavoir": "Pas de limite par jour, mais une courte attente entre deux ventes. Une voiture abîmée rapporte moins. Moses peut aussi immatriculer une voiture volée pour que tu la gardes, et te laisse ranger un véhicule de plus au Port Gellhorn Station Garage.",
   "duree": 5,
   "niveau": "facile",
-  "statut": "confirme",
+  "statut": "a-verifier",
   "sources": [
    "consolepulse-money",
    "rarethief-sell",
@@ -1295,7 +1295,7 @@
   "icon": "code",
   "titre": "Quels sont tous les codes connus ?",
   "court": "Tous les codes connus",
-  "reponse": "19 codes ont une combinaison connue, dont 17 confirmées par plusieurs guides. Chaque code se débloque d'abord par un défi, puis se tape au téléphone.",
+  "reponse": "19 codes ont une combinaison connue, dont 16 recoupées par deux sources distinctes (une autre est contradictoire). Chaque code se débloque d'abord par un défi, puis se tape au téléphone.",
   "etapes": [
    "250 000 $ : ↑ → ↓ ← ↑ ← ↓ → (après l'histoire).",
    "Focus illimité : ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ → (après l'histoire).",
@@ -2024,7 +2024,7 @@
   "asavoir": "Les voitures électriques se rechargent aux bornes. Une voiture volée peut avoir peu d'essence.",
   "duree": 1,
   "niveau": "facile",
-  "statut": "confirme",
+  "statut": "a-verifier",
   "sources": [
    "stealthy-steal",
    "gamesgg-joey"
