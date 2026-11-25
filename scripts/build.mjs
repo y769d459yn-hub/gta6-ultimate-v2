@@ -615,9 +615,9 @@ function homePalms() {
   const fill = (t, c) => t.replace('{n}', counts[c] ?? '').replace('{date}', fmtDate(ACTUS[0].date));
   const shortcuts = H.enCeMoment.astuces.map((s) => A[s]);
   const TOP = [
-    ['codes/', 'Codes de triche PS5 et Xbox', `${CODES.codes.length} codes connus`, 'code', '#9b6bff'],
+    ['codes/', 'Codes de triche PS5 et Xbox', `${CODES.codes.length} codes relevés`, 'code', '#9b6bff'],
     ['dossiers/argent-rapide/', 'Gagner de l\'argent vite', 'Dossier complet', 'money', '#3ddc84'],
-    ['dossiers/codes-coffres/', 'Tous les codes de coffres', 'Dossier complet', 'bank', '#ffb547'],
+    ['dossiers/codes-coffres/', 'Les codes de coffres connus', 'Dossier', 'bank', '#ffb547'],
     ['carte/', 'La carte interactive', `${counts.reperes} repères`, 'map', '#2de2e6'],
     ['carte/?cat=armes', 'Où trouver les armes', 'Sur la carte', 'gun', '#ff5a5a'],
     ['astuces/voiture-rare/', 'Voitures rares', 'Astuce', 'car', '#ff9a1f'],
@@ -642,7 +642,7 @@ function homePalms() {
   const POP = [
     ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'm-codes', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
     ['dossiers/secrets/', 'Secrets', 'Secrets et Easter eggs de Leonida', 'm-secrets', '#9d7bff', 'Bigfoot, OVNI, fantômes…'],
-    ['dossiers/codes-coffres/', 'Coffres', 'Tous les codes de coffres', 'vapid-stanier-55', '#ffb547', 'Repaires de gangs et lieux secrets'],
+    ['dossiers/codes-coffres/', 'Coffres', 'Les codes de coffres connus', 'vapid-stanier-55', '#ffb547', 'Repaires de gangs et lieux secrets'],
     ['dossiers/100-pour-cent/', '100 %', 'Finir GTA 6 à 100 %', 'kayak-crest', '#2de2e6', 'La checklist complète'],
     ['astuces/voiture-rare/', 'Véhicules', 'Trouver une voiture rare', 'progen-emerus-royal-ruby', '#ffb547', 'Où sont garées les plus belles'],
     ['carte/?cat=armes', 'Armes', 'Où trouver les armes', 'jets-militaires', '#ff5a5a', 'Armes au sol et armes uniques']
@@ -850,7 +850,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   const ty = (id) => [...VEHICULES.filter((v) => v.type === id), ...CATALOGUE.vehicules.filter((x) => x.type === id)].length;
   const body = `<section class="wrap section" data-vlist>
   <h1 class="h1">Quel véhicule cherches-tu ?</h1>
-  <p class="lead veh-lead"><b>${total}</b> véhicules · <b>${nbOu}</b> avec un emplacement relevé. Touche <b>Où le trouver ?</b> pour ouvrir la carte.</p>
+  <p class="lead veh-lead"><b>${total}</b> véhicules recensés · <b>${nbOu}</b> avec un emplacement relevé. Touche <b>Où le trouver ?</b> pour ouvrir la carte.</p>
   ${fieldFilter('Nom, marque ou vraie voiture')}
   <div class="doors doors--5" role="group" aria-label="Type" data-vtype>
     ${site.categories.vehicules.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ty(c.id)}</small></button>`).join('')}
@@ -869,7 +869,8 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   <p class="note veh-sources">${icon('info')}<span>Liste et caractéristiques : <a href="https://www.gtabase.com/fr/gta-6/vehicules/" target="_blank" rel="noopener">GTABase</a> et <a href="https://gta6guide.fr/gta-6/vehicules" target="_blank" rel="noopener">gta6guide.fr</a>, recoupées avec GTA Wiki. Emplacements : repères de la carte (Open GTA 6 Map et GTA Wiki, relevés par la communauté). Photos : Rockstar Games (via GTABase, GTA Wiki) et gta6guide.fr, choisies parmi les plus nettes.</span></p>
   <a class="btn btn--wide" href="${R}carte/?cat=vehicules">${icon('map')}Voir tous les véhicules sur la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste complète, photos et emplacements', desc: `Les ${total} véhicules de GTA 6 avec photo, et un bouton pour ouvrir la carte à l'endroit où les trouver (${nbOu} emplacements connus).`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
+  const aConfirmer = [...VEHICULES, ...CATALOGUE.vehicules].filter((y) => (VERIF[y.slug] || {}).statut !== 'confirme').length;
+  emit(p, layout({ p, title: 'Véhicules GTA 6 : liste, photos et emplacements', desc: `${total} véhicules de GTA 6 recensés (dont ${aConfirmer} encore à confirmer), avec photo quand elle existe. ${nbOu} ont un emplacement relevé par les joueurs, à ouvrir sur la carte.`, body, cls: 'p-list', scripts: ['catalogue.js'], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/']] }));
 }
 for (const v of VEHICULES) {
   const p = `vehicules/${v.slug}/`, R = R_(p);
@@ -905,7 +906,7 @@ for (const v of VEHICULES) {
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sourcesBlock(v.sources)}
 </article>`;
-  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(`Où trouver ${v.nom} dans GTA 6 :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article',
+  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(['confirme', 'teste'].includes(v.dispo) ? `Où trouver ${v.nom} dans GTA 6 :` : `Où trouver ${v.nom} dans GTA 6 (emplacement signalé, à vérifier) :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article',
     image: PHOTOS[v.slug] ? `photos/${PHOTOS[v.slug].fichier}` : '',
     schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${v.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(PHOTOS[v.slug] ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/photos/${PHOTOS[v.slug].fichier}`, ...(PHOTOS[v.slug].credit ? { creditText: PHOTOS[v.slug].credit } : {}) } } : {}) }], scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
 }
@@ -1000,7 +1001,7 @@ const COLL = (() => {
       <span class="col-t"><b>${esc(it.f.properties.nom)}</b>${it.f.properties.desc ? `<small>${esc(it.f.properties.desc)}</small>` : ''}</span>
       <a class="col-map" href="${R}carte/?focus=${it.f.properties.id}" aria-label="Voir « ${esc(it.f.properties.nom)} » sur la carte">${icon('map')}<span>Carte</span></a></li>`;
     const body = `<section class="wrap section col" data-col style="--c:#ff2bd6">
-  <h1 class="h1">${esc(T.pluriel)} GTA 6 : tous les emplacements</h1>
+  <h1 class="h1">${esc(T.pluriel)} GTA 6 : les emplacements</h1>
   <p class="lead">${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} repéré${T.items.length > 1 ? 's' : ''}, rangé${T.items.length > 1 ? 's' : ''} par secteur. Touche <b>Carte</b> pour voir l'endroit exact, et coche ce que tu as trouvé.</p>
   <div class="col-prog" aria-live="polite"><span><b data-col-n>0</b> / ${T.items.length} trouvés</span><i class="col-bar"><i data-col-bar></i></i></div>
   ${fieldFilter('Chercher un nom ou un secteur')}
@@ -1011,7 +1012,7 @@ const COLL = (() => {
   <section class="related"><h2 class="h3">${icon('badge')}Autres objets à collectionner</h2><div class="minis">${COLL.filter((x) => x !== T).map((x) => `<a class="mini" href="${R}collection/${x.slug}/" style="--c:#ff2bd6"><span class="mini-ico">${icon(x.icon)}</span><span><small>${x.items.length} emplacements</small><b>${esc(x.pluriel)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>
 </section>`;
     emit(p, layout({
-      p, title: titreSEO(`${T.pluriel} GTA 6 : tous les emplacements`, `${T.pluriel} GTA 6 : emplacements`), desc: descSEO(`Les ${T.items.length} emplacements de ${T.pluriel.toLowerCase()} repérés dans GTA 6, rangés par secteur, avec un lien vers la carte interactive et une case pour cocher ceux que tu as trouvés.`),
+      p, title: titreSEO(`${T.pluriel} GTA 6 : ${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} repéré${T.items.length > 1 ? 's' : ''}`, `${T.pluriel} GTA 6 : emplacements`), desc: descSEO(`${T.items.length} emplacement${T.items.length > 1 ? 's' : ''} de ${T.pluriel.toLowerCase()} repéré${T.items.length > 1 ? 's' : ''} par les joueurs dans GTA 6, rangé${T.items.length > 1 ? 's' : ''} par secteur, avec un lien vers la carte interactive et une case pour cocher ceux que tu as trouvés.`),
       body, cls: 'p-list', scripts: ['collection.js'], crumbs: [['Accueil', ''], ['Objets à collectionner', 'collection/'], [T.pluriel, p]]
     }));
   }
@@ -1023,7 +1024,7 @@ const COLL = (() => {
   <a class="btn btn--wide" href="${R}carte/?cat=collection">${icon('map')}Voir tous les objets sur la carte</a>
   <p class="note">${icon('info')}<span>Emplacements relevés par la communauté : ${OGM_SRC}. Ils ne sont pas encore tous vérifiés en jeu.</span></p>
 </section>`;
-  emit(p, layout({ p, title: 'Objets à collectionner GTA 6 : tous les emplacements', desc: descSEO(`Les ${total} objets à collectionner de GTA 6 repérés sur la carte, par type : cartes, scans WAiNK, caisses jaunes, paquets cachés, météorites et plus.`), body, cls: 'p-list', scripts: ['collection.js'], crumbs: [['Accueil', ''], ['Objets à collectionner', p]] }));
+  emit(p, layout({ p, title: `Objets à collectionner GTA 6 : ${total} emplacements repérés`, desc: descSEO(`${total} emplacements d'objets à collectionner de GTA 6 repérés par les joueurs, par type : cartes, scans WAiNK, caisses jaunes, paquets cachés, météorites et plus.`), body, cls: 'p-list', scripts: ['collection.js'], crumbs: [['Accueil', ''], ['Objets à collectionner', p]] }));
 }
 
 // ---------- MISSIONS ET SOLUTIONS ----------
@@ -1047,7 +1048,7 @@ const COLL = (() => {
   </details>`;
   const body = `<section class="wrap section missions" data-missions>
   <h1 class="h1">Missions et solutions</h1>
-  <p class="lead">Toute l'histoire dans l'ordre et par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
+  <p class="lead">L'histoire dans l'ordre et par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
   <div class="mis-now" data-mnow>
     <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
     <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>
@@ -1083,7 +1084,7 @@ const COLL = (() => {
   </section>
   <p class="note veh-sources">${icon('info')}<span>Liste et ordre des missions : <a href="https://www.gtabase.com/gta-6/missions" target="_blank" rel="noopener">GTABase</a>, recoupés avec <a href="https://gta6guide.fr/gta-6/missions" target="_blank" rel="noopener">gta6guide.fr</a> et <a href="https://gta.wiki/w/Missions_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> (relevé du 22/11/2026). Les résumés et les étapes sont écrits par GTA 6 Facile.</span></p>
 </section>`;
-  emit(p, layout({ p, title: 'Missions GTA 6 : toutes les solutions, chapitre par chapitre', desc: `Toutes les missions de GTA 6 (histoire et ${fac} facultatives) avec une solution courte, étape par étape, et de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
+  emit(p, layout({ p, title: 'Missions GTA 6 : solutions chapitre par chapitre', desc: `Solutions de ${MS.length} missions de GTA 6 (histoire principale et ${fac} missions facultatives), étape par étape, avec de l'aide si tu es bloqué.`, body, cls: 'p-list', scripts: ['missions.js'], crumbs: [['Accueil', ''], ['Missions', 'missions/']] }));
 }
 
 // ---------- PAGES DES MISSIONS (une URL par mission) ----------
@@ -1189,7 +1190,7 @@ const COLL = (() => {
     }));
   }
   const p = 'dossiers/', R = R_(p);
-  emit(p, layout({ p, title: 'Tous les guides GTA 6 : dossiers, astuces, codes et missions', desc: 'Tous les guides GTA 6 au même endroit : dossiers complets, astuces par thème, codes de triche, missions, véhicules et carte interactive.', cls: 'p-list', crumbs: [['Accueil', ''], ['Tous les guides', p]],
+  emit(p, layout({ p, title: 'Guides GTA 6 : dossiers, astuces, codes et missions', desc: 'Tous nos guides GTA 6 au même endroit : dossiers détaillés, astuces par thème, codes de triche, missions, véhicules et carte interactive.', cls: 'p-list', crumbs: [['Accueil', ''], ['Tous les guides', p]],
     body: (() => {
       // les plus recherchés d'abord : dossiers et rubriques phares, puis les astuces par intérêt
       const CATS = Object.fromEntries(site.categories.astuces.map((c) => [c.id, c]));
@@ -1239,12 +1240,12 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="code-effet">${esc(c.effet)}</p>
     ${c.sequence.length ? fleches(c.sequence) : `<p class="code-tba">${icon('question')}Combinaison pas encore découverte</p>`}
     <p class="code-unlock">${icon('trophy')}<span><b>Pour le débloquer :</b> ${esc(c.deblocage)}</span></p>
-    <p class="code-plat">${icon('gamepad')}PS5 et Xbox Series (même combinaison)</p>
+    <p class="code-plat">${icon('gamepad')}PS5 et Xbox Series : les sources donnent la même combinaison</p>
     ${c.sequence.length ? `<p class="code-src ${confirme(c) ? 'is-ok' : 'is-warn'}">${icon(confirme(c) ? 'check' : 'alert')}${confirme(c) ? `Confirmée : ${esc(c.sources.join(', '))}` : `À vérifier : une seule source (${esc(c.sources.join(', '))})`} · relevé du 22/11/2026</p>` : ''}
   </article>`;
   const body = `<section class="wrap section codes" data-codes>
   <h1 class="h1">Codes de triche GTA 6</h1>
-  <p class="lead">Les <b>${C.length} codes de triche de GTA 6 (PS5 et Xbox) dont la combinaison est connue</b>. Pour chaque code : ce qu'il fait, comment le débloquer et les flèches à taper. Les codes dont la combinaison n'a pas encore été découverte ne sont pas listés : ils seront ajoutés dès qu'elle sera trouvée.</p>
+  <p class="lead"><b>${C.length} codes de triche de GTA 6 (PS5 et Xbox)</b> dont la combinaison a été relevée par les joueurs et les guides : <b>${C.filter(confirme).length}</b> sont recoupées par au moins deux sources, les autres restent à vérifier. Pour chaque code : ce qu'il fait, comment le débloquer, les flèches à taper et les sources. Rockstar n'a pas publié de liste officielle.</p>
   <ol class="howto">
     <li><span class="howto-n">1</span><span>${icon('flag')}<b>Termine l'histoire</b> La liste des codes apparaît dans le menu Progression.</span></li>
     <li><span class="howto-n">2</span><span>${icon('trophy')}<b>Débloque le code</b> Chaque code a son défi (sport, tir, collection…).</span></li>
@@ -1268,7 +1269,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   </section>
   <p class="note veh-sources">${icon('info')}<span>Sources : <a href="https://www.gtabase.com/gta-6/gta-6-cheats-ps5-cheat-codes" target="_blank" rel="noopener">GTABase</a>, <a href="https://gta.wiki/w/Cheats_in_GTA_VI" target="_blank" rel="noopener">GTA Wiki</a> et <a href="https://gta6guide.fr/gta-6/codes-triche" target="_blank" rel="noopener">gta6guide.fr</a> (relevé du 22/11/2026). Une combinaison est dite confirmée quand au moins deux de ces guides donnent la même.</span></p>
 </section>`;
-  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : les ${C.length} codes`, desc: `Les ${connus} codes de triche de GTA 6 sur PS5 et Xbox dont la combinaison est connue : ce que fait chaque code, comment le débloquer et les flèches à taper.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
+  emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : ${C.length} codes relevés`, desc: `${connus} codes de triche de GTA 6 relevés par les joueurs, dont ${C.filter(confirme).length} recoupés par au moins deux guides : effet, déblocage, flèches à taper et sources de chaque code.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -1299,7 +1300,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   <div class="atp-panel" data-panel role="region" aria-label="Détails" hidden aria-live="polite"></div>
   <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0. Objets, armes, véhicules, braquages, commerces et activités : <a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, positions converties et textes traduits.</p></details>
 </section>`;
-  emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: 'Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de 900 lieux repérés par la communauté.', body, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
+  emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: `Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de ${Math.floor(communaute.length / 100) * 100} lieux repérés par la communauté (non vérifiés).`, body, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
 }
 
 // ---------- LIEUX ----------
@@ -1340,7 +1341,7 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   ${moreBtn}
   <a class="btn btn--wide" href="${R}carte/">${icon('map')}Ouvrir la carte</a>
 </section>`;
-  emit(p, layout({ p, title: 'Lieux GTA 6 : régions, quartiers et points d\u2019intérêt', desc: `Les ${LIEUX.length} lieux de GTA 6 par région et par type : où ils sont, comment y aller, les véhicules et les missions qui s'y trouvent.`, body, cls: 'p-list', crumbs: [['Accueil', ''], ['Lieux', 'lieux/']] }));
+  emit(p, layout({ p, title: 'Lieux GTA 6 : régions, quartiers et points d\u2019intérêt', desc: `${LIEUX.length} lieux de GTA 6 par région et par type : où ils sont, comment y aller, les véhicules et les missions qui s'y trouvent.`, body, cls: 'p-list', crumbs: [['Accueil', ''], ['Lieux', 'lieux/']] }));
 }
 
 // personnages de l'encyclopédie, pour relier les missions qu'ils donnent
@@ -1443,7 +1444,7 @@ for (const e of ENC) {
   ${(() => { const ms = e.cat === 'personnages' ? MISSIONS.missions.filter((m) => (m.donneur || '').split(', ').includes(e.nom)) : []; return ms.length ? `<section class="related"><h2 class="h3">${icon('flag')}Missions données par ${esc(e.nom.split(' ')[0])} (${ms.length})</h2><div class="minis">${ms.map((m) => `<a class="mini" href="${R}missions/${m.id}/" style="--c:#ff3d6e"><span class="mini-ico">${icon('flag')}</span><span><small>${m.chapitre === 'prologue' ? 'Prologue' : `Chapitre ${m.chapitre}`}</small><b>${esc(m.nom)}</b></span>${icon('arrow-right')}</a>`).join('')}</div></section>` : ''; })()}
   ${sourcesBlock(e.sources)}
 </article>`;
-  emit(p, layout({ p, title: `${e.nom} dans GTA 6 : informations et guide`, desc: `Informations claires sur ${e.nom} dans GTA 6, avec sources et distinction entre faits confirmés et hypothèses.`, body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Encyclopédie', 'encyclopedie/'], [c.nom, `encyclopedie/?cat=${e.cat}`], [e.nom, p]], schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${e.nom} dans GTA 6`, description: e.bref, inLanguage: 'fr', dateModified: site.majLe, about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' } }] }));
+  emit(p, layout({ p, title: `${e.nom} dans GTA 6 : informations et guide`, desc: descSEO(`${e.nom} dans GTA 6 :`, e.bref, 'Ce qui est confirmé et ce qui reste incertain, avec les sources.'), body, cls: 'p-fiche', ogType: 'article', crumbs: [['Accueil', ''], ['Encyclopédie', 'encyclopedie/'], [c.nom, `encyclopedie/?cat=${e.cat}`], [e.nom, p]], schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: `${e.nom} dans GTA 6`, description: e.bref, inLanguage: 'fr', dateModified: site.majLe, about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' } }] }));
 }
 
 // ---------- ACTUALITES ----------
@@ -1697,7 +1698,7 @@ for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collecti
 push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'astuce', s: '', l: 'Toutes les listes', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: extrait(m.resume), u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
-push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `Les ${CODES.codes.length} codes et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
+push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `${CODES.codes.length} codes relevés et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: extrait(d.reponse), u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, ...(c.confirme && c.sources.length >= 2 ? { r: `${c.effet} Combinaison : ${c.sequence.map((x) => ({ haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' }[x] || x)).join(', ')}.`, rs: 'Confirmé' } : {}), u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
 for (const g of VGROUPES) { const c = cat('vehicules', g.type) || {}; push({ t: `${g.nom} (${g.n})`, q: 'liste', k: norm(`${g.nom} ${UN[g.nom] || ''} ${c.nom || ''} vehicules liste tous`), d: `Tous les véhicules de cette catégorie, avec leur emplacement quand il est connu`, u: `vehicules/#cat-${g.id}`, i: c.icon || 'car', c: c.color || '#ff9a1f', g: 'vehicule', s: g.type, l: 'Liste de véhicules', m: 0 }); }
