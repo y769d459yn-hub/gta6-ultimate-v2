@@ -429,8 +429,10 @@ html.menu-open { overflow: hidden; }
 .hx-arr--l { left: -10px; } .hx-arr--r { right: -10px; }
 .hx-arr[disabled] { opacity: .3; cursor: default; }
 .hx-dots { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
-.hx-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .3); transition: background .2s, box-shadow .2s; }
-.hx-dots i.on { background: var(--pk); box-shadow: 0 0 8px var(--pk); }
+.hx-dots i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, .3); }
+/* point actif : calque rose + halo qui apparaît en fondu (opacité, animée par la carte graphique) — même rendu que l'ancienne transition de couleur */
+.hx-dots i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--pk); box-shadow: 0 0 8px var(--pk); opacity: 0; transition: opacity .2s; }
+.hx-dots i.on::after { opacity: 1; }
 
 .hx-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .hx-row { display: grid; grid-template-columns: 30% auto 1fr auto; align-items: center; gap: 12px; min-height: 66px; padding-right: 10px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .16); background: rgba(14, 12, 30, .8); color: #fff; }

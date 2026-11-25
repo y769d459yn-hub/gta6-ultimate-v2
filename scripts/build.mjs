@@ -1710,6 +1710,8 @@ const popular = ['semer-la-police', 'argent-debut', 'sauvegarder', 'voyage-rapid
 
 // ---------- écriture ----------
 fs.rmSync(OUT, { recursive: true, force: true });
+// CSS allégé : commentaires et espaces inutiles retirés (aucune chaîne « content » du site ne contient ces caractères ; vérifié)
+const miniCSS = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}');
 const write = (rel, content) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, content); };
 for (const { p, html } of pages) write(p.endsWith('.html') ? p : p + 'index.html', html);
 // pas deux résultats au même nom : on garde la page la plus complète (astuce, page, encyclopédie, véhicule, puis repère de carte)
@@ -1779,7 +1781,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) ? f : path.join('assets', path.basename(f)), fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) ? f : path.join('assets', path.basename(f)), f.endsWith('.css') ? miniCSS(fs.readFileSync(full, 'utf8')) : fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
