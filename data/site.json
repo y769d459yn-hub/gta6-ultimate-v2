@@ -140,6 +140,14 @@
   ],
   "carte": [
    {
+    "id": "argent",
+    "nom": "Argent",
+    "q": "De l'argent",
+    "icon": "money",
+    "color": "#39ff88",
+    "sens": "Banques, coffres-forts, magasins à braquer, receleurs et caches"
+   },
+   {
     "id": "vehicules",
     "nom": "Véhicules",
     "q": "Une voiture",
@@ -156,6 +164,14 @@
     "sens": "Armes au sol, armes uniques, armureries et stands de tir"
    },
    {
+    "id": "lieux",
+    "nom": "Lieux et secrets",
+    "q": "Un lieu secret",
+    "icon": "pin",
+    "color": "#ff2d87",
+    "sens": "Quartiers, monuments et endroits à découvrir"
+   },
+   {
     "id": "collection",
     "nom": "Objets à collectionner",
     "q": "Un objet",
@@ -164,12 +180,20 @@
     "sens": "Cartes, paquets cachés, météorites, scans WAiNK, trésors…"
    },
    {
-    "id": "argent",
-    "nom": "Argent",
-    "q": "De l'argent",
-    "icon": "money",
-    "color": "#39ff88",
-    "sens": "Banques, coffres-forts, magasins à braquer, receleurs et caches"
+    "id": "missions",
+    "nom": "Missions",
+    "q": "Une mission",
+    "icon": "flag",
+    "color": "#ff3d6e",
+    "sens": "Où se passent les missions de l'histoire"
+   },
+   {
+    "id": "activites",
+    "nom": "Activités",
+    "q": "Une activité",
+    "icon": "wave",
+    "color": "#19d3e3",
+    "sens": "Cascades, courses, passages sous les ponts, sport, pêche, événements…"
    },
    {
     "id": "commerces",
@@ -186,30 +210,6 @@
     "icon": "heart",
     "color": "#4da3ff",
     "sens": "Hôpitaux, police, garages, planques, marinas, aéroport"
-   },
-   {
-    "id": "missions",
-    "nom": "Missions",
-    "q": "Une mission",
-    "icon": "flag",
-    "color": "#ff3d6e",
-    "sens": "Où se passent les missions de l'histoire"
-   },
-   {
-    "id": "lieux",
-    "nom": "Lieux et secrets",
-    "q": "Un lieu secret",
-    "icon": "pin",
-    "color": "#ff2d87",
-    "sens": "Quartiers, monuments et endroits à découvrir"
-   },
-   {
-    "id": "activites",
-    "nom": "Activités",
-    "q": "Une activité",
-    "icon": "wave",
-    "color": "#19d3e3",
-    "sens": "Cascades, courses, passages sous les ponts, sport, pêche, événements…"
    }
   ],
   "actualites": [
