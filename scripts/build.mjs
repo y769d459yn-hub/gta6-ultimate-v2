@@ -1515,6 +1515,7 @@ for (const g of GLITCHS) {
     ${lieu1 ? `<a class="btn btn--primary gl-carte-btn" href="${carteLien(lieu1)}">${icon('map')}Voir sur la carte interactive</a>` : ''}
   </header>
   <section class="gl-s"><h2 class="h3">${icon('bolt')}En bref</h2><p class="gl-bref">${esc(g.resume)}</p></section>
+  ${g.afficherPrerequis && (g.prerequis || []).length ? `<section class="gl-s"><h2 class="h3">${icon('list')}Prérequis</h2><dl class="gl-pre">${g.prerequis.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>` : ''}
   <section class="gl-s" aria-labelledby="gl-tuto"><h2 class="h3" id="gl-tuto">${icon('guide')}Tutoriel étape par étape</h2>
     <p class="gl-astuce">Coche les étapes au fur et à mesure : c'est gardé sur cet appareil.</p>
     <ol class="gl-etapes">${g.etapes.map((e, i) => { const L = e.lieu && lieux.find((x) => x.n === e.lieu); return `<li class="gl-et"><label><input type="checkbox" data-gl-et="${i}"><span class="gl-et-n">${i + 1}</span><span class="gl-et-t">${esc(e.t)}</span></label>${L ? `<a class="gl-et-map" href="${carteLien(L)}">${icon('pin')}Lieu ${L.n} sur la carte</a>` : ''}</li>`; }).join('')}</ol>
