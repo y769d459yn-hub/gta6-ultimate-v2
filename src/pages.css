@@ -741,3 +741,7 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 @media (prefers-reduced-motion: reduce) { .gl-card, .gl-et { transition: none; } }
 .gl-info { display: block; }
 .gl-info .ic { display: inline-block; vertical-align: -3px; margin-right: 6px; }
+
+.gl-vote-f { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.gl-vote-f .btn { grid-column: auto; height: 48px; }
+@media (max-width: 420px) { .gl-vote-f { grid-template-columns: 1fr; } .gl-vote-f .btn { justify-self: stretch; } }
