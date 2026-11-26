@@ -42,9 +42,13 @@
     }
 
     // ---------- tuiles ----------
-    const imgs = new Map();
+    // Images du fond (1024 px, ≈ 4 Mo chacune une fois décodée) : on n'en garde qu'un nombre limité.
+    // Sans cette limite, chaque déplacement en ajoutait sans jamais les libérer, jusqu'à saturer la mémoire de Safari sur iPhone.
+    const imgs = new Map(); let tick = 0;
+    const VIDE = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
     const levels = T.niveaux.map((n) => ({ z: n.z, set: new Set(n.tuiles) }));
-    function drawTiles() {
+    function drawTiles(enVol) {
+      tick++;
       const dpr = Math.min(devicePixelRatio || 1, 2);
       const want = Math.max(0, Math.min(levels.length - 1, Math.ceil(Math.log2(cam.s * dpr * T.monde / T.tileSize / 1) - 0.25)));
       const [wx0, wy1] = toWorld(0, 0), [wx1, wy0] = toWorld(W, H);
@@ -59,6 +63,8 @@
           if (!levels[L].set.has(key)) continue;
           const id = `${L}/${key}`; seen.add(id);
           let im = imgs.get(id);
+          // pendant un déplacement automatique, pas de nouvelle image détaillée : elles se chargent à l'arrivée
+          if (!im && enVol && L > 1) { seen.delete(id); continue; }
           if (!im) {
             im = new Image(); im.decoding = 'async'; im.alt = ''; im.draggable = false; im.className = 'at-tile';
             im.style.zIndex = L; im.style.opacity = 0; im.style.width = im.style.height = T.tileSize + 'px';
@@ -68,12 +74,19 @@
           }
           const [sx, sy] = toScreen(tx * span - T.zero, T.zero - ty * span);
           const size = span * cam.s;
+          im._vu = tick;
           if (im._h) { im.style.display = ''; im._h = 0; }
           const tr = `translate3d(${sx.toFixed(1)}px,${sy.toFixed(1)}px,0) scale(${((size + 1) / T.tileSize).toFixed(5)})`;
           if (im._t !== tr) { im.style.transform = tr; im._t = tr; }
         }
       }
       imgs.forEach((im, id) => { if (!seen.has(id) && !im._h) { im.style.display = 'none'; im._h = 1; } });
+      // au-delà de la limite, les images non affichées les plus anciennes sont libérées (elles restent dans le cache du navigateur, compressées)
+      const max = Math.max(seen.size + 8, 28);
+      if (imgs.size > max) {
+        [...imgs].filter(([id]) => !seen.has(id)).sort((a, b) => a[1]._vu - b[1]._vu).slice(0, imgs.size - max)
+          .forEach(([id, im]) => { im.onload = null; im.src = VIDE; im.remove(); imgs.delete(id); });
+      }
     }
 
     // ---------- repères ----------
@@ -181,7 +194,7 @@
     function place() { for (const n of nodes) { const [sx, sy] = toScreen(n.x, n.y); n.el.style.transform = `translate3d(${sx}px,${sy}px,0)`; } }
     let lastCenter = '';
     function render(force) {
-      clamp(); drawTiles();
+      clamp(); drawTiles(anim > 0);
       const key = st.showCommu && cam.s >= .07 ? Math.round(cam.x / (W / cam.s / 3)) + ':' + Math.round(cam.y / (H / cam.s / 3)) : '';
       const busy = pts.size > 0 || wheeling || anim > 0;
       if (force || !builtS || (!busy && (Math.abs(Math.log(cam.s / builtS)) > .1 || key !== lastCenter))) { lastCenter = key; build(); } else place();
