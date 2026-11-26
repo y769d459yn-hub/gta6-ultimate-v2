@@ -24,6 +24,7 @@
    "plateformes": [],
    "mode": "Histoire",
    "image": "",
+   "afficherPrerequis": true,
    "prerequis": [
     ["Véhicule", "Un véhicule personnel avec un coffre pour les sacs. Un van (10 places) est plus efficace selon PC Gamer ; il y en a devant l'entrepôt."],
     ["Revente", "Brian (Key Lento) est disponible dès le chapitre 1. Tyrone (La Perle, Vice City) paie mieux la drogue, à partir du chapitre 3."],
