@@ -419,13 +419,14 @@
     }
    ],
    "img": "principe-alvino-v1.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/alvino-v1",
-   "nettete": 476,
+   "credit": "Rockstar Games, via GTA Wiki (Fandom)",
+   "creditUrl": "https://gta.fandom.com/wiki/File:OfficialScreenshots-GTAVI-PromotionalWebsite-JasonDuval-SS1.jpg",
    "taille": [
-    640,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "hd": "principe-alvino-v1.webp",
+   "source": "https://static.wikia.nocookie.net/gtawiki/images/c/c4/OfficialScreenshots-GTAVI-PromotionalWebsite-JasonDuval-SS1.jpg/revision/latest?cb=20250506161804"
   },
   {
    "slug": "interstate-ambulance",
@@ -4322,13 +4323,14 @@
     }
    ],
    "img": "canis-kamacho.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/kamacho",
-   "nettete": 1366,
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-OneEyedWillie01.jpg",
    "taille": [
-    640,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "hd": "canis-kamacho.webp",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-OneEyedWillie01.jpg"
   },
   {
    "slug": "kellison-j4",
@@ -4357,13 +4359,14 @@
     }
    ],
    "img": "kellison-j4.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/kellison-j4",
-   "nettete": 238,
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection05.jpg",
    "taille": [
-    639,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "hd": "kellison-j4.webp",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection05.jpg"
   },
   {
    "slug": "lure-predator-l35p",
@@ -4748,13 +4751,14 @@
     }
    ],
    "img": "declasse-mamba-gt.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/mamba-gt",
-   "nettete": 71,
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection04.jpg",
    "taille": [
-    320,
-    180
-   ]
+    1920,
+    1080
+   ],
+   "hd": "declasse-mamba-gt.webp",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection04.jpg"
   },
   {
    "slug": "lapwing-mammatus",
@@ -4814,13 +4818,14 @@
     }
    ],
    "img": "albany-manana-77.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/manana",
-   "nettete": 1398,
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-RideoutCustoms01.jpg",
    "taille": [
-    1280,
-    720
-   ]
+    1920,
+    1080
+   ],
+   "hd": "albany-manana-77.webp",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-RideoutCustoms01.jpg"
   },
   {
    "slug": "maibatsu-manchez",
@@ -8364,13 +8369,13 @@
     }
    ],
    "img": "declasse-tulip-72.webp",
-   "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Tulip-GTAVI-AnExtendedLook-5.png",
+   "credit": "Rockstar Games, via GTA Wiki (Fandom)",
+   "creditUrl": "https://gta.fandom.com/wiki/File:Tulip-GTAVI-Trailer1.png",
    "taille": [
     1920,
     1080
    ],
-   "source": "https://gta.wiki/images/Tulip-GTAVI-AnExtendedLook-5.png",
+   "source": "https://static.wikia.nocookie.net/gtawiki/images/c/ce/Tulip-GTAVI-Trailer1.png/revision/latest?cb=20250513074114",
    "hd": "declasse-tulip-72.webp"
   },
   {
