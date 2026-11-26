@@ -259,16 +259,9 @@
     "sous": [
      {
       "id": "rares",
-      "nom": "Voitures rares",
+      "nom": "Véhicules rares et uniques",
       "r": {
-       "s": [
-        "Véhicule remarquable"
-       ],
-       "et": {
-        "vt": [
-         "voitures"
-        ]
-       }
+       "ru": 1
       }
      },
      {
@@ -341,9 +334,6 @@
         "Militaire",
         "Police et urgences",
         "Industriels"
-       ],
-       "s": [
-        "Véhicule remarquable"
        ],
        "sauf": "rares"
       }

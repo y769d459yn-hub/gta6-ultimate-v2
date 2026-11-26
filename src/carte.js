@@ -573,7 +573,7 @@
       code ? ['code', 'Code du coffre', `<b class="pn-code">${escH(code[1])}</b><small>Selon les guides, pas vérifié en jeu.</small>`] : null,
       f.ob ? ['check', 'Comment l’obtenir', escH(f.ob)] : t ? ['bolt', 'Comment faire', `${escH(t.reponse)}${t.etapes && t.etapes.length ? `<ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol>` : ''}`] : null,
       rarete(f) ? ['diamond', 'Rareté', escH(rarete(f))] : null,
-      f.nt ? ['star', 'Intérêt', `<b>${f.nt}/100</b> · ${escH(f.ntc)}<small>${escH(f.nat)}</small>`] : null,
+      f.nt ? ['star', 'Intérêt', `<b>${f.nt}/100</b> · ${escH(f.ntc)}${f.et ? ` · ${'★'.repeat(f.et)}` : ''}${f.ru ? ' · Rare et unique' : ''}<small>${escH(f.nat)}</small>`] : null,
       reste ? ['info', veh && !/^v-/.test(f.id) ? 'Indication des joueurs' : 'Infos utiles', escH(reste)] : null
     ].filter(Boolean);
     const dl = `<dl class="pn-key pn-more">${infos.map(([i, k, v]) => `<div><dt>${ic(i)}${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;

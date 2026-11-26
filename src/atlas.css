@@ -765,3 +765,7 @@
 
 /* véhicule à l'emplacement approximatif : halo de zone de recherche autour du repère (pas une position précise) */
 .at-dot--zone { box-shadow: 0 0 0 16px color-mix(in srgb, var(--c) 12%, transparent); outline: 1px dashed color-mix(in srgb, var(--c) 55%, transparent); outline-offset: 15px; }
+
+/* « Véhicules rares et uniques » : pastille dorée en losange, liseré rose, pour les repérer d'un coup d'œil */
+.at-dot.at-dot--rare .at-dot-i { --c: #ffd23f; border-style: solid; border-radius: 9px; rotate: 45deg; background: linear-gradient(135deg, #2a1d05, #0c0b14); box-shadow: 0 0 0 2px #05040b, 0 0 0 4px #ff2bd6, 0 0 16px -2px #ffd23f; }
+.at-dot.at-dot--rare .at-dot-i .ic { rotate: -45deg; }

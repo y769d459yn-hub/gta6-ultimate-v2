@@ -2025,6 +2025,7 @@ function regleOk(r, p) {
   const sv = p.service || p.sous;
   if (r.s && r.s.includes(sv)) return true;
   if (r.ids && r.ids.includes(p.id)) return true;
+  if (r.ru && p.ru) return true;
   if (r.vt && p.vt && r.vt.includes(p.vt)) return true;
   if (r.vm && p.vm && r.vm.includes(p.vm)) return true;
   if (r.vc && r.vc.includes(vClasse(p.vs))) return true;
@@ -2143,6 +2144,15 @@ function noterVehicules(lie) {
   const ICONES = /infernus|cheetah|banshee|comet|elegy|stallion|dominator|sabre|tempesta|zorrusso|emerus|sanchez|buzzard|annihilator|dodo|squalo|jet|faggio|hermes|stanier/i;
   const GRP_FICHE = { 'jets-militaires': 'militaires', 'helicoptere-toits': 'helicopteres', 'mammoth-dodo': 'avions', 'lapwing-stolen-valor': 'avions', 'mallard-flammes': 'avions' };
   const groupeDe = (slug) => { if (!slug) return null; if (GRP_FICHE[slug]) return GRP_FICHE[slug]; const x = CATALOGUE.vehicules.find((y) => y.slug === slug); if (x) return x.groupe; const fi = CATALOGUE.fiches[slug]; if (fi && fi.groupe) return fi.groupe; const v = VEHICULES.find((y) => y.slug === slug); return v ? ({ avions: 'avions', bateaux: 'bateaux', motos: 'motos' }[v.type] || null) : null; };
+  // sélection de l'éditeur (étoiles) et captures prises en jeu sur place publiées par GTABase
+  const SEL = fs.existsSync(path.join(ROOT, 'data', 'carte-selection.json')) ? read('carte-selection.json').vehicules : [];
+  const GBV = fs.existsSync(path.join(ROOT, 'data', 'carte-gtabase.json')) ? read('carte-gtabase.json') : { reperes: {} };
+  const etoiles = (p) => {
+    const t = `${p.vo || ''} ${p.nom} ${p.vn || ''}`.toLowerCase();
+    const parSlug = p.vs && SEL.find((x) => x.s.includes(p.vs));
+    if (parSlug) return parSlug;
+    return SEL.find((x) => x.m && new RegExp(x.m, 'i').test(t)) || null;
+  };
   const vfeat = features.filter((f) => f.properties.cat === 'vehicules' && !f.properties.label);
   const proche = (f, pred, r) => vfeat.some((g) => g !== f && pred(g) && Math.hypot(g.geometry.coordinates[0] - f.geometry.coordinates[0], g.geometry.coordinates[1] - f.geometry.coordinates[1]) < r);
   for (const f of vfeat) {
@@ -2151,7 +2161,8 @@ function noterVehicules(lie) {
     const des = grp ? DESIRABLE.has(grp) : null, perf = grp ? PERF[grp] ?? 8 : 8;
     const B = { unique: [22, 20, 10, 12, 5, 3], spawn: [14, 22, 12, 10, 4, 4], demande: [12, 22, 12, 8, 4, 5], location: [2, 8, 6, 2, 2, 2], guide: [20, 20, 12, 12, 6, 3], autre: [8, 12, 8, 6, 4, 2] }[kind];
     // rareté, intérêt (désirable / ordinaire), unicité (désirable / ordinaire), stratégie
-    const rar = B[0], inter = des === false ? B[2] : B[1], uniq = Math.min(15, (des === false ? B[4] : B[3]) + (ICONES.test(p.nom + ' ' + (p.vn || '')) ? 3 : 0)), strat = B[5], perso = 5;
+    const sel = etoiles(p), e = sel ? sel.e : 0;
+    const rar = B[0], inter = e ? [0, 8, 20, 25][e] : des === false ? B[2] : B[1], uniq = Math.min(15, (des === false ? B[4] : B[3]) + (ICONES.test(p.nom + ' ' + (p.vn || '')) ? 3 : 0)), strat = B[5], perso = 5;
     const note = Math.min(100, rar + inter + perf + uniq + perso + strat);
     const classe = note >= 90 ? 'Exceptionnel' : note >= 75 ? 'Très intéressant' : note >= 60 ? 'Intéressant' : note >= 40 ? 'Secondaire' : 'Ordinaire';
     // fiabilité de l'emplacement
@@ -2161,6 +2172,11 @@ function noterVehicules(lie) {
       const concorde = slug && proche(f, (g) => (g.properties.vs === slug) && !/^o-/.test(g.properties.id), 400);
       fi = CAPTURE_SUR_PLACE.has(id) || concorde ? 'probable' : 'nonverif';
     }
+    // capture prise en jeu sur place (GTABase) : le véhicule et le lieu sont visibles → fortement probable
+    const gb = id.startsWith('o-') ? GBV.reperes[id.slice(2)] : null;
+    if (gb && gb.cap) { fi = fi === 'approx' ? fi : 'probable'; p.ext = `${GBV.url}#${id.slice(2)}`; p.ph = 1; p.cap = 1; }
+    if (gb && gb.d && (!p.desc || p.en)) { p.desc = gb.d; delete p.en; }
+    if (gb && gb.z && !p.zone) p.zone = gb.z;
     const NAT = { unique: 'Version unique garée à cet endroit (selon les joueurs)', spawn: 'Point d’apparition signalé par les joueurs', demande: 'Véhicule lié à une demande (mission rémunérée)', location: 'Location de véhicules', guide: 'Emplacement décrit par nos sources', autre: 'Repère communautaire' }[kind];
     // photo : celle de la fiche du modèle pour un point d'apparition ou une demande (même modèle) ;
     // une version unique (livrée spéciale) n'en reçoit une que si la photo montre cette version
@@ -2173,10 +2189,19 @@ function noterVehicules(lie) {
       if (p.img && !MEME_VERSION[id]) p.imgNote = 'Photo du modèle';
     }
     if (kind !== 'guide') p.precision = 'exacte'; // repère posé au point précis par la source (pas une zone)
-    p.nt = note; p.ntc = classe; p.fi = fi; p.nat = fi === 'nonverif' ? 'Information communautaire non confirmée' : NAT; p.dv = VERIF_DATE;
+    p.nt = note; p.ntc = classe; p.fi = fi; p.dv = VERIF_DATE;
+    p.nat = fi === 'nonverif' ? 'Information communautaire non confirmée' : p.cap ? (kind === 'unique' ? 'Version unique stationnée ici : capture prise en jeu sur place' : 'Point d’apparition : capture prise en jeu sur place') : NAT;
+    if (e) { p.et = e; if (sel.nom !== p.vn) p.selNom = sel.nom; }
     p.ntx = [`Rareté ${rar}/25`, `Intérêt ${inter}/25`, `Performances ${perf}/20${grp ? ' (estimées d’après la catégorie)' : ' (inconnues)'}`, `Unicité ${uniq}/15`, `Personnalisation ${perso}/10 (inconnue)`, `Intérêt stratégique ${strat}/5`].join(' · ');
     // masqué par défaut : emplacement non vérifié, ou véhicule noté sous 60 (exception : les demandes, missions rémunérées)
-    if (fi === 'nonverif' || (note < 60 && kind !== 'demande')) p.hv = 1;
+    // affichés par défaut : emplacement prouvé (capture sur place, deux sources) ou zone d'une fiche du guide,
+    // pour un véhicule de la sélection noté 2 ou 3 étoiles, ou une version unique (livrée spéciale) prouvée ; le reste reste dans les données
+    const prouve = fi === 'probable' || fi === 'confirme';
+    const ordinaire = ['vans', 'utilitaires', 'velos', 'service', 'industriels', 'berlines'].includes(grp) || /scorcher|bmx|\bbike\b|v[ée]lo/i.test(`${p.vo || ''} ${p.nom}`);
+    const garde = (prouve && (e >= 2 || (!sel && kind === 'unique' && p.cap && !ordinaire))) || (fi === 'approx' && e >= 2);
+    if (!garde) p.hv = 1;
+    // « Véhicules rares et uniques » : versions uniques prouvées, et véhicules 3 étoiles à l'emplacement prouvé
+    if (!p.hv && prouve && ((kind === 'unique' && p.cap) || e === 3)) { p.ru = 1; p.icon = 'diamond'; }
   }
   // doublon : la zone approximative d'une fiche du guide est masquée quand un repère précis et fortement probable du même véhicule est à moins de 400 m
   for (const f of vfeat) { const p = f.properties; if (p.fi === 'approx' && p.vs && proche(f, (g) => g.properties.vs === p.vs && g.properties.fi === 'probable', 400)) { p.hv = 1; p.dbl = 1; } }
