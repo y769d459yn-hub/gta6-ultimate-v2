@@ -1,0 +1,59 @@
+{
+ "_note": "Photos officielles de Rockstar Games montrant le lieu exact du repère (site officiel de l'édition Ultimate, fichiers d'origine relevés sur GTA Wiki). Une photo n'est associée qu'à un lieu nommé par Rockstar.",
+ "lieux": {
+  "electric-fang": {
+   "fichier": "electric-fang.webp",
+   "hd": "electric-fang-hd.webp",
+   "legende": "Devanture d'Electric Fang Tattoo",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-ElectricFang01.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-ElectricFang01.jpg",
+   "type": "lieu"
+  },
+  "stock-305": {
+   "fichier": "stock-305.webp",
+   "hd": "stock-305-hd.webp",
+   "legende": "Entrée de Stock 305",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-Stock30503.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-Stock30503.jpg",
+   "type": "lieu"
+  },
+  "sara-salon": {
+   "fichier": "sara-salon.webp",
+   "hd": "sara-salon-hd.webp",
+   "legende": "Intérieur de Sara's Unisex Salon",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SarasSalon03.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SarasSalon03.jpg",
+   "type": "lieu"
+  },
+  "rideout-customs": {
+   "fichier": "rideout-customs.webp",
+   "hd": "rideout-customs-hd.webp",
+   "legende": "Atelier de Rideout Customs",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-RideoutCustoms03.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-RideoutCustoms03.jpg",
+   "type": "lieu"
+  },
+  "o-vehicle-mod-shop-015": {
+   "fichier": "o-vehicle-mod-shop-015.webp",
+   "hd": "o-vehicle-mod-shop-015-hd.webp",
+   "legende": "Atelier de One-Eyed Willie's",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-OneEyedWillie03.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-OneEyedWillie03.jpg",
+   "type": "lieu"
+  },
+  "o-landmark-015": {
+   "fichier": "o-landmark-015.webp",
+   "hd": "o-landmark-015-hd.webp",
+   "legende": "Entrée de la tour sud des Pegassi Residences",
+   "credit": "Rockstar Games (site officiel), via GTA Wiki",
+   "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-GrottiCheetah01.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-GrottiCheetah01.jpg",
+   "type": "lieu"
+  }
+ }
+}

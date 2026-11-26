@@ -150,8 +150,10 @@
     if (f.hv && !opt.tousv && f.id !== state.cible && f.id !== state.spot && f.id !== state.solo) return false;
     if (state.glitch && !(f.gl || []).some((x) => x.s === state.glitch)) return false;
     // approximatif : zone seulement ; non vérifié : masqué par défaut, affiché à la demande
-    if (!opt.approx && statutDe(f) === 'nonconf') return false;
-    if (!opt.nonconf && statutDe(f) === 'nonverif') return false;
+    // le repère que le joueur vient d'ouvrir (recherche, lien, fiche) reste visible, même s'il est masqué par défaut
+    const vise = f.id === state.cible || f.id === state.spot || f.id === state.solo;
+    if (!vise && !opt.approx && statutDe(f) === 'nonconf') return false;
+    if (!vise && !opt.nonconf && statutDe(f) === 'nonverif') return false;
     if (opt.sect && secteur(f) !== opt.sect) return false;
     return true;
   }
@@ -177,6 +179,7 @@
     const tt = !state.vide && sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s && s.size);
     $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', !state.solo && !tt && sel.has(b.dataset.cat)));
     $('[data-all]').setAttribute('aria-pressed', !state.solo && tt);
+    $('[data-explorer]').setAttribute('aria-pressed', !state.solo && !tt && [...sel].some((c) => (OPT.explorer || []).includes(c)));
     $$('[data-pop]').forEach((b) => b.setAttribute('aria-pressed', state.pop === b.dataset.pop));
     const n = nbOpts() + (state.vide || tt ? 0 : [...sel].filter((c) => !(OPT.rapides || []).includes(c) || (subs[c] && subs[c].size)).length);
     const nf = $('[data-nf]'); nf.hidden = !n; nf.textContent = n;
@@ -218,8 +221,15 @@
   function unsolo() { if (!state.solo) return; state.solo = ''; state.spot = ''; $('[data-solo]').hidden = true; atlas.spot(false); }
   function fitResults() { const L = resultats(); if (L.length) atlas.fit(L.length > 400 ? L.filter((_, i) => i % 4 === 0) : L, 1.15); }
 
-  const cote = () => innerWidth < 900 && innerWidth > innerHeight && innerHeight < 520; // téléphone en paysage
-  const mobile = () => innerWidth < 900 && !cote();
+  // taille de l'écran lue une seule fois (puis à chaque redimensionnement) : la relire après chaque modification
+  // de la page forçait le navigateur à recalculer la mise en page plusieurs fois par clic
+  let ECR = { w: innerWidth, h: innerHeight };
+  addEventListener('resize', () => { ECR = { w: innerWidth, h: innerHeight }; }, { passive: true });
+  const cote = () => ECR.w < 900 && ECR.w > ECR.h && ECR.h < 520; // téléphone en paysage
+  const mobile = () => ECR.w < 900 && !cote();
+  // travail non urgent repoussé après l'affichage de la réponse (l'interaction se termine plus vite)
+  const COLL = new Intl.Collator('fr').compare;
+  const apresAffichage = (fn) => requestAnimationFrame(() => setTimeout(fn, 0));
   function padding() {
     if (cote()) return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 6, bottom: 70, left: 10, right: panel.hidden ? 10 : Math.round(Math.min(innerWidth * .46, 380)) + 16 };
     return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mobile() ? 130 : 70, left: 10, right: mobile() ? 10 : (panel.hidden ? 70 : 430) };
@@ -239,13 +249,22 @@
 
   // ---------- panneau coulissant : réduit (≈20 %), intermédiaire (≈45 %), complet (≈90 %) sur téléphone ; à droite sur ordinateur ----------
   const NIV = ['compact', 'moyen', 'grand'];
+  // les hauteurs du panneau ne dépendent que de l'écran : mesurées une fois par taille d'écran, pas après chaque nouveau contenu
+  // (mesurer juste après avoir inséré une longue liste forçait le calcul complet de sa mise en page)
+  let hCache = null;
   function hauteurs() {
+    const k = ECR.w + 'x' + ECR.h;
+    if (hCache && hCache.k === k) return hCache.v;
     const dispo = Math.max(240, panel.getBoundingClientRect().bottom - page.getBoundingClientRect().top - 6);
-    return { compact: Math.round(Math.min(Math.max(dispo * .2, 132), 190)), moyen: Math.round(Math.max(dispo * .45, 250)), grand: Math.round(dispo * .9) };
+    const v = { compact: Math.round(Math.min(Math.max(dispo * .2, 132), 190)), moyen: Math.round(Math.max(dispo * .45, 250)), grand: Math.round(dispo * .9) };
+    if (!panel.hidden) hCache = { k, v };
+    return v;
   }
   function showPanel(html, niveau = 'moyen') {
     const hv = $('[data-vide]'); if (hv) hv.hidden = true; garde(false); legende(false); menuReg(false);
     panel.classList.remove('pn-anim', 'pn-fiche');
+    if (panel.hidden) { panel.hidden = false; page.classList.add('has-panel'); }
+    if (mobile()) hauteurs();
     panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Changer la hauteur du panneau"><i></i></button><div class="pn-c">${html}</div>`;
     panel.hidden = false; page.classList.add('has-panel');
     taillePanneau(niveau);
@@ -258,10 +277,11 @@
     if (g && !reduce) g.fromTo(panel, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .25, ease: 'power2.out', clearProps: 'transform' });
   }
   function taillePanneau(t) {
-    if (!mobile()) { panel.style.height = ''; delete panel.dataset.taille; majCTA(); return; }
-    panel.dataset.taille = t;
-    panel.style.height = hauteurs()[t] + 'px';
-    page.style.setProperty('--pn-h', hauteurs()[t] + 'px'); // les commandes de la carte restent au-dessus du panneau
+    if (!mobile()) { panel.style.height = ''; delete panel.dataset.taille; delete page.dataset.pn; majCTA(); return; }
+    panel.dataset.taille = t; page.dataset.pn = t; // copie sur la page : remplace des sélecteurs :has() coûteux
+    const h = hauteurs()[t];
+    panel.style.height = h + 'px';
+    page.style.setProperty('--pn-h', h + 'px'); // les commandes de la carte restent au-dessus du panneau
     requestAnimationFrame(majCtrl); setTimeout(majCtrl, 300);
     const lab = { compact: 'Panneau réduit : toucher pour l’agrandir', moyen: 'Panneau à mi-hauteur : toucher pour l’agrandir', grand: 'Panneau en grand : toucher pour le réduire' }[t];
     $$('[data-grip]', panel).forEach((x) => x.setAttribute('aria-label', lab));
@@ -348,7 +368,7 @@
   function countView() { if (cvT) return; cvT = setTimeout(() => { cvT = 0; const el = $('[data-n="vue"]'); if (el && atlas) el.textContent = atlas.inView().length; if (state.zone && !panel.hidden && $('[data-zone]', panel)) openResults(true); }, 350); }
 
   // ---------- précédent / suivant dans les résultats ----------
-  function sameCat(f) { return atlas.feats().filter((x) => !x.label && x.cat === f.cat && passe(x)).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')); }
+  function sameCat(f) { return atlas.feats().filter((x) => !x.label && x.cat === f.cat && passe(x)).sort((a, b) => COLL(a.nom, b.nom)); }
   function nav(f) {
     const siens = f.vs ? atlas.feats().filter((x) => x.vs === f.vs) : [];
     if (siens.length > 1) {
@@ -379,7 +399,7 @@
     return `<li class="pn-r${t ? ' is-found' : ''}"><button type="button" data-pick="${escH(f.id)}">${vignette(f)}<span class="pn-r-b"><b>${escH(f.nom)}</b><small>${escH(court(f))}</small><span class="pn-r-m">${meta}</span></span><span class="pn-r-s">${t ? `<span class="pn-r-ok" title="Déjà trouvé">${ic('check')}</span>` : ''}${fv ? `<span class="pn-r-fv" title="Dans tes favoris">${ic('heart')}</span>` : ''}${ic('chevron')}</span></button></li>`;
   };
   function bindPick(from, racine = panel) {
-    $$('[data-pick]', racine).forEach((b) => { if (b._ok) return; b._ok = 1; b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = from; atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); }); });
+    $$('[data-pick]', racine).forEach((b) => { if (b._ok) return; b._ok = 1; b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = from; b.classList.add('is-pick'); page.classList.add('is-busy'); apresAffichage(() => { atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); page.classList.remove('is-busy'); }); }); });
   }
   // affiche 40 lignes, puis la suite quand on arrive en bas (liste longue sans ralentir le téléphone)
   function remplir(ul, list, from) {
@@ -398,20 +418,20 @@
   }
   const RANG_ST = { verifie: 0, officiel: 0, probable: 1, nonconf: 2, nonverif: 3 };
   function trier(list) {
-    const L = [...list], az = (a, b) => a.nom.localeCompare(b.nom, 'fr');
+    const L = [...list], az = (a, b) => COLL(a.nom, b.nom);
     const ch = state.choisi && !state.choisi.commu ? state.choisi : null;
     const t = state.tri;
     if (t === 'az') return L.sort(az);
     if (t === 'rar') return L.sort((a, b) => (!!b.rar - !!a.rar) || az(a, b));
-    if (t === 'reg') return L.sort((a, b) => (secteur(a) || '~').localeCompare(secteur(b) || '~', 'fr') || az(a, b));
+    if (t === 'reg') return L.sort((a, b) => COLL(secteur(a) || '~', secteur(b) || '~') || az(a, b));
     if (t === 'nt') return L.sort((a, b) => (trouves.has(a.id) - trouves.has(b.id)) || az(a, b));
     if (t === 'fav') return L.sort((a, b) => (estFav(b) - estFav(a)) || az(a, b));
     if (t === 'proche' && ch) return L.sort((a, b) => Math.hypot(a.x - ch.x, a.y - ch.y) - Math.hypot(b.x - ch.x, b.y - ch.y));
-    if (t === 'fiab') return L.sort((a, b) => (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || a.id.localeCompare(b.id));
-    if (t === 'centre') { const v = atlas.vue(); return L.sort((a, b) => Math.hypot(a.x - v.x, a.y - v.y) - Math.hypot(b.x - v.x, b.y - v.y) || a.id.localeCompare(b.id)); }
+    if (t === 'fiab') return L.sort((a, b) => (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    if (t === 'centre') { const v = atlas.vue(); return L.sort((a, b) => Math.hypot(a.x - v.x, a.y - v.y) - Math.hypot(b.x - v.x, b.y - v.y) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)); }
     // pertinence (ordre stable) : véhicules rares et uniques, puis étoiles et note d'intérêt pour les véhicules ;
     // ailleurs, repères du guide et éléments rares d'abord ; puis les plus fiables, l'ordre alphabétique et l'identifiant
-    return L.sort((a, b) => (!!b.ru - !!a.ru) || ((b.et || 0) - (a.et || 0)) || ((b.nt || 0) - (a.nt || 0)) || ((a.src === 'ogm') - (b.src === 'ogm')) || (!!b.rar - !!a.rar) || (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || a.id.localeCompare(b.id));
+    return L.sort((a, b) => (!!b.ru - !!a.ru) || ((b.et || 0) - (a.et || 0)) || ((b.nt || 0) - (a.nt || 0)) || ((a.src === 'ogm') - (b.src === 'ogm')) || (!!b.rar - !!a.rar) || (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   }
   const outilsListe = (n) => `<div class="pn-lt pn-more"><label class="pn-lq">${ic('search')}<span class="sr-only">Chercher dans cette liste</span><input type="search" data-lq value="${escH(state.lq)}" placeholder="Filtrer ces ${n} résultats" autocomplete="off" enterkeyhint="search"></label>
     <label class="pn-sort"><span class="sr-only">Trier</span>${ic('sliders')}<select data-tri>${[['pert', 'Pertinence'], ['az', 'A → Z'], ['rar', 'Rares d’abord'], ['reg', 'Par région'], ['fiab', 'Plus fiables d’abord'], ['centre', 'Près du centre de la carte'], ['nt', 'Non trouvés d’abord'], ['fav', 'Favoris d’abord'], ...(state.choisi && !state.choisi.commu ? [['proche', 'Proches du repère choisi']] : [])].map(([v, l]) => `<option value="${v}"${state.tri === v ? ' selected' : ''}>${l}</option>`).join('')}</select></label><button type="button" class="pn-zone" data-zone aria-pressed="${!!state.zone}" title="N’afficher que les résultats visibles à l’écran">${ic('focus')}<span>Zone visible</span></button></div>`;
@@ -456,7 +476,7 @@
     if (list.length) remplir($('[data-rl]', panel), trier(list), 'answer');
     if (y) $('.pn-c', panel).scrollTop = y;
     bindOutils(() => { openResults(true); const q = $('[data-lq]', panel); if (q && state.lq) { q.focus(); q.setSelectionRange(q.value.length, q.value.length); } });
-    $$('[data-sub]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; const v = b.dataset.sub; if (!v) delete subs[seule]; else subs[seule] = new Set([v]); applyFilter(); openResults(true); }));
+    $$('[data-sub]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; const v = b.dataset.sub; $$('[data-sub]', panel).forEach((x) => x.setAttribute('aria-pressed', x === b)); page.classList.add('is-busy'); apresAffichage(() => { if (!v) delete subs[seule]; else subs[seule] = new Set([v]); applyFilter(); openResults(true); page.classList.remove('is-busy'); }); }));
     $$('[data-only]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats([b.dataset.only]); openResults(true); }));
     $('[data-open-f]', panel).addEventListener('click', openFiltres);
     $('[data-fit]', panel).addEventListener('click', () => { if (mobile()) { panel.classList.add('pn-anim'); taillePanneau('compact'); } fitResults(); });
@@ -521,6 +541,20 @@
   }
 
   // ---------- progression : vrais totaux, calculés sur les repères de la carte ----------
+  // « Explorer » : les catégories secondaires dans un seul panneau compact (une entrée au lieu de quatre onglets)
+  function openExplorer() {
+    const base = atlas.feats().filter((f) => !f.label && passeOpt(f));
+    const L = (OPT.explorer || []).map((id) => cats[id]).filter(Boolean);
+    const ligne = (c) => { const n = base.filter((f) => dans(f, c.id)).length; if (!n) return '';
+      const sous = (c.sous || []).map((s) => ({ s, n: base.filter((f) => dans(f, c.id) && scDe(f, c.id).includes(s.id)).length })).filter((x) => x.n).slice(0, 6);
+      return `<li style="--c:${c.color}"><button type="button" class="pn-ex-c" data-ex="${c.id}"><span class="pn-fci">${ic(c.icon)}</span><span><b>${escH(c.nom)}</b><small>${escH(c.sens || '')}</small></span><em>${n}</em></button>
+        ${sous.length ? `<div class="pn-ex-s">${sous.map((x) => `<button type="button" class="pn-chip" data-ex="${c.id}" data-ex-s="${x.s.id}">${escH(x.s.nom)} <small>${x.n}</small></button>`).join('')}</div>` : ''}</li>`; };
+    showPanel(`${head('compass', '#f4f1ff', 'Explorer', 'Activités, lieux et services')}
+      <ul class="pn-ex">${L.map(ligne).join('')}</ul>
+      <div class="pn-act pn-act--f"><button type="button" class="nbtn" data-ex-tout><span>Afficher tous les repères</span><i>${ic('map')}</i></button></div>`, 'grand');
+    $$('[data-ex]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats([b.dataset.ex], b.dataset.exS ? { [b.dataset.ex]: [b.dataset.exS] } : null); openResults(); }));
+    $('[data-ex-tout]', panel).addEventListener('click', () => { tout(); closePanel(); atlas.reset(); });
+  }
   function openProgression() {
     const F = atlas.feats().filter((f) => !f.label);
     const T = F.filter((f) => trouves.has(f.id)).length;
@@ -714,18 +748,27 @@
     for (const t of toks) { const m = Math.max(motOk(t, w) * 2, motOk(t, e)); if (!m) return 0; s += m; }
     return s;
   }
+  const MOTS_VIDES = new Set(['de', 'des', 'du', 'd', 'la', 'le', 'les', 'l', 'un', 'une', 'a', 'au', 'aux', 'ou', 'et', 'en', 'est', 'sont', 'se', 'y', 'il', 'ils', 'me', 'moi', 'mon', 'ma', 'mes', 'je', 'on', 'pour', 'avec', 'dans', 'sur', 'quel', 'quelle', 'quels', 'quelles', 'comment', 'trouver', 'trouve', 'situe', 'gta', '6', 'vi', 'gtavi', 'gta6', 'jeu', 'avoir', 'obtenir', 'peut', 'faire', 'carte']);
   function search(q) {
     const qn = norm(q); if (!qn) return [];
-    const toks = qn.split(' ').filter((t) => t && !['de', 'des', 'du', 'la', 'le', 'les', 'un', 'une', 'a', 'ou', 'trouver', 'gta', '6'].includes(t));
+    const toks = qn.split(' ').filter((t) => t && !MOTS_VIDES.has(t));
     if (!toks.length) return [];
     const out = [];
     // intention reconnue (« voiture rapide », « jet privé », « finir le jeu à 100 % ») : la bonne rubrique en tête, et seulement ses repères ensuite
     const qi = ` ${qn.replace(/%/g, '')} `;
-    const it = (OPT.intentions || []).find((x) => x.q.some((m) => qi.includes(` ${norm(m)} `)));
+    // la phrase reconnue la plus longue l'emporte (« code du coffre » avant « coffre »)
+    let it = null, lmax = 0;
+    (OPT.intentions || []).forEach((x) => x.q.forEach((m) => { const n = norm(m); if (n.length > lmax && qi.includes(` ${n} `)) { lmax = n.length; it = x; } }));
     if (it) {
       const p = it.pop && (OPT.populaires || []).find((x) => x.id === it.pop);
+      if (it.action) return [{ s: 100, action: it.action }];
       if (p) out.push({ s: 100, pop: p });
-      else if (cats[it.cat]) { const sub = (cats[it.cat].sous || []).find((x) => x.id === it.sc); out.push({ s: 100, cat: cats[it.cat], sub }); }
+      else if (cats[it.cat]) {
+        const sub = (cats[it.cat].sous || []).find((x) => x.id === it.sc);
+        // rubrique demandée sans aucun emplacement fiable : on le dit, plutôt que de proposer des résultats hors sujet
+        if (it.sc && !sub) return [{ s: 100, info: `Aucun emplacement fiable n’est encore connu pour cette recherche.`, cat: cats[it.cat] }];
+        out.push({ s: 100, cat: cats[it.cat], sub });
+      }
     }
     (OPT.populaires || []).forEach((p) => { const c = cats[p.cat] || {}; const s = score(toks, p.nom, `${c.nom} ${(p.sc || []).map((x) => subNoms[p.cat + ':' + x]).join(' ')}`); if (s && nPop(p)) out.push({ s: s + 4, pop: p }); });
     Object.values(cats).forEach((c) => {
@@ -769,6 +812,8 @@
       res = search(input.value); sel2 = 0; sugg.hidden = !input.value.trim();
       const lg = (r, i) => {
         const a = `role="option" data-i="${i}" aria-selected="${i === 0}"`;
+        if (r.info) return `<div class="sg-info" role="option" data-i="${i}" aria-selected="${i === 0}">${ic('info')}<span><b>${escH(r.info)}</b><small>Les données sont ajoutées dès qu’une source fiable les publie. Voir toute la catégorie « ${escH(r.cat.nom)} ».</small></span></div>`;
+        if (r.action === 'progression') return `<button type="button" ${a} style="--c:#39ff88" class="sg-cat">${ic('progress')}<span><b>Ma progression</b><small>Objets trouvés et restants, collection par collection</small></span></button>`;
         if (r.pop) { const c = cats[r.pop.cat]; return `<button type="button" ${a} style="--c:${c.color}" class="sg-cat">${ic(r.pop.icon)}<span><b>${escH(r.pop.nom)}</b><small>Recherche populaire · ${nPop(r.pop)} emplacements</small></span></button>`; }
         if (r.cat) return `<button type="button" ${a} style="--c:${r.cat.color}" class="sg-cat">${ic(r.cat.icon)}<span><b>${escH(r.sub ? r.sub.nom : r.cat.nom)}</b><small>${r.sub ? 'Sous-catégorie · ' + escH(r.cat.nom) : 'Catégorie'} · ${nCat(r.cat.id, r.sub && r.sub.id)} emplacements</small></span></button>`;
         if (r.f) return `<button type="button" ${a} style="--c:${(cats[r.f.cat] || {}).color || '#ff2bd6'}"><i></i><span><b>${escH(r.f.nom)}</b><small>${r.f.label ? 'Région' : escH(sousNom(r.f))}${secteur(r.f) ? ' · ' + escH(secteur(r.f)) : ''}</small></span></button>`;
@@ -783,6 +828,8 @@
     };
     const pick = (i) => {
       const r = res[i]; if (!r) return; sugg.hidden = true; input.blur();
+      if (r.info) { state.pop = ''; choisirCats([r.cat.id]); openResults(); return; }
+      if (r.action === 'progression') return openProgression();
       if (r.pop) return popClic(r.pop.id);
       if (r.cat) { state.pop = ''; choisirCats([r.cat.id], r.sub ? { [r.cat.id]: [r.sub.id] } : null); openResults(); fitResults(); return; }
       if (r.f) {
@@ -810,13 +857,14 @@
     $$('[data-cat]').forEach((b) => b.addEventListener('click', () => {
       const id = b.dataset.cat; state.pop = '';
       if (!state.vide && sel.size === 1 && sel.has(id) && !(subs[id] && subs[id].size)) { reset(); return; }
-      choisirCats([id]); openResults();
-      b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+      $$('[data-cat]').forEach((x) => x.setAttribute('aria-pressed', x === b)); page.classList.add('is-busy');
+      apresAffichage(() => { choisirCats([id]); openResults(); page.classList.remove('is-busy'); b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); });
     }));
     $('[data-all]').addEventListener('click', () => { if ($('[data-all]').getAttribute('aria-pressed') === 'true') return reset(); tout(); closePanel(); atlas.reset(); });
+    $('[data-explorer]').addEventListener('click', openExplorer);
     $('[data-filtres]').addEventListener('click', openFiltres);
     $('[data-reset]').addEventListener('click', reset);
-    $$('[data-pop]').forEach((b) => b.addEventListener('click', () => { if (state.pop === b.dataset.pop) return reset(); popClic(b.dataset.pop); b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); }));
+    $$('[data-pop]').forEach((b) => b.addEventListener('click', () => { if (state.pop === b.dataset.pop) return reset(); popClic(b.dataset.pop); apresAffichage(() => b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' })); }));
     // 6 recherches au chargement, les autres sur demande
     const plus = $('[data-pop-plus]');
     if (plus) plus.addEventListener('click', () => {
@@ -860,6 +908,7 @@
   }
   function popClic(id) {
     const p = (OPT.populaires || []).find((x) => x.id === id); if (!p) return;
-    appliquerPop(p); openResults(); fitResults();
+    $$('[data-pop]').forEach((x) => x.setAttribute('aria-pressed', x.dataset.pop === id)); page.classList.add('is-busy');
+    apresAffichage(() => { appliquerPop(p); openResults(); fitResults(); page.classList.remove('is-busy'); });
   }
 })();

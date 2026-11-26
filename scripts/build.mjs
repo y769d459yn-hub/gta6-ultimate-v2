@@ -1578,7 +1578,8 @@ const STATUTS_CARTE = [
     <div class="atp-row">
       <div class="atp-cats" role="group" aria-label="Catégories principales">
         ${CO2.rapides.map((id) => { const c = cc(id); return `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.nom)}">${icon(c.icon)}<span>${esc(c.court)}</span><small data-n="${c.id}"></small></button>`; }).join('')}
-        <button type="button" class="atp-chip atp-chip--all" data-all aria-pressed="false" style="--c:#f4f1ff" title="Afficher tous les repères (avec les filtres actifs)">${icon('map')}<span>Tout</span><small data-n="tout"></small></button>
+        <button type="button" class="atp-chip atp-chip--all" data-explorer aria-haspopup="dialog" aria-pressed="false" style="--c:#f4f1ff" title="Activités, propriétés, commerces, services et lieux">${icon('compass')}<span>Explorer</span></button>
+        <button type="button" data-all hidden aria-pressed="false">Tout</button><small data-n="tout" hidden></small>
         <button type="button" class="atp-chip atp-chip--reset" data-reset hidden style="--c:#ff6b6b">${icon('x')}<span>Réinitialiser</span></button>
       </div>
       <button type="button" class="atp-fbtn" data-filtres aria-haspopup="dialog">${icon('filter')}<span>Filtres</span><b class="atp-nf" data-nf hidden></b></button>
@@ -1610,7 +1611,7 @@ const STATUTS_CARTE = [
   <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0. Objets, armes, véhicules, braquages, commerces et activités : <a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, positions converties et textes traduits.</p></details>
 </section>`;
   const schema = [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Carte interactive de GTA 6', url: site.url + '/carte/', applicationCategory: 'GameApplication', operatingSystem: 'Web', inLanguage: 'fr', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, description: `Carte de Leonida avec ${nbRep} repères classés en ${CC.length} catégories. Positions signalées par les joueurs, fiabilité indiquée pour chaque point.` }];
-  emit(p, layout({ p, title: 'Carte interactive GTA 6 : argent, voitures rares, armes et secrets', desc: `Carte interactive de GTA 6 : ${nbRep} repères (coffres et codes, voitures rares, armes gratuites, trésors, secrets, hélicoptères), fiabilité indiquée.`, body, schema, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
+  emit(p, layout({ p, title: 'Carte interactive GTA 6 : voitures rares, coffres, armes, secrets', desc: `Carte GTA 6 en français : voitures rares (Penumbra FF, supercars), codes des coffres, armes gratuites, trésors et objets du 100 %, avec la fiabilité.`, body, schema, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
 }
 
 // ---------- LIEUX ----------
@@ -2188,12 +2189,12 @@ function noterVehicules(lie) {
     // photo : celle de la fiche du modèle pour un point d'apparition ou une demande (même modèle) ;
     // une version unique (livrée spéciale) n'en reçoit une que si la photo montre cette version
     const MEME_VERSION = { 'o-standout-vehicle-086': 'maibatsu-penumbra-ff' };
-    const ph = MEME_VERSION[id] || (['spawn', 'demande', 'location'].includes(kind) && slug);
+    const ph = MEME_VERSION[id] || (['spawn', 'demande', 'location', 'unique'].includes(kind) && slug);
     if (!p.img && ph) {
       const x = CATALOGUE.vehicules.find((y) => y.slug === ph);
       if (PHOTOS[ph]) { p.img = `photos/${PHOTOS[ph].fichier}`; if (PHOTOS[ph].credit) p.imgCredit = PHOTOS[ph].credit; }
       else if (x && x.img) { p.img = `catalogue/${x.img}`; if (x.credit) p.imgCredit = x.credit; }
-      if (p.img && !MEME_VERSION[id]) p.imgNote = 'Photo du modèle';
+      if (p.img) { p.imgT = MEME_VERSION[id] ? 'exacte' : 'modele'; if (!MEME_VERSION[id]) p.imgNote = kind === 'unique' ? 'Modèle standard : pas cette livrée spéciale' : 'Photo du modèle standard'; }
     }
     if (kind !== 'guide') p.precision = 'exacte'; // repère posé au point précis par la source (pas une zone)
     p.nt = note; p.ntc = classe; p.fi = fi; p.dv = VERIF_DATE;
@@ -2219,13 +2220,19 @@ const TRAD_C = (CO.traductions || []);
 const traduit = (t) => TRAD_C.reduce((a, [en, fr]) => a.split(en).join(fr), t || '');
 // repères utilisés par un glitch publié : lien vers le tutoriel (et numéro de l'étape)
 const GL_LIEUX = {}; for (const g of GLITCHS) for (const e of g.emplacements || []) (GL_LIEUX[e.carte] ||= []).push({ s: g.slug, t: g.court || g.titre, n: e.n || 0 });
-const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) }; if (GL_LIEUX[p.id]) p.gl = GL_LIEUX[p.id]; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
+const PHOTOS_LIEUX = fs.existsSync(path.join(ROOT, 'data', 'photos-lieux.json')) ? read('photos-lieux.json').lieux : {};
+// vérifications faites en jeu par l'équipe (data/verifications-en-jeu.json) : le repère devient « Confirmé », avec la date
+const VJ = fs.existsSync(path.join(ROOT, 'data', 'verifications-en-jeu.json')) ? read('verifications-en-jeu.json').reperes : {};
+for (const id of Object.keys(VJ)) if (!mapIndex[id] && !features.some((f) => f.properties.id === id)) throw new Error(`verifications-en-jeu.json : repère inconnu « ${id} »`);
+const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) };
+  const vj = VJ[p.id]; if (vj) { p.statut = 'teste'; if (p.fi) p.fi = 'confirme'; p.dv = vj.date; p.vj = vj.note || ''; delete p.hv; }
+  const pl = PHOTOS_LIEUX[p.id]; if (pl && !p.img) { p.img = `photos-lieux/${pl.fichier}`; p.imgNote = `${pl.legende} · photo officielle du lieu`; p.imgCredit = pl.credit; p.imgT = 'lieu'; } if (GL_LIEUX[p.id]) p.gl = GL_LIEUX[p.id]; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
   bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
   regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
-  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes, intentions: CO.intentions || [], statuts: STATUTS_CARTE },
+  categories: carteCats(featsCarte), options: { rapides: CO.rapides, explorer: CO.explorer || [], alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes, intentions: CO.intentions || [], statuts: STATUTS_CARTE },
   sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
   features: featsCarte
 }));
@@ -2243,7 +2250,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) || f.startsWith('catalogue-hd' + path.sep) || f.startsWith('photos-hd' + path.sep) ? f : path.join('assets', path.basename(f)), f.endsWith('.css') ? miniCSS(fs.readFileSync(full, 'utf8')) : fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) || f.startsWith('catalogue-hd' + path.sep) || f.startsWith('photos-hd' + path.sep) || f.startsWith('photos-lieux' + path.sep) ? f : path.join('assets', path.basename(f)), f.endsWith('.css') ? miniCSS(fs.readFileSync(full, 'utf8')) : fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
