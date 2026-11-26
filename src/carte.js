@@ -19,7 +19,7 @@
   // ---------- état des filtres ----------
   // sel : catégories choisies ; subs : sous-catégories choisies par catégorie (vide = toute la catégorie)
   const sel = new Set(), subs = {};
-  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, gl: false, tousv: false, prouve: false, approx: true, nonconf: true, sect: '' };
+  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, gl: false, tousv: false, prouve: false, approx: true, nonconf: false, sect: '' };
   const opt = { ...DEF };
   const state = { commu: false, fromList: false, vide: true, solo: '', spot: '', choisi: null, pop: '', lq: '', tri: 'pert', glitch: '' };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
@@ -39,7 +39,7 @@
   const approx = (f) => f.precision === 'region' || f.precision === 'inconnue' || f.statut === 'provisoire';
   // jamais « vérifié » à cause des seules coordonnées ; jamais « officiel » pour une donnée communautaire
   // véhicules : fiabilité de l'emplacement évaluée à la génération (confirmé, fortement probable, approximatif, non vérifié)
-  const FI_ST = { confirme: 'verifie', probable: 'fortprob', approx: 'approxz', nonverif: 'nonverif' };
+  const FI_ST = { confirme: 'verifie', probable: 'probable', approx: 'nonconf', nonverif: 'nonverif' };
   function statutDe(f) {
     if (f.fi) return FI_ST[f.fi];
     if (f.statut === 'teste') return 'verifie';
@@ -97,7 +97,7 @@
       const [c, id] = s.includes(':') ? s.split(':') : [cs[0], s];
       if (sel.has(c) && subNoms[c + ':' + id]) (subs[c] ||= new Set()).add(id);
     });
-    (params.get('f') || '').split(',').forEach((k) => { if (k in DEF && DEF[k] === false) opt[k] = true; if (k === 'sansapprox') opt.approx = false; if (k === 'sansnonconf') opt.nonconf = false; });
+    (params.get('f') || '').split(',').forEach((k) => { if (k in DEF && DEF[k] === false) opt[k] = true; if (k === 'sansapprox') opt.approx = false; if (k === 'avecnonverif') opt.nonconf = true; });
     if (params.get('sect')) opt.sect = params.get('sect');
     // arrivée depuis un tutoriel de glitch : seulement ses lieux
     const gq = params.get('glitch'); if (gq && D.features.some((f) => (f.properties.gl || []).some((x) => x.s === gq))) { state.glitch = gq; if (!sel.size) Object.keys(cats).forEach((k) => sel.add(k)); }
@@ -115,7 +115,7 @@
       const sc = [...sel].flatMap((c) => [...(subs[c] || [])].map((s) => (sel.size === 1 ? s : c + ':' + s)));
       if (sc.length) u.searchParams.set('sc', sc.join(','));
     }
-    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl', 'tousv', 'prouve'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox'); if (!opt.nonconf) fl.push('sansnonconf');
+    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl', 'tousv', 'prouve'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox'); if (opt.nonconf) fl.push('avecnonverif');
     if (fl.length) u.searchParams.set('f', fl.join(','));
     if (opt.sect) u.searchParams.set('sect', opt.sect);
     history.replaceState(null, '', u);
@@ -136,7 +136,7 @@
   const estFav = (f) => favSet.has('lieu:' + f.id) || (f.vs && favSet.has('vehicule:' + f.vs)) || (/^v-/.test(f.id) && favSet.has('vehicule:' + f.id.slice(2)));
   const lqOk = (f) => { if (!state.lq) return true; const t = norm(`${f.nom} ${f.vo || ''} ${f.service || ''} ${f.zone || ''} ${f.vn || ''}`); return norm(state.lq).split(' ').every((w) => t.includes(w)); };
   function passeOpt(f) {
-    if (opt.verif && f.statut !== 'teste') return false;
+    if (opt.verif && statutDe(f) !== 'verifie') return false;
     if (opt.cacheT && trouves.has(f.id)) return false;
     if (opt.rares && !f.rar) return false;
     if (opt.spoil && f.cat === 'missions' && f.missions) return false;
@@ -149,22 +149,23 @@
     if (opt.prouve && !(f.statut === 'teste' || f.fi === 'probable' || f.fi === 'confirme')) return false;
     if (f.hv && !opt.tousv && f.id !== state.cible && f.id !== state.spot && f.id !== state.solo) return false;
     if (state.glitch && !(f.gl || []).some((x) => x.s === state.glitch)) return false;
-    if (!opt.approx && approx(f)) return false;
-    if (!opt.nonconf && statutDe(f) === 'nonconf') return false;
+    // approximatif : zone seulement ; non vérifié : masqué par défaut, affiché à la demande
+    if (!opt.approx && statutDe(f) === 'nonconf') return false;
+    if (!opt.nonconf && statutDe(f) === 'nonverif') return false;
     if (opt.sect && secteur(f) !== opt.sect) return false;
     return true;
   }
   const passe = (f) => !f.label && passeCat(f) && passeOpt(f) && lqOk(f);
-  const resultats = () => atlas.feats().filter(passe);
+  const resultats = () => { const L = atlas.feats().filter(passe); if (!state.zone) return L; const V = new Set(atlas.inView().map((f) => f.id)); return L.filter((f) => V.has(f.id)); };
   function applyFilter() {
     lireFavs();
     atlas.setBadge(state.glitch || opt.gl ? (f) => { const x = (f.gl || []).find((y) => !state.glitch || y.s === state.glitch); return x ? (x.n ? String(x.n) : '⚡') : ''; } : null);
     atlas.setFilter((f) => (state.solo ? f.id === state.solo : passe(f)));
     atlas.showCommu(state.commu && !state.solo); countView(); sync();
   }
-  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl', 'tousv', 'prouve'].filter((k) => opt[k]).length + (state.glitch ? 1 : 0) + (!opt.approx ? 1 : 0) + (!opt.nonconf ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
+  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl', 'tousv', 'prouve'].filter((k) => opt[k]).length + (state.glitch ? 1 : 0) + (!opt.approx ? 1 : 0) + (opt.nonconf ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
   const filtresActifs = () => !state.vide || nbOpts() > 0;
-  const nPop = (p) => atlas.feats().filter((f) => !f.label && dans(f, p.cat) && (!(p.sc || []).length || scDe(f, p.cat).some((x) => p.sc.includes(x)))).length;
+  const nPop = (p) => atlas.feats().filter((f) => !f.label && passeOpt(f) && dans(f, p.cat) && (!(p.sc || []).length || scDe(f, p.cat).some((x) => p.sc.includes(x)))).length;
   // nombres affichés sur les boutons : repères de la catégorie (options comprises)
   function comptes() {
     lireFavs();
@@ -344,7 +345,7 @@
 
   // ---------- nombre de repères visibles (bouton Liste) ----------
   let cvT = 0;
-  function countView() { if (cvT) return; cvT = setTimeout(() => { cvT = 0; const el = $('[data-n="vue"]'); if (el && atlas) el.textContent = atlas.inView().length; }, 200); }
+  function countView() { if (cvT) return; cvT = setTimeout(() => { cvT = 0; const el = $('[data-n="vue"]'); if (el && atlas) el.textContent = atlas.inView().length; if (state.zone && !panel.hidden && $('[data-zone]', panel)) openResults(true); }, 350); }
 
   // ---------- précédent / suivant dans les résultats ----------
   function sameCat(f) { return atlas.feats().filter((x) => !x.label && x.cat === f.cat && passe(x)).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')); }
@@ -395,7 +396,7 @@
     };
     ul.innerHTML = ''; plus();
   }
-  const RANG_ST = { verifie: 0, officiel: 0, fortprob: 1, probable: 1, approxz: 2, nonconf: 2, nonverif: 3 };
+  const RANG_ST = { verifie: 0, officiel: 0, probable: 1, nonconf: 2, nonverif: 3 };
   function trier(list) {
     const L = [...list], az = (a, b) => a.nom.localeCompare(b.nom, 'fr');
     const ch = state.choisi && !state.choisi.commu ? state.choisi : null;
@@ -406,13 +407,17 @@
     if (t === 'nt') return L.sort((a, b) => (trouves.has(a.id) - trouves.has(b.id)) || az(a, b));
     if (t === 'fav') return L.sort((a, b) => (estFav(b) - estFav(a)) || az(a, b));
     if (t === 'proche' && ch) return L.sort((a, b) => Math.hypot(a.x - ch.x, a.y - ch.y) - Math.hypot(b.x - ch.x, b.y - ch.y));
-    // pertinence : repères du guide et éléments rares d'abord, puis les plus fiables, puis l'ordre alphabétique
-    return L.sort((a, b) => ((a.src === 'ogm') - (b.src === 'ogm')) || (!!b.rar - !!a.rar) || (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b));
+    if (t === 'fiab') return L.sort((a, b) => (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || a.id.localeCompare(b.id));
+    if (t === 'centre') { const v = atlas.vue(); return L.sort((a, b) => Math.hypot(a.x - v.x, a.y - v.y) - Math.hypot(b.x - v.x, b.y - v.y) || a.id.localeCompare(b.id)); }
+    // pertinence (ordre stable) : véhicules rares et uniques, puis étoiles et note d'intérêt pour les véhicules ;
+    // ailleurs, repères du guide et éléments rares d'abord ; puis les plus fiables, l'ordre alphabétique et l'identifiant
+    return L.sort((a, b) => (!!b.ru - !!a.ru) || ((b.et || 0) - (a.et || 0)) || ((b.nt || 0) - (a.nt || 0)) || ((a.src === 'ogm') - (b.src === 'ogm')) || (!!b.rar - !!a.rar) || (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b) || a.id.localeCompare(b.id));
   }
   const outilsListe = (n) => `<div class="pn-lt pn-more"><label class="pn-lq">${ic('search')}<span class="sr-only">Chercher dans cette liste</span><input type="search" data-lq value="${escH(state.lq)}" placeholder="Filtrer ces ${n} résultats" autocomplete="off" enterkeyhint="search"></label>
-    <label class="pn-sort"><span class="sr-only">Trier</span>${ic('sliders')}<select data-tri>${[['pert', 'Pertinence'], ['az', 'A → Z'], ['rar', 'Rares d’abord'], ['reg', 'Par région'], ['nt', 'Non trouvés d’abord'], ['fav', 'Favoris d’abord'], ...(state.choisi && !state.choisi.commu ? [['proche', 'Proches du repère choisi']] : [])].map(([v, l]) => `<option value="${v}"${state.tri === v ? ' selected' : ''}>${l}</option>`).join('')}</select></label></div>`;
+    <label class="pn-sort"><span class="sr-only">Trier</span>${ic('sliders')}<select data-tri>${[['pert', 'Pertinence'], ['az', 'A → Z'], ['rar', 'Rares d’abord'], ['reg', 'Par région'], ['fiab', 'Plus fiables d’abord'], ['centre', 'Près du centre de la carte'], ['nt', 'Non trouvés d’abord'], ['fav', 'Favoris d’abord'], ...(state.choisi && !state.choisi.commu ? [['proche', 'Proches du repère choisi']] : [])].map(([v, l]) => `<option value="${v}"${state.tri === v ? ' selected' : ''}>${l}</option>`).join('')}</select></label><button type="button" class="pn-zone" data-zone aria-pressed="${!!state.zone}" title="N’afficher que les résultats visibles à l’écran">${ic('focus')}<span>Zone visible</span></button></div>`;
   function bindOutils(refaire) {
     const q = $('[data-lq]', panel), tr = $('[data-tri]', panel); let qt;
+    const zb = $('[data-zone]', panel); if (zb) zb.addEventListener('click', () => { state.zone = !state.zone; refaire(); });
     if (q) q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(() => { state.lq = q.value.trim(); applyFilter(); refaire(); }, 220); });
     if (tr) tr.addEventListener('change', () => { state.tri = tr.value; refaire(); });
   }
@@ -474,7 +479,7 @@
     const secteurs = {}; all.forEach((f) => { const s = secteur(f); if (s) secteurs[s] = (secteurs[s] || 0) + 1; });
     const sects = Object.keys(secteurs).filter((s) => secteurs[s] >= 3 || s === opt.sect).sort((a, b) => a.localeCompare(b, 'fr'));
     const tog = (k, lab, aide) => `<button type="button" class="pn-opt" data-opt="${k}" aria-pressed="${k === 'commu' ? state.commu : opt[k]}"><span class="pn-sw" aria-hidden="true"></span><span><b>${escH(lab)}</b>${aide ? `<small>${escH(aide)}</small>` : ''}</span></button>`;
-    const nHv = nO((f) => f.hv && !f.dbl), nPr = nO((f) => f.fi === 'probable' || f.fi === 'confirme' || f.statut === 'teste'), nVerif = nO((f) => f.statut === 'teste'), nApprox = nO(approx), nNc = nO((f) => statutDe(f) === 'nonconf'), nRar = nO((f) => f.rar), nSp = nO((f) => f.cat === 'missions' && f.missions), nGl = nO((f) => f.gl);
+    const nHv = nO((f) => f.hv && !f.dbl), nPr = nO((f) => f.fi === 'probable' || f.fi === 'confirme' || f.statut === 'teste'), nVerif = nO((f) => statutDe(f) === 'verifie'), nApprox = nO((f) => statutDe(f) === 'nonconf'), nNc = nO((f) => statutDe(f) === 'nonverif'), nRar = nO((f) => f.rar), nSp = nO((f) => f.cat === 'missions' && f.missions), nGl = nO((f) => f.gl);
     const sect = (titre, corps) => (corps.trim() ? `<section class="pn-fs"><h3 class="pn-fs-h">${titre}</h3>${corps}</section>` : '');
     const n = state.vide ? 0 : resultats().length;
     const c0 = $('.pn-c', panel), y = !panel.hidden && $('[data-fc]', panel) && c0 ? c0.scrollTop : 0;
@@ -486,7 +491,7 @@
       }).join('')}</ul>`)}
       ${sects.length ? sect('Localisation', `<label class="pn-sect"><span class="sr-only">Région ou quartier</span><select data-sect><option value="">Toutes les régions</option>${sects.map((x) => `<option value="${escH(x)}"${x === opt.sect ? ' selected' : ''}>${escH(x)} (${secteurs[x]})</option>`).join('')}</select></label><p class="pn-fs-n">Seuls les repères dont le quartier est connu sont filtrés.</p>`) : ''}
       ${sect('Progression', `${tog('cacheT', 'Masquer les éléments déjà trouvés', trouves.size ? `N’affiche que les non trouvés (${trouves.size} marqué${trouves.size > 1 ? 's' : ''})` : 'Rien de marqué pour l’instant')}${tog('favs', 'Uniquement mes favoris', favSet.size ? '' : 'Ajoute un lieu en favori avec le cœur de sa fiche')}`)}
-      ${sect('Fiabilité', `${nVerif ? tog('verif', 'Uniquement les emplacements vérifiés en jeu', '') : ''}${nApprox ? tog('approx', 'Afficher les emplacements approximatifs', `Zone seulement (${nApprox})`) : ''}${nNc ? tog('nonconf', 'Afficher les informations non confirmées', `${nNc} repères`) : ''}${nPr ? tog('prouve', 'Uniquement les emplacements prouvés', `${nPr} repères : capture prise en jeu sur place ou deux sources concordantes`) : ''}${nHv ? tog('tousv', 'Afficher tous les véhicules', `${nHv} masqués par défaut : véhicules ordinaires (note sous 60) et emplacements non vérifiés`) : ''}${!nVerif ? '<p class="pn-fs-n">Aucun emplacement n’est encore vérifié en jeu par notre équipe : les positions viennent de sources communautaires.</p>' : ''}`)}
+      ${sect('Fiabilité', `${nVerif ? tog('verif', 'Confirmés uniquement', `${nVerif} repère${nVerif > 1 ? 's' : ''} confirmé${nVerif > 1 ? 's' : ''}`) : ''}${nApprox ? tog('approx', 'Afficher les emplacements approximatifs', `Zone seulement (${nApprox})`) : ''}${nNc ? tog('nonconf', 'Afficher les informations non vérifiées', `${nNc} repères masqués par défaut`) : ''}${nPr ? tog('prouve', 'Uniquement les emplacements prouvés', `${nPr} repères : capture prise en jeu sur place ou deux sources concordantes`) : ''}${nHv ? tog('tousv', 'Afficher tous les véhicules', `${nHv} masqués par défaut : véhicules ordinaires (note sous 60) et emplacements non vérifiés`) : ''}<p class="pn-fs-n">Aucun emplacement n’est encore vérifié en jeu par notre équipe : « Confirmé » s’appuie sur une source officielle et une source indépendante.</p>`)}
       ${sect('Autres options', `${nSp ? tog('spoil', 'Masquer les spoilers', 'Cache les lieux des missions de l’histoire') : ''}${nRar ? tog('rares', 'Uniquement les éléments rares', 'Véhicules et armes uniques, objets rares') : ''}${nGl ? tog('gl', 'Uniquement les lieux de glitchs', `${nGl} lieux utilisés dans un tutoriel de glitch`) : ''}${commu.length ? tog('commu', 'Lieux de la communauté (GTADB)', 'Non vérifiés, visibles en zoomant') : ''}`)}
       <div class="pn-act pn-act--f"><button type="button" class="nbtn" data-reset-in><span>Réinitialiser</span><i>${ic('x')}</i></button><button type="button" class="nbtn nbtn--primary" data-voir><span>${state.vide ? 'Afficher les résultats' : `Afficher ${n} résultat${n > 1 ? 's' : ''}`}</span><i>${ic('arrow-right')}</i></button></div>`, 'grand');
     if (y) $('.pn-c', panel).scrollTop = y;
@@ -522,14 +527,38 @@
     const pc = (a, b) => (b ? Math.round(a / b * 1000) / 10 : 0);
     const bar = (n, t, c) => `<span class="pn-bar" style="--c:${c};--p:${pc(n, t)}%" role="progressbar" aria-valuemin="0" aria-valuemax="${t}" aria-valuenow="${n}"><i></i></span>`;
     const lignes = Object.values(cats).map((c) => { const L = F.filter((f) => f.cat === c.id), n = L.filter((f) => trouves.has(f.id)).length; return `<li style="--c:${c.color}"><button type="button" data-pg="${c.id}"><span class="pn-fci">${ic(c.icon)}</span><span><b>${escH(c.nom)}</b>${bar(n, L.length, c.color)}</span><em>${n}/${L.length}<small>${String(pc(n, L.length)).replace('.', ',')} %</small></em></button></li>`; }).join('');
+    // par collection : trouvés, restants, pourcentage, et l'objet non trouvé le plus proche du centre de la carte
+    const cc = cats.collection, ctr = atlas.vue ? atlas.vue() : null;
+    const colls = cc ? (cc.sous || []).map((s) => {
+      const L = F.filter((f) => f.cat === 'collection' && scDe(f, 'collection').includes(s.id)); if (!L.length) return '';
+      const n = L.filter((f) => trouves.has(f.id)).length, reste = L.filter((f) => !trouves.has(f.id));
+      let best = null; if (ctr) for (const f of reste) { const d = Math.hypot(f.x - ctr.x, f.y - ctr.y); if (!best || d < best.d) best = { f, d }; }
+      return `<li style="--c:${cc.color}"><button type="button" data-pg-sc="${s.id}"><span><b>${escH(s.nom)}</b>${bar(n, L.length, cc.color)}</span><em>${n}/${L.length}<small>${reste.length} restant${reste.length > 1 ? 's' : ''}</small></em></button>${best ? `<button type="button" class="pn-pg-near" data-go="${escH(best.f.id)}" aria-label="Aller à l’objet non trouvé le plus proche : ${escH(best.f.nom)}">${ic('locate')}Le plus proche</button>` : ''}</li>`;
+    }).join('') : '';
     showPanel(`${head('progress', '#39ff88', 'Ma progression', `${String(pc(T, F.length)).replace('.', ',')} % des repères`)}
       <div class="pn-pg-g">${bar(T, F.length, '#39ff88')}<p><b>${T}</b> sur ${F.length} repères marqués comme trouvés ou visités.</p></div>
       <p class="pn-hint">Calculé sur les repères de cette carte, pas sur le contenu complet du jeu (les totaux officiels ne sont pas connus). Enregistré automatiquement sur cet appareil${window.LG_SB && window.LG_SB.url ? ' et dans ton compte si tu es connecté' : ''}.</p>
       <ul class="pn-pg">${lignes}</ul>
+      ${colls ? `<h3 class="pn-pg-h">${ic('badge')}Collections</h3><ul class="pn-pg pn-pg--c">${colls}</ul>` : ''}
+      <div class="pn-pg-io"><button type="button" class="pn-lnk" data-pg-exp>${ic('download')}Exporter ma progression</button><label class="pn-lnk">${ic('save')}Importer<input type="file" accept="application/json,.json" data-pg-imp hidden></label></div>
       <div class="pn-act pn-act--f">${dernier ? `<button type="button" class="nbtn" data-undo><span>Annuler : ${escH(dernier.f.nom)}</span><i>${ic('replay')}</i></button>` : ''}<button type="button" class="nbtn" data-pg-hide aria-pressed="${opt.cacheT}"><span>${opt.cacheT ? 'Réafficher les trouvés' : 'Masquer les trouvés'}</span><i>${ic('eye')}</i></button></div>`, 'grand');
     $$('[data-pg]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats([b.dataset.pg]); openResults(); }));
     const u = $('[data-undo]', panel); if (u) u.addEventListener('click', () => { annuler(); openProgression(); });
     $('[data-pg-hide]', panel).addEventListener('click', () => { opt.cacheT = !opt.cacheT; comptes(); applyFilter(); openProgression(); });
+    $$('[data-pg-sc]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats(['collection'], { collection: [b.dataset.pgSc] }); openResults(); }));
+    $$('.pn-pg-near', panel).forEach((b) => b.addEventListener('click', () => go(b.dataset.go)));
+    // export / import : un fichier JSON avec les identifiants stables des repères trouvés (rien n'est effacé à l'import : les deux listes sont réunies)
+    $('[data-pg-exp]', panel).addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify({ site: 'gta6facile.fr', type: 'progression-carte', version: 1, date: new Date().toISOString(), trouves: [...trouves] })], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'gta6facile-progression.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    });
+    $('[data-pg-imp]', panel).addEventListener('change', (e) => {
+      const fi = e.target.files && e.target.files[0]; if (!fi) return;
+      fi.text().then((t) => { const d = JSON.parse(t); if (!d || !Array.isArray(d.trouves)) throw new Error('format');
+        const ids = new Set(atlas.feats().map((f) => f.id)); let n = 0; d.trouves.forEach((id) => { if (typeof id === 'string' && ids.has(id) && !trouves.has(id)) { trouves.add(id); n++; } });
+        saveT(); atlas.markFound(trouves); applyFilter(); openProgression(); LG.toast && LG.toast(`${n} repère${n > 1 ? 's' : ''} ajouté${n > 1 ? 's' : ''} à ta progression`, 'check'); })
+        .catch(() => { LG.toast && LG.toast('Fichier de progression illisible', 'alert'); });
+    });
   }
   function marquer(f, on) {
     on ? trouves.add(f.id) : trouves.delete(f.id); saveT();
@@ -690,15 +719,24 @@
     const toks = qn.split(' ').filter((t) => t && !['de', 'des', 'du', 'la', 'le', 'les', 'un', 'une', 'a', 'ou', 'trouver', 'gta', '6'].includes(t));
     if (!toks.length) return [];
     const out = [];
+    // intention reconnue (« voiture rapide », « jet privé », « finir le jeu à 100 % ») : la bonne rubrique en tête, et seulement ses repères ensuite
+    const qi = ` ${qn.replace(/%/g, '')} `;
+    const it = (OPT.intentions || []).find((x) => x.q.some((m) => qi.includes(` ${norm(m)} `)));
+    if (it) {
+      const p = it.pop && (OPT.populaires || []).find((x) => x.id === it.pop);
+      if (p) out.push({ s: 100, pop: p });
+      else if (cats[it.cat]) { const sub = (cats[it.cat].sous || []).find((x) => x.id === it.sc); out.push({ s: 100, cat: cats[it.cat], sub }); }
+    }
     (OPT.populaires || []).forEach((p) => { const c = cats[p.cat] || {}; const s = score(toks, p.nom, `${c.nom} ${(p.sc || []).map((x) => subNoms[p.cat + ':' + x]).join(' ')}`); if (s && nPop(p)) out.push({ s: s + 4, pop: p }); });
     Object.values(cats).forEach((c) => {
       const s = score(toks, c.nom, `${c.court} ${c.q} ${c.sens}`); if (s) out.push({ s: s + 3, cat: c });
       c.sous.forEach((x) => { const s2 = score(toks, x.nom, c.nom); if (s2) out.push({ s: s2 + 2.5, cat: c, sub: x }); });
     });
-    atlas.feats().forEach((f) => { if (f.label && !regions[f.id]) return; const s = score(toks, f.nom, `${(cats[f.cat] || {}).nom} ${f.service || ''} ${f.vn || ''} ${f.vo || ''} ${f.zone || ''} ${f.desc || ''}`); if (s) out.push({ s: s + (f.label ? 1.5 : 1) + (passe(f) ? .3 : 0), f }); });
+    atlas.feats().forEach((f) => { if ((f.label && !regions[f.id]) || f.dbl) return; const s = score(toks, f.nom, `${(cats[f.cat] || {}).nom} ${f.service || ''} ${f.vn || ''} ${f.vo || ''} ${f.zone || ''} ${f.desc || ''}`); if (s) out.push({ s: s + (f.label ? 1.5 : 1) + (passe(f) ? .3 : 0), f }); });
     commu.forEach((p) => { const s = score(toks, p.n, p.z); if (s) out.push({ s, p }); });
     const vus = new Set();
-    return out.sort((a, b) => b.s - a.s).filter((r) => { const k = r.pop ? 'p' + r.pop.id : r.cat ? 'c' + r.cat.id + (r.sub ? ':' + r.sub.id : '') : ''; if (!k) return true; if (vus.has(k)) return false; vus.add(k); return true; }).slice(0, 9);
+    const garde = (r) => !it || !r.f || (it.cat && r.f.cat === it.cat && (!it.sc || scDe(r.f, it.cat).includes(it.sc)));
+    return out.filter((r) => (it && !it.pop ? garde(r) && !(r.cat && !r.sub && r.cat.id !== it.cat) : true)).sort((a, b) => b.s - a.s).filter((r) => { const k = r.pop ? 'p' + r.pop.id : r.cat ? 'c' + r.cat.id + (r.sub ? ':' + r.sub.id : '') : ''; if (!k) return true; if (vus.has(k)) return false; vus.add(k); return true; }).slice(0, 9);
   }
   // ---------- mode exploration : la carte seule, en plein écran ; vue, filtres, sélection et panneau restaurés en sortant ----------
   let expl = null;
@@ -725,7 +763,7 @@
 
   function bind() {
     const input = $('#atp-q'), sugg = $('#atp-sugg'), qx = $('[data-q-x]'); let res = [], sel2 = 0;
-    const nCat = (c, s) => atlas.feats().filter((f) => !f.label && dans(f, c) && (!s || scDe(f, c).includes(s))).length;
+    const nCat = (c, s) => atlas.feats().filter((f) => !f.label && passeOpt(f) && dans(f, c) && (!s || scDe(f, c).includes(s))).length;
     const draw = () => {
       dt = 0; qx.hidden = !input.value;
       res = search(input.value); sel2 = 0; sugg.hidden = !input.value.trim();
@@ -779,6 +817,14 @@
     $('[data-filtres]').addEventListener('click', openFiltres);
     $('[data-reset]').addEventListener('click', reset);
     $$('[data-pop]').forEach((b) => b.addEventListener('click', () => { if (state.pop === b.dataset.pop) return reset(); popClic(b.dataset.pop); b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); }));
+    // 6 recherches au chargement, les autres sur demande
+    const plus = $('[data-pop-plus]');
+    if (plus) plus.addEventListener('click', () => {
+      const on = plus.getAttribute('aria-expanded') !== 'true';
+      plus.setAttribute('aria-expanded', on);
+      $$('[data-pop-extra]').forEach((b) => { const p = (OPT.populaires || []).find((x) => x.id === b.dataset.pop); b.hidden = !on || !p || !nPop(p); });
+      $('span', plus).textContent = on ? 'Moins de recherches' : 'Plus de recherches';
+    });
     // recherches populaires repliables (choix gardé sur cet appareil)
     const pt = $('[data-pop-tog]'), pb = $('[data-pop-box]');
     const replier = (on) => { pb.classList.toggle('is-replie', on); pt.setAttribute('aria-expanded', !on); pt.setAttribute('aria-label', on ? 'Afficher les recherches populaires' : 'Masquer les recherches populaires'); store.set(KEY_POPR, on ? '1' : ''); setTimeout(() => { atlas.setPad(padding()); majCtrl(); }, 260); };

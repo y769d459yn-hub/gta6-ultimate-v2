@@ -769,3 +769,24 @@
 /* « Véhicules rares et uniques » : pastille dorée en losange, liseré rose, pour les repérer d'un coup d'œil */
 .at-dot.at-dot--rare .at-dot-i { --c: #ffd23f; border-style: solid; border-radius: 9px; rotate: 45deg; background: linear-gradient(135deg, #2a1d05, #0c0b14); box-shadow: 0 0 0 2px #05040b, 0 0 0 4px #ff2bd6, 0 0 16px -2px #ffd23f; }
 .at-dot.at-dot--rare .at-dot-i .ic { rotate: -45deg; }
+
+/* progression : collections, objet le plus proche, export / import */
+.pn-pg-h { display: flex; align-items: center; gap: 8px; margin: 18px 0 8px; font-size: .95rem; }
+.pn-pg-h .ic { width: 18px; height: 18px; color: #ff2bd6; }
+.pn-pg--c li { display: flex; align-items: center; gap: 8px; }
+.pn-pg--c li > button:first-child { flex: 1; min-width: 0; }
+.pn-pg-near { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .16); background: rgba(255, 255, 255, .04); color: #fff; font: 600 .78rem/1 var(--fd, sans-serif); cursor: pointer; }
+.pn-pg-near .ic { width: 15px; height: 15px; }
+.pn-pg-io { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 4px; }
+.pn-pg-io label { cursor: pointer; }
+
+/* résultats : filtre « Zone visible » */
+.pn-lt { flex-wrap: wrap; }
+.pn-zone { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .03); color: #cfc9e3; font: 600 .8rem/1 var(--fd, sans-serif); cursor: pointer; }
+.pn-zone .ic { width: 15px; height: 15px; }
+.pn-zone[aria-pressed="true"] { border-color: #19d3e3; color: #fff; background: color-mix(in srgb, #19d3e3 18%, transparent); }
+
+/* zones tactiles d'au moins 44 px sans changer l'apparence : étiquettes de régions et poignée du panneau */
+.at-lbl::after { content: ""; position: absolute; inset: -11px -6px; }
+.pn-grip { position: relative; }
+.pn-grip::after { content: ""; position: absolute; inset: -11px 0; }
