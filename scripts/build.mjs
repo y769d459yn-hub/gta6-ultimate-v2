@@ -790,7 +790,7 @@ function homePalms() {
   const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : fs.existsSync(path.join(ROOT, 'src', 'img', `hx-${n}.webp`)) ? `hx-${n}.webp` : `../photos/${n}.webp`);
   const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
   const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
-  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547']];
+  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547'], ['glitchs/', 'Glitchs', 'bolt', '#19d3e3']];
   const UNE = D_('argent-rapide');
   const POP = [
     ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'm-codes', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
@@ -820,12 +820,6 @@ function homePalms() {
     <span class="hx-go">${icon('arrow-right')}</span>
   </a>
 </section>
-
-${GL_RECO.length ? `<section class="wrap hx-sec" aria-labelledby="gl-t">
-  <header class="hx-h"><h2 id="gl-t">${icon('bolt')}Meilleurs glitchs du moment</h2><a href="${R}glitchs/">Tout voir${icon('arrow-right')}</a></header>
-  <ul class="hx-gl">${GL_RECO.slice(0, 3).map((g) => { const C = GCATS[g.cat]; return `<li><a href="${R}glitchs/${g.slug}/" style="--c:${C.c}"><span class="hx-gl-i">${gVisuel(g, R)}</span><span class="hx-gl-t"><small>${icon(C.ic)}${esc(C.n)}</small><b>${esc(g.titre)}</b><span>${gPill(g)}${g.gainCourt ? `<em>${esc(g.gainCourt)}</em>` : ''}</span></span>${icon('arrow-right')}</a></li>`; }).join('')}</ul>
-  <a class="hx-gl-all" href="${R}glitchs/">${icon('bolt')}Voir tous les glitchs${icon('arrow-right')}</a>
-</section>` : ''}
 
 <section class="wrap hx-sec" aria-labelledby="pop-t" data-carousel>
   <header class="hx-h"><h2 id="pop-t">${icon('stack')}Guides populaires</h2><a href="${R}dossiers/">Tout voir${icon('arrow-right')}</a></header>
