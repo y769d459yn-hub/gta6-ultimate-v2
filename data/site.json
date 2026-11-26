@@ -1472,7 +1472,8 @@
    "vehicules",
    "armes",
    "secrets",
-   "collection"
+   "collection",
+   "missions"
   ],
   "alias": {
    "lieux": "services:quartiers"
@@ -1787,6 +1788,248 @@
   "intentions": [
    {
     "q": [
+     "personnalisation",
+     "tuning",
+     "customiser",
+     "modifier voiture",
+     "mod shop"
+    ],
+    "cat": "services",
+    "sc": "garages"
+   },
+   {
+    "q": [
+     "tatouage",
+     "tatoueur"
+    ],
+    "cat": "commerces",
+    "sc": "tatoueurs"
+   },
+   {
+    "q": [
+     "coiffeur",
+     "coiffure"
+    ],
+    "cat": "commerces",
+    "sc": "coiffeurs"
+   },
+   {
+    "q": [
+     "vetement",
+     "vetements",
+     "tenue",
+     "habits"
+    ],
+    "cat": "commerces",
+    "sc": "vetements"
+   },
+   {
+    "q": [
+     "aeroport",
+     "aeroports"
+    ],
+    "cat": "services",
+    "sc": "aeroports"
+   },
+   {
+    "q": [
+     "station service",
+     "essence",
+     "carburant"
+    ],
+    "cat": "services",
+    "sc": "stations"
+   },
+   {
+    "q": [
+     "hopital",
+     "hopitaux"
+    ],
+    "cat": "services",
+    "sc": "hopitaux"
+   },
+   {
+    "q": [
+     "peche",
+     "pecher",
+     "poisson"
+    ],
+    "cat": "activites",
+    "sc": "peche"
+   },
+   {
+    "q": [
+     "cascade",
+     "cascades",
+     "saut",
+     "stunt"
+    ],
+    "cat": "activites",
+    "sc": "cascades"
+   },
+   {
+    "q": [
+     "course",
+     "courses",
+     "course de rue"
+    ],
+    "cat": "activites",
+    "sc": "courses"
+   },
+   {
+    "q": [
+     "mission principale",
+     "missions principales",
+     "histoire"
+    ],
+    "cat": "missions",
+    "sc": "principales"
+   },
+   {
+    "q": [
+     "paquet cache",
+     "paquets caches",
+     "hidden package"
+    ],
+    "cat": "collection",
+    "sc": "paquets"
+   },
+   {
+    "q": [
+     "meteorite",
+     "meteorites"
+    ],
+    "cat": "collection",
+    "sc": "meteorites"
+   },
+   {
+    "q": [
+     "carte postale",
+     "cartes postales",
+     "carte a collectionner",
+     "cartes a collectionner"
+    ],
+    "cat": "collection",
+    "sc": "cartes"
+   },
+   {
+    "q": [
+     "objet a collectionner",
+     "objets a collectionner",
+     "collectibles",
+     "collection",
+     "collections"
+    ],
+    "cat": "collection"
+   },
+   {
+    "q": [
+     "secret",
+     "secrets",
+     "mystere",
+     "mysteres"
+    ],
+    "cat": "secrets"
+   },
+   {
+    "q": [
+     "receleur",
+     "receleurs",
+     "revendre",
+     "fence"
+    ],
+    "cat": "argent",
+    "sc": "receleurs"
+   },
+   {
+    "q": [
+     "braquage",
+     "braquages",
+     "braquer",
+     "cambriolage"
+    ],
+    "cat": "argent",
+    "sc": "braquer"
+   },
+   {
+    "q": [
+     "garage",
+     "garages",
+     "ou garer",
+     "stocker voiture",
+     "ranger voiture"
+    ],
+    "pop": "planques-garages"
+   },
+   {
+    "q": [
+     "tresor",
+     "tresors",
+     "tresor cache",
+     "tresors caches",
+     "treasure"
+    ],
+    "cat": "collection",
+    "sc": "tresors"
+   },
+   {
+    "q": [
+     "coffre fort",
+     "coffres forts",
+     "coffre"
+    ],
+    "cat": "argent",
+    "sc": "coffres"
+   },
+   {
+    "q": [
+     "code du coffre",
+     "code coffre",
+     "codes coffres",
+     "code des coffres",
+     "combinaison coffre",
+     "safe code"
+    ],
+    "cat": "argent",
+    "sc": "codes"
+   },
+   {
+    "q": [
+     "arme gratuite",
+     "armes gratuites",
+     "arme gratuit",
+     "free weapon"
+    ],
+    "cat": "armes",
+    "sc": "gratuites"
+   },
+   {
+    "q": [
+     "gagner de l argent",
+     "gagner argent",
+     "argent rapidement",
+     "argent facile",
+     "se faire de l argent",
+     "devenir riche",
+     "money facile"
+    ],
+    "pop": "argent-facile"
+   },
+   {
+    "q": [
+     "reste",
+     "restent",
+     "restant",
+     "restants",
+     "me reste",
+     "deja trouve",
+     "ma progression",
+     "progression"
+    ],
+    "action": "progression"
+   },
+   {
+    "q": [
      "voiture rapide",
      "voitures rapides",
      "supercar",
@@ -1953,6 +2196,12 @@
     "cat": "proprietes",
     "sc": "planques"
    }
+  ],
+  "explorer": [
+   "activites",
+   "proprietes",
+   "commerces",
+   "services"
   ]
  }
 }

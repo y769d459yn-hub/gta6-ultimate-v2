@@ -1,0 +1,4 @@
+{
+ "_note": "Vérifications faites EN JEU par l'équipe. Une entrée par repère (identifiant de la carte) : le repère passe en « Confirmé » avec la date et la note. N'ajouter une ligne qu'après avoir vu l'élément soi-même dans le jeu, à cet endroit. Exemple : \"o-standout-vehicle-086\": { \"date\": \"2026-12-01\", \"par\": \"Équipe GTA 6 Facile\", \"version\": \"01.002.002\", \"note\": \"Présente dans le garage, livrée verte\" }",
+ "reperes": {}
+}
