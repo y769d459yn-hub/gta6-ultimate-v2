@@ -1,5 +1,6 @@
 /* GTA 6 Facile — page carte plein écran : filtres (catégories, sous-catégories, options), recherches populaires,
-   recherche tolérante, fiches, progression. Configuration des catégories : data/site.json (categories.carte, carteOptions). */
+   recherche tolérante, fiches et listes en panneaux coulissants (3 hauteurs), progression, mode exploration.
+   Configuration des catégories : data/site.json (categories.carte, carteOptions). */
 (() => {
   'use strict';
   const page = document.querySelector('[data-atlas-page]'); if (!page || !window.Atlas) return;
@@ -14,13 +15,13 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const stage = $('.atp-stage'), panel = $('[data-panel]'), top = $('.atp-top');
   const params = new URLSearchParams(location.search);
-  let atlas, D, OPT = {}, commu = [], commuCats = {}, cats = {}, regions = {}, sousNoms = {}, subNoms = {};
+  let atlas, D, OPT = {}, commu = [], commuCats = {}, cats = {}, regions = {}, sousNoms = {}, subNoms = {}, STATUTS = {};
   // ---------- état des filtres ----------
   // sel : catégories choisies ; subs : sous-catégories choisies par catégorie (vide = toute la catégorie)
   const sel = new Set(), subs = {};
-  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, approx: true, sect: '' };
+  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, approx: true, nonconf: true, sect: '' };
   const opt = { ...DEF };
-  const state = { commu: false, fromList: false, vide: true, solo: '', spot: '', choisi: null, pop: '' };
+  const state = { commu: false, fromList: false, vide: true, solo: '', spot: '', choisi: null, pop: '', lq: '', tri: 'pert' };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
   // points marqués « trouvé » (gardés sur cet appareil, synchronisés par le compte s'il existe : même clé qu'avant)
   const KEY_T = 'lg:carte-trouves';
@@ -28,21 +29,23 @@
   const saveT = () => store.set(KEY_T, JSON.stringify([...trouves]));
   let dernier = null; // dernière action « trouvé », pour pouvoir l'annuler
   // clics sur les recherches populaires : comptés sur cet appareil (et en compteur anonyme s'il est actif), jamais affichés comme des statistiques
-  const KEY_POP = 'lg:carte-pop';
+  const KEY_POP = 'lg:carte-pop', KEY_POPR = 'lg:carte-pop-replie';
   const favs = () => { try { return (LG.store ? LG.store.get('favs', []) : JSON.parse(store.get('lg:favs') || '[]')) || []; } catch (e) { return []; } };
   // ce qu'on cherche souvent : le plus proche, depuis n'importe quel point
   const BESOINS = [[['Armurerie'], 'gun', 'Armurerie'], [['Hôpital'], 'heart', 'Hôpital'], [['Station-service'], 'bolt', 'Station-service'], [['Garage auto', "Pay 'n' Spray"], 'spray', 'Garage ou Pay \'n\' Spray'], [['Vêtements'], 'user', 'Vêtements'], [['Planque'], 'home', 'Planque']];
   const foundTxt = (f, on) => (f.cat === 'collection' ? (on ? 'Trouvé' : 'Marquer comme trouvé') : (on ? 'Visité' : 'Marquer comme visité'));
-  // ---------- fiabilité : officiel / vérifié / probable / non confirmé (jamais déduit des seules coordonnées) ----------
-  const sourceTxt = (f) => (/^o-/.test(f.id) ? 'Open GTA 6 Map (joueurs)' : /^w-/.test(f.id) ? 'GTA Wiki (joueurs)' : /^s-/.test(f.id) ? 'GTADB (joueurs)' : 'fiche du guide');
-  function fiab(f) {
-    const pos = f.precision === 'exacte' ? 'position précise selon la source' : f.precision === 'region' ? 'zone seulement' : 'position approximative';
-    if (f.statut === 'teste') return { n: 'Vérifié en jeu', cls: 'pn-tag--ok', t: pos };
-    if (f.statut === 'confirme' && !/^[osw]-/.test(f.id)) return { n: 'Lieu officiel', cls: 'pn-tag--ok', t: `existence confirmée, ${pos}` };
-    if (approx(f) || /^v-/.test(f.id)) return { n: 'Non confirmé', cls: 'pn-tag--warn', t: `${pos} · ${sourceTxt(f)}` };
-    return { n: 'Probable', cls: 'pn-tag--info', t: `signalé par une source, ${pos} · ${sourceTxt(f)}` };
-  }
+  // ---------- fiabilité de l'information (statut) et précision de l'emplacement : deux choses distinctes ----------
+  const sourceTxt = (f) => (/^o-/.test(f.id) ? 'Open GTA 6 Map (joueurs)' : /^w-/.test(f.id) ? 'GTA Wiki (joueurs)' : /^s-/.test(f.id) ? 'GTADB (joueurs)' : 'Fiche du guide GTA 6 Facile');
   const approx = (f) => f.precision === 'region' || f.precision === 'inconnue' || f.statut === 'provisoire';
+  // jamais « vérifié » à cause des seules coordonnées ; jamais « officiel » pour une donnée communautaire
+  function statutDe(f) {
+    if (f.statut === 'teste') return 'verifie';
+    if (f.statut === 'confirme' && !/^[osw]-/.test(f.id)) return 'verifie';
+    if (approx(f) || /^v-/.test(f.id)) return 'nonconf';
+    return 'probable';
+  }
+  const precisionTxt = (f) => (f.precision === 'exacte' ? 'Position précise selon la source (pas vérifiée en jeu)' : f.precision === 'region' ? 'Zone seulement : position non précise' : f.precision === 'inconnue' ? 'Position inconnue' : 'Position approximative');
+  const stTag = (f, seul) => { const s = STATUTS[statutDe(f)] || {}; return `<span class="pn-st" style="--c:${s.c}" title="${escH(s.t)}">${ic(s.ic)}${escH(s.n)}</span>${seul ? '' : `<small class="pn-st-t">${escH(s.t)}</small>`}`; };
   const km = (d) => (d < 950 ? `${Math.max(100, Math.round(d / 100) * 100)} m` : `${(d / 1000).toFixed(1).replace('.', ',')} km`);
   // secteur : quartier de la source, sinon la région du guide
   const secteur = (f) => (f.zone ? f.zone.split(',').pop().trim() : '') || (regions[f.region] || {}).nom || '';
@@ -51,10 +54,13 @@
   const scDe = (f, c) => (f.sc || []).filter((s) => (f.cat === c ? !s.includes(':') : s.startsWith(c + ':'))).map((s) => s.replace(/^.*:/, ''));
   const dans = (f, c) => f.cat === c || (f.tg || []).includes(c);
   const sousNom = (f) => { const s = scDe(f, f.cat)[0]; return (s && subNoms[f.cat + ':' + s]) || f.service || sousNoms[f.sous] || (cats[f.cat] || {}).nom || ''; };
-  const catsDe = (f) => [f.cat, ...(f.tg || [])];
+  const rarete = (f) => (f.rar === '#' ? `Rare : ${atlas.feats().filter((x) => x.service === f.service).length} sur la carte` : f.rar || '');
+  // description courte : première phrase, sans répéter le nom
+  const court = (f) => { const p = (f.desc || '').split(/(?<=\.)\s/)[0] || ''; return p && norm(p) !== norm(f.nom) ? (p.length > 110 ? p.slice(0, 107) + '…' : p) : sousLigne(f); };
 
   Promise.all([fetch(ROOT + 'data/carte.json').then((r) => r.json()), fetch(ROOT + 'data/communaute.json').then((r) => r.json()).catch(() => ({ lieux: [], categories: [] }))]).then(([d, c]) => {
     D = d; OPT = d.options || {}; commu = c.lieux; c.categories.forEach((k) => { commuCats[k.id] = k; });
+    (OPT.statuts || []).forEach((s) => { STATUTS[s.id] = s; });
     d.categories.forEach((k) => { cats[k.id] = k; k.sous.forEach((s) => { subNoms[k.id + ':' + s.id] = s.nom; }); });
     d.regions.forEach((r) => { regions[r.id] = r; });
     Object.values(d.sousTypes || {}).forEach((L) => L.forEach((x) => { sousNoms[x.id] = x.nom; }));
@@ -62,9 +68,11 @@
     atlas = window.Atlas(stage, {
       root: ROOT, tuiles: d.tuiles, carte: d, pad: padding(),
       onSelect: (f, o2 = {}) => { state.choisi = f; garde(false); const r = f.commu ? openCommu(f) : openFeature(f); visible(f, o2.fly ? 1050 : 380); return r; },
-      onRegion: openRegion, onBlank: closePanel, onView: countView, onCluster: openCluster
+      onRegion: openRegion, onBlank: () => { menuReg(false); closePanel(); }, onView: countView, onCluster: openCluster
     });
     atlas.setCommu(commu); atlas.markFound(trouves);
+    // recherches populaires sans aucun repère : masquées
+    $$('[data-pop]').forEach((b) => { const p = (OPT.populaires || []).find((x) => x.id === b.dataset.pop); if (!p || !nPop(p)) b.hidden = true; });
     comptes(); sync(); applyFilter();
     const focus = params.get('focus');
     const f = focus && atlas.feats().find((x) => x.id === focus);
@@ -73,7 +81,6 @@
     else if (params.get('region') && regions[params.get('region')]) setTimeout(() => openRegion(regions[params.get('region')]), 250);
     else if (!state.vide && sel.size) setTimeout(() => { openResults(); fitResults(); }, 300);
     bind();
-    if (g && !reduce) g.from('.atp-top > *, .atp-ctrl > *', { opacity: 0, y: -10, duration: .6, stagger: .03, ease: 'expo.out' });
   }).catch((e) => { stage.textContent = 'Carte indisponible pour le moment.'; if (window.console) console.warn(e); });
 
   // ---------- lien partageable : ?cat=a,b&sc=a:x&f=rares,cacheT&sect=Vice City ----------
@@ -87,7 +94,7 @@
       const [c, id] = s.includes(':') ? s.split(':') : [cs[0], s];
       if (sel.has(c) && subNoms[c + ':' + id]) (subs[c] ||= new Set()).add(id);
     });
-    (params.get('f') || '').split(',').forEach((k) => { if (k in DEF && typeof DEF[k] === 'boolean') opt[k] = k !== 'approx'; if (k === 'sansapprox') opt.approx = false; });
+    (params.get('f') || '').split(',').forEach((k) => { if (k in DEF && DEF[k] === false) opt[k] = true; if (k === 'sansapprox') opt.approx = false; if (k === 'sansnonconf') opt.nonconf = false; });
     if (params.get('sect')) opt.sect = params.get('sect');
     if (sel.size) state.vide = false;
     if (params.get('pop')) { const p = (OPT.populaires || []).find((x) => x.id === params.get('pop')); if (p) { state.pop = p.id; appliquerPop(p, true); } }
@@ -97,12 +104,12 @@
     ['cat', 'sc', 'f', 'sect', 'pop', 'focus', 'mission'].forEach((k) => u.searchParams.delete(k));
     if (state.pop) u.searchParams.set('pop', state.pop);
     else if (!state.vide) {
-      const tout = sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s.size);
-      u.searchParams.set('cat', tout ? 'tout' : [...sel].join(','));
+      const tt = sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s.size);
+      u.searchParams.set('cat', tt ? 'tout' : [...sel].join(','));
       const sc = [...sel].flatMap((c) => [...(subs[c] || [])].map((s) => (sel.size === 1 ? s : c + ':' + s)));
       if (sc.length) u.searchParams.set('sc', sc.join(','));
     }
-    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox');
+    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox'); if (!opt.nonconf) fl.push('sansnonconf');
     if (fl.length) u.searchParams.set('f', fl.join(','));
     if (opt.sect) u.searchParams.set('sect', opt.sect);
     history.replaceState(null, '', u);
@@ -121,6 +128,7 @@
   let favSet = new Set();
   const lireFavs = () => { favSet = new Set(favs().map((x) => x.type + ':' + x.id)); };
   const estFav = (f) => favSet.has('lieu:' + f.id) || (f.vs && favSet.has('vehicule:' + f.vs)) || (/^v-/.test(f.id) && favSet.has('vehicule:' + f.id.slice(2)));
+  const lqOk = (f) => { if (!state.lq) return true; const t = norm(`${f.nom} ${f.vo || ''} ${f.service || ''} ${f.zone || ''} ${f.vn || ''}`); return norm(state.lq).split(' ').every((w) => t.includes(w)); };
   function passeOpt(f) {
     if (opt.verif && f.statut !== 'teste') return false;
     if (opt.cacheT && trouves.has(f.id)) return false;
@@ -128,18 +136,20 @@
     if (opt.spoil && f.cat === 'missions' && f.missions) return false;
     if (opt.favs && !estFav(f)) return false;
     if (!opt.approx && approx(f)) return false;
+    if (!opt.nonconf && statutDe(f) === 'nonconf') return false;
     if (opt.sect && secteur(f) !== opt.sect) return false;
     return true;
   }
-  const passe = (f) => !f.label && passeCat(f) && passeOpt(f);
+  const passe = (f) => !f.label && passeCat(f) && passeOpt(f) && lqOk(f);
   const resultats = () => atlas.feats().filter(passe);
   function applyFilter() {
     lireFavs();
     atlas.setFilter((f) => (state.solo ? f.id === state.solo : passe(f)));
     atlas.showCommu(state.commu && !state.solo); countView(); sync();
   }
-  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]).length + (!opt.approx ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
+  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]).length + (!opt.approx ? 1 : 0) + (!opt.nonconf ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
   const filtresActifs = () => !state.vide || nbOpts() > 0;
+  const nPop = (p) => atlas.feats().filter((f) => !f.label && dans(f, p.cat) && (!(p.sc || []).length || scDe(f, p.cat).some((x) => p.sc.includes(x)))).length;
   // nombres affichés sur les boutons : repères de la catégorie (options comprises)
   function comptes() {
     lireFavs();
@@ -148,11 +158,11 @@
     const t = $('[data-n="tout"]'); if (t) t.textContent = all.length;
   }
   function sync() {
-    const tout = !state.vide && sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s && s.size);
-    $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', !state.solo && !tout && sel.has(b.dataset.cat)));
-    $('[data-all]').setAttribute('aria-pressed', !state.solo && tout);
+    const tt = !state.vide && sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s && s.size);
+    $$('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', !state.solo && !tt && sel.has(b.dataset.cat)));
+    $('[data-all]').setAttribute('aria-pressed', !state.solo && tt);
     $$('[data-pop]').forEach((b) => b.setAttribute('aria-pressed', state.pop === b.dataset.pop));
-    const n = nbOpts() + (state.vide || tout ? 0 : [...sel].filter((c) => !(OPT.rapides || []).includes(c) || (subs[c] && subs[c].size)).length);
+    const n = nbOpts() + (state.vide || tt ? 0 : [...sel].filter((c) => !(OPT.rapides || []).includes(c) || (subs[c] && subs[c].size)).length);
     const nf = $('[data-nf]'); nf.hidden = !n; nf.textContent = n;
     $('[data-reset]').hidden = !filtresActifs();
     const hv = $('[data-vide]'); if (hv) hv.hidden = !state.vide || !panel.hidden || !!state.solo;
@@ -160,7 +170,7 @@
   }
   // ---------- choisir ----------
   function choisirCats(ids, scs) {
-    unsolo(); sel.clear(); Object.keys(subs).forEach((k) => delete subs[k]);
+    unsolo(); sel.clear(); Object.keys(subs).forEach((k) => delete subs[k]); state.lq = '';
     ids.forEach((c) => { if (cats[c]) sel.add(c); });
     if (scs) Object.entries(scs).forEach(([c, L]) => { const s = L.filter((x) => subNoms[c + ':' + x]); if (s.length) subs[c] = new Set(s); });
     state.vide = !sel.size; applyFilter();
@@ -179,6 +189,7 @@
   }
   function ensureShown(f) {
     if (state.solo ? f.id === state.solo : passe(f)) return;
+    state.lq = '';
     if (!passeOpt(f)) { Object.assign(opt, DEF); comptes(); }
     if (!passeCat(f)) { state.pop = ''; choisirCats([f.cat]); } else applyFilter();
   }
@@ -191,25 +202,106 @@
   function fitResults() { const L = resultats(); if (L.length) atlas.fit(L.length > 400 ? L.filter((_, i) => i % 4 === 0) : L, 1.15); }
 
   const cote = () => innerWidth < 900 && innerWidth > innerHeight && innerHeight < 520; // téléphone en paysage
+  const mobile = () => innerWidth < 900 && !cote();
   function padding() {
-    const mob = innerWidth < 900 && !cote();
-    if (cote()) return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 6, bottom: 80, left: 10, right: panel.hidden ? 10 : Math.round(Math.min(innerWidth * .46, 380)) + 16 };
-    return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mob ? 140 : 70, left: 10, right: mob ? 10 : (panel.hidden ? 70 : 430) };
+    if (cote()) return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 6, bottom: 70, left: 10, right: panel.hidden ? 10 : Math.round(Math.min(innerWidth * .46, 380)) + 16 };
+    return { top: (top.getBoundingClientRect().bottom - page.getBoundingClientRect().top) + 10, bottom: mobile() ? 130 : 70, left: 10, right: mobile() ? 10 : (panel.hidden ? 70 : 430) };
   }
 
-  // ---------- panneau (fiche en bas de l'écran sur téléphone, à droite sur ordinateur) ----------
-  function showPanel(html) {
-    const hv = $('[data-vide]'); if (hv) hv.hidden = true; garde(false); legende(false);
-    panel.classList.remove('pn-anim');
-    panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Agrandir le panneau"></button>${html}`; panel.hidden = false; panel.scrollTop = 0; page.classList.add('has-panel');
-    taillePanneau(showPanel.grand ? 'grand' : showPanel.moyen ? 'moyen' : 'compact'); showPanel.grand = false; showPanel.moyen = false;
-    const bascule = () => { panel.classList.add('pn-anim'); taillePanneau(panel.dataset.taille === 'grand' ? 'compact' : 'grand'); };
-    $('[data-grip]', panel).addEventListener('click', bascule);
-    const tg = $('[data-tg]', panel); if (tg) tg.addEventListener('click', bascule);
+  // ---------- petit message avec « Annuler » (trouvé, favori) ----------
+  let snT = 0;
+  function snack(msg, annulerFn) {
+    const s = $('[data-snack]'); if (!s) return;
+    $('[data-snack-t]', s).textContent = msg;
+    const b = $('[data-snack-undo]', s); b.hidden = !annulerFn;
+    b.onclick = () => { s.hidden = true; if (annulerFn) annulerFn(); };
+    s.hidden = false; s.classList.remove('is-in'); void s.offsetWidth; s.classList.add('is-in');
+    clearTimeout(snT); snT = setTimeout(() => { s.hidden = true; }, 4000);
+  }
+  const sansToast = () => { const t = document.querySelector('.toast'); if (t) t.hidden = true; };
+
+  // ---------- panneau coulissant : réduit (≈20 %), intermédiaire (≈45 %), complet (≈90 %) sur téléphone ; à droite sur ordinateur ----------
+  const NIV = ['compact', 'moyen', 'grand'];
+  function hauteurs() {
+    const dispo = Math.max(240, panel.getBoundingClientRect().bottom - page.getBoundingClientRect().top - 6);
+    return { compact: Math.round(Math.min(Math.max(dispo * .2, 132), 190)), moyen: Math.round(Math.max(dispo * .45, 250)), grand: Math.round(dispo * .9) };
+  }
+  function showPanel(html, niveau = 'moyen') {
+    const hv = $('[data-vide]'); if (hv) hv.hidden = true; garde(false); legende(false); menuReg(false);
+    panel.classList.remove('pn-anim', 'pn-fiche');
+    panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Changer la hauteur du panneau"><i></i></button><div class="pn-c">${html}</div>`;
+    panel.hidden = false; page.classList.add('has-panel');
+    taillePanneau(niveau);
+    $('.pn-c', panel).scrollTop = 0;
     if ((innerWidth >= 900 || cote()) && atlas) atlas.setPad(padding());
-    $('[data-x]', panel).addEventListener('click', closePanel);
+    $$('[data-x]', panel).forEach((b) => b.addEventListener('click', closePanel));
+    $$('[data-tg]', panel).forEach((b) => b.addEventListener('click', () => { panel.classList.add('pn-anim'); taillePanneau(panel.dataset.taille === 'grand' ? 'moyen' : 'grand'); }));
+    $('[data-grip]', panel).addEventListener('click', () => { if (glisse) return; panel.classList.add('pn-anim'); taillePanneau(NIV[(NIV.indexOf(panel.dataset.taille) + 1) % 3]); });
     LG.syncFavs && LG.syncFavs();
-    if (g && !reduce) g.fromTo(panel, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out' });
+    if (g && !reduce) g.fromTo(panel, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: .25, ease: 'power2.out', clearProps: 'transform' });
+  }
+  function taillePanneau(t) {
+    if (!mobile()) { panel.style.height = ''; delete panel.dataset.taille; majCTA(); return; }
+    panel.dataset.taille = t;
+    panel.style.height = hauteurs()[t] + 'px';
+    page.style.setProperty('--pn-h', hauteurs()[t] + 'px'); // les commandes de la carte restent au-dessus du panneau
+    requestAnimationFrame(majCtrl); setTimeout(majCtrl, 300);
+    const lab = { compact: 'Panneau réduit : toucher pour l’agrandir', moyen: 'Panneau à mi-hauteur : toucher pour l’agrandir', grand: 'Panneau en grand : toucher pour le réduire' }[t];
+    $$('[data-grip]', panel).forEach((x) => x.setAttribute('aria-label', lab));
+    $$('[data-tg]', panel).forEach((x) => { x.setAttribute('aria-label', t === 'grand' ? 'Réduire le panneau' : 'Agrandir le panneau'); x.classList.toggle('is-up', t === 'grand'); });
+    majCTA();
+  }
+  // glisser la poignée ou l'en-tête : le panneau suit le doigt, puis se cale sur la hauteur la plus proche
+  let glisse = null;
+  panel.addEventListener('pointerdown', (e) => {
+    if (!mobile() || e.button > 0) return;
+    if (!e.target.closest('[data-grip], .pn-h') || e.target.closest('.pn-h button, .pn-h a')) return;
+    glisse = { y: e.clientY, h: panel.offsetHeight, t: performance.now(), bouge: false, id: e.pointerId };
+  });
+  addEventListener('pointermove', (e) => {
+    if (!glisse || e.pointerId !== glisse.id) return;
+    const dy = e.clientY - glisse.y;
+    if (!glisse.bouge && Math.abs(dy) < 6) return;
+    if (!glisse.bouge) { glisse.bouge = true; panel.classList.remove('pn-anim'); }
+    const hh = Math.max(70, Math.min(hauteurs().grand, glisse.h - dy)); panel.style.height = hh + 'px'; page.style.setProperty('--pn-h', hh + 'px');
+  });
+  const finGlisse = (e) => {
+    if (!glisse || e.pointerId !== glisse.id) return;
+    const gl = glisse;
+    if (!gl.bouge) { glisse = null; return; }
+    const H = hauteurs(), h = panel.offsetHeight, v = (e.clientY - gl.y) / Math.max(1, performance.now() - gl.t);
+    panel.classList.add('pn-anim');
+    if (h < H.compact * .75 || (v > .9 && panel.dataset.taille === 'compact')) closePanel();
+    else {
+      let best = NIV.reduce((a, k) => (Math.abs(H[k] - h) < Math.abs(H[a] - h) ? k : a), 'compact');
+      if (Math.abs(v) > .6) { const i = NIV.indexOf(best); best = NIV[Math.max(0, Math.min(2, v < 0 ? (H[best] < h ? i + 1 : i) : (H[best] > h ? i - 1 : i)))]; }
+      taillePanneau(best);
+    }
+    setTimeout(() => { glisse = null; }, 0); // le clic qui suit n'est pas un toucher de la poignée
+  };
+  addEventListener('pointerup', finGlisse); addEventListener('pointercancel', finGlisse);
+  // dans le contenu : vers le haut, le panneau grandit d'abord ; tout en haut du contenu, vers le bas, il rétrécit
+  let sw = null;
+  panel.addEventListener('touchstart', (e) => { if (!mobile() || e.target.closest('[data-grip], .pn-h, input, select, .pn-chips')) { sw = null; return; } const c = $('.pn-c', panel); sw = { y: e.touches[0].clientY, top: c ? c.scrollTop : 0 }; }, { passive: true });
+  panel.addEventListener('touchend', (e) => {
+    if (!sw) return; const d = e.changedTouches[0].clientY - sw.y, t = panel.dataset.taille; const s0 = sw; sw = null;
+    panel.classList.add('pn-anim');
+    if (d < -40 && t !== 'grand' && s0.top <= 0) taillePanneau(t === 'compact' ? 'moyen' : 'grand');
+    else if (d > 70 && s0.top <= 0) { if (t === 'grand') taillePanneau('moyen'); else if (t === 'moyen') taillePanneau('compact'); else closePanel(); }
+  });
+  // bouton principal de la fiche : « Voir sur la carte » si le panneau cache la carte, sinon « Centrer sur le lieu »
+  function majCTA() {
+    const b = $('[data-center]', panel); if (!b) return;
+    $('span', b).textContent = panel.dataset.taille === 'grand' ? 'Voir sur la carte' : 'Centrer sur le lieu';
+  }
+  // commandes de la carte (téléphone) : seulement celles qui tiennent entre le haut de la carte et le panneau (ou la rangée du bas)
+  function majCtrl() {
+    if (!mobile()) { delete page.dataset.ctrl; return; }
+    const ctrl = $('.atp-ctrl'); if (!ctrl) return;
+    const haut = Math.max(...['.atp-sbar', '.atp-row', '.atp-pop'].map((q) => { const e = $(q); return e && e.offsetParent && getComputedStyle(e).display !== 'none' ? e.getBoundingClientRect().bottom : 0; })) + 8; // le message « carte vide » laisse la place à droite
+    const bas = !panel.hidden ? panel.getBoundingClientRect().top - 10 : $('.atp-regions').getBoundingClientRect().top - 10;
+    const place = bas - haut, n = !panel.hidden ? 4 : 5; // 44 px par bouton + 6 px d'écart
+    page.dataset.ctrl = place >= n * 50 ? 'tout' : place >= 100 ? 'mini' : 'non';
   }
   // repère choisi : il reste marqué sur la carte quand la fiche se ferme, avec un rappel pour le rouvrir ou l'effacer
   function garde(on) {
@@ -224,31 +316,15 @@
     setTimeout(() => {
       const r = atlas.stage.getBoundingClientRect(), [sx, sy] = atlas.toScreen(f.x, f.y), [fx, fy] = atlas.toScreen(atlas.cam.x, atlas.cam.y);
       const hautEl = $('.atp-top'), haut = (hautEl ? hautEl.getBoundingClientRect().bottom - r.top : 80) + 28;
-      const bas = (!panel.hidden && !(innerWidth >= 900 || cote()) ? panel.getBoundingClientRect().top - r.top : r.height - 150) - 28;
+      const bas = (!panel.hidden && mobile() ? panel.getBoundingClientRect().top - r.top : r.height - 150) - 28;
       if (sy >= haut && sy <= bas && sx >= 36 && sx <= r.width - 36) return;
       const tx = r.width / 2, ty = bas > haut ? (haut + bas) / 2 - 18 : r.height / 2;
-      atlas.flyTo(f.x - (tx - fx) / atlas.cam.s, f.y + (ty - fy) / atlas.cam.s, atlas.cam.s, .7);
+      atlas.flyTo(f.x - (tx - fx) / atlas.cam.s, f.y + (ty - fy) / atlas.cam.s, atlas.cam.s, .5);
     }, attente);
   }
-  function closePanel() { if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.classList.remove('pn-peek'); panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; if (atlas) { if (innerWidth >= 900 || cote()) atlas.setPad(padding()); if (!state.solo && atlas.active() == null && !state.choisi) atlas.clearActive(); } garde(true); setTimeout(sync, 0); }
-  function taillePanneau(t) {
-    if (innerWidth >= 900 || cote()) { panel.style.maxHeight = ''; delete panel.dataset.taille; return; }
-    const bas = panel.getBoundingClientRect().bottom, haut = top.getBoundingClientRect().top;
-    const dispo = Math.max(140, bas - haut - 8);
-    panel.dataset.taille = t;
-    panel.style.maxHeight = Math.round(t === 'grand' ? dispo : t === 'moyen' ? Math.min(dispo * .66, 380) : Math.min(dispo * .42, 300)) + 'px';
-    [$('[data-grip]', panel), $('[data-tg]', panel)].forEach((x) => x && x.setAttribute('aria-label', t === 'grand' ? 'Réduire le panneau' : 'Agrandir le panneau'));
-  }
-  let sw = null;
-  panel.addEventListener('touchstart', (e) => { sw = panel.scrollTop <= 0 && innerWidth < 900 ? { y: e.touches[0].clientY, d: 0 } : null; }, { passive: true });
-  panel.addEventListener('touchmove', (e) => { if (!sw) return; sw.d = e.touches[0].clientY - sw.y; if (sw.d > 0) panel.style.transform = `translateY(${sw.d}px)`; }, { passive: true });
-  panel.addEventListener('touchend', () => {
-    if (!sw) return; const d = sw.d; sw = null; panel.style.transform = '';
-    panel.classList.add('pn-anim');
-    if (d < -40) taillePanneau('grand');
-    else if (d > 70) { if (panel.dataset.taille === 'grand') taillePanneau('compact'); else closePanel(); }
-  });
-  const head = (icon, color, kicker, title) => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div><button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
+  function closePanel() { if (atlas && !state.solo) { atlas.spot(false); state.spot = ''; } panel.hidden = true; page.classList.remove('has-panel'); state.fromList = false; requestAnimationFrame(majCtrl); if (atlas) { if (innerWidth >= 900 || cote()) atlas.setPad(padding()); if (!state.solo && atlas.active() == null && !state.choisi) atlas.clearActive(); } garde(true); setTimeout(sync, 0); }
+  // en-tête commun des panneaux
+  const head = (icon, color, kicker, title, extra = '') => `<div class="pn-h"><span class="pn-ico" style="--c:${color}">${ic(icon)}</span><div class="pn-h-t"><small>${escH(kicker)}</small><h2>${escH(title)}</h2></div>${extra}<button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
 
   // ---------- nombre de repères visibles (bouton Liste) ----------
   let cvT = 0;
@@ -260,14 +336,14 @@
     const siens = f.vs ? atlas.feats().filter((x) => x.vs === f.vs) : [];
     if (siens.length > 1) {
       const i = siens.findIndex((x) => x.id === f.id), prev = siens[(i - 1 + siens.length) % siens.length], next = siens[(i + 1) % siens.length];
-      return `<div class="pn-nav"><button type="button" class="pn-navb" data-go="${escH(prev.id)}" aria-label="Emplacement précédent">${ic('arrow-left')}</button>
+      return `<div class="pn-nav pn-more"><button type="button" class="pn-navb" data-go="${escH(prev.id)}" aria-label="Emplacement précédent">${ic('arrow-left')}</button>
         <span class="pn-navn">Emplacement ${i + 1} / ${siens.length} <small>de ce véhicule</small></span>
         <button type="button" class="pn-navb" data-go="${escH(next.id)}" aria-label="Emplacement suivant">${ic('arrow-right')}</button></div>`;
     }
     const list = sameCat(f), i = list.findIndex((x) => x.id === f.id), c = cats[f.cat] || {};
     if ((list.length < 2 || i < 0) && !state.fromList) return '';
     const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length];
-    return `<div class="pn-nav">${state.fromList ? `<button type="button" class="pn-navb pn-navb--txt" data-back>${ic('list')}<span>${state.fromList === 'answer' ? 'Résultats' : 'Liste'}</span></button>` : ''}
+    return `<div class="pn-nav pn-more">${state.fromList ? `<button type="button" class="pn-navb pn-navb--txt" data-back>${ic('list')}<span>${state.fromList === 'answer' ? 'Résultats' : 'Liste'}</span></button>` : ''}
       ${list.length > 1 && i >= 0 ? `<button type="button" class="pn-navb" data-go="${escH(prev.id)}" aria-label="Précédent : ${escH(prev.nom)}">${ic('arrow-left')}</button>
       <span class="pn-navn">${i + 1} / ${list.length} <small>${escH((c.court || c.nom || '').toLowerCase())}</small></span>
       <button type="button" class="pn-navb" data-go="${escH(next.id)}" aria-label="Suivant : ${escH(next.nom)}">${ic('arrow-right')}</button>` : ''}</div>`;
@@ -278,34 +354,57 @@
     const bk = $('[data-back]', panel); if (bk) bk.addEventListener('click', () => (state.fromList === 'answer' ? openResults() : openList()));
   }
 
-  // ---------- listes ----------
-  const li = (f) => `<li${trouves.has(f.id) ? ' class="is-found"' : ''}><button type="button" data-pick="${escH(f.id)}"><span class="pn-li-i" style="--c:${(cats[f.cat] || {}).color}">${ic(trouves.has(f.id) ? 'check' : f.icon)}</span><span><b>${escH(f.nom)}</b><small>${escH(sousLigne(f))}</small></span>${ic('arrow-right')}</button></li>`;
-  function bindPick(from) {
-    $$('[data-pick]', panel).forEach((b) => b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = from; atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); }));
+  // ---------- listes : lignes visuelles, chargement progressif ----------
+  const vignette = (f, cls = 'pn-r-t') => { const c = (cats[f.cat] || {}).color; return `<span class="${cls}" style="--c:${c}">${f.img ? `<img src="${ROOT}${f.img}" alt="" loading="lazy" decoding="async">` : ic(f.icon)}</span>`; };
+  const ligne = (f) => {
+    const t = trouves.has(f.id), fv = estFav(f), st = statutDe(f), S = STATUTS[st] || {};
+    const meta = [escH(sousNom(f)), f.rar ? `<em class="pn-r-rar">${escH(f.rar === '#' ? 'Rare' : f.rar)}</em>` : '', st !== 'probable' ? `<em class="pn-r-st" style="--c:${S.c}">${ic(S.ic)}${escH(S.n)}</em>` : ''].filter(Boolean).join('<i>·</i>');
+    return `<li class="pn-r${t ? ' is-found' : ''}"><button type="button" data-pick="${escH(f.id)}">${vignette(f)}<span class="pn-r-b"><b>${escH(f.nom)}</b><small>${escH(court(f))}</small><span class="pn-r-m">${meta}</span></span><span class="pn-r-s">${t ? `<span class="pn-r-ok" title="Déjà trouvé">${ic('check')}</span>` : ''}${fv ? `<span class="pn-r-fv" title="Dans tes favoris">${ic('heart')}</span>` : ''}${ic('chevron')}</span></button></li>`;
+  };
+  function bindPick(from, racine = panel) {
+    $$('[data-pick]', racine).forEach((b) => { if (b._ok) return; b._ok = 1; b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = from; atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); }); });
   }
-  // groupes repliables au-delà de 150 éléments : la liste reste légère sur téléphone
-  function groupes(list, cle, color) {
-    const by = {}; list.forEach((f) => { (by[cle(f)] ||= []).push(f); });
-    const ks = Object.keys(by).sort((a, b) => by[b].length - by[a].length || a.localeCompare(b, 'fr'));
-    const gros = list.length > 150;
-    return ks.map((k, i) => {
-      const items = by[k].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
-      const c = color(items[0]);
-      return gros ? `<details class="pn-lg pn-lgd" style="--c:${c}"${i === 0 ? ' open' : ''}><summary><i></i>${escH(k)} <small>${items.length}</small></summary><ul data-lazy="${i}"></ul></details>`
-        : `<section class="pn-lg" style="--c:${c}"><h3><i></i>${escH(k)} <small>${items.length}</small></h3><ul>${items.map(li).join('')}</ul></section>`;
-    }).join('') + (gros ? `<template data-groups>${JSON.stringify(ks.map((k) => by[k].map((f) => f.id)))}</template>` : '');
+  // affiche 40 lignes, puis la suite quand on arrive en bas (liste longue sans ralentir le téléphone)
+  function remplir(ul, list, from) {
+    let i = 0; const PAS = 40;
+    const plus = () => {
+      const old = $('[data-more]', ul); if (old) old.remove();
+      ul.insertAdjacentHTML('beforeend', list.slice(i, i + PAS).map(ligne).join('')); i += PAS;
+      bindPick(from, ul);
+      if (i < list.length) {
+        ul.insertAdjacentHTML('beforeend', `<li class="pn-more-l" data-more><button type="button">Afficher la suite (${list.length - i})</button></li>`);
+        const m = $('[data-more]', ul); $('button', m).addEventListener('click', plus);
+        if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); if (m.isConnected) plus(); } }, { root: $('.pn-c', panel), rootMargin: '200px' }); io.observe(m); }
+      }
+    };
+    ul.innerHTML = ''; plus();
   }
-  function bindGroupes(from) {
-    const tpl = $('template[data-groups]', panel); const ids = tpl ? JSON.parse(tpl.innerHTML) : null;
-    const remplir = (ul) => { if (!ids || ul.dataset.done) return; ul.dataset.done = 1; const F = new Map(atlas.feats().map((f) => [f.id, f])); ul.innerHTML = ids[+ul.dataset.lazy].map((id) => F.get(id)).sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(li).join(''); bindPick(from); };
-    $$('details.pn-lgd', panel).forEach((d) => { if (d.open) remplir($('ul', d)); d.addEventListener('toggle', () => d.open && remplir($('ul', d))); });
-    bindPick(from);
+  const RANG_ST = { verifie: 0, officiel: 0, probable: 1, nonconf: 2 };
+  function trier(list) {
+    const L = [...list], az = (a, b) => a.nom.localeCompare(b.nom, 'fr');
+    const ch = state.choisi && !state.choisi.commu ? state.choisi : null;
+    const t = state.tri;
+    if (t === 'az') return L.sort(az);
+    if (t === 'rar') return L.sort((a, b) => (!!b.rar - !!a.rar) || az(a, b));
+    if (t === 'reg') return L.sort((a, b) => (secteur(a) || '~').localeCompare(secteur(b) || '~', 'fr') || az(a, b));
+    if (t === 'nt') return L.sort((a, b) => (trouves.has(a.id) - trouves.has(b.id)) || az(a, b));
+    if (t === 'fav') return L.sort((a, b) => (estFav(b) - estFav(a)) || az(a, b));
+    if (t === 'proche' && ch) return L.sort((a, b) => Math.hypot(a.x - ch.x, a.y - ch.y) - Math.hypot(b.x - ch.x, b.y - ch.y));
+    // pertinence : repères du guide et éléments rares d'abord, puis les plus fiables, puis l'ordre alphabétique
+    return L.sort((a, b) => ((a.src === 'ogm') - (b.src === 'ogm')) || (!!b.rar - !!a.rar) || (RANG_ST[statutDe(a)] - RANG_ST[statutDe(b)]) || az(a, b));
+  }
+  const outilsListe = (n) => `<div class="pn-lt pn-more"><label class="pn-lq">${ic('search')}<span class="sr-only">Chercher dans cette liste</span><input type="search" data-lq value="${escH(state.lq)}" placeholder="Filtrer ces ${n} résultats" autocomplete="off" enterkeyhint="search"></label>
+    <label class="pn-sort"><span class="sr-only">Trier</span>${ic('sliders')}<select data-tri>${[['pert', 'Pertinence'], ['az', 'A → Z'], ['rar', 'Rares d’abord'], ['reg', 'Par région'], ['nt', 'Non trouvés d’abord'], ['fav', 'Favoris d’abord'], ...(state.choisi && !state.choisi.commu ? [['proche', 'Proches du repère choisi']] : [])].map(([v, l]) => `<option value="${v}"${state.tri === v ? ' selected' : ''}>${l}</option>`).join('')}</select></label></div>`;
+  function bindOutils(refaire) {
+    const q = $('[data-lq]', panel), tr = $('[data-tri]', panel); let qt;
+    if (q) q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(() => { state.lq = q.value.trim(); applyFilter(); refaire(); }, 220); });
+    if (tr) tr.addEventListener('change', () => { state.tri = tr.value; refaire(); });
   }
   function openList() {
     const list = atlas.inView();
-    showPanel(`${head('list', '#ff2bd6', 'Dans cette partie de la carte', list.length ? `${list.length} point${list.length > 1 ? 's' : ''} à voir` : 'Aucun point ici')}
-      ${list.length ? `<p class="pn-hint">Touche un nom pour voir ce que c'est et où aller.</p>${groupes(list, (f) => (cats[f.cat] || {}).nom || '', (f) => (cats[f.cat] || {}).color)}` : `<p>${state.vide ? 'Choisis ce que tu recherches pour afficher les lieux sur la carte.' : 'Déplace la carte ou dézoome pour trouver des points.'}</p>`}`);
-    bindGroupes('list');
+    showPanel(`${head('list', '#ff2bd6', 'Dans cette partie de la carte', list.length ? `${list.length} repère${list.length > 1 ? 's' : ''} à voir` : 'Aucun repère ici')}
+      ${list.length ? '<ul class="pn-rl" data-rl></ul>' : `<p class="pn-vide">${state.vide ? 'Choisis ce que tu recherches pour afficher les lieux sur la carte.' : 'Déplace la carte ou dézoome pour trouver des repères.'}</p>`}`);
+    if (list.length) remplir($('[data-rl]', panel), trier(list), 'list');
   }
   // résumé lisible des filtres actifs
   function resume() {
@@ -313,66 +412,68 @@
     if (state.pop) t.push(((OPT.populaires || []).find((p) => p.id === state.pop) || {}).nom);
     else if (sel.size === Object.keys(cats).length && !Object.values(subs).some((x) => x && x.size)) t.push('Tous les repères');
     else [...sel].forEach((c) => { const s = subs[c]; t.push(s && s.size ? [...s].map((x) => subNoms[c + ':' + x]).join(', ') : (cats[c] || {}).nom); });
-    if (opt.verif) t.push('vérifiés en jeu'); if (opt.cacheT) t.push('sans les trouvés'); if (opt.rares) t.push('rares'); if (opt.spoil) t.push('sans spoilers'); if (opt.favs) t.push('mes favoris'); if (!opt.approx) t.push('sans les approximatifs'); if (opt.sect) t.push(opt.sect);
-    return t.filter(Boolean);
+    return t.filter(Boolean).join(' · ');
   }
-  // ---------- résultats : tout ce que les filtres affichent, rangé par sous-catégorie ----------
-  function openResults() {
+  // ---------- résultats : sous-catégories en filtres horizontaux, recherche interne, tri, liste ----------
+  function openResults(garderTaille) {
     if (state.vide) return openFiltres();
     const list = resultats();
     const seule = sel.size === 1 ? [...sel][0] : '';
-    const c = cats[seule] || { icon: 'filter', color: '#19d3e3' };
+    const c = cats[seule] || { icon: 'filter', color: '#19d3e3', sous: [] };
     const pop = (OPT.populaires || []).find((p) => p.id === state.pop);
     const nf = list.filter((f) => trouves.has(f.id)).length;
-    const cle = (f) => { const cc = seule || f.cat; const s = scDe(f, cc).find((x) => !subs[cc] || !subs[cc].size || subs[cc].has(x)); return (s && subNoms[cc + ':' + s]) || (seule ? 'Autres' : (cats[f.cat] || {}).nom); };
-    showPanel(`${head(pop ? pop.icon : c.icon, c.color, pop ? 'Recherche populaire' : 'Résultats', resume().join(' · ') || 'Tous les repères')}
-      <div class="pn-ans-meta"><span><b>${list.length}</b> emplacement${list.length > 1 ? 's' : ''} sur la carte</span>${nf ? `<span class="pn-found-n">${ic('check')}${nf} trouvé${nf > 1 ? 's' : ''}</span>` : ''}</div>
-      <div class="pn-ra"><button type="button" class="pn-fchip" data-open-f>${ic('filter')}Modifier les filtres</button><button type="button" class="pn-fchip" data-fit>${ic('locate')}Voir sur la carte</button>${pop && pop.page ? `<a class="pn-fchip" href="${ROOT}${pop.page}">${ic('guide')}Le guide</a>` : ''}</div>
-      ${list.length ? `<p class="pn-hint">Touche un nom : la carte se centre dessus et sa fiche s'ouvre.</p>${groupes(list, cle, (f) => (cats[seule || f.cat] || {}).color)}`
-        : `<p class="pn-vide">Aucun emplacement avec ces filtres.${opt.verif ? ' Aucun repère n\'est encore vérifié en jeu par notre équipe.' : ''}</p><div class="pn-act"><button type="button" class="nbtn" data-reset-in><span>Réinitialiser les filtres</span><i>${ic('x')}</i></button></div>`}`);
-    bindGroupes('answer');
+    const base = atlas.feats().filter((f) => !f.label && passeOpt(f));
+    const chips = seule ? [`<button type="button" class="pn-chip" data-sub="" aria-pressed="${!(subs[seule] && subs[seule].size)}">Tous</button>`, ...c.sous.map((s) => { const n = base.filter((f) => dans(f, seule) && scDe(f, seule).includes(s.id)).length; return n ? `<button type="button" class="pn-chip" data-sub="${s.id}" aria-pressed="${!!(subs[seule] && subs[seule].has(s.id))}">${escH(s.nom)} <small>${n}</small></button>` : ''; })]
+      : [...sel].map((k) => `<button type="button" class="pn-chip" data-only="${k}" style="--c:${cats[k].color}">${ic(cats[k].icon)}${escH(cats[k].court || cats[k].nom)}</button>`);
+    const t = panel.dataset.taille, c0 = $('.pn-c', panel), y = garderTaille && c0 ? c0.scrollTop : 0;
+    showPanel(`${head(pop ? pop.icon : c.icon, c.color, pop ? 'Recherche populaire' : seule ? 'Catégorie' : 'Résultats', pop ? pop.nom : seule && !(subs[seule] && subs[seule].size) ? c.nom : resume() || 'Tous les repères', `<span class="pn-count"><b>${list.length}</b><small>${nf ? `${nf} trouvé${nf > 1 ? 's' : ''}` : `résultat${list.length > 1 ? 's' : ''}`}</small></span>`)}
+      <div class="pn-chips" role="group" aria-label="Sous-catégories" style="--c:${c.color}">${chips.join('')}</div>
+      ${outilsListe(list.length)}
+      <div class="pn-ra pn-more"><button type="button" class="pn-lnk" data-open-f>${ic('filter')}Tous les filtres</button><button type="button" class="pn-lnk" data-fit>${ic('locate')}Voir sur la carte</button>${pop && pop.page ? `<a class="pn-lnk" href="${ROOT}${pop.page}">${ic('guide')}Le guide</a>` : ''}</div>
+      ${list.length ? '<ul class="pn-rl" data-rl></ul>' : `<div class="pn-vide"><p><b>Aucun résultat avec ces filtres.</b>${opt.verif ? ' Aucun emplacement n’est encore vérifié en jeu par notre équipe.' : state.lq ? ` Rien ne correspond à « ${escH(state.lq)} ».` : ''}</p><button type="button" class="nbtn" data-reset-in><span>Réinitialiser les filtres</span><i>${ic('x')}</i></button></div>`}`, garderTaille && t ? t : 'moyen');
+    if (list.length) remplir($('[data-rl]', panel), trier(list), 'answer');
+    if (y) $('.pn-c', panel).scrollTop = y;
+    bindOutils(() => { openResults(true); const q = $('[data-lq]', panel); if (q && state.lq) { q.focus(); q.setSelectionRange(q.value.length, q.value.length); } });
+    $$('[data-sub]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; const v = b.dataset.sub; if (!v) delete subs[seule]; else subs[seule] = new Set([v]); applyFilter(); openResults(true); }));
+    $$('[data-only]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats([b.dataset.only]); openResults(true); }));
     $('[data-open-f]', panel).addEventListener('click', openFiltres);
-    $('[data-fit]', panel).addEventListener('click', () => { if (innerWidth < 900) taillePanneau('compact'); fitResults(); });
+    $('[data-fit]', panel).addEventListener('click', () => { if (mobile()) { panel.classList.add('pn-anim'); taillePanneau('compact'); } fitResults(); });
     const rz = $('[data-reset-in]', panel); if (rz) rz.addEventListener('click', reset);
   }
   // groupe de repères au même endroit (inséparables au zoom) : leur liste
   function openCluster(m) {
     const c = cats[m[0].cat] || {};
-    showPanel(`${head('list', c.color || '#ff2bd6', 'Au même endroit', `${m.length} repères ici`)}<p class="pn-hint">Ils sont trop proches pour être séparés sur la carte. Touche un nom.</p><section class="pn-lg" style="--c:${c.color || '#ff2bd6'}"><ul>${m.sort((a, b) => a.nom.localeCompare(b.nom, 'fr')).map(li).join('')}</ul></section>`);
-    bindPick('list');
+    showPanel(`${head('list', c.color || '#ff2bd6', 'Au même endroit', `${m.length} repères ici`)}<p class="pn-hint">Ils sont trop proches pour être séparés sur la carte.</p><ul class="pn-rl" data-rl></ul>`);
+    remplir($('[data-rl]', panel), trier(m), 'list');
   }
 
-  // ---------- tous les filtres : catégories, sous-catégories (choix multiple) et options ----------
+  // ---------- tous les filtres, par sections ----------
   function openFiltres() {
     const base = atlas.feats().filter((f) => !f.label && passeOpt(f));
     const nC = (c) => base.filter((f) => dans(f, c)).length;
     const nS = (c, s) => base.filter((f) => dans(f, c) && scDe(f, c).includes(s)).length;
-    const nO = (fn) => atlas.feats().filter((f) => !f.label && passeCat(f) && fn(f)).length;
-    const secteurs = {}; atlas.feats().forEach((f) => { if (f.label) return; const s = secteur(f); if (s) secteurs[s] = (secteurs[s] || 0) + 1; });
+    const all = atlas.feats().filter((f) => !f.label);
+    const nO = (fn) => all.filter(fn).length;
+    const secteurs = {}; all.forEach((f) => { const s = secteur(f); if (s) secteurs[s] = (secteurs[s] || 0) + 1; });
     const sects = Object.keys(secteurs).filter((s) => secteurs[s] >= 3 || s === opt.sect).sort((a, b) => a.localeCompare(b, 'fr'));
-    const tog = (k, lab, n, aide) => `<button type="button" class="pn-opt" data-opt="${k}" aria-pressed="${k === 'commu' ? state.commu : opt[k]}"${n === 0 && !opt[k] ? ' disabled' : ''}><span class="pn-sw" aria-hidden="true"></span><span><b>${escH(lab)}</b>${aide ? `<small>${escH(aide)}</small>` : ''}</span>${n != null ? `<em>${n}</em>` : ''}</button>`;
-    const nVerif = nO((f) => f.statut === 'teste');
-    showPanel.grand = true;
-    showPanel(`${head('filter', '#19d3e3', 'Affiner la carte', 'Tous les filtres')}
-      <p class="pn-hint">Choisis une ou plusieurs catégories, puis précise avec les sous-catégories.</p>
-      <ul class="pn-fcats">${Object.values(cats).map((c) => {
+    const tog = (k, lab, aide) => `<button type="button" class="pn-opt" data-opt="${k}" aria-pressed="${k === 'commu' ? state.commu : opt[k]}"><span class="pn-sw" aria-hidden="true"></span><span><b>${escH(lab)}</b>${aide ? `<small>${escH(aide)}</small>` : ''}</span></button>`;
+    const nVerif = nO((f) => f.statut === 'teste'), nApprox = nO(approx), nNc = nO((f) => statutDe(f) === 'nonconf'), nRar = nO((f) => f.rar), nSp = nO((f) => f.cat === 'missions' && f.missions);
+    const sect = (titre, corps) => (corps.trim() ? `<section class="pn-fs"><h3 class="pn-fs-h">${titre}</h3>${corps}</section>` : '');
+    const n = state.vide ? 0 : resultats().length;
+    const c0 = $('.pn-c', panel), y = !panel.hidden && $('[data-fc]', panel) && c0 ? c0.scrollTop : 0;
+    showPanel(`${head('filter', '#19d3e3', 'Affiner la carte', 'Filtres')}
+      ${sect('Catégories', `<ul class="pn-fcats">${Object.values(cats).map((c) => {
         const on = !state.vide && sel.has(c.id), s = subs[c.id];
-        return `<li style="--c:${c.color}"><div class="pn-fc"><button type="button" class="pn-fcb" data-fc="${c.id}" aria-pressed="${on}"><span class="pn-fci">${ic(c.icon)}</span><span><b>${escH(c.nom)}</b><small>${escH(c.sens || '')}</small></span><em>${nC(c.id)}</em></button>${c.sous.length ? `<button type="button" class="pn-fcx" data-fx="${c.id}" aria-expanded="${on && !!(s && s.size)}" aria-label="Sous-catégories : ${escH(c.nom)}">${ic('chevron')}</button>` : ''}</div>
-          ${c.sous.length ? `<div class="pn-fsub" data-fsub="${c.id}"${on && s && s.size ? '' : ' hidden'}>${c.sous.map((x) => `<button type="button" class="pn-fchip" data-fs="${c.id}:${x.id}" aria-pressed="${!!(on && s && s.has(x.id))}">${escH(x.nom)} <small>${nS(c.id, x.id)}</small></button>`).join('')}</div>` : ''}</li>`;
-      }).join('')}</ul>
-      <h3 class="hl-h">Options</h3>
-      <div class="pn-opts">
-        ${tog('verif', 'Uniquement les lieux vérifiés en jeu', nVerif, nVerif ? '' : 'Aucun repère n\'est encore vérifié en jeu par notre équipe')}
-        ${tog('cacheT', 'Masquer ce que j\'ai déjà trouvé', null, trouves.size ? `${trouves.size} repère${trouves.size > 1 ? 's' : ''} marqué${trouves.size > 1 ? 's' : ''}` : 'Rien de marqué pour l\'instant')}
-        ${tog('rares', 'Uniquement les éléments rares', null, 'Véhicules et armes uniques, objets rares')}
-        ${tog('spoil', 'Masquer les spoilers', null, 'Cache les lieux des missions de l\'histoire')}
-        ${tog('favs', 'Uniquement mes favoris', null, favSet.size ? '' : 'Ajoute un lieu en favori avec le cœur de sa fiche')}
-        ${tog('approx', 'Afficher les emplacements approximatifs', null, 'Repères dont seule la zone est connue')}
-        ${tog('commu', 'Lieux de la communauté (GTADB)', commu.length, 'Non vérifiés, visibles en zoomant')}
-      </div>
-      ${sects.length ? `<label class="pn-sect"><span>Région ou quartier</span><select data-sect><option value="">Toute la carte</option>${sects.map((s) => `<option value="${escH(s)}"${s === opt.sect ? ' selected' : ''}>${escH(s)} (${secteurs[s]})</option>`).join('')}</select></label>` : ''}
-      <div class="pn-act pn-act--f"><button type="button" class="nbtn" data-reset-in><span>Réinitialiser les filtres</span><i>${ic('x')}</i></button><button type="button" class="nbtn nbtn--primary" data-voir><span>Voir ${state.vide ? 'les résultats' : resultats().length + ' résultat' + (resultats().length > 1 ? 's' : '')}</span><i>${ic('arrow-right')}</i></button></div>`);
-    const garder = (fn) => { const y = panel.scrollTop, t = panel.dataset.taille; fn(); state.pop = ''; comptes(); applyFilter(); openFiltres(); if (t) taillePanneau(t); panel.scrollTop = y; };
+        return `<li style="--c:${c.color}"><div class="pn-fc"><button type="button" class="pn-fcb" data-fc="${c.id}" aria-pressed="${on}"><span class="pn-fci">${ic(c.icon)}</span><span><b>${escH(c.nom)}</b></span><em>${nC(c.id)}</em></button>${c.sous.length ? `<button type="button" class="pn-fcx" data-fx="${c.id}" aria-expanded="${on && !!(s && s.size)}" aria-label="Sous-catégories : ${escH(c.nom)}">${ic('chevron')}</button>` : ''}</div>
+          ${c.sous.length ? `<div class="pn-fsub" data-fsub="${c.id}"${on && s && s.size ? '' : ' hidden'}>${c.sous.map((x) => `<button type="button" class="pn-chip" data-fs="${c.id}:${x.id}" aria-pressed="${!!(on && s && s.has(x.id))}">${escH(x.nom)} <small>${nS(c.id, x.id)}</small></button>`).join('')}</div>` : ''}</li>`;
+      }).join('')}</ul>`)}
+      ${sects.length ? sect('Localisation', `<label class="pn-sect"><span class="sr-only">Région ou quartier</span><select data-sect><option value="">Toutes les régions</option>${sects.map((x) => `<option value="${escH(x)}"${x === opt.sect ? ' selected' : ''}>${escH(x)} (${secteurs[x]})</option>`).join('')}</select></label><p class="pn-fs-n">Seuls les repères dont le quartier est connu sont filtrés.</p>`) : ''}
+      ${sect('Progression', `${tog('cacheT', 'Masquer les éléments déjà trouvés', trouves.size ? `N’affiche que les non trouvés (${trouves.size} marqué${trouves.size > 1 ? 's' : ''})` : 'Rien de marqué pour l’instant')}${tog('favs', 'Uniquement mes favoris', favSet.size ? '' : 'Ajoute un lieu en favori avec le cœur de sa fiche')}`)}
+      ${sect('Fiabilité', `${nVerif ? tog('verif', 'Uniquement les emplacements vérifiés en jeu', '') : ''}${nApprox ? tog('approx', 'Afficher les emplacements approximatifs', `Zone seulement (${nApprox})`) : ''}${nNc ? tog('nonconf', 'Afficher les informations non confirmées', `${nNc} repères`) : ''}${!nVerif ? '<p class="pn-fs-n">Aucun emplacement n’est encore vérifié en jeu par notre équipe : les positions viennent de sources communautaires.</p>' : ''}`)}
+      ${sect('Autres options', `${nSp ? tog('spoil', 'Masquer les spoilers', 'Cache les lieux des missions de l’histoire') : ''}${nRar ? tog('rares', 'Uniquement les éléments rares', 'Véhicules et armes uniques, objets rares') : ''}${commu.length ? tog('commu', 'Lieux de la communauté (GTADB)', 'Non vérifiés, visibles en zoomant') : ''}`)}
+      <div class="pn-act pn-act--f"><button type="button" class="nbtn" data-reset-in><span>Réinitialiser</span><i>${ic('x')}</i></button><button type="button" class="nbtn nbtn--primary" data-voir><span>${state.vide ? 'Afficher les résultats' : `Afficher ${n} résultat${n > 1 ? 's' : ''}`}</span><i>${ic('arrow-right')}</i></button></div>`, 'grand');
+    if (y) $('.pn-c', panel).scrollTop = y;
+    const garder = (fn) => { fn(); state.pop = ''; comptes(); applyFilter(); openFiltres(); };
     $$('[data-fc]', panel).forEach((b) => b.addEventListener('click', () => garder(() => {
       const c = b.dataset.fc; unsolo();
       if (state.vide) { sel.clear(); state.vide = false; }
@@ -404,12 +505,11 @@
     const pc = (a, b) => (b ? Math.round(a / b * 1000) / 10 : 0);
     const bar = (n, t, c) => `<span class="pn-bar" style="--c:${c};--p:${pc(n, t)}%" role="progressbar" aria-valuemin="0" aria-valuemax="${t}" aria-valuenow="${n}"><i></i></span>`;
     const lignes = Object.values(cats).map((c) => { const L = F.filter((f) => f.cat === c.id), n = L.filter((f) => trouves.has(f.id)).length; return `<li style="--c:${c.color}"><button type="button" data-pg="${c.id}"><span class="pn-fci">${ic(c.icon)}</span><span><b>${escH(c.nom)}</b>${bar(n, L.length, c.color)}</span><em>${n}/${L.length}<small>${String(pc(n, L.length)).replace('.', ',')} %</small></em></button></li>`; }).join('');
-    showPanel.grand = true;
-    showPanel(`${head('progress', '#39ff88', 'Ma progression', `${String(pc(T, F.length)).replace('.', ',')} % des repères de la carte`)}
+    showPanel(`${head('progress', '#39ff88', 'Ma progression', `${String(pc(T, F.length)).replace('.', ',')} % des repères`)}
       <div class="pn-pg-g">${bar(T, F.length, '#39ff88')}<p><b>${T}</b> sur ${F.length} repères marqués comme trouvés ou visités.</p></div>
       <p class="pn-hint">Calculé sur les repères de cette carte, pas sur le contenu complet du jeu (les totaux officiels ne sont pas connus). Enregistré automatiquement sur cet appareil${window.LG_SB && window.LG_SB.url ? ' et dans ton compte si tu es connecté' : ''}.</p>
       <ul class="pn-pg">${lignes}</ul>
-      <div class="pn-act pn-act--f">${dernier ? `<button type="button" class="nbtn" data-undo><span>Annuler : ${escH(dernier.f.nom)}</span><i>${ic('replay')}</i></button>` : ''}<button type="button" class="nbtn" data-pg-hide aria-pressed="${opt.cacheT}"><span>${opt.cacheT ? 'Réafficher les trouvés' : 'Masquer les trouvés'}</span><i>${ic('eye')}</i></button></div>`);
+      <div class="pn-act pn-act--f">${dernier ? `<button type="button" class="nbtn" data-undo><span>Annuler : ${escH(dernier.f.nom)}</span><i>${ic('replay')}</i></button>` : ''}<button type="button" class="nbtn" data-pg-hide aria-pressed="${opt.cacheT}"><span>${opt.cacheT ? 'Réafficher les trouvés' : 'Masquer les trouvés'}</span><i>${ic('eye')}</i></button></div>`, 'grand');
     $$('[data-pg]', panel).forEach((b) => b.addEventListener('click', () => { state.pop = ''; choisirCats([b.dataset.pg]); openResults(); }));
     const u = $('[data-undo]', panel); if (u) u.addEventListener('click', () => { annuler(); openProgression(); });
     $('[data-pg-hide]', panel).addEventListener('click', () => { opt.cacheT = !opt.cacheT; comptes(); applyFilter(); openProgression(); });
@@ -422,94 +522,122 @@
   }
   function annuler() { if (!dernier) return; const { f, on } = dernier; on ? trouves.delete(f.id) : trouves.add(f.id); saveT(); atlas.markFound(trouves); dernier = null; if (opt.cacheT) applyFilter(); }
 
-  // ---------- légende : repliable, fermée par défaut ----------
+  // ---------- légende et menu des régions ----------
   function legende(on) {
     const L = $('#atp-leg'), b = $('[data-leg-btn]'); if (!L) return;
     L.hidden = !on; b.setAttribute('aria-expanded', !!on);
   }
+  function menuReg(on) {
+    const m = $('[data-reg-menu]'), b = $('[data-reg-btn]'); if (!m) return;
+    m.hidden = !on; b.setAttribute('aria-expanded', !!on);
+    if (on) { const x = $('[role="menuitem"]', m); if (x) x.focus(); }
+  }
 
   // ---------- fiche d'un repère ----------
   function openFeature(f) {
-    if (state.spot && state.spot !== f.id) { state.spot = ''; atlas.spot(false); panel.classList.remove('pn-peek'); }
+    if (state.spot && state.spot !== f.id) { state.spot = ''; atlas.spot(false); }
     const c = cats[f.cat] || {}; const r = regions[f.region];
     const favType = f.cat === 'vehicules' ? 'vehicule' : 'lieu';
     const fav = f.vs ? { id: f.vs, type: 'vehicule', t: f.vn || f.nom, u: f.url, i: f.icon, c: c.color } : { id: f.cat === 'vehicules' ? f.id.replace(/^v-/, '') : f.id, type: favType, t: f.nom, u: f.cat === 'vehicules' && f.url ? f.url : `carte/?focus=${f.id}`, i: f.icon, c: c.color };
     const t = f.tip;
-    const place = /^[sm]-/.test(f.id) || (f.service && f.cat !== 'vehicules');
-    const ou = f.lieuNom ? `${f.lieuNom}${r ? ' · ' + r.nom : ''}` : (r ? r.nom : f.zone || '');
-    const precision = f.precision === 'region' ? 'Emplacement à confirmer dans cette zone' : f.src === 'ogm' ? 'Position relevée par les joueurs (Open GTA 6 Map)' : f.src === 'wiki' ? 'Position indiquée par GTA Wiki' : 'Position approximative (carte communautaire)';
-    const where = `<div class="pn-where" style="--c:${c.color}"><span class="pn-where-k">${ic('pin')}Où aller</span><b>${escH(f.nom)}</b>${ou && ou !== f.nom ? `<span>${escH(ou)}</span>` : ''}${f.acces ? `<span class="pn-where-go">${ic('compass')}${escH(f.acces)}</span>` : ''}<small>${precision}</small></div>`;
-    const fb = fiab(f);
-    const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const veh = f.cat === 'vehicules';
-    // informations : seulement celles qui existent dans les données
     const sc = scDe(f, f.cat).map((s) => subNoms[f.cat + ':' + s]).filter(Boolean);
-    const autres = (f.tg || []).map((k) => (cats[k] || {}).nom).filter(Boolean);
-    const rar = f.rar === '#' ? `Rare : ${atlas.feats().filter((x) => x.service === f.service).length} « ${(f.service || '').toLowerCase()} » sur la carte` : f.rar;
-    const sect = secteur(f);
-    const src = /^[osw]-/.test(f.id) ? (f.ext ? `<a href="${escH(f.ext)}" target="_blank" rel="noopener">${escH(sourceTxt(f))}</a>` : escH(sourceTxt(f))) : 'Fiche du guide GTA 6 Facile';
-    const infos = [['Catégorie', escH([c.nom, sc.slice(0, 2).join(', ')].filter(Boolean).join(' · '))], autres.length ? ['Aussi dans', escH(autres.join(', '))] : null, sect ? ['Secteur', escH(sect)] : null, rar ? ['Rareté', escH(rar)] : null, ['Fiabilité', `<span class="pn-tag ${fb.cls}">${fb.n}</span> <small>${escH(fb.t)}</small>`], ['Source', src]].filter(Boolean);
-    const dl = `<dl class="pn-dl">${infos.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
-    const corpsV = `<div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>Fiche du véhicule</span><i>${ic('arrow-right')}</i></a>` : ''}${favBtn}</div>
-      ${f.ob ? `<p class="pn-ob">${ic('check')}<span><b>Pour l'obtenir :</b> ${escH(f.ob)}</span></p>` : ''}
-      ${f.desc && f.desc !== f.ob ? `<p class="pn-en"><small>${ic('info')}${/^v-/.test(f.id) ? 'Emplacement indiqué sur la fiche' : `Indication des joueurs${f.en ? ', en anglais' : ''}`} :</small>${escH(f.desc)}</p>` : ''}`;
-    const body = veh ? corpsV : t
-      ? `${where}<div class="pn-tip" style="--c:${c.color}">${place ? `<p class="pn-tip-q">${ic('bolt')}${escH(t.titre)}</p>` : ''}<p class="pn-a">${escH(t.reponse)}</p>
-         <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}${t.lien}"><span>${escH(t.libelle)}</span><i>${ic('arrow-right')}</i></a>${favBtn}</div>
-         <ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol></div>`
-      : `${where}${f.missions || !f.desc || f.desc.replace(/\.$/, '') === ou ? '' : f.en ? `<p class="pn-en"><small>${ic('info')}Indication des joueurs, en anglais :</small>${escH(f.desc || '')}</p>` : `<p>${escH(f.desc || '')}</p>`}
-         <div class="pn-act">${f.url ? `<a class="nbtn nbtn--primary" href="${ROOT}${f.url}"><span>${/^dossiers\//.test(f.url) ? 'Voir le dossier' : 'Voir la fiche'}</span><i>${ic('arrow-right')}</i></a>` : f.ext && f.ph ? `<a class="nbtn nbtn--primary" href="${f.ext}" target="_blank" rel="noopener"><span>Voir la photo du lieu</span><i>${ic('eye')}</i></a>` : ''}${favBtn}</div>`;
-    const quoi = veh ? [c.nom, sc[0]].filter(Boolean).join(' · ') : t && !place ? t.type : `${c.nom || ''}${f.service ? ' · ' + f.service : ''}`;
-    const cap = [f.imgNote ? `<b>${escH(f.imgNote)}</b>` : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
-    const img = f.img ? `<figure class="pn-img${f.img3d ? ' pn-img--3d' : ''}" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}${f.img3d ? ' en 3D' : ''}" decoding="async" loading="lazy">${cap ? `<figcaption>${cap}${f.img3d ? ' · <a href="' + ROOT + f.url + '">la faire tourner</a>' : ''}</figcaption>` : ''}</figure>` : '';
-    const mis = f.missions && !opt.spoil ? `<div class="pn-mis"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/${escH(m.id)}/">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
-    const prox = BESOINS.map(([lab, icn, court]) => {
-      let best = null, bd = Infinity;
-      atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && lab.includes(x.service)) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
-      return best && !lab.includes(f.service) ? `<li><button type="button" data-go="${escH(best.id)}"><span class="pn-li-i">${ic(icn)}</span><span><b>${escH(court)}</b><small>${escH(best.nom)}</small></span><em>${km(bd)}</em></button></li>` : '';
-    }).filter(Boolean).slice(0, 4).join('');
-    const proche = prox ? `<details class="pn-near"${innerWidth >= 900 ? ' open' : ''}><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
+    const kicker = [c.nom, sc[0] || f.service].filter(Boolean).join(' · ');
+    const titre = t && !(/^[sm]-/.test(f.id) || (f.service && !veh)) ? t.titre : f.nom;
     const isT = trouves.has(f.id);
+    // haut : image 16:9, ou emplacement graphique avec l'icône de la catégorie (jamais une image inventée)
+    const cap = [f.imgNote ? escH(f.imgNote) : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
+    const hero = f.img ? `<figure class="pn-hero pn-more" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}" decoding="async" loading="lazy">${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure>`
+      : `<div class="pn-hero pn-hero--vide pn-more" style="--c:${c.color}" aria-hidden="true">${ic(f.icon || c.icon)}</div>`;
+    const code = (f.desc || '').match(/^Code : ([^,.]+)/);
+    const lead = f.desc && !f.missions && !code ? `<p class="pn-lead pn-more">${escH(court(f))}</p>` : '';
+    // informations principales : où, comment l'obtenir, rareté (seulement ce qui existe)
+    const ou = [f.lieuNom, f.zone && !(f.lieuNom || '').includes(f.zone) ? f.zone : '', r && !(f.lieuNom || '').includes(r.nom) ? r.nom : ''].filter(Boolean);
+    const reste = f.desc && !f.missions ? (code ? f.desc.replace(/^Code : [^.]*\.\s*/, '') : court(f) !== f.desc ? f.desc : '') : '';
+    const infos = [
+      ['pin', 'Emplacement', escH(ou.length ? ou.join(' · ') : f.nom) + (f.acces ? `<small>${ic('compass')}${escH(f.acces)}</small>` : '')],
+      secteur(f) && !ou.includes(secteur(f)) ? ['map', 'Région ou quartier', escH(secteur(f))] : null,
+      code ? ['code', 'Code du coffre', `<b class="pn-code">${escH(code[1])}</b><small>Selon les guides, pas vérifié en jeu.</small>`] : null,
+      f.ob ? ['check', 'Comment l’obtenir', escH(f.ob)] : t ? ['bolt', 'Comment faire', `${escH(t.reponse)}${t.etapes && t.etapes.length ? `<ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol>` : ''}`] : null,
+      rarete(f) ? ['diamond', 'Rareté', escH(rarete(f))] : null,
+      reste ? ['info', veh && !/^v-/.test(f.id) ? 'Indication des joueurs' : 'Infos utiles', escH(reste)] : null
+    ].filter(Boolean);
+    const dl = `<dl class="pn-key pn-more">${infos.map(([i, k, v]) => `<div><dt>${ic(i)}${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+    const mis = f.missions && !opt.spoil ? `<div class="pn-mis pn-more"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/${escH(m.id)}/">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
+    // deux actions principales
+    const cta = `<div class="pn-cta" style="--c:${c.color}"><button type="button" class="pn-cta-1" data-center>${ic('locate')}<span>Centrer sur le lieu</span></button><button type="button" class="pn-cta-2${isT ? ' is-on' : ''}" data-found aria-pressed="${isT}">${ic('check')}<span>${foundTxt(f, isT)}</span></button></div>`;
+    const lien = f.url ? `<a class="pn-full pn-more" href="${ROOT}${f.url}">${ic('guide')}<span>${veh ? 'Fiche complète du véhicule' : /^dossiers\//.test(f.url) ? 'Voir le dossier' : 'Voir la fiche complète'}</span>${ic('arrow-right')}</a>` : t && t.lien ? `<a class="pn-full pn-more" href="${ROOT}${t.lien}">${ic('guide')}<span>${escH(t.libelle)}</span>${ic('arrow-right')}</a>` : '';
+    // actions secondaires, discrètes
     const mail = window.LG_CONTACT;
     const signal = mail ? `mailto:${mail}?subject=${encodeURIComponent('Erreur sur la carte : ' + f.nom)}&body=${encodeURIComponent(`Repère : ${f.nom} (${f.id})\nLien : ${location.origin}${location.pathname}?focus=${f.id}\n\nCe qui ne va pas :\n`)}` : '';
-    const outils = `<div class="pn-tools"><button type="button" class="pn-tool${isT ? ' is-on' : ''}" data-found aria-pressed="${isT}">${ic('check')}<span>${foundTxt(f, isT)}</span></button><button type="button" class="pn-tool" data-center>${ic('locate')}<span>Centrer</span></button><button type="button" class="pn-tool" data-share>${ic('share')}<span>Partager</span></button>${signal ? `<a class="pn-tool" href="${signal}">${ic('alert')}<span>Signaler une erreur</span></a>` : ''}</div><p class="pn-undo" data-undo-l hidden><button type="button" data-undo-f>${ic('replay')}Annuler</button></p>`;
-    showPanel.moyen = true;
-    showPanel(`${head(f.icon, c.color, quoi, veh ? f.nom : t && !place ? t.titre : f.nom)}${veh ? '' : img}${mis}${body}${veh ? img : ''}${outils}${dl}${proche}${nav(f)}`);
+    const ext = f.ext ? `<a class="pn-lnk" href="${escH(f.ext)}" target="_blank" rel="noopener">${ic(f.ph ? 'eye' : 'link')}${f.ph ? 'Photo du lieu' : 'Consulter la source'}</a>` : '';
+    const sec = `<div class="pn-sec pn-more"><button type="button" class="pn-lnk" data-share>${ic('share')}Partager</button>${ext}${signal ? `<a class="pn-lnk" href="${signal}">${ic('alert')}Signaler une erreur</a>` : ''}</div>`;
+    // plus d'infos, repliées : fiabilité, précision, source
+    const det = `<details class="pn-det pn-more"><summary>${ic('shield')}Fiabilité et source</summary><dl class="pn-dl">
+      <div><dt>Statut</dt><dd>${stTag(f)}</dd></div>
+      <div><dt>Emplacement</dt><dd>${escH(precisionTxt(f))}</dd></div>
+      <div><dt>Source</dt><dd>${f.ext ? `<a href="${escH(f.ext)}" target="_blank" rel="noopener">${escH(sourceTxt(f))}</a>` : escH(sourceTxt(f))}</dd></div>
+      ${(f.tg || []).length ? `<div><dt>Aussi dans</dt><dd>${escH(f.tg.map((k) => (cats[k] || {}).nom).filter(Boolean).join(', '))}</dd></div>` : ''}
+      ${f.vo ? `<div><dt>Nom d’origine</dt><dd>${escH(f.vo)}</dd></div>` : ''}</dl></details>`;
+    const prox = BESOINS.map(([lab, icn, cn]) => {
+      let best = null, bd = Infinity;
+      atlas.feats().forEach((x) => { if (x.id !== f.id && !x.label && lab.includes(x.service)) { const dd = Math.hypot(x.x - f.x, x.y - f.y); if (dd < bd) { bd = dd; best = x; } } });
+      return best && !lab.includes(f.service) ? `<li><button type="button" data-go="${escH(best.id)}"><span class="pn-li-i">${ic(icn)}</span><span><b>${escH(cn)}</b><small>${escH(best.nom)}</small></span><em>${km(bd)}</em></button></li>` : '';
+    }).filter(Boolean).slice(0, 4).join('');
+    const proche = prox ? `<details class="pn-near pn-more"><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
+    const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
+    const enTete = `<div class="pn-h pn-h--f">${vignette(f, 'pn-thumb')}<div class="pn-h-t"><small style="--c:${c.color}">${escH(kicker)}</small><h2>${escH(titre)}</h2><span class="pn-h-st">${stTag(f, true)}</span></div>${favBtn}<button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
+    showPanel(`${hero}${enTete}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
+    panel.classList.add('pn-fiche');
     bindNav();
-    const bt = $('[data-found]', panel), ul = $('[data-undo-l]', panel);
-    const majT = () => { const on = trouves.has(f.id); bt.setAttribute('aria-pressed', on); bt.classList.toggle('is-on', on); bt.querySelector('span').textContent = foundTxt(f, on); };
-    bt.addEventListener('click', () => { marquer(f, !trouves.has(f.id)); majT(); ul.hidden = false; });
-    $('[data-undo-f]', panel).addEventListener('click', () => { annuler(); majT(); ul.hidden = true; });
-    $('[data-center]', panel).addEventListener('click', () => { if (innerWidth < 900 && !cote()) taillePanneau('compact'); atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, .45)); visible(f, 900); });
+    const bt = $('[data-found]', panel);
+    const majT = () => { const on = trouves.has(f.id); bt.setAttribute('aria-pressed', on); bt.classList.toggle('is-on', on); $('span', bt).textContent = foundTxt(f, on); };
+    bt.addEventListener('click', () => {
+      const on = !trouves.has(f.id); marquer(f, on); majT();
+      bt.classList.remove('is-pop'); void bt.offsetWidth; bt.classList.add('is-pop');
+      snack(on ? (f.cat === 'collection' ? 'Marqué comme trouvé' : 'Marqué comme visité') : 'Marque retirée', () => { annuler(); if (bt.isConnected) majT(); });
+    });
+    $('[data-center]', panel).addEventListener('click', () => { if (mobile() && panel.dataset.taille === 'grand') { panel.classList.add('pn-anim'); taillePanneau('compact'); } atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, .45), .5); visible(f, 600); });
     $('[data-share]', panel).addEventListener('click', async () => {
       const u = new URL(location.href); u.search = ''; u.searchParams.set('focus', f.id);
-      try { if (navigator.share && innerWidth < 900) await navigator.share({ title: f.nom, url: u.href }); else { await navigator.clipboard.writeText(u.href); LG.toast && LG.toast('Lien copié', 'check'); } } catch (err) { /* annulé */ }
+      try { if (navigator.share && innerWidth < 900) await navigator.share({ title: f.nom, url: u.href }); else { await navigator.clipboard.writeText(u.href); snack('Lien copié'); } } catch (err) { /* annulé */ }
     });
-    panel.classList.toggle('pn-peek', !!state.spot && innerWidth < 900);
-    panel.scrollTop = 0;
-    if (cote()) atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, state.spot ? .45 : .3));
-    else if (innerWidth < 900) {
+    $('.pn-c', panel).scrollTop = 0;
+    if (cote()) atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, state.spot ? .45 : .3), .5);
+    else if (mobile()) {
       const ts = Math.max(atlas.cam.s, state.spot ? .45 : .3), sr = stage.getBoundingClientRect();
       const y0 = top.getBoundingClientRect().bottom - sr.top, y1 = panel.getBoundingClientRect().top - sr.top;
-      atlas.flyTo(f.x, f.y - (sr.height / 2 - ((y0 + y1) / 2 - (state.spot ? 16 : 0))) / ts, ts);
+      atlas.flyTo(f.x, f.y - (sr.height / 2 - ((y0 + y1) / 2 - 12)) / ts, ts, .5);
     }
   }
+  // favori depuis une fiche : petit retour visuel et « Annuler » (la gestion des favoris reste celle du site)
+  panel.addEventListener('click', (e) => {
+    const b = e.target.closest('.pn-fav'); if (!b || !LG.toggleFav) return;
+    e.stopPropagation(); e.preventDefault();
+    let o; try { o = JSON.parse(b.dataset.fav); } catch (err) { return; }
+    const avant = favs().some((x) => x.type + ':' + x.id === o.type + ':' + o.id);
+    LG.toggleFav(o); sansToast();
+    b.classList.remove('is-pop'); void b.offsetWidth; b.classList.add('is-pop');
+    lireFavs(); if (opt.favs) applyFilter();
+    snack(avant ? 'Retiré des favoris' : 'Ajouté aux favoris', () => { LG.toggleFav(o); sansToast(); lireFavs(); if (opt.favs) applyFilter(); });
+  }, true);
   function openCommu(p) {
     const k = commuCats[p.c] || { nom: 'Lieu' };
     showPanel(`${head('pin', '#c7c2e0', 'Lieu de la communauté · ' + k.nom, p.n)}
-      <div class="pn-tags">${p.z ? `<span class="pn-tag">${escH(p.z)}</span>` : ''}<span class="pn-tag pn-tag--warn">${p.d ? 'Nom ou position douteux' : 'Position approximative'}</span></div>
-      <p>Repéré par les contributeurs de GTADB d'après les bandes-annonces et le jeu. Ce n'est pas une information vérifiée par notre équipe.</p>
-      <div class="pn-act"><a class="nbtn" href="https://map.gtadb.org" target="_blank" rel="noopener"><span>Source : GTADB</span><i>${ic('arrow-right')}</i></a></div>`);
-    if (innerWidth < 900) { const ts = Math.max(atlas.cam.s, .5); atlas.flyTo(p.x, p.y - (panel.offsetHeight / 2 + 10) / ts, ts); }
+      <div class="pn-tags">${p.z ? `<span class="pn-tag">${escH(p.z)}</span>` : ''}<span class="pn-st" style="--c:#b3aec4">${ic('question')}${p.d ? 'Nom ou position douteux' : 'Non confirmé'}</span></div>
+      <p class="pn-lead">Repéré par les contributeurs de GTADB d'après les bandes-annonces et le jeu. Ce n'est pas une information vérifiée par notre équipe.</p>
+      <div class="pn-sec"><a class="pn-lnk" href="https://map.gtadb.org" target="_blank" rel="noopener">${ic('link')}Consulter la source (GTADB)</a></div>`, 'compact');
+    if (mobile()) { const ts = Math.max(atlas.cam.s, .5); atlas.flyTo(p.x, p.y - (panel.offsetHeight / 2 + 10) / ts, ts, .5); }
   }
   function openRegion(r) {
     if (!r) return;
+    const nom = $('[data-reg-nom]'); if (nom) nom.textContent = r.nom;
     const list = atlas.feats().filter((f) => f.region === r.id && !f.label);
     const by = {}; list.forEach((f) => { by[f.cat] = (by[f.cat] || 0) + 1; });
     showPanel(`${head('map', r.couleur, 'Région', r.nom)}
       <div class="pn-tags">${Object.entries(by).map(([c, n]) => `<span class="pn-tag">${n} ${escH((cats[c] || {}).nom || c).toLowerCase()}</span>`).join('') || '<span class="pn-tag">Pas encore de repère du guide</span>'}</div>
-      <div class="pn-act"><a class="nbtn nbtn--primary" href="${ROOT}encyclopedie/${r.id}/"><span>Lire la fiche</span><i>${ic('arrow-right')}</i></a></div>`);
-    atlas.flyTo(r.label[0], r.label[1], .12);
+      <div class="pn-sec"><a class="pn-lnk" href="${ROOT}encyclopedie/${r.id}/">${ic('book')}Lire la fiche de la région</a></div>`, 'compact');
+    atlas.flyTo(r.label[0], r.label[1], .12, .6);
   }
 
   // ---------- recherche : accents, synonymes, fautes de frappe, catégories et recherches populaires ----------
@@ -540,34 +668,57 @@
     const toks = qn.split(' ').filter((t) => t && !['de', 'des', 'du', 'la', 'le', 'les', 'un', 'une', 'a', 'ou', 'trouver', 'gta', '6'].includes(t));
     if (!toks.length) return [];
     const out = [];
-    (OPT.populaires || []).forEach((p) => { const c = cats[p.cat] || {}; const s = score(toks, p.nom, `${c.nom} ${(p.sc || []).map((x) => subNoms[p.cat + ':' + x]).join(' ')}`); if (s) out.push({ s: s + 4, pop: p }); });
+    (OPT.populaires || []).forEach((p) => { const c = cats[p.cat] || {}; const s = score(toks, p.nom, `${c.nom} ${(p.sc || []).map((x) => subNoms[p.cat + ':' + x]).join(' ')}`); if (s && nPop(p)) out.push({ s: s + 4, pop: p }); });
     Object.values(cats).forEach((c) => {
       const s = score(toks, c.nom, `${c.court} ${c.q} ${c.sens}`); if (s) out.push({ s: s + 3, cat: c });
       c.sous.forEach((x) => { const s2 = score(toks, x.nom, c.nom); if (s2) out.push({ s: s2 + 2.5, cat: c, sub: x }); });
     });
-    atlas.feats().forEach((f) => { if (f.label && !regions[f.id]) return; const s = score(toks, f.nom, `${(cats[f.cat] || {}).nom} ${f.service || ''} ${f.vn || ''} ${f.zone || ''} ${f.desc || ''}`); if (s) out.push({ s: s + (f.label ? 1.5 : 1) + (passe(f) ? .3 : 0), f }); });
+    atlas.feats().forEach((f) => { if (f.label && !regions[f.id]) return; const s = score(toks, f.nom, `${(cats[f.cat] || {}).nom} ${f.service || ''} ${f.vn || ''} ${f.vo || ''} ${f.zone || ''} ${f.desc || ''}`); if (s) out.push({ s: s + (f.label ? 1.5 : 1) + (passe(f) ? .3 : 0), f }); });
     commu.forEach((p) => { const s = score(toks, p.n, p.z); if (s) out.push({ s, p }); });
-    // pas deux fois la même entrée de catégorie
     const vus = new Set();
     return out.sort((a, b) => b.s - a.s).filter((r) => { const k = r.pop ? 'p' + r.pop.id : r.cat ? 'c' + r.cat.id + (r.sub ? ':' + r.sub.id : '') : ''; if (!k) return true; if (vus.has(k)) return false; vus.add(k); return true; }).slice(0, 9);
   }
+  // ---------- mode exploration : la carte seule, en plein écran ; vue, filtres, sélection et panneau restaurés en sortant ----------
+  let expl = null;
+  function explorer(on) {
+    if (on === !!expl) return;
+    const b = $('[data-explore]');
+    if (on) {
+      expl = { vue: atlas.vue(), fs: false };
+      document.documentElement.classList.add('lg-explore');
+      const el = document.documentElement;
+      if (el.requestFullscreen && !/iPhone|iPod/.test(navigator.userAgent)) el.requestFullscreen({ navigationUI: 'hide' }).then(() => { if (expl) expl.fs = true; }).catch(() => { /* mode immersif sans plein écran */ });
+      requestAnimationFrame(() => requestAnimationFrame(() => { atlas.setPad(padding()); if (!panel.hidden) taillePanneau(panel.dataset.taille || 'moyen'); }));
+    } else {
+      const v = expl.vue; expl = null;
+      document.documentElement.classList.remove('lg-explore');
+      if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => { /* */ });
+      requestAnimationFrame(() => requestAnimationFrame(() => { atlas.setPad(padding()); atlas.setVue(v); if (!panel.hidden) taillePanneau(panel.dataset.taille || 'moyen'); }));
+    }
+    b.setAttribute('aria-pressed', !!on); b.setAttribute('aria-label', on ? 'Quitter le mode exploration' : 'Mode exploration (plein écran)');
+    b.innerHTML = ic(on ? 'x' : 'expand');
+    setTimeout(majCtrl, 80);
+  }
+  document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && expl && expl.fs) explorer(false); });
+
   function bind() {
-    const input = $('#atp-q'), sugg = $('#atp-sugg'); let res = [], sel2 = 0;
+    const input = $('#atp-q'), sugg = $('#atp-sugg'), qx = $('[data-q-x]'); let res = [], sel2 = 0;
     const nCat = (c, s) => atlas.feats().filter((f) => !f.label && dans(f, c) && (!s || scDe(f, c).includes(s))).length;
     const draw = () => {
+      qx.hidden = !input.value;
       res = search(input.value); sel2 = 0; sugg.hidden = !input.value.trim();
-      const ligne = (r, i) => {
+      const lg = (r, i) => {
         const a = `role="option" data-i="${i}" aria-selected="${i === 0}"`;
-        if (r.pop) { const c = cats[r.pop.cat]; return `<button type="button" ${a} style="--c:${c.color}" class="sg-cat">${ic(r.pop.icon)}<span><b>${escH(r.pop.nom)}</b><small>Recherche populaire · ${nCat(r.pop.cat, (r.pop.sc || [])[0])} emplacements</small></span></button>`; }
+        if (r.pop) { const c = cats[r.pop.cat]; return `<button type="button" ${a} style="--c:${c.color}" class="sg-cat">${ic(r.pop.icon)}<span><b>${escH(r.pop.nom)}</b><small>Recherche populaire · ${nPop(r.pop)} emplacements</small></span></button>`; }
         if (r.cat) return `<button type="button" ${a} style="--c:${r.cat.color}" class="sg-cat">${ic(r.cat.icon)}<span><b>${escH(r.sub ? r.sub.nom : r.cat.nom)}</b><small>${r.sub ? 'Sous-catégorie · ' + escH(r.cat.nom) : 'Catégorie'} · ${nCat(r.cat.id, r.sub && r.sub.id)} emplacements</small></span></button>`;
         if (r.f) return `<button type="button" ${a} style="--c:${(cats[r.f.cat] || {}).color || '#ff2bd6'}"><i></i><span><b>${escH(r.f.nom)}</b><small>${r.f.label ? 'Région' : escH(sousNom(r.f))}${secteur(r.f) ? ' · ' + escH(secteur(r.f)) : ''}</small></span></button>`;
         return `<button type="button" ${a} style="--c:#c7c2e0"><i></i><span><b>${escH(r.p.n)}</b><small>Communauté${r.p.z ? ' · ' + escH(r.p.z) : ''}</small></span></button>`;
       };
-      const idees = (OPT.populaires || []).slice(0, 6).map((p) => `<button type="button" class="sg-idee" data-pop-s="${p.id}" style="--c:${(cats[p.cat] || {}).color}">${ic(p.icon)}${escH(p.nom)}</button>`).join('');
-      sugg.innerHTML = res.length ? res.map(ligne).join('') : `<p class="sg-vide"><b>Aucun résultat pour « ${escH(input.value.trim())} ».</b> Vérifie l'orthographe, ou essaie une de ces recherches :</p><div class="sg-idees">${idees}</div>`;
+      const idees = (OPT.populaires || []).filter(nPop).slice(0, 6).map((p) => `<button type="button" class="sg-idee" data-pop-s="${p.id}" style="--c:${(cats[p.cat] || {}).color}">${ic(p.icon)}${escH(p.nom)}</button>`).join('');
+      sugg.innerHTML = res.length ? res.map(lg).join('') : `<p class="sg-vide"><b>Aucun résultat pour « ${escH(input.value.trim())} ».</b> Vérifie l'orthographe, ou essaie une de ces recherches :</p><div class="sg-idees">${idees}</div>`;
       $$('[data-i]', sugg).forEach((b) => b.addEventListener('click', () => pick(+b.dataset.i)));
       $$('[data-pop-s]', sugg).forEach((b) => b.addEventListener('mousedown', (e) => e.preventDefault()));
-      $$('[data-pop-s]', sugg).forEach((b) => b.addEventListener('click', () => { input.value = ''; sugg.hidden = true; input.blur(); popClic(b.dataset.popS); }));
+      $$('[data-pop-s]', sugg).forEach((b) => b.addEventListener('click', () => { input.value = ''; qx.hidden = true; sugg.hidden = true; input.blur(); popClic(b.dataset.popS); }));
       if (!res.length && input.value.trim().length > 2 && window.LG_EVT) { clearTimeout(draw.t); draw.t = setTimeout(() => { try { window.LG_EVT('carte-sans-resultat/' + norm(input.value).slice(0, 40)); } catch (e) { /* */ } }, 1500); }
     };
     const pick = (i) => {
@@ -584,13 +735,15 @@
       }
     };
     input.addEventListener('input', draw);
-    input.addEventListener('focus', () => { if (input.value.trim()) draw(); });
+    input.addEventListener('focus', () => { if (input.value.trim()) draw(); menuReg(false); legende(false); });
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') { e.preventDefault(); pick(sel2); }
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel2 = Math.max(0, Math.min(res.length - 1, sel2 + (e.key === 'ArrowDown' ? 1 : -1))); $$('[data-i]', sugg).forEach((b, i) => b.setAttribute('aria-selected', i === sel2)); }
-      if (e.key === 'Escape') { input.value = ''; sugg.hidden = true; }
+      if (e.key === 'Escape') { input.value = ''; qx.hidden = true; sugg.hidden = true; }
     });
     input.addEventListener('blur', () => setTimeout(() => { sugg.hidden = true; }, 180));
+    qx.addEventListener('mousedown', (e) => e.preventDefault());
+    qx.addEventListener('click', () => { input.value = ''; qx.hidden = true; sugg.hidden = true; input.focus(); });
     // raccourcis permanents : un toucher = la catégorie seule et sa liste ; un second toucher l'enlève
     $$('[data-cat]').forEach((b) => b.addEventListener('click', () => {
       const id = b.dataset.cat; state.pop = '';
@@ -602,25 +755,38 @@
     $('[data-filtres]').addEventListener('click', openFiltres);
     $('[data-reset]').addEventListener('click', reset);
     $$('[data-pop]').forEach((b) => b.addEventListener('click', () => { if (state.pop === b.dataset.pop) return reset(); popClic(b.dataset.pop); b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' }); }));
+    // recherches populaires repliables (choix gardé sur cet appareil)
+    const pt = $('[data-pop-tog]'), pb = $('[data-pop-box]');
+    const replier = (on) => { pb.classList.toggle('is-replie', on); pt.setAttribute('aria-expanded', !on); pt.setAttribute('aria-label', on ? 'Afficher les recherches populaires' : 'Masquer les recherches populaires'); store.set(KEY_POPR, on ? '1' : ''); setTimeout(() => { atlas.setPad(padding()); majCtrl(); }, 260); };
+    replier(store.get(KEY_POPR) === '1');
+    pt.addEventListener('click', () => replier(!pb.classList.contains('is-replie')));
     $('[data-solo-off]').addEventListener('click', () => { unsolo(); tout(); closePanel(); });
     $('[data-keep-voir]').addEventListener('click', () => { const f = state.choisi; if (!f) return; if (!f.commu) ensureShown(f); atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); });
     $('[data-keep-off]').addEventListener('click', () => { state.choisi = null; garde(false); atlas.clearActive(); });
     $$('[data-z]').forEach((b) => b.addEventListener('click', () => {
       const z = b.dataset.z;
       if (z === 'in') atlas.zoomIn(); else if (z === 'out') atlas.zoomOut();
-      else if (z === 'center') { const f = state.choisi && !state.choisi.commu ? state.choisi : null; if (f) { atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, .45)); visible(f, 900); } else if (!state.vide && resultats().length) fitResults(); else atlas.reset(); }
+      else if (z === 'center') { const f = state.choisi && !state.choisi.commu ? state.choisi : null; if (f) { atlas.flyTo(f.x, f.y, Math.max(atlas.cam.s, .45), .5); visible(f, 600); } else if (!state.vide && resultats().length) fitResults(); else atlas.reset(); }
     }));
-    $$('[data-reg]').forEach((b) => b.addEventListener('click', () => openRegion(regions[b.dataset.reg])));
+    // un seul sélecteur de régions
+    $('[data-reg-btn]').addEventListener('click', (e) => { e.stopPropagation(); menuReg($('[data-reg-menu]').hidden); });
+    $$('[data-reg]').forEach((b) => b.addEventListener('click', () => {
+      menuReg(false); const id = b.dataset.reg;
+      if (!id) { $('[data-reg-nom]').textContent = 'Régions'; closePanel(); atlas.reset(); } else openRegion(regions[id]);
+    }));
+    $('[data-reg-menu]').addEventListener('keydown', (e) => { if (e.key === 'Escape') { menuReg(false); $('[data-reg-btn]').focus(); } });
+    document.addEventListener('click', (e) => { if (!e.target.closest('[data-reg-menu], [data-reg-btn]')) menuReg(false); });
     $('[data-list]').addEventListener('click', () => { state.fromList = false; openList(); });
     $('[data-prog]').addEventListener('click', openProgression);
     $('[data-leg-btn]').addEventListener('click', () => legende($('#atp-leg').hidden));
     $('[data-leg-x]').addEventListener('click', () => legende(false));
+    $('[data-explore]').addEventListener('click', () => explorer(!expl));
     const src = $('.at-attrib--page'); if (src && innerWidth >= 900) src.open = true;
     countView();
-    addEventListener('keydown', (e) => { if (e.key === 'Escape') { legende(false); closePanel(); } });
+    addEventListener('keydown', (e) => { if (e.key !== 'Escape' || e.target.closest('input, select')) return; if (!panel.hidden) closePanel(); else if (expl) explorer(false); legende(false); menuReg(false); });
     addEventListener('storage', (e) => { if (e.key === 'lg:favs' && opt.favs) applyFilter(); });
-    panel.addEventListener('click', (e) => { if (opt.favs && e.target.closest('.fav')) setTimeout(applyFilter, 50); });
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => atlas.setPad(padding()), 150); });
+    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { atlas.setPad(padding()); if (!panel.hidden) taillePanneau(panel.dataset.taille || 'moyen'); majCtrl(); }, 150); });
+    majCtrl();
   }
   function popClic(id) {
     const p = (OPT.populaires || []).find((x) => x.id === id); if (!p) return;
