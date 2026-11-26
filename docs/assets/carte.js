@@ -713,7 +713,7 @@
     const input = $('#atp-q'), sugg = $('#atp-sugg'), qx = $('[data-q-x]'); let res = [], sel2 = 0;
     const nCat = (c, s) => atlas.feats().filter((f) => !f.label && dans(f, c) && (!s || scDe(f, c).includes(s))).length;
     const draw = () => {
-      qx.hidden = !input.value;
+      dt = 0; qx.hidden = !input.value;
       res = search(input.value); sel2 = 0; sugg.hidden = !input.value.trim();
       const lg = (r, i) => {
         const a = `role="option" data-i="${i}" aria-selected="${i === 0}"`;
@@ -742,10 +742,12 @@
         atlas.select({ ...r.p, commu: true, x: r.p.x, y: r.p.y }, { fly: true, s: .5 });
       }
     };
-    input.addEventListener('input', draw);
+    // recherche lancée une fois la frappe terminée (évite de tout recalculer à chaque lettre sur téléphone)
+    let dt = 0;
+    input.addEventListener('input', () => { clearTimeout(dt); qx.hidden = !input.value; dt = setTimeout(draw, 120); });
     input.addEventListener('focus', () => { if (input.value.trim()) draw(); menuReg(false); legende(false); });
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') { e.preventDefault(); pick(sel2); }
+      if (e.key === 'Enter') { e.preventDefault(); if (dt) { clearTimeout(dt); dt = 0; draw(); } pick(sel2); }
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel2 = Math.max(0, Math.min(res.length - 1, sel2 + (e.key === 'ArrowDown' ? 1 : -1))); $$('[data-i]', sugg).forEach((b, i) => b.setAttribute('aria-selected', i === sel2)); }
       if (e.key === 'Escape') { input.value = ''; qx.hidden = true; sugg.hidden = true; }
     });
