@@ -120,6 +120,26 @@ for (const x of lire('vehicules.json')) {
   if (x.dispo === 'confirme' && indIds(x.sources).length < 2) err(`véhicule ${x.slug} : emplacement « confirmé » sans deux sources indépendantes`);
   if (x.dispo === 'teste' && !(x.preuve && x.preuve.date && x.preuve.plateforme && x.preuve.lien)) err(`véhicule ${x.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
 }
+// glitchs : jamais publiés sans source lue ; « fonctionnel » exige une version et une preuve ; « bien documenté » exige deux sources lues indépendantes
+{
+  const G = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'glitchs.json'), 'utf8')).glitchs;
+  const ST = ['fonctionnel', 'documente', 'a-reverifier', 'non-confirme', 'corrige', 'faux'];
+  const slugs = new Set();
+  for (const g of G) {
+    if (slugs.has(g.slug)) err(`glitch en double : ${g.slug}`); slugs.add(g.slug);
+    if (!ST.includes(g.statut)) err(`glitch ${g.slug} : statut inconnu`);
+    const lus = (g.sources || []).filter((x) => x.lu);
+    const pub = g.publie && lus.length;
+    if (g.publie && !lus.length && pages.has(`glitchs/${g.slug}/`)) err(`glitch ${g.slug} : publié sans aucune source lue`);
+    if (!g.publie && pages.has(`glitchs/${g.slug}/`)) err(`glitch ${g.slug} : brouillon mis en ligne`);
+    if (pub && !pages.has(`glitchs/${g.slug}/`)) err(`glitch ${g.slug} : page absente`);
+    if (g.statut === 'fonctionnel' && !(g.version && g.preuve)) err(`glitch ${g.slug} : « fonctionnel » sans version ni preuve`);
+    if (g.statut === 'documente' && new Set(lus.map((x) => new URL(x.url).hostname.replace(/^www\./, ''))).size < 2) err(`glitch ${g.slug} : « bien documenté » sans deux sources lues indépendantes`);
+    if (pub && !(g.etapes || []).length) err(`glitch ${g.slug} : publié sans tutoriel`);
+    for (const v of g.videos || []) if (v.verifie && !v.lu) warn(`glitch ${g.slug} : vidéo marquée vérifiée sans avoir été visionnée`);
+  }
+  if (!pages.has('glitchs/')) err('page glitchs/ absente');
+}
 // carte : configuration des catégories et données publiées
 {
   const C = JSON.parse(fs.readFileSync(path.join(OUT, 'data', 'carte.json'), 'utf8'));

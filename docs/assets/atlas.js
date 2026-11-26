@@ -140,7 +140,7 @@
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
           el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (f.id === st.active ? ' is-spot' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
-          el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${st.found && st.found.has(f.id) ? '<span class="at-dot-ok" aria-hidden="true"></span>' : ''}`;
+          el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${st.found && st.found.has(f.id) ? '<span class="at-dot-ok" aria-hidden="true"></span>' : ''}${st.badge && st.badge(f) ? `<span class="at-dot-b" aria-hidden="true">${escH(st.badge(f))}</span>` : ''}`;
           c.el = el; c.f = f;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
           el.setAttribute('aria-label', `${f.nom} (${(cats[f.cat] || {}).nom || ''})`);
@@ -301,6 +301,7 @@
       setCommuFilter(fn) { st.commuFilter = fn; render(true); },
       clearActive() { st.active = null; st.activeC = null; render(true); },
       markFound(set) { st.found = set; render(true); },
+      setBadge(fn) { st.badge = fn; render(true); },
       spot(on) { if (!!st.spot === !!on) return; st.spot = !!on; layer.classList.toggle('has-spot', !!on); render(true); },
       feats: () => st.feats, nodes: () => nodes, layer, stage, toScreen,
       inView() {

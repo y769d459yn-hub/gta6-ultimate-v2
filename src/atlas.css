@@ -754,3 +754,10 @@
 }
 @media (max-width: 360px) { .atp-regions .atp-list { font-size: 0; gap: 4px; padding: 0 10px; } .atp-regions .atp-list .ic { width: 18px; height: 18px; } .atp-regions .atp-list small { font-size: .72rem; } }
 @media (max-width: 899px) { .atp-popb { height: 36px; } .atp-pop-k { height: 36px; } }
+/* lieux de glitchs : numéro d'étape ou éclair */
+.at-dot-b { position: absolute; z-index: 3; right: 2px; top: 2px; min-width: 18px; height: 18px; padding: 0 4px; display: grid; place-items: center; border-radius: 999px; background: #19d3e3; color: #04131a; font: 800 .68rem/1 var(--fm, monospace); box-shadow: 0 0 0 2px #05040b; }
+.atp-panel .pn-gl { margin-top: 10px; display: grid; gap: 6px; }
+.atp-panel .pn-gl .pn-full { margin-top: 0; border-color: rgba(25, 211, 227, .45); }
+.atp-panel .pn-gl .pn-full .ic { color: #19d3e3; }
+.atp-panel .pn-gl .pn-full--gl { background: rgba(25, 211, 227, .14); }
+.atp-panel .pn-gl small { color: #bdb7d6; }

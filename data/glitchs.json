@@ -1,0 +1,197 @@
+{
+ "_note": "Rubrique Glitchs. Un glitch n'est publié que si au moins une source a été réellement lue (« lu »: true). Le statut est éditorial : les votes des joueurs ne le changent jamais automatiquement. Statuts : fonctionnel, documente, a-reverifier, non-confirme, corrige, faux. Quand une nouvelle version du jeu est ajoutée dans versions-jeu.json, tout glitch « fonctionnel » ou « documente » établi sur une version plus ancienne s'affiche « À revérifier » (avec son dernier statut connu) jusqu'à un nouveau contrôle.",
+ "verifieLe": "2026-11-26",
+ "glitchs": [
+  {
+   "id": "g1",
+   "slug": "argent-infini-grange-rouge",
+   "titre": "Argent infini à la grange rouge",
+   "court": "Argent infini (grange rouge)",
+   "publie": true,
+   "cat": "argent",
+   "statut": "documente",
+   "version": "01.002.002",
+   "etabliLe": "2026-11-23",
+   "verifieLe": "2026-11-26",
+   "publieLe": "2026-11-26",
+   "utilite": 3,
+   "resume": "La drogue et le sac d'argent d'un entrepôt abandonné, au nord-est de Hamlet, réapparaissent après une sauvegarde rechargée. On peut donc remplir le coffre de son véhicule plusieurs fois, puis tout revendre à un receleur.",
+   "gain": "Environ 11 280 $ au premier passage puis 8 640 $ selon Beebom ; jusqu'à 10 000 $ par passage selon Notebookcheck ; plus de 50 000 $ en 15 minutes avec un van selon PC Gamer",
+   "gainCourt": "Jusqu'à 10 000 $ par passage (annoncé)",
+   "difficulte": "facile",
+   "difficulteNote": "Aucun combat sur place (PC Gamer)",
+   "duree": "Environ 15 minutes pour remplir un van à moitié (PC Gamer)",
+   "plateformes": [],
+   "mode": "Histoire",
+   "image": "",
+   "prerequis": [
+    ["Véhicule", "Un véhicule personnel avec un coffre pour les sacs. Un van (10 places) est plus efficace selon PC Gamer ; il y en a devant l'entrepôt."],
+    ["Revente", "Brian (Key Lento) est disponible dès le chapitre 1. Tyrone (La Perle, Vice City) paie mieux la drogue, à partir du chapitre 3."],
+    ["Sauvegarde", "Une sauvegarde manuelle : la méthode ne fonctionne pas avec la sauvegarde automatique (Beebom)."]
+   ],
+   "etapes": [
+    { "t": "Va à la grange rouge, à l'est de Hamlet (South Vice-Dale County), avec ton véhicule personnel.", "lieu": 1 },
+    { "t": "Dans le bureau du fond, prends la cocaïne sur la table et dans le coffre-fort, et range-la dans un sac." },
+    { "t": "Prends le sac d'argent dans le van ouvert au centre, puis complète avec la cocaïne des vans décorés d'ours en peluche." },
+    { "t": "Range les sacs dans le coffre de ton véhicule." },
+    { "t": "Fais une sauvegarde manuelle (pas la sauvegarde automatique)." },
+    { "t": "Recharge cette sauvegarde : tu réapparais chez Jason, les sacs toujours dans le coffre." },
+    { "t": "Retourne à la grange : la drogue et l'argent sont réapparus. Recommence autant de fois que tu veux." },
+    { "t": "Dépose le butin chez Brian's Lockup (sud-ouest de Key Lento, code 7700). Brian te paie après quelques jours de jeu, dans la boîte aux lettres de ta planque.", "lieu": 2 }
+   ],
+   "variantes": [
+    { "titre": "Sans recharger : s'éloigner puis revenir", "texte": "Testé par PC Gamer : remplis ton véhicule, éloigne-toi d'environ 500 à 800 m, puis reviens. La cocaïne des deux vans et du coffre-fort était réapparue (pas celle des tables). Avec un van à moitié plein, l'auteur a gagné plus de 50 000 $ chez Tyrone, en 15 minutes environ.", "source": "pcgamer" },
+    { "titre": "Version « optimisée » avec plusieurs véhicules", "texte": "Des vidéos et un message Reddit annoncent une version accélérée avec plusieurs véhicules. Nous n'avons pas pu les consulter : ni la méthode ni les rendements annoncés ne sont vérifiés.", "source": "" }
+   ],
+   "problemes": [
+    ["Le butin ne réapparaît pas tout de suite", "Sauvegarde et recharge encore une ou deux fois, ou attends quelques jours de jeu (Beebom)."],
+    ["Un sac ne se ramasse pas", "Certains sacs ne sont pas sélectionnables tant qu'ils ne sont pas pleins (Beebom)."],
+    ["La drogue des tables ne revient pas", "Normal selon PC Gamer : seuls les vans et le coffre-fort se remplissent à nouveau."],
+    ["L'argent n'arrive pas", "Brian ne paie pas tout de suite : l'argent arrive dans la boîte aux lettres de ta planque après quelques jours de jeu (Beebom)."]
+   ],
+   "risques": [
+    "Tu perds l'argent que tu portes sur toi si tu meurs ou si tu es arrêté : range-le dans ton coffre ou sur ton compte BuckMe (Beebom).",
+    "Fais une sauvegarde dans un emplacement à part avant de commencer : en cas de souci, tu pourras revenir en arrière.",
+    "Rockstar peut corriger ce glitch dans une prochaine mise à jour."
+   ],
+   "emplacements": [
+    { "n": 1, "carte": "o-safe-054", "nom": "Entrepôt de la grange rouge (nord-est de Hamlet)", "note": "Repère relevé par les joueurs : le coffre-fort de cet entrepôt, où une fusillade n'a laissé aucun survivant, contient la carte « Vice City Narcos : Leroy Rook » citée par PC Gamer. Correspondance déduite, à confirmer en jeu." },
+    { "n": 2, "carte": "o-fence-005", "nom": "Brian's Lockup (Key Lento)" },
+    { "n": 0, "carte": "o-fence-012", "nom": "Tyrone, autre receleur (Vice City, chapitre 3)" }
+   ],
+   "sources": [
+    { "id": "beebom", "nom": "Beebom", "titre": "GTA 6 Unlimited Money Glitch (Tested and Working)", "auteur": "Ishan Adhikary", "date": "2026-11-20", "url": "https://beebom.com/gta-6-unlimited-money-glitch/", "langue": "en", "type": "article", "lu": true, "dit": "Méthode sauvegarde/rechargement, gains de 11 280 $ puis 8 640 $, revente chez Brian (code 7700)." },
+    { "id": "notebookcheck", "nom": "Notebookcheck", "titre": "New GTA 6 update leaves infinite money glitch untouched", "auteur": "Chibuike Okpara", "date": "2026-11-23", "url": "https://www.notebookcheck.net/New-GTA-6-update-leaves-infinite-money-glitch-untouched.1457986.0.html", "langue": "en", "type": "article", "lu": true, "version": "01.002.002", "dit": "La mise à jour 01.002.002 ne corrige pas ce glitch ; jusqu'à 10 000 $ par passage, jusqu'à quatre sacs dans le coffre." },
+    { "id": "pcgamer", "nom": "PC Gamer", "titre": "This GTA 6 infinite money 'glitch' got me $50,000 in 15 minutes", "auteur": "Morgan Park", "date": "2026-11-23", "url": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-infinite-money-glitch/", "langue": "en", "type": "article", "lu": true, "dit": "Testé par l'auteur : plus de 50 000 $ en 15 minutes en s'éloignant puis en revenant, revente chez Tyrone." },
+    { "id": "reddit-1", "nom": "Reddit r/gtaglitches", "titre": "GTA 6 unlimited money: red barn (Apollo Aggregates)", "url": "https://www.reddit.com/r/gtaglitches/comments/1y1gou5/gta_6_unlimited_money_red_barn_apollo_aggregates/", "langue": "en", "type": "reddit", "lu": false },
+    { "id": "reddit-2", "nom": "Reddit r/gtaglitches", "titre": "GTA 6 infinite money glitch (optimised)", "url": "https://www.reddit.com/r/gtaglitches/comments/1y3y1ny/gta_6_infinite_money_glitch_optimised/", "langue": "en", "type": "reddit", "lu": false }
+   ],
+   "videos": [
+    { "titre": "Argent GTA 6 n°1 : le GLITCH d'argent INFINI 💰♾️ (avant le patch) #GTA6 #Shorts", "createur": "founilh - GTA VI", "plateforme": "YouTube Shorts", "id": "CNPuDiWqMjo", "url": "https://www.youtube.com/watch?v=CNPuDiWqMjo", "langue": "fr", "verifie": false },
+    { "titre": "[GTA 6] Infinite money glitch (optimised)", "createur": "Steve Rey", "plateforme": "YouTube", "id": "3weYmHpe9aE", "url": "https://www.youtube.com/watch?v=3weYmHpe9aE", "langue": "en", "verifie": false },
+    { "titre": "NEW GTA6 MONEY GLITCH - FULLY OPTIMIZED - WORKING AFTER PATCH 1.0.2.2 ON XBOX", "createur": "B Man", "plateforme": "YouTube", "id": "V4TiOFEiqcw", "url": "https://www.youtube.com/watch?v=V4TiOFEiqcw", "langue": "en", "versionCitee": "1.0.2.2 (selon le titre)", "verifie": false }
+   ],
+   "retours": {
+    "confirmations": [
+     ["Le testeur de Beebom indique environ 11 280 $ de butin au premier passage, puis 8 640 $ à chaque passage suivant.", "beebom"],
+     ["L'auteur de PC Gamer l'a essayé lui-même : plus de 50 000 $ en 15 minutes, en revendant à Tyrone.", "pcgamer"],
+     ["Notebookcheck rapporte que la mise à jour 01.002.002 du 23 novembre 2026 ne l'a pas corrigé.", "notebookcheck"]
+    ],
+    "problemes": [
+     ["Parfois l'argent ne se ramasse pas, et certains sacs ne sont pas sélectionnables tant qu'ils ne sont pas pleins.", "beebom"],
+     ["La drogue posée sur les tables ne réapparaît pas ; les corps et la plupart des armes disparaissent.", "pcgamer"]
+    ],
+    "solutions": [
+     ["Si rien ne réapparaît, sauvegarder et recharger encore, ou attendre quelques jours de jeu.", "beebom"],
+     ["S'éloigner d'environ 500 à 800 m puis revenir suffit à faire réapparaître la drogue des vans et du coffre-fort.", "pcgamer"]
+    ]
+   },
+   "historique": [
+    { "date": "2026-11-26", "statut": "documente", "note": "Création. Trois sources indépendantes lues (Beebom, Notebookcheck, PC Gamer) ; non reproduit par notre équipe." }
+   ]
+  },
+  {
+   "id": "g2",
+   "slug": "vue-premiere-personne",
+   "titre": "Jouer en vue première personne",
+   "court": "Vue première personne",
+   "publie": true,
+   "cat": "gameplay",
+   "statut": "documente",
+   "etabliLe": "2026-11-21",
+   "verifieLe": "2026-11-26",
+   "publieLe": "2026-11-26",
+   "utilite": 2,
+   "resume": "GTA 6 n'a pas de vue à la première personne officielle. Un bug de caméra, déclenché en rangeant le téléphone dans une voiture, garde la vue à la première personne pour conduire, marcher et tirer.",
+   "gain": "",
+   "gainCourt": "",
+   "difficulte": "facile",
+   "difficulteNote": "Plusieurs essais peuvent être nécessaires : la touche doit être pressée dans un délai très court (VGC)",
+   "duree": "",
+   "plateformes": ["PS5", "Xbox Series X|S"],
+   "mode": "Histoire",
+   "image": "",
+   "prerequis": [
+    ["Réglage", "Dans Paramètres > Manette, la touche « Pavé tactile » (PS5) ou « Affichage / Retour » (Xbox) doit être réglée sur Caméra au lieu de Carte."],
+    ["Véhicule", "N'importe quel véhicule."]
+   ],
+   "etapes": [
+    { "t": "Dans Paramètres > Manette, règle la touche « Pavé tactile » (PS5) ou « Affichage / Retour » (Xbox) sur Caméra au lieu de Carte." },
+    { "t": "Monte dans n'importe quel véhicule." },
+    { "t": "Ouvre le téléphone (haut de la croix directionnelle)." },
+    { "t": "Range le téléphone et, juste après, appuie très vite plusieurs fois sur la touche Caméra que tu viens de régler." },
+    { "t": "Si c'est réussi, le téléphone disparaît et la vue reste à la première personne. Sinon, recommence." }
+   ],
+   "variantes": [],
+   "problemes": [
+    ["La vue revient à la normale", "Les menus qui changent la caméra (achat à l'Ammu-Nation, garage…) désactivent la vue première personne (VGC). Recommence la manipulation."],
+    ["La touche pour ranger le téléphone", "VGC indique Rond sur PS5, GTABase Carré : utilise la touche affichée à l'écran. Sur Xbox, c'est B pour les deux."],
+    ["Revenir à la caméra normale", "La touche Caméra ne fait plus rien pendant le bug : sauvegarde puis recharge ta partie pour retrouver la caméra habituelle (GTABase)."],
+    ["Ouvrir la carte", "La carte reste accessible depuis le menu pause (VGC)."]
+   ],
+   "risques": [
+    "C'est un bug, pas un mode officiel : il peut avoir des effets imprévus (GTABase).",
+    "GTABase conseille une sauvegarde de secours dans un autre emplacement avant d'essayer."
+   ],
+   "alternatives": [["Vue à la première personne sans glitch (inspecter les environs, téléphone, lunette)", "https://www.gtabase.com/gta-6/articles/how-to-go-first-person-in-gta-6"]],
+   "emplacements": [],
+   "sources": [
+    { "id": "gtabase", "nom": "GTABase", "titre": "How to Play in First Person in GTA 6? [GLITCH]", "auteur": "Oskar Gontarek", "date": "2026-11-21", "url": "https://www.gtabase.com/gta-6/articles/how-to-play-in-first-person-in-gta-6", "langue": "en", "type": "article", "lu": true, "dit": "Étapes détaillées pour PS5 et Xbox ; fonctionne « au moment de l'écriture » ; sauvegarder et recharger pour revenir à la normale." },
+    { "id": "vgc", "nom": "Video Games Chronicle", "titre": "GTA 6: How to use the first-person mode glitch in Grand Theft Auto 6", "auteur": "Dave Aubrey", "date": "2026-11-20", "maj": "2026-11-23", "url": "https://www.videogameschronicle.com/guide/gta-6-first-person-mode-glitch-grand-theft-auto/", "langue": "en", "type": "article", "lu": true, "dit": "Même méthode ; il faut appuyer dans un délai d'une ou deux images ; les menus qui changent la caméra désactivent la vue." },
+    { "id": "reddit", "nom": "Reddit r/gtaglitches", "titre": "Lien de partage Reddit", "url": "https://www.reddit.com/r/gtaglitches/s/bdThWfa95u", "langue": "en", "type": "reddit", "lu": false }
+   ],
+   "videos": [
+    { "titre": "How to Play in FIRST PERSON in GTA 6 (Easy Glitch!)", "createur": "Jay Dunna", "plateforme": "YouTube", "id": "eEiTB8k3ycI", "url": "https://www.youtube.com/watch?v=eEiTB8k3ycI", "langue": "en", "verifie": false }
+   ],
+   "retours": {
+    "confirmations": [
+     ["GTABase le décrit comme « très facile à reproduire » et fonctionnel au moment de l'écriture (21 novembre 2026).", "gtabase"],
+     ["VGC indique qu'on peut conduire, tirer et ramasser des objets à la première personne.", "vgc"]
+    ],
+    "problemes": [
+     ["Les menus qui changent la caméra (magasin, garage) font revenir la vue normale.", "vgc"]
+    ],
+    "solutions": [
+     ["Pour retrouver la caméra normale : sauvegarder puis recharger.", "gtabase"]
+    ]
+   },
+   "historique": [
+    { "date": "2026-11-26", "statut": "documente", "note": "Création. Deux sources indépendantes lues (GTABase, VGC), antérieures à la mise à jour 01.002.002 ; non reproduit par notre équipe." }
+   ]
+  },
+  {
+   "id": "g3", "slug": "truffade-thrax-gratuite", "titre": "Obtenir gratuitement la Truffade Thrax", "court": "Truffade Thrax gratuite", "publie": false, "cat": "vehicules", "statut": "non-confirme",
+   "brouillon": "Les sources (deux vidéos YouTube et un message Reddit) n'ont pas pu être consultées : seuls les titres des vidéos ont été vérifiés. La voiture est bien relevée sur la carte (repère « Truffade Andrew Node's Thrax »), mais la méthode reste à vérifier.",
+   "resume": "", "etapes": [], "emplacements": [{ "n": 1, "carte": "o-standout-vehicle-049", "nom": "Truffade Thrax d'Andrew Node" }],
+   "sources": [{ "nom": "Reddit r/gtaglitches", "titre": "Register & save Andrew Node's Truffade Thrax", "url": "https://www.reddit.com/r/gtaglitches/comments/1y37lc6/register_save_andrew_nodes_truffade_thrax/", "type": "reddit", "lu": false }],
+   "videos": [
+    { "titre": "Phone Wall Clipping Glitch in GTA VI!", "createur": "The Infinite Rift", "plateforme": "YouTube", "id": "wD8MpftKQ50", "url": "https://www.youtube.com/watch?v=wD8MpftKQ50", "langue": "en", "verifie": false },
+    { "titre": "GTA 6 - How to Get the FASTEST & BEST Car EARLY! (Secret Quest & FREE Thrax Bugatti Divo)", "createur": "Arekkz Gaming", "plateforme": "YouTube", "id": "tjp9WItqejs", "url": "https://www.youtube.com/watch?v=tjp9WItqejs", "langue": "en", "verifie": false }
+   ],
+   "historique": [{ "date": "2026-11-26", "statut": "non-confirme", "note": "Brouillon : sources inaccessibles." }]
+  },
+  {
+   "id": "g5", "slug": "reinitialiser-commerces", "titre": "Réinitialiser les commerces braqués", "court": "Commerces réinitialisés", "publie": false, "cat": "argent", "statut": "non-confirme",
+   "brouillon": "Unique source (Reddit) inaccessible.", "resume": "", "etapes": [], "emplacements": [],
+   "sources": [{ "nom": "Reddit r/gtaglitches", "titre": "GTA 6 store robbery money loop glitch", "url": "https://www.reddit.com/r/gtaglitches/comments/1y0e4wr/gta_6_store_robbery_money_loop_glitch/", "type": "reddit", "lu": false }], "videos": [],
+   "historique": [{ "date": "2026-11-26", "statut": "non-confirme", "note": "Brouillon : source inaccessible." }]
+  },
+  {
+   "id": "g6", "slug": "armes-en-avance", "titre": "Débloquer des armes en avance", "court": "Armes en avance", "publie": false, "cat": "armes", "statut": "non-confirme",
+   "brouillon": "Unique source (Reddit) inaccessible ; noms des armes (Hauners H-AT, Conspiracist Type 9) non vérifiés.", "resume": "", "etapes": [], "emplacements": [],
+   "sources": [{ "nom": "Reddit r/gtaglitches", "titre": "Unlock Hauners H-AT & Conspiracist Type 9 weapons", "url": "https://www.reddit.com/r/gtaglitches/comments/1y1fhpj/unlock_hauners_hat_conspiracist_type_9_weapons/", "type": "reddit", "lu": false }], "videos": [],
+   "historique": [{ "date": "2026-11-26", "statut": "non-confirme", "note": "Brouillon : source inaccessible." }]
+  },
+  {
+   "id": "g7", "slug": "duplication-sacs-butin", "titre": "Duplication des sacs de butin", "court": "Duplication de sacs", "publie": false, "cat": "duplication", "statut": "non-confirme",
+   "brouillon": "Unique source (Reddit) inaccessible. Des témoignages évoqueraient un simple bug visuel : à ne pas recommander tant que les gains ne sont pas confirmés après sauvegarde.", "resume": "", "etapes": [], "emplacements": [],
+   "sources": [{ "nom": "Reddit r/GTA6unmoderated", "titre": "Money glitch: Apollo warehouse bag dupe", "url": "https://www.reddit.com/r/GTA6unmoderated/comments/1y24h5k/money_glitch_apollo_warehouse_bag_dupe/", "type": "reddit", "lu": false }], "videos": [],
+   "historique": [{ "date": "2026-11-26", "statut": "non-confirme", "note": "Brouillon : source inaccessible, gains douteux." }]
+  },
+  {
+   "id": "g8", "slug": "fps-debloques-xbox", "titre": "Débloquer les FPS sur Xbox (Quick Resume)", "court": "FPS débloqués (Xbox)", "publie": false, "cat": "gameplay", "statut": "non-confirme",
+   "brouillon": "Aucune source fournie ni trouvée. Méthode déconseillée par principe : accélération anormale du jeu, instabilité. Ce n'est pas un moyen de jouer normalement à 60 FPS.", "resume": "", "etapes": [], "emplacements": [], "sources": [], "videos": [],
+   "historique": [{ "date": "2026-11-26", "statut": "non-confirme", "note": "Brouillon : aucune source." }]
+  }
+ ]
+}

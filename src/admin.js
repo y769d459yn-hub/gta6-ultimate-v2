@@ -20,7 +20,7 @@
   function etat(t, i = 'shield') { const e = $('[data-adm-etat]'); e.hidden = !t; if (t) e.innerHTML = ic(i) + `<span>${t}</span>`; }
 
   let sb = null, BASE = {}, LIGNES = [], PUB = null;
-  const NOMS = { actualites: 'Actualités', astuces: 'Astuces', codes: 'Codes de triche', missions: 'Missions', dossiers: 'Dossiers', encyclopedie: 'Encyclopédie', lieux: 'Lieux', vehicules: 'Véhicules' };
+  const NOMS = { actualites: 'Actualités', astuces: 'Astuces', codes: 'Codes de triche', missions: 'Missions', dossiers: 'Dossiers', encyclopedie: 'Encyclopédie', lieux: 'Lieux', vehicules: 'Véhicules', glitchs: 'Glitchs', versions: 'Versions du jeu' };
   const LIBELLES = {
     titre: 'Titre', nom: 'Nom', nomEn: 'Nom anglais', court: 'Titre court', bref: 'Résumé', reponse: 'Réponse', resume: 'Résumé', desc: 'Description',
     date: 'Date (AAAA-MM-JJ)', statut: 'Statut', theme: 'Thème', cat: 'Catégorie', icon: 'Icône', etapes: 'Étapes', asavoir: 'À savoir', duree: 'Durée (minutes)',
@@ -29,7 +29,8 @@
     confirme: 'Confirmé', argent: 'Donne de l’argent', chapitre: 'Chapitre', num: 'Numéro', facultative: 'Facultative', manquable: 'Peut être manquée', tache: 'Petite tâche',
     perso: 'Personnages', donneur: 'Donnée par', recompense: 'Récompense', bloque: 'Si tu es bloqué', sait: 'Ce que l’on sait', incertain: 'Encore incertain',
     region: 'Région', precision: 'Précision de la position', acces: 'Accès', type: 'Type', sous: 'Sous-type', dispo: 'Disponibilité', lieu: 'Lieu', emplacement: 'Emplacement', obtenir: 'Comment l’obtenir',
-    color: 'Couleur', couleur: 'Couleur', seo: 'Titre Google', faq: 'Questions fréquentes', sections: 'Sections'
+    color: 'Couleur', couleur: 'Couleur', seo: 'Titre Google', faq: 'Questions fréquentes', sections: 'Sections',
+    publie: 'Publié', gain: 'Gain (avec la source)', gainCourt: 'Gain court (carte)', difficulte: 'Difficulté (facile, moyenne, difficile)', difficulteNote: 'Précision sur la difficulté', plateformes: 'Plateformes', mode: 'Mode de jeu', version: 'Version du jeu des sources', etabliLe: 'Date des sources (AAAA-MM-JJ)', verifieLe: 'Dernière vérification (AAAA-MM-JJ)', publieLe: 'Date de publication', utilite: 'Utilité (1 à 3)', prerequis: 'Prérequis', variantes: 'Variantes', problemes: 'Problèmes fréquents', risques: 'Risques', emplacements: 'Emplacements sur la carte', videos: 'Vidéos', retours: 'Retours des joueurs', historique: 'Historique du statut', brouillon: 'Raison du brouillon', alternatives: 'Alternatives sans glitch', notes: 'Notes de mise à jour', source: 'Source', url: 'Lien'
   };
 
   // ---------- démarrage ----------
@@ -44,7 +45,7 @@
     $$('[data-adm-tab]').forEach((b) => b.addEventListener('click', () => onglet(b.dataset.admTab)));
     try { BASE = await (await fetch(ROOT + 'assets/admin-donnees.json', { cache: 'no-store' })).json(); } catch (e) { BASE = {}; }
     await rechargerLignes();
-    stats(); contenu(); comptes();
+    stats(); contenu(); comptes(); glitchsAdmin();
   })();
 
   function onglet(n) {
@@ -246,6 +247,68 @@
       const { error } = await sb.from('contenu').delete().eq('collection', col).eq('cle', cle);
       if (error) { toast('Impossible', 'x'); return; }
       toast('Version d’origine restaurée'); await rechargerLignes(); contenu();
+    });
+  }
+
+  // ---------- glitchs : statuts, publication, versions du jeu, import, votes ----------
+  const GST = { fonctionnel: 'Fonctionnel', documente: 'Bien documenté', 'a-reverifier': 'À revérifier', 'non-confirme': 'Non confirmé', corrige: 'Corrigé', faux: 'Faux' };
+  const GCAT = ['argent', 'vehicules', 'armes', 'secrets', 'gameplay', 'duplication'];
+  const auj = () => new Date().toISOString().slice(0, 10);
+  async function ecrire(col, cle, donnees, msg) {
+    const { error } = await sb.from('contenu').upsert({ collection: col, cle, donnees, supprime: false, maj: new Date().toISOString() });
+    if (error) { toast(/check|violates/i.test(error.message) ? 'Base non prête : exécute supabase/glitchs.sql dans Supabase' : 'Erreur : ' + error.message, 'x'); return false; }
+    toast(msg || 'Enregistré, en ligne à la prochaine publication'); await rechargerLignes(); glitchsAdmin(); return true;
+  }
+  function glitchsAdmin() {
+    const v = $('[data-adm-vue="glitchs"]'); if (!v || !BASE.glitchs) return;
+    const vers = elements('versions').map((e) => e.item).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const vd = vers[vers.length - 1];
+    const L = elements('glitchs');
+    const aff = (g) => (vd && ['fonctionnel', 'documente'].includes(g.statut) && (g.version ? g.version < vd.id : String(g.etabliLe || '') < vd.date) ? `À revérifier (dernier statut : ${GST[g.statut]})` : GST[g.statut] || g.statut);
+    v.innerHTML = `<p class="adm-note">${ic('info')}Dernière version du jeu : <b>${esc(vd ? vd.id + ' (' + jour(vd.date) + ')' : 'aucune')}</b>. Un glitch « Fonctionnel » ou « Bien documenté » plus ancien s’affiche « À revérifier » sur le site jusqu’à un nouveau contrôle.</p>
+    <div class="adm-list">${L.map((e) => { const g = e.item; const lu = (g.sources || []).some((x) => x.lu); return `<div class="adm-row"><span><b>${esc(g.titre)}</b><small>${esc(aff(g))} · ${g.publie ? (lu ? 'publié' : 'publié mais aucune source lue : reste hors ligne') : 'brouillon'}${g.version ? ' · version ' + esc(g.version) : ''} · vérifié le ${esc(jour(g.verifieLe))}</small></span>
+      <span class="adm-acts"><button class="btn" type="button" data-g-ed="${esc(e.cle)}">${ic('wrench')}Modifier</button><button class="btn" type="button" data-g-pub="${esc(e.cle)}">${g.publie ? 'Dépublier' : 'Publier'}</button><button class="btn" type="button" data-g-ok="${esc(e.cle)}">${ic('check')}Fonctionne après test</button><button class="btn" type="button" data-g-corr="${esc(e.cle)}">${ic('x')}Archiver : corrigé</button></span></div>`; }).join('')}</div>
+    <details class="adm-box"><summary>${ic('plus')}Nouvelle version du jeu</summary><form data-g-ver><label>Numéro<input name="id" required pattern="[0-9.]{3,20}" placeholder="01.002.003"></label><label>Date de sortie<input type="date" name="date" required></label><label>Ce qu’elle change<textarea name="notes" rows="3"></textarea></label><label>Source (nom)<input name="source"></label><label>Lien de la source<input type="url" name="url"></label><button class="btn btn--primary" type="submit">Ajouter la version</button></form></details>
+    <details class="adm-box"><summary>${ic('download')}Importer des glitchs (JSON validé)</summary><p class="adm-note">Colle une liste de glitchs au format de data/glitchs.json. Chaque glitch importé arrive en brouillon : publie-le après avoir lu ses sources.</p><textarea rows="8" data-g-json spellcheck="false" placeholder='[{"slug":"mon-glitch","titre":"…","cat":"argent","statut":"non-confirme","etapes":[{"t":"…"}],"sources":[{"nom":"…","url":"https://…","lu":false}]}]'></textarea><button class="btn" type="button" data-g-imp>Vérifier et importer</button><p data-g-imp-r></p></details>
+    <details class="adm-box" data-g-votes-box><summary>${ic('talk')}Votes des joueurs</summary><div data-g-votes>Ouvre pour charger les votes.</div></details>`;
+    const trouve = (cle) => L.find((e) => e.cle === cle).item;
+    $$('[data-g-ed]', v).forEach((b) => b.addEventListener('click', () => { onglet('contenu'); COL = 'glitchs'; contenu(); editer('glitchs', b.dataset.gEd); }));
+    $$('[data-g-pub]', v).forEach((b) => b.addEventListener('click', () => { const g = trouve(b.dataset.gPub); ecrire('glitchs', b.dataset.gPub, { ...g, publie: !g.publie }, g.publie ? 'Dépublié' : 'Publié (en ligne à la prochaine publication)'); }));
+    $$('[data-g-ok]', v).forEach((b) => b.addEventListener('click', () => {
+      const g = trouve(b.dataset.gOk), ver = prompt('Version du jeu sur laquelle le glitch a été reproduit :', vd ? vd.id : ''); if (!ver) return;
+      const preuve = prompt('Comment a-t-il été reproduit ? (console, date, lien de la vidéo ou de la capture)'); if (!preuve) return;
+      ecrire('glitchs', b.dataset.gOk, { ...g, statut: 'fonctionnel', version: ver, verifieLe: auj(), preuve, historique: [...(g.historique || []), { date: auj(), statut: 'fonctionnel', note: `Reproduit sur la version ${ver} : ${preuve}` }] });
+    }));
+    $$('[data-g-corr]', v).forEach((b) => b.addEventListener('click', () => {
+      const g = trouve(b.dataset.gCorr), why = prompt('Pourquoi est-il corrigé ? (mise à jour, source)'); if (!why) return;
+      ecrire('glitchs', b.dataset.gCorr, { ...g, statut: 'corrige', verifieLe: auj(), historique: [...(g.historique || []), { date: auj(), statut: 'corrige', note: why }] });
+    }));
+    $('[data-g-ver]', v).addEventListener('submit', (e) => { e.preventDefault(); const d = Object.fromEntries(new FormData(e.target)); ecrire('versions', d.id, d, 'Version ajoutée : les glitchs concernés passeront « À revérifier »'); });
+    $('[data-g-imp]', v).addEventListener('click', async () => {
+      const r = $('[data-g-imp-r]', v); let liste;
+      try { liste = JSON.parse($('[data-g-json]', v).value); if (!Array.isArray(liste)) liste = [liste]; } catch (e) { r.textContent = 'JSON invalide : ' + e.message; return; }
+      const err = [];
+      liste.forEach((g, i) => {
+        const k = `Glitch ${i + 1}`;
+        if (!/^[a-z0-9][a-z0-9-]{2,80}$/.test(g.slug || '')) err.push(`${k} : slug invalide`);
+        if (!g.titre) err.push(`${k} : titre manquant`);
+        if (!GCAT.includes(g.cat)) err.push(`${k} : catégorie inconnue (${GCAT.join(', ')})`);
+        if (!GST[g.statut]) err.push(`${k} : statut inconnu`);
+        if (g.statut === 'fonctionnel' && !(g.version && g.preuve)) err.push(`${k} : « fonctionnel » exige une version et une preuve`);
+        if (!Array.isArray(g.etapes) || !Array.isArray(g.sources)) err.push(`${k} : etapes et sources doivent être des listes`);
+        (g.sources || []).forEach((x) => { if (!/^https:\/\//.test(x.url || '')) err.push(`${k} : source sans lien https`); });
+      });
+      if (err.length) { r.textContent = err.join(' · '); return; }
+      let ok = 0;
+      for (const g of liste) { const { error } = await sb.from('contenu').upsert({ collection: 'glitchs', cle: g.slug, donnees: { ...g, publie: false, historique: [...(g.historique || []), { date: auj(), statut: g.statut, note: 'Importé (brouillon)' }] }, supprime: false, maj: new Date().toISOString() }); if (!error) ok++; else { r.textContent = 'Erreur : ' + error.message; break; } }
+      if (ok) { r.textContent = `${ok} glitch(s) importé(s) en brouillon.`; await rechargerLignes(); }
+    });
+    $('[data-g-votes-box]', v).addEventListener('toggle', async (e) => {
+      if (!e.target.open) return;
+      const box = $('[data-g-votes]', v); box.textContent = 'Chargement…';
+      const { data, error } = await sb.rpc('admin_glitch_votes');
+      if (error) { box.textContent = 'Votes indisponibles : la table n’existe pas encore. Exécute supabase/glitchs.sql dans Supabase.'; return; }
+      box.innerHTML = data.length ? `<table class="adm-t"><tr><th>Glitch</th><th>Résultat</th><th>Console</th><th>Version</th><th>Mode</th><th>Test</th><th>Commentaire</th></tr>${data.map((x) => `<tr><td>${esc(x.glitch)}</td><td>${esc(x.resultat)}</td><td>${esc(x.plateforme)}</td><td>${esc(x.version || '')}</td><td>${esc(x.mode)}</td><td>${esc(x.date_test || '')}</td><td>${esc(x.commentaire || '')}</td></tr>`).join('')}</table>` : 'Aucun vote pour l’instant.';
     });
   }
 })();

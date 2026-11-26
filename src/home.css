@@ -540,3 +540,23 @@ html.menu-open { overflow: hidden; }
 .drawer-in a.drawer-a:hover { background: rgba(255, 255, 255, .04); }
 .drawer-in a.drawer-a[aria-current] { background: transparent; }
 .drawer-in a.drawer-a[aria-current] span { color: var(--cy); }
+/* accueil : meilleurs glitchs du moment (3 au plus) */
+.hx-gl { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.hx-gl a { --c: #19d3e3; display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px; border-radius: 16px; background: #110f1b; border: 1px solid rgba(255, 255, 255, .09); color: #fff; text-decoration: none; }
+.hx-gl a > .ic { width: 18px; height: 18px; color: var(--c); }
+.hx-gl-i { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--c) 24%, #0c0b14), #08070e 75%); }
+.hx-gl-i .gl-vis-map { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.hx-gl-i .gl-vis-pin { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--c); color: #07060c; box-shadow: 0 0 0 2px #05040b; }
+.hx-gl-i .gl-vis-pin .ic { width: 12px; height: 12px; }
+.hx-gl-i .gl-vis-ico { position: absolute; inset: 0; display: grid; place-items: center; color: var(--c); }
+.hx-gl-i .gl-vis-ico .ic { width: 26px; height: 26px; }
+.hx-gl-t { min-width: 0; display: grid; gap: 3px; }
+.hx-gl-t small { display: flex; align-items: center; gap: 5px; font: 700 .7rem/1 var(--fm, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
+.hx-gl-t small .ic { width: 13px; height: 13px; }
+.hx-gl-t b { font: 700 .98rem/1.25 var(--fd, sans-serif); }
+.hx-gl-t > span { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.hx-gl-t em { font-style: normal; font-size: .8rem; color: #b6f5cf; }
+.hx-gl .gl-st { --s: #b3aec4; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 7px; background: color-mix(in srgb, var(--s) 13%, transparent); border: 1px solid color-mix(in srgb, var(--s) 55%, transparent); color: color-mix(in srgb, var(--s) 70%, #fff); font: 600 .72rem/1 var(--fd, sans-serif); }
+.hx-gl .gl-st .ic { width: 12px; height: 12px; }
+.hx-gl-all { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; margin-top: 10px; border-radius: 999px; border: 1px solid rgba(25, 211, 227, .45); color: #fff; font: 600 .95rem/1 var(--fd, sans-serif); text-decoration: none; }
+.hx-gl-all .ic { width: 18px; height: 18px; color: #19d3e3; }
