@@ -75,7 +75,8 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); if (!choix) return;
       const d = Object.fromEntries(new FormData(form));
-      const row = { glitch: slug, user_id: c.user.id, resultat: choix, plateforme: d.plateforme, version: d.version || null, mode: d.mode, date_test: d.date_test || null, commentaire: (d.commentaire || '').trim().slice(0, 500) || null, maj: new Date().toISOString() };
+      // seule la console est demandée : les autres colonnes de la table restent vides (mode Histoire par défaut)
+      const row = { glitch: slug, user_id: c.user.id, resultat: choix, plateforme: d.plateforme, mode: 'histoire', maj: new Date().toISOString() };
       const { error } = await c.sb.from('glitch_votes').upsert(row, { onConflict: 'glitch,user_id' });
       if (error) { LG.toast && LG.toast(/limite|limit/i.test(error.message) ? 'Trop de votes en peu de temps : réessaie plus tard' : 'Vote non enregistré', 'alert'); return; }
       form.hidden = true; LG.toast && LG.toast('Merci, ton vote est enregistré', 'check');
