@@ -2162,6 +2162,16 @@ function noterVehicules(lie) {
       fi = CAPTURE_SUR_PLACE.has(id) || concorde ? 'probable' : 'nonverif';
     }
     const NAT = { unique: 'Version unique garée à cet endroit (selon les joueurs)', spawn: 'Point d’apparition signalé par les joueurs', demande: 'Véhicule lié à une demande (mission rémunérée)', location: 'Location de véhicules', guide: 'Emplacement décrit par nos sources', autre: 'Repère communautaire' }[kind];
+    // photo : celle de la fiche du modèle pour un point d'apparition ou une demande (même modèle) ;
+    // une version unique (livrée spéciale) n'en reçoit une que si la photo montre cette version
+    const MEME_VERSION = { 'o-standout-vehicle-086': 'maibatsu-penumbra-ff' };
+    const ph = MEME_VERSION[id] || (['spawn', 'demande', 'location'].includes(kind) && slug);
+    if (!p.img && ph) {
+      const x = CATALOGUE.vehicules.find((y) => y.slug === ph);
+      if (PHOTOS[ph]) { p.img = `photos/${PHOTOS[ph].fichier}`; if (PHOTOS[ph].credit) p.imgCredit = PHOTOS[ph].credit; }
+      else if (x && x.img) { p.img = `catalogue/${x.img}`; if (x.credit) p.imgCredit = x.credit; }
+      if (p.img && !MEME_VERSION[id]) p.imgNote = 'Photo du modèle';
+    }
     if (kind !== 'guide') p.precision = 'exacte'; // repère posé au point précis par la source (pas une zone)
     p.nt = note; p.ntc = classe; p.fi = fi; p.nat = fi === 'nonverif' ? 'Information communautaire non confirmée' : NAT; p.dv = VERIF_DATE;
     p.ntx = [`Rareté ${rar}/25`, `Intérêt ${inter}/25`, `Performances ${perf}/20${grp ? ' (estimées d’après la catégorie)' : ' (inconnues)'}`, `Unicité ${uniq}/15`, `Personnalisation ${perso}/10 (inconnue)`, `Intérêt stratégique ${strat}/5`].join(' · ');
