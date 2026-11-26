@@ -1552,6 +1552,9 @@ const STATUTS_CARTE = [
   { id: 'verifie', n: 'Vérifié', ic: 'check', c: '#4da3ff', t: 'Vérifié en jeu, ou confirmé par une source officielle ou deux sources indépendantes.' },
   { id: 'probable', n: 'Probable', ic: 'info', c: '#ffa53a', t: 'Signalé par des sources communautaires : à confirmer.' },
   { id: 'nonconf', n: 'Non confirmé', ic: 'question', c: '#b3aec4', t: 'Pas encore assez vérifié (zone seulement ou information provisoire).' },
+  { id: 'fortprob', n: 'Fortement probable', ic: 'info', c: '#ffa53a', t: 'Plusieurs éléments concordent (deux sources indépendantes, ou capture prise en jeu sur place) : pas encore vérifié en jeu par notre équipe.' },
+  { id: 'approxz', n: 'Approximatif', ic: 'compass', c: '#ffd23f', t: 'Secteur identifié, position exacte inconnue : le repère indique une zone de recherche.' },
+  { id: 'nonverif', n: 'Non vérifié', ic: 'question', c: '#b3aec4', t: 'Une seule source communautaire, sans preuve : masqué par défaut.' },
   { id: 'avenir', n: 'À venir', ic: 'clock', c: '#c77dff', t: 'Information pas encore disponible.' }
 ];
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -2123,6 +2126,50 @@ write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats
     // courte indication pour l'obtenir : seulement les fiches du guide dont l'emplacement est « Confirmé » ou « Testé en jeu »
     if (id.startsWith('v-') && v && ['confirme', 'teste'].includes(v.dispo) && v.obtenir && v.obtenir.length) f.properties.ob = v.obtenir.slice(0, 2).join(' ');
   }
+  noterVehicules(lie);
+}
+// ---------- Véhicules de la carte : intérêt (note sur 100) et fiabilité de l'emplacement ----------
+// Seules des données connues sont utilisées : type de repère de la source, catégorie du modèle (catalogue), version unique.
+// Les performances chiffrées et la personnalisation de GTA 6 ne sont pas publiées : la catégorie sert d'indicateur (signalé « estimé »),
+// la personnalisation reçoit une valeur neutre (signalée « inconnue »).
+// Par défaut, la carte n'affiche que les véhicules notés 60 ou plus, et jamais un emplacement non vérifié.
+function noterVehicules(lie) {
+  const VERIF_DATE = '26 novembre 2026';
+  // captures prises en jeu sur place (Open GTA 6 Map), regardées une par une : le véhicule et le lieu sont visibles
+  const CAPTURE_SUR_PLACE = new Set(['o-vehicle-spawn-001', 'o-vehicle-spawn-002', 'o-vehicle-spawn-003', 'o-vehicle-spawn-007', 'o-vehicle-spawn-008', 'o-vehicle-spawn-009', 'o-vehicle-spawn-010']);
+  // performances (20) d'après la catégorie du modèle ; « désirable » : catégories recherchées par les joueurs
+  const PERF = { supercars: 20, sportives: 17, 'sportives-classiques': 16, muscle: 14, coupes: 12, motos: 13, velos: 2, bateaux: 11, helicopteres: 15, avions: 15, militaires: 20, 'tout-terrain': 10, suv: 6, berlines: 5, urgences: 7, vans: 3, utilitaires: 3, industriels: 4, service: 3 };
+  const DESIRABLE = new Set(['supercars', 'sportives', 'sportives-classiques', 'muscle', 'coupes', 'motos', 'bateaux', 'helicopteres', 'avions', 'militaires', 'tout-terrain']);
+  const ICONES = /infernus|cheetah|banshee|comet|elegy|stallion|dominator|sabre|tempesta|zorrusso|emerus|sanchez|buzzard|annihilator|dodo|squalo|jet|faggio|hermes|stanier/i;
+  const GRP_FICHE = { 'jets-militaires': 'militaires', 'helicoptere-toits': 'helicopteres', 'mammoth-dodo': 'avions', 'lapwing-stolen-valor': 'avions', 'mallard-flammes': 'avions' };
+  const groupeDe = (slug) => { if (!slug) return null; if (GRP_FICHE[slug]) return GRP_FICHE[slug]; const x = CATALOGUE.vehicules.find((y) => y.slug === slug); if (x) return x.groupe; const fi = CATALOGUE.fiches[slug]; if (fi && fi.groupe) return fi.groupe; const v = VEHICULES.find((y) => y.slug === slug); return v ? ({ avions: 'avions', bateaux: 'bateaux', motos: 'motos' }[v.type] || null) : null; };
+  const vfeat = features.filter((f) => f.properties.cat === 'vehicules' && !f.properties.label);
+  const proche = (f, pred, r) => vfeat.some((g) => g !== f && pred(g) && Math.hypot(g.geometry.coordinates[0] - f.geometry.coordinates[0], g.geometry.coordinates[1] - f.geometry.coordinates[1]) < r);
+  for (const f of vfeat) {
+    const p = f.properties, id = p.id, slug = p.vs || null, grp = groupeDe(slug);
+    const kind = /^o-standout-vehicle-/.test(id) ? 'unique' : /^o-vehicle-spawn-/.test(id) || id.startsWith('w-') ? 'spawn' : /^o-vehicle-request-/.test(id) ? 'demande' : /^o-vehicle-rental-/.test(id) ? 'location' : id.startsWith('v-') ? 'guide' : 'autre';
+    const des = grp ? DESIRABLE.has(grp) : null, perf = grp ? PERF[grp] ?? 8 : 8;
+    const B = { unique: [22, 20, 10, 12, 5, 3], spawn: [14, 22, 12, 10, 4, 4], demande: [12, 22, 12, 8, 4, 5], location: [2, 8, 6, 2, 2, 2], guide: [20, 20, 12, 12, 6, 3], autre: [8, 12, 8, 6, 4, 2] }[kind];
+    // rareté, intérêt (désirable / ordinaire), unicité (désirable / ordinaire), stratégie
+    const rar = B[0], inter = des === false ? B[2] : B[1], uniq = Math.min(15, (des === false ? B[4] : B[3]) + (ICONES.test(p.nom + ' ' + (p.vn || '')) ? 3 : 0)), strat = B[5], perso = 5;
+    const note = Math.min(100, rar + inter + perf + uniq + perso + strat);
+    const classe = note >= 90 ? 'Exceptionnel' : note >= 75 ? 'Très intéressant' : note >= 60 ? 'Intéressant' : note >= 40 ? 'Secondaire' : 'Ordinaire';
+    // fiabilité de l'emplacement
+    let fi;
+    if (kind === 'guide') fi = ['confirme', 'teste'].includes(p.statut) && p.precision === 'exacte' ? 'confirme' : p.precision !== 'exacte' ? 'approx' : 'probable';
+    else {
+      const concorde = slug && proche(f, (g) => (g.properties.vs === slug) && !/^o-/.test(g.properties.id), 400);
+      fi = CAPTURE_SUR_PLACE.has(id) || concorde ? 'probable' : 'nonverif';
+    }
+    const NAT = { unique: 'Version unique garée à cet endroit (selon les joueurs)', spawn: 'Point d’apparition signalé par les joueurs', demande: 'Véhicule lié à une demande (mission rémunérée)', location: 'Location de véhicules', guide: 'Emplacement décrit par nos sources', autre: 'Repère communautaire' }[kind];
+    if (kind !== 'guide') p.precision = 'exacte'; // repère posé au point précis par la source (pas une zone)
+    p.nt = note; p.ntc = classe; p.fi = fi; p.nat = fi === 'nonverif' ? 'Information communautaire non confirmée' : NAT; p.dv = VERIF_DATE;
+    p.ntx = [`Rareté ${rar}/25`, `Intérêt ${inter}/25`, `Performances ${perf}/20${grp ? ' (estimées d’après la catégorie)' : ' (inconnues)'}`, `Unicité ${uniq}/15`, `Personnalisation ${perso}/10 (inconnue)`, `Intérêt stratégique ${strat}/5`].join(' · ');
+    // masqué par défaut : emplacement non vérifié, ou véhicule noté sous 60 (exception : les demandes, missions rémunérées)
+    if (fi === 'nonverif' || (note < 60 && kind !== 'demande')) p.hv = 1;
+  }
+  // doublon : la zone approximative d'une fiche du guide est masquée quand un repère précis et fortement probable du même véhicule est à moins de 400 m
+  for (const f of vfeat) { const p = f.properties; if (p.fi === 'approx' && p.vs && proche(f, (g) => g.properties.vs === p.vs && g.properties.fi === 'probable', 400)) { p.hv = 1; p.dbl = 1; } }
 }
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 // intitulés génériques encore en anglais : traduits à l'affichage (les données d'origine ne changent pas ; l'original reste cherchable)

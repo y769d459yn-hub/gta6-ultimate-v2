@@ -1,10 +1,13 @@
 {
 "lapwing-mammatus": [
-"o-vehicle-spawn-001"
+"o-vehicle-spawn-001",
+"o-standout-vehicle-286"
 ],
 "vapid-slamvan-56": [
 "o-standout-vehicle-003",
-"o-standout-vehicle-142"
+"o-standout-vehicle-142",
+"o-standout-vehicle-282",
+"o-vehicle-spawn-053"
 ],
 "bravado-bison-1800": [
 "o-standout-vehicle-004"
@@ -33,7 +36,11 @@
 "o-standout-vehicle-013",
 "o-standout-vehicle-024",
 "o-standout-vehicle-047",
-"o-standout-vehicle-082"
+"o-standout-vehicle-082",
+"o-standout-vehicle-160",
+"o-standout-vehicle-239",
+"o-standout-vehicle-258",
+"o-standout-vehicle-281"
 ],
 "declasse-rancher-86": [
 "o-standout-vehicle-014",
@@ -48,7 +55,9 @@
 "o-standout-vehicle-016"
 ],
 "albany-devanity-59": [
-"o-standout-vehicle-017"
+"o-standout-vehicle-017",
+"o-standout-vehicle-198",
+"o-vehicle-spawn-086"
 ],
 "bf-injection-73": [
 "o-standout-vehicle-019"
@@ -56,65 +65,94 @@
 "vapid-marshall": [
 "o-standout-vehicle-020",
 "o-vehicle-spawn-008",
-"o-standout-vehicle-113"
+"o-standout-vehicle-113",
+"o-standout-vehicle-153",
+"o-standout-vehicle-167",
+"o-standout-vehicle-283"
 ],
 "brute-boxville": [
 "o-standout-vehicle-021",
-"o-standout-vehicle-067"
+"o-standout-vehicle-067",
+"o-standout-vehicle-238",
+"o-standout-vehicle-291"
 ],
 "taci-ragno": [
 "o-standout-vehicle-023"
 ],
 "vapid-caracara": [
 "o-standout-vehicle-025",
-"o-standout-vehicle-036"
+"o-standout-vehicle-036",
+"o-standout-vehicle-186",
+"o-standout-vehicle-264"
 ],
 "classique-stallion-68": [
-"o-standout-vehicle-028"
+"o-standout-vehicle-028",
+"o-standout-vehicle-152",
+"o-standout-vehicle-181"
 ],
 "vapid-dominator": [
-"o-standout-vehicle-029"
+"o-standout-vehicle-029",
+"o-standout-vehicle-173",
+"o-standout-vehicle-204",
+"o-standout-vehicle-216",
+"o-standout-vehicle-233",
+"o-standout-vehicle-295"
 ],
 "lcc-avarus": [
 "o-standout-vehicle-030",
-"o-standout-vehicle-075"
+"o-standout-vehicle-075",
+"o-standout-vehicle-159",
+"o-standout-vehicle-180"
 ],
 "sirius-sungrazer-61": [
 "o-standout-vehicle-032",
-"o-standout-vehicle-072"
+"o-standout-vehicle-072",
+"o-standout-vehicle-253"
 ],
 "karin-rebel-84": [
 "o-standout-vehicle-034",
-"o-standout-vehicle-105"
+"o-standout-vehicle-105",
+"o-standout-vehicle-185"
 ],
 "declasse-walton-81": [
-"o-standout-vehicle-035"
+"o-standout-vehicle-035",
+"o-standout-vehicle-158",
+"o-standout-vehicle-214",
+"o-standout-vehicle-227"
 ],
 "walter-cruiser": [
 "o-standout-vehicle-037"
 ],
 "ocelot-jugular": [
-"o-standout-vehicle-038"
+"o-standout-vehicle-038",
+"o-vehicle-spawn-082"
 ],
 "vapid-golfer": [
-"o-standout-vehicle-039"
+"o-standout-vehicle-039",
+"o-vehicle-spawn-043"
 ],
 "buckingham-windsor": [
-"o-standout-vehicle-040"
+"o-standout-vehicle-040",
+"o-standout-vehicle-289",
+"o-vehicle-spawn-109"
 ],
 "pegassi-toros": [
 "o-standout-vehicle-041",
 "o-vehicle-spawn-027",
-"o-standout-vehicle-140"
+"o-standout-vehicle-140",
+"o-vehicle-spawn-072",
+"o-vehicle-spawn-114"
 ],
 "declasse-tulip-72": [
 "o-standout-vehicle-045"
 ],
 "canis-kamacho": [
-"o-standout-vehicle-048"
+"o-standout-vehicle-048",
+"o-vehicle-spawn-106"
 ],
 "truffade-thrax": [
-"o-standout-vehicle-049"
+"o-standout-vehicle-049",
+"o-vehicle-spawn-060"
 ],
 "pfister-comet-88": [
 "o-standout-vehicle-052",
@@ -122,10 +160,15 @@
 "o-standout-vehicle-135"
 ],
 "invetero-coquette": [
-"o-standout-vehicle-053"
+"o-standout-vehicle-053",
+"o-standout-vehicle-288"
 ],
 "dundreary-chino-65": [
-"o-standout-vehicle-054"
+"o-standout-vehicle-054",
+"o-standout-vehicle-203",
+"o-vehicle-spawn-078",
+"o-vehicle-spawn-095",
+"o-vehicle-spawn-096"
 ],
 "declasse-parkland-71": [
 "o-standout-vehicle-055"
@@ -139,7 +182,13 @@
 ],
 "maibatsu-boomazoom": [
 "o-standout-vehicle-058",
-"o-standout-vehicle-122"
+"o-standout-vehicle-122",
+"o-standout-vehicle-163",
+"o-standout-vehicle-187",
+"o-standout-vehicle-191",
+"o-standout-vehicle-226",
+"o-standout-vehicle-247",
+"o-standout-vehicle-254"
 ],
 "vapid-rumpo": [
 "o-standout-vehicle-069"
@@ -149,19 +198,26 @@
 ],
 "declasse-yosemite-67": [
 "o-standout-vehicle-073",
-"o-standout-vehicle-146"
+"o-standout-vehicle-146",
+"o-vehicle-spawn-132"
 ],
 "tuff-bmx": [
-"o-standout-vehicle-074"
+"o-standout-vehicle-074",
+"o-standout-vehicle-244"
 ],
 "albany-manana-77": [
-"o-standout-vehicle-076"
+"o-standout-vehicle-076",
+"o-standout-vehicle-246",
+"o-vehicle-spawn-075",
+"o-vehicle-spawn-135"
 ],
 "seashark-hydroblast": [
-"o-standout-vehicle-080"
+"o-standout-vehicle-080",
+"o-vehicle-spawn-071"
 ],
 "nagasaki-tao": [
-"o-standout-vehicle-083"
+"o-standout-vehicle-083",
+"o-vehicle-spawn-045"
 ],
 "shifter": [
 "o-standout-vehicle-084"
@@ -170,26 +226,33 @@
 "o-standout-vehicle-085",
 "o-standout-vehicle-091",
 "o-vehicle-spawn-019",
-"o-standout-vehicle-120"
+"o-standout-vehicle-120",
+"o-vehicle-spawn-130"
 ],
 "karin-futo-85": [
 "o-vehicle-request-003",
 "o-standout-vehicle-092"
 ],
 "western-nightblade": [
-"o-vehicle-request-005"
+"o-vehicle-request-005",
+"o-standout-vehicle-251"
 ],
 "pegassi-vitello": [
 "o-vehicle-request-006",
 "o-standout-vehicle-115",
 "o-standout-vehicle-137",
-"o-vehicle-spawn-038"
+"o-vehicle-spawn-038",
+"o-standout-vehicle-236",
+"o-standout-vehicle-248",
+"o-vehicle-spawn-104",
+"o-vehicle-spawn-110"
 ],
 "declasse-yosemite-1500": [
 "o-vehicle-request-007"
 ],
 "ascot-paragon": [
-"o-vehicle-request-008"
+"o-vehicle-request-008",
+"o-standout-vehicle-196"
 ],
 "invetero-coquette-d10": [
 "o-vehicle-request-012",
@@ -199,13 +262,21 @@
 "o-vehicle-request-014",
 "o-standout-vehicle-103",
 "o-vehicle-spawn-017",
-"o-standout-vehicle-138"
+"o-standout-vehicle-138",
+"o-standout-vehicle-284",
+"o-vehicle-spawn-076"
 ],
 "piccia-furia": [
-"o-vehicle-request-015"
+"o-vehicle-request-015",
+"o-standout-vehicle-215",
+"o-vehicle-spawn-092"
 ],
 "maibatsu-sanchez": [
-"o-standout-vehicle-094"
+"o-standout-vehicle-094",
+"o-standout-vehicle-168",
+"o-standout-vehicle-175",
+"o-standout-vehicle-195",
+"o-vehicle-spawn-127"
 ],
 "western-sovereign-107": [
 "o-vehicle-spawn-009",
@@ -221,31 +292,44 @@
 "o-standout-vehicle-106"
 ],
 "buckingham-maverick": [
-"o-vehicle-spawn-014"
+"o-vehicle-spawn-014",
+"o-standout-vehicle-176",
+"o-vehicle-spawn-073"
 ],
 "sea-sparrow": [
 "o-vehicle-spawn-016",
-"o-vehicle-spawn-026"
+"o-vehicle-spawn-026",
+"o-vehicle-spawn-063"
 ],
 "seashark-sedna": [
 "o-standout-vehicle-109"
 ],
 "pfister-growler": [
 "o-standout-vehicle-112",
-"o-standout-vehicle-141"
+"o-standout-vehicle-141",
+"o-standout-vehicle-230"
 ],
 "albany-emperor-85": [
-"o-standout-vehicle-114"
+"o-standout-vehicle-114",
+"o-vehicle-spawn-133",
+"o-standout-vehicle-299"
 ],
 "annis-elegy-90": [
-"o-standout-vehicle-116"
+"o-standout-vehicle-116",
+"o-standout-vehicle-231",
+"o-standout-vehicle-292",
+"o-vehicle-spawn-057"
 ],
 "bravado-bison-900-95": [
 "o-standout-vehicle-118"
 ],
 "benefactor-dubsta": [
 "o-vehicle-request-017",
-"o-standout-vehicle-128"
+"o-standout-vehicle-128",
+"o-standout-vehicle-165",
+"o-standout-vehicle-205",
+"o-standout-vehicle-250",
+"o-vehicle-spawn-112"
 ],
 "benefactor-schafter-v12": [
 "o-standout-vehicle-124"
@@ -254,19 +338,23 @@
 "o-vehicle-spawn-025"
 ],
 "dinka-blista-85": [
-"o-standout-vehicle-132"
+"o-standout-vehicle-132",
+"o-vehicle-spawn-131"
 ],
 "ubermacht-fcr-1000": [
-"o-vehicle-spawn-035"
+"o-vehicle-spawn-035",
+"o-standout-vehicle-269"
 ],
 "buckingham-swift": [
-"o-standout-vehicle-147"
+"o-standout-vehicle-147",
+"o-vehicle-spawn-125"
 ],
 "vapid-dominator-65": [
 "o-vehicle-spawn-013"
 ],
 "invetero-coquette-64": [
-"o-standout-vehicle-087"
+"o-standout-vehicle-087",
+"o-vehicle-spawn-105"
 ],
 "maibatsu-penumbra-ff": [
 "o-standout-vehicle-086"
@@ -288,7 +376,10 @@
 "o-vehicle-spawn-018",
 "o-standout-vehicle-089",
 "o-standout-vehicle-090",
-"o-standout-vehicle-042"
+"o-standout-vehicle-042",
+"o-standout-vehicle-240",
+"o-standout-vehicle-245",
+"o-standout-vehicle-271"
 ],
 "pegassi-infernus": [
 "o-standout-vehicle-102",
@@ -297,16 +388,21 @@
 ],
 "granforma-zorrusso": [
 "o-vehicle-request-013",
-"o-standout-vehicle-068"
+"o-standout-vehicle-068",
+"o-vehicle-spawn-055"
 ],
 "bravado-gauntlet-hellfire": [
-"o-vehicle-request-016"
+"o-vehicle-request-016",
+"o-vehicle-spawn-118",
+"o-vehicle-spawn-102"
 ],
 "bravado-gauntlet-custom-69": [
 "o-standout-vehicle-127"
 ],
 "dinka-enduro": [
-"o-vehicle-spawn-022"
+"o-vehicle-spawn-022",
+"o-vehicle-spawn-062",
+"o-vehicle-spawn-068"
 ],
 "hauners-ridgway": [
 "o-standout-vehicle-063"
@@ -315,44 +411,189 @@
 "o-standout-vehicle-066"
 ],
 "mer-can-outlaw": [
-"o-standout-vehicle-110"
+"o-standout-vehicle-110",
+"o-vehicle-spawn-040"
 ],
 "gallivanter-baller-ii": [
 "o-standout-vehicle-119"
 ],
 "buckingham-jubilee": [
-"o-standout-vehicle-145"
+"o-standout-vehicle-145",
+"o-standout-vehicle-201"
 ],
 "bombora-s23": [
 "o-vehicle-spawn-012"
 ],
 "grotti-cheetah-95": [
 "o-standout-vehicle-101",
-"o-vehicle-spawn-030"
+"o-vehicle-spawn-030",
+"o-standout-vehicle-268"
 ],
 "grotti-itali-rsx": [
-"o-vehicle-spawn-029"
+"o-vehicle-spawn-029",
+"o-vehicle-spawn-111",
+"o-vehicle-spawn-103"
 ],
 "vapid-riata-classic": [
 "o-vehicle-spawn-036"
 ],
 "schyster-woodland-85": [
-"o-standout-vehicle-095"
+"o-standout-vehicle-095",
+"o-vehicle-spawn-054"
 ],
 "shitzu-squalo": [
-"o-standout-vehicle-093"
+"o-standout-vehicle-093",
+"o-standout-vehicle-179",
+"o-standout-vehicle-212"
 ],
 "vapid-ganado": [
-"o-standout-vehicle-046"
+"o-standout-vehicle-046",
+"o-standout-vehicle-257"
 ],
 "airgator-airboat-09": [
 "o-standout-vehicle-079",
-"o-standout-vehicle-043"
+"o-standout-vehicle-043",
+"o-vehicle-spawn-041"
 ],
 "mallard-flammes": [
 "o-standout-vehicle-111"
 ],
 "declasse-bobcat-xl-84": [
 "o-standout-vehicle-061"
+],
+"jets-militaires": [
+"o-vehicle-spawn-002"
+],
+"willard-moocher-83": [
+"o-standout-vehicle-150"
+],
+"willard-grouse-92": [
+"o-standout-vehicle-151",
+"o-standout-vehicle-178"
+],
+"maibatsu-caddy-82": [
+"o-standout-vehicle-154",
+"o-standout-vehicle-164",
+"o-standout-vehicle-166",
+"o-standout-vehicle-169",
+"o-standout-vehicle-189",
+"o-standout-vehicle-192",
+"o-standout-vehicle-193",
+"o-standout-vehicle-194",
+"o-standout-vehicle-220",
+"o-standout-vehicle-222"
+],
+"osprey-journey-78": [
+"o-standout-vehicle-171",
+"o-standout-vehicle-277",
+"o-standout-vehicle-280"
+],
+"rugger-rhode": [
+"o-standout-vehicle-174"
+],
+"bravado-dorado": [
+"o-standout-vehicle-183"
+],
+"jobuilt-phantom": [
+"o-standout-vehicle-188"
+],
+"buckingham-shamal": [
+"o-standout-vehicle-197",
+"o-standout-vehicle-256"
+],
+"emperor-sultan": [
+"o-standout-vehicle-200",
+"o-vehicle-spawn-074"
+],
+"ubermacht-apoc": [
+"o-standout-vehicle-202"
+],
+"dinka-double-t": [
+"o-standout-vehicle-208"
+],
+"annis-venturas-blvd-elegy-90": [
+"o-standout-vehicle-223"
+],
+"pfister-astron": [
+"o-standout-vehicle-229"
+],
+"ubermacht-cypher": [
+"o-standout-vehicle-232",
+"o-standout-vehicle-241",
+"o-vehicle-spawn-100"
+],
+"lapwing-nimbus": [
+"o-standout-vehicle-255"
+],
+"sirius-transgressor-67": [
+"o-standout-vehicle-259"
+],
+"schyster-deviant-72": [
+"o-standout-vehicle-260"
+],
+"declasse-mamba-gt": [
+"o-standout-vehicle-261"
+],
+"calder-cb69": [
+"o-standout-vehicle-270"
+],
+"principe-esskey": [
+"o-standout-vehicle-274"
+],
+"vapid-dominator-buggy": [
+"o-standout-vehicle-276"
+],
+"nagasaki-blazer": [
+"o-standout-vehicle-279",
+"o-standout-vehicle-297"
+],
+"lure-predator-l35p": [
+"o-standout-vehicle-285"
+],
+"karin-contender": [
+"o-vehicle-spawn-049"
+],
+"mammoth-patriot-92": [
+"o-vehicle-spawn-064"
+],
+"hvy-airtug": [
+"o-vehicle-spawn-065"
+],
+"vapid-sandking-xt": [
+"o-vehicle-spawn-066"
+],
+"canis-mesa": [
+"o-vehicle-spawn-067",
+"o-vehicle-spawn-116"
+],
+"buckingham-windsor-drop": [
+"o-vehicle-spawn-090"
+],
+"gallivanter-baller-st-d": [
+"o-vehicle-spawn-091"
+],
+"emperor-vectre": [
+"o-vehicle-spawn-093"
+],
+"benefactor-spritz": [
+"o-vehicle-spawn-120"
+],
+"bravado-youga-74": [
+"o-vehicle-spawn-123"
+],
+"vapid-caracara-4x4": [
+"o-vehicle-spawn-121"
+],
+"obey-animus": [
+"o-vehicle-spawn-099"
+],
+"albany-hermes-50": [
+"o-standout-vehicle-298"
+],
+"vapid-dominator-gt": [
+"o-vehicle-spawn-101"
+],
+"grotti-carbonizzare": [
+"o-vehicle-spawn-128"
 ]
 }

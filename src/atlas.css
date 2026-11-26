@@ -762,3 +762,6 @@
 .atp-panel .pn-gl .pn-full .ic { color: #19d3e3; }
 .atp-panel .pn-gl .pn-full--gl { background: rgba(25, 211, 227, .14); }
 .atp-panel .pn-gl small { color: #bdb7d6; }
+
+/* véhicule à l'emplacement approximatif : halo de zone de recherche autour du repère (pas une position précise) */
+.at-dot--zone { box-shadow: 0 0 0 16px color-mix(in srgb, var(--c) 12%, transparent); outline: 1px dashed color-mix(in srgb, var(--c) 55%, transparent); outline-offset: 15px; }

@@ -161,7 +161,7 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (f.id === st.active ? ' is-spot' : '');
+          el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.fi === 'approx' ? ' at-dot--zone' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (f.id === st.active ? ' is-spot' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
           el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${st.found && st.found.has(f.id) ? '<span class="at-dot-ok" aria-hidden="true"></span>' : ''}${st.badge && st.badge(f) ? `<span class="at-dot-b" aria-hidden="true">${escH(st.badge(f))}</span>` : ''}`;
           c.el = el; c.f = f;
