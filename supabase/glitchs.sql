@@ -16,6 +16,8 @@ create table if not exists public.glitch_votes (
   primary key (glitch, user_id)
 );
 alter table public.glitch_votes enable row level security;
+-- droits d'accès de l'API (comme pour la table « espace ») : la sécurité ligne par ligne ci-dessous limite chacun à son propre vote
+grant select, insert, update on public.glitch_votes to authenticated;
 drop policy if exists "voir mes votes" on public.glitch_votes;
 create policy "voir mes votes" on public.glitch_votes for select to authenticated using (user_id = auth.uid());
 drop policy if exists "voter" on public.glitch_votes;
