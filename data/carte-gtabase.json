@@ -1,0 +1,868 @@
+{
+"source": "GTABase, carte GTA 6 (feature=vehicle-spawn), relevé du 26/11/2026",
+"url": "https://www.gtabase.com/fr/gta-6/carte/?feature=vehicle-spawn",
+"reperes": {
+"vehicle-spawn-031": {
+"n": "Military Helicopter",
+"z": "Baie Watson",
+"d": "Point d'apparition d'un gros hélicoptère militaire."
+},
+"vehicle-spawn-002": {
+"n": "Fighter Jets",
+"z": "Baie Watson",
+"d": "Hangar F-16 - Prenez les commandes d'un avion de chasse",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-kampfjet-vehicle-spawn-8f7a5a8b.webp"
+},
+"vehicle-spawn-062": {
+"n": "Dinka Enduro",
+"z": "Baie Watson",
+"d": "Cachée dans le coin le plus reculé de la petite cachette."
+},
+"vehicle-spawn-006": {
+"n": "Helicopter",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-helicopter-vehicle-spawn-243c2482.webp"
+},
+"vehicle-spawn-079": {
+"n": "Dodo Seaplanes",
+"z": "Baie Watson",
+"d": "Deux avions Dodo ici.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dodo-seaplanes-vehicle-spawn-a9cd5cb4.webp"
+},
+"vehicle-spawn-044": {
+"n": "Tanks",
+"z": "Baie Watson",
+"d": "Plus de 10 chars apparaissent ici."
+},
+"vehicle-spawn-058": {
+"n": "Military Helicopter",
+"z": "Clé Lento",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-military-helicopter-vehicle-spawn-65a39c7c.webp"
+},
+"vehicle-spawn-116": {
+"n": "Canis Mesa (skull)",
+"z": "Clé Lento",
+"d": "A yellow Canis Mesa with a skull and crossbones on the side spawns in front of Leroy's.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-canis-mesa-vehicle-spawn-f17f7c80.webp"
+},
+"vehicle-spawn-131": {
+"n": "Dinka Blista ('85)",
+"z": "Clé Lento",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dinka-blista-85-vehicle-spawn-6d27c332.webp"
+},
+"vehicle-spawn-102": {
+"n": "Bravado Gauntlet Hellfire",
+"z": "Clé Lento",
+"d": "Parked at a decorated house in the evening.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-gauntlet-hellfire-vehicle-spawn-a74b5a6d.webp"
+},
+"standout-vehicle-291": {
+"n": "Brute Tiny Frank's Boxville",
+"z": "Clé Lento",
+"d": "Brute Boxville, appartenant à Tiny Frank, utilisé pour le transport de marchandises. Garé derrière le magasin de vêtements de Key Lento.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-tiny-franks-brute-boxville-standout-vehicle-d3b43f44.webp"
+},
+"standout-vehicle-092": {
+"n": "Karin Futo '85 (collector condition)",
+"z": "Clé Lento",
+"d": "Toyota AE 86 en état de collection",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-karin-futo-85-collector-condition-standout-vehicle-4e109ab6.webp"
+},
+"vehicle-spawn-009": {
+"n": "Western Sovereign 107",
+"z": "Clé Lento",
+"d": "Joli Western Sovereign 107 caché derrière un portail verrouillé de location de canoës et kayaks.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-western-sovereign-107-vehicle-spawn-801135e5.webp"
+},
+"vehicle-spawn-086": {
+"n": "Albany Devanity (1959)",
+"z": "Clé Lento",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-59-devanity-vehicle-spawn-74d6b79e.webp"
+},
+"vehicle-spawn-071": {
+"n": "Seashark Hydroblast",
+"z": "Clé Lento",
+"d": "Sur la remorque dans l'allée.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-seashark-hydroblast-vehicle-spawn-dd8b198c.webp"
+},
+"vehicle-spawn-070": {
+"n": "Crest Kayak",
+"z": "Clé Lento",
+"d": "Dans l'eau, à côté de la maison, à la rampe de mise à l'eau.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-crest-kayak-vehicle-spawn-47d818e1.webp"
+},
+"vehicle-spawn-069": {
+"n": "Del Perro Scorcher",
+"z": "Clé Lento",
+"d": "Derrière la maison, appuyée contre le mur.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-del-perro-scorcher-vehicle-spawn-237786af.webp"
+},
+"vehicle-spawn-068": {
+"n": "Dinka Enduro (1972)",
+"z": "Clé Lento",
+"d": "Sous la maison.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dinka-enduro-1972-vehicle-spawn-9cba0625.webp"
+},
+"vehicle-spawn-021": {
+"n": "Bombora S23",
+"z": "Clé Lento",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bombora-s23-vehicle-spawn-ac15929d.webp"
+},
+"vehicle-spawn-118": {
+"n": "Bravado Gauntlet Hellfire",
+"z": "Clé Lento",
+"d": "Muscle car.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-gauntlet-hellfire-vehicle-spawn-13ac60ad.webp"
+},
+"standout-vehicle-091": {
+"n": "Declasse Akane (Anime wrap)",
+"z": "Clé Lento",
+"d": "Akane Declasse unique en version anime",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-declasse-akane-anime-wrap-standout-vehicle-f423ff82.webp"
+},
+"vehicle-spawn-128": {
+"n": "Grotti Carbonizzare",
+"z": "Clé Lento",
+"d": "Needs the key cloner.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-grotti-carbonizzare-vehicle-spawn-62fbb24b.webp"
+},
+"vehicle-spawn-056": {
+"n": "Nagasaki Sea Sparrow",
+"z": "Hamlet",
+"d": "Dans l'eau."
+},
+"vehicle-spawn-064": {
+"n": "Mammoth Patriot '92",
+"z": "Hamlet",
+"d": "Tout au fond du bâtiment abandonné."
+},
+"vehicle-spawn-001": {
+"n": "Mammatus",
+"z": "Hamlet",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-flugzeug-vehicle-spawn-ecaa6d51.webp"
+},
+"vehicle-spawn-049": {
+"n": "Karin Contender (blacked out)",
+"z": "Hamlet",
+"d": "Une Karin Contender aux vitres teintées apparaît ici la nuit."
+},
+"vehicle-spawn-087": {
+"n": "Nagasaki Sea Sparrow",
+"z": "Hamlet",
+"d": "En amont du marais. Trouvé après la mission de Donnie consistant à récupérer les briques de cocaïne.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-nagasaki-sea-sparrow-vehicle-spawn-df9224ab.webp"
+},
+"vehicle-spawn-011": {
+"n": "HVY Waste Lander",
+"z": "Hamlet",
+"d": "Garé près du chalet.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-hvy-waste-lander-vehicle-spawn-8a33d106.webp"
+},
+"vehicle-spawn-051": {
+"n": "Water Helicopter",
+"z": "Hamlet",
+"d": "Par les chasseurs de Bigfoot et le bateau des marais.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-water-helicopter-vehicle-spawn-90530459.webp"
+},
+"standout-vehicle-080": {
+"n": "Seashark Hydroblast",
+"z": "Baie Watson"
+},
+"standout-vehicle-134": {
+"n": "Seashark (Leonida Man)",
+"z": "Baie Watson",
+"d": "Jet ski."
+},
+"vehicle-spawn-041": {
+"n": "Airgator Airboat 09",
+"z": "Hamlet"
+},
+"vehicle-spawn-059": {
+"n": "HVY Wastelander",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-hvy-wastelander-vehicle-spawn-230fc4e4.webp"
+},
+"standout-vehicle-097": {
+"n": "Bravado Swamp Blaster",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-swamp-blaster-standout-vehicle-2c6b5b08.webp"
+},
+"vehicle-spawn-016": {
+"n": "Sea Sparrow (helicopter)",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-sea-sparrow-helicopter-vehicle-spawn-0fa4e63b.webp"
+},
+"standout-vehicle-072": {
+"n": "Sirius '61 Sungrazer",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-sirius-61-sungrazer-standout-vehicle-1e8a5bd5.webp"
+},
+"vehicle-spawn-095": {
+"n": "Dundreary Chino (1965, Cuban flag)",
+"z": "Baie Watson",
+"d": "Dundreary Chino (1965) with a Cuban flag livery, hidden in the bushes near the water.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dundreary-chino-1965-cuban-flag-vehicle-spawn-13f95076.webp"
+},
+"vehicle-spawn-003": {
+"n": "Pfister sports car",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pfister-sports-car-vehicle-spawn-af477b53.webp"
+},
+"vehicle-spawn-026": {
+"n": "Nagasaki Sea Sparrow",
+"z": "Baie Watson",
+"d": "Hélicoptère gratuit."
+},
+"vehicle-spawn-073": {
+"n": "Buckingham Maverick",
+"z": "Baie Watson",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-buckingham-maverick-helicopter-vehicle-spawn-99a4ba1b.webp"
+},
+"vehicle-spawn-081": {
+"n": "Nagasaki Sea Sparrow",
+"z": "Hamlet"
+},
+"vehicle-spawn-060": {
+"n": "Truffade Thrax",
+"z": "Hamlet",
+"d": "Il n'apparaît pas toujours : sauvegardez et rechargez jusqu'à ce qu'il apparaisse.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-truffade-thrax-vehicle-spawn-082fd379.webp"
+},
+"vehicle-spawn-063": {
+"n": "Sea Sparrow",
+"z": "Hamlet"
+},
+"vehicle-spawn-130": {
+"n": "Declasse Akane (Hamlet)",
+"z": "Hamlet",
+"d": "Near the convenience store, by Hamlet Dental Care.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-declasse-akane-vehicle-spawn-2e71c4d6.webp"
+},
+"vehicle-spawn-025": {
+"n": "Buckingham SuperVolito",
+"z": "Hamlet",
+"d": "À l'héliport (il est apparu ici 3 fois sur 4 visites)."
+},
+"standout-vehicle-069": {
+"n": "Vapid Rumpo",
+"z": "Hamlet",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-rumpo-standout-vehicle-b06b7cad.webp"
+},
+"vehicle-spawn-083": {
+"n": "Garage Tigers",
+"z": "Hamlet",
+"d": "Quatre voitures de sport dans l'allée. Ouvrez les portes du garage et un tigre de chaque côté vous attaque."
+},
+"vehicle-spawn-078": {
+"n": "Dundreary Chino (1965)",
+"z": "Hamlet",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dundreary-chino-1965-vehicle-spawn-f78c5bfe.webp"
+},
+"vehicle-spawn-061": {
+"n": "Lowrider (garage)",
+"z": "Hamlet",
+"d": "Dans le garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-low-rider-vehicle-spawn-5ffd6f37.webp"
+},
+"standout-vehicle-131": {
+"n": "Pink Speedboat",
+"z": "Clé de Gloriana",
+"d": "Un bateau rose pour le catalogue."
+},
+"vehicle-spawn-101": {
+"n": "Vapid Dominator GT",
+"z": "Clé de Gloriana",
+"d": "Custom Dominator GT in a garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-dominator-gt-vehicle-spawn-d95e64c5.webp"
+},
+"vehicle-spawn-125": {
+"n": "Buckingham Swift (rooftop helipad)",
+"z": "Vice Beach",
+"d": "On the rooftop helipad."
+},
+"vehicle-spawn-127": {
+"n": "Maibatsu Royal Sanchez",
+"z": "Hamlet",
+"d": "In a yellow container by the broken house.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-maibatsu-royal-sanchez-vehicle-spawn-1c879364.webp"
+},
+"standout-vehicle-063": {
+"n": "Hauners Ridgway",
+"z": "Baie Watson"
+},
+"vehicle-spawn-012": {
+"n": "Bombora S23 CS (Boat)",
+"z": "Corsaire",
+"d": "Sur le rivage, à côté d'un couple assis près d'un feu.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bombora-s23-cs-boat-vehicle-spawn-a84b0303.webp"
+},
+"vehicle-spawn-046": {
+"n": "Seaplane (Dodo)",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-seaplane-dodo-airport-d9f8e7c7.webp"
+},
+"vehicle-spawn-126": {
+"n": "Stallion (1968)",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-stallion-1968-vehicle-rental-ea363cc3.webp"
+},
+"vehicle-spawn-055": {
+"n": "Granforma Zorrusso",
+"z": "Corsaire",
+"d": "Une supercar de grande valeur, dans le garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-granforma-zorrusso-vehicle-spawn-08b3ccf4.webp"
+},
+"standout-vehicle-133": {
+"n": "Manga-Livery Hatchback",
+"z": "Corsaire",
+"d": "Petite voiture au design manga, dans le garage."
+},
+"vehicle-spawn-089": {
+"n": "Sentinel '85 (custom)",
+"z": "Corsaire",
+"d": "Sentinel personnalisée avec feux arrière blancs et suspension pneumatique."
+},
+"vehicle-spawn-105": {
+"n": "Invetero '64 Coquette",
+"z": "Corsaire",
+"d": "Spawns in this alleyway (every time for one member)."
+},
+"vehicle-spawn-052": {
+"n": "Declasse '74 Vamos",
+"z": "Corsaire",
+"d": "Verrouillé, sans alarme ni traceur. Un coffre à proximité contient du Zombex et un portefeuille.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-declasse-74-vamos-vehicle-spawn-8325881d.webp"
+},
+"vehicle-spawn-010": {
+"n": "Pfister Neon",
+"z": "Corsaire",
+"d": "Une voiture orange Pfister Neon est garée dans l'allée de cette maison.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-voiture-neon-vehicle-spawn-bff38f47.webp"
+},
+"standout-vehicle-138": {
+"n": "Bravado Banshee",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-banshee-standout-vehicle-f1a1391a.webp"
+},
+"vehicle-spawn-038": {
+"n": "Pegassi Vitello",
+"z": "Corsaire"
+},
+"vehicle-spawn-039": {
+"n": "Pegassi Tempesta",
+"z": "Corsaire"
+},
+"vehicle-spawn-097": {
+"n": "Principe Alvino",
+"z": "Corsaire",
+"d": "On the left side of the house: break into the garage (no alarm).",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-principe-alvino-vehicle-spawn-8ff3a5a4.webp"
+},
+"standout-vehicle-137": {
+"n": "Pegassi Vitello (Orange)",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pegassi-vitello-standout-vehicle-323f0f26.webp"
+},
+"vehicle-spawn-028": {
+"n": "Kit Car (project car)",
+"z": "Corsaire",
+"d": "Une voiture à restaurer, chez Wyman.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-kit-car-project-car-vehicle-spawn-d58b9822.webp"
+},
+"standout-vehicle-135": {
+"n": "Pfister Comet ('88)",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-comet-1988-standout-vehicle-5970e457.webp"
+},
+"vehicle-spawn-104": {
+"n": "Pegassi Vitello",
+"z": "Corsaire"
+},
+"vehicle-spawn-050": {
+"n": "Declasse Vamos (1974)",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-declasse-vamos-1974-car-meet-a6e17a4e.webp"
+},
+"vehicle-spawn-040": {
+"n": "Mer-Can Outlaw UTV (Purple)",
+"z": "Corsaire",
+"d": "Derrière la maison ronde rose.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-purple-outlas-utv-vehicle-spawn-6f53e869.webp"
+},
+"vehicle-spawn-096": {
+"n": "Dundreary Chino (1965, Puerto Rican flag)",
+"z": "Corsaire",
+"d": "1960s muscle car with a Puerto Rican flag livery, near the train tracks.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dundreary-chino-1965-puerto-rican-flag-vehicle-spawn-8315562c.webp"
+},
+"standout-vehicle-057": {
+"n": "Mer-Can Blast",
+"z": "Corsaire",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-mer-can-blast-standout-vehicle-dd49d8ab.webp"
+},
+"vehicle-spawn-054": {
+"n": "Schyster '85 Woodland",
+"z": "Emerald Springs",
+"d": "Devant le panneau."
+},
+"vehicle-spawn-115": {
+"n": "Cargo Ship (drivable)",
+"z": "Vice City",
+"d": "A huge drivable cargo ship with two SCOOP containers on it."
+},
+"standout-vehicle-127": {
+"n": "Bravado '69 Gauntlet (HWL YEAH)",
+"z": "Vice City",
+"d": "Black and purple, licence plate \"HWL YEAH\", in the warehouse.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-69-bravado-gauntlet-standout-vehicle-35ff50a2.webp"
+},
+"vehicle-spawn-074": {
+"n": "Emperor Sultan",
+"z": "Vice City",
+"d": "Plaque d'immatriculation SPD DMN."
+},
+"vehicle-spawn-007": {
+"n": "Pegassi Tempesta",
+"z": "Vice City",
+"d": "Point d'apparition du véhicule demandé par Randy",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pegassi-tempesta-vehicle-spawn-8c9aca09.webp"
+},
+"standout-vehicle-125": {
+"n": "Invetero Coquette D10 (Graffiti)",
+"z": "Vice City",
+"d": "Un revêtement graffiti rose et turquoise, garé sous l'auvent.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-invetero-coquette-d10-standout-vehicle-bcd5dd4e.webp"
+},
+"vehicle-spawn-075": {
+"n": "Albany '77 Manana",
+"z": "Vice City",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-albany-77-manana-vehicle-spawn-9bcd76ea.webp"
+},
+"vehicle-spawn-018": {
+"n": "Pegassi Tempesta (Off-Road Kit)",
+"z": "Vice City",
+"d": "Tempesta avec le kit tout-terrain."
+},
+"vehicle-spawn-032": {
+"n": "Vapid Guardian TX2 (Lowrider)",
+"z": "Vice City",
+"d": "Un camion lowrider.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-gaurdian-tx2-vehicle-spawn-310db93b.webp"
+},
+"vehicle-spawn-129": {
+"n": "Benefactor Schutzen",
+"z": "Vice City",
+"d": "Parked beyond the black gate."
+},
+"vehicle-spawn-084": {
+"n": "Benefactor Schutzen",
+"z": "Vice City",
+"d": "Garée dans l'allée derrière le portail devant le manoir, à côté du garage où se trouve le guépard en cage."
+},
+"standout-vehicle-086": {
+"n": "Maibatsu Penumbra FF (Paul Walker tribute)",
+"z": "Vice City",
+"d": "Paul Walker Maibatsu Penumbra FF",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-maibatsu-penumbra-ff-paul-walker-tribute-standout-vehi-a2a98ef7.webp"
+},
+"vehicle-spawn-103": {
+"n": "Grotti Itali RSX (black & white)",
+"z": "Vice City",
+"d": "Black and white Itali RSX in the garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-grotti-itali-rsx-black-white-vehicle-spawn-052559e0.webp"
+},
+"vehicle-spawn-092": {
+"n": "Piccia Furia",
+"z": "Vice Beach",
+"d": "In the garage next to the Albany Cavalcade XL."
+},
+"vehicle-spawn-080": {
+"n": "Manhole Tags: Reward Car",
+"z": "Vice Beach",
+"d": "La voiture garée dans le garage au bout de la piste d'égouts est taguée."
+},
+"vehicle-spawn-090": {
+"n": "Buckingham Windsor Drop",
+"z": "Vice City",
+"d": "In the first garage on the right."
+},
+"vehicle-spawn-091": {
+"n": "Gallivanter Baller ST-D",
+"z": "Vice City",
+"d": "In the second garage on the right."
+},
+"vehicle-spawn-057": {
+"n": "Annis Elegy '90",
+"z": "Vice City",
+"d": "Une Elegy sans tracker, pour que vous puissiez l'obtenir en avant-première.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-annis-elegy-90-vehicle-spawn-cac60483.webp"
+},
+"standout-vehicle-102": {
+"n": "Pegassi Infernus (purple)",
+"z": "Vice City",
+"d": "Infernus violet sur le côté du bâtiment.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pegassi-infernus-purple-standout-vehicle-23aba7ec.webp"
+},
+"vehicle-spawn-112": {
+"n": "Benefactor Dubsta",
+"z": "Vice Beach"
+},
+"vehicle-spawn-111": {
+"n": "Grotti Itali RSX",
+"z": "Vice Beach"
+},
+"vehicle-spawn-110": {
+"n": "Pegassi Vitello",
+"z": "Vice Beach"
+},
+"vehicle-spawn-072": {
+"n": "Pegassi Toros",
+"z": "Vice Beach",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pegassi-toros-vehicle-spawn-44cf1986.webp"
+},
+"vehicle-spawn-109": {
+"n": "Buckingham Windsor Cabrio",
+"z": "Vice Beach"
+},
+"vehicle-spawn-037": {
+"n": "Coast Guard Helicopter",
+"z": "Vice Beach",
+"d": "Sur l'héliport de la base des garde-côtes.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-h-licopt-re-des-gardes-c-tes-airport-16a7e3db.webp"
+},
+"standout-vehicle-123": {
+"n": "Pfister Comet ('88)",
+"z": "Vice Beach",
+"d": "Dans le garage, dans la ruelle.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-88-comet-standout-vehicle-831074fd.webp"
+},
+"vehicle-spawn-004": {
+"n": "'55 Stainer (Vintage Vice City Pack)",
+"z": "Vice Beach",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-55-stainer-ultimate-edition-vehicle-spawn-de64b193.webp"
+},
+"vehicle-spawn-014": {
+"n": "Maverick (helicopter)",
+"z": "Vice Beach",
+"d": "Sur le toit de l'hôpital."
+},
+"vehicle-spawn-043": {
+"n": "Vapid Golfer Infernale",
+"z": "Vice Beach",
+"d": "Déverrouillez-le ici.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-golfer-infernale-vehicle-spawn-4a677f4e.webp"
+},
+"vehicle-spawn-067": {
+"n": "Canis Mesa",
+"z": "Sables mouvants",
+"d": "Aucun traceur."
+},
+"vehicle-spawn-119": {
+"n": "Pfister Comet S2 (orange)",
+"z": "Sables mouvants",
+"d": "A fully orange Comet S2 with an advanced tracker, in the garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-evan-vehicle-spawn-3fea6464.webp"
+},
+"vehicle-spawn-024": {
+"n": "Pegassi Tempesta",
+"z": "Vice City",
+"d": "Apparition garantie de Tempesta : si elle n’est pas présente, sauvegardez et rechargez jusqu’à ce qu’elle apparaisse.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-pegassi-tempesta-vehicle-spawn-53fe6b88.webp"
+},
+"vehicle-spawn-035": {
+"n": "Ubermacht FCR 1000",
+"z": "Vice City",
+"d": "Dans le bâtiment orné d'une fresque orange sur le côté : entrez par le volet et la porte équipés d'une alarme.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-ubermacht-fcr-1000-vehicle-spawn-4ea30ac4.webp"
+},
+"vehicle-spawn-082": {
+"n": "Ocelot Jugular",
+"z": "Sables mouvants"
+},
+"vehicle-spawn-114": {
+"n": "Pegassi Toros",
+"z": "Sables mouvants"
+},
+"vehicle-spawn-099": {
+"n": "Obey Animus",
+"z": "Sables mouvants",
+"d": "White with a pink and purple mandala design and a tie-dye hood."
+},
+"vehicle-spawn-107": {
+"n": "Enus Jubilee",
+"z": "Sables mouvants"
+},
+"vehicle-spawn-093": {
+"n": "Emperor Vectre",
+"z": "Sables mouvants",
+"d": "Move the stacks of paper from the side entrance to enter the garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-emperor-vectre-vehicle-spawn-214f9a53.webp"
+},
+"standout-vehicle-142": {
+"n": "Vapid Slamvan '56",
+"z": "Sables mouvants",
+"d": "Dans le dernier garage à droite : la voiture sans plaque d'immatriculation.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-slamvan-56-vehicle-spawn-c65c581b.webp"
+},
+"vehicle-spawn-108": {
+"n": "Seaplanes and Helicopters (island)",
+"z": "Sables mouvants",
+"d": "Seaplanes and helicopters."
+},
+"vehicle-spawn-085": {
+"n": "Decker Crake (helicopter)",
+"z": "Vice Beach",
+"d": "Sur le toit, déverrouillé.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-helicopter-decker-crake-unlocked-vehicle-spawn-ff2fd9e3.webp"
+},
+"vehicle-spawn-132": {
+"n": "Declasse Yosemite ('67, dairy farm)",
+"z": "Emerald Springs",
+"d": "A blue dairy-farm-themed '67 Yosemite spawns here.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-67-yosemite-vehicle-spawn-fef274ba.webp"
+},
+"vehicle-spawn-053": {
+"n": "Vapid '56 Slamvan",
+"z": "Emerald Springs",
+"d": "À l'intérieur de l'entrepôt ouvert. Verrouillé, alarme, système de géolocalisation standard."
+},
+"vehicle-spawn-029": {
+"n": "Grotti RSX",
+"z": "Emerald Springs",
+"d": "Une réplique de style Ferrari.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-ferrari-replica-vehicle-spawn-7dfa1940.webp"
+},
+"vehicle-spawn-100": {
+"n": "Übermacht Cypher (track livery)",
+"z": "Port Gellhorn",
+"d": "Übermacht Cypher with a white, blue and red track livery.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bermacht-cypher-track-livery-vehicle-spawn-faa12f9f.webp"
+},
+"standout-vehicle-118": {
+"n": "'95 Bison 900",
+"z": "Port Gellhorn",
+"d": "Un classique tout-terrain des années 1990 sur de grandes roues (comme un mini monster truck), blanc avec des bandes noires.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-95-bison-900-standout-vehicle-ed131c40.webp"
+},
+"vehicle-spawn-005": {
+"n": "R33 Skyline-style Sports Car",
+"z": "Port Gellhorn",
+"d": "Caché par un garage et des buissons."
+},
+"vehicle-spawn-135": {
+"n": "Albany Manana ('77)",
+"z": "Port Gellhorn",
+"d": "A Manana spawns here consistently.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-77-manana-vehicle-spawn-bbdd4234.webp"
+},
+"vehicle-spawn-123": {
+"n": "Bravado Youga ('74)",
+"z": "Port Gellhorn",
+"d": "Dans le garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-youga-1974-vehicle-spawn-10d770cd.webp"
+},
+"vehicle-spawn-133": {
+"n": "Albany Emperor ('85)",
+"z": "Port Gellhorn",
+"d": "There is always an Emperor here.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-85-emperor-vehicle-spawn-39b2230c.webp"
+},
+"vehicle-spawn-042": {
+"n": "Truck (garage)",
+"z": "Port Gellhorn",
+"d": "Ouvrez le garage : un camion apparaît à l'intérieur."
+},
+"standout-vehicle-124": {
+"n": "Benefactor Schafter V12",
+"z": "Port Gellhorn",
+"d": "Garée ici, elle a l'air bien trop belle pour l'endroit.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-benefactor-schafter-v12-vehicle-spawn-b08a6407.webp"
+},
+"vehicle-spawn-106": {
+"n": "Canis Kamacho",
+"z": "Port Gellhorn",
+"d": "Needs the key cloner. it has a tracker."
+},
+"vehicle-spawn-136": {
+"n": "Rumpo (wreck)",
+"z": "Port Gellhorn",
+"d": "Spawn point for a poor condition Rumpo with missing parts. Vehicle isn't enterable unless it has one passenger door and a missing driver door.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-rumpo-vehicle-spawn-7a4e4f31.webp"
+},
+"vehicle-spawn-008": {
+"n": "Vapid Marshall",
+"z": "Port Gellhorn",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-marshall-vehicle-spawn-f86031ad.webp"
+},
+"standout-vehicle-099": {
+"n": "Imponte Phoenix ('77)",
+"z": "Port Gellhorn",
+"d": "Phénix noir avec un oiseau de feu doré sur le capot.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-imponte-77-phoenix-standout-vehicle-49d386ba.webp"
+},
+"vehicle-spawn-015": {
+"n": "Buzzard (helicopter)",
+"z": "Port Gellhorn",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-buzzard-helicopter-vehicle-spawn-ec919d2b.webp"
+},
+"vehicle-spawn-017": {
+"n": "Bravado Banshee",
+"z": "Port Gellhorn",
+"d": "Sur le circuit de Port Gellhorn, entre les tribunes.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-banshee-vehicle-spawn-45cc7bbd.webp"
+},
+"vehicle-spawn-124": {
+"n": "Maibatsu Blue Drake Penumbra",
+"z": "Port Gellhorn"
+},
+"vehicle-spawn-088": {
+"n": "Coast Guard Helicopter",
+"z": "Corsaire"
+},
+"standout-vehicle-147": {
+"n": "Buckingham Swift",
+"z": "Corsaire",
+"d": "Un hélicoptère sur l'héliport."
+},
+"vehicle-spawn-134": {
+"n": "Rental Bus (church)",
+"z": "Port Gellhorn",
+"d": "A rental bus is always here by the church.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-rental-bus-vehicle-spawn-6c886d96.webp"
+},
+"vehicle-spawn-122": {
+"n": "Jet Ski (trailer)",
+"z": "Port Gellhorn",
+"d": "On the left side of the closed-down building, on a trailer.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-jet-ski-vehicle-spawn-ccd4a297.webp"
+},
+"vehicle-spawn-013": {
+"n": "Vapid '65 Dominator",
+"z": "Port Gellhorn",
+"d": "Un cabriolet classique juste à l'extérieur de la grange avec le Karin Cheshire Rebel.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-65-dominator-vehicle-spawn-aa717766.webp"
+},
+"standout-vehicle-120": {
+"n": "Declasse Akane (Stripped)",
+"z": "Port Gellhorn",
+"d": "Berline à hayon verte dépouillée jusqu'à la carrosserie, en état de marche, modifiée pour le tout-terrain.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-declasse-akane-standout-vehicle-e6d11028.webp"
+},
+"vehicle-spawn-027": {
+"n": "Pegassi Toros",
+"z": "Port Gellhorn",
+"d": "Ce PNJ est lié à celui que vous rencontrez après avoir sauvé un touriste des griffes d'un ours noir. Il apparaît également dans le comté de Lummox, près de la mine d'or MacAlister ; son point d'apparition n'est donc peut-être pas fixe."
+},
+"vehicle-spawn-065": {
+"n": "HVY Airtug",
+"z": "Ambroisie",
+"d": "Parked outside the hangar of Kyle's Mallard.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-hvy-airtug-vehicle-spawn-f70324e4.webp"
+},
+"vehicle-spawn-066": {
+"n": "Vapid Sandking XT",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-sandking-xt-vehicle-spawn-55cb4b3b.webp"
+},
+"vehicle-spawn-076": {
+"n": "Bravado Banshee",
+"z": "Ambroisie",
+"d": "Il y a toujours une ou deux Banshees garées ici.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-bravado-banshee-vehicle-spawn-1266bf8a.webp"
+},
+"vehicle-spawn-048": {
+"n": "Nagasaki Sea Sparrow",
+"z": "Ambroisie",
+"d": "Sur l'eau, près du petit quai, l'hélicoptère est déverrouillé.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-helicopter-nagasaki-sea-sparrow-vehicle-spawn-84dca388.webp"
+},
+"vehicle-spawn-117": {
+"n": "Dodo Seaplane",
+"z": "Sables mouvants"
+},
+"vehicle-spawn-121": {
+"n": "Vapid Caracara 4x4",
+"z": "Sables mouvants",
+"d": "Dans le garage.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-caracara-4x4-vehicle-spawn-af3cadba.webp"
+},
+"standout-vehicle-021": {
+"n": "Brute Boxville",
+"z": "Sables mouvants"
+},
+"standout-vehicle-023": {
+"n": "Taci Ragno",
+"z": "Sables mouvants"
+},
+"vehicle-spawn-120": {
+"n": "Benefactor Spritz",
+"z": "Sables mouvants"
+},
+"standout-vehicle-087": {
+"n": "Invetero '64 Coquette",
+"z": "Sables mouvants",
+"d": "À cet endroit, vous trouverez une Invetero Coquette rouge de 1964.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-invetero-64-coquette-vehicle-spawn-4f137e28.webp"
+},
+"standout-vehicle-009": {
+"n": "Buckingham Volatus",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-buckingham-volatus-standout-vehicle-d9e73ced.webp"
+},
+"standout-vehicle-008": {
+"n": "Annis '95 Hellion",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-annis-95-hellion-standout-vehicle-0ebc73a0.webp"
+},
+"vehicle-spawn-113": {
+"n": "Vapid Riata",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-vapid-riata-vehicle-spawn-0ef18830.webp"
+},
+"standout-vehicle-005": {
+"n": "Del Perro Scorcher",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-del-perro-scorcher-standout-vehicle-8154c86a.webp"
+},
+"vehicle-spawn-022": {
+"n": "Dinka Enduro",
+"z": "Ambroisie",
+"d": "Garé ici la nuit."
+},
+"standout-vehicle-016": {
+"n": "Dinka Verus",
+"z": "Ambroisie",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dinka-verus-standout-vehicle-b2285ba8.webp"
+},
+"vehicle-spawn-047": {
+"n": "National Park Rangers Maverick",
+"z": "Ambroisie",
+"d": "Sur l'héliport, l'hélicoptère est déverrouillé.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-helicopter-national-park-rangers-maverick-buckingham-v-4f60a107.webp"
+},
+"vehicle-spawn-077": {
+"n": "Dodo Seaplane",
+"z": "Ambroisie",
+"d": "Déverrouillé au bout du quai.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-dodo-seaplane-vehicle-spawn-b9f1edd8.webp"
+},
+"vehicle-spawn-045": {
+"n": "Nagasaki Tao, Seashark Hydroblast & Seashark Sedna (dock)",
+"z": "Ambroisie",
+"d": "Un bateau et deux jet-skis au quai des maisons isolées le long de la rivière Moreau.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-boat-nagasaki-tao-vehicle-spawn-da6d4b36.webp"
+},
+"vehicle-spawn-034": {
+"n": "Bombora S23 CCS",
+"z": "Ambroisie",
+"d": "Un bateau Bombora S23 CCS.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-boat-bombora-s23-ccs-vehicle-spawn-3bc88c3b.webp"
+},
+"vehicle-spawn-033": {
+"n": "Bombora S23 CCS",
+"z": "Port Gellhorn",
+"d": "Un bateau Bombora S23 CCS.",
+"cap": "https://www.gtabase.com/images/gta-6/maps/submissions/gta-6-boat-bombora-s23-ccs-vehicle-spawn-2b02393d.webp"
+}
+}
+}
