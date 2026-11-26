@@ -191,13 +191,13 @@
     }
    ],
    "img": "airgator-airboat-09.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/airboat-09",
-   "nettete": 477,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Airboat09-GTAVI-Trailer1.png",
    "taille": [
-    832,
-    468
-   ]
+    1600,
+    900
+   ],
+   "source": "https://gta.wiki/images/Airboat09-GTAVI-Trailer1.png"
   },
   {
    "slug": "whiffler-airport-bus",
@@ -660,12 +660,13 @@
     }
    ],
    "img": "karin-asterope-gz.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/asterope-gz",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:AsteropeGZ-GTAVI-front.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/AsteropeGZ-GTAVI-front.png"
   },
   {
    "slug": "pfister-astron",
@@ -1307,13 +1308,13 @@
     }
    ],
    "img": "nagasaki-blazer.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/blazer",
-   "nettete": 235,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Blazer-GTAVI-Trailer1-1.png",
    "taille": [
-    624,
-    468
-   ]
+    1400,
+    787
+   ],
+   "source": "https://gta.wiki/images/Blazer-GTAVI-Trailer1-1.png"
   },
   {
    "slug": "blimp",
@@ -1400,13 +1401,13 @@
     }
    ],
    "img": "declasse-bobcat-xl-84.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/bobcat-xl",
-   "nettete": 79,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:84BobcatXL-GTAVI-front.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/84BobcatXL-GTAVI-front.png"
   },
   {
    "slug": "bravado-bogan",
@@ -1761,11 +1762,12 @@
    "img": "bottcher-buzzard-attack-chopper.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:BuzzardAttackChopper-GTAVI-Trailer2.png",
-   "nettete": 195,
    "taille": [
-    960,
-    540
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/BuzzardAttackChopper-GTAVI-Trailer2.png",
+   "hd": "bottcher-buzzard-attack-chopper.webp"
   },
   {
    "slug": "calder-cb69",
@@ -2928,13 +2930,14 @@
     }
    ],
    "img": "western-company-duster.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/duster",
-   "nettete": 264,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Duster-GTAVI-LaunchTrailer.png",
    "taille": [
-    832,
-    412
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Duster-GTAVI-LaunchTrailer.png",
+   "hd": "western-company-duster.webp"
   },
   {
    "slug": "annis-elegy-90",
@@ -3862,13 +3865,13 @@
     }
    ],
    "img": "seashark-hydroblast.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/seashark",
-   "nettete": 152,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Seashark-GTAVI-AnExtendedLook-1.png",
    "taille": [
-    564,
-    360
-   ]
+    1180,
+    664
+   ],
+   "source": "https://gta.wiki/images/Seashark-GTAVI-AnExtendedLook-1.png"
   },
   {
    "slug": "declasse-impaler-20",
@@ -4389,13 +4392,14 @@
     }
    ],
    "img": "lure-predator-l35p.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/lure-predator-l35p",
-   "nettete": 745,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:L35P-GTAVI-AnExtendedLook.png",
    "taille": [
-    1134,
-    750
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/L35P-GTAVI-AnExtendedLook.png",
+   "hd": "lure-predator-l35p.webp"
   },
   {
    "slug": "lure-predator-l35p-police-boat",
@@ -4845,13 +4849,13 @@
     }
    ],
    "img": "maibatsu-manchez.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/manchez",
-   "nettete": 604,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Manchez-GTAVI-OfficialScreenshot-UltimateEdition-PTTStore.png",
    "taille": [
-    832,
-    468
-   ]
+    1250,
+    703
+   ],
+   "source": "https://gta.wiki/images/Manchez-GTAVI-OfficialScreenshot-UltimateEdition-PTTStore.png"
   },
   {
    "slug": "dinka-marquis",
@@ -6155,13 +6159,13 @@
     }
    ],
    "img": "albany-primo.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/primo",
-   "nettete": 115,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Primo-GTAVI-front.png",
    "taille": [
-    803,
-    475
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Primo-GTAVI-front.png"
   },
   {
    "slug": "mtl-pumper",
@@ -6316,13 +6320,13 @@
     }
    ],
    "img": "coil-raiden.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/raiden",
-   "nettete": 178,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Raiden-GTAVI-PreLoadTrailer.png",
    "taille": [
-    832,
-    467
-   ]
+    1170,
+    658
+   ],
+   "source": "https://gta.wiki/images/Raiden-GTAVI-PreLoadTrailer.png"
   },
   {
    "slug": "declasse-rancher-86",
@@ -6642,13 +6646,14 @@
     }
    ],
    "img": "vapid-riata-classic.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/riata-classic",
-   "nettete": 49,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:RiataClassic-GTAVI-OfficialScreenshot-UltimateEdition.png",
    "taille": [
-    320,
-    180
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/RiataClassic-GTAVI-OfficialScreenshot-UltimateEdition.png",
+   "hd": "vapid-riata-classic.webp"
   },
   {
    "slug": "jobuilt-rubble",
@@ -6838,13 +6843,14 @@
     }
    ],
    "img": "maibatsu-sanchez.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/sanchez",
-   "nettete": 402,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Sanchez-GTAVI-LaunchTrailer.png",
    "taille": [
-    508,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Sanchez-GTAVI-LaunchTrailer.png",
+   "hd": "maibatsu-sanchez.webp"
   },
   {
    "slug": "vapid-sandking-xl",
@@ -7671,13 +7677,14 @@
     }
    ],
    "img": "interstate-stockade-99.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/stockade",
-   "nettete": 259,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Stockade-GTAVI-GruppeSechs.jpg",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Stockade-GTAVI-GruppeSechs.jpg",
+   "hd": "interstate-stockade-99.webp"
   },
   {
    "slug": "zirconium-stratum",
@@ -8076,13 +8083,13 @@
     }
    ],
    "img": "truffade-thrax.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/thrax",
-   "nettete": 171,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Thrax-GTAVI-LaunchTrailer.png",
    "taille": [
-    832,
-    468
-   ]
+    1436,
+    808
+   ],
+   "source": "https://gta.wiki/images/Thrax-GTAVI-LaunchTrailer.png"
   },
   {
    "slug": "brute-tipper-6-wheels",
@@ -8225,7 +8232,16 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/sirius"
     }
-   ]
+   ],
+   "img": "sirius-transgressor-67.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection02.jpg",
+   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection02.jpg",
+   "taille": [
+    1920,
+    1080
+   ],
+   "hd": "sirius-transgressor-67.webp"
   },
   {
    "slug": "willard-transient",
@@ -8348,13 +8364,14 @@
     }
    ],
    "img": "declasse-tulip-72.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/tulip",
-   "nettete": 549,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Tulip-GTAVI-AnExtendedLook-5.png",
    "taille": [
-    827,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Tulip-GTAVI-AnExtendedLook-5.png",
+   "hd": "declasse-tulip-72.webp"
   },
   {
    "slug": "declasse-tulip-m-100-78",
@@ -8379,13 +8396,13 @@
     }
    ],
    "img": "declasse-tulip-m-100-78.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/tulip-m-100",
-   "nettete": 406,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:TulipM100-GTAVI-Trailer1.png",
    "taille": [
-    960,
-    446
-   ]
+    1515,
+    852
+   ],
+   "source": "https://gta.wiki/images/TulipM100-GTAVI-Trailer1.png"
   },
   {
    "slug": "brute-utility-truck",
@@ -8582,13 +8599,13 @@
     }
    ],
    "img": "dinka-verus.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/verus",
-   "nettete": 122,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Verus-GTAVI-PhilJrsVerus.png",
    "taille": [
-    739,
-    457
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Verus-GTAVI-PhilJrsVerus.png"
   },
   {
    "slug": "declasse-vigero-zx-convertible",
@@ -8937,13 +8954,14 @@
     }
    ],
    "img": "calder-yakuruna.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/riva-86-domino",
-   "nettete": 218,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Yakuruna-GTAVI-OfficialScreenshot-ViceCity17.jpg",
    "taille": [
-    832,
-    467
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Yakuruna-GTAVI-OfficialScreenshot-ViceCity17.jpg",
+   "hd": "calder-yakuruna.webp"
   },
   {
    "slug": "interstate-yankee-80",
@@ -9166,13 +9184,13 @@
     }
    ],
    "img": "western-zombie-chopper.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/zombie-chopper",
-   "nettete": 1512,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Zombie-GTAVI-OfficialScreenshot-EdgeMagazine07.png",
    "taille": [
-    832,
-    468
-   ]
+    1206,
+    678
+   ],
+   "source": "https://gta.wiki/images/Zombie-GTAVI-OfficialScreenshot-EdgeMagazine07.png"
   },
   {
    "slug": "zoot",
