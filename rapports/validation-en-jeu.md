@@ -4,7 +4,7 @@ Généré le 2026-11-26 depuis la carte. Aucun repère n'a encore été vérifi�
 
 Pour chaque repère vu en jeu : ajouter son identifiant dans `data/verifications-en-jeu.json` (date, version du jeu, note), puis régénérer le site.
 
-## Véhicules affichés sur la carte (86)
+## Véhicules affichés sur la carte (83)
 
 À vérifier : Présence du véhicule (et de la livrée) à cet endroit ; moment où il devient accessible.
 
@@ -12,18 +12,16 @@ Pour chaque repère vu en jeu : ajouter son identifiant dans `data/verifications
 |---|---|---|---|---|
 | `o-standout-vehicle-240` | Pegassi Gold Rush Tempesta |  | probable | Open GTA 6 Map |
 | `o-standout-vehicle-044` | Progen Royal Ruby Emerus |  | probable | Open GTA 6 Map |
-| `v-granforma-zorrusso` | Granforma Zorrusso |  | approx | fiche du guide |
 | `o-standout-vehicle-138` | Bravado Banshee | Corsair | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-137` | Pegassi Vitello (Orange) | Corsair | probable | Open GTA 6 Map + capture GTABase |
-| `o-standout-vehicle-123` | Pfister '88 Comet | Vice Beach | probable | Open GTA 6 Map + capture GTABase |
-| `o-standout-vehicle-135` | Pfister Comet ('88) | Corsair | probable | Open GTA 6 Map + capture GTABase |
+| `o-standout-vehicle-123` | Pfister Comet '88 | Vice Beach | probable | Open GTA 6 Map + capture GTABase |
+| `o-standout-vehicle-135` | Pfister Comet '88 | Corsair | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-102` | Pegassi Infernus (violette) | Vice City | probable | Open GTA 6 Map + capture GTABase |
 | `v-grotti-cheetah-95` | Grotti Cheetah '95 |  | approx | fiche du guide |
 | `o-standout-vehicle-125` | Invetero Coquette D10 (Graffiti) | Vice City | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-092` | Karin Futo '85 (état collection) | Key Lento | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-086` | Maibatsu Penumbra FF (hommage à Paul Walker) | Vice City | probable | Open GTA 6 Map + capture GTABase |
 | `v-pegassi-infernus` | Pegassi Infernus |  | approx | fiche du guide |
-| `v-mammoth-dodo` | Mammoth Dodo |  | approx | fiche du guide |
 | `o-vehicle-spawn-002` | Avions de chasse | Watson Bay | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-055` | Granforma Zorrusso | Corsair | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-007` | Pegassi Tempesta | Vice City | probable | Open GTA 6 Map + capture GTABase |
@@ -35,18 +33,18 @@ Pour chaque repère vu en jeu : ajouter son identifiant dans `data/verifications
 | `o-vehicle-spawn-017` | Bravado Banshee | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-076` | Bravado Banshee | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
 | `v-hydroglisseur` | Hydroglisseur (airboat) |  | approx | fiche du guide |
+| `o-vehicle-spawn-029` | Grotti Itali RSX | Emerald Springs | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-103` | Grotti Itali RSX (black & white) | Vice City | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-029` | Grotti RSX | Emerald Springs | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-013` | Vapid '65 Dominator | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-127` | Maibatsu Royal Sanchez | Hamlet | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-016` | Sea Sparrow (hélicoptère) | Watson Bay | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-118` | Bravado Gauntlet Hellfire | Key Lento | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-102` | Bravado Gauntlet Hellfire | Key Lento | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-015` | Buzzard (hélicoptère) | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-077` | Dodo Seaplane | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-079` | Dodo Seaplanes | Watson Bay | probable | Open GTA 6 Map + capture GTABase |
+| `o-vehicle-spawn-046` | Mammoth Dodo (hydravion) | Corsair | probable | Open GTA 6 Map + capture GTABase |
+| `o-vehicle-spawn-077` | Mammoth Dodo (hydravion) | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
+| `o-vehicle-spawn-079` | Mammoth Dodo (hydravions) | Watson Bay | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-119` | Pfister Comet S2 (orange) | Quicksands | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-046` | Seaplane (Dodo) | Corsair | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-008` | Vapid Marshall | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-085` | Decker Crake (hélicoptère) | Vice Beach | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-058` | Hélicoptère militaire | Key Lento | probable | Open GTA 6 Map + capture GTABase |
@@ -64,7 +62,6 @@ Pour chaque repère vu en jeu : ajouter son identifiant dans `data/verifications
 | `v-jet-ski` | Jet-ski |  | approx | fiche du guide |
 | `o-standout-vehicle-008` | Annis '95 Hellion | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-016` | Dinka Verus | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
-| `v-bombora-s23` | Bombora S23 CS |  | approx | fiche du guide |
 | `o-vehicle-spawn-093` | Emperor Vectre | Quicksands | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-128` | Grotti Carbonizzare | Key Lento | probable | Open GTA 6 Map + capture GTABase |
 | `o-standout-vehicle-099` | Imponte Phoenix ('77) | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
@@ -85,8 +82,8 @@ Pour chaque repère vu en jeu : ajouter son identifiant dans `data/verifications
 | `o-vehicle-spawn-021` | Bombora S23 | Key Lento | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-033` | Bombora S23 CCS | Port Gellhorn | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-034` | Bombora S23 CCS | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-052` | Declasse '74 Vamos | Corsair | probable | Open GTA 6 Map + capture GTABase |
-| `o-vehicle-spawn-050` | Declasse Vamos (1974) | Corsair | probable | Open GTA 6 Map + capture GTABase |
+| `o-vehicle-spawn-050` | Declasse Vamos '74 | Corsair | probable | Open GTA 6 Map + capture GTABase |
+| `o-vehicle-spawn-052` | Declasse Vamos '74 | Corsair | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-037` | Hélicoptère des garde-côtes | Vice Beach | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-047` | National Park Rangers Maverick | Ambrosia | probable | Open GTA 6 Map + capture GTABase |
 | `o-vehicle-spawn-072` | Pegassi Toros | Vice Beach | probable | Open GTA 6 Map + capture GTABase |

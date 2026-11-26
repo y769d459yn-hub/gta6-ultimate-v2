@@ -673,8 +673,10 @@ const NATURE_V = { 'Véhicule remarquable': 'Garé à cet endroit', 'Véhicule q
 const unique = (f) => /^o-standout-vehicle-/.test(f.properties.id);
 const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée' : unique(f) ? 'Version unique (livrée spéciale), garée à cet endroit' : NATURE_V[f.properties.service] || 'Repère de la carte');
 // emplacement d'une fiche (article) et repère d'une carte de joueurs au même endroit : deux sources concordent, sans vérification en jeu
+const DOUBLONS = fs.existsSync(path.join(ROOT, 'data', 'doublons.json')) ? read('doublons.json') : { doublons: {}, noms: {} };
 function concorde(slug, ids = []) {
   const v = mapIndex['v-' + slug]; if (!v) return null;
+  const dm = DOUBLONS.doublons['v-' + slug]; if (dm && mapIndex[dm.garde]) return { d: 0, f: mapIndex[dm.garde] };
   let best = null;
   for (const id of ids) { const f = mapIndex[id]; if (!f || !/^o-/.test(id)) continue; const d = Math.hypot(f.geometry.coordinates[0] - v.geometry.coordinates[0], f.geometry.coordinates[1] - v.geometry.coordinates[1]); if (d < 400 && (!best || d < best.d)) best = { d, f }; }
   return best;
@@ -2225,6 +2227,8 @@ const PHOTOS_LIEUX = fs.existsSync(path.join(ROOT, 'data', 'photos-lieux.json'))
 const VJ = fs.existsSync(path.join(ROOT, 'data', 'verifications-en-jeu.json')) ? read('verifications-en-jeu.json').reperes : {};
 for (const id of Object.keys(VJ)) if (!mapIndex[id] && !features.some((f) => f.properties.id === id)) throw new Error(`verifications-en-jeu.json : repère inconnu « ${id} »`);
 const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) };
+  const db = DOUBLONS.doublons[p.id]; if (db) { p.dbl = 1; p.hv = 1; p.dblDe = db.garde; }
+  if (DOUBLONS.noms[p.id] && DOUBLONS.noms[p.id] !== p.nom) { p.vo = p.vo || p.nom; p.nom = DOUBLONS.noms[p.id]; }
   const vj = VJ[p.id]; if (vj) { p.statut = 'teste'; if (p.fi) p.fi = 'confirme'; p.dv = vj.date; p.vj = vj.note || ''; delete p.hv; }
   const pl = PHOTOS_LIEUX[p.id]; if (pl && !p.img) { p.img = `photos-lieux/${pl.fichier}`; p.imgNote = `${pl.legende} · photo officielle du lieu`; p.imgCredit = pl.credit; p.imgT = 'lieu'; } if (GL_LIEUX[p.id]) p.gl = GL_LIEUX[p.id]; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
 write('data/carte.json', JSON.stringify({
