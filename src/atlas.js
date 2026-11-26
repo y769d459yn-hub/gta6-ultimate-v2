@@ -56,6 +56,9 @@
       for (let L = Math.min(1, want); L <= want; L++) {
         if (L > 1 && L < want - 1) continue; // fond (niveau 1) + niveau courant et précédent
         const ppu = (1024 * 2 ** L) / T.monde, span = T.tileSize / ppu;
+        // un niveau de fond trop agrandi (ex. 1024 px affichés sur 7 000 px au zoom maximum) n'est plus dessiné :
+        // Safari sur iPhone réservait une mémoire graphique énorme pour ces images géantes et fermait la page
+        if (L !== want && span * cam.s / T.tileSize > 2.2) continue;
         const tx0 = Math.floor((wx0 + T.zero) / span), tx1 = Math.floor((wx1 + T.zero) / span);
         const ty0 = Math.floor((T.zero - wy1) / span), ty1 = Math.floor((T.zero - wy0) / span);
         for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
