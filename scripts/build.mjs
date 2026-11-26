@@ -17,7 +17,8 @@ const COLLECTIONS = {
   'actualites.json': ['actualites', null, 'slug', 'titre'], 'astuces.json': ['astuces', null, 'slug', 'titre'],
   'codes.json': ['codes', 'codes', 'id', 'nom'], 'missions.json': ['missions', 'missions', 'id', 'nom'],
   'dossiers.json': ['dossiers', 'dossiers', 'slug', 'titre'], 'encyclopedie.json': ['encyclopedie', null, 'slug', 'nom'],
-  'lieux.json': ['lieux', null, 'id', 'nom'], 'vehicules.json': ['vehicules', null, 'slug', 'nom']
+  'lieux.json': ['lieux', null, 'id', 'nom'], 'vehicules.json': ['vehicules', null, 'slug', 'nom'],
+  'glitchs.json': ['glitchs', 'glitchs', 'slug', 'titre'], 'versions-jeu.json': ['versions', null, 'id', 'id']
 };
 const ADMIN_F = path.join(ROOT, 'data-admin', 'contenu.json');
 const ADMIN_ROWS = fs.existsSync(ADMIN_F) ? JSON.parse(fs.readFileSync(ADMIN_F, 'utf8')) : [];
@@ -55,6 +56,33 @@ const read = (f) => appliquerAdmin(f, lireBrut(f));
 const site = read('site.json');
 const SRC = read('sources.json');
 const ASTUCES = read('astuces.json');
+// ---------- GLITCHS : données (data/glitchs.json, data/versions-jeu.json, modifiables depuis l'administration) ----------
+const GLX = read('glitchs.json');
+const VERSIONS = read('versions-jeu.json').slice().sort((a, b) => a.date.localeCompare(b.date));
+const VDERN = VERSIONS[VERSIONS.length - 1] || null;
+const GSTATUTS = {
+  fonctionnel: { n: 'Fonctionnel', ic: 'check', c: '#3ddc84', t: 'Reproduit de façon documentée sur une version identifiée du jeu.', poids: 100 },
+  documente: { n: 'Bien documenté', ic: 'book', c: '#4da3ff', t: 'Plusieurs sources indépendantes concordent, mais le fonctionnement sur la dernière version n’est pas entièrement établi.', poids: 70 },
+  'a-reverifier': { n: 'À revérifier', ic: 'clock', c: '#ffa53a', t: 'Une mise à jour est sortie depuis les derniers témoignages, ou ceux-ci se contredisent.', poids: 40 },
+  'non-confirme': { n: 'Non confirmé', ic: 'question', c: '#b3aec4', t: 'Les preuves disponibles sont insuffisantes.', poids: 10 },
+  corrige: { n: 'Corrigé', ic: 'x', c: '#ff5a5a', t: 'Corrigé par une mise à jour, ou ne fonctionne plus de façon établie.', poids: -50 },
+  faux: { n: 'Faux', ic: 'alert', c: '#8f8aa3', t: 'Méthode trompeuse, ou résultat démontré inexistant.', poids: -100 }
+};
+const GCATS = {
+  argent: { n: 'Argent', ic: 'money', c: '#39ff88' }, vehicules: { n: 'Véhicules', ic: 'car', c: '#ff9a1f' }, armes: { n: 'Armes', ic: 'gun', c: '#ff3048' },
+  secrets: { n: 'Secrets', ic: 'secret', c: '#ff2d87' }, gameplay: { n: 'Gameplay', ic: 'gamepad', c: '#19d3e3' }, duplication: { n: 'Duplication', ic: 'layers', c: '#b36bff' }
+};
+const cmpV = (a, b) => { const x = String(a).split('.').map(Number), y = String(b).split('.').map(Number); for (let i = 0; i < Math.max(x.length, y.length); i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) - (y[i] || 0); } return 0; };
+// statut affiché : un glitch « fonctionnel » ou « bien documenté » établi avant la dernière version du jeu passe « à revérifier » (le dernier statut connu reste affiché)
+function gStatut(g) {
+  if (VDERN && ['fonctionnel', 'documente'].includes(g.statut) && (g.version ? cmpV(g.version, VDERN.id) < 0 : (g.etabliLe || '') < VDERN.date)) return { id: 'a-reverifier', avant: g.statut, depuis: VDERN };
+  return { id: g.statut };
+}
+const DIFF = { facile: 'Facile', moyenne: 'Moyenne', difficile: 'Difficile' };
+// classement : fiabilité d'abord (un glitch douteux ne passe jamais devant un glitch fiable), puis utilité, facilité, gain connu, fraîcheur de la vérification
+const gScore = (g) => GSTATUTS[gStatut(g).id].poids * 10 + (g.utilite || 0) * 10 + (g.difficulte === 'facile' ? 8 : g.difficulte === 'moyenne' ? 4 : 0) + (g.gainCourt ? 6 : 0) - Math.min(30, Math.floor((Date.parse('2026-12-31') - Date.parse(g.verifieLe || '2026-01-01')) / 864e5 / 10));
+const GLITCHS = GLX.glitchs.filter((g) => g.publie && (g.sources || []).some((x) => x.lu)).sort((a, b) => gScore(b) - gScore(a));
+const GL_RECO = GLITCHS.filter((g) => ['fonctionnel', 'documente', 'a-reverifier'].includes(gStatut(g).id));
 const VEHICULES = read('vehicules.json');
 // Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
 // Vérification de présence dans GTA 6 (tools/verification.py : site officiel, GTA Wiki, GTABase, gta6guide.fr)
@@ -433,6 +461,32 @@ for (const D of DOSSIERS.filter((d) => d.slug === 'codes-coffres')) for (const s
 }
 const onMap = (id) => !!mapIndex[id];
 const vehOnMap = (slug) => !!mapIndex['v-' + slug];
+// ---------- GLITCHS : éléments communs (onglets, statut, carte de glitch) ----------
+// onglets de la rubrique Astuces (sans nouveau bouton dans la barre du bas)
+const ongletsAstuces = (R, actif) => `<nav class="ast-tabs" aria-label="Rubriques Astuces">${[['tous', 'Tous', 'astuces/'], ['astuces', 'Astuces', 'astuces/#astuces-liste'], ['glitchs', 'Glitchs', 'glitchs/'], ['secrets', 'Secrets', 'dossiers/secrets/'], ['guides', 'Guides', 'dossiers/']].map(([id, t, u]) => `<a href="${R}${u}"${id === actif ? ' aria-current="page"' : ''}>${esc(t)}</a>`).join('')}</nav>`;
+const gVign = (id, R) => (VIGN.has(id) ? `${R}vignettes/${id}.webp` : null);
+const gPill = (g, explique = false) => { const st = gStatut(g), S = GSTATUTS[st.id]; return `<span class="gl-st" style="--s:${S.c}" title="${esc(S.t)}">${icon(S.ic)}${esc(S.n)}</span>${explique ? `<small class="gl-st-t">${esc(S.t)}${st.avant ? ` Dernier statut connu : ${esc(GSTATUTS[st.avant].n.toLowerCase())}, avant la mise à jour ${esc(st.depuis.id)} du ${fmtDate(st.depuis.date)}.` : ''}</small>` : ''}`; };
+const gLieux = (g) => (g.emplacements || []).filter((e) => mapIndex[e.carte]);
+const gVisuel = (g, R) => { const e = gLieux(g)[0], C = GCATS[g.cat], vg = e && gVign(e.carte, R); return g.image ? `<img src="${R}${g.image}" alt="" loading="lazy" decoding="async">` : vg ? `<span class="gl-vis-map" style="background-image:url(${vg})"></span><i class="gl-vis-pin" style="--c:${C.c}">${icon(C.ic)}</i>` : `<span class="gl-vis-ico">${icon(C.ic)}</span>`; };
+const gFav = (g, mini) => `<button class="${mini ? 'card-cta fav fav--mini' : 'gl-fav fav'}" type="button" data-fav='${esc(JSON.stringify({ id: g.slug, type: 'glitch', t: g.titre, u: `glitchs/${g.slug}/`, i: GCATS[g.cat].ic, c: GCATS[g.cat].c }))}' aria-pressed="false" aria-label="Favori : ${esc(g.titre)}">${icon('heart')}</button>`;
+const gMeta = (g) => [g.plateformes && g.plateformes.length ? g.plateformes.join(' · ') : '', g.mode ? 'Mode ' + g.mode : '', g.difficulte ? 'Difficulté : ' + DIFF[g.difficulte] : '', g.duree ? g.duree.replace(/ \([^)]*\)$/, '') : ''].filter(Boolean);
+function gCarte(g, R, grand = false) {
+  const C = GCATS[g.cat], st = gStatut(g), e = gLieux(g)[0];
+  const txt = norm([g.titre, g.court, g.resume, C.n, g.gain, (g.etapes || []).map((x) => x.t).join(' ')].join(' '));
+  return `<article class="gl-card${grand ? ' gl-card--une' : ''}" style="--c:${C.c}" data-gl-item data-cat="${g.cat}" data-ok="${st.id === 'fonctionnel' ? 1 : 0}" data-text="${esc(txt)}">
+    <a class="gl-vis" href="${R}glitchs/${g.slug}/" tabindex="-1" aria-hidden="true">${gVisuel(g, R)}</a>
+    <div class="gl-body">
+      <p class="gl-cat">${icon(C.ic)}${esc(C.n)}</p>
+      <h3 class="gl-t"><a href="${R}glitchs/${g.slug}/">${esc(g.titre)}</a></h3>
+      <p class="gl-stl">${gPill(g)}</p>
+      ${g.gainCourt ? `<p class="gl-gain">${icon('money')}${esc(g.gainCourt)}</p>` : ''}
+      ${grand && g.resume ? `<p class="gl-res">${esc(g.resume)}</p>` : ''}
+      ${gMeta(g).length ? `<p class="gl-meta-l">${gMeta(g).map(esc).join(' · ')}</p>` : ''}
+      <p class="gl-ver">Sources vérifiées le ${fmtDate(g.verifieLe)}</p>
+      <div class="gl-act"><a class="btn btn--primary gl-go" href="${R}glitchs/${g.slug}/">${icon('guide')}Voir le tutoriel</a>${e ? `<a class="btn gl-map" href="${R}carte/?glitch=${g.slug}&focus=${e.carte}">${icon('map')}Sur la carte</a>` : ''}${gFav(g)}</div>
+    </div>
+  </article>`;
+}
 // astuce → repères carte liés
 const astuceMap = {};
 for (const l of LIEUX) if (l.astuce && onMap(l.id)) (astuceMap[l.astuce] ||= []).push(l.id);
@@ -453,7 +507,7 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
     ['missions/', 'Missions', 'flag'], ['astuces/', 'Astuces', 'bolt'], ['vehicules/', 'Véhicules', 'car'], ['carte/', 'Carte', 'map'],
     ['lieux/', 'Lieux', 'pin'], ['encyclopedie/', 'Encyclopédie', 'book'], ['actualites/', 'Actus', 'news']
   ];
-  const cur = (u) => (p.startsWith(u) ? ' aria-current="page"' : '');
+  const cur = (u) => (p.startsWith(u) || (u === 'astuces/' && p.startsWith('glitchs/')) ? ' aria-current="page"' : '');
   const tabs = [['', 'Accueil', 'home'], ['astuces/', 'Astuces', 'bolt'], ['#search', 'Chercher', 'search'], ['carte/', 'Carte', 'map'], ['missions/', 'Missions', 'flag']];
   // pages de listes : CollectionPage + la liste des fiches réellement liées dans la page (aucun élément invisible)
   if (!noindex && ['codes/', 'missions/', 'vehicules/', 'collection/', 'lieux/', 'actualites/', 'dossiers/', 'encyclopedie/'].includes(p) && !schema.some((x) => /^(ItemList|CollectionPage)$/.test(x['@type']))) {
@@ -537,7 +591,7 @@ ${cls === 'p-fiche' && site.editeur && site.editeur.email ? `<p class="wrap sign
 <nav class="tabbar" aria-label="Navigation rapide">
 ${tabs.map(([u, t, i]) => u === '#search'
     ? `<button class="tab tab--main" type="button" data-open-search aria-label="Chercher">${icon(i)}<span>${t}</span></button>`
-    : `<a class="tab" href="${R}${u}"${(u === '' ? p === '' : p.startsWith(u)) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span></a>`).join('')}
+    : `<a class="tab" href="${R}${u}"${(u === '' ? p === '' : p.startsWith(u) || (u === 'astuces/' && p.startsWith('glitchs/'))) ? ' aria-current="page"' : ''}>${icon(i)}<span>${t}</span></a>`).join('')}
 </nav>
 <div class="so" id="search" role="dialog" aria-modal="true" aria-label="Recherche" hidden>
   <div class="so-backdrop" data-close-search></div>
@@ -736,7 +790,7 @@ function homePalms() {
   const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : fs.existsSync(path.join(ROOT, 'src', 'img', `hx-${n}.webp`)) ? `hx-${n}.webp` : `../photos/${n}.webp`);
   const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
   const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
-  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547']];
+  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547'], ['glitchs/', 'Glitchs', 'bolt', '#19d3e3']];
   const UNE = D_('argent-rapide');
   const POP = [
     ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'm-codes', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
@@ -827,8 +881,12 @@ function palms() {
 {
   const p = 'astuces/', R = R_(p);
   const cats = site.categories.astuces;
+  const glBande = GL_RECO.length ? `<a class="gl-bande" href="${R}glitchs/">${icon('bolt')}<span><b>Meilleurs glitchs GTA 6</b><small>${esc(GL_RECO.slice(0, 2).map((g) => g.court || g.titre).join(' · '))}</small></span>${icon('arrow-right')}</a>` : '';
   const body = `<section class="wrap section" data-list>
+  ${ongletsAstuces(R, 'tous')}
   <h1 class="h1">De quoi as-tu besoin ?</h1>
+  ${glBande}
+  <span id="astuces-liste"></span>
   ${fieldFilter('Trouver une astuce')}
   <div class="doors" role="group" aria-label="Catégorie" data-filter="cat">
     ${cats.map((c) => `<button class="door" type="button" data-value="${c.id}" aria-pressed="false" style="--c:${c.color}"><span class="door-ico">${icon(c.icon)}</span><span>${esc(c.nom)}</span><small>${ASTUCES.filter((a) => a.cat === c.id).length}</small></button>`).join('')}
@@ -1396,6 +1454,103 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : ${C.length} codes relevés`, desc: `${connus} codes de triche de GTA 6 relevés par les joueurs, dont ${C.filter(confirme).length} recoupés par deux sources distinctes : effet, déblocage, flèches et sources de chaque code.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
+// ---------- GLITCHS : page de la rubrique ----------
+{
+  const p = 'glitchs/', R = R_(p);
+  const corriges = GLITCHS.filter((g) => ['corrige', 'faux'].includes(gStatut(g).id));
+  const actifs = GLITCHS.filter((g) => !corriges.includes(g));
+  // chaque glitch n'apparaît qu'une fois : du moment, meilleurs, nouveaux, puis tous les autres
+  const moment = GL_RECO[0] && actifs.includes(GL_RECO[0]) ? GL_RECO[0] : null;
+  const reste = actifs.filter((g) => g !== moment);
+  const meilleurs = reste.filter((g) => GL_RECO.includes(g)).slice(0, 3);
+  const nouveaux = reste.filter((g) => !meilleurs.includes(g)).sort((a, b) => (b.publieLe || '').localeCompare(a.publieLe || '')).slice(0, 3);
+  const autres = reste.filter((g) => !meilleurs.includes(g) && !nouveaux.includes(g));
+  const nOk = actifs.filter((g) => gStatut(g).id === 'fonctionnel').length;
+  const aRevoir = actifs.filter((g) => gStatut(g).avant);
+  const sec = (id, titre, ic, list, grand) => (list.length ? `<section class="gl-sec" data-gl-sec aria-labelledby="gl-${id}"><h2 class="gl-h" id="gl-${id}">${icon(ic)}${titre}</h2><div class="gl-grid${grand ? ' gl-grid--une' : ''}">${list.map((g) => gCarte(g, R, grand)).join('')}</div></section>` : '');
+  const cats = Object.entries(GCATS).filter(([id]) => actifs.some((g) => g.cat === id));
+  const body = `<section class="wrap section gl-page" data-gl>
+  ${ongletsAstuces(R, 'glitchs')}
+  <header class="gl-head">
+    <p class="kicker">${icon('bolt')}Rubrique Astuces</p>
+    <h1 class="h1 gl-h1">Glitchs GTA 6</h1>
+    <p class="lead">Les meilleurs glitchs, leurs tutoriels et leur état de fonctionnement.</p>
+    <p class="gl-info">${icon('check')}Sources vérifiées le ${fmtDate(GLX.verifieLe)}${VDERN ? ` · Dernière version connue : ${esc(VDERN.id)} (${fmtDate(VDERN.date)})` : ''} · ${actifs.length} glitch${actifs.length > 1 ? 's' : ''} documenté${actifs.length > 1 ? 's' : ''}</p>
+    ${aRevoir.length ? `<p class="gl-maj" role="status">${icon('bell')}<span>Une nouvelle mise à jour est disponible (${esc(VDERN.id)}). Certains glitchs nécessitent une nouvelle vérification.</span></p>` : ''}
+  </header>
+  <label class="field gl-q">${icon('search')}<span class="sr-only">Rechercher un glitch</span><input type="search" placeholder="Rechercher un glitch…" data-gl-q autocomplete="off" enterkeyhint="search"></label>
+  <div class="gl-filtres" role="group" aria-label="Filtrer les glitchs">
+    <button type="button" class="gl-ok" data-gl-ok aria-pressed="false">${icon('check')}Fonctionnent encore <small>${nOk}</small></button>
+    <div class="gl-chips"><button type="button" class="chip" data-gl-cat="" aria-pressed="true">Tous <small>${actifs.length}</small></button>${cats.map(([id, c]) => `<button type="button" class="chip" data-gl-cat="${id}" aria-pressed="false" style="--c:${c.c}">${icon(c.ic)}${esc(c.n)} <small>${actifs.filter((g) => g.cat === id).length}</small></button>`).join('')}</div>
+  </div>
+  <p class="gl-vide" data-gl-vide hidden></p>
+  ${moment ? sec('moment', 'Glitch du moment', 'flame', [moment], true) : ''}
+  ${sec('meilleurs', 'Meilleurs glitchs', 'star', meilleurs)}
+  ${sec('nouveaux', 'Nouveaux glitchs', 'sparkle', nouveaux)}
+  ${sec('tous', 'Tous les glitchs', 'list', autres)}
+  ${corriges.length ? `<details class="gl-corr"><summary>${icon('x')}Glitchs corrigés (${corriges.length})</summary><div class="gl-grid">${corriges.map((g) => gCarte(g, R)).join('')}</div></details>` : ''}
+  <details class="gl-statuts"><summary>${icon('shield')}Comment nous évaluons un glitch</summary><ul>${Object.values(GSTATUTS).map((S) => `<li><span class="gl-st" style="--s:${S.c}">${icon(S.ic)}${esc(S.n)}</span><span>${esc(S.t)}</span></li>`).join('')}</ul>
+    <p>Un glitch n'est publié que si au moins une source a été lue par notre équipe. Une vidéo populaire ou des commentaires enthousiastes ne suffisent jamais à le déclarer fonctionnel. Les votes des joueurs sont un indicateur : ils ne changent pas le statut sans nouvelle vérification.</p></details>
+</section>`;
+  emit(p, layout({ p, title: 'Glitchs GTA 6 : meilleurs glitchs et s’ils fonctionnent encore', desc: `Les glitchs GTA 6 documentés (argent infini, vue première personne…) avec tutoriel en français, sources et état de fonctionnement après la mise à jour ${VDERN ? VDERN.id : ''}.`, body, cls: 'p-list p-glitchs', scripts: ['glitchs.js'], crumbs: [['Accueil', ''], ['Astuces', 'astuces/'], ['Glitchs', 'glitchs/']],
+    schema: [{ '@context': 'https://schema.org', '@type': 'ItemList', name: 'Glitchs GTA 6', itemListElement: GLITCHS.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: `${site.url}/glitchs/${g.slug}/`, name: g.titre })) }] }));
+}
+// ---------- FICHE GLITCH ----------
+for (const g of GLITCHS) {
+  const p = `glitchs/${g.slug}/`, R = R_(p);
+  const C = GCATS[g.cat], st = gStatut(g), lieux = gLieux(g);
+  const S = Object.fromEntries((g.sources || []).map((x) => [x.id, x]));
+  const cite = (id) => (S[id] ? ` <a class="gl-cite" href="${esc(S[id].url)}" target="_blank" rel="noopener nofollow">${esc(S[id].nom)}</a>` : '');
+  const faits = [['Gain', g.gain], ['Difficulté', g.difficulte ? DIFF[g.difficulte] + (g.difficulteNote ? ` · ${g.difficulteNote}` : '') : ''], ['Durée', g.duree], ['Plateformes', (g.plateformes || []).join(', ')], ['Mode', g.mode], ['Dernier test', g.version ? `Sources portant sur la version ${g.version}` : g.etabliLe ? `Sources du ${fmtDate(g.etabliLe)}${VDERN && g.etabliLe < VDERN.date ? `, avant la mise à jour ${VDERN.id}` : ''}` : ''], ['Notre équipe', 'Pas encore reproduit sur console']].filter(([, v]) => v);
+  const lieu1 = lieux[0];
+  const carteLien = (e) => `${R}carte/?glitch=${g.slug}&focus=${e.carte}`;
+  const body = `<article class="wrap fiche gl-fiche" style="--c:${C.c}" data-gl-fiche="${g.slug}">
+  ${ongletsAstuces(R, 'glitchs')}
+  ${['corrige', 'faux'].includes(st.id) ? `<p class="gl-alerte">${icon('alert')}<span>Ce glitch ${st.id === 'faux' ? 'est faux ou trompeur' : 'ne fonctionne plus'} : la page reste en ligne pour information.</span></p>` : ''}
+  <figure class="gl-hero">${gVisuel(g, R)}</figure>
+  <header class="gl-fh">
+    <p class="gl-cat">${icon(C.ic)}${esc(C.n)} · Glitch</p>
+    <div class="gl-fh-t"><h1 class="h1">${esc(g.titre)}</h1>${gFav(g)}</div>
+    <div class="gl-fh-st">${gPill(g, true)}</div>
+    <dl class="gl-faits">${faits.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+    ${lieu1 ? `<a class="btn btn--primary gl-carte-btn" href="${carteLien(lieu1)}">${icon('map')}Voir sur la carte interactive</a>` : ''}
+  </header>
+  <section class="gl-s"><h2 class="h3">${icon('bolt')}En bref</h2><p class="gl-bref">${esc(g.resume)}</p></section>
+  ${(g.prerequis || []).length ? `<section class="gl-s"><h2 class="h3">${icon('list')}Prérequis</h2><dl class="gl-pre">${g.prerequis.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>` : ''}
+  <section class="gl-s" aria-labelledby="gl-tuto"><h2 class="h3" id="gl-tuto">${icon('guide')}Tutoriel étape par étape</h2>
+    <p class="gl-astuce">Coche les étapes au fur et à mesure : c'est gardé sur cet appareil.</p>
+    <ol class="gl-etapes">${g.etapes.map((e, i) => { const L = e.lieu && lieux.find((x) => x.n === e.lieu); return `<li class="gl-et"><label><input type="checkbox" data-gl-et="${i}"><span class="gl-et-n">${i + 1}</span><span class="gl-et-t">${esc(e.t)}</span></label>${L ? `<a class="gl-et-map" href="${carteLien(L)}">${icon('pin')}Lieu ${L.n} sur la carte</a>` : ''}</li>`; }).join('')}</ol>
+    <button type="button" class="gl-raz" data-gl-raz>${icon('replay')}Tout décocher</button>
+    ${(g.variantes || []).length ? `<div class="gl-var">${g.variantes.map((v) => `<details><summary>${icon('swap')}Variante : ${esc(v.titre)}</summary><p>${esc(v.texte)}${v.source ? cite(v.source) : ''}</p></details>`).join('')}</div>` : ''}
+  </section>
+  ${lieux.length ? `<section class="gl-s"><h2 class="h3">${icon('pin')}Où aller</h2><div class="gl-lieux">${lieux.map((e) => { const f = mapIndex[e.carte].properties, vg = gVign(e.carte, R); return `<a class="gl-lieu" href="${carteLien(e)}">${vg ? `<span class="gl-lieu-map" style="background-image:url(${vg})"><i>${e.n || icon('pin')}</i></span>` : ''}<span class="gl-lieu-t"><b>${e.n ? `${e.n}. ` : ''}${esc(e.nom)}</b><small>${esc(f.zone || (REG[f.region] || {}).nom || '')}${f.zone || f.region ? ' · ' : ''}Position relevée par les joueurs, approximative</small>${e.note ? `<small class="gl-lieu-n">${esc(e.note)}</small>` : ''}</span>${icon('arrow-right')}</a>`; }).join('')}</div></section>` : ''}
+  ${(g.problemes || []).length ? `<section class="gl-s"><h2 class="h3">${icon('wrench')}Problèmes fréquents</h2><dl class="gl-pb">${g.problemes.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>` : ''}
+  ${(g.risques || []).length ? `<section class="gl-s gl-risques"><h2 class="h3">${icon('alert')}Risques</h2><ul>${g.risques.map((r) => `<li>${esc(r)}</li>`).join('')}</ul></section>` : ''}
+  ${g.retours ? `<section class="gl-s"><h2 class="h3">${icon('talk')}Ce que disent les joueurs et les testeurs</h2><div class="gl-ret">${[['confirmations', 'Confirmations', 'check'], ['problemes', 'Problèmes rencontrés', 'alert'], ['solutions', 'Solutions et variantes', 'bolt']].filter(([k]) => (g.retours[k] || []).length).map(([k, t, i]) => `<div class="gl-ret-b gl-ret-${k}"><h3>${icon(i)}${t}</h3><ul>${g.retours[k].map(([txt, sid]) => `<li>${esc(txt)}${cite(sid)}</li>`).join('')}</ul></div>`).join('')}</div>
+    <p class="gl-note">Ces retours viennent des auteurs des articles cités. ${(g.sources || []).some((x) => x.type === 'reddit' && !x.lu) ? 'Les discussions Reddit n’ont pas pu être consultées : leurs commentaires ne sont pas repris ici.' : ''}</p></section>` : ''}
+  ${(g.alternatives || []).length ? `<section class="gl-s"><h2 class="h3">${icon('compass')}Sans glitch</h2><ul class="gl-alt">${g.alternatives.map(([t, u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener nofollow">${esc(t)}</a></li>`).join('')}</ul></section>` : ''}
+  ${(g.videos || []).length ? `<section class="gl-s"><h2 class="h3">${icon('eye')}Vidéos</h2><p class="gl-note">Vidéos des créateurs, chargées seulement si tu appuies dessus. Nous ne les avons pas visionnées : elles ne servent pas de preuve.</p><div class="gl-vids">${g.videos.map((v) => `<div class="gl-vid" data-yt="${esc(v.id)}"><button type="button" class="gl-vid-b" data-yt-go aria-label="Lire la vidéo : ${esc(v.titre)}"><span class="gl-vid-ic">${icon('replay')}</span><span><b>${esc(v.titre)}</b><small>${esc(v.createur)} · ${esc(v.plateforme)} · ${v.langue === 'fr' ? 'Français' : 'Anglais'}${v.versionCitee ? ` · version citée : ${esc(v.versionCitee)}` : ''}</small></span></button><a class="gl-vid-l" href="${esc(v.url)}" target="_blank" rel="noopener nofollow">Ouvrir sur ${esc(v.plateforme.split(' ')[0])}</a></div>`).join('')}</div></section>` : ''}
+  <section class="gl-s"><h2 class="h3">${icon('shield')}Sources</h2><ul class="gl-src">${(g.sources || []).map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener nofollow">${esc(x.nom)} : ${esc(x.titre)}</a><small>${[x.auteur, x.date ? fmtDate(x.date) : '', x.langue === 'en' ? 'en anglais' : x.langue === 'fr' ? 'en français' : ''].filter(Boolean).map(esc).join(' · ')}</small>${x.lu ? `<span class="gl-lu">${icon('check')}Lue le ${fmtDate(g.verifieLe)}${x.dit ? ` : ${esc(x.dit)}` : ''}</span>` : '<span class="gl-lu gl-lu--non">Non consultée (accès impossible)</span>'}</li>`).join('')}</ul></section>
+  <section class="gl-s gl-vote" data-gl-vote="${g.slug}" aria-labelledby="gl-vote-t"><h2 class="h3" id="gl-vote-t">${icon('talk')}Ce glitch fonctionne-t-il encore ?</h2>
+    <p class="gl-note" data-vote-etat>Chargement des votes…</p>
+    <div class="gl-vote-b" data-vote-btns hidden><button type="button" class="btn" data-vote="oui">Fonctionne 👍</button><button type="button" class="btn" data-vote="non">Ne fonctionne plus 👎</button><button type="button" class="btn" data-vote="partiel">Fonctionne partiellement</button></div>
+    <form class="gl-vote-f" data-vote-form hidden>
+      <label>Console<select name="plateforme" required><option value="">Choisir</option><option value="ps5">PS5</option><option value="xsx">Xbox Series X</option><option value="xss">Xbox Series S</option></select></label>
+      <label>Version du jeu<input name="version" placeholder="${VDERN ? esc(VDERN.id) : '01.002.002'}" maxlength="20" pattern="[0-9.]{3,20}"></label>
+      <label>Mode<select name="mode"><option value="histoire">Histoire</option><option value="online">Online</option></select></label>
+      <label>Date du test<input type="date" name="date_test" max="2099-12-31"></label>
+      <label class="gl-vote-c">Commentaire (facultatif)<textarea name="commentaire" maxlength="500" rows="3"></textarea></label>
+      <button type="submit" class="btn btn--primary">Envoyer mon vote</button>
+    </form>
+    <p class="gl-note">Les votes sont un indicateur : ils ne changent pas le statut sans nouvelle vérification de notre équipe. Un vote par compte et par glitch.</p>
+  </section>
+  ${(g.historique || []).length ? `<details class="gl-hist"><summary>${icon('clock')}Historique du statut</summary><ul>${g.historique.map((h) => `<li><b>${fmtDate(h.date)}</b> · ${esc(GSTATUTS[h.statut] ? GSTATUTS[h.statut].n : h.statut)} · ${esc(h.note)}</li>`).join('')}${st.avant ? `<li><b>${fmtDate(st.depuis.date)}</b> · À revérifier · Mise à jour ${esc(st.depuis.id)} sortie depuis les dernières sources (calculé automatiquement).</li>` : ''}</ul></details>` : ''}
+  ${GLITCHS.length > 1 ? `<section class="gl-s"><h2 class="h3">${icon('bolt')}Autres glitchs</h2><div class="gl-grid">${GLITCHS.filter((x) => x !== g).slice(0, 3).map((x) => gCarte(x, R)).join('')}</div><p><a class="btn" href="${R}glitchs/">${icon('list')}Tous les glitchs</a></p></section>` : `<p><a class="btn" href="${R}glitchs/">${icon('list')}Tous les glitchs</a></p>`}
+</article>`;
+  const howto = { '@context': 'https://schema.org', '@type': 'HowTo', name: g.titre, description: g.resume, inLanguage: 'fr', dateModified: g.verifieLe, datePublished: g.publieLe, step: g.etapes.map((e, i) => ({ '@type': 'HowToStep', position: i + 1, text: e.t })) };
+  emit(p, layout({ p, title: titreSEO(`${g.titre} : glitch GTA 6, tutoriel et état`, `${g.titre} : glitch GTA 6`, `Glitch GTA 6 : ${g.court || g.titre}`), desc: descSEO(`Glitch GTA 6 : ${g.court || g.titre}.`, `${GSTATUTS[st.id].n}.`, g.resume), body, cls: 'p-fiche p-glitch', ogType: 'article', scripts: ['glitchs.js'], crumbs: [['Accueil', ''], ['Astuces', 'astuces/'], ['Glitchs', 'glitchs/'], [g.court || g.titre, p]], schema: [howto] }));
+}
+
 // statuts de fiabilité de la carte (mêmes libellés dans la légende et dans carte.js)
 const STATUTS_CARTE = [
   { id: 'officiel', n: 'Officiel', ic: 'badge', c: '#39ff88', t: 'Confirmé par Rockstar Games.' },
@@ -1673,6 +1828,7 @@ for (const a of ACTUS) {
     <button class="door" type="button" data-value="vehicule" aria-pressed="false" style="--c:#ff9a1f"><span class="door-ico">${icon('car')}</span><span>Véhicules</span><small data-fc="vehicule">0</small></button>
     <button class="door" type="button" data-value="lieu" aria-pressed="false" style="--c:#19d3e3"><span class="door-ico">${icon('pin')}</span><span>Lieux</span><small data-fc="lieu">0</small></button>
     <button class="door" type="button" data-value="code" aria-pressed="false" style="--c:#9b6bff"><span class="door-ico">${icon('code')}</span><span>Codes</span><small data-fc="code">0</small></button>
+    <button class="door" type="button" data-value="glitch" aria-pressed="false" style="--c:#19d3e3"><span class="door-ico">${icon('bolt')}</span><span>Glitchs</span><small data-fc="glitch">0</small></button>
   </div>
   <div class="filterbar"><label class="sort">${icon('sliders')}<select data-fav-sort aria-label="Trier"><option value="recent">Récent</option><option value="alpha">A → Z</option></select></label></div>
   <div class="list" data-fav-list></div>
@@ -1752,10 +1908,12 @@ for (const a of ACTUS) {
       <button type="button" role="tab" data-adm-tab="stats" aria-selected="true">${icon('star')}Statistiques</button>
       <button type="button" role="tab" data-adm-tab="contenu" aria-selected="false">${icon('book')}Contenu</button>
       <button type="button" role="tab" data-adm-tab="comptes" aria-selected="false">${icon('user')}Comptes</button>
+      <button type="button" role="tab" data-adm-tab="glitchs" aria-selected="false">${icon('bolt')}Glitchs</button>
     </div>
     <div data-adm-vue="stats"></div>
     <div data-adm-vue="contenu" hidden></div>
     <div data-adm-vue="comptes" hidden></div>
+    <div data-adm-vue="glitchs" hidden></div>
   </div>
 </section>`;
   emit(p, layout({ p, title: `Administration | ${M}`, desc: 'Espace réservé à l’administrateur.', body, noindex: true, cls: 'p-admin', scripts: ['admin.js'], crumbs: [['Accueil', ''], ['Administration', p]] }));
@@ -1807,7 +1965,7 @@ if (site.editeur && site.editeur.nom) {
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
     <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie, ni publicité, ni bouton de réseau social${MESURE ? '' : ", ni outil de mesure d'audience"}.</p>
-    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site et de la carte qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent), les raccourcis « Recherches populaires » de la carte utilisés (pour les classer un jour selon les vrais usages) et les combinaisons de codes copiées. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
+    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site et de la carte qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent), les raccourcis « Recherches populaires » de la carte utilisés (pour les classer un jour selon les vrais usages) et les combinaisons de codes copiées. Si tu votes sur un glitch (« Ce glitch fonctionne-t-il encore ? »), ton vote est enregistré avec ton compte : console, version du jeu, mode, date du test et commentaire facultatif. Seuls des totaux sont affichés publiquement ; le détail n'est visible que par l'administrateur du site. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
       <p><b>Tu peux refuser à tout moment</b> : <button class="btn btn--ghost" type="button" data-mesure-refus aria-pressed="false">${icon('eye')}<span data-on="Tes visites ne sont plus comptées (annuler)" data-off="Ne pas compter mes visites">Ne pas compter mes visites</span></button></p></div>` : ''}
     <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
     <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
@@ -1905,6 +2063,8 @@ for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collecti
 push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'astuce', s: '', l: 'Toutes les listes', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
 for (const m of MISSIONS.missions) push({ t: `Mission : ${m.nom}`, q: '', k: norm(['mission solution soluce', m.nom, m.nomEn, m.donneur, m.resume].join(' ')), d: extrait(m.resume), u: `missions/${m.id}/`, i: 'flag', c: '#ff3d6e', g: 'astuce', s: '', l: m.chapitre === 'prologue' ? 'Mission · Prologue' : `Mission · Chapitre ${m.chapitre}`, m: 0 });
+push({ t: 'Glitchs GTA 6', q: 'glitch', k: 'glitch glitchs bug bugs exploit astuce argent infini meilleurs glitch qui fonctionne encore apres mise a jour', d: `${GLITCHS.length} glitchs documentés, avec leur état de fonctionnement`, u: 'glitchs/', i: 'bolt', c: '#19d3e3', g: 'page', s: '', l: 'Page', m: 0 });
+for (const g of GLITCHS) push({ t: `Glitch : ${g.titre}`, q: '', k: norm(['glitch bug exploit', g.titre, g.court, g.resume, GCATS[g.cat].n, g.cat === 'argent' ? 'argent infini facile rapide money' : '', g.cat === 'gameplay' ? 'fps premiere personne camera vue' : ''].join(' ')), d: g.resume.split('. ')[0], u: `glitchs/${g.slug}/`, i: GCATS[g.cat].ic, c: GCATS[g.cat].c, g: 'astuce', s: '', l: `Glitch · ${GSTATUTS[gStatut(g).id].n}`, m: 0 });
 push({ t: 'Codes de triche', q: 'cheat', k: 'codes triche cheat cheats astuce code argent munitions tank', d: `${CODES.codes.length} codes relevés et comment les débloquer`, u: 'codes/', i: 'code', c: '#9b6bff', g: 'page', s: '', l: 'Page', m: 0 });
 for (const d of DOSSIERS) push({ t: d.titre, q: d.court, k: norm([d.titre, d.court, d.seo, d.desc, d.reponse, ...d.sections.map((x) => x.titre)].join(' ')), d: extrait(d.reponse), u: `dossiers/${d.slug}/`, i: d.icon, c: d.couleur, g: 'page', s: '', l: 'Dossier', m: 0 });
 for (const c of CODES.codes) push({ t: `Code : ${c.nom}`, q: '', k: norm(['code triche cheat', c.nom, c.nomEn, c.effet].join(' ')), d: c.effet, ...(c.confirme && c.sources.length >= 2 ? { r: `${c.effet} Combinaison : ${c.sequence.map((x) => ({ haut: 'Haut', bas: 'Bas', gauche: 'Gauche', droite: 'Droite' }[x] || x)).join(', ')}.`, rs: 'Confirmé' } : {}), u: `codes/#${c.id}`, i: 'code', c: '#9b6bff', g: 'astuce', s: '', l: 'Code', m: 0 });
@@ -1973,7 +2133,9 @@ const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data
 // intitulés génériques encore en anglais : traduits à l'affichage (les données d'origine ne changent pas ; l'original reste cherchable)
 const TRAD_C = (CO.traductions || []);
 const traduit = (t) => TRAD_C.reduce((a, [en, fr]) => a.split(en).join(fr), t || '');
-const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) }; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
+// repères utilisés par un glitch publié : lien vers le tutoriel (et numéro de l'étape)
+const GL_LIEUX = {}; for (const g of GLITCHS) for (const e of g.emplacements || []) (GL_LIEUX[e.carte] ||= []).push({ s: g.slug, t: g.court || g.titre, n: e.n || 0 });
+const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) }; if (GL_LIEUX[p.id]) p.gl = GL_LIEUX[p.id]; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },

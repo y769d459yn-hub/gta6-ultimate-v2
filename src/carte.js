@@ -19,9 +19,9 @@
   // ---------- état des filtres ----------
   // sel : catégories choisies ; subs : sous-catégories choisies par catégorie (vide = toute la catégorie)
   const sel = new Set(), subs = {};
-  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, approx: true, nonconf: true, sect: '' };
+  const DEF = { verif: false, cacheT: false, rares: false, spoil: false, favs: false, gl: false, approx: true, nonconf: true, sect: '' };
   const opt = { ...DEF };
-  const state = { commu: false, fromList: false, vide: true, solo: '', spot: '', choisi: null, pop: '', lq: '', tri: 'pert' };
+  const state = { commu: false, fromList: false, vide: true, solo: '', spot: '', choisi: null, pop: '', lq: '', tri: 'pert', glitch: '' };
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
   // points marqués « trouvé » (gardés sur cet appareil, synchronisés par le compte s'il existe : même clé qu'avant)
   const KEY_T = 'lg:carte-trouves';
@@ -96,12 +96,15 @@
     });
     (params.get('f') || '').split(',').forEach((k) => { if (k in DEF && DEF[k] === false) opt[k] = true; if (k === 'sansapprox') opt.approx = false; if (k === 'sansnonconf') opt.nonconf = false; });
     if (params.get('sect')) opt.sect = params.get('sect');
+    // arrivée depuis un tutoriel de glitch : seulement ses lieux
+    const gq = params.get('glitch'); if (gq && D.features.some((f) => (f.properties.gl || []).some((x) => x.s === gq))) { state.glitch = gq; if (!sel.size) Object.keys(cats).forEach((k) => sel.add(k)); }
     if (sel.size) state.vide = false;
     if (params.get('pop')) { const p = (OPT.populaires || []).find((x) => x.id === params.get('pop')); if (p) { state.pop = p.id; appliquerPop(p, true); } }
   }
   function ecrireURL() {
     const u = new URL(location.href);
-    ['cat', 'sc', 'f', 'sect', 'pop', 'focus', 'mission'].forEach((k) => u.searchParams.delete(k));
+    ['cat', 'sc', 'f', 'sect', 'pop', 'focus', 'mission', 'glitch'].forEach((k) => u.searchParams.delete(k));
+    if (state.glitch) u.searchParams.set('glitch', state.glitch);
     if (state.pop) u.searchParams.set('pop', state.pop);
     else if (!state.vide) {
       const tt = sel.size === Object.keys(cats).length && !Object.values(subs).some((s) => s.size);
@@ -109,7 +112,7 @@
       const sc = [...sel].flatMap((c) => [...(subs[c] || [])].map((s) => (sel.size === 1 ? s : c + ':' + s)));
       if (sc.length) u.searchParams.set('sc', sc.join(','));
     }
-    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox'); if (!opt.nonconf) fl.push('sansnonconf');
+    const fl = ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl'].filter((k) => opt[k]); if (!opt.approx) fl.push('sansapprox'); if (!opt.nonconf) fl.push('sansnonconf');
     if (fl.length) u.searchParams.set('f', fl.join(','));
     if (opt.sect) u.searchParams.set('sect', opt.sect);
     history.replaceState(null, '', u);
@@ -135,6 +138,8 @@
     if (opt.rares && !f.rar) return false;
     if (opt.spoil && f.cat === 'missions' && f.missions) return false;
     if (opt.favs && !estFav(f)) return false;
+    if (opt.gl && !f.gl) return false;
+    if (state.glitch && !(f.gl || []).some((x) => x.s === state.glitch)) return false;
     if (!opt.approx && approx(f)) return false;
     if (!opt.nonconf && statutDe(f) === 'nonconf') return false;
     if (opt.sect && secteur(f) !== opt.sect) return false;
@@ -144,10 +149,11 @@
   const resultats = () => atlas.feats().filter(passe);
   function applyFilter() {
     lireFavs();
+    atlas.setBadge(state.glitch || opt.gl ? (f) => { const x = (f.gl || []).find((y) => !state.glitch || y.s === state.glitch); return x ? (x.n ? String(x.n) : '⚡') : ''; } : null);
     atlas.setFilter((f) => (state.solo ? f.id === state.solo : passe(f)));
     atlas.showCommu(state.commu && !state.solo); countView(); sync();
   }
-  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs'].filter((k) => opt[k]).length + (!opt.approx ? 1 : 0) + (!opt.nonconf ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
+  const nbOpts = () => ['verif', 'cacheT', 'rares', 'spoil', 'favs', 'gl'].filter((k) => opt[k]).length + (state.glitch ? 1 : 0) + (!opt.approx ? 1 : 0) + (!opt.nonconf ? 1 : 0) + (opt.sect ? 1 : 0) + (state.commu ? 1 : 0);
   const filtresActifs = () => !state.vide || nbOpts() > 0;
   const nPop = (p) => atlas.feats().filter((f) => !f.label && dans(f, p.cat) && (!(p.sc || []).length || scDe(f, p.cat).some((x) => p.sc.includes(x)))).length;
   // nombres affichés sur les boutons : repères de la catégorie (options comprises)
@@ -177,7 +183,7 @@
   }
   const tout = () => { state.pop = ''; choisirCats(Object.keys(cats)); };
   function reset() {
-    state.pop = ''; Object.assign(opt, DEF); state.commu = false;
+    state.pop = ''; Object.assign(opt, DEF); state.commu = false; state.glitch = '';
     choisirCats([]); state.vide = true; comptes(); applyFilter(); closePanel();
   }
   function appliquerPop(p, init) {
@@ -409,6 +415,7 @@
   // résumé lisible des filtres actifs
   function resume() {
     const t = [];
+    if (state.glitch) { const x = atlas.feats().flatMap((f) => f.gl || []).find((y) => y.s === state.glitch); return 'Lieux du glitch : ' + (x ? x.t : state.glitch); }
     if (state.pop) t.push(((OPT.populaires || []).find((p) => p.id === state.pop) || {}).nom);
     else if (sel.size === Object.keys(cats).length && !Object.values(subs).some((x) => x && x.size)) t.push('Tous les repères');
     else [...sel].forEach((c) => { const s = subs[c]; t.push(s && s.size ? [...s].map((x) => subNoms[c + ':' + x]).join(', ') : (cats[c] || {}).nom); });
@@ -457,7 +464,7 @@
     const secteurs = {}; all.forEach((f) => { const s = secteur(f); if (s) secteurs[s] = (secteurs[s] || 0) + 1; });
     const sects = Object.keys(secteurs).filter((s) => secteurs[s] >= 3 || s === opt.sect).sort((a, b) => a.localeCompare(b, 'fr'));
     const tog = (k, lab, aide) => `<button type="button" class="pn-opt" data-opt="${k}" aria-pressed="${k === 'commu' ? state.commu : opt[k]}"><span class="pn-sw" aria-hidden="true"></span><span><b>${escH(lab)}</b>${aide ? `<small>${escH(aide)}</small>` : ''}</span></button>`;
-    const nVerif = nO((f) => f.statut === 'teste'), nApprox = nO(approx), nNc = nO((f) => statutDe(f) === 'nonconf'), nRar = nO((f) => f.rar), nSp = nO((f) => f.cat === 'missions' && f.missions);
+    const nVerif = nO((f) => f.statut === 'teste'), nApprox = nO(approx), nNc = nO((f) => statutDe(f) === 'nonconf'), nRar = nO((f) => f.rar), nSp = nO((f) => f.cat === 'missions' && f.missions), nGl = nO((f) => f.gl);
     const sect = (titre, corps) => (corps.trim() ? `<section class="pn-fs"><h3 class="pn-fs-h">${titre}</h3>${corps}</section>` : '');
     const n = state.vide ? 0 : resultats().length;
     const c0 = $('.pn-c', panel), y = !panel.hidden && $('[data-fc]', panel) && c0 ? c0.scrollTop : 0;
@@ -470,7 +477,7 @@
       ${sects.length ? sect('Localisation', `<label class="pn-sect"><span class="sr-only">Région ou quartier</span><select data-sect><option value="">Toutes les régions</option>${sects.map((x) => `<option value="${escH(x)}"${x === opt.sect ? ' selected' : ''}>${escH(x)} (${secteurs[x]})</option>`).join('')}</select></label><p class="pn-fs-n">Seuls les repères dont le quartier est connu sont filtrés.</p>`) : ''}
       ${sect('Progression', `${tog('cacheT', 'Masquer les éléments déjà trouvés', trouves.size ? `N’affiche que les non trouvés (${trouves.size} marqué${trouves.size > 1 ? 's' : ''})` : 'Rien de marqué pour l’instant')}${tog('favs', 'Uniquement mes favoris', favSet.size ? '' : 'Ajoute un lieu en favori avec le cœur de sa fiche')}`)}
       ${sect('Fiabilité', `${nVerif ? tog('verif', 'Uniquement les emplacements vérifiés en jeu', '') : ''}${nApprox ? tog('approx', 'Afficher les emplacements approximatifs', `Zone seulement (${nApprox})`) : ''}${nNc ? tog('nonconf', 'Afficher les informations non confirmées', `${nNc} repères`) : ''}${!nVerif ? '<p class="pn-fs-n">Aucun emplacement n’est encore vérifié en jeu par notre équipe : les positions viennent de sources communautaires.</p>' : ''}`)}
-      ${sect('Autres options', `${nSp ? tog('spoil', 'Masquer les spoilers', 'Cache les lieux des missions de l’histoire') : ''}${nRar ? tog('rares', 'Uniquement les éléments rares', 'Véhicules et armes uniques, objets rares') : ''}${commu.length ? tog('commu', 'Lieux de la communauté (GTADB)', 'Non vérifiés, visibles en zoomant') : ''}`)}
+      ${sect('Autres options', `${nSp ? tog('spoil', 'Masquer les spoilers', 'Cache les lieux des missions de l’histoire') : ''}${nRar ? tog('rares', 'Uniquement les éléments rares', 'Véhicules et armes uniques, objets rares') : ''}${nGl ? tog('gl', 'Uniquement les lieux de glitchs', `${nGl} lieux utilisés dans un tutoriel de glitch`) : ''}${commu.length ? tog('commu', 'Lieux de la communauté (GTADB)', 'Non vérifiés, visibles en zoomant') : ''}`)}
       <div class="pn-act pn-act--f"><button type="button" class="nbtn" data-reset-in><span>Réinitialiser</span><i>${ic('x')}</i></button><button type="button" class="nbtn nbtn--primary" data-voir><span>${state.vide ? 'Afficher les résultats' : `Afficher ${n} résultat${n > 1 ? 's' : ''}`}</span><i>${ic('arrow-right')}</i></button></div>`, 'grand');
     if (y) $('.pn-c', panel).scrollTop = y;
     const garder = (fn) => { fn(); state.pop = ''; comptes(); applyFilter(); openFiltres(); };
@@ -587,7 +594,8 @@
     const proche = prox ? `<details class="pn-near pn-more"><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const enTete = `<div class="pn-h pn-h--f">${vignette(f, 'pn-thumb')}<div class="pn-h-t"><small style="--c:${c.color}">${escH(kicker)}</small><h2>${escH(titre)}</h2><span class="pn-h-st">${stTag(f, true)}</span></div>${favBtn}<button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
-    showPanel(`${hero}${enTete}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
+    const glx = (f.gl || []).length ? `<div class="pn-gl">${f.gl.map((x) => `<a class="pn-full${x.s === state.glitch ? ' pn-full--gl' : ''}" href="${ROOT}glitchs/${escH(x.s)}/">${ic('bolt')}<span>${x.s === state.glitch ? 'Retour au tutoriel' : 'Glitch ici'} : ${escH(x.t)}${x.n ? ` <small>· étape ${x.n}</small>` : ''}</span>${ic('arrow-right')}</a>`).join('')}</div>` : '';
+    showPanel(`${hero}${enTete}${glx}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
     panel.classList.add('pn-fiche');
     bindNav();
     const bt = $('[data-found]', panel);

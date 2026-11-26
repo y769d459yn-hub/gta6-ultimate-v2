@@ -540,3 +540,6 @@ html.menu-open { overflow: hidden; }
 .drawer-in a.drawer-a:hover { background: rgba(255, 255, 255, .04); }
 .drawer-in a.drawer-a[aria-current] { background: transparent; }
 .drawer-in a.drawer-a[aria-current] span { color: var(--cy); }
+/* rubriques de l'accueil : 6 tuiles (Glitchs ajouté) — deux rangées de trois sur téléphone pour garder les noms lisibles */
+.hx-cats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 599px) { .hx-cats { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hx-cats a { min-height: 68px; } }

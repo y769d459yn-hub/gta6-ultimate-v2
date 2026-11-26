@@ -471,10 +471,10 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     const doors = $$('[data-fav-filter] [data-value]', favRoot);
     doors.forEach((b) => b.addEventListener('click', () => { type = type === b.dataset.value ? '' : b.dataset.value; doors.forEach((x) => x.setAttribute('aria-pressed', x.dataset.value === type)); render(); }));
     $('[data-fav-sort]', favRoot).addEventListener('change', (e) => { sort = e.target.value; render(); });
-    const label = { astuce: 'Astuce', vehicule: 'Véhicule', lieu: 'Lieu', code: 'Code' };
+    const label = { astuce: 'Astuce', vehicule: 'Véhicule', lieu: 'Lieu', code: 'Code', glitch: 'Glitch' };
     function render() {
       const all = favs();
-      ['astuce', 'vehicule', 'lieu', 'code'].forEach((t) => { const c = $(`[data-fc="${t}"]`, favRoot); if (c) c.textContent = all.filter((x) => x.type === t).length; });
+      ['astuce', 'vehicule', 'lieu', 'code', 'glitch'].forEach((t) => { const c = $(`[data-fc="${t}"]`, favRoot); if (c) c.textContent = all.filter((x) => x.type === t).length; });
       let f = all.filter((x) => !type || x.type === type);
       f = sort === 'alpha' ? f.sort((a, b) => a.t.localeCompare(b.t, 'fr')) : f.sort((a, b) => b.ts - a.ts);
       empty.hidden = !!f.length;

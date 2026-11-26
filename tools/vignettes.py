@@ -34,10 +34,16 @@ def vignette(x, y, z):
             if t is not None: img.paste(t, (tx * 1024 - x0, ty * 1024 - y0))
     return img
 
+# repères cités par un glitch (data/glitchs.json) : vignette aussi, même pour un commerce ou un service
+GL = set()
+gf = os.path.join(ROOT, 'data', 'glitchs.json')
+if os.path.exists(gf):
+    for g in json.load(open(gf))['glitchs']:
+        for e in g.get('emplacements', []): GL.add(e['carte'])
 ids = []
 for f in C['features']:
     p = f['properties']; x, y = f['geometry']['coordinates']
-    if p.get('service'): continue
+    if p.get('service') and p['id'] not in GL: continue
     z = 2 if p.get('label') else (3 if p.get('precision') == 'region' else 4)
     vignette(x, y, z).save(os.path.join(OUT, f"{p['id']}.webp"), 'WEBP', quality=70, method=6)
     ids.append(p['id'])
