@@ -272,95 +272,91 @@
         "Supercars",
         "Supercar",
         "Hypercar"
-       ]
+       ],
+       "re": "cheetah|emerus|furia|infernus|itali rsx|grotti rsx|tempesta|vitello|zorrusso"
       }
      },
      {
       "id": "sport",
-      "nom": "Voitures de sport",
+      "nom": "Sportives et JDM",
       "r": {
        "vc": [
         "Sportives",
         "Sportives classiques",
-        "Sportive"
-       ]
+        "Sportive",
+        "Coupés"
+       ],
+       "sauf": "supercars"
+      }
+     },
+     {
+      "id": "muscle",
+      "nom": "Muscle cars et collection",
+      "r": {
+       "vc": [
+        "Muscle cars",
+        "Muscle car",
+        "Classique"
+       ],
+       "re": "vamos|stallion|dominator(?! (gt|buggy))|gauntlet|phoenix|ruiner|deviant|vigero|slamvan|tulip|buccaneer|chino|devanity|manana|sungrazer|transgressor|stanier|ganado"
+      }
+     },
+     {
+      "id": "suv",
+      "nom": "SUV et tout-terrain",
+      "r": {
+       "vc": [
+        "SUV",
+        "Tout-terrain",
+        "Pick-up",
+        "Buggy"
+       ],
+       "re": "outlaw|caracara|sandking|kamacho|hellion|bison|riata|dominator buggy|marshall"
       }
      },
      {
       "id": "motos",
-      "nom": "Motos",
+      "nom": "Motos et quads",
       "r": {
        "vt": [
         "motos"
-       ]
-      }
-     },
-     {
-      "id": "helicos",
-      "nom": "Hélicoptères",
-      "r": {
+       ],
        "vc": [
-        "Hélicoptères",
-        "Hélicoptère"
+        "Motos"
        ],
-       "re": "h[ée]licopt"
-      }
-     },
-     {
-      "id": "avions",
-      "nom": "Avions",
-      "r": {
-       "vt": [
-        "avions"
-       ],
-       "sauf": "helicos"
+       "re": "sanchez|manchez|alvino|enduro|fcr|nightblade|zombie|avarus|verus|street blazer|double-t|carbon rs|sovereign|sfb"
       }
      },
      {
       "id": "bateaux",
-      "nom": "Bateaux",
+      "nom": "Bateaux et jet-skis",
       "r": {
        "vt": [
         "bateaux"
-       ]
+       ],
+       "re": "bombora|s23|squalo|speeder|marquis|clarion|\\btao\\b|seashark|jet ski|airboat|kayak|l35p"
+      }
+     },
+     {
+      "id": "aerien",
+      "nom": "Avions et hélicoptères",
+      "r": {
+       "vt": [
+        "avions"
+       ],
+       "re": "h[ée]licopt|helicopter|maverick|buzzard|sparrow|supervolito|swift|volatus|crake|dodo|seaplane|jet"
       }
      },
      {
       "id": "speciaux",
-      "nom": "Véhicules spéciaux et uniques",
+      "nom": "Militaires et spéciaux",
       "r": {
        "vc": [
         "Militaires",
         "Militaire",
-        "Police et urgences",
-        "Industriels"
+        "Police et urgences"
        ],
-       "sauf": "rares"
-      }
-     },
-     {
-      "id": "commander",
-      "nom": "Véhicules à commander",
-      "r": {
-       "s": [
-        "Véhicule à commander"
-       ]
-      }
-     },
-     {
-      "id": "apparition",
-      "nom": "Emplacements d'apparition",
-      "r": {
-       "s": [
-        "Véhicule qui apparaît ici",
-        "Location de véhicules",
-        "Concessionnaire"
-       ],
-       "vm": [
-        "Apparaît à cet endroit",
-        "Position relevée (GTA Wiki)",
-        "Repère du guide"
-       ]
+       "re": "rhino|militar|marshall|wastelander|waste lander|coast guard|garde-c"
       }
      }
     ]
@@ -1550,7 +1546,7 @@
     "icon": "heli",
     "cat": "vehicules",
     "sc": [
-     "helicos"
+     "aerien"
     ],
     "page": "astuces/trouver-helicoptere/"
    },
