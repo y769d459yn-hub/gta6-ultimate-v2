@@ -1396,6 +1396,14 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
   emit(p, layout({ p, title: `Codes de triche GTA 6 PS5 et Xbox : ${C.length} codes relevés`, desc: `${connus} codes de triche de GTA 6 relevés par les joueurs, dont ${C.filter(confirme).length} recoupés par deux sources distinctes : effet, déblocage, flèches et sources de chaque code.`, body, cls: 'p-list', scripts: ['codes.js'], crumbs: [['Accueil', ''], ['Codes', 'codes/']] }));
 }
 
+// statuts de fiabilité de la carte (mêmes libellés dans la légende et dans carte.js)
+const STATUTS_CARTE = [
+  { id: 'officiel', n: 'Officiel', ic: 'badge', c: '#39ff88', t: 'Confirmé par Rockstar Games.' },
+  { id: 'verifie', n: 'Vérifié', ic: 'check', c: '#4da3ff', t: 'Vérifié en jeu, ou confirmé par une source officielle ou deux sources indépendantes.' },
+  { id: 'probable', n: 'Probable', ic: 'info', c: '#ffa53a', t: 'Signalé par des sources communautaires : à confirmer.' },
+  { id: 'nonconf', n: 'Non confirmé', ic: 'question', c: '#b3aec4', t: 'Pas encore assez vérifié (zone seulement ou information provisoire).' },
+  { id: 'avenir', n: 'À venir', ic: 'clock', c: '#c77dff', t: 'Information pas encore disponible.' }
+];
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
 {
   const p = 'carte/', R = R_(p);
@@ -1409,34 +1417,39 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 <section class="atp" data-atlas-page>
   <div class="atp-stage" tabindex="0" role="application" aria-label="Carte de Leonida : glisse pour naviguer, pince ou molette pour zoomer"></div>
   <div class="atp-top">
-    <label class="atp-search"><span class="sr-only">Que recherches-tu dans GTA 6 ?</span>${icon('search')}<input type="search" id="atp-q" placeholder="Que recherches-tu dans GTA 6 ?" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg" aria-autocomplete="list"></label>
+    <div class="atp-sbar"><label class="atp-search"><span class="sr-only">Que recherches-tu dans GTA 6 ?</span>${icon('search')}<input type="search" id="atp-q" placeholder="Que recherches-tu dans GTA 6 ?" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg" aria-autocomplete="list"><button type="button" class="atp-qx" data-q-x hidden aria-label="Effacer la recherche">${icon('x')}</button></label></div>
     <div class="atp-sugg" id="atp-sugg" role="listbox" aria-label="Suggestions" hidden></div>
-    <div class="atp-cats" role="group" aria-label="Filtres rapides">
-      ${CO2.rapides.map((id) => { const c = cc(id); return `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.nom)}">${icon(c.icon)}${esc(c.court)}<small data-n="${c.id}"></small></button>`; }).join('')}
-      <button type="button" class="atp-chip atp-chip--all" data-all aria-pressed="false" style="--c:#fff" title="Afficher tous les repères (avec les filtres actifs)">${icon('map')}Tout<small data-n="tout"></small></button>
-      <button type="button" class="atp-chip atp-chip--f" data-filtres aria-haspopup="dialog" style="--c:#19d3e3">${icon('filter')}Tous les filtres<b class="atp-nf" data-nf hidden></b></button>
-      <button type="button" class="atp-chip atp-chip--reset" data-reset hidden style="--c:#ff6b6b">${icon('x')}Réinitialiser les filtres</button>
+    <div class="atp-row">
+      <div class="atp-cats" role="group" aria-label="Catégories principales">
+        ${CO2.rapides.map((id) => { const c = cc(id); return `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.nom)}">${icon(c.icon)}<span>${esc(c.court)}</span><small data-n="${c.id}"></small></button>`; }).join('')}
+        <button type="button" class="atp-chip atp-chip--all" data-all aria-pressed="false" style="--c:#f4f1ff" title="Afficher tous les repères (avec les filtres actifs)">${icon('map')}<span>Tout</span><small data-n="tout"></small></button>
+        <button type="button" class="atp-chip atp-chip--reset" data-reset hidden style="--c:#ff6b6b">${icon('x')}<span>Réinitialiser</span></button>
+      </div>
+      <button type="button" class="atp-fbtn" data-filtres aria-haspopup="dialog">${icon('filter')}<span>Filtres</span><b class="atp-nf" data-nf hidden></b></button>
     </div>
-    <div class="atp-pop" role="group" aria-label="Recherches populaires"><span class="atp-pop-k">${icon('flame')}<span>Recherches populaires</span></span>${CO2.populaires.map((x) => `<button type="button" class="atp-popb" data-pop="${x.id}" aria-pressed="false" style="--c:${cc(x.cat).color}">${icon(x.icon)}${esc(x.nom)}</button>`).join('')}</div>
+    <div class="atp-pop" data-pop-box role="group" aria-label="Recherches populaires"><button type="button" class="atp-pop-k" data-pop-tog aria-expanded="true" aria-controls="atp-pop-l">${icon('flame')}<span>Populaires</span>${icon('chevron')}</button><div class="atp-pop-l" id="atp-pop-l">${CO2.populaires.map((x) => `<button type="button" class="atp-popb" data-pop="${x.id}" aria-pressed="false" style="--c:${cc(x.cat).color}">${icon(x.icon)}${esc(x.nom)}</button>`).join('')}</div></div>
     <div class="atp-vide" data-vide hidden role="status">${icon('search')}<span>Choisis ce que tu recherches pour afficher les lieux sur la carte.</span></div>
     <div class="atp-solo atp-keep" data-keep hidden role="status">${icon('pin')}<span>Repère choisi : <b data-keep-nom></b></span><button type="button" data-keep-voir>${icon('arrow-right')}Voir</button><button type="button" class="atp-keep-x" data-keep-off aria-label="Effacer le repère choisi">${icon('x')}</button></div>
     <div class="atp-solo" data-solo hidden role="status">${icon('flag')}<span>Seul le lieu de ta mission est affiché : <b data-solo-nom></b>.<i class="atp-solo-more"> Choisis ce que tu cherches pour voir le reste.</i></span><button type="button" data-solo-off>${icon('map')}Tout afficher</button></div>
   </div>
   <div class="atp-ctrl">
-    <button type="button" class="hm-btn hm-btn--help" data-leg-btn aria-expanded="false" aria-controls="atp-leg" aria-label="Légende de la carte">${icon('question')}</button>
-    <button type="button" class="hm-btn" data-prog aria-label="Ma progression">${icon('progress')}</button>
+    <button type="button" class="hm-btn atp-explore" data-explore aria-pressed="false" aria-label="Mode exploration (plein écran)">${icon('expand')}</button>
     <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
     <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
     <button type="button" class="hm-btn" data-z="center" aria-label="Recentrer la carte (sur le repère choisi ou les résultats)">${icon('locate')}</button>
+    <button type="button" class="hm-btn hm-btn--help" data-leg-btn aria-expanded="false" aria-controls="atp-leg" aria-label="Légende de la carte">${icon('question')}</button>
   </div>
   <div class="atp-leg" id="atp-leg" hidden>
     <div class="atp-leg-h"><b>Légende</b><button type="button" data-leg-x aria-label="Fermer la légende">${icon('x')}</button></div>
     <p>Choisis ce que tu recherches pour afficher les lieux sur la carte.</p>
     <details class="atp-leg-d"><summary>Catégories de la carte</summary><ul class="atp-leg-c">${CC.map((c) => `<li><span class="hl-dot" style="--c:${c.color}">${icon(c.icon)}</span><span><b>${esc(c.nom)}</b>${esc(c.sens)}</span></li>`).join('')}</ul></details>
     <ul class="atp-leg-b"><li><span class="atp-leg-ring"></span>Bordure pleine : emplacement vérifié en jeu</li><li><span class="atp-leg-ring atp-leg-ring--d"></span>Pointillés : approximatif ou à confirmer</li></ul>
+    <details class="atp-leg-d"><summary>Statuts de fiabilité</summary><ul class="atp-leg-s">${STATUTS_CARTE.map((x) => `<li><span class="pn-st" style="--c:${x.c}">${icon(x.ic)}${esc(x.n)}</span><span>${esc(x.t)}</span></li>`).join('')}</ul></details>
     <details class="atp-leg-d"><summary>Guides liés</summary><ul class="atp-leg-g">${GUIDES.map(([u, t, ic, c]) => `<li><a href="${R}${u}" style="--c:${c}">${icon(ic)}${esc(t)}</a></li>`).join('')}</ul></details>
   </div>
-  <div class="atp-regions" role="group" aria-label="Liste et régions"><button type="button" class="atp-list" data-list>${icon('list')}Liste<small data-n="vue"></small></button>${CARTE.regions.map((r) => `<button type="button" data-reg="${r.id}" style="--c:${r.couleur}">${esc(r.nom)}</button>`).join('')}</div>
+  <div class="atp-regions" role="group" aria-label="Liste, régions et progression"><button type="button" class="atp-list" data-list>${icon('list')}Liste<small data-n="vue"></small></button><button type="button" class="atp-regb" data-reg-btn aria-haspopup="menu" aria-expanded="false">${icon('map')}<span data-reg-nom>Régions</span>${icon('chevron')}</button><button type="button" class="atp-progb" data-prog aria-label="Ma progression">${icon('progress')}<span>Progression</span></button>
+    <div class="atp-regm" data-reg-menu role="menu" hidden><button type="button" role="menuitem" data-reg="">${icon('expand')}Toutes les régions</button>${CARTE.regions.map((r) => `<button type="button" role="menuitem" data-reg="${r.id}" style="--c:${r.couleur}"><i></i>${esc(r.nom)}</button>`).join('')}</div></div>
+  <div class="atp-snack" data-snack role="status" aria-live="polite" hidden><span data-snack-t></span><button type="button" data-snack-undo>Annuler</button></div>
   <div class="atp-panel" data-panel role="region" aria-label="Détails" hidden aria-live="polite"></div>
   <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0. Objets, armes, véhicules, braquages, commerces et activités : <a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, positions converties et textes traduits.</p></details>
 </section>`;
@@ -1957,13 +1970,16 @@ write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats
   }
 }
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
-const featsCarte = features.map((f) => ({ ...f, properties: { ...f.properties, ...carteClasse(f.properties) } }));
+// intitulés génériques encore en anglais : traduits à l'affichage (les données d'origine ne changent pas ; l'original reste cherchable)
+const TRAD_C = (CO.traductions || []);
+const traduit = (t) => TRAD_C.reduce((a, [en, fr]) => a.split(en).join(fr), t || '');
+const featsCarte = features.map((f) => { const p = { ...f.properties, ...carteClasse(f.properties) }; const n = traduit(p.nom); if (n !== p.nom) { p.vo = p.nom; p.nom = n; } if (p.desc) p.desc = traduit(p.desc); return { ...f, properties: p }; });
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
   bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
   regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
-  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes },
+  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes, statuts: STATUTS_CARTE },
   sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
   features: featsCarte
 }));

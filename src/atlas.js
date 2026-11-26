@@ -109,7 +109,7 @@
       // repères du guide, regroupés en écran
       // 1) regroupement par proximité à l'écran ; 2) chaque groupe recentré sur ses membres ;
       // 3) deux groupes qui se toucheraient fusionnent (aucun repère n'est retiré, seulement regroupé)
-      const R = 34, taille = (n) => (n === 1 ? 34 : Math.min(52, 38 + Math.sqrt(n) * 2.2));
+      const R = 38, taille = (n) => (n === 1 ? 32 : Math.min(46, 32 + Math.sqrt(n) * 2));
       let cl = [];
       const vis = st.feats.filter((f) => !f.label && st.filter(f));
       const [vx0, vy1] = toWorld(-80, -80), [vx1, vy0] = toWorld(W + 80, H + 80); // hors écran : regroupé sans calcul fin
@@ -138,9 +138,10 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 || f.id === st.active ? ' at-dot--lbl' : '') + (f.id === st.active ? ' is-spot' : '');
+          el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (f.id === st.active ? ' is-spot' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
-          el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${cam.s >= .2 || f.id === st.active ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
+          el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${st.found && st.found.has(f.id) ? '<span class="at-dot-ok" aria-hidden="true"></span>' : ''}`;
+          c.el = el; c.f = f;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
           el.setAttribute('aria-label', `${f.nom} (${(cats[f.cat] || {}).nom || ''})`);
           el.dataset.id = f.id;
@@ -149,18 +150,31 @@
           const by = {}; c.m.forEach((f) => { by[f.cat] = (by[f.cat] || 0) + 1; });
           const parts = Object.entries(by).sort((a, b) => b[1] - a[1]);
           let acc = 0; const stops = parts.map(([k, n]) => { const a0 = acc; acc += n / c.m.length * 360; return `${(cats[k] || {}).color || '#ff2bd6'} ${a0}deg ${acc}deg`; });
-          el.className = 'at-cl'; el.innerHTML = `<b>${c.m.length}</b>`;
+          el.className = 'at-cl' + (parts.length > 1 ? ' at-cl--mix' : ''); el.innerHTML = `<b>${c.m.length > 999 ? '999+' : c.m.length}</b>`;
           el.style.setProperty('--ring', `conic-gradient(${stops.join(',')})`);
           el.style.setProperty('--c', (cats[parts[0][0]] || {}).color || '#ff2bd6');
-          el.style.setProperty('--sz', Math.min(52, 38 + Math.sqrt(c.m.length) * 2.2) + 'px');
+          el.style.setProperty('--sz', taille(c.m.length) + 'px');
           el.setAttribute('aria-label', `${c.m.length} repères ici (${parts.map(([k, n]) => `${n} ${((cats[k] || {}).nom || k).toLowerCase()}`).join(', ')}) : toucher pour zoomer`);
           // repères trop proches pour être séparés même au zoom maximum : la liste s'ouvre au lieu de zoomer
           const xs = c.m.map((f) => f.x), ys = c.m.map((f) => f.y);
           const serres = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) * sMax < 30;
-          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); if ((serres || cam.s >= sMax * .97) && o.onCluster) o.onCluster(c.m); else fit(c.m, 2.6); });
+          el.addEventListener('click', (e) => { if (moved) return; e.stopPropagation(); if ((serres || cam.s >= sMax * .97) && o.onCluster) o.onCluster(c.m); else fit(c.m, 2.6, 4); });
         }
         add(el, x, y);
       });
+      // noms : celui du repère choisi toujours ; les autres seulement au zoom proche et s'ils ne chevauchent rien
+      const boites = cl.map((c) => { const r = taille(c.m.length) / 2 + 2; return [c.sx - r, c.sy - r, c.sx + r, c.sy + r, c]; });
+      const prises = [], coupe = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+      const cand = cl.filter((c) => c.f && (c.f.id === st.active || (cam.s >= .26 && c.sx > 60 && c.sx < W - 70 && c.sy > pad.top && c.sy < H - 40)))
+        .sort((a, b) => (b.f.id === st.active) - (a.f.id === st.active) || (a.f.src === 'ogm') - (b.f.src === 'ogm') || (!!b.f.rar) - (!!a.f.rar));
+      for (const c of cand) {
+        const actif = c.f.id === st.active; if (!actif && prises.length >= 28) break;
+        const w = Math.min(actif ? 220 : 170, c.f.nom.length * 6.8 + 18), h = actif ? 26 : 22, y0 = c.sy + (actif ? 25 : 17) - h / 2 + 11;
+        const bx = [c.sx - w / 2, y0, c.sx + w / 2, y0 + h];
+        if (!actif && (prises.some((q) => coupe(q, bx)) || boites.some((q) => q[4] !== c && coupe(q, bx)))) continue;
+        prises.push(bx);
+        const n = document.createElement('b'); n.className = 'at-dot-n'; n.textContent = c.f.nom; c.el.appendChild(n); c.el.classList.add('at-dot--lbl');
+      }
       layer.appendChild(frag);
       place();
     }
@@ -191,12 +205,12 @@
       const [mx, my] = toWorld(sx, sy); const ns = Math.min(Math.max(cam.s * f, sMin * .8), sMax);
       flyTo(mx - (sx - fx()) / ns, my + (sy - fy()) / ns, ns, .6);
     }
-    function fit(list, extra = 1.4) {
+    function fit(list, extra = 1.4, maxF = 0) {
       const xs = list.map((f) => f.x), ys = list.map((f) => f.y);
       const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
       const aw = W - pad.left - pad.right, ah = H - pad.top - pad.bottom;
       const s = Math.min(aw / Math.max((x1 - x0) * extra, 300), ah / Math.max((y1 - y0) * extra, 300));
-      flyTo((x0 + x1) / 2, (y0 + y1) / 2, Math.max(s, cam.s * 1.5));
+      flyTo((x0 + x1) / 2, (y0 + y1) / 2, maxF ? Math.min(Math.max(s, cam.s * 1.5), cam.s * maxF) : Math.max(s, cam.s * 1.5), .7);
     }
     function reset() { flyTo(C.vueInitiale.centre[0], C.vueInitiale.centre[1], sMin); }
     function select(f, opts = {}) {
@@ -294,6 +308,8 @@
         return st.feats.filter((f) => !f.label && st.filter(f) && f.x >= x0 && f.x <= x1 && f.y >= y0 && f.y <= y1);
       },
       active: () => st.active,
+      vue: () => ({ x: cam.x, y: cam.y, s: cam.s }),
+      setVue(v) { stop(); Object.assign(cam, v); measure(); render(true); },
       measure() { measure(); render(true); }
     };
   }

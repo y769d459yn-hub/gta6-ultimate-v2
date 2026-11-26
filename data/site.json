@@ -1478,7 +1478,8 @@
    "argent",
    "vehicules",
    "armes",
-   "secrets"
+   "secrets",
+   "collection"
   ],
   "alias": {
    "lieux": "services:quartiers"
@@ -1675,6 +1676,48 @@
     "braquer",
     "braquages",
     "vol"
+   ]
+  ],
+  "traductions": [
+   [
+    "(custom paint job)",
+    "(peinture personnalisée)"
+   ],
+   [
+    "(Anime wrap)",
+    "(décoration anime)"
+   ],
+   [
+    "(anime wrap)",
+    "(décoration anime)"
+   ],
+   [
+    "(collector condition)",
+    "(état collection)"
+   ],
+   [
+    "(Paul Walker tribute)",
+    "(hommage à Paul Walker)"
+   ],
+   [
+    "(Arthur Morgan hat)",
+    "(chapeau d'Arthur Morgan)"
+   ],
+   [
+    "(Pink)",
+    "(rose)"
+   ],
+   [
+    "(purple)",
+    "(violette)"
+   ],
+   [
+    "(Legendary)",
+    "(légendaire)"
+   ],
+   [
+    "Manga-Livery Hatchback",
+    "Citadine à décoration manga"
    ]
   ]
  }
