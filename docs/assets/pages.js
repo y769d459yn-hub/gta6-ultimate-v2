@@ -33,3 +33,25 @@
   const icons = document.querySelectorAll('.fiche-ico .ic > *, .door-ico .ic > *');
   if (icons.length && window.DrawSVGPlugin) g.from(icons, { drawSVG: '0%', duration: 1, stagger: .01, ease: 'power2.inOut', delay: .2 });
 })();
+
+// Fiche véhicule : photo en plein écran, dans sa plus grande résolution (chargée seulement à la demande)
+(() => {
+  'use strict';
+  const btns = document.querySelectorAll('[data-plein]'); if (!btns.length) return;
+  let box = null, dernier = null;
+  const fermer = () => { if (!box) return; box.remove(); box = null; document.documentElement.classList.remove('veh-lb-on'); if (dernier) dernier.focus(); };
+  btns.forEach((b) => b.addEventListener('click', () => {
+    dernier = b;
+    box = document.createElement('div'); box.className = 'veh-lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', `${b.dataset.pleinAlt} en plein écran`);
+    box.innerHTML = '<img decoding="async"><button class="veh-lb-x" type="button" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><span class="veh-lb-info">Chargement de la haute définition…</span>';
+    const im = box.querySelector('img'), prev = b.parentElement.querySelector('img');
+    im.alt = b.dataset.pleinAlt; im.src = prev.currentSrc || prev.src; // aperçu immédiat, remplacé par la HD
+    const hd = new Image(); hd.onload = () => { if (box) { im.src = hd.src; box.classList.add('is-hd'); } }; hd.src = b.dataset.plein;
+    // un toucher sur la photo l'affiche à taille réelle (pixels d'origine), un second la remet à l'écran
+    im.addEventListener('click', (e) => { e.stopPropagation(); box.classList.toggle('is-zoom'); });
+    box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.veh-lb-x')) fermer(); });
+    document.body.appendChild(box); document.documentElement.classList.add('veh-lb-on'); box.querySelector('.veh-lb-x').focus();
+  }));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') fermer(); });
+})();

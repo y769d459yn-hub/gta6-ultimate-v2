@@ -110,8 +110,10 @@
  "vapid-dominator-buggy": {
   "fichier": "vapid-dominator-buggy.webp",
   "note": "",
-  "credit": "Rockstar Games",
-  "url": "https://www.rockstargames.com/VI/media/screenshots"
+  "credit": "Rockstar Games, via GTA Wiki",
+  "url": "https://gta.wiki/w/File:DominatorBuggy-GTAVI-FrontQuarter.png",
+  "hd": "vapid-dominator-buggy.webp",
+  "source": "https://gta.wiki/images/DominatorBuggy-GTAVI-FrontQuarter.png"
  },
  "vapid-ganado": {
   "fichier": "vapid-ganado.webp",
@@ -123,7 +125,9 @@
   "fichier": "pfister-comet-s2.webp",
   "note": "",
   "credit": "Rockstar Games, via GTA Wiki",
-  "url": "https://gta.wiki/w/Comet_S2_Cabrio"
+  "url": "https://gta.wiki/w/File:CometS2-GTAVI-FrontQuarter.png",
+  "hd": "pfister-comet-s2.webp",
+  "source": "https://gta.wiki/images/CometS2-GTAVI-FrontQuarter.png"
  },
  "obey-tailgater-s": {
   "fichier": "obey-tailgater-s.webp",
@@ -134,8 +138,10 @@
  "imponte-ruiner": {
   "fichier": "imponte-ruiner.webp",
   "note": "",
-  "credit": "Rockstar Games, via GTABase",
-  "url": "https://www.gtabase.com/vehicles/gta-6/ruiner"
+  "credit": "Rockstar Games, via GTA Wiki",
+  "url": "https://gta.wiki/w/File:Ruiner1982-GTAVI-FrontQuarter.png",
+  "hd": "imponte-ruiner.webp",
+  "source": "https://gta.wiki/images/Ruiner1982-GTAVI-FrontQuarter.png"
  },
  "maibatsu-penumbra-shirley": {
   "fichier": "maibatsu-penumbra-shirley.webp",
@@ -152,8 +158,10 @@
  "granforma-zorrusso": {
   "fichier": "granforma-zorrusso.webp",
   "note": "",
-  "credit": "Rockstar Games, via GTABase",
-  "url": "https://www.gtabase.com/gta-6/vehicles/zorrusso"
+  "credit": "Rockstar Games, via GTA Wiki",
+  "url": "https://gta.wiki/w/File:Zorrusso-GTAVI-FrontQuarter.png",
+  "hd": "granforma-zorrusso.webp",
+  "source": "https://gta.wiki/images/Zorrusso-GTAVI-FrontQuarter.png"
  },
  "jets-militaires": {
   "fichier": "jets-militaires.webp",
@@ -165,7 +173,9 @@
   "fichier": "jobuilt-hauler.webp",
   "note": "",
   "credit": "Rockstar Games, via GTA Wiki",
-  "url": "https://gta.wiki/w/File:Hauler-GTAVI-FrontQuarter.png"
+  "url": "https://gta.wiki/w/File:Hauler-GTAVI-FrontQuarter.png",
+  "hd": "jobuilt-hauler.webp",
+  "source": "https://gta.wiki/images/Hauler-GTAVI-FrontQuarter.png"
  },
  "hauners-ridgway": {
   "fichier": "hauners-ridgway.webp",

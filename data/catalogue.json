@@ -125,13 +125,14 @@
     }
    ],
    "img": "obey-8f-drafter.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/8f-drafter",
-   "nettete": 64,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:8FDrafter-GTAVI-FrontQuarter.jpg",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/8FDrafter-GTAVI-FrontQuarter.jpg",
+   "hd": "obey-8f-drafter.webp"
   },
   {
    "slug": "hauners-apc",
@@ -259,9 +260,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Airtug-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Airtug-GTAVI-FrontQuarter.png",
+   "hd": "hvy-airtug.webp"
   },
   {
    "slug": "declasse-akane",
@@ -288,11 +291,12 @@
    "img": "declasse-akane.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Akane-GTAVI-FrontQuarter.png",
-   "nettete": 57,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Akane-GTAVI-FrontQuarter.png",
+   "hd": "declasse-akane.webp"
   },
   {
    "slug": "vapid-aleutian",
@@ -321,13 +325,13 @@
     }
    ],
    "img": "vapid-aleutian.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/aleutian",
-   "nettete": 46,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Aleutian-GTAVI-FrontQuarter.png",
    "taille": [
-    639,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Aleutian-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "karin-allander",
@@ -354,11 +358,12 @@
    "img": "karin-allander.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Allander-GTAVI-FrontQuarter.png",
-   "nettete": 987,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Allander-GTAVI-FrontQuarter.png",
+   "hd": "karin-allander.webp"
   },
   {
    "slug": "albany-alpha",
@@ -451,11 +456,12 @@
    "img": "interstate-ambulance.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Ambulance-GTAVI-FrontQuarter.png",
-   "nettete": 1396,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Ambulance-GTAVI-FrontQuarter.png",
+   "hd": "interstate-ambulance.webp"
   },
   {
    "slug": "declasse-ambulance-90s",
@@ -526,13 +532,14 @@
     }
    ],
    "img": "obey-animus.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/audi-a7-rs7-2nd-gen",
-   "nettete": 257,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Animus-GTAVI-FrontQuarter.jpg",
    "taille": [
-    604,
-    360
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Animus-GTAVI-FrontQuarter.jpg",
+   "hd": "obey-animus.webp"
   },
   {
    "slug": "ubermacht-apoc",
@@ -689,11 +696,12 @@
    "img": "pfister-astron.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Astron-GTAVI-FrontQuarter.png",
-   "nettete": 90,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Astron-GTAVI-FrontQuarter.png",
+   "hd": "pfister-astron.webp"
   },
   {
    "slug": "lcc-avarus",
@@ -756,9 +764,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:B3000Excavator-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/B3000Excavator-GTAVI-FrontQuarter.png",
+   "hd": "dinka-b3000-excavator.webp"
   },
   {
    "slug": "tuff-bmx",
@@ -892,13 +902,14 @@
     }
    ],
    "img": "bravado-banshee.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/banshee",
-   "nettete": 246,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Banshee-GTAVI-FrontQuarter.png",
    "taille": [
-    640,
-    303
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Banshee-GTAVI-FrontQuarter.png",
+   "hd": "bravado-banshee.webp"
   },
   {
    "slug": "pegassi-bati-801",
@@ -950,13 +961,14 @@
     }
    ],
    "img": "interstate-benson-97.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/benson",
-   "nettete": 97,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Benson1997-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Benson1997-GTAVI-FrontQuarter.png",
+   "hd": "interstate-benson-97.webp"
   },
   {
    "slug": "grotti-bestia-gts",
@@ -1022,11 +1034,12 @@
    "img": "cartwright-biff.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Biff-GTAVI-FrontQuarter.png",
-   "nettete": 138,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Biff-GTAVI-FrontQuarter.png",
+   "hd": "cartwright-biff.webp"
   },
   {
    "slug": "bravado-bison",
@@ -1057,11 +1070,12 @@
    "img": "bravado-bison.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Bison-GTAVI-FrontQuarter.png",
-   "nettete": 99,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bison-GTAVI-FrontQuarter.png",
+   "hd": "bravado-bison.webp"
   },
   {
    "slug": "bravado-bison-1800",
@@ -1090,13 +1104,14 @@
     }
    ],
    "img": "bravado-bison-1800.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/bison-ii",
-   "nettete": 602,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Bison1800-GTAVI-FrontQuarter.png",
    "taille": [
-    951,
-    561
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bison1800-GTAVI-FrontQuarter.png",
+   "hd": "bravado-bison-1800.webp"
   },
   {
    "slug": "bravado-bison-1800-police",
@@ -1125,13 +1140,14 @@
     }
    ],
    "img": "bravado-bison-1800-police.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/bison-1800-police",
-   "nettete": 206,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceBison1800-GTAVI-FrontQuarter-KCSO.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceBison1800-GTAVI-FrontQuarter-KCSO.png",
+   "hd": "bravado-bison-1800-police.webp"
   },
   {
    "slug": "bravado-bison-3800",
@@ -1157,12 +1173,13 @@
    ],
    "img": "bravado-bison-3800.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Bison3800-GTAVI-Trailer2.png",
-   "nettete": 103,
+   "creditUrl": "https://gta.wiki/w/File:Bison3800-GTAVI-FrontQuarter.jpg",
    "taille": [
-    960,
-    540
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bison3800-GTAVI-FrontQuarter.jpg",
+   "hd": "bravado-bison-3800.webp"
   },
   {
    "slug": "bravado-bison-900-95",
@@ -1191,13 +1208,14 @@
     }
    ],
    "img": "bravado-bison-900-95.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/bison-900-1995",
-   "nettete": 125,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Bison900-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bison900-GTAVI-FrontQuarter.png",
+   "hd": "bravado-bison-900-95.webp"
   },
   {
    "slug": "bravado-bison-900-95-lifted",
@@ -1256,9 +1274,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Blast-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Blast-GTAVI-FrontQuarter.png",
+   "hd": "mer-can-blast.webp"
   },
   {
    "slug": "nagasaki-blazer",
@@ -1413,11 +1433,12 @@
    "img": "bravado-bogan.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Bogan-GTAVI-FrontQuarter.png",
-   "nettete": 71,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bogan-GTAVI-FrontQuarter.png",
+   "hd": "bravado-bogan.webp"
   },
   {
    "slug": "maibatsu-boomazoom",
@@ -1444,11 +1465,12 @@
    "img": "maibatsu-boomazoom.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Boomazoom-GTAVI-FrontQuarter.png",
-   "nettete": 290,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Boomazoom-GTAVI-FrontQuarter.png",
+   "hd": "maibatsu-boomazoom.webp"
   },
   {
    "slug": "brute-boxville",
@@ -1479,11 +1501,12 @@
    "img": "brute-boxville.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Boxville-GTAVI-FrontQuarter.png",
-   "nettete": 103,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Boxville-GTAVI-FrontQuarter.png",
+   "hd": "brute-boxville.webp"
   },
   {
    "slug": "albany-buccaneer-65",
@@ -1574,13 +1597,14 @@
     }
    ],
    "img": "bravado-buffalo-07.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/buffalo",
-   "nettete": 580,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:07Buffalo-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/07Buffalo-GTAVI-FrontQuarter.png",
+   "hd": "bravado-buffalo-07.webp"
   },
   {
    "slug": "bravado-buffalo-19",
@@ -1605,13 +1629,14 @@
     }
    ],
    "img": "bravado-buffalo-19.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/buffalo-stx",
-   "nettete": 153,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:19Buffalo-GTAVI-FrontQuarter.png",
    "taille": [
-    831,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/19Buffalo-GTAVI-FrontQuarter.png",
+   "hd": "bravado-buffalo-19.webp"
   },
   {
    "slug": "hvy-bulldozer",
@@ -1668,11 +1693,12 @@
    "img": "declasse-burrito-98.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Burrito1998-GTAVI-FrontQuarter.png",
-   "nettete": 168,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Burrito1998-GTAVI-FrontQuarter.png",
+   "hd": "declasse-burrito-98.webp"
   },
   {
    "slug": "whiffler-bus",
@@ -1697,13 +1723,14 @@
     }
    ],
    "img": "whiffler-bus.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/bus",
-   "nettete": 106,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Bus-GTAVI-FrontQuarter.png",
    "taille": [
-    483,
-    191
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Bus-GTAVI-FrontQuarter.png",
+   "hd": "whiffler-bus.webp"
   },
   {
    "slug": "bottcher-buzzard-attack-chopper",
@@ -1797,9 +1824,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Caddy-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Caddy-GTAVI-FrontQuarter.png",
+   "hd": "maibatsu-caddy-82.webp"
   },
   {
    "slug": "brute-camper",
@@ -1884,11 +1913,12 @@
    "img": "vapid-caracara-4x4.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Caracara4x4-GTAVI-FrontQuarter.png",
-   "nettete": 641,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Caracara4x4-GTAVI-FrontQuarter.png",
+   "hd": "vapid-caracara-4x4.webp"
   },
   {
    "slug": "nagasaki-carbon-rs",
@@ -1954,11 +1984,12 @@
    "img": "grotti-carbonizzare.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Carbonizzare-GTAVI-FrontQuarter.png",
-   "nettete": 77,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Carbonizzare-GTAVI-FrontQuarter.png",
+   "hd": "grotti-carbonizzare.webp"
   },
   {
    "slug": "albany-cavalcade-xl",
@@ -1987,13 +2018,13 @@
     }
    ],
    "img": "albany-cavalcade-xl.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/cavalcade-xl",
-   "nettete": 167,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:CavalcadeXL-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/CavalcadeXL-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "dinka-chavos-xs",
@@ -2020,11 +2051,12 @@
    "img": "dinka-chavos-xs.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:ChavosXS-GTAVI-FrontQuarter.png",
-   "nettete": 150,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/ChavosXS-GTAVI-FrontQuarter.png",
+   "hd": "dinka-chavos-xs.webp"
   },
   {
    "slug": "dundreary-chino-65",
@@ -2208,13 +2240,14 @@
     }
    ],
    "img": "karin-contender.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/contender",
-   "nettete": 150,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Contender-GTAVI-FrontQuarter.png",
    "taille": [
-    828,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Contender-GTAVI-FrontQuarter.png",
+   "hd": "karin-contender.webp"
   },
   {
    "slug": "invetero-coquette",
@@ -2243,13 +2276,14 @@
     }
    ],
    "img": "invetero-coquette.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/coquette",
-   "nettete": 107,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Coquette-GTAVI-FrontQuarter.png",
    "taille": [
-    831,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Coquette-GTAVI-FrontQuarter.png",
+   "hd": "invetero-coquette.webp"
   },
   {
    "slug": "invetero-coquette-64",
@@ -2274,13 +2308,14 @@
     }
    ],
    "img": "invetero-coquette-64.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/coquette-classique",
-   "nettete": 163,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:64Coquette-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    624
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/64Coquette-GTAVI-FrontQuarter.png",
+   "hd": "invetero-coquette-64.webp"
   },
   {
    "slug": "invetero-coquette-d10",
@@ -2435,11 +2470,12 @@
    "img": "ubermacht-cypher.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Cypher-GTAVI-FrontQuarter.png",
-   "nettete": 365,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Cypher-GTAVI-FrontQuarter.png",
+   "hd": "ubermacht-cypher.webp"
   },
   {
    "slug": "declasse-d7700",
@@ -2464,13 +2500,14 @@
     }
    ],
    "img": "declasse-d7700.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/chevrolet-kodiak-gmc-topkick",
-   "nettete": 91,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:D7700-GTAVI-FrontQuarter.png",
    "taille": [
-    831,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/D7700-GTAVI-FrontQuarter.png",
+   "hd": "declasse-d7700.webp"
   },
   {
    "slug": "imponte-df8-90",
@@ -2528,11 +2565,12 @@
    "img": "whiffler-dashound.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Dashound-GTAVI-FrontQuarter.png",
-   "nettete": 129,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Dashound-GTAVI-FrontQuarter.png",
+   "hd": "whiffler-dashound.webp"
   },
   {
    "slug": "albany-devanity-59",
@@ -2622,13 +2660,14 @@
     }
    ],
    "img": "vapid-dominator.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/dominator",
-   "nettete": 110,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Dominator-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Dominator-GTAVI-FrontQuarter.png",
+   "hd": "vapid-dominator.webp"
   },
   {
    "slug": "vapid-dominator-65",
@@ -2854,13 +2893,13 @@
     }
    ],
    "img": "benefactor-dubsta.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/dubsta",
-   "nettete": 17,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Dubsta-GTAVI-FrontQuarter.png",
    "taille": [
-    502,
-    348
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Dubsta-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "western-company-duster",
@@ -2955,13 +2994,14 @@
     }
    ],
    "img": "albany-emperor-85.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/emperor",
-   "nettete": 173,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Emperor1985-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Emperor1985-GTAVI-FrontQuarter.png",
+   "hd": "albany-emperor-85.webp"
   },
   {
    "slug": "endurex-race-bike",
@@ -2988,7 +3028,16 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/endurex-race-bike"
     }
-   ]
+   ],
+   "img": "endurex-race-bike.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Aerobike-GTAVI-FrontQuarter.png",
+   "source": "https://gta.wiki/images/Aerobike-GTAVI-FrontQuarter.png",
+   "taille": [
+    1920,
+    1080
+   ],
+   "hd": "endurex-race-bike.webp"
   },
   {
    "slug": "principe-esskey",
@@ -3151,11 +3200,12 @@
    "img": "karin-feroci-98.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Feroci1998-GTAVI-FrontQuarter.png",
-   "nettete": 78,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Feroci1998-GTAVI-FrontQuarter.png",
+   "hd": "karin-feroci-98.webp"
   },
   {
    "slug": "ferry",
@@ -3340,11 +3390,12 @@
    "img": "piccia-furia.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Furia-GTAVI-FrontQuarter.png",
-   "nettete": 71,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Furia-GTAVI-FrontQuarter.png",
+   "hd": "piccia-furia.webp"
   },
   {
    "slug": "karin-futo-85",
@@ -3450,12 +3501,13 @@
     }
    ],
    "img": "declasse-granger.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/granger",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Granger-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Granger-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "declasse-granger-3600lx",
@@ -3484,13 +3536,13 @@
     }
    ],
    "img": "declasse-granger-3600lx.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/granger-3600lx",
-   "nettete": 123,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Granger3600LX-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    467
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Granger3600LX-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "declasse-granger-police",
@@ -3587,11 +3639,12 @@
    "img": "bravado-gresley-xt.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:GresleyXT-GTAVI-FrontQuarter.png",
-   "nettete": 56,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/GresleyXT-GTAVI-FrontQuarter.png",
+   "hd": "bravado-gresley-xt.webp"
   },
   {
    "slug": "bf-greta",
@@ -3647,13 +3700,14 @@
     }
    ],
    "img": "willard-grouse-92.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/buick-skylark-6th-gen",
-   "nettete": 153,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Grouse-GTAVI-FrontQuarter.png",
    "taille": [
-    831,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Grouse-GTAVI-FrontQuarter.png",
+   "hd": "willard-grouse-92.webp"
   },
   {
    "slug": "pfister-growler",
@@ -3684,11 +3738,12 @@
    "img": "pfister-growler.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Growler-GTAVI-FrontQuarter.png",
-   "nettete": 167,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Growler-GTAVI-FrontQuarter.png",
+   "hd": "pfister-growler.webp"
   },
   {
    "slug": "annis-hellion-95",
@@ -3715,11 +3770,12 @@
    "img": "annis-hellion-95.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Hellion1995-GTAVI-FrontQuarter.png",
-   "nettete": 99,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Hellion1995-GTAVI-FrontQuarter.png",
+   "hd": "annis-hellion-95.webp"
   },
   {
    "slug": "albany-hermes-50",
@@ -3774,12 +3830,14 @@
     }
    ],
    "img": "vapid-hustler-32.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/hustler",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Hustler1932-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Hustler1932-GTAVI-FrontQuarter.png",
+   "hd": "vapid-hustler-32.webp"
   },
   {
    "slug": "seashark-hydroblast",
@@ -3835,13 +3893,14 @@
     }
    ],
    "img": "declasse-impaler-20.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/chevrolet-impala-10th-gen",
-   "nettete": 96,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:20Impaler-GTAVI-FrontQuarter.jpg",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/20Impaler-GTAVI-FrontQuarter.jpg",
+   "hd": "declasse-impaler-20.webp"
   },
   {
    "slug": "declasse-impaler-80",
@@ -3994,12 +4053,12 @@
    ],
    "img": "karin-intruder.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/Intruder",
-   "nettete": 422,
+   "creditUrl": "https://gta.wiki/w/File:Intruder-GTAVI-FrontQuarter.png",
    "taille": [
-    960,
-    518
-   ]
+    923,
+    519
+   ],
+   "source": "https://gta.wiki/images/Intruder-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "maibatsu-iota",
@@ -4027,9 +4086,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Iota-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Iota-GTAVI-FrontQuarter.png",
+   "hd": "maibatsu-iota.webp"
   },
   {
    "slug": "grotti-itali-gto",
@@ -4087,11 +4148,12 @@
    "img": "grotti-itali-rsx.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:ItaliRSX-GTAVI-FrontQuarter.png",
-   "nettete": 269,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/ItaliRSX-GTAVI-FrontQuarter.png",
+   "hd": "grotti-itali-rsx.webp"
   },
   {
    "slug": "jet",
@@ -4154,9 +4216,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Journey1978-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Journey1978-GTAVI-FrontQuarter.png",
+   "hd": "osprey-journey-78.webp"
   },
   {
    "slug": "buckingham-jubilee",
@@ -4360,13 +4424,14 @@
     }
    ],
    "img": "lure-predator-l35p-police-boat.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/police-boat",
-   "nettete": 745,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceL35P-GTAVI-FrontQuarter.png",
    "taille": [
-    1134,
-    750
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceL35P-GTAVI-FrontQuarter.png",
+   "hd": "lure-predator-l35p-police-boat.webp"
   },
   {
    "slug": "dundreary-landstalker-xl",
@@ -4512,11 +4577,12 @@
    "img": "hvy-lifta.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Lifta-GTAVI-FrontQuarter.png",
-   "nettete": 126,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Lifta-GTAVI-FrontQuarter.png",
+   "hd": "hvy-lifta.webp"
   },
   {
    "slug": "ocelot-locust",
@@ -4609,11 +4675,12 @@
    "img": "vapid-lowline.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Lowline-GTAVI-FrontQuarter.png",
-   "nettete": 70,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Lowline-GTAVI-FrontQuarter.png",
+   "hd": "vapid-lowline.webp"
   },
   {
    "slug": "buckingham-luxor",
@@ -4880,11 +4947,12 @@
    "img": "buckingham-maverick.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Maverick-GTAVI-FrontQuarter.png",
-   "nettete": 519,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Maverick-GTAVI-FrontQuarter.png",
+   "hd": "buckingham-maverick.webp"
   },
   {
    "slug": "canis-mesa",
@@ -5035,11 +5103,12 @@
    "img": "vapid-montagne.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Montagne-GTAVI-FrontQuarter.png",
-   "nettete": 123,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Montagne-GTAVI-FrontQuarter.png",
+   "hd": "vapid-montagne.webp"
   },
   {
    "slug": "vapid-montagne-pickup",
@@ -5064,13 +5133,14 @@
     }
    ],
    "img": "vapid-montagne-pickup.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/ford-explorer-sport-trac",
-   "nettete": 64,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:MontagnePickup-GTAVI-FrontQuarter.png",
    "taille": [
-    831,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/MontagnePickup-GTAVI-FrontQuarter.png",
+   "hd": "vapid-montagne-pickup.webp"
   },
   {
    "slug": "vapid-montagne-pickup-lifeguard",
@@ -5128,11 +5198,12 @@
    "img": "vapid-montagne-xl.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:MontagneXL-GTAVI-FrontQuarter.png",
-   "nettete": 1359,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/MontagneXL-GTAVI-FrontQuarter.png",
+   "hd": "vapid-montagne-xl.webp"
   },
   {
    "slug": "willard-moocher-83",
@@ -5159,11 +5230,12 @@
    "img": "willard-moocher-83.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Moocher1983-GTAVI-FrontQuarter.png",
-   "nettete": 1356,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Moocher1983-GTAVI-FrontQuarter.png",
+   "hd": "willard-moocher-83.webp"
   },
   {
    "slug": "declasse-moonbeam",
@@ -5221,11 +5293,12 @@
    "img": "maibatsu-mule.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Mule-GTAVI-FrontQuarter.png",
-   "nettete": 124,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Mule-GTAVI-FrontQuarter.png",
+   "hd": "maibatsu-mule.webp"
   },
   {
    "slug": "vysser-neo",
@@ -5514,13 +5587,14 @@
     }
    ],
    "img": "schyster-pmp-700.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/pmp-700",
-   "nettete": 313,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PMP700-GTAVI-FrontQuarter.png",
    "taille": [
-    960,
-    472
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PMP700-GTAVI-FrontQuarter.png",
+   "hd": "schyster-pmp-700.webp"
   },
   {
    "slug": "mtl-packer",
@@ -5549,13 +5623,13 @@
     }
    ],
    "img": "mtl-packer.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/packer",
-   "nettete": 234,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Packer-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Packer-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "ascot-paragon",
@@ -5701,11 +5775,12 @@
    "img": "jobuilt-phantom-custom-81.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:PhantomCustom1981-GTAVI-FrontQuarter.png",
-   "nettete": 74,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PhantomCustom1981-GTAVI-FrontQuarter.png",
+   "hd": "jobuilt-phantom-custom-81.webp"
   },
   {
    "slug": "bravado-police-buffalo-stx-pursuit",
@@ -5730,13 +5805,14 @@
     }
    ],
    "img": "bravado-police-buffalo-stx-pursuit.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-buffalo-stx",
-   "nettete": 263,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceBuffalo2019-GTAVI-FrontQuarter-LHP.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceBuffalo2019-GTAVI-FrontQuarter-LHP.png",
+   "hd": "bravado-police-buffalo-stx-pursuit.webp"
   },
   {
    "slug": "bottcher-police-buzzard",
@@ -5761,13 +5837,14 @@
     }
    ],
    "img": "bottcher-police-buzzard.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/police-buzzard",
-   "nettete": 600,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceBuzzard-GTAVI-FrontQuarter.jpg",
    "taille": [
-    1716,
-    984
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceBuzzard-GTAVI-FrontQuarter.jpg",
+   "hd": "bottcher-police-buzzard.webp"
   },
   {
    "slug": "bravado-police-cruiser-buffalo",
@@ -5792,13 +5869,14 @@
     }
    ],
    "img": "bravado-police-cruiser-buffalo.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-buffalo",
-   "nettete": 20,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceBuffalo2019-GTAVI-FrontQuarter.png",
    "taille": [
-    490,
-    333
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceBuffalo2019-GTAVI-FrontQuarter.png",
+   "hd": "bravado-police-cruiser-buffalo.webp"
   },
   {
    "slug": "vapid-police-cruiser-stanier-le",
@@ -5949,11 +6027,12 @@
    "img": "vapid-police-lowline-interceptor.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:PoliceLowline-GTAVI-FrontQuarter.png",
-   "nettete": 256,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceLowline-GTAVI-FrontQuarter.png",
+   "hd": "vapid-police-lowline-interceptor.webp"
   },
   {
    "slug": "buckingham-police-maverick",
@@ -6011,11 +6090,12 @@
    "img": "vapid-police-montagne.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:PoliceMontagne-GTAVI-FrontQuarter.png",
-   "nettete": 156,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/PoliceMontagne-GTAVI-FrontQuarter.png",
+   "hd": "vapid-police-montagne.webp"
   },
   {
    "slug": "brute-police-riot",
@@ -6108,11 +6188,12 @@
    "img": "mtl-pumper.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Pumper-GTAVI-FrontQuarter.png",
-   "nettete": 35,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Pumper-GTAVI-FrontQuarter.png",
+   "hd": "mtl-pumper.webp"
   },
   {
    "slug": "rb-s",
@@ -6201,11 +6282,12 @@
    "img": "taci-ragno.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Ragno-GTAVI-FrontQuarter.png",
-   "nettete": 1849,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Ragno-GTAVI-FrontQuarter.png",
+   "hd": "taci-ragno.webp"
   },
   {
    "slug": "coil-raiden",
@@ -6267,11 +6349,12 @@
    "img": "declasse-rancher-86.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Rancher1986-GTAVI-FrontQuarter.png",
-   "nettete": 595,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Rancher1986-GTAVI-FrontQuarter.png",
+   "hd": "declasse-rancher-86.webp"
   },
   {
    "slug": "karin-rebel-84",
@@ -6298,11 +6381,12 @@
    "img": "karin-rebel-84.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Rebel-GTAVI-FrontQuarter.png",
-   "nettete": 100,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Rebel-GTAVI-FrontQuarter.png",
+   "hd": "karin-rebel-84.webp"
   },
   {
    "slug": "ubermacht-rebla-gts",
@@ -6366,13 +6450,14 @@
     }
    ],
    "img": "vapid-reclaimer.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/reclaimer",
-   "nettete": 73,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Reclaimer-GTAVI-FrontQuarter.jpg",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Reclaimer-GTAVI-FrontQuarter.jpg",
+   "hd": "vapid-reclaimer.webp"
   },
   {
    "slug": "dundreary-regina",
@@ -6427,9 +6512,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:RentalBus-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/RentalBus-GTAVI-FrontQuarter.png",
+   "hd": "brute-rental-bus.webp"
   },
   {
    "slug": "hauners-rhino-tank",
@@ -6490,11 +6577,12 @@
    "img": "rugger-rhode.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Rhode-GTAVI-FrontQuarter.png",
-   "nettete": 620,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Rhode-GTAVI-FrontQuarter.png",
+   "hd": "rugger-rhode.webp"
   },
   {
    "slug": "rugger-rhode-police",
@@ -6591,11 +6679,12 @@
    "img": "jobuilt-rubble.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Rubble-GTAVI-FrontQuarter.png",
-   "nettete": 1345,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Rubble-GTAVI-FrontQuarter.png",
+   "hd": "jobuilt-rubble.webp"
   },
   {
    "slug": "vapid-rumpo",
@@ -6626,11 +6715,12 @@
    "img": "vapid-rumpo.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Rumpo-GTAVI-FrontQuarter.png",
-   "nettete": 282,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Rumpo-GTAVI-FrontQuarter.png",
+   "hd": "vapid-rumpo.webp"
   },
   {
    "slug": "bravado-rumpo-custom",
@@ -6786,9 +6876,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:SandkingXL-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/SandkingXL-GTAVI-FrontQuarter.png",
+   "hd": "vapid-sandking-xl.webp"
   },
   {
    "slug": "vapid-sandking-xt",
@@ -6819,11 +6911,12 @@
    "img": "vapid-sandking-xt.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:SandkingXT-GTAVI-FrontQuarter.png",
-   "nettete": 125,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/SandkingXT-GTAVI-FrontQuarter.png",
+   "hd": "vapid-sandking-xt.webp"
   },
   {
    "slug": "benefactor-schafter",
@@ -6883,13 +6976,13 @@
     }
    ],
    "img": "benefactor-schafter-v12.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/schafter-v12",
-   "nettete": 393,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:SchafterV12-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    466
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/SchafterV12-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "ped-scorcher",
@@ -7171,11 +7264,12 @@
    "img": "shifter.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Shifter-GTAVI-FrontQuarter.png",
-   "nettete": 90,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Shifter-GTAVI-FrontQuarter.png",
+   "hd": "shifter.webp"
   },
   {
    "slug": "vapid-shuttle",
@@ -7200,13 +7294,14 @@
     }
    ],
    "img": "vapid-shuttle.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/ford-transit-4th-gen",
-   "nettete": 90,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Shuttle-GTAVI-FrontQuarter.png",
    "taille": [
-    832,
-    468
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Shuttle-GTAVI-FrontQuarter.png",
+   "hd": "vapid-shuttle.webp"
   },
   {
    "slug": "vapid-slamvan-56",
@@ -7263,11 +7358,12 @@
    "img": "bravado-sojourn.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Sojourn-GTAVI-FrontQuarter.png",
-   "nettete": 153,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Sojourn-GTAVI-FrontQuarter.png",
+   "hd": "bravado-sojourn.webp"
   },
   {
    "slug": "bravado-sojourn-taxi",
@@ -7290,7 +7386,16 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/chrysler-town-country-taxi"
     }
-   ]
+   ],
+   "img": "bravado-sojourn-taxi.webp",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:TaxiSojourn-GTAVI-FrontQuarter.png",
+   "source": "https://gta.wiki/images/TaxiSojourn-GTAVI-FrontQuarter.png",
+   "taille": [
+    1920,
+    1080
+   ],
+   "hd": "bravado-sojourn-taxi.webp"
   },
   {
    "slug": "western-sovereign-107",
@@ -7321,11 +7426,12 @@
    "img": "western-sovereign-107.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Sovereign107-GTAVI-FrontQuarter.png",
-   "nettete": 2744,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Sovereign107-GTAVI-FrontQuarter.png",
+   "hd": "western-sovereign-107.webp"
   },
   {
    "slug": "western-sovereign-107-police",
@@ -7406,11 +7512,12 @@
    "img": "vapid-speedo.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Speedo-GTAVI-FrontQuarter.png",
-   "nettete": 329,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Speedo-GTAVI-FrontQuarter.png",
+   "hd": "vapid-speedo.webp"
   },
   {
    "slug": "benefactor-spritz",
@@ -7500,9 +7607,11 @@
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Stanier1998-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Stanier1998-GTAVI-FrontQuarter.png",
+   "hd": "vapid-stanier-98.webp"
   },
   {
    "slug": "vapid-stanier-taxi",
@@ -7688,11 +7797,12 @@
    "img": "emperor-sultan.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Sultan-GTAVI-FrontQuarter.png",
-   "nettete": 51,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Sultan-GTAVI-FrontQuarter.png",
+   "hd": "emperor-sultan.webp"
   },
   {
    "slug": "sirius-sungrazer-61",
@@ -7719,11 +7829,12 @@
    "img": "sirius-sungrazer-61.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Sungrazer1961-GTAVI-FrontQuarter.png",
-   "nettete": 908,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Sungrazer1961-GTAVI-FrontQuarter.png",
+   "hd": "sirius-sungrazer-61.webp"
   },
   {
    "slug": "buckingham-supervolito",
@@ -8207,11 +8318,12 @@
    "img": "willard-trotter-95.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Trotter1995-GTAVI-FrontQuarter.png",
-   "nettete": 128,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Trotter1995-GTAVI-FrontQuarter.png",
+   "hd": "willard-trotter-95.webp"
   },
   {
    "slug": "declasse-tulip-72",
@@ -8335,11 +8447,12 @@
    "img": "albany-v-str.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:VSTR-GTAVI-FrontQuarter.png",
-   "nettete": 86,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/VSTR-GTAVI-FrontQuarter.png",
+   "hd": "albany-v-str.webp"
   },
   {
    "slug": "buckingham-valkyrie",
@@ -8504,13 +8617,13 @@
     }
    ],
    "img": "declasse-vigero-zx-convertible.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/vigero-zx-convertible",
-   "nettete": 17,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:VigeroZXConvertible-GTAVI-FrontQuarter.png",
    "taille": [
-    295,
-    175
-   ]
+    850,
+    478
+   ],
+   "source": "https://gta.wiki/images/VigeroZXConvertible-GTAVI-FrontQuarter.png"
   },
   {
    "slug": "pegassi-vitello",
@@ -8594,12 +8707,13 @@
    ],
    "img": "declasse-walton-81.webp",
    "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Walton1981-GTAVI-FrontQuarter.jpg",
-   "nettete": 813,
+   "creditUrl": "https://gta.wiki/w/File:Walton1981-GTAVI-FrontQuarter.png",
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Walton1981-GTAVI-FrontQuarter.png",
+   "hd": "declasse-walton-81.webp"
   },
   {
    "slug": "mtl-wastelander",
@@ -8628,13 +8742,14 @@
     }
    ],
    "img": "mtl-wastelander.webp",
-   "credit": "gta6guide.fr",
-   "creditUrl": "https://gta6guide.fr/gta-6/vehicules/wastelander",
-   "nettete": 58,
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:Wastelander-GTAVI-FrontQuarter.png",
    "taille": [
-    320,
-    180
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Wastelander-GTAVI-FrontQuarter.png",
+   "hd": "mtl-wastelander.webp"
   },
   {
    "slug": "water-taxi",
@@ -8920,11 +9035,12 @@
    "img": "declasse-yosemite-1500.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:Yosemite1500-GTAVI-FrontQuarter.png",
-   "nettete": 1527,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/Yosemite1500-GTAVI-FrontQuarter.png",
+   "hd": "declasse-yosemite-1500.webp"
   },
   {
    "slug": "bravado-youga",
@@ -9016,11 +9132,12 @@
    "img": "bravado-youga-xl-79.webp",
    "credit": "Rockstar Games, via GTA Wiki",
    "creditUrl": "https://gta.wiki/w/File:YougaXL1979-GTAVI-FrontQuarter.png",
-   "nettete": 1691,
    "taille": [
-    1600,
-    900
-   ]
+    1920,
+    1080
+   ],
+   "source": "https://gta.wiki/images/YougaXL1979-GTAVI-FrontQuarter.png",
+   "hd": "bravado-youga-xl-79.webp"
   },
   {
    "slug": "western-zombie-chopper",

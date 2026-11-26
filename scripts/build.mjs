@@ -996,10 +996,10 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   for (const x of CATALOGUE.vehicules) {
     const sur = (VERIF[x.slug] || {}).statut === 'confirme';
     const focus = (CAT_CARTE[x.slug] || []).find((id) => mapIndex[id]) || null;
-    // liste : miniature de 560 px quand elle existe (scripts/miniatures.py), l'original pour les écrans très denses
+    // liste : miniature de 960 px quand elle existe (scripts/miniatures.py), l'original pour les écrans très denses
     const mini = x.img && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img));
     const larg = x.img && (dimImg('catalogue/' + x.img) || [])[0];
-    const visu = x.img ? `<img class="veh-photo" src="${R}${mini ? 'catalogue-mini' : 'catalogue'}/${x.img}"${mini && larg ? ` srcset="${R}catalogue-mini/${x.img} 560w, ${R}catalogue/${x.img} ${larg}w" sizes="(min-width: 760px) 380px, 46vw"` : ''} alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
+    const visu = x.img ? `<img class="veh-photo" src="${R}${mini ? 'catalogue-mini' : 'catalogue'}/${x.img}"${mini && larg ? ` srcset="${R}catalogue-mini/${x.img} 960w, ${R}catalogue/${x.img} ${larg}w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 46vw, 92vw"` : ''} alt="${esc(x.nom)}"${wh('catalogue/' + x.img)} loading="lazy" decoding="async">` : silhouette({ slug: '', type: x.type });
     (cartes[x.groupe] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : x.obtenir ? 1 : x.img ? 2 : 3), n: x.nom, html: vCard({ slug: x.slug, nom: x.modele || x.nom, kicker: x.fabricant || cat('vehicules', x.type).nom, classe: x.classe, type: x.type, groupe: x.groupe, visu, sur, focus, comment: !!x.obtenir }) });
   }
   const groupes = GRP.filter((g) => cartes[g.id]);
@@ -1097,7 +1097,12 @@ for (const x of CATALOGUE.vehicules) {
   ].filter(Boolean);
   const body = `<article class="wrap fiche" style="--c:${c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    ${x.img ? `<figure class="veh-hero veh-hero--photo"><img class="veh-photo" src="${R}catalogue/${x.img}"${fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img)) && (dimImg('catalogue/' + x.img) || [])[0] > 560 ? ` srcset="${R}catalogue-mini/${x.img} 560w, ${R}catalogue/${x.img} ${dimImg('catalogue/' + x.img)[0]}w" sizes="(min-width: 900px) 800px, 100vw"` : ''} alt="${esc(x.nom)} dans GTA 6"${wh('catalogue/' + x.img)} fetchpriority="high" decoding="async">${x.credit ? `<figcaption class="veh-credit">Image : ${x.creditUrl ? `<a href="${esc(x.creditUrl)}" target="_blank" rel="noopener nofollow">${esc(x.credit)}</a>` : esc(x.credit)}</figcaption>` : ''}</figure>` : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
+    ${x.img ? (() => {
+      // vitrine : photo 16:9 en pleine largeur, ouverte en plein écran dans sa plus grande résolution (catalogue-hd)
+      const L = (dimImg('catalogue/' + x.img) || [])[0], mini = fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', x.img)) && L > 960;
+      const hd = x.hd && fs.existsSync(path.join(ROOT, 'src', 'catalogue-hd', x.hd)) ? `catalogue-hd/${x.hd}` : `catalogue/${x.img}`;
+      return `<figure class="veh-show"><div class="veh-show-img"><img class="veh-photo" src="${R}catalogue/${x.img}"${mini ? ` srcset="${R}catalogue-mini/${x.img} 960w, ${R}catalogue/${x.img} ${L}w" sizes="(min-width: 1180px) 1100px, 94vw"` : ''} alt="${esc(x.nom)} dans GTA 6"${wh('catalogue/' + x.img)} fetchpriority="high" decoding="async"><button class="veh-plein" type="button" data-plein="${R}${hd}" data-plein-alt="${esc(x.nom)}" aria-label="Voir l'image de ${esc(x.nom)} en plein écran">${icon('expand')}</button></div>${x.credit ? `<figcaption class="veh-credit">Image : ${x.creditUrl ? `<a href="${esc(x.creditUrl)}" target="_blank" rel="noopener nofollow">${esc(x.credit)}</a>` : esc(x.credit)}</figcaption>` : ''}</figure>`;
+    })() : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${x.type}">${icon(c.icon)}${esc(c.nom)}</a>${grp ? `<a class="pill" href="${R}vehicules/#cat-${x.groupe}">${esc(grp.nom)}</a>` : ''}</div>
     <h1 class="h1 h1--fiche">${esc(x.nom)}</h1>
   </header>
@@ -2149,7 +2154,7 @@ for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {
   const full = path.join(ROOT, 'src', f);
   if (!fs.statSync(full).isFile()) continue;
   if (!VUE_3D && (f === 'vehicule3d.js' || f === 'v3d-init.js' || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep))) continue;
-  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) ? f : path.join('assets', path.basename(f)), f.endsWith('.css') ? miniCSS(fs.readFileSync(full, 'utf8')) : fs.readFileSync(full));
+  write(f.startsWith('tiles' + path.sep) || f.startsWith('vignettes' + path.sep) || f.startsWith('photos' + path.sep) || f.startsWith('rendus' + path.sep) || f.startsWith('modeles' + path.sep) || f.startsWith('catalogue' + path.sep) || f.startsWith('catalogue-mini' + path.sep) || f.startsWith('catalogue-hd' + path.sep) || f.startsWith('photos-hd' + path.sep) ? f : path.join('assets', path.basename(f)), f.endsWith('.css') ? miniCSS(fs.readFileSync(full, 'utf8')) : fs.readFileSync(full));
 }
 // icônes pour le JS client : injectées en tête de app.js
 const appJs = path.join(OUT, 'assets', 'app.js');
