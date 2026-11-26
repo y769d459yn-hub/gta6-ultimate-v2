@@ -992,7 +992,9 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   for (const v of VEHICULES) {
     const f = CATALOGUE.fiches[v.slug] || {};
     const sur = (VERIF[v.slug] || {}).statut === 'confirme';
-    const focus = vehOnMap(v.slug) ? 'v-' + v.slug : null;
+    // même véhicule au même endroit : le repère précis de la carte plutôt que la zone approximative de la fiche
+    const cc = concorde(v.slug, CAT_CARTE[v.slug]);
+    const focus = cc ? cc.f.properties.id : vehOnMap(v.slug) ? 'v-' + v.slug : null;
     (cartes[grpDe(v)] ||= []).push({ o: (sur ? 0 : 10) + (focus ? 0 : 1), n: v.nom, html: vCard({ slug: v.slug, nom: v.nom, kicker: f.fabricant || cat('vehicules', v.type).nom, classe: f.classe || v.sous, type: v.type, groupe: grpDe(v), visu: vehVisuel(v, R), sur, focus, comment: !!v.emplacement }) });
   }
   for (const x of CATALOGUE.vehicules) {
@@ -1551,13 +1553,11 @@ for (const g of GLITCHS) {
 
 // statuts de fiabilité de la carte (mêmes libellés dans la légende et dans carte.js)
 const STATUTS_CARTE = [
-  { id: 'officiel', n: 'Officiel', ic: 'badge', c: '#39ff88', t: 'Confirmé par Rockstar Games.' },
-  { id: 'verifie', n: 'Vérifié', ic: 'check', c: '#4da3ff', t: 'Vérifié en jeu, ou confirmé par une source officielle ou deux sources indépendantes.' },
-  { id: 'probable', n: 'Probable', ic: 'info', c: '#ffa53a', t: 'Signalé par des sources communautaires : à confirmer.' },
-  { id: 'nonconf', n: 'Non confirmé', ic: 'question', c: '#b3aec4', t: 'Pas encore assez vérifié (zone seulement ou information provisoire).' },
-  { id: 'fortprob', n: 'Fortement probable', ic: 'info', c: '#ffa53a', t: 'Plusieurs éléments concordent (deux sources indépendantes, ou capture prise en jeu sur place) : pas encore vérifié en jeu par notre équipe.' },
-  { id: 'approxz', n: 'Approximatif', ic: 'compass', c: '#ffd23f', t: 'Secteur identifié, position exacte inconnue : le repère indique une zone de recherche.' },
-  { id: 'nonverif', n: 'Non vérifié', ic: 'question', c: '#b3aec4', t: 'Une seule source communautaire, sans preuve : masqué par défaut.' },
+  { id: 'verifie', n: 'Confirmé', ic: 'check', c: '#4da3ff', t: 'Vérifié en jeu, ou établi par une source officielle et une source indépendante.' },
+  { id: 'probable', n: 'Probable', ic: 'info', c: '#ffa53a', t: 'Position précise donnée par une carte de joueurs, ou appuyée par une capture prise en jeu sur place : pas encore vérifiée en jeu par notre équipe.' },
+  { id: 'nonconf', n: 'Approximatif', ic: 'compass', c: '#ffd23f', t: 'Secteur connu, position exacte inconnue : le repère indique une zone de recherche.' },
+  { id: 'nonverif', n: 'Non vérifié', ic: 'question', c: '#b3aec4', t: 'Une seule source sans preuve, ou information provisoire : masqué par défaut.' },
+  { id: 'officiel', n: 'Confirmé', ic: 'badge', c: '#39ff88', t: 'Confirmé par Rockstar Games.' },
   { id: 'avenir', n: 'À venir', ic: 'clock', c: '#c77dff', t: 'Information pas encore disponible.' }
 ];
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
@@ -1583,7 +1583,7 @@ const STATUTS_CARTE = [
       </div>
       <button type="button" class="atp-fbtn" data-filtres aria-haspopup="dialog">${icon('filter')}<span>Filtres</span><b class="atp-nf" data-nf hidden></b></button>
     </div>
-    <div class="atp-pop" data-pop-box role="group" aria-label="Recherches populaires"><button type="button" class="atp-pop-k" data-pop-tog aria-expanded="true" aria-controls="atp-pop-l">${icon('flame')}<span>Populaires</span>${icon('chevron')}</button><div class="atp-pop-l" id="atp-pop-l">${CO2.populaires.map((x) => `<button type="button" class="atp-popb" data-pop="${x.id}" aria-pressed="false" style="--c:${cc(x.cat).color}">${icon(x.icon)}${esc(x.nom)}</button>`).join('')}</div></div>
+    <div class="atp-pop" data-pop-box role="group" aria-label="Recherches populaires"><button type="button" class="atp-pop-k" data-pop-tog aria-expanded="true" aria-controls="atp-pop-l">${icon('flame')}<span>Populaires</span>${icon('chevron')}</button><div class="atp-pop-l" id="atp-pop-l">${CO2.populaires.map((x, i) => `<button type="button" class="atp-popb" data-pop="${x.id}" aria-pressed="false" style="--c:${cc(x.cat).color}"${i >= 6 ? ' data-pop-extra hidden' : ''}>${icon(x.icon)}${esc(x.nom)}</button>`).join('')}${CO2.populaires.length > 6 ? `<button type="button" class="atp-popb atp-popb--plus" data-pop-plus aria-expanded="false">${icon('plus')}<span>Plus de recherches</span></button>` : ''}</div></div>
     <div class="atp-vide" data-vide hidden role="status">${icon('search')}<span>Choisis ce que tu recherches pour afficher les lieux sur la carte.</span></div>
     <div class="atp-solo atp-keep" data-keep hidden role="status">${icon('pin')}<span>Repère choisi : <b data-keep-nom></b></span><button type="button" data-keep-voir>${icon('arrow-right')}Voir</button><button type="button" class="atp-keep-x" data-keep-off aria-label="Effacer le repère choisi">${icon('x')}</button></div>
     <div class="atp-solo" data-solo hidden role="status">${icon('flag')}<span>Seul le lieu de ta mission est affiché : <b data-solo-nom></b>.<i class="atp-solo-more"> Choisis ce que tu cherches pour voir le reste.</i></span><button type="button" data-solo-off>${icon('map')}Tout afficher</button></div>
@@ -1600,7 +1600,7 @@ const STATUTS_CARTE = [
     <p>Choisis ce que tu recherches pour afficher les lieux sur la carte.</p>
     <details class="atp-leg-d"><summary>Catégories de la carte</summary><ul class="atp-leg-c">${CC.map((c) => `<li><span class="hl-dot" style="--c:${c.color}">${icon(c.icon)}</span><span><b>${esc(c.nom)}</b>${esc(c.sens)}</span></li>`).join('')}</ul></details>
     <ul class="atp-leg-b"><li><span class="atp-leg-ring"></span>Bordure pleine : emplacement vérifié en jeu</li><li><span class="atp-leg-ring atp-leg-ring--d"></span>Pointillés : approximatif ou à confirmer</li></ul>
-    <details class="atp-leg-d"><summary>Statuts de fiabilité</summary><ul class="atp-leg-s">${STATUTS_CARTE.map((x) => `<li><span class="pn-st" style="--c:${x.c}">${icon(x.ic)}${esc(x.n)}</span><span>${esc(x.t)}</span></li>`).join('')}</ul></details>
+    <details class="atp-leg-d"><summary>Statuts de fiabilité</summary><ul class="atp-leg-s">${STATUTS_CARTE.slice(0, 4).map((x) => `<li><span class="pn-st" style="--c:${x.c}">${icon(x.ic)}${esc(x.n)}</span><span>${esc(x.t)}</span></li>`).join('')}</ul></details>
     <details class="atp-leg-d"><summary>Guides liés</summary><ul class="atp-leg-g">${GUIDES.map(([u, t, ic, c]) => `<li><a href="${R}${u}" style="--c:${c}">${icon(ic)}${esc(t)}</a></li>`).join('')}</ul></details>
   </div>
   <div class="atp-regions" role="group" aria-label="Liste, régions et progression"><button type="button" class="atp-list" data-list>${icon('list')}Liste<small data-n="vue"></small></button><button type="button" class="atp-regb" data-reg-btn aria-haspopup="menu" aria-expanded="false">${icon('map')}<span data-reg-nom>Régions</span>${icon('chevron')}</button><button type="button" class="atp-progb" data-prog aria-label="Ma progression">${icon('progress')}<span>Progression</span></button>
@@ -2029,6 +2029,7 @@ function regleOk(r, p) {
   if (r.s && r.s.includes(sv)) return true;
   if (r.ids && r.ids.includes(p.id)) return true;
   if (r.ru && p.ru) return true;
+  if (r.uv && /^o-standout-vehicle-/.test(p.id) && !p.hv) return true; // version unique (livrée spéciale) affichée sur la carte
   if (r.vt && p.vt && r.vt.includes(p.vt)) return true;
   if (r.vm && p.vm && r.vm.includes(p.vm)) return true;
   if (r.vc && r.vc.includes(vClasse(p.vs))) return true;
@@ -2224,7 +2225,7 @@ write('data/carte.json', JSON.stringify({
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
   bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
   regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
-  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes, statuts: STATUTS_CARTE },
+  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes, intentions: CO.intentions || [], statuts: STATUTS_CARTE },
   sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
   features: featsCarte
 }));

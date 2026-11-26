@@ -265,6 +265,13 @@
       }
      },
      {
+      "id": "uniques",
+      "nom": "Versions uniques (livrées spéciales)",
+      "r": {
+       "uv": 1
+      }
+     },
+     {
       "id": "supercars",
       "nom": "Supercars",
       "r": {
@@ -1492,7 +1499,7 @@
   "populaires": [
    {
     "id": "argent-facile",
-    "nom": "Argent facile",
+    "nom": "Gagner de l'argent",
     "icon": "money",
     "cat": "argent",
     "sc": [
@@ -1541,14 +1548,14 @@
     "page": "collection/tresor/"
    },
    {
-    "id": "helicos",
-    "nom": "Hélicoptères",
-    "icon": "heli",
+    "id": "vehicules-uniques",
+    "nom": "Véhicules uniques",
+    "icon": "diamond",
     "cat": "vehicules",
     "sc": [
-     "aerien"
+     "uniques"
     ],
-    "page": "astuces/trouver-helicoptere/"
+    "page": "astuces/voiture-rare/"
    },
    {
     "id": "secrets",
@@ -1557,6 +1564,51 @@
     "cat": "secrets",
     "sc": [],
     "page": "dossiers/secrets/"
+   },
+   {
+    "id": "helicos",
+    "nom": "Hélicoptères et avions",
+    "icon": "heli",
+    "cat": "vehicules",
+    "sc": [
+     "aerien"
+    ],
+    "page": "astuces/trouver-helicoptere/"
+   },
+   {
+    "id": "evenements",
+    "nom": "Événements aléatoires",
+    "icon": "bolt",
+    "cat": "missions",
+    "sc": [
+     "evenements"
+    ]
+   },
+   {
+    "id": "collection",
+    "nom": "Objets à collectionner",
+    "icon": "badge",
+    "cat": "collection",
+    "sc": [],
+    "page": "collection/"
+   },
+   {
+    "id": "cent-pour-cent",
+    "nom": "Terminer le jeu à 100 %",
+    "icon": "progress",
+    "cat": "collection",
+    "sc": [],
+    "page": "dossiers/100-pour-cent/"
+   },
+   {
+    "id": "planques-garages",
+    "nom": "Planques et garages",
+    "icon": "home",
+    "cat": "proprietes",
+    "sc": [
+     "planques",
+     "garages"
+    ]
    },
    {
     "id": "objets-rares",
@@ -1586,7 +1638,11 @@
     "auto",
     "caisse",
     "supercar",
-    "bagnole"
+    "bagnole",
+    "car",
+    "cars",
+    "bolide",
+    "sportive"
    ],
    [
     "arme",
@@ -1601,20 +1657,27 @@
     "helicoptere",
     "helicopteres",
     "helicos",
-    "heli"
+    "heli",
+    "helicopter",
+    "chopper",
+    "helicopters"
    ],
    [
     "tresor",
     "tresors",
     "cache",
     "butin",
-    "epave"
+    "epave",
+    "treasure",
+    "loot"
    ],
    [
     "coffre",
     "coffres",
     "coffre-fort",
-    "safe"
+    "safe",
+    "combinaison",
+    "safes"
    ],
    [
     "secret",
@@ -1638,13 +1701,19 @@
    [
     "avion",
     "avions",
-    "jet"
+    "jet",
+    "plane",
+    "hydravion",
+    "seaplane"
    ],
    [
     "planque",
     "maison",
     "appartement",
-    "garage"
+    "garage",
+    "garages",
+    "safehouse",
+    "stockage"
    ],
    [
     "magasin",
@@ -1662,6 +1731,15 @@
     "braquer",
     "braquages",
     "vol"
+   ],
+   [
+    "100",
+    "completer",
+    "completion"
+   ],
+   [
+    "proche",
+    "autour"
    ]
   ],
   "traductions": [
@@ -1705,6 +1783,176 @@
     "Manga-Livery Hatchback",
     "Citadine à décoration manga"
    ]
+  ],
+  "intentions": [
+   {
+    "q": [
+     "voiture rapide",
+     "voitures rapides",
+     "supercar",
+     "supercars",
+     "supercar gratuite",
+     "hypercar",
+     "bolide",
+     "voiture de luxe"
+    ],
+    "cat": "vehicules",
+    "sc": "supercars"
+   },
+   {
+    "q": [
+     "voiture rare",
+     "voitures rares",
+     "vehicule rare",
+     "vehicules rares",
+     "voiture unique",
+     "vehicule unique"
+    ],
+    "cat": "vehicules",
+    "sc": "rares"
+   },
+   {
+    "q": [
+     "voiture de sport",
+     "sportive",
+     "jdm",
+     "voiture japonaise"
+    ],
+    "cat": "vehicules",
+    "sc": "sport"
+   },
+   {
+    "q": [
+     "muscle car",
+     "voiture de collection",
+     "voiture americaine"
+    ],
+    "cat": "vehicules",
+    "sc": "muscle"
+   },
+   {
+    "q": [
+     "moto sportive",
+     "moto rapide",
+     "quad"
+    ],
+    "cat": "vehicules",
+    "sc": "motos"
+   },
+   {
+    "q": [
+     "bateau rapide",
+     "hors bord",
+     "jet ski",
+     "hydroglisseur"
+    ],
+    "cat": "vehicules",
+    "sc": "bateaux"
+   },
+   {
+    "q": [
+     "jet prive",
+     "avion",
+     "avions",
+     "hydravion",
+     "helico",
+     "helicoptere",
+     "helicopter"
+    ],
+    "cat": "vehicules",
+    "sc": "aerien"
+   },
+   {
+    "q": [
+     "vehicule militaire",
+     "tank",
+     "char",
+     "militaire"
+    ],
+    "cat": "vehicules",
+    "sc": "speciaux"
+   },
+   {
+    "q": [
+     "arme rare",
+     "armes rares"
+    ],
+    "cat": "armes",
+    "sc": "rares"
+   },
+   {
+    "q": [
+     "arme unique",
+     "armes uniques"
+    ],
+    "cat": "armes",
+    "sc": "uniques"
+   },
+   {
+    "q": [
+     "munition",
+     "munitions",
+     "balles"
+    ],
+    "cat": "armes",
+    "sc": "munitions"
+   },
+   {
+    "q": [
+     "gilet",
+     "gilet pare balles",
+     "protection",
+     "armure"
+    ],
+    "cat": "armes",
+    "sc": "gilets"
+   },
+   {
+    "q": [
+     "acheter une arme",
+     "armurerie",
+     "ammu nation"
+    ],
+    "cat": "armes",
+    "sc": "armureries"
+   },
+   {
+    "q": [
+     "easter egg",
+     "easter eggs"
+    ],
+    "cat": "secrets",
+    "sc": "easter"
+   },
+   {
+    "q": [
+     "evenement aleatoire",
+     "evenements aleatoires",
+     "random event"
+    ],
+    "cat": "missions",
+    "sc": "evenements"
+   },
+   {
+    "q": [
+     "finir le jeu",
+     "terminer le jeu",
+     "100",
+     "cent pour cent",
+     "completion",
+     "completer le jeu"
+    ],
+    "pop": "cent-pour-cent"
+   },
+   {
+    "q": [
+     "planque",
+     "planques",
+     "safehouse"
+    ],
+    "cat": "proprietes",
+    "sc": "planques"
+   }
   ]
  }
 }
