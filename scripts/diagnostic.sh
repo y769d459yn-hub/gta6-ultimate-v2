@@ -108,3 +108,11 @@ echo "codes : $(grep -o 'class="code-src' /tmp/cf.html | wc -l) mentions sous le
 titre "15. Carte : repère choisi gardé"
 curl -sS --max-time 20 "https://$D/carte/?t=$(date +%s)" -o /tmp/ca.html; echo "carte : $(grep -c 'data-keep' /tmp/ca.html) rappel repère choisi"
 echo "carte.js : $(curl -sS --max-time 20 "https://$D/assets/carte.js?t=$(date +%s)" | grep -c 'data-keep-voir') bouton Voir | atlas.css : $(curl -sS --max-time 20 "https://$D/assets/atlas.css?t=$(date +%s)" | grep -c 'overflow: \?clip') calque bloqué"
+
+titre "16. Emplacements (audit SEO) et ordre des catégories"
+curl -sS --max-time 20 "https://$D/astuces/armes-gratuites/?t=$(date +%s)" -o /tmp/ar.html; echo "armes : $(grep -o 'col-it--sans' /tmp/ar.html | wc -l) armes listées (51 attendu)"
+curl -sS --max-time 20 "https://$D/astuces/voiture-rare/?t=$(date +%s)" -o /tmp/vr.html; echo "voitures rares : $(grep -o 'col-it--sans' /tmp/vr.html | wc -l) véhicules listés (149 attendu)"
+curl -sS --max-time 20 "https://$D/vehicules/maibatsu-penumbra-ff/?t=$(date +%s)" -o /tmp/pf.html; echo "Penumbra FF : $(grep -c 'deux sources concordent' /tmp/pf.html) concordance"
+curl -sS --max-time 20 "https://$D/vehicules/vapid-dominator-65/?t=$(date +%s)" -o /tmp/d65.html; echo "Dominator '65 : $(grep -c 'o-vehicle-spawn-013' /tmp/d65.html) repère rattaché"
+curl -sS --max-time 20 "https://$D/dossiers/codes-coffres/?t=$(date +%s)" -o /tmp/cc.html; echo "coffres : $(grep -c 'essaie les deux' /tmp/cc.html) « essaie les deux » (0 attendu)"
+curl -sS --max-time 20 "https://$D/carte/?t=$(date +%s)" -o /tmp/ct.html; echo "ordre catégories : $(grep -o 'data-cat="[a-z]*"' /tmp/ct.html | head -9 | tr '\n' ' ')"

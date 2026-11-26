@@ -138,7 +138,7 @@
         const x = c.m.reduce((s, a) => s + a.x, 0) / c.m.length, y = c.m.reduce((s, a) => s + a.y, 0) / c.m.length;
         if (c.m.length === 1) {
           const f = c.m[0], col = (cats[f.cat] || {}).color || '#ff2bd6';
-          el.className = 'at-dot' + (f.precision === 'region' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 || f.id === st.active ? ' at-dot--lbl' : '') + (f.id === st.active ? ' is-spot' : '');
+          el.className = 'at-dot' + (f.statut !== 'teste' ? ' at-dot--approx' : '') + (f.id === st.active ? ' is-on' : '') + (st.found && st.found.has(f.id) ? ' is-found' : '') + (cam.s >= .2 || f.id === st.active ? ' at-dot--lbl' : '') + (f.id === st.active ? ' is-spot' : '');
           const icn = window.LG && window.LG.ic ? window.LG.ic(f.icon) : '';
           el.innerHTML = `${f.id === st.active ? '<span class="at-beam" aria-hidden="true"></span>' : ''}<span class="at-dot-i">${icn}</span>${cam.s >= .2 || f.id === st.active ? `<b class="at-dot-n">${escH(f.nom)}</b>` : ''}`;
           el.style.setProperty('--c', col); el.style.setProperty('--d', (i % 7) * .35 + 's');
