@@ -64,22 +64,26 @@
  "dinka-enduro": {
   "fichier": "dinka-enduro.webp",
   "note": "",
-  "credit": "Rockstar Games",
-  "url": "https://www.rockstargames.com/VI/media/screenshots"
+  "credit": "Rockstar Games (site officiel), via GTA Wiki",
+  "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SafehouseVehicles02.jpg",
+  "hd": "dinka-enduro.webp",
+  "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SafehouseVehicles02.jpg"
  },
  "kayak-crest": {
   "fichier": "kayak-crest.webp",
   "note": "",
-  "credit": "Rockstar Games, via GTA Wiki",
-  "url": "https://gta.wiki/w/File:Kayak-GTAVI-OfficalScreenshot-MountKalaga06.jpg",
+  "credit": "Rockstar Games (site officiel), via GTA Wiki",
+  "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SafehouseVehicles03.jpg",
   "hd": "kayak-crest.webp",
-  "source": "https://gta.wiki/images/Kayak-GTAVI-OfficalScreenshot-MountKalaga06.jpg"
+  "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-SafehouseVehicles03.jpg"
  },
  "mammoth-dodo": {
   "fichier": "mammoth-dodo.webp",
   "note": "",
-  "credit": "Rockstar Games, via GTABase",
-  "url": "https://www.gtabase.com/gta-6/vehicles/dodo"
+  "credit": "Rockstar Games, via timesaver.gg",
+  "url": "https://timesaver.gg/tools/gta-6/cars",
+  "hd": "mammoth-dodo.webp",
+  "source": "https://timesaver.gg/cdn/tools/gta-6/cars/v1/mammoth-dodo/mammoth-dodo-a041b182b2-1920.webp"
  },
  "helicoptere-toits": {
   "fichier": "helicoptere-toits.webp",
@@ -104,28 +108,34 @@
  "vapid-stanier-55": {
   "fichier": "vapid-stanier-55.webp",
   "note": "",
-  "credit": "Rockstar Games",
-  "url": "https://www.rockstargames.com/VI/media/screenshots"
+  "credit": "Rockstar Games, via timesaver.gg",
+  "url": "https://timesaver.gg/tools/gta-6/cars",
+  "hd": "vapid-stanier-55.webp",
+  "source": "https://timesaver.gg/cdn/tools/gta-6/cars/v1/55-vapid-stanier/vapid-stanier-55-885e0031d2-1920.webp"
  },
  "grotti-cheetah-95": {
   "fichier": "grotti-cheetah-95.webp",
   "note": "",
-  "credit": "Rockstar Games",
-  "url": "https://www.rockstargames.com/VI/media/screenshots"
+  "credit": "Rockstar Games (site officiel), via GTA Wiki",
+  "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-GrottiCheetah01.jpg",
+  "hd": "grotti-cheetah-95.webp",
+  "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-GrottiCheetah01.jpg"
  },
  "vapid-dominator-buggy": {
   "fichier": "vapid-dominator-buggy.webp",
   "note": "",
-  "credit": "Rockstar Games, via GTA Wiki",
-  "url": "https://gta.wiki/w/File:DominatorBuggy-GTAVI-FrontQuarter.png",
+  "credit": "Rockstar Games (site officiel), via GTA Wiki",
+  "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-VapidBuggy01.jpg",
   "hd": "vapid-dominator-buggy.webp",
-  "source": "https://gta.wiki/images/DominatorBuggy-GTAVI-FrontQuarter.png"
+  "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-VapidBuggy01.jpg"
  },
  "vapid-ganado": {
   "fichier": "vapid-ganado.webp",
   "note": "",
-  "credit": "Rockstar Games",
-  "url": "https://www.rockstargames.com/VI/media/screenshots"
+  "credit": "Rockstar Games (site officiel), via GTA Wiki",
+  "url": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-VapidGanadoRetroBuild01.jpg",
+  "hd": "vapid-ganado.webp",
+  "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-VapidGanadoRetroBuild01.jpg"
  },
  "pfister-comet-s2": {
   "fichier": "pfister-comet-s2.webp",
