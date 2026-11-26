@@ -93,7 +93,14 @@ const I = {
   chevron: ['bob', '<path d="m9 6 6 6-6 6"/>'],
   'chevron-left': ['bob', '<path d="m15 6-6 6 6 6"/>'],
   stack: ['bob', '<path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/>'],
-  guide: ['bob', '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>']
+  guide: ['bob', '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>'],
+  flame: ['flash', '<path d="M12 3c1 3.5 5.5 5.6 5.5 10.5A5.5 5.5 0 0 1 12 19a5.5 5.5 0 0 1-5.5-5.5c0-2.6 1.4-4 2.5-5 .3 1.7 1 2.8 2 3.2C11 9 11 6 12 3z"/><path d="M12 19a2.4 2.4 0 0 1-2.4-2.4c0-1.6 1.4-2.3 2.4-3.6 1 1.3 2.4 2 2.4 3.6A2.4 2.4 0 0 1 12 19z"/>'],
+  heli: ['bob', '<path d="M3 5h18M12 5v3"/><path d="M5 12a3 3 0 0 1 3-3h6a5 5 0 0 1 0 10H9a4 4 0 0 1-4-4z"/><path d="M19 13h2M9 19l-1 2M14 19l1 2M7 21h10"/>'],
+  store: ['bob', '<path d="M4 9h16l-1.5-5h-13z"/><path d="M5 9v11h14V9M10 20v-6h4v6"/><path d="M4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0"/>'],
+  secret: ['pulse', '<path d="M3 11c2-1.5 5.5-2.5 9-2.5s7 1 9 2.5"/><path d="M5 10.5 6.8 5h10.4l1.8 5.5"/><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><path d="M11 16h2"/>'],
+  train: ['bob', '<rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/><path d="M9.5 14h.01M14.5 14h.01"/>'],
+  filter: ['pulse', '<path d="M4 5h16l-6 7.5V19l-4 2v-8.5z"/>'],
+  progress: ['pulse', '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>']
 };
 
 export function icon(name, cls = '') {

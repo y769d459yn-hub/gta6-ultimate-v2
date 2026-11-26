@@ -141,75 +141,820 @@
   "carte": [
    {
     "id": "argent",
-    "nom": "Argent",
+    "nom": "Argent et braquages",
+    "court": "Argent",
     "q": "De l'argent",
     "icon": "money",
     "color": "#39ff88",
-    "sens": "Banques, coffres-forts, magasins à braquer, receleurs et caches"
+    "sens": "Coffres, banques, braquages, receleurs",
+    "sous": [
+     {
+      "id": "facile",
+      "nom": "Argent facile",
+      "r": {
+       "s": [
+        "Opération de gang",
+        "Coffre-fort"
+       ],
+       "ids": [
+        "moses-watkins",
+        "kenton",
+        "entrepot-vice-dale"
+       ]
+      }
+     },
+     {
+      "id": "banques",
+      "nom": "Banques",
+      "r": {
+       "s": [
+        "Banque"
+       ],
+       "ids": [
+        "lombank-ocean",
+        "lombank-tequesta"
+       ]
+      }
+     },
+     {
+      "id": "coffres",
+      "nom": "Coffres-forts",
+      "r": {
+       "s": [
+        "Coffre-fort"
+       ]
+      }
+     },
+     {
+      "id": "codes",
+      "nom": "Codes des coffres",
+      "r": {
+       "code": true
+      }
+     },
+     {
+      "id": "braquer",
+      "nom": "Commerces à braquer",
+      "r": {
+       "s": [
+        "Magasin à braquer",
+        "Vitrine à casser"
+       ],
+       "ids": [
+        "little-gems",
+        "adelphila-jewelry",
+        "vice-city-pawn",
+        "pawn-salton"
+       ]
+      }
+     },
+     {
+      "id": "caches",
+      "nom": "Caches d'argent",
+      "r": {
+       "ids": [
+        "entrepot-vice-dale",
+        "cache-jason"
+       ]
+      }
+     },
+     {
+      "id": "receleurs",
+      "nom": "Receleurs",
+      "r": {
+       "s": [
+        "Receleur"
+       ],
+       "ids": [
+        "moses-watkins",
+        "vice-city-pawn",
+        "pawn-salton"
+       ]
+      }
+     },
+     {
+      "id": "gains",
+      "nom": "Opportunités de gains",
+      "r": {
+       "s": [
+        "Distributeur à arracher",
+        "Prêt sur salaire",
+        "Opération de gang"
+       ],
+       "ids": [
+        "kenton"
+       ]
+      }
+     }
+    ]
    },
    {
     "id": "vehicules",
     "nom": "Véhicules",
+    "court": "Véhicules",
     "q": "Une voiture",
     "icon": "car",
     "color": "#ff9a1f",
-    "sens": "Véhicules remarquables, véhicules à commander et où trouver une voiture, une moto, un bateau ou un avion"
+    "sens": "Voitures rares, motos, hélicos, bateaux",
+    "sous": [
+     {
+      "id": "rares",
+      "nom": "Voitures rares",
+      "r": {
+       "s": [
+        "Véhicule remarquable"
+       ],
+       "et": {
+        "vt": [
+         "voitures"
+        ]
+       }
+      }
+     },
+     {
+      "id": "supercars",
+      "nom": "Supercars",
+      "r": {
+       "vc": [
+        "Supercars",
+        "Supercar",
+        "Hypercar"
+       ]
+      }
+     },
+     {
+      "id": "sport",
+      "nom": "Voitures de sport",
+      "r": {
+       "vc": [
+        "Sportives",
+        "Sportives classiques",
+        "Sportive"
+       ]
+      }
+     },
+     {
+      "id": "motos",
+      "nom": "Motos",
+      "r": {
+       "vt": [
+        "motos"
+       ]
+      }
+     },
+     {
+      "id": "helicos",
+      "nom": "Hélicoptères",
+      "r": {
+       "vc": [
+        "Hélicoptères",
+        "Hélicoptère"
+       ],
+       "re": "h[ée]licopt"
+      }
+     },
+     {
+      "id": "avions",
+      "nom": "Avions",
+      "r": {
+       "vt": [
+        "avions"
+       ],
+       "sauf": "helicos"
+      }
+     },
+     {
+      "id": "bateaux",
+      "nom": "Bateaux",
+      "r": {
+       "vt": [
+        "bateaux"
+       ]
+      }
+     },
+     {
+      "id": "speciaux",
+      "nom": "Véhicules spéciaux et uniques",
+      "r": {
+       "vc": [
+        "Militaires",
+        "Militaire",
+        "Police et urgences",
+        "Industriels"
+       ],
+       "s": [
+        "Véhicule remarquable"
+       ],
+       "sauf": "rares"
+      }
+     },
+     {
+      "id": "commander",
+      "nom": "Véhicules à commander",
+      "r": {
+       "s": [
+        "Véhicule à commander"
+       ]
+      }
+     },
+     {
+      "id": "apparition",
+      "nom": "Emplacements d'apparition",
+      "r": {
+       "s": [
+        "Véhicule qui apparaît ici",
+        "Location de véhicules",
+        "Concessionnaire"
+       ],
+       "vm": [
+        "Apparaît à cet endroit",
+        "Position relevée (GTA Wiki)",
+        "Repère du guide"
+       ]
+      }
+     }
+    ]
    },
    {
     "id": "armes",
-    "nom": "Armes",
+    "nom": "Armes et équipements",
+    "court": "Armes",
     "q": "Une arme",
     "icon": "gun",
-    "color": "#ff5a3c",
-    "sens": "Armes au sol, armes uniques, armureries et stands de tir"
+    "color": "#ff3048",
+    "sens": "Armes au sol, armes uniques, armureries",
+    "sous": [
+     {
+      "id": "gratuites",
+      "nom": "Armes gratuites",
+      "r": {
+       "s": [
+        "Arme au sol",
+        "Arme unique"
+       ]
+      }
+     },
+     {
+      "id": "sol",
+      "nom": "Armes au sol",
+      "r": {
+       "s": [
+        "Arme au sol"
+       ]
+      }
+     },
+     {
+      "id": "uniques",
+      "nom": "Armes uniques",
+      "r": {
+       "s": [
+        "Arme unique"
+       ]
+      }
+     },
+     {
+      "id": "rares",
+      "nom": "Armes rares"
+     },
+     {
+      "id": "munitions",
+      "nom": "Munitions"
+     },
+     {
+      "id": "gilets",
+      "nom": "Gilets pare-balles"
+     },
+     {
+      "id": "equipements",
+      "nom": "Équipements"
+     },
+     {
+      "id": "armureries",
+      "nom": "Armureries",
+      "r": {
+       "s": [
+        "Armurerie"
+       ]
+      }
+     },
+     {
+      "id": "stands",
+      "nom": "Stands de tir",
+      "r": {
+       "s": [
+        "Stand de tir"
+       ]
+      }
+     }
+    ]
    },
    {
-    "id": "lieux",
-    "nom": "Lieux et secrets",
-    "q": "Un lieu secret",
-    "icon": "pin",
+    "id": "secrets",
+    "nom": "Secrets et Easter Eggs",
+    "court": "Secrets",
+    "q": "Un secret",
+    "icon": "secret",
     "color": "#ff2d87",
-    "sens": "Quartiers, monuments et endroits à découvrir"
+    "sens": "Mystères, clins d’œil, lieux qui font peur",
+    "sous": [
+     {
+      "id": "lieux",
+      "nom": "Lieux secrets",
+      "r": {
+       "dossier": [
+        "secrets:4"
+       ]
+      }
+     },
+     {
+      "id": "easter",
+      "nom": "Easter Eggs",
+      "r": {
+       "dossier": [
+        "secrets:3"
+       ]
+      }
+     },
+     {
+      "id": "mysteres",
+      "nom": "Mystères",
+      "r": {
+       "dossier": [
+        "secrets:0",
+        "secrets:1"
+       ]
+      }
+     },
+     {
+      "id": "references",
+      "nom": "Références cachées"
+     },
+     {
+      "id": "insolites",
+      "nom": "Endroits insolites",
+      "r": {
+       "dossier": [
+        "secrets:2"
+       ]
+      }
+     },
+     {
+      "id": "zones",
+      "nom": "Zones cachées"
+     },
+     {
+      "id": "tenues",
+      "nom": "Tenues secrètes"
+     },
+     {
+      "id": "animaux",
+      "nom": "Animaux rares"
+     }
+    ]
    },
    {
     "id": "collection",
     "nom": "Objets à collectionner",
+    "court": "Objets",
     "q": "Un objet",
     "icon": "chest",
-    "color": "#c77dff",
-    "sens": "Cartes, paquets cachés, météorites, scans WAiNK, trésors…"
+    "color": "#b36bff",
+    "sens": "Paquets, cartes, météorites, trésors",
+    "sous": [
+     {
+      "id": "paquets",
+      "nom": "Paquets cachés",
+      "r": {
+       "s": [
+        "Paquet caché"
+       ]
+      }
+     },
+     {
+      "id": "cartes",
+      "nom": "Cartes",
+      "r": {
+       "s": [
+        "Carte à collectionner"
+       ]
+      }
+     },
+     {
+      "id": "meteorites",
+      "nom": "Météorites",
+      "r": {
+       "s": [
+        "Météorite"
+       ]
+      }
+     },
+     {
+      "id": "waink",
+      "nom": "Scans WAiNK",
+      "r": {
+       "s": [
+        "Scan WAiNK"
+       ]
+      }
+     },
+     {
+      "id": "tresors",
+      "nom": "Trésors",
+      "r": {
+       "s": [
+        "Trésor",
+        "Message dans une bouteille"
+       ]
+      }
+     },
+     {
+      "id": "sousmarins",
+      "nom": "Trésors sous-marins"
+     },
+     {
+      "id": "rares",
+      "nom": "Objets rares",
+      "r": {
+       "s": [
+        "Montre de luxe",
+        "Playlist unique"
+       ]
+      }
+     },
+     {
+      "id": "autres",
+      "nom": "Autres objets",
+      "r": {
+       "s": [
+        "Caisse jaune",
+        "Magazine ou BD",
+        "Street art Ahol",
+        "Boîte à livres",
+        "Conteneur SCOOP",
+        "Fresque 1010"
+       ]
+      }
+     }
+    ]
    },
    {
     "id": "missions",
     "nom": "Missions",
+    "court": "Missions",
     "q": "Une mission",
     "icon": "flag",
-    "color": "#ff3d6e",
-    "sens": "Où se passent les missions de l'histoire"
+    "color": "#f4f1ff",
+    "sens": "Lieux de l'histoire, événements aléatoires",
+    "sous": [
+     {
+      "id": "principales",
+      "nom": "Missions principales",
+      "r": {
+       "mis": "principale"
+      }
+     },
+     {
+      "id": "secondaires",
+      "nom": "Missions secondaires"
+     },
+     {
+      "id": "evenements",
+      "nom": "Événements aléatoires",
+      "r": {
+       "s": [
+        "Événement aléatoire"
+       ]
+      }
+     },
+     {
+      "id": "cachees",
+      "nom": "Missions cachées"
+     },
+     {
+      "id": "facultatives",
+      "nom": "Missions facultatives",
+      "r": {
+       "mis": "facultative"
+      }
+     }
+    ]
    },
    {
     "id": "activites",
-    "nom": "Activités",
+    "nom": "Activités et défis",
+    "court": "Activités",
     "q": "Une activité",
-    "icon": "wave",
+    "icon": "trophy",
     "color": "#19d3e3",
-    "sens": "Cascades, courses, passages sous les ponts, sport, pêche, événements…"
+    "sens": "Cascades, courses, ponts, pêche, sport",
+    "sous": [
+     {
+      "id": "cascades",
+      "nom": "Cascades",
+      "r": {
+       "s": [
+        "Saut de cascade",
+        "Saut BASE",
+        "Saut en parachute"
+       ]
+      }
+     },
+     {
+      "id": "courses",
+      "nom": "Courses",
+      "r": {
+       "s": [
+        "Course",
+        "Course de drone"
+       ],
+       "ids": [
+        "boone-speedway",
+        "gellhorn-raceway"
+       ]
+      }
+     },
+     {
+      "id": "ponts",
+      "nom": "Passages sous les ponts",
+      "r": {
+       "s": [
+        "Passage sous un pont"
+       ]
+      }
+     },
+     {
+      "id": "peche",
+      "nom": "Pêche",
+      "r": {
+       "s": [
+        "Coin de pêche"
+       ],
+       "ids": [
+        "act-peche"
+       ]
+      }
+     },
+     {
+      "id": "sports",
+      "nom": "Sports",
+      "r": {
+       "s": [
+        "Panier de basket",
+        "Golf",
+        "Mini-golf",
+        "Salle de sport"
+       ],
+       "ids": [
+        "act-basket"
+       ]
+      }
+     },
+     {
+      "id": "defis",
+      "nom": "Défis",
+      "r": {
+       "s": [
+        "Vol en rase-mottes"
+       ]
+      }
+     },
+     {
+      "id": "evenements",
+      "nom": "Événements",
+      "r": {
+       "s": [
+        "Rassemblement auto"
+       ]
+      }
+     },
+     {
+      "id": "annexes",
+      "nom": "Activités annexes",
+      "r": {
+       "s": [
+        "Billard",
+        "Borne d'arcade",
+        "Chasse",
+        "Méditation"
+       ],
+       "ids": [
+        "act-airboat",
+        "act-kayak",
+        "act-plongee",
+        "act-jetski",
+        "act-chasse",
+        "kalaga-reservoir"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "id": "proprietes",
+    "nom": "Propriétés et planques",
+    "court": "Planques",
+    "q": "Une planque",
+    "icon": "home",
+    "color": "#3d7bff",
+    "sens": "Planques et garages",
+    "sous": [
+     {
+      "id": "maisons",
+      "nom": "Maisons"
+     },
+     {
+      "id": "appartements",
+      "nom": "Appartements"
+     },
+     {
+      "id": "garages",
+      "nom": "Garages privés",
+      "r": {
+       "s": [
+        "Garage perso"
+       ]
+      }
+     },
+     {
+      "id": "planques",
+      "nom": "Planques",
+      "r": {
+       "s": [
+        "Planque"
+       ]
+      }
+     },
+     {
+      "id": "achat",
+      "nom": "Propriétés à acheter"
+     },
+     {
+      "id": "entreprises",
+      "nom": "Entreprises"
+     }
+    ]
    },
    {
     "id": "commerces",
     "nom": "Commerces",
+    "court": "Commerces",
     "q": "Un magasin",
-    "icon": "diamond",
+    "icon": "store",
     "color": "#ffd23f",
-    "sens": "Vêtements, coiffeur, tatoueur, épicerie, essence…"
+    "sens": "Vêtements, coiffeurs, tatoueurs, restos",
+    "sous": [
+     {
+      "id": "vetements",
+      "nom": "Magasins de vêtements",
+      "r": {
+       "s": [
+        "Vêtements",
+        "Chaussures"
+       ]
+      }
+     },
+     {
+      "id": "coiffeurs",
+      "nom": "Coiffeurs",
+      "r": {
+       "s": [
+        "Coiffeur"
+       ]
+      }
+     },
+     {
+      "id": "tatoueurs",
+      "nom": "Tatoueurs",
+      "r": {
+       "s": [
+        "Tatoueur"
+       ]
+      }
+     },
+     {
+      "id": "epiceries",
+      "nom": "Épiceries"
+     },
+     {
+      "id": "restaurants",
+      "nom": "Restaurants",
+      "r": {
+       "s": [
+        "Restauration",
+        "Street food",
+        "Café et vente à emporter"
+       ]
+      }
+     },
+     {
+      "id": "autres",
+      "nom": "Autres commerces",
+      "r": {
+       "s": [
+        "Bar",
+        "Boîte de nuit",
+        "Électronique",
+        "Boutique de BD",
+        "Cinéma"
+       ]
+      }
+     }
+    ]
    },
    {
     "id": "services",
-    "nom": "Services",
+    "nom": "Services et transports",
+    "court": "Services",
     "q": "Un service",
-    "icon": "heart",
-    "color": "#4da3ff",
-    "sens": "Hôpitaux, police, garages, planques, marinas, aéroport"
+    "icon": "building",
+    "color": "#b9c2d0",
+    "sens": "Hôpitaux, police, garages, gares, quartiers",
+    "sous": [
+     {
+      "id": "hopitaux",
+      "nom": "Hôpitaux et secours",
+      "r": {
+       "s": [
+        "Hôpital",
+        "Pompiers"
+       ]
+      }
+     },
+     {
+      "id": "police",
+      "nom": "Commissariats",
+      "r": {
+       "s": [
+        "Police"
+       ]
+      }
+     },
+     {
+      "id": "stations",
+      "nom": "Stations-service",
+      "r": {
+       "s": [
+        "Station-service"
+       ]
+      }
+     },
+     {
+      "id": "garages",
+      "nom": "Garages publics",
+      "r": {
+       "s": [
+        "Garage auto",
+        "Pay 'n' Spray",
+        "Station de lavage"
+       ]
+      }
+     },
+     {
+      "id": "marinas",
+      "nom": "Marinas",
+      "r": {
+       "s": [
+        "Marina",
+        "Port"
+       ]
+      }
+     },
+     {
+      "id": "aeroports",
+      "nom": "Aéroports",
+      "r": {
+       "s": [
+        "Aéroport"
+       ]
+      }
+     },
+     {
+      "id": "gares",
+      "nom": "Gares",
+      "r": {
+       "s": [
+        "Gare et métro"
+       ]
+      }
+     },
+     {
+      "id": "transports",
+      "nom": "Transports en commun",
+      "r": {
+       "s": [
+        "Ferry",
+        "Location de véhicules"
+       ]
+      }
+     },
+     {
+      "id": "quartiers",
+      "nom": "Quartiers et monuments",
+      "r": {
+       "lieux": true
+      }
+     }
+    ]
    }
   ],
   "actualites": [
@@ -714,7 +1459,7 @@
    "actions": [
     [
      "Sur la carte",
-     "carte/?cat=lieux",
+     "carte/?cat=services&sc=quartiers",
      "map"
     ]
    ]
@@ -726,5 +1471,211 @@
  "reponsesNonConfirmees": {
   "actualites/pas-de-mode-en-ligne/": "Rockstar n'a annoncé ni version PC ni mode en ligne. Ses pages officielles, relues le 25/11/2026, présentent le jeu sur PS5 et Xbox Series X|S seulement. Toute date qui circule n'est pas officielle.",
   "encyclopedie/plateformes/": "Seules la PS5 et la Xbox Series X|S sont officielles. Version PC et mode en ligne : aucune annonce de Rockstar à ce jour."
+ },
+ "carteOptions": {
+  "_note": "Configuration de la carte. 'primaire' : nouvelle catégorie d'un repère selon (ancienne catégorie:type). 'populaires' : ordre éditorial (pas un classement de visites). 'rares' : libellé de rareté ; « # » = afficher le nombre réel de repères de ce type.",
+  "rapides": [
+   "argent",
+   "vehicules",
+   "armes",
+   "secrets"
+  ],
+  "alias": {
+   "lieux": "services:quartiers"
+  },
+  "primaire": {
+   "commerces:Station-service": "services",
+   "services:Planque": "proprietes",
+   "services:Garage perso": "proprietes",
+   "services:Salle de sport": "activites",
+   "activites:Événement aléatoire": "missions",
+   "lieux:*": "services",
+   "vehicules:Location de véhicules": "services"
+  },
+  "secretsPrimaire": [
+   "o-random-event-",
+   "o-landmark-"
+  ],
+  "rares": {
+   "s:Véhicule remarquable": "Version unique",
+   "s:Arme unique": "Arme unique",
+   "collection:rares": "#",
+   "collection:tresors": "#"
+  },
+  "populaires": [
+   {
+    "id": "argent-facile",
+    "nom": "Argent facile",
+    "icon": "money",
+    "cat": "argent",
+    "sc": [
+     "facile"
+    ],
+    "page": "dossiers/argent-rapide/"
+   },
+   {
+    "id": "voitures-rares",
+    "nom": "Voitures rares",
+    "icon": "car",
+    "cat": "vehicules",
+    "sc": [
+     "rares"
+    ],
+    "page": "astuces/voiture-rare/"
+   },
+   {
+    "id": "armes-gratuites",
+    "nom": "Armes gratuites",
+    "icon": "gun",
+    "cat": "armes",
+    "sc": [
+     "gratuites"
+    ],
+    "page": "astuces/armes-gratuites/"
+   },
+   {
+    "id": "codes-coffres",
+    "nom": "Codes des coffres",
+    "icon": "code",
+    "cat": "argent",
+    "sc": [
+     "codes"
+    ],
+    "page": "dossiers/codes-coffres/"
+   },
+   {
+    "id": "tresors",
+    "nom": "Trésors cachés",
+    "icon": "chest",
+    "cat": "collection",
+    "sc": [
+     "tresors"
+    ],
+    "page": "collection/tresor/"
+   },
+   {
+    "id": "helicos",
+    "nom": "Hélicoptères",
+    "icon": "heli",
+    "cat": "vehicules",
+    "sc": [
+     "helicos"
+    ],
+    "page": "astuces/trouver-helicoptere/"
+   },
+   {
+    "id": "secrets",
+    "nom": "Secrets cachés",
+    "icon": "secret",
+    "cat": "secrets",
+    "sc": [],
+    "page": "dossiers/secrets/"
+   },
+   {
+    "id": "objets-rares",
+    "nom": "Objets rares",
+    "icon": "diamond",
+    "cat": "collection",
+    "sc": [
+     "rares"
+    ],
+    "page": "collection/"
+   }
+  ],
+  "synonymes": [
+   [
+    "argent",
+    "cash",
+    "dollars",
+    "dollar",
+    "money",
+    "fric",
+    "thune",
+    "billets"
+   ],
+   [
+    "voiture",
+    "vehicule",
+    "auto",
+    "caisse",
+    "supercar",
+    "bagnole"
+   ],
+   [
+    "arme",
+    "armes",
+    "pistolet",
+    "fusil",
+    "flingue",
+    "gun"
+   ],
+   [
+    "helico",
+    "helicoptere",
+    "helicopteres",
+    "helicos",
+    "heli"
+   ],
+   [
+    "tresor",
+    "tresors",
+    "cache",
+    "butin",
+    "epave"
+   ],
+   [
+    "coffre",
+    "coffres",
+    "coffre-fort",
+    "safe"
+   ],
+   [
+    "secret",
+    "secrets",
+    "easter",
+    "egg",
+    "mystere",
+    "ovni"
+   ],
+   [
+    "moto",
+    "motos",
+    "scooter"
+   ],
+   [
+    "bateau",
+    "bateaux",
+    "jet-ski",
+    "yacht"
+   ],
+   [
+    "avion",
+    "avions",
+    "jet"
+   ],
+   [
+    "planque",
+    "maison",
+    "appartement",
+    "garage"
+   ],
+   [
+    "magasin",
+    "boutique",
+    "commerce",
+    "shop"
+   ],
+   [
+    "mission",
+    "missions",
+    "quete"
+   ],
+   [
+    "braquage",
+    "braquer",
+    "braquages",
+    "vol"
+   ]
+  ]
  }
 }

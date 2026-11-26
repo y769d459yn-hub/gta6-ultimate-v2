@@ -1399,33 +1399,49 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
 // ---------- CARTE (v2 : vraie carte communautaire) ----------
 {
   const p = 'carte/', R = R_(p);
-  const body = `<h1 class="sr-only">Carte interactive de GTA 6 : Leonida</h1>
+  const CC = site.categories.carte, CO2 = site.carteOptions;
+  const cc = (id) => CC.find((c) => c.id === id);
+  const nbRep = features.filter((f) => !f.properties.label).length;
+  // guides liés (pages existantes seulement) : maillage interne visible, lisible par les moteurs de recherche
+  const GUIDES = [['dossiers/argent-rapide/', "Gagner de l'argent rapidement", 'money', '#39ff88'], ['dossiers/codes-coffres/', 'Codes des coffres-forts', 'code', '#39ff88'], ['astuces/voiture-rare/', 'Emplacement des voitures rares', 'car', '#ff9a1f'], ['astuces/trouver-helicoptere/', 'Où trouver un hélicoptère', 'heli', '#ff9a1f'], ['astuces/armes-gratuites/', 'Armes gratuites', 'gun', '#ff3048'], ['dossiers/secrets/', 'Secrets et Easter Eggs', 'secret', '#ff2d87'], ['collection/tresor/', 'Emplacement des trésors', 'chest', '#b36bff'], ['collection/', 'Objets à collectionner', 'chest', '#b36bff'], ['dossiers/100-pour-cent/', 'Guide 100 %', 'trophy', '#19d3e3']]
+    .filter(([u]) => pages.some((x) => x.p === u));
+  const body = `<h1 class="sr-only">Carte interactive de GTA 6 : argent, voitures rares, armes, secrets et objets</h1>
 <section class="atp" data-atlas-page>
   <div class="atp-stage" tabindex="0" role="application" aria-label="Carte de Leonida : glisse pour naviguer, pince ou molette pour zoomer"></div>
   <div class="atp-top">
-    <label class="atp-search"><span class="sr-only">Chercher sur la carte</span>${icon('search')}<input type="search" id="atp-q" placeholder="Chercher un lieu, un véhicule…" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg"></label>
-    <div class="atp-sugg" id="atp-sugg" role="listbox" hidden></div>
-    <div class="atp-cats" role="group" aria-label="Je cherche">
-      <span class="atp-ask" aria-hidden="true">Je cherche</span>
-      <button type="button" class="atp-chip atp-chip--all" data-all aria-pressed="true" style="--c:#fff">${icon('map')}Tout<small data-n="tout"></small></button>
-      ${site.categories.carte.map((c) => `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.sens)}">${icon(c.icon)}${esc(c.q)}<small data-n="${c.id}"></small></button>`).join('')}
-      <button type="button" class="atp-chip atp-chip--commu" data-commu aria-pressed="false" style="--c:#c7c2e0"><i></i>Lieux de la communauté<small data-n="commu"></small></button>
+    <label class="atp-search"><span class="sr-only">Que recherches-tu dans GTA 6 ?</span>${icon('search')}<input type="search" id="atp-q" placeholder="Que recherches-tu dans GTA 6 ?" autocomplete="off" enterkeyhint="search" aria-controls="atp-sugg" aria-autocomplete="list"></label>
+    <div class="atp-sugg" id="atp-sugg" role="listbox" aria-label="Suggestions" hidden></div>
+    <div class="atp-cats" role="group" aria-label="Filtres rapides">
+      ${CO2.rapides.map((id) => { const c = cc(id); return `<button type="button" class="atp-chip" data-cat="${c.id}" aria-pressed="false" style="--c:${c.color}" title="${esc(c.nom)}">${icon(c.icon)}${esc(c.court)}<small data-n="${c.id}"></small></button>`; }).join('')}
+      <button type="button" class="atp-chip atp-chip--all" data-all aria-pressed="false" style="--c:#fff" title="Afficher tous les repères (avec les filtres actifs)">${icon('map')}Tout<small data-n="tout"></small></button>
+      <button type="button" class="atp-chip atp-chip--f" data-filtres aria-haspopup="dialog" style="--c:#19d3e3">${icon('filter')}Tous les filtres<b class="atp-nf" data-nf hidden></b></button>
+      <button type="button" class="atp-chip atp-chip--reset" data-reset hidden style="--c:#ff6b6b">${icon('x')}Réinitialiser les filtres</button>
     </div>
-    <div class="atp-vide" data-vide hidden role="status">${icon('search')}<span><b>La carte est vide pour l'instant.</b> Touche ce que tu cherches juste au-dessus (une voiture, une arme, un objet…) pour afficher les lieux.</span></div>
+    <div class="atp-pop" role="group" aria-label="Recherches populaires"><span class="atp-pop-k">${icon('flame')}<span>Recherches populaires</span></span>${CO2.populaires.map((x) => `<button type="button" class="atp-popb" data-pop="${x.id}" aria-pressed="false" style="--c:${cc(x.cat).color}">${icon(x.icon)}${esc(x.nom)}</button>`).join('')}</div>
+    <div class="atp-vide" data-vide hidden role="status">${icon('search')}<span>Choisis ce que tu recherches pour afficher les lieux sur la carte.</span></div>
     <div class="atp-solo atp-keep" data-keep hidden role="status">${icon('pin')}<span>Repère choisi : <b data-keep-nom></b></span><button type="button" data-keep-voir>${icon('arrow-right')}Voir</button><button type="button" class="atp-keep-x" data-keep-off aria-label="Effacer le repère choisi">${icon('x')}</button></div>
     <div class="atp-solo" data-solo hidden role="status">${icon('flag')}<span>Seul le lieu de ta mission est affiché : <b data-solo-nom></b>.<i class="atp-solo-more"> Choisis ce que tu cherches pour voir le reste.</i></span><button type="button" data-solo-off>${icon('map')}Tout afficher</button></div>
   </div>
   <div class="atp-ctrl">
-    <button type="button" class="hm-btn hm-btn--help" data-help aria-label="Comment utiliser la carte">${icon('question')}</button>
+    <button type="button" class="hm-btn hm-btn--help" data-leg-btn aria-expanded="false" aria-controls="atp-leg" aria-label="Légende de la carte">${icon('question')}</button>
+    <button type="button" class="hm-btn" data-prog aria-label="Ma progression">${icon('progress')}</button>
     <button type="button" class="hm-btn" data-z="in" aria-label="Zoomer">${icon('plus')}</button>
     <button type="button" class="hm-btn" data-z="out" aria-label="Dézoomer">${icon('minus')}</button>
-    <button type="button" class="hm-btn" data-z="reset" aria-label="Voir toute la carte">${icon('expand')}</button>
+    <button type="button" class="hm-btn" data-z="center" aria-label="Recentrer la carte (sur le repère choisi ou les résultats)">${icon('locate')}</button>
+  </div>
+  <div class="atp-leg" id="atp-leg" hidden>
+    <div class="atp-leg-h"><b>Légende</b><button type="button" data-leg-x aria-label="Fermer la légende">${icon('x')}</button></div>
+    <p>Choisis ce que tu recherches pour afficher les lieux sur la carte.</p>
+    <details class="atp-leg-d"><summary>Catégories de la carte</summary><ul class="atp-leg-c">${CC.map((c) => `<li><span class="hl-dot" style="--c:${c.color}">${icon(c.icon)}</span><span><b>${esc(c.nom)}</b>${esc(c.sens)}</span></li>`).join('')}</ul></details>
+    <ul class="atp-leg-b"><li><span class="atp-leg-ring"></span>Bordure pleine : emplacement vérifié en jeu</li><li><span class="atp-leg-ring atp-leg-ring--d"></span>Pointillés : approximatif ou à confirmer</li></ul>
+    <details class="atp-leg-d"><summary>Guides liés</summary><ul class="atp-leg-g">${GUIDES.map(([u, t, ic, c]) => `<li><a href="${R}${u}" style="--c:${c}">${icon(ic)}${esc(t)}</a></li>`).join('')}</ul></details>
   </div>
   <div class="atp-regions" role="group" aria-label="Liste et régions"><button type="button" class="atp-list" data-list>${icon('list')}Liste<small data-n="vue"></small></button>${CARTE.regions.map((r) => `<button type="button" data-reg="${r.id}" style="--c:${r.couleur}">${esc(r.nom)}</button>`).join('')}</div>
   <div class="atp-panel" data-panel role="region" aria-label="Détails" hidden aria-live="polite"></div>
   <details class="at-attrib at-attrib--page"><summary>${icon('info')}Sources</summary><p>${ATTRIB_HTML(R)} Lieux : GTADB, CC BY 4.0. Objets, armes, véhicules, braquages, commerces et activités : <a href="https://github.com/fbritoferreira/gta6" target="_blank" rel="noopener">Open GTA 6 Map</a> (fbritoferreira et contributeurs), <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, positions converties et textes traduits.</p></details>
 </section>`;
-  emit(p, layout({ p, title: 'Carte GTA 6 interactive : lieux et véhicules', desc: `Explorez la carte de Leonida en détail : zoom, recherche, véhicules, activités et plus de ${Math.floor(communaute.length / 100) * 100} lieux repérés par la communauté (non vérifiés).`, body, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
+  const schema = [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Carte interactive de GTA 6', url: site.url + '/carte/', applicationCategory: 'GameApplication', operatingSystem: 'Web', inLanguage: 'fr', isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, description: `Carte de Leonida avec ${nbRep} repères classés en ${CC.length} catégories. Positions signalées par les joueurs, fiabilité indiquée pour chaque point.` }];
+  emit(p, layout({ p, title: 'Carte interactive GTA 6 : argent, voitures rares, armes et secrets', desc: `Carte interactive de GTA 6 : ${nbRep} repères (coffres et codes, voitures rares, armes gratuites, trésors, secrets, hélicoptères), fiabilité indiquée.`, body, schema, cls: 'p-atlas', v2: true, scripts: ['atlas.js', 'carte.js'], styles: ['atlas.css'] }));
 }
 
 // ---------- LIEUX ----------
@@ -1778,7 +1794,7 @@ if (site.editeur && site.editeur.nom) {
   <section class="related" id="confidentialite"><h2 class="h3">${icon('user')}Données personnelles</h2>
     <p><b>Responsable du traitement :</b> ${esc(E.nom)} — ${mail}.</p>
     <p><b>Sans compte</b>, le site n'enregistre rien sur toi : tes favoris, ta progression et tes préférences restent dans la mémoire de ton navigateur (stockage local), sur ton appareil. Le site n'utilise ni cookie, ni publicité, ni bouton de réseau social${MESURE ? '' : ", ni outil de mesure d'audience"}.</p>
-    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent) et les combinaisons de codes copiées. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
+    ${MESURE ? `<div id="mesure" class="mesure-box"><p><b>Mesure d'audience.</b> Pour savoir quelles pages sont utiles, on compte les visites avec <a href="https://www.goatcounter.com/help/privacy" rel="noopener" target="_blank">GoatCounter</a> (exploitant : Martin Tournoij, Irlande ; données sur des serveurs situés en Finlande et en Allemagne, dans l'Union européenne). <b>Aucun cookie</b> et rien n'est enregistré sur ton appareil. Sont transmis : la page vue, la page d'où tu viens, la taille de l'écran, le navigateur et le pays (déduit de l'adresse IP, qui n'est pas conservée). Sont aussi comptés, de façon anonyme, les recherches du site et de la carte qui ne donnent aucun résultat (le texte cherché, pour savoir quels guides manquent), les raccourcis « Recherches populaires » de la carte utilisés (pour les classer un jour selon les vrais usages) et les combinaisons de codes copiées. On n'obtient que des statistiques globales et anonymes, utilisées uniquement par ${M}, jamais croisées avec d'autres données ni utilisées pour de la publicité. Elles sont conservées ${site.mesure.conservationMois} mois au maximum. Rien n'est compté si ton navigateur demande à ne pas être suivi (« Do Not Track » ou « Global Privacy Control »).</p>
       <p><b>Tu peux refuser à tout moment</b> : <button class="btn btn--ghost" type="button" data-mesure-refus aria-pressed="false">${icon('eye')}<span data-on="Tes visites ne sont plus comptées (annuler)" data-off="Ne pas compter mes visites">Ne pas compter mes visites</span></button></p></div>` : ''}
     <p><b>Avec un compte</b>, on enregistre ton adresse e-mail, ton mot de passe (chiffré, illisible même pour nous), tes favoris et ta progression, dans le seul but de te les rendre sur tous tes appareils. Base légale : l'exécution du service que tu demandes en créant ton compte. Ces données ne sont ni vendues, ni partagées, ni utilisées pour de la publicité. Elles sont conservées tant que ton compte existe et effacées quand tu le supprimes depuis <a href="${R}compte/">Mon espace</a>.</p>
     <p><b>Prestataires :</b> Supabase héberge les comptes ; GitHub héberge les pages et, comme tout hébergeur, peut conserver des journaux techniques (dont l'adresse IP) pour la sécurité du service.</p>
@@ -1821,12 +1837,57 @@ for (const l of LIEUX) { const c = cat('lieux', l.type); const act = l.mapcat ==
 for (const e of ENC) { const c = cat('encyclopedie', e.cat); push({ t: e.nom, q: '', k: norm([c.nom, e.cat === 'personnages' ? 'personnage perso' : ''].join(' ')), d: extrait(e.bref), u: `encyclopedie/${e.slug}/`, i: e.icon, c: c.color, g: e.cat === 'personnages' ? 'personnage' : 'ency', s: e.cat, l: 'Encyclopédie · ' + c.nom, m: 0 }); }
 for (const a of ACTUS) push({ t: a.titre, q: '', k: norm('actualite news info ' + a.theme), d: fmtDate(a.date), u: `actualites/${a.slug}/`, i: 'news', c: '#3ddc84', g: 'actu', s: a.theme, l: 'Actu', m: 0 });
 const CCAT = Object.fromEntries(site.categories.carte.map((c) => [c.id, c]));
+// ---------- carte : 10 catégories et leurs sous-catégories (configuration : site.json « categories.carte » et « carteOptions ») ----------
+// Chaque repère garde ses données et sa provenance ; on calcule seulement où le ranger. Aucune position n'est ajoutée ni déplacée.
+const CO = site.carteOptions;
+const SECRETS_D = {}; // repère -> sections du dossier « secrets » qui le citent
+for (const d of DOSSIERS.filter((x) => x.slug === 'secrets')) d.sections.forEach((s, i) => (s.items || []).forEach((it) => { if (it.carte) (SECRETS_D[it.carte] ||= []).push('secrets:' + i); }));
+const COFFRES_CODE = new Set(DOSSIERS.filter((x) => x.slug === 'codes-coffres').flatMap((d) => d.sections.flatMap((s) => (s.items || []).filter((it) => it.carte && it.code).map((it) => it.carte))));
+const MIS_FAC = Object.fromEntries(MISSIONS.missions.map((m) => [m.id, !!m.facultative]));
+const vClasse = (slug) => { if (!slug) return ''; const v = VEHICULES.find((x) => x.slug === slug); if (v) return v.sous || ''; const c = CATALOGUE.vehicules.find((x) => x.slug === slug); return c ? c.classe || '' : ''; };
+function carteCat(p) {
+  if (p.label) return p.cat === 'lieux' ? 'services' : p.cat;
+  if (SECRETS_D[p.id] && CO.secretsPrimaire.some((x) => p.id.startsWith(x))) return 'secrets';
+  return CO.primaire[p.cat + ':' + (p.service || p.sous)] || CO.primaire[p.cat + ':*'] || p.cat;
+}
+function regleOk(r, p) {
+  if (!r) return false;
+  if (r.et && !regleOk(r.et, p)) return false; // condition supplémentaire obligatoire
+  const sv = p.service || p.sous;
+  if (r.s && r.s.includes(sv)) return true;
+  if (r.ids && r.ids.includes(p.id)) return true;
+  if (r.vt && p.vt && r.vt.includes(p.vt)) return true;
+  if (r.vm && p.vm && r.vm.includes(p.vm)) return true;
+  if (r.vc && r.vc.includes(vClasse(p.vs))) return true;
+  if (r.re && new RegExp(r.re, 'i').test(p.nom)) return true;
+  if (r.dossier && (SECRETS_D[p.id] || []).some((x) => r.dossier.includes(x))) return true;
+  if (r.code && COFFRES_CODE.has(p.id)) return true;
+  if (r.mis && (p.missions || []).some((m) => (MIS_FAC[m.id] ? 'facultative' : 'principale') === r.mis)) return true;
+  if (r.lieux && p.cat === 'lieux') return true;
+  return false;
+}
+const subsDe = (c, p, seul) => { const L = c.sous.filter((s) => s.r && (!seul || s.r.dossier) && regleOk(s.r, p)); return L.filter((s) => !(s.r.sauf && L.some((x) => x.id === s.r.sauf))).map((s) => s.id); };
+// propriétés de sortie : nouvelle catégorie (cat), sous-catégories (sc), autres catégories où le repère apparaît aussi (tg), rareté (rar)
+function carteClasse(p) {
+  const cat = carteCat(p), out = { cat };
+  if (p.label) return out;
+  const sc = subsDe(CCAT[cat], p, false); if (sc.length) out.sc = sc;
+  const tg = site.categories.carte.filter((c) => c.id !== cat && subsDe(c, p, true).length);
+  if (tg.length) { out.tg = tg.map((c) => c.id); out.sc = [...(out.sc || []), ...tg.flatMap((c) => subsDe(c, p, true).map((s) => c.id + ':' + s))]; }
+  const rar = sc.map((s) => CO.rares[cat + ':' + s]).find(Boolean) || CO.rares['s:' + (p.service || '')]; if (rar) out.rar = rar;
+  return out;
+}
+// catégories publiées : seules les sous-catégories qui ont au moins un repère (les autres restent prêtes dans la configuration)
+function carteCats(feats) {
+  const n = {}; for (const f of feats) { const p = f.properties; if (p.label) continue; for (const s of p.sc || []) { const k = s.includes(':') ? s : p.cat + ':' + s; n[k] = (n[k] || 0) + 1; } }
+  return site.categories.carte.map(({ sous, ...c }) => ({ ...c, sous: sous.filter((s) => n[c.id + ':' + s.id]).map((s) => ({ id: s.id, nom: s.nom })) }));
+}
 {
   const types = {}; for (const f of features) if (f.properties.src === 'ogm') { const k = f.properties.cat + '|' + f.properties.service; (types[k] ||= { ...f.properties, n: 0 }).n++; }
-  for (const t of Object.values(types).filter((x) => x.cat !== 'collection')) { const c = CCAT[t.cat]; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: `carte/?cat=${t.cat}`, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
+  for (const t of Object.values(types).filter((x) => x.cat !== 'collection')) { const cl = carteClasse(t), c = CCAT[cl.cat]; const sc1 = (CCAT[cl.cat].sous.filter((s) => s.r && s.r.s && s.r.s.includes(t.service)).sort((a, b) => a.r.s.length - b.r.s.length)[0] || {}).id; t.cat = cl.cat; t.lienC = `carte/?cat=${cl.cat}${sc1 ? '&sc=' + sc1 : ''}`; push({ t: `${t.service} (${t.n})`, q: c.q, k: norm(`${t.service} ${c.nom} ${c.q} carte ou trouver emplacement tous`), d: `Tous les emplacements sur la carte · ${c.nom}`, u: t.lienC, i: t.icon, c: c.color, g: 'lieu', s: t.cat, l: `Carte · ${c.nom}`, m: 1 }); }
 }
 const dejaT = new Set(index.map((x) => norm(x.t)));
-for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[p.cat]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: extrait(p.desc), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
+for (const f of features.filter((f) => /^[sm]-/.test(f.properties.id) && !dejaT.has(norm(f.properties.nom)))) { const p = f.properties, c = CCAT[carteCat(p)]; push({ t: p.nom, q: p.service, k: norm(`${p.service} ${c.nom} ${c.q} carte ou trouver ${p.desc}`), d: extrait(p.desc), u: `carte/?focus=${p.id}`, i: p.icon, c: c.color, g: 'lieu', s: p.cat, l: `${c.nom} · ${p.service}`, m: 1, f: p.id }); }
 for (const T of COLL) push({ t: `${T.pluriel} (${T.items.length})`, q: 'collection', k: norm(`${T.pluriel} ${T.nom} objet a collectionner collection emplacement tous liste`), d: 'Tous les emplacements, par secteur', u: `collection/${T.slug}/`, i: T.icon, c: '#ff2bd6', g: 'astuce', s: '', l: 'Objets à collectionner', m: 0 });
 push({ t: 'Objets à collectionner', q: 'collection', k: 'objets a collectionner collection collectibles tous emplacements cartes paquets caches', d: 'Toutes les listes par type', u: 'collection/', i: 'badge', c: '#ff2bd6', g: 'astuce', s: '', l: 'Toutes les listes', m: 0 });
 push({ t: 'Missions et solutions', q: 'missions', k: 'missions mission solution soluce chapitre histoire bloque que faire objectif', d: `Toutes les missions, étape par étape`, u: 'missions/', i: 'flag', c: '#ff3d6e', g: 'page', s: '', l: 'Page', m: 0 });
@@ -1896,14 +1957,15 @@ write('data/index.json', JSON.stringify({ items: index, syn, popular, pins, cats
   }
 }
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
+const featsCarte = features.map((f) => ({ ...f, properties: { ...f.properties, ...carteClasse(f.properties) } }));
 write('data/carte.json', JSON.stringify({
   type: 'FeatureCollection', version: 2, info: CARTE.info, attribution: ATTRIBUTION,
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
   bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
   regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
-  categories: site.categories.carte,
+  categories: carteCats(featsCarte), options: { rapides: CO.rapides, alias: CO.alias, populaires: CO.populaires, synonymes: CO.synonymes },
   sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
-  features
+  features: featsCarte
 }));
 // accueil : la mini-carte n'a besoin que des repères du guide (fichier léger)
 write('data/carte-accueil.json', JSON.stringify({
@@ -1911,9 +1973,8 @@ write('data/carte-accueil.json', JSON.stringify({
   tuiles: { tileSize: TUILES.tileSize, monde: TUILES.monde, zero: TUILES.zero, fond: TUILES.fond, niveaux: TUILES.niveaux },
   bornes: CARTE.bornes, vueInitiale: CARTE.vueInitiale,
   regions: CARTE.regions.map((r) => ({ ...r, label: POS[r.id] })),
-  categories: site.categories.carte,
-  sousTypes: { vehicules: site.categories.vehicules.map(({ id, nom }) => ({ id, nom })), lieux: site.categories.lieux.map(({ id, nom }) => ({ id, nom })), activites: LIEUX.filter((l) => l.mapcat === 'activites' && onMap(l.id)).map((l) => ({ id: l.id, nom: l.nom })) },
-  features: features.filter((f) => f.properties.src !== 'ogm')
+  categories: carteCats(featsCarte.filter((f) => f.properties.src !== 'ogm')),
+  features: featsCarte.filter((f) => f.properties.src !== 'ogm')
 }));
 write('data/communaute.json', JSON.stringify({ version: 1, attribution: ATTRIBUTION.lieux, champs: { i: 'identifiant GTADB', n: 'nom', z: 'quartier / zone', x: 'x monde', y: 'y monde', c: 'catégorie', d: '1 = douteux' }, categories: COMMU_CATS.map(({ id, nom }) => ({ id, nom })), lieux: communaute }));
 for (const f of fs.readdirSync(path.join(ROOT, 'src'), { recursive: true })) {

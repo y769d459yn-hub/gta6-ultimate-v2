@@ -120,6 +120,28 @@ for (const x of lire('vehicules.json')) {
   if (x.dispo === 'confirme' && indIds(x.sources).length < 2) err(`véhicule ${x.slug} : emplacement « confirmé » sans deux sources indépendantes`);
   if (x.dispo === 'teste' && !(x.preuve && x.preuve.date && x.preuve.plateforme && x.preuve.lien)) err(`véhicule ${x.slug} : « testé en jeu » sans preuve (date, plateforme, lien)`);
 }
+// carte : configuration des catégories et données publiées
+{
+  const C = JSON.parse(fs.readFileSync(path.join(OUT, 'data', 'carte.json'), 'utf8'));
+  const cats = Object.fromEntries(C.categories.map((c) => [c.id, c]));
+  if (C.categories.length !== site.categories.carte.length) err('carte : nombre de catégories publiées différent de la configuration');
+  const ids = new Set(), nScVu = {};
+  for (const f of C.features) {
+    const p = f.properties; if (ids.has(p.id)) err(`carte : repère en double ${p.id}`); ids.add(p.id);
+    if (!cats[p.cat]) err(`carte : ${p.id} dans une catégorie inconnue « ${p.cat} »`);
+    for (const t of p.tg || []) if (!cats[t]) err(`carte : ${p.id} étiqueté dans une catégorie inconnue « ${t} »`);
+    for (const s of p.sc || []) { const k = s.includes(':') ? s : p.cat + ':' + s; nScVu[k] = 1; const [c, id] = k.split(':'); if (!cats[c] || !cats[c].sous.some((x) => x.id === id)) err(`carte : ${p.id} dans une sous-catégorie absente ${k}`); }
+    if (p.statut === 'teste' && !p.preuve && !/^v-/.test(p.id)) warn(`carte : ${p.id} « vérifié en jeu » sans preuve détaillée`);
+  }
+  for (const c of C.categories) for (const s of c.sous) if (!nScVu[c.id + ':' + s.id]) err(`carte : sous-catégorie vide publiée ${c.id}:${s.id}`);
+  for (const pop of (C.options || {}).populaires || []) {
+    if (!cats[pop.cat]) { err(`carte : recherche populaire ${pop.id} vers une catégorie absente`); continue; }
+    for (const s of pop.sc || []) if (!cats[pop.cat].sous.some((x) => x.id === s)) err(`carte : recherche populaire ${pop.id} vers une sous-catégorie sans données (${s})`);
+    if (pop.page && !pages.has(pop.page)) err(`carte : recherche populaire ${pop.id} vers une page absente ${pop.page}`);
+  }
+  const html = pages.get('carte/') || '';
+  if (!/Que recherches-tu dans GTA 6/.test(html)) err('carte : barre de recherche absente');
+}
 if ([...pages.values()].some((h) => /Consultées le \d/.test(h))) err('date de consultation des sources affichée sans être réelle');
 if (!fs.existsSync(path.join(OUT, 'llms.txt'))) err('llms.txt absent');
 
