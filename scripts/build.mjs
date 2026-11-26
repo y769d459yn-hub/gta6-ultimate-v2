@@ -790,7 +790,7 @@ function homePalms() {
   const ph = (n) => (n.startsWith('m-') ? `${n}.webp` : fs.existsSync(path.join(ROOT, 'src', 'img', `hx-${n}.webp`)) ? `hx-${n}.webp` : `../photos/${n}.webp`);
   const D_ = (s) => DOSSIERS.find((d) => d.slug === s);
   const vraiesM = MISSIONS.missions.filter((m) => !m.facultative && !m.tache).length;
-  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'money', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547'], ['glitchs/', 'Glitchs', 'bolt', '#ff5c70']];
+  const CATS5 = [['codes/', 'Codes', 'gamepad', '#ff2bd6'], ['dossiers/argent-rapide/', 'Argent', 'dollar', '#3ddc84'], ['carte/', 'Carte', 'map', '#2de2e6'], ['missions/', 'Missions', 'flag', '#b44dff'], ['vehicules/', 'Véhicules', 'car', '#ffb547'], ['glitchs/', 'Glitchs', 'bolt', '#ff5c70']];
   const UNE = D_('argent-rapide');
   const POP = [
     ['codes/', 'Codes', `Codes de triche GTA 6 (PS5 et Xbox)`, 'm-codes', '#ff2bd6', `${CODES.codes.length} codes avec leurs flèches`],
