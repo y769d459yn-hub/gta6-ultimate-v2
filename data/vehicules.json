@@ -56,11 +56,11 @@
   "sous": "Sportive",
   "dispo": "a-verifier",
   "lieu": "vespucci-island",
-  "emplacement": "Dans le garage d'une maison sur Vespucci Island. On peut la voler tôt dans le jeu.",
+  "emplacement": "Dans le garage d'une maison sur Vespucci Island, selon les joueurs (capture prise en jeu sur place). Moment où elle devient accessible : non vérifié.",
   "obtenir": [
    "Va sur Vespucci Island.",
-   "Trouve le garage de la maison.",
-   "Prends-la, elle est accessible dès le début."
+   "Trouve le garage de la maison (voir le repère de la carte).",
+   "Récupère-la si elle est présente : nous n'avons pas vérifié à partir de quel moment de l'histoire elle l'est."
   ],
   "kw": [
    "penumbra",
@@ -80,7 +80,7 @@
   "sous": "Hypercar",
   "dispo": "a-verifier",
   "lieu": "vespucci-island",
-  "emplacement": "Dans un petit garage à l'entrée du manoir Vespucci.",
+  "emplacement": "Dans un petit garage à l'entrée du manoir Vespucci, selon les joueurs (capture prise en jeu sur place).",
   "obtenir": [
    "Va au manoir Vespucci.",
    "Cherche le petit garage à l'entrée.",
@@ -556,7 +556,7 @@
   "sous": "Sportive",
   "dispo": "a-verifier",
   "lieu": null,
-  "emplacement": "Vue dans la première bande-annonce. En circulation, pas d'emplacement fixe connu.",
+  "emplacement": "Vue dans la première bande-annonce : ce n'est pas un emplacement où la récupérer. Aucun point d'apparition fixe connu.",
   "obtenir": [
    "Attends près des grands axes de Vice City.",
    "Repère le cabriolet dans la circulation.",
@@ -629,7 +629,7 @@
   "sous": "Muscle car",
   "dispo": "a-verifier",
   "lieu": "key-lento",
-  "emplacement": "Dans une allée près du panneau Cove Condominiums, à Key Lento. Accessible dès le début.",
+  "emplacement": "Dans une allée près du panneau Cove Condominiums, à Key Lento, selon les joueurs. Moment où elle devient accessible : non vérifié.",
   "obtenir": [
    "Va près du panneau Cove Condominiums, à Key Lento.",
    "Vole la voiture dans l'allée.",

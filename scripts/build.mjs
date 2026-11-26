@@ -974,6 +974,8 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
   // Une carte = une photo, un nom, et un seul bouton « Où le trouver ? » qui ouvre la carte sur le repère vérifié.
   // Sans repère : le texte d'obtention s'il existe, sinon « Emplacement pas encore connu » (rien n'est inventé).
   const vCard = ({ slug, nom, kicker, classe, type, groupe, visu, sur, focus, comment }) => {
+    // marque déjà affichée au-dessus : pas de répétition dans le nom (« Pegassi » / « Infernus »)
+    if (kicker && nom.toLowerCase().startsWith(kicker.toLowerCase() + ' ')) nom = nom.slice(kicker.length + 1);
     const c = cat('vehicules', type);
     const known = !!(focus || comment);
     const txt = norm([nom, kicker, classe, c.nom].join(' '));
@@ -1049,9 +1051,10 @@ for (const v of VEHICULES) {
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
   </header>
   ${(() => {
-    const lieux = [onM && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).map((id) => mapIndex[id])].filter(Boolean);
-    const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
     const cc = concorde(v.slug, CAT_CARTE[v.slug]);
+    // même véhicule, même endroit : le repère précis de la carte de joueurs passe en premier, la zone approximative de la fiche n'est plus listée (doublon)
+    const lieux = [cc && cc.f, onM && !cc && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).filter((id) => !cc || id !== cc.f.properties.id).map((id) => mapIndex[id])].filter(Boolean);
+    const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
     const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}${cc ? ` · même endroit sur Open GTA 6 Map (carte de joueurs, à ~${Math.max(10, Math.round(cc.d / 10) * 10)} m) : deux sources concordent, non vérifié en jeu` : ''}` };
     return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, conseil: !!v.conseil, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
       + blocFiab({ presence: esc(presenceTxt(v.slug, v.sources)), emplacement: `${esc(statut(v.dispo).nom)} · ${esc(fiab.texte)}`, obtention: `${esc(statut(v.dispo).nom)} · étapes tirées des mêmes sources` });
@@ -2044,7 +2047,8 @@ function carteClasse(p) {
   const sc = subsDe(CCAT[cat], p, false); if (sc.length) out.sc = sc;
   const tg = site.categories.carte.filter((c) => c.id !== cat && subsDe(c, p, true).length);
   if (tg.length) { out.tg = tg.map((c) => c.id); out.sc = [...(out.sc || []), ...tg.flatMap((c) => subsDe(c, p, true).map((s) => c.id + ':' + s))]; }
-  const rar = sc.map((s) => CO.rares[cat + ':' + s]).find(Boolean) || CO.rares['s:' + (p.service || '')]; if (rar) out.rar = rar;
+  // « Version unique » : seulement les versions spéciales (livrées) ; un point d'apparition du modèle de série n'en est pas une
+  const rar = sc.map((s) => CO.rares[cat + ':' + s]).find(Boolean) || (/^o-vehicle-spawn-/.test(p.id) ? '' : CO.rares['s:' + (p.service || '')]); if (rar) out.rar = rar;
   return out;
 }
 // catégories publiées : seules les sous-catégories qui ont au moins un repère (les autres restent prêtes dans la configuration)
@@ -2176,7 +2180,9 @@ function noterVehicules(lie) {
     const gb = id.startsWith('o-') ? GBV.reperes[id.slice(2)] : null;
     if (gb && gb.cap) { fi = fi === 'approx' ? fi : 'probable'; p.ext = `${GBV.url}#${id.slice(2)}`; p.ph = 1; p.cap = 1; }
     if (gb && gb.d && (!p.desc || p.en)) { p.desc = gb.d; delete p.en; }
-    if (gb && gb.z && !p.zone) p.zone = gb.z;
+    // secteurs de GTABase traduits mot à mot (« Clé Lento ») : noms officiels des lieux
+    const ZFR = { 'Baie Watson': 'Watson Bay', 'Clé Lento': 'Key Lento', 'Clé de Gloriana': 'Gloriana Key', Corsaire: 'Corsair', 'Sables mouvants': 'Quicksands', Ambroisie: 'Ambrosia' };
+    if (gb && gb.z && !p.zone) p.zone = ZFR[gb.z] || gb.z;
     const NAT = { unique: 'Version unique garée à cet endroit (selon les joueurs)', spawn: 'Point d’apparition signalé par les joueurs', demande: 'Véhicule lié à une demande (mission rémunérée)', location: 'Location de véhicules', guide: 'Emplacement décrit par nos sources', autre: 'Repère communautaire' }[kind];
     // photo : celle de la fiche du modèle pour un point d'apparition ou une demande (même modèle) ;
     // une version unique (livrée spéciale) n'en reçoit une que si la photo montre cette version
