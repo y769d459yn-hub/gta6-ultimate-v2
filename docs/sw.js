@@ -1,6 +1,6 @@
-/* GTA 6 Facile, service worker (version 20261126071306) */
+/* GTA 6 Facile, service worker (version 20261126072043) */
 'use strict';
-const V = '20261126071306', BASE = '/';
+const V = '20261126072043', BASE = '/';
 const PAGES = 'lg-pages-' + V, FICHIERS = 'lg-fichiers-' + V, IMAGES = 'lg-images-' + V;
 const ESSENTIELS = [BASE, BASE + 'hors-ligne.html', BASE + 'assets/app.css', BASE + 'assets/app.js', BASE + 'favicon.svg', BASE + 'assets/icon-192.png'];
 const JAMAIS = /\/(admin|compte)\/|publication\.json|admin-donnees\.json|sw\.js$/;
@@ -9,9 +9,19 @@ self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys().then((k) => Promise.all(k.filter((n) => n.startsWith('lg-') && !n.endsWith('-' + V)).map((n) => caches.delete(n)))).then(() => self.clients.claim()));
 });
 async function limiter(nom, max) { const c = await caches.open(nom); const k = await c.keys(); for (let i = 0; i < k.length - max; i++) await c.delete(k[i]); }
+// toujours demander au serveur si la page a changé (pas de vieille page gardée par le navigateur après une publication) ;
+// une page inchangée coûte une simple réponse « 304 », et hors connexion la dernière version reste affichée
+async function frais(req) {
+  if (req.mode === 'navigate') {
+    if (!/(\/|\.html)$/.test(new URL(req.url).pathname)) return fetch(req);
+    const r = await fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' });
+    return r.redirected ? fetch(req) : r;
+  }
+  return fetch(req, { cache: 'no-cache' });
+}
 async function reseauDabord(req, nom) {
   try {
-    const r = await fetch(req);
+    const r = await frais(req);
     if (r.ok && r.type === 'basic') { const c = await caches.open(nom); c.put(req, r.clone()); }
     return r;
   } catch (err) {
