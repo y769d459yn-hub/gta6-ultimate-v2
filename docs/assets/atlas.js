@@ -25,7 +25,7 @@
 
     // ---------- géométrie ----------
     function measure() {
-      W = stage.clientWidth || 1; H = stage.clientHeight || 1;
+      W = stage.clientWidth || 1; H = stage.clientHeight || 1; if (typeof sizeCanvas === 'function') sizeCanvas();
       const aw = W - pad.left - pad.right, ah = H - pad.top - pad.bottom;
       sMin = Math.min(aw / (B.est - B.ouest), ah / (B.nord - B.sud)) * (C.vueInitiale.zoomMin ? 1 : 1);
       sMax = .75;
@@ -47,48 +47,55 @@
     const imgs = new Map(); let tick = 0;
     const VIDE = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
     const levels = T.niveaux.map((n) => ({ z: n.z, set: new Set(n.tuiles) }));
+    // Le fond est peint dans UN SEUL canvas (taille de l'écran) : avant, chaque morceau était une image séparée et agrandie,
+    // et Safari sur iPhone réservait pour chacune une grande surface graphique, jusqu'à fermer la page.
+    const cv = document.createElement('canvas'); cv.className = 'at-cv'; cv.setAttribute('aria-hidden', 'true'); tilesEl.appendChild(cv);
+    const ctx = cv.getContext('2d', { alpha: false });
+    const FONDU = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 350;
+    let cvR = 1, tr = 0;
+    function sizeCanvas() { cvR = Math.min(devicePixelRatio || 1, 2); const w = Math.round(W * cvR), h = Math.round(H * cvR); if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; } cv.style.width = W + 'px'; cv.style.height = H + 'px'; }
+    const reqTiles = () => { if (!tr) tr = requestAnimationFrame(() => { tr = 0; drawTiles(anim > 0); }); };
     function drawTiles(enVol) {
       tick++;
       const dpr = Math.min(devicePixelRatio || 1, 2);
       const want = Math.max(0, Math.min(levels.length - 1, Math.ceil(Math.log2(cam.s * dpr * T.monde / T.tileSize / 1) - 0.25)));
       const [wx0, wy1] = toWorld(0, 0), [wx1, wy0] = toWorld(W, H);
-      const seen = new Set();
+      const seen = new Set(), now = performance.now(); let fondu = false;
+      ctx.setTransform(cvR, 0, 0, cvR, 0, 0); ctx.globalAlpha = 1; ctx.fillStyle = T.fond || '#5a85a3'; ctx.fillRect(0, 0, W, H);
       for (let L = Math.min(1, want); L <= want; L++) {
         if (L > 1 && L < want - 1) continue; // fond (niveau 1) + niveau courant et précédent
         const ppu = (1024 * 2 ** L) / T.monde, span = T.tileSize / ppu;
-        // un niveau de fond trop agrandi (ex. 1024 px affichés sur 7 000 px au zoom maximum) n'est plus dessiné :
-        // Safari sur iPhone réservait une mémoire graphique énorme pour ces images géantes et fermait la page
-        if (L !== want && span * cam.s / T.tileSize > 2.2) continue;
+        if (L !== want && span * cam.s / T.tileSize > 2.2) continue; // niveau trop grossier à ce zoom : caché par le niveau détaillé
         const tx0 = Math.floor((wx0 + T.zero) / span), tx1 = Math.floor((wx1 + T.zero) / span);
         const ty0 = Math.floor((T.zero - wy1) / span), ty1 = Math.floor((T.zero - wy0) / span);
         for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
           const key = `${tx}_${ty}`;
           if (!levels[L].set.has(key)) continue;
-          const id = `${L}/${key}`; seen.add(id);
+          const id = `${L}/${key}`;
           let im = imgs.get(id);
           // pendant un déplacement automatique, pas de nouvelle image détaillée : elles se chargent à l'arrivée
-          if (!im && enVol && L > 1) { seen.delete(id); continue; }
+          if (!im && enVol && L > 1) continue;
+          seen.add(id);
           if (!im) {
-            im = new Image(); im.decoding = 'async'; im.alt = ''; im.draggable = false; im.className = 'at-tile';
-            im.style.zIndex = L; im.style.opacity = 0; im.style.width = im.style.height = T.tileSize + 'px';
-            im.onload = () => { im.style.opacity = 1; };
+            im = new Image(); im.decoding = 'async';
+            im.onload = () => { im._ok = performance.now(); reqTiles(); };
             im.src = (window.LG_TILES && window.LG_TILES[id]) || `${ROOT}tiles/${L}/${key}.webp`; // LG_TILES : adresses de remplacement (aperçu)
-            tilesEl.appendChild(im); imgs.set(id, im);
+            imgs.set(id, im);
           }
-          const [sx, sy] = toScreen(tx * span - T.zero, T.zero - ty * span);
-          const size = span * cam.s;
           im._vu = tick;
-          if (im._h) { im.style.display = ''; im._h = 0; }
-          const tr = `translate3d(${sx.toFixed(1)}px,${sy.toFixed(1)}px,0) scale(${((size + 1) / T.tileSize).toFixed(5)})`;
-          if (im._t !== tr) { im.style.transform = tr; im._t = tr; }
+          if (!im._ok) continue;
+          const [sx, sy] = toScreen(tx * span - T.zero, T.zero - ty * span), size = span * cam.s;
+          const a = FONDU ? Math.min(1, (now - im._ok) / FONDU) : 1; if (a < 1) fondu = true;
+          ctx.globalAlpha = a; ctx.drawImage(im, sx, sy, size + 1, size + 1);
         }
       }
-      imgs.forEach((im, id) => { if (!seen.has(id) && !im._h) { im.style.display = 'none'; im._h = 1; } });
+      ctx.globalAlpha = 1;
+      if (fondu) reqTiles();
       // au-delà de la limite, les images non affichées les plus anciennes sont libérées (elles restent dans le cache du navigateur, compressées)
       const max = Math.max(seen.size + 8, 28);
       if (imgs.size > max) {
         [...imgs].filter(([id]) => !seen.has(id)).sort((a, b) => a[1]._vu - b[1]._vu).slice(0, imgs.size - max)
-          .forEach(([id, im]) => { im.onload = null; im.src = VIDE; im.remove(); imgs.delete(id); });
+          .forEach(([id, im]) => { im.onload = null; im.src = VIDE; imgs.delete(id); });
       }
     }
 

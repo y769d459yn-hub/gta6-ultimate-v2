@@ -3,6 +3,7 @@
 .at-tiles { z-index: 0; } .at-layer { z-index: 1; pointer-events: none; }
 .at-tiles, .at-layer { overflow: clip; } /* le calque ne doit jamais défiler (un repère qui prend le focus le décalerait de la carte) */
 .at-tile { position: absolute; left: 0; top: 0; transform-origin: 0 0; max-width: none; user-select: none; -webkit-user-drag: none; image-rendering: auto; transition: opacity .35s; }
+.at-cv { position: absolute; left: 0; top: 0; display: block; pointer-events: none; }
 
 .at-lbl { --c: #ff2bd6; position: absolute; left: 0; top: 0; translate: -50% -160%; pointer-events: auto; padding: 4px 8px; border-radius: 999px; background: rgba(5, 4, 11, .7); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); font: 600 .78rem/1 var(--fm, monospace); letter-spacing: .06em; text-transform: uppercase; color: #fff; white-space: nowrap; text-shadow: 0 0 10px #000; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); transition: opacity .3s, border-color .3s; }
 .at-lbl:hover { border-color: var(--c); box-shadow: 0 0 14px -4px var(--c); }
