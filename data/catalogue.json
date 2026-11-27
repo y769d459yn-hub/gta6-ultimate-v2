@@ -6009,13 +6009,15 @@
     }
    ],
    "img": "bravado-police-gauntlet-interceptor.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/police-cruiser-gauntlet-hellfire",
+   "credit": "Rockstar Games, via GTA Wiki",
+   "creditUrl": "https://gta.wiki/w/File:PoliceGauntlet-GTAVI-VBPD.jpg",
    "nettete": 194,
    "taille": [
-    540,
-    458
-   ]
+    1920,
+    1080
+   ],
+   "hd": "bravado-police-gauntlet-interceptor.webp",
+   "source": "https://gta.wiki/images/PoliceGauntlet-GTAVI-VBPD.jpg"
   },
   {
    "slug": "vapid-police-ghost-stanier-le",
