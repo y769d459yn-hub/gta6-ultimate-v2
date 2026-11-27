@@ -98,6 +98,8 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     }
     return best;
   }
+  // forme sans pluriel, sans mots vides : « codes des coffres » = « code coffre »
+  const sing = (s) => s.split(' ').filter((w) => w && !STOP.has(w)).map((w) => (w.length > 3 && /[sx]$/.test(w) ? w.slice(0, -1) : w)).join(' ');
   const queryTokens = (qn) => { const all = qn.split(' ').filter(Boolean); const t = all.filter((x) => !STOP.has(x)); return t.length ? t : all; };
 
   // ---------- index ----------
@@ -149,9 +151,13 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
       });
       if (!total) continue;
       let s = total * Math.pow(Math.max(hit, .5) / toks.length, 2);
+      if (it.g === 'page') s *= .6; // pages de rubrique : derrière les fiches, sauf titre identique ou qui commence par la recherche
       if (it._tn.includes(qn)) s += 3;
-      if (it._tn === qn || it._tn.startsWith(qn + ' ')) s += 1; // le titre commence par le mot entier cherché
-      if (it.g === 'page') s *= .6;
+      // titre identique (au pluriel, aux accents et aux mots vides près) : en tête ; puis titre qui commence par la recherche
+      const ts = it._ts || (it._ts = sing(norm(it.t.replace(/^[^:]{2,20} : /, '')))), qs = sing(qn); // « Mission : Prologue » se compare sur « Prologue »
+      if (ts === qs) s += 12;
+      else if (ts.startsWith(qs + ' ')) s += 6;
+      else if (it._tn === qn || it._tn.startsWith(qn + ' ')) s += 1;
       out.push({ it, s, tout: hit >= toks.length });
     }
     // réponses directes : « 100 % », « jetski », « online »… passent en premier
@@ -257,15 +263,24 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   // ---------- recherche plein écran ----------
   const so = $('#search');
   let soUI = null, soOpen = false;
-  function openSearch(prefill = '') {
+  const vv = window.visualViewport;
+  const vvMaj = () => { if (soOpen && vv) so.style.height = Math.round(vv.height) + 'px'; };
+  function vvSuit(on) { if (!vv) return; if (on) { vv.addEventListener('resize', vvMaj); vvMaj(); } else { vv.removeEventListener('resize', vvMaj); so.style.height = ''; } }
+  // résultats touchés ou défilés : le clavier se ferme, le texte reste
+  const soRes = $('#so-results');
+  if (soRes) soRes.addEventListener('touchstart', () => { const i = $('#so-input'); if (document.activeElement === i) i.blur(); }, { passive: true });
+  // un résultat ouvert : la recherche est gardée pour la retrouver au retour
+  if (soRes) soRes.addEventListener('click', (e) => { if (e.target.closest('a.so-item')) store.set('soQ', { q: $('#so-input').value, t: Date.now() }); });
+  function openSearch(prefill = '', { focus = true } = {}) {
     if (!so || soOpen) return;
     soOpen = true; so.hidden = false; document.body.style.overflow = 'hidden';
     const input = $('#so-input');
+    vvSuit(true);
     if (!soUI) soUI = bindSearchUI(input, $('#so-results'), $('.so-chips', so));
     if (prefill) input.value = prefill;
     soUI.render();
-    requestAnimationFrame(() => input.focus());
-    history.pushState({ so: 1 }, '');
+    if (focus) requestAnimationFrame(() => input.focus());
+    if (!(history.state && history.state.so)) history.pushState({ so: 1 }, '');
     if (window.gsap && !reduceMotion()) {
       gsap.fromTo('.so-backdrop', { opacity: 0 }, { opacity: 1, duration: .25 });
       gsap.fromTo('.so-box', { y: -24, opacity: 0, scale: .98 }, { y: 0, opacity: 1, scale: 1, duration: .4, ease: 'expo.out' });
@@ -273,10 +288,12 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
   }
   function closeSearch(fromPop = false) {
     if (!soOpen) return;
-    soOpen = false; so.hidden = true; document.body.style.overflow = '';
+    soOpen = false; so.hidden = true; document.body.style.overflow = ''; vvSuit(false);
     if (!fromPop && history.state && history.state.so) history.back();
   }
   addEventListener('popstate', () => closeSearch(true));
+  // retour arrière depuis un résultat : la recherche se rouvre avec le même texte (sans rouvrir le clavier)
+  addEventListener('pageshow', () => { const s = store.get('soQ', null); if (s && history.state && history.state.so && Date.now() - s.t < 30 * 60e3 && !soOpen) { loadIndex().then(() => openSearch(s.q, { focus: false })); } });
   $$('[data-open-search]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); openSearch(); }));
   $$('[data-close-search]').forEach((b) => b.addEventListener('click', () => closeSearch()));
   addEventListener('keydown', (e) => {
