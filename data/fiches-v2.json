@@ -20,20 +20,21 @@
   },
   "bravado-banshee": {
    "lieu": "vice-city",
-   "dispo": "a-verifier",
+   "dispo": "provisoire",
    "principal": "o-vehicle-request-014",
    "lieuPrecis": "Concession Sunrise Premium Autos",
-   "noteCarte": "Le repère est celui de la Banshee demandée par Randy, relevé par une carte de joueurs dans Southside : le nom de la concession n'y figure pas.",
-   "emplacement": "Dans la concession Sunrise Premium Autos, au nord de Southside (Vice City) : une Banshee bleue exposée au fond de la salle.",
+   "noteCarte": "Repère relevé par des joueurs pour la Banshee de Randy, sur El Joven Boulevard : il concorde avec les guides (au sud-ouest du Pay 'n' Spray, à côté du magasin de marchandises illégales).",
+   "emplacement": "Dans le hall d'exposition de la concession Sunrise Premium Autos, sur El Joven Boulevard, au nord de Southside (Vice City) : la Banshee est exposée devant l'accueil, pas à l'extérieur. On peut la scanner depuis la rue.",
    "chercher": [
-    "Va à la concession Sunrise Premium Autos, au nord de Southside (bouton « Voir sur la carte »).",
-    "La Banshee bleue est exposée au fond de la salle. Pour la liste de Randy, il faut le cloneur de clés qu'il te donne au chapitre 3.",
-    "Pour sortir, traverse la vitrine : selon les guides, ça débloque aussi le trophée « Capital Offense »."
+    "Une fois les autres véhicules livrés à Randy, demande-lui du travail : il te révèle la position de la Banshee dans une mission spéciale.",
+    "Va à la concession Sunrise Premium Autos, sur El Joven Boulevard (bouton « Voir sur la carte ») : la Banshee est dans le hall d'exposition, devant l'accueil.",
+    "Entre dans le hall, utilise le cloneur de clés, puis traverse la vitrine au volant. L'alarme se déclenche forcément."
    ],
    "sources": [
     "pcgamer-banshee",
     "gamerant-banshee",
-    "vice-banshee"
+    "vice-banshee",
+    "gtaxtreme-banshee"
    ]
   },
   "truffade-thrax": {
