@@ -1,0 +1,47 @@
+{
+ "_note": "Doublons de la carte : le repère de gauche n'est plus affiché, le repère de droite (le plus précis ou le mieux prouvé) le remplace. Les données restent ici pour la traçabilité et pour qu'une nouvelle importation ne les réaffiche pas. Vérifiés le 26/11/2026.",
+ "doublons": {
+  "v-bombora-s23": {
+   "garde": "o-vehicle-spawn-012",
+   "raison": "Même bateau : la fiche décrit « le rivage de Capri, près d'un couple assis autour d'un feu », exactement le repère GTABase (capture prise en jeu)."
+  },
+  "v-granforma-zorrusso": {
+   "garde": "o-vehicle-spawn-055",
+   "raison": "Même voiture : zone de la fiche (presqu'île nord-ouest de Capri) et garage du repère GTABase à 400 m (capture prise en jeu)."
+  },
+  "o-vehicle-spawn-082": {
+   "garde": "o-standout-vehicle-038",
+   "raison": "Même Jugular signalée deux fois, à 5 m d'écart."
+  },
+  "o-vehicle-spawn-019": {
+   "garde": "o-standout-vehicle-091",
+   "raison": "Même Akane décorée signalée deux fois, à 26 m d'écart (le repère gardé a une capture prise en jeu)."
+  },
+  "o-standout-vehicle-284": {
+   "garde": "o-standout-vehicle-103",
+   "raison": "Même version unique « DriveShaft Banshee » signalée deux fois, à 109 m d'écart."
+  },
+  "o-standout-vehicle-013": {
+   "garde": "o-standout-vehicle-012",
+   "raison": "Même version unique « Third Eye Youga » signalée deux fois, à 71 m d'écart."
+  },
+  "o-landmark-026": {
+   "garde": "o-vehicle-mod-shop-011",
+   "raison": "Vice Vinyl présent deux fois à 26 m : gardé comme atelier de personnalisation."
+  },
+  "v-mammoth-dodo": {
+   "garde": "o-vehicle-spawn-079",
+   "raison": "Même endroit : zone de la fiche (hangar de Southwind) à 364 m du repère GTABase « deux avions Dodo » (capture prise en jeu)."
+  }
+ },
+ "noms": {
+  "o-standout-vehicle-123": "Pfister Comet '88",
+  "o-standout-vehicle-135": "Pfister Comet '88",
+  "o-vehicle-spawn-029": "Grotti Itali RSX",
+  "o-vehicle-spawn-050": "Declasse Vamos '74",
+  "o-vehicle-spawn-052": "Declasse Vamos '74",
+  "o-vehicle-spawn-046": "Mammoth Dodo (hydravion)",
+  "o-vehicle-spawn-077": "Mammoth Dodo (hydravion)",
+  "o-vehicle-spawn-079": "Mammoth Dodo (hydravions)"
+ }
+}
