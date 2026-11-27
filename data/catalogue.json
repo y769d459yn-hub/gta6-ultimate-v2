@@ -2398,6 +2398,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/jeep-scrambler-cj-8"
     }
+   ],
+   "img": "canis-crawler-82.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/jeep-scrambler-cj-8",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/suvs/crawler-82.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3506,6 +3514,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/golfeur"
     }
+   ],
+   "img": "vapid-golfer.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/golfeur",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/utility/golfer-32.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
