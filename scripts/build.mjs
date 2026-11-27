@@ -1051,7 +1051,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
 // ---------- FICHE VÉHICULE, NOUVELLE PRÉSENTATION (déploiement progressif : seulement les fiches listées) ----------
 // rendue après le calcul de fiabilité des repères (noterVehicules) ; mêmes titre, description, données structurées et liens que l'ancienne
 const FICHES_V2_CAT = fs.existsSync(path.join(ROOT, 'data', 'fiches-v2.json')) ? read('fiches-v2.json').fiches : {};
-const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta', 'maibatsu-penumbra-ff', 'bombora-s23', 'grotti-cheetah-95', ...Object.keys(FICHES_V2_CAT)]);
+const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta', 'maibatsu-penumbra-ff', 'bombora-s23', 'grotti-cheetah-95', 'pfister-comet-s2', ...Object.keys(FICHES_V2_CAT)]);
 const V2_A_FAIRE = [];
 const FI_TXT = { confirme: 'Confirmé', probable: 'Probable : deux sources concordent', approx: 'Zone approximative', nonverif: 'Non vérifié' };
 function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
@@ -1091,10 +1091,10 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     ${!PHOTOS[v.slug] && v.catImg ? (v.catCredit ? `<p class="veh-credit">Image : ${v.catCreditUrl ? `<a href="${esc(v.catCreditUrl)}" target="_blank" rel="noopener">${esc(v.catCredit)}</a>` : esc(v.catCredit)}</p>` : '') : vehCredit(v)}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a></div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
-    <p class="vf-resume">${l ? `Emplacement principal signalé à ${esc(reg || l.nom)}` : 'Emplacement'} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}</p>
+    <p class="vf-resume">${l || principal ? `Emplacement principal signalé à ${esc(reg || (l ? l.nom : ''))} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}` : `Aucun emplacement fixe connu pour l'instant, selon ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}.`}</p>
   </header>
   <nav class="vf-bref" aria-label="En bref">
-    <a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(v.lieuPrecis || (l ? l.nom.replace(/^Commissariat de /, '') : '—'))}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>
+    ${l || v.lieuPrecis ? `<a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(v.lieuPrecis || (l ? l.nom.replace(/^Commissariat de /, '') : '—'))}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>` : ''}
     ${mapHref ? `<a href="${mapHref}">${icon('map')}<span><small>Carte</small><b>Voir le point</b></span></a>` : ''}
     ${autres.length ? `<a href="#autres" data-ouvre>${icon('layers')}<span><small>Signalements</small><b>${1 + autres.length} au total</b></span></a>` : ''}
   </nav>
@@ -1104,6 +1104,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     <p class="vf-sous">${esc(v.emplacement)}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
+    ${(v.pistes || []).length ? `<p class="muted small vf-pistes">${icon('pin')}Autres lieux cités : ${v.pistes.map(([n, id]) => (id && mapIndex[id] ? `<a href="${R}carte/?focus=${id}">${esc(n)}</a>` : esc(n))).join(' · ')}</p>` : ''}
     ${principal && (v.noteCarte || principal.properties.precision === 'zone') ? `<p class="muted small vf-note">${icon('info')}${esc(v.noteCarte || 'Le repère de la carte indique le lieu, pas la place exacte.')}</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>

@@ -52,6 +52,87 @@
     "gamesradar-fastest",
     "keengamer-thrax"
    ]
+  },
+  "ocelot-jugular": {
+   "lieu": "vice-city",
+   "dispo": "provisoire",
+   "principal": "o-standout-vehicle-038",
+   "lieuPrecis": "Garage d'une maison, à Belville",
+   "emplacement": "Dans le garage d'une maison au fond d'une impasse, à Belville (Vice City) : elle y est à coup sûr et revient chaque matin, selon les guides. Certains précisent que c'est la version « Bloodless ».",
+   "chercher": [
+    "Il te faut le cloneur de clés, obtenu au chapitre 3 : la Jugular fait partie de la liste de Randy.",
+    "Va au garage de la maison au fond de l'impasse, à Belville (bouton « Voir sur la carte »).",
+    "Si elle n'y est pas, les guides citent aussi le stationnement devant Bite, sur Atlantic Avenue (Vice Beach), et le parking du casino Merlin's Palace, à Balsero."
+   ],
+   "sources": [
+    "gamesradar-jugular",
+    "pcgamer-jugular",
+    "gamesgg-jugular"
+   ]
+  },
+  "vapid-dominator": {
+   "lieu": "port-gellhorn",
+   "dispo": "provisoire",
+   "principal": "o-standout-vehicle-029",
+   "lieuPrecis": "Motel La Cascara (Firebug Dominator)",
+   "noteCarte": "Le repère est celui de la Firebug Dominator, la version garée à un endroit fixe. Le modèle de série n'a pas d'emplacement fixe.",
+   "emplacement": "Pas d'emplacement fixe pour le modèle de série : il apparaît au hasard dans la circulation, surtout à Vice City. La version la plus simple à trouver est la Firebug Dominator rouge, garée devant le motel La Cascara, à l'ouest de Port Gellhorn, dès le chapitre 2.",
+   "chercher": [
+    "Pour le modèle de série, roule dans Vice City : il apparaît au hasard dans la circulation.",
+    "Pour une voiture à coup sûr, va au motel La Cascara, à l'ouest de Port Gellhorn, dès le chapitre 2 : la Firebug Dominator rouge est garée devant.",
+    "Le motel sert de base à un trafic gardé : approche prudemment avant de la prendre."
+   ],
+   "sources": [
+    "destructoid-dominator",
+    "alcast-dominator"
+   ]
+  },
+  "pegassi-toros": {
+   "lieu": "tequesta",
+   "dispo": "provisoire",
+   "principal": "o-landmark-014",
+   "lieuPrecis": "Pegassi Residences",
+   "noteCarte": "Le repère est sur les Pegassi Residences : la Toros est garée devant l'immeuble, près du dépose-minute couvert.",
+   "emplacement": "Garée devant l'entrée des Pegassi Residences, sur Bayside Drive, à Tequesta Retreat (Vice City). Autres lieux cités : les allées des maisons huppées du nord de Capri, et le parking devant le bar du vignoble Paradise Wines (comté de North Kelly).",
+   "chercher": [
+    "Il te faut le cloneur de clés, obtenu au chapitre 3 : la Toros fait partie de la liste de Randy.",
+    "Va d'abord aux Pegassi Residences, sur Bayside Drive à Tequesta Retreat : elle est souvent garée devant l'entrée du bâtiment, mais pas à chaque visite. Agis vite, la sécurité peut te repérer.",
+    "Sinon, regarde dans les allées devant les maisons huppées du nord de Capri (notamment une maison beige), ou sur le parking devant le bar du vignoble Paradise Wines, dans le comté de North Kelly."
+   ],
+   "sources": [
+    "vice-toros",
+    "insider-toros",
+    "game8-toros",
+    "gamesgg-toros"
+   ],
+   "pistes": [
+    [
+     "Bar du vignoble Paradise Wines (North Kelly)",
+     "o-bar-112"
+    ],
+    [
+     "Maisons huppées du nord de Capri",
+     null
+    ]
+   ]
+  },
+  "sirius-transgressor-67": {
+   "lieu": "port-gellhorn",
+   "dispo": "provisoire",
+   "principal": "o-vehicle-request-018",
+   "lieuPrecis": "Épaves de Port Gellhorn (pour Wyman)",
+   "noteCarte": "Le repère est sur l'épave du garage, derrière la maison bleue aux tournesols (Gellhorn Avenue). Les deux autres : sur Tanglewood Lane au nord du Sarena's Bargain Store, et derrière Dirt Merchants.",
+   "emplacement": "Elle s'obtient en restaurant trois épaves pour Wyman (édition Ultimate), toutes à Port Gellhorn : sur Tanglewood Lane au nord du Sarena's Bargain Store, dans le garage derrière une maison bleue aux tournesols sur Gellhorn Avenue, et derrière Dirt Merchants, à la pointe sud de la ville.",
+   "chercher": [
+    "Il faut l'édition Ultimate : la chaîne de Wyman démarre au chapitre 2, après avoir récupéré le Dominator Buggy au Paradise Garage.",
+    "Scanne les trois épaves de Port Gellhorn avec l'appli WAiNK : Tanglewood Lane (nord du Sarena's Bargain Store), le garage de la maison bleue aux tournesols (Gellhorn Avenue) et derrière Dirt Merchants.",
+    "Wyman restaure la voiture contre 1 500 $ de main-d'œuvre : récupère-la ensuite à sa casse."
+   ],
+   "sources": [
+    "pushsquare-wyman",
+    "gtaxtreme-transgressor",
+    "leonidaplayers-transgressor"
+   ]
   }
  }
 }

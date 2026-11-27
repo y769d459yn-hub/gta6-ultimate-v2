@@ -595,7 +595,7 @@
   "sous": "Sportive",
   "dispo": "a-verifier",
   "lieu": null,
-  "emplacement": "Vue dans la première bande-annonce : ce n'est pas un emplacement où la récupérer. Aucun point d'apparition fixe connu.",
+  "emplacement": "Pas d'emplacement fixe connu : elle apparaît au hasard dans la circulation. Un guide cite surtout les quartiers aisés de Vice Beach et de Capri.",
   "obtenir": [
    "Attends près des grands axes de Vice City.",
    "Repère le cabriolet dans la circulation.",
@@ -608,10 +608,16 @@
    "sportive"
   ],
   "sources": [
-   "thegamer-vehicles"
+   "thegamer-vehicles",
+   "gta6bible-comet"
   ],
   "color": "#ff2bd6",
-  "conseil": true
+  "conseil": true,
+  "chercher": [
+   "Roule dans les quartiers aisés de Vice Beach et de Capri : c'est là qu'un guide la signale le plus souvent.",
+   "Repère le cabriolet dans la circulation ou garé le long des rues.",
+   "Vole-la quand elle est à l'arrêt."
+  ]
  },
  {
   "slug": "jobuilt-hauler",

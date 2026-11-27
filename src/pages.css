@@ -817,7 +817,7 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .vf-alerte--ok { color: var(--green); background: rgba(61, 220, 132, .1); border-color: rgba(61, 220, 132, .5); }
 .vf-ou .btn--wide + .btn--wide { margin-top: 10px; }
 .vf-ou .btn--wide:first-of-type { margin-top: 12px; }
-.vf-note { margin: 10px 0 0; } .vf-note .ic { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
+.vf-note, .vf-pistes { margin: 10px 0 0; } .vf-pistes .ic { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; } .vf-pistes a { text-decoration: underline; text-underline-offset: 3px; } .vf-note .ic { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
 .vf-autres { margin: 0 0 18px; border-radius: var(--r-s); background: var(--card); border: 1px solid var(--line2); }
 .vf-autres summary { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 16px; font-weight: 800; cursor: pointer; list-style: none; }
 .vf-autres summary::-webkit-details-marker { display: none; }
