@@ -279,7 +279,9 @@
   function taillePanneau(t) {
     if (!mobile()) { panel.style.height = ''; delete panel.dataset.taille; delete page.dataset.pn; majCTA(); return; }
     panel.dataset.taille = t; page.dataset.pn = t; // copie sur la page : remplace des sélecteurs :has() coûteux
-    const h = t === 'compact' && panel.classList.contains('pn-veh') ? Math.max(hauteurs().compact, 188) : hauteurs()[t];
+    // fiche réduite d'un véhicule : juste la hauteur de son contenu (nom, statut, variante, lieu, bouton)
+    const vm = t === 'compact' && panel.classList.contains('pn-veh') && $('.pn-vmini', panel);
+    const h = vm ? Math.min(Math.max(hauteurs().compact, Math.ceil(vm.getBoundingClientRect().bottom - panel.getBoundingClientRect().top + 16)), Math.round(hauteurs().moyen * .9)) : hauteurs()[t];
     panel.style.height = h + 'px';
     page.style.setProperty('--pn-h', h + 'px'); // les commandes de la carte restent au-dessus du panneau
     requestAnimationFrame(majCtrl); setTimeout(majCtrl, 300);
@@ -676,7 +678,10 @@
     const proche = prox ? `<details class="pn-near pn-more"><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const enTete = `<div class="pn-h pn-h--f">${vignette(f, 'pn-thumb')}<div class="pn-h-t"><small style="--c:${c.color}">${escH(kicker)}</small><h2>${escH(titre)}</h2><span class="pn-h-st">${stTag(f, true)}</span></div>${favBtn}<button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
-    const mini = veh ? `<div class="pn-vmini">${ou.length ? `<span class="pn-vmini-l">${ic('pin')}${escH(ou.join(' · '))}</span>` : ''}${f.url ? `<a class="pn-vmini-a" href="${ROOT}${f.url}">${ic('guide')}<span>Voir la fiche complète</span></a>` : ''}</div>` : '';
+    // variante (livrée spéciale) d'un modèle : on le dit, et la fiche s'ouvre sur ce signalement précis
+    const variante = veh && f.vn && /^o-standout-vehicle-/.test(f.id) && norm(f.nom) !== norm(f.vn);
+    const ouMini = ou.length ? ou : secteur(f) ? [secteur(f)] : [];
+    const mini = veh ? `<div class="pn-vmini">${variante ? `<span class="pn-vmini-v">${ic('diamond')}Variante à livrée spéciale du modèle ${escH(f.vn)}</span>` : ''}${ouMini.length ? `<span class="pn-vmini-l">${ic('pin')}${escH(ouMini.join(' · '))}</span>` : ''}${f.url ? `<a class="pn-vmini-a" href="${ROOT}${f.url}${/^v-/.test(f.id) ? '' : '#sig-' + encodeURIComponent(f.id)}">${ic('guide')}<span>${variante ? 'Fiche du modèle' : 'Voir la fiche complète'}</span></a>` : ''}</div>` : '';
     const glx = (f.gl || []).length ? `<div class="pn-gl">${f.gl.map((x) => `<a class="pn-full${x.s === state.glitch ? ' pn-full--gl' : ''}" href="${ROOT}glitchs/${escH(x.s)}/">${ic('bolt')}<span>${x.s === state.glitch ? 'Retour au tutoriel' : 'Glitch ici'} : ${escH(x.t)}${x.n ? ` <small>· étape ${x.n}</small>` : ''}</span>${ic('arrow-right')}</a>`).join('')}</div>` : '';
     showPanel(`${veh ? enTete + mini + hero : hero + enTete}${glx}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, veh ? 'compact' : panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
     panel.classList.add('pn-fiche'); panel.classList.toggle('pn-veh', veh); if (veh) taillePanneau('compact');

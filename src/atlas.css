@@ -828,3 +828,7 @@
 .pn-vmini-a .ic { width: 16px; height: 16px; }
 @media (max-width: 899px) { .atp-panel.pn-veh[data-taille="compact"] .pn-h-st { display: inline-flex; } .atp-panel.pn-veh[data-taille="compact"] .pn-h h2 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; } }
 @media (max-width: 899px) { .atp-panel.pn-veh[data-taille="compact"] .pn-cta { display: none; } }
+
+.pn-vmini-v { display: flex; align-items: center; gap: 6px; flex: 1 1 100%; font-size: .82rem; font-weight: 700; color: #ffd23f; }
+.pn-vmini-v .ic { width: 15px; height: 15px; flex: none; }
+@media (max-width: 899px) { .atp-panel.pn-veh[data-taille="compact"] .pn-h h2 { -webkit-line-clamp: 2; } }
