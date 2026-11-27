@@ -72,7 +72,7 @@
   "sous": "Sportive",
   "dispo": "a-verifier",
   "lieu": "vespucci-island",
-  "emplacement": "Dans le garage d'une maison sur Vespucci Island, selon les joueurs (capture prise en jeu sur place). Moment où elle devient accessible : non vérifié.",
+  "emplacement": "Dans le garage d'une villa de Vespucci Island, à Vice City : une Penumbra FF verte, hommage à Paul Walker. Accessible dès l'exploration libre, selon les guides.",
   "obtenir": [
    "Va sur Vespucci Island.",
    "Trouve le garage de la maison (voir le repère de la carte).",
@@ -85,9 +85,16 @@
    "debut"
   ],
   "sources": [
-   "gamesgg-luxury"
+   "gamesgg-luxury",
+   "allthingshow-penumbra",
+   "bo3-penumbra"
   ],
-  "color": "#19d3e3"
+  "color": "#19d3e3",
+  "chercher": [
+   "Va à la villa de Vespucci Island indiquée par le bouton « Voir sur la carte ».",
+   "Entre dans le garage par la grande porte : selon les guides, la petite porte à côté déclenche l'alarme de la maison.",
+   "Casse la vitre de la Penumbra, démarre-la avec les fils et éloigne-toi."
+  ]
  },
  {
   "slug": "progen-emerus-royal-ruby",
@@ -461,9 +468,15 @@
    "capri"
   ],
   "sources": [
-   "powerpyx-aircraft"
+   "powerpyx-aircraft",
+   "game8-s23"
   ],
-  "color": "#19d3e3"
+  "color": "#19d3e3",
+  "chercher": [
+   "Va sur la côte de Capri, à l'endroit indiqué par le bouton « Voir sur la carte ».",
+   "Cherche un couple assis autour d'un feu sur le rivage : le bateau est juste à côté.",
+   "S'il n'y est pas, les guides le signalent aussi au ponton derrière la maison de Jason (après la mission « Gone Fishing ») et à la marina de Key Lento."
+  ]
  },
  {
   "slug": "vapid-stanier-55",
@@ -498,7 +511,7 @@
   "sous": "Supercar",
   "dispo": "a-verifier",
   "lieu": "tequesta",
-  "emplacement": "Au chapitre 5, vers les Pegassi Residences de Tequesta Retreat (édition Ultimate).",
+  "emplacement": "Au niveau B1 du parking souterrain des Pegassi Residences, à Tequesta Retreat (Vice City). Réservée à l'édition Ultimate, disponible à partir du chapitre 5.",
   "obtenir": [
    "Atteins le chapitre 5.",
    "Suis la tâche dans la section Exploration de la carte."
@@ -511,10 +524,20 @@
   ],
   "sources": [
    "redbull-ultimate",
-   "mobalytics-ultimate"
+   "mobalytics-ultimate",
+   "leonidahub-cheetah",
+   "culturedvultures-cheetah"
   ],
   "color": "#ff2bd6",
-  "gtadb": "Pegassi Residences"
+  "gtadb": "Pegassi Residences",
+  "ancre": "garage-013",
+  "lieuPrecis": "Parking des Pegassi Residences",
+  "noteCarte": "Le repère est sur l'entrée du garage des Pegassi Residences : la Cheetah est au niveau B1 du parking souterrain.",
+  "chercher": [
+   "Il faut l'édition Ultimate (ou sa mise à niveau) : la Cheetah fait partie de ses bonus.",
+   "Au chapitre 5, la tâche « Récupère ta Grotti Cheetah » apparaît : va aux Pegassi Residences, à Tequesta Retreat.",
+   "Descends au niveau B1 du parking souterrain : la Cheetah t'y attend."
+  ]
  },
  {
   "slug": "vapid-dominator-buggy",
@@ -722,7 +745,8 @@
    "Une place vide ne veut pas dire que tu t'es trompé d'hôtel : les voitures changent d'une visite à l'autre. Reviens plus tard, ou sauvegarde puis recharge la partie."
   ],
   "ancre": "bar-059",
-  "lieuPrecis": "Hôtels Eden Grove Marina"
+  "lieuPrecis": "Hôtels Eden Grove Marina",
+  "noteCarte": "Le repère de la carte est sur les hôtels Eden Grove Marina ; la place exacte sur le parking n'est pas relevée."
  },
  {
   "slug": "granforma-zorrusso",

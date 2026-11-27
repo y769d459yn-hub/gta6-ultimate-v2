@@ -1,0 +1,56 @@
+{
+ "_note": "Fiches du catalogue présentées avec le nouveau modèle de fiche véhicule : emplacement, repère principal de la carte, étapes et sources vérifiés à la main.",
+ "fiches": {
+  "pfister-growler": {
+   "lieu": "la-perle",
+   "dispo": "provisoire",
+   "principal": "o-standout-vehicle-112",
+   "lieuPrecis": "Garage de Del Rio Boulevard",
+   "emplacement": "Dans le garage de Del Rio Boulevard, au sud de La Perle (Vice City) : la Growler rose de Vanessa, à débloquer au chapitre 3.",
+   "chercher": [
+    "Au chapitre 3, résous l'énigme de l'ordinateur portable de ton nouvel appartement : elle donne le code du garage (92665, selon les guides).",
+    "Va au garage de Del Rio Boulevard, au sud de La Perle, et entre le code.",
+    "Récupère-la avant de quitter le chapitre 3 : selon les guides, elle n'est plus disponible ensuite."
+   ],
+   "sources": [
+    "vice-growler",
+    "traxion-growler",
+    "gamesgg-growler"
+   ]
+  },
+  "bravado-banshee": {
+   "lieu": "vice-city",
+   "dispo": "a-verifier",
+   "principal": "o-vehicle-request-014",
+   "lieuPrecis": "Concession Sunrise Premium Autos",
+   "noteCarte": "Le repère est celui de la Banshee demandée par Randy, relevé par une carte de joueurs dans Southside : le nom de la concession n'y figure pas.",
+   "emplacement": "Dans la concession Sunrise Premium Autos, au nord de Southside (Vice City) : une Banshee bleue exposée au fond de la salle.",
+   "chercher": [
+    "Va à la concession Sunrise Premium Autos, au nord de Southside (bouton « Voir sur la carte »).",
+    "La Banshee bleue est exposée au fond de la salle. Pour la liste de Randy, il faut le cloneur de clés qu'il te donne au chapitre 3.",
+    "Pour sortir, traverse la vitrine : selon les guides, ça débloque aussi le trophée « Capital Offense »."
+   ],
+   "sources": [
+    "pcgamer-banshee",
+    "gamerant-banshee",
+    "vice-banshee"
+   ]
+  },
+  "truffade-thrax": {
+   "lieu": "boone-speedway",
+   "dispo": "provisoire",
+   "principal": "o-vehicle-spawn-060",
+   "emplacement": "Sur une remorque de transport près de l'entrée sud du Boone Speedway, à Hamlet, à côté des conteneurs.",
+   "chercher": [
+    "Va à l'entrée sud du Boone Speedway, à Hamlet (bouton « Voir sur la carte »).",
+    "Cherche la Thrax sur la remorque de transport, près des conteneurs.",
+    "Si elle n'y est pas, sauvegarde puis recharge la partie jusqu'à ce qu'elle apparaisse."
+   ],
+   "sources": [
+    "gamerant-thrax",
+    "gamesradar-fastest",
+    "keengamer-thrax"
+   ]
+  }
+ }
+}
