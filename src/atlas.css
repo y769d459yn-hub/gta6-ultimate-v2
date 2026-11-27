@@ -819,3 +819,12 @@
 
 /* même nom plusieurs fois dans une liste : le lieu à côté du nom */
 .pn-r-z { font-weight: 600; color: var(--tx2, #d3cdea); }
+
+/* fiche réduite d'un véhicule : nom, statut, lieu et lien vers la fiche, sans masquer la carte */
+.pn-vmini { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 2px 0 12px; }
+.pn-vmini-l { display: flex; align-items: center; gap: 6px; min-width: 0; flex: 1 1 160px; font-size: .9rem; color: var(--tx2, #d3cdea); }
+.pn-vmini-l .ic { width: 16px; height: 16px; flex: none; color: var(--pink, #ff2d87); }
+.pn-vmini-a { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 999px; font-weight: 800; font-size: .88rem; color: #fff; background: linear-gradient(100deg, #ffb13d, #ff2d87 50%, #8a3ffc); }
+.pn-vmini-a .ic { width: 16px; height: 16px; }
+@media (max-width: 899px) { .atp-panel.pn-veh[data-taille="compact"] .pn-h-st { display: inline-flex; } .atp-panel.pn-veh[data-taille="compact"] .pn-h h2 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; } }
+@media (max-width: 899px) { .atp-panel.pn-veh[data-taille="compact"] .pn-cta { display: none; } }

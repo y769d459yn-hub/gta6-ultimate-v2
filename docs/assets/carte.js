@@ -262,7 +262,7 @@
   }
   function showPanel(html, niveau = 'moyen') {
     const hv = $('[data-vide]'); if (hv) hv.hidden = true; garde(false); legende(false); menuReg(false);
-    panel.classList.remove('pn-anim', 'pn-fiche');
+    panel.classList.remove('pn-anim', 'pn-fiche', 'pn-veh');
     if (panel.hidden) { panel.hidden = false; page.classList.add('has-panel'); }
     if (mobile()) hauteurs();
     panel.innerHTML = `<button type="button" class="pn-grip" data-grip aria-label="Changer la hauteur du panneau"><i></i></button><div class="pn-c">${html}</div>`;
@@ -279,7 +279,7 @@
   function taillePanneau(t) {
     if (!mobile()) { panel.style.height = ''; delete panel.dataset.taille; delete page.dataset.pn; majCTA(); return; }
     panel.dataset.taille = t; page.dataset.pn = t; // copie sur la page : remplace des sélecteurs :has() coûteux
-    const h = hauteurs()[t];
+    const h = t === 'compact' && panel.classList.contains('pn-veh') ? Math.max(hauteurs().compact, 188) : hauteurs()[t];
     panel.style.height = h + 'px';
     page.style.setProperty('--pn-h', h + 'px'); // les commandes de la carte restent au-dessus du panneau
     requestAnimationFrame(majCtrl); setTimeout(majCtrl, 300);
@@ -627,14 +627,16 @@
     const veh = f.cat === 'vehicules';
     const sc = scDe(f, f.cat).map((s) => subNoms[f.cat + ':' + s]).filter(Boolean);
     const kicker = [c.nom, sc[0] || f.service].filter(Boolean).join(' · ');
-    const titre = t && !(/^[sm]-/.test(f.id) || (f.service && !veh)) ? t.titre : f.nom;
+    const titre = veh ? f.nom : t && !(/^[sm]-/.test(f.id) || (f.service && !veh)) ? t.titre : f.nom;
+    // véhicule non confirmé : une indication des joueurs (« à coup sûr », « toujours ») n'est pas une présence garantie
+    const prudent = (x) => (veh && x && statutDe(f) !== 'verifie' && /coup s[ûu]r|toujours|garanti|syst[ée]matique|always|guaranteed/i.test(x) ? `Selon les joueurs, non vérifié : ${x.charAt(0).toLowerCase()}${x.slice(1)}` : x);
     const isT = trouves.has(f.id);
     // haut : image 16:9, ou emplacement graphique avec l'icône de la catégorie (jamais une image inventée)
     const cap = [f.imgNote ? escH(f.imgNote) : '', f.imgCredit ? 'Image : ' + escH(f.imgCredit) : ''].filter(Boolean).join(' · ');
     const hero = f.img ? `<figure class="pn-hero pn-more" style="--c:${c.color}"><img src="${ROOT}${f.img}" alt="${escH(f.nom)}" decoding="async" loading="lazy">${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure>`
       : `<div class="pn-hero pn-hero--vide pn-more" style="--c:${c.color}" aria-hidden="true">${ic(f.icon || c.icon)}</div>`;
     const code = (f.desc || '').match(/^Code : ([^,.]+)/);
-    const lead = f.desc && !f.missions && !code ? `<p class="pn-lead pn-more">${escH(court(f))}</p>` : '';
+    const lead = f.desc && !f.missions && !code ? `<p class="pn-lead pn-more">${escH(prudent(court(f)))}</p>` : '';
     // informations principales : où, comment l'obtenir, rareté (seulement ce qui existe)
     const ou = [f.lieuNom, f.zone && !(f.lieuNom || '').includes(f.zone) ? f.zone : '', r && !(f.lieuNom || '').includes(r.nom) ? r.nom : ''].filter(Boolean);
     const reste = f.desc && !f.missions ? (code ? f.desc.replace(/^Code : [^.]*\.\s*/, '') : court(f) !== f.desc ? f.desc : '') : '';
@@ -644,8 +646,8 @@
       code ? ['code', 'Code du coffre', `<b class="pn-code">${escH(code[1])}</b><small>Selon les guides, pas vérifié en jeu.</small>`] : null,
       f.ob ? ['check', 'Comment l’obtenir', escH(f.ob)] : t ? ['bolt', 'Comment faire', `${escH(t.reponse)}${t.etapes && t.etapes.length ? `<ol class="pn-steps">${t.etapes.map((e) => `<li>${escH(e)}</li>`).join('')}</ol>` : ''}`] : null,
       rarete(f) ? ['diamond', 'Rareté', escH(rarete(f))] : null,
-      f.nt ? ['star', 'Intérêt', `<b>${f.nt}/100</b> · ${escH(f.ntc)}${f.et ? ` · ${'★'.repeat(f.et)}` : ''}${f.ru ? ' · Rare et unique' : ''}<small>${escH(f.nat)}</small>`] : null,
-      reste ? ['info', veh && !/^v-/.test(f.id) ? 'Indication des joueurs' : 'Infos utiles', escH(reste)] : null
+      veh && (f.et || f.ru) ? ['star', 'Sélection GTA 6 Facile', `${f.et ? `<b>${'★'.repeat(f.et)}</b> ` : ''}${f.ru ? 'Rare et unique' : ''}<small>Choix de la rédaction, pas une mesure de rareté en jeu.</small>`] : null,
+      reste ? ['info', veh && !/^v-/.test(f.id) ? 'Indication des joueurs' : 'Infos utiles', escH(prudent(reste))] : null
     ].filter(Boolean);
     const dl = `<dl class="pn-key pn-more">${infos.map(([i, k, v]) => `<div><dt>${ic(i)}${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
     const mis = f.missions && !opt.spoil ? `<div class="pn-mis pn-more"><h3>${ic('flag')}Les missions ici</h3><ul>${[...f.missions].sort((a, b) => (b.id === params.get('mission')) - (a.id === params.get('mission'))).map((m) => `<li${m.id === params.get('mission') ? ' class="is-cur"' : ''}><a href="${ROOT}missions/${escH(m.id)}/">${m.id === params.get('mission') ? '<em class="pn-mis-cur">Ta mission</em>' : ''}<span class="pn-mis-n">${m.n || '+'}</span><span><b>${escH(m.t)}</b><small>${m.c === 'prologue' ? 'Prologue' : 'Chapitre ' + m.c} · ${escH(m.r)}</small></span>${ic('arrow-right')}</a></li>`).join('')}</ul></div>` : '';
@@ -662,7 +664,6 @@
       <div><dt>Statut</dt><dd>${stTag(f)}</dd></div>
       <div><dt>Emplacement</dt><dd>${escH(precisionTxt(f))}</dd></div>
       ${f.nat ? `<div><dt>Type d’apparition</dt><dd>${escH(f.nat)}</dd></div>` : ''}
-      ${f.ntx ? `<div><dt>Détail de la note</dt><dd>${escH(f.ntx)}</dd></div>` : ''}
       ${f.dv ? `<div><dt>Dernière vérification</dt><dd>${escH(f.dv)}</dd></div>` : ''}
       <div><dt>Source</dt><dd>${f.ext ? `<a href="${escH(f.ext)}" target="_blank" rel="noopener">${escH(sourceTxt(f))}</a>` : escH(sourceTxt(f))}</dd></div>
       ${(f.tg || []).length ? `<div><dt>Aussi dans</dt><dd>${escH(f.tg.map((k) => (cats[k] || {}).nom).filter(Boolean).join(', '))}</dd></div>` : ''}
@@ -675,9 +676,10 @@
     const proche = prox ? `<details class="pn-near pn-more"><summary>${ic('compass')}Le plus proche d'ici</summary><ul>${prox}</ul><p class="pn-near-n">Distances à vol d'oiseau, environ.</p></details>` : '';
     const favBtn = `<button type="button" class="pn-fav fav" data-fav='${escH(JSON.stringify(fav))}' aria-pressed="false" aria-label="Ajouter aux favoris">${ic('heart')}</button>`;
     const enTete = `<div class="pn-h pn-h--f">${vignette(f, 'pn-thumb')}<div class="pn-h-t"><small style="--c:${c.color}">${escH(kicker)}</small><h2>${escH(titre)}</h2><span class="pn-h-st">${stTag(f, true)}</span></div>${favBtn}<button type="button" class="pn-tg" data-tg aria-label="Agrandir le panneau">${ic('chevron')}</button><button type="button" class="pn-x" data-x aria-label="Fermer">${ic('x')}</button></div>`;
+    const mini = veh ? `<div class="pn-vmini">${ou.length ? `<span class="pn-vmini-l">${ic('pin')}${escH(ou.join(' · '))}</span>` : ''}${f.url ? `<a class="pn-vmini-a" href="${ROOT}${f.url}">${ic('guide')}<span>Voir la fiche complète</span></a>` : ''}</div>` : '';
     const glx = (f.gl || []).length ? `<div class="pn-gl">${f.gl.map((x) => `<a class="pn-full${x.s === state.glitch ? ' pn-full--gl' : ''}" href="${ROOT}glitchs/${escH(x.s)}/">${ic('bolt')}<span>${x.s === state.glitch ? 'Retour au tutoriel' : 'Glitch ici'} : ${escH(x.t)}${x.n ? ` <small>· étape ${x.n}</small>` : ''}</span>${ic('arrow-right')}</a>`).join('')}</div>` : '';
-    showPanel(`${hero}${enTete}${glx}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
-    panel.classList.add('pn-fiche');
+    showPanel(`${veh ? enTete + mini + hero : hero + enTete}${glx}${lead}${cta}${mis}${dl}${lien}${sec}${proche}${det}${nav(f)}`, veh ? 'compact' : panel.hidden || panel.dataset.taille === 'grand' ? 'moyen' : panel.dataset.taille || 'moyen');
+    panel.classList.add('pn-fiche'); panel.classList.toggle('pn-veh', veh); if (veh) taillePanneau('compact');
     bindNav();
     const bt = $('[data-found]', panel);
     const majT = () => { const on = trouves.has(f.id); bt.setAttribute('aria-pressed', on); bt.classList.toggle('is-on', on); $('span', bt).textContent = foundTxt(f, on); };
