@@ -9230,12 +9230,13 @@
    ],
    "img": "bravado-youga-74.webp",
    "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/gta-6/vehicles/youga-classic",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/youga-classic",
    "nettete": 84,
    "taille": [
-    828,
+    832,
     468
-   ]
+   ],
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/vans/youga-74.jpg"
   },
   {
    "slug": "bravado-youga-xl-79",
