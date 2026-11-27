@@ -45,6 +45,8 @@ window.LG_ICONS={"search":"<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m16 
     const a = e.target.closest && e.target.closest('a[data-ouvre][href^="#"]'); if (!a) return;
     const d = document.getElementById(a.getAttribute('href').slice(1)); if (d && d.tagName === 'DETAILS') d.open = true;
   });
+  // arrivée depuis la carte sur un signalement précis (#sig-…) : ouvre la liste et met ce signalement en évidence
+  if (/^#sig-/.test(location.hash)) { const li = document.getElementById(decodeURIComponent(location.hash.slice(1))); const d = li && li.closest('details'); if (d) { d.open = true; li.classList.add('is-cible'); requestAnimationFrame(() => li.scrollIntoView({ block: 'center' })); } }
   if (/^#src-/.test(location.hash)) { const li = document.getElementById(location.hash.slice(1)); const d = li && li.closest('details'); if (d) d.open = true; }
 
   // ---------- application installable (PWA) : hors connexion ----------

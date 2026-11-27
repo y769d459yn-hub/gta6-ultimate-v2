@@ -868,3 +868,6 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .vf-reg .ic { display: inline-block; width: 14px; height: 14px; }
 .vf-reg a { color: var(--tx2); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 359px) { .vf-bref, .vf-sim { grid-template-columns: 1fr 1fr; } .vf-infos { grid-template-columns: 1fr; } }
+
+.vf-rep { margin: 10px 0 0; display: grid; gap: 4px; } .vf-rep .pn-st { display: inline-flex; align-items: center; gap: 6px; width: fit-content; padding: 4px 10px; border-radius: 999px; font-size: .8rem; font-weight: 800; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); } .vf-rep .pn-st .ic { width: 14px; height: 14px; } .vf-rep small { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+.vf-sig.is-cible { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink), 0 0 18px -6px var(--pink); }

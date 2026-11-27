@@ -1053,7 +1053,10 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
 const FICHES_V2_CAT = fs.existsSync(path.join(ROOT, 'data', 'fiches-v2.json')) ? read('fiches-v2.json').fiches : {};
 const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta', 'maibatsu-penumbra-ff', 'bombora-s23', 'grotti-cheetah-95', 'pfister-comet-s2', ...Object.keys(FICHES_V2_CAT)]);
 const V2_A_FAIRE = [];
-const FI_TXT = { confirme: 'Confirmé', probable: 'Probable : deux sources concordent', approx: 'Zone approximative', nonverif: 'Non vérifié' };
+const FI_TXT = { confirme: 'Confirmé', probable: 'Probable', approx: 'Approximatif', nonverif: 'Non vérifié' };
+// statut du repère, avec les mêmes mots et la même définition que la légende de la carte
+const FI_ST = { confirme: 'verifie', probable: 'probable', approx: 'nonconf', nonverif: 'nonverif' };
+const repereSt = (f) => STATUTS_CARTE.find((x) => x.id === (FI_ST[f.properties.fi] || 'nonverif'));
 function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   const la = ['voitures', 'motos'].includes(v.type) ? 'la' : 'le';
   const elle = la === 'la' ? 'elle' : 'il';
@@ -1075,7 +1078,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   // nature de chaque autre signalement : même modèle, variante (livrée spéciale) ou véhicule peut-être différent
   const base = (n) => n.replace(/\s*\([^)]*\)\s*$/, '').trim();
   const genre = (f) => (base(f.properties.nom) === v.nom ? ['ok', unique(f) ? 'Même modèle, version unique' : 'Même modèle'] : unique(f) ? ['var', 'Variante : livrée spéciale'] : ['doute', 'Modèle à confirmer : peut-être un autre véhicule']);
-  const statutF = (f) => (f.properties.cap ? 'Probable : capture prise en jeu (GTABase)' : FI_TXT[f.properties.fi] || 'Non vérifié');
+  const statutF = (f) => `Repère ${(FI_TXT[f.properties.fi] || 'Non vérifié').toLowerCase()}${f.properties.cap ? ' (capture prise en jeu, GTABase)' : ''}`;
   const pas = sur ? v.obtenir : v.chercher || [`Va dans la zone signalée : ${l ? l.nom : 'voir la carte'}${reg && (!l || reg !== l.nom) ? `, à ${reg}` : ''}.`, `Vérifie l'endroit indiqué par la source : ${minDebut(v.emplacement)}`, `Si ${elle} n'y est pas, consulte les autres signalements ci-dessus.`];
   // véhicules similaires : même type, même catégorie, même marque ou même famille (pas de bateau pour une voiture)
   const score = (x) => { const fy = CATALOGUE.fiches[x.slug] || {}; return (x.sous === v.sous ? 3 : 0) + (fy.fabricant && fy.fabricant === fx.fabricant ? 2 : 0) + (fy.groupe && fy.groupe === fx.groupe ? 2 : 0); };
@@ -1104,11 +1107,12 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     <p class="vf-sous">${esc(v.emplacement)}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
+    ${principal ? ((st) => `<p class="vf-rep"><span class="pn-st" style="--c:${st.c}">${icon(st.ic)}Repère de la carte : ${esc(st.n)}</span><small>${esc(st.t)} « ${esc(statut(v.dispo).nom)} » concerne l'information de la fiche, tant qu'elle n'est pas confirmée en jeu.</small></p>`)(repereSt(principal)) : ''}
     ${(v.pistes || []).length ? `<p class="muted small vf-pistes">${icon('pin')}Autres lieux cités : ${v.pistes.map(([n, id]) => (id && mapIndex[id] ? `<a href="${R}carte/?focus=${id}">${esc(n)}</a>` : esc(n))).join(' · ')}</p>` : ''}
     ${principal && (v.noteCarte || principal.properties.precision === 'zone') ? `<p class="muted small vf-note">${icon('info')}${esc(v.noteCarte || 'Le repère de la carte indique le lieu, pas la place exacte.')}</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
-    <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig">
+    <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig" id="sig-${esc(f.properties.id)}">
       <p class="vf-sig-t"><b>${esc(traduit(f.properties.nom))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
       <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}</p>
       <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d.slice(0, 160))}` : ''}</p>
