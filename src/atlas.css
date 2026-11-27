@@ -816,3 +816,6 @@
 
 /* champ de recherche : un seul bouton « effacer » (le nôtre), pas celui du navigateur */
 #atp-q::-webkit-search-cancel-button, #atp-q::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
+
+/* même nom plusieurs fois dans une liste : le lieu à côté du nom */
+.pn-r-z { font-weight: 600; color: var(--tx2, #d3cdea); }

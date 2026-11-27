@@ -393,10 +393,13 @@
 
   // ---------- listes : lignes visuelles, chargement progressif ----------
   const vignette = (f, cls = 'pn-r-t') => { const c = (cats[f.cat] || {}).color; return `<span class="${cls}" style="--c:${c}">${f.img ? `<img src="${ROOT}${f.img}" alt="" loading="lazy" decoding="async">` : ic(f.icon)}</span>`; };
+  // même nom plusieurs fois dans une liste (même véhicule à plusieurs endroits) : le lieu s'affiche à côté du nom pour les distinguer
+  let nomsListe = {};
   const ligne = (f) => {
     const t = trouves.has(f.id), fv = estFav(f), st = statutDe(f), S = STATUTS[st] || {};
+    const lieuNom = nomsListe[f.nom] > 1 ? (f.zone || f.lieuNom || secteur(f) || '') : '';
     const meta = [escH(sousNom(f)), f.rar ? `<em class="pn-r-rar">${escH(f.rar === '#' ? 'Rare' : f.rar)}</em>` : '', st !== 'probable' ? `<em class="pn-r-st" style="--c:${S.c}">${ic(S.ic)}${escH(S.n)}</em>` : ''].filter(Boolean).join('<i>·</i>');
-    return `<li class="pn-r${t ? ' is-found' : ''}"><button type="button" data-pick="${escH(f.id)}">${vignette(f)}<span class="pn-r-b"><b>${escH(f.nom)}</b><small>${escH(court(f))}</small><span class="pn-r-m">${meta}</span></span><span class="pn-r-s">${t ? `<span class="pn-r-ok" title="Déjà trouvé">${ic('check')}</span>` : ''}${fv ? `<span class="pn-r-fv" title="Dans tes favoris">${ic('heart')}</span>` : ''}${ic('chevron')}</span></button></li>`;
+    return `<li class="pn-r${t ? ' is-found' : ''}"><button type="button" data-pick="${escH(f.id)}">${vignette(f)}<span class="pn-r-b"><b>${escH(f.nom)}${lieuNom ? `<span class="pn-r-z"> · ${escH(lieuNom)}</span>` : ''}</b><small>${escH(court(f))}</small><span class="pn-r-m">${meta}</span></span><span class="pn-r-s">${t ? `<span class="pn-r-ok" title="Déjà trouvé">${ic('check')}</span>` : ''}${fv ? `<span class="pn-r-fv" title="Dans tes favoris">${ic('heart')}</span>` : ''}${ic('chevron')}</span></button></li>`;
   };
   function bindPick(from, racine = panel) {
     $$('[data-pick]', racine).forEach((b) => { if (b._ok) return; b._ok = 1; b.addEventListener('click', () => { const f = atlas.feats().find((x) => x.id === b.dataset.pick); if (!f) return; state.fromList = from; b.classList.add('is-pick'); page.classList.add('is-busy'); apresAffichage(() => { atlas.select(f, { fly: true, s: Math.max(atlas.cam.s, .3) }); page.classList.remove('is-busy'); }); }); });
@@ -404,6 +407,7 @@
   // affiche 40 lignes, puis la suite quand on arrive en bas (liste longue sans ralentir le téléphone)
   function remplir(ul, list, from) {
     let i = 0; const PAS = 40;
+    nomsListe = {}; list.forEach((f) => { nomsListe[f.nom] = (nomsListe[f.nom] || 0) + 1; });
     const plus = () => {
       const old = $('[data-more]', ul); if (old) old.remove();
       ul.insertAdjacentHTML('beforeend', list.slice(i, i + PAS).map(ligne).join('')); i += PAS;
