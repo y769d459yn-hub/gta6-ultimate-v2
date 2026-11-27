@@ -5079,6 +5079,12 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/metromule"
     }
+   ],
+   "img": "metromule.webp",
+   "credit": "Rockstar Games",
+   "taille": [
+    1320,
+    746
    ]
   },
   {
