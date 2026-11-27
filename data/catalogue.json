@@ -2214,6 +2214,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/dinghy"
     }
+   ],
+   "img": "dingus-como.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/dinghy",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/boats/como.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -7743,6 +7751,14 @@
      "nom": "gta6guide.fr",
      "url": "https://gta6guide.fr/gta-6/vehicules/streamer216"
     }
+   ],
+   "img": "mammoth-streamer216.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/streamer216",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/planes/streamer-216-c.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -8024,6 +8040,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/crownline-275-ss"
     }
+   ],
+   "img": "nagasaki-tao.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/crownline-275-ss",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/boats/tao.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
