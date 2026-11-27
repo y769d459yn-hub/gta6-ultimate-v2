@@ -191,13 +191,13 @@
     }
    ],
    "img": "airgator-airboat-09.webp",
-   "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Airboat09-GTAVI-Trailer1.png",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/airboat-09",
    "taille": [
-    1600,
-    900
+    832,
+    468
    ],
-   "source": "https://gta.wiki/images/Airboat09-GTAVI-Trailer1.png"
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/boats/airboat-09.jpg"
   },
   {
    "slug": "whiffler-airport-bus",
@@ -4236,9 +4236,10 @@
    "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/jet",
    "nettete": 55,
    "taille": [
-    640,
-    314
-   ]
+    832,
+    468
+   ],
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/planes/020.jpg"
   },
   {
    "slug": "osprey-journey-78",
@@ -4845,9 +4846,10 @@
    "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/mammatus",
    "nettete": 55,
    "taille": [
-    881,
-    545
-   ]
+    832,
+    468
+   ],
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/planes/jobuilt-mammatus.jpg"
   },
   {
    "slug": "albany-manana-77",
