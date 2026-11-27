@@ -4808,14 +4808,12 @@
     }
    ],
    "img": "declasse-mamba-gt.webp",
-   "credit": "Rockstar Games (site officiel), via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection04.jpg",
+   "credit": "Rockstar Games",
    "taille": [
     1920,
     1080
    ],
-   "hd": "declasse-mamba-gt.webp",
-   "source": "https://gta.wiki/images/OfficialScreenshots-GTAVI-PromotionalWebsite-UltimateEdition-WymanCarCollection04.jpg"
+   "hd": "declasse-mamba-gt.webp"
   },
   {
    "slug": "lapwing-mammatus",
