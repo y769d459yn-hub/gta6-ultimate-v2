@@ -684,6 +684,8 @@ const natureLieu = (f) => (f.properties.id.startsWith('w-') ? 'Position relevée
 const DOUBLONS = fs.existsSync(path.join(ROOT, 'data', 'doublons.json')) ? read('doublons.json') : { doublons: {}, noms: {} };
 function concorde(slug, ids = []) {
   const v = mapIndex['v-' + slug]; if (!v) return null;
+  // fiche ancrée sur un repère précis : pas de rapprochement avec une autre version garée à côté
+  if (VEHICULES.some((x) => x.slug === slug && x.ancre)) return null;
   const dm = DOUBLONS.doublons['v-' + slug]; if (dm && mapIndex[dm.garde]) return { d: 0, f: mapIndex[dm.garde] };
   let best = null;
   const dist = (DOUBLONS.distincts || {})['v-' + slug] || {};
@@ -1048,22 +1050,24 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
 }
 // ---------- FICHE VÉHICULE, NOUVELLE PRÉSENTATION (déploiement progressif : seulement les fiches listées) ----------
 // rendue après le calcul de fiabilité des repères (noterVehicules) ; mêmes titre, description, données structurées et liens que l'ancienne
-const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta']);
+const FICHES_V2_CAT = fs.existsSync(path.join(ROOT, 'data', 'fiches-v2.json')) ? read('fiches-v2.json').fiches : {};
+const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta', 'maibatsu-penumbra-ff', 'bombora-s23', 'grotti-cheetah-95', ...Object.keys(FICHES_V2_CAT)]);
 const V2_A_FAIRE = [];
 const FI_TXT = { confirme: 'Confirmé', probable: 'Probable : deux sources concordent', approx: 'Zone approximative', nonverif: 'Non vérifié' };
-function ficheV2(v, { p, R, c, l, onM }) {
+function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   const la = ['voitures', 'motos'].includes(v.type) ? 'la' : 'le';
   const elle = la === 'la' ? 'elle' : 'il';
   const sur = ['confirme', 'teste'].includes(v.dispo);
-  const cc = concorde(v.slug, CAT_CARTE[v.slug]);
-  const principal = (cc && cc.f) || (onM ? mapIndex['v-' + v.slug] : null);
+  const cc = v.ancre ? null : concorde(v.slug, CAT_CARTE[v.slug]);
+  if (v.principal && !mapIndex[v.principal]) throw new Error(`fiches-v2.json : repère principal inconnu ${v.principal}`);
+  const principal = v.principal ? mapIndex[v.principal] : (cc && cc.f) || (onM ? mapIndex['v-' + v.slug] : null);
   const autres = (CAT_CARTE[v.slug] || []).map((id) => mapIndex[id]).filter((f) => f && f !== principal && !f.properties.dbl && !DOUBLONS.doublons[f.properties.id]);
   const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
   const srcTxt = srcN.length > 1 ? `${srcN.length} sources (${srcN.join(', ')})` : `1 seule source (${srcN[0] || 'non citée'})`;
   const reg = l ? (L[l.region] || l).nom : '';
   // lieu plus précis que le quartier de la fiche (ex. « Hôtels Eden Grove Marina »), quand les sources le nomment
   const lieuT = v.lieuPrecis || (l ? l.nom : '');
-  const fx = CATALOGUE.fiches[v.slug] || {};
+  const fx = CATALOGUE.fiches[v.slug] || CATALOGUE.vehicules.find((x) => x.slug === v.slug) || {};
   const pres = presenceTxt(v.slug, v.sources);
   const recoupee = /^(Recoupée|Confirmée)/.test(pres);
   const mapHref = principal ? `${R}carte/?focus=${principal.properties.id}` : '';
@@ -1076,13 +1080,15 @@ function ficheV2(v, { p, R, c, l, onM }) {
   // véhicules similaires : même type, même catégorie, même marque ou même famille (pas de bateau pour une voiture)
   const score = (x) => { const fy = CATALOGUE.fiches[x.slug] || {}; return (x.sous === v.sous ? 3 : 0) + (fy.fabricant && fy.fabricant === fx.fabricant ? 2 : 0) + (fy.groupe && fy.groupe === fx.groupe ? 2 : 0); };
   const sim = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).map((x) => [score(x) + (PHOTOS[x.slug] ? 0.5 : 0), x]).filter(([s]) => s >= 3).sort((a, b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom, 'fr')).slice(0, 3).map(([, x]) => x);
-  const memeReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type && !sim.includes(x) && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id)).slice(0, 3) : [];
+  // même région : véhicules du même type (pas de bateau pour une voiture) ; les autres types seulement s'il n'y en a aucun
+  const regTous = l ? VEHICULES.filter((x) => x.slug !== v.slug && !sim.includes(x) && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id)) : [];
+  const memeReg = (regTous.some((x) => x.type === v.type) ? regTous.filter((x) => x.type === v.type) : regTous).slice(0, 3);
   // liens de l'ancienne présentation (« Même type ») conservés, plus discrètement
   const memeType = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).slice(0, 2).filter((x) => !sim.includes(x) && !memeReg.includes(x));
   return `<article class="wrap fiche vf" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    <div class="veh-hero vf-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl').replace(' loading="lazy"', ' fetchpriority="high"')}<span class="veh-type">${esc(v.sous)}</span>${lieuT ? `<span class="veh-pin">${icon('pin')}${esc(lieuT)}</span>` : ''}</div>
-    ${vehCredit(v)}
+    <div class="veh-hero vf-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${!PHOTOS[v.slug] && v.catImg ? `<img class="veh-photo" src="${R}catalogue/${v.catImg}" alt="${esc(v.nom)}"${wh('catalogue/' + v.catImg)} fetchpriority="high" decoding="async">` : vehVisuel(v, R, 'veh-svg--xl').replace(' loading="lazy"', ' fetchpriority="high"')}<span class="veh-type">${esc(v.sous)}</span>${lieuT ? `<span class="veh-pin">${icon('pin')}${esc(lieuT)}</span>` : ''}</div>
+    ${!PHOTOS[v.slug] && v.catImg ? (v.catCredit ? `<p class="veh-credit">Image : ${v.catCreditUrl ? `<a href="${esc(v.catCreditUrl)}" target="_blank" rel="noopener">${esc(v.catCredit)}</a>` : esc(v.catCredit)}</p>` : '') : vehCredit(v)}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a></div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
     <p class="vf-resume">${l ? `Emplacement principal signalé à ${esc(reg || l.nom)}` : 'Emplacement'} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}</p>
@@ -1094,11 +1100,11 @@ function ficheV2(v, { p, R, c, l, onM }) {
   </nav>
   <section class="vf-ou" id="ou" aria-labelledby="ou-t">
     <h2 id="ou-t" class="vf-k">${icon('pin')}Où ${la} trouver ?</h2>
-    ${v.lieuPrecis ? `<p class="vf-lieu">${esc(v.lieuPrecis)}</p>${l ? `<p class="muted small vf-quartier">Quartier : <a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}` : l ? `<p class="vf-lieu"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}
+    ${v.lieuPrecis ? `<p class="vf-lieu">${esc(v.lieuPrecis)}</p>${l ? `<p class="muted small vf-quartier">${l.type === 'region' ? 'Région' : 'Quartier'} : <a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}` : l ? `<p class="vf-lieu"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}
     <p class="vf-sous">${esc(v.emplacement)}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
-    ${principal && principal.properties.precision === 'zone' ? `<p class="muted small vf-note">${icon('info')}${v.lieuPrecis ? `Le repère de la carte est sur ${esc(v.lieuPrecis.replace(/^H/, 'les h'))} ; la place exacte sur le parking n'est pas relevée.` : 'Le repère de la carte indique le lieu, pas la place exacte.'}</p>` : ''}
+    ${principal && (v.noteCarte || principal.properties.precision === 'zone') ? `<p class="muted small vf-note">${icon('info')}${esc(v.noteCarte || 'Le repère de la carte indique le lieu, pas la place exacte.')}</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
     <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig">
@@ -1116,6 +1122,7 @@ function ficheV2(v, { p, R, c, l, onM }) {
   ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2>
     <div class="vf-sim">${sim.map((x) => `<a href="${R}vehicules/${x.slug}/"><span class="vf-sim-i">${vehVisuel(x, R)}</span><b>${esc(x.nom)}</b>${icon('chevron')}</a>`).join('')}</div></section>` : ''}
   ${memeReg.length ? `<p class="vf-reg">${icon('pin')}Dans la même région : ${memeReg.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
+${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<p class="vf-reg">${icon(c.icon)}${esc(t)} : ${xs.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>`).join('')}
   ${memeType.length ? `<p class="vf-reg">${icon(c.icon)}Autres ${esc(c.nom.toLowerCase())} du guide : ${memeType.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
   <section class="vf-bloc" aria-labelledby="in-t">
     <h2 id="in-t" class="vf-h">${icon('info')}Infos utiles</h2>
@@ -1229,14 +1236,18 @@ for (const x of CATALOGUE.vehicules) {
   ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
   ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
 </article>`;
-  emit(p, layout({
+  const argsC = {
     p, title: lo.length || x.obtenir ? titreSEO(`${x.nom} GTA 6 : où le trouver et caractéristiques`, `${x.nom} GTA 6 : où le trouver`, `${x.nom} dans GTA 6`) : titreSEO(`${x.nom} GTA 6 : fiche, photo et caractéristiques`, `${x.nom} GTA 6 : fiche et photo`, `${x.nom} dans GTA 6`),
     desc: descSEO(`${x.nom} dans GTA 6${x.fabricant ? ` (${x.fabricant})` : ''} : ${x.classe.toLowerCase()}${x.inspiration && x.inspiration !== x.nom && x.inspiration !== x.modele ? `, inspiré de ${x.inspiration}` : ''}${x.places ? `, ${x.places} places` : ''}${x.transmission ? `, ${x.transmission}` : ''}${x.poids ? `, ${x.poids}` : ''}.`, lo.length ? `Repéré à ${lo.length} endroit${lo.length > 1 ? 's' : ''} sur la carte.` : x.obtenir ? 'Comment l’obtenir.' : '', x.img ? 'Photo et caractéristiques.' : 'Caractéristiques et sources.'),
     body, cls: 'p-fiche', ogType: 'article', noindex: !sur, image: x.img ? `catalogue/${x.img}` : '',
     // la page décrit un véhicule du jeu : WebPage + image principale avec son crédit (pas de « Product », ce n'est pas un objet à vendre)
     schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${x.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(x.img ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/catalogue/${x.img}`, ...(x.credit ? { creditText: x.credit } : {}) } } : {}) }],
     crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [x.nom, p]]
-  }));
+  };
+  const o2 = FICHES_V2_CAT[x.slug];
+  if (o2) { const v2 = { slug: x.slug, nom: x.nom, type: x.type, sous: x.classe.replace(/s$/, ''), obtenir: o2.chercher, kw: [], ...o2, catImg: x.img, catCredit: x.credit, catCreditUrl: x.creditUrl };
+    V2_A_FAIRE.push(() => emit(p, layout({ ...argsC, body: ficheV2(v2, { p, R, c, l: L[o2.lieu], onM: false, liens: [[`Autres ${(grp ? grp.nom : x.classe).toLowerCase()}`, memeGroupe], [`Autres véhicules ${x.fabricant || ''}`.trim(), memeMarque]] }), cls: 'p-fiche p-vfiche' }))); }
+  else emit(p, layout(argsC));
 }
 
 // ---------- OBJETS À COLLECTIONNER (une page par type ; repères communautaires Open GTA 6 Map, CC BY 4.0) ----------
