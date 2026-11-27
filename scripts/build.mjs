@@ -941,8 +941,8 @@ for (const a of ASTUCES) {
     ${!['confirme', 'teste'].includes(a.statut) && /\d/.test(a.reponse) ? `<p class="muted small">${icon('info')}Les chiffres de cette réponse viennent des guides cités et n'ont pas encore été vérifiés en jeu.</p>` : ''}
   </section>
   <div class="actions">
-    <a class="btn btn--primary" href="#etapes">${icon('list')}Voir la solution</a>
-    ${mapHref ? `<a class="btn" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : ''}
+    <a class="btn btn--primary" href="#etapes">${icon('list')}Voir les étapes</a>
+    ${mapHref ? `<a class="btn" href="${mapHref}">${icon('map')}${esc(a.carteLibelle || 'Voir sur la carte')}</a>` : ''}
     <button class="btn btn--ghost" type="button" data-copy>${icon('link')}Copier le lien</button>
     ${favBtn({ id: a.slug, type: 'astuce', t: a.court, u: p, i: a.icon, c: c.color })}
     <button class="btn btn--ghost" type="button" data-done="${a.slug}" aria-pressed="false">${icon('check')}<span data-on="C'est fait !" data-off="Je l'ai fait">Je l'ai fait</span></button>

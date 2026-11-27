@@ -2127,9 +2127,9 @@
   "court": "Billets marqués",
   "reponse": "Revends-les à un receleur, comme le Lockup de Brian (Key Lento). Pour voler ceux des banques, prends le brouilleur de la mission « Vérification de crédit ».",
   "etapes": [
-   "Repère les billets marqués dans ton inventaire.",
-   "Dépose-les au Lockup de Brian, à Key Lento (bouton « Voir sur la carte »).",
-   "Après la mission « L'heure de Boobie » (chapitre 3), Yasmani rachète aussi les billets marqués, et il paie mieux.",
+   "Repère les billets marqués dans ton inventaire : ils ne se dépensent pas tels quels.",
+   "Dépose-les au Lockup de Brian, à Key Lento.",
+   "Après la mission « L'heure de Boobie » (chapitre 3), Yasmani les rachète aussi, et mieux, selon les guides de mission.",
    "Pour les banques, récupère le brouilleur de packs d'encre pendant la mission « Vérification de crédit » (chapitre 3)."
   ],
   "asavoir": "Selon une carte de joueurs, Brian paie très peu les billets marqués : garde-les pour Yasmani si tu l'as débloqué. Ces infos viennent de guides et n'ont pas encore été vérifiées en jeu par GTA 6 Facile.",
@@ -2158,7 +2158,8 @@
    "dossier:codes-coffres",
    "caches-argent",
    "braquer-bijouteries"
-  ]
+  ],
+  "carteLibelle": "Lockup de Brian sur la carte"
  },
  {
   "slug": "distributeurs",
