@@ -1044,7 +1044,7 @@ const UN = { 'Supercars': 'Supercar', 'Sportives': 'Sportive', 'Sportives classi
 }
 // ---------- FICHE VÉHICULE, NOUVELLE PRÉSENTATION (déploiement progressif : seulement les fiches listées) ----------
 // rendue après le calcul de fiabilité des repères (noterVehicules) ; mêmes titre, description, données structurées et liens que l'ancienne
-const FICHE_V2 = new Set(['pegassi-infernus']);
+const FICHE_V2 = new Set(['pegassi-infernus', 'bravado-gauntlet-hellfire', 'pegassi-tempesta']);
 const V2_A_FAIRE = [];
 const FI_TXT = { confirme: 'Confirmé', probable: 'Probable : deux sources concordent', approx: 'Zone approximative', nonverif: 'Non vérifié' };
 function ficheV2(v, { p, R, c, l, onM }) {
@@ -1069,7 +1069,7 @@ function ficheV2(v, { p, R, c, l, onM }) {
   const pas = sur ? v.obtenir : v.chercher || [`Va dans la zone signalée : ${l ? l.nom : 'voir la carte'}${reg && (!l || reg !== l.nom) ? `, à ${reg}` : ''}.`, `Vérifie l'endroit indiqué par la source : ${minDebut(v.emplacement)}`, `Si ${elle} n'y est pas, consulte les autres signalements ci-dessus.`];
   // véhicules similaires : même type, même catégorie, même marque ou même famille (pas de bateau pour une voiture)
   const score = (x) => { const fy = CATALOGUE.fiches[x.slug] || {}; return (x.sous === v.sous ? 3 : 0) + (fy.fabricant && fy.fabricant === fx.fabricant ? 2 : 0) + (fy.groupe && fy.groupe === fx.groupe ? 2 : 0); };
-  const sim = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).map((x) => [score(x) + (PHOTOS[x.slug] ? 0.5 : 0), x]).filter(([s]) => s >= 2).sort((a, b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom, 'fr')).slice(0, 3).map(([, x]) => x);
+  const sim = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).map((x) => [score(x) + (PHOTOS[x.slug] ? 0.5 : 0), x]).filter(([s]) => s >= 3).sort((a, b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom, 'fr')).slice(0, 3).map(([, x]) => x);
   const memeReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type && !sim.includes(x) && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id)).slice(0, 3) : [];
   // liens de l'ancienne présentation (« Même type ») conservés, plus discrètement
   const memeType = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).slice(0, 2).filter((x) => !sim.includes(x) && !memeReg.includes(x));
@@ -1082,7 +1082,7 @@ function ficheV2(v, { p, R, c, l, onM }) {
     <p class="vf-resume">${l ? `Emplacement principal signalé à ${esc(reg || l.nom)}` : 'Emplacement'} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}</p>
   </header>
   <nav class="vf-bref" aria-label="En bref">
-    <a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(l ? l.nom.replace(/^Commissariat de /, '') : '—')}</b>${reg ? `<i>${esc(reg)}</i>` : ''}</span></a>
+    <a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(l ? l.nom.replace(/^Commissariat de /, '') : '—')}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>
     ${mapHref ? `<a href="${mapHref}">${icon('map')}<span><small>Carte</small><b>Voir le point</b></span></a>` : ''}
     ${autres.length ? `<a href="#autres" data-ouvre>${icon('layers')}<span><small>Signalements</small><b>${1 + autres.length} au total</b></span></a>` : ''}
   </nav>
@@ -1095,7 +1095,7 @@ function ficheV2(v, { p, R, c, l, onM }) {
     ${principal && principal.properties.precision === 'zone' ? `<p class="muted small vf-note">${icon('info')}Le repère de la carte indique le lieu, pas la place exacte.</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
-    <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? f.properties.desc : ''; return `<li class="vf-sig">
+    <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig">
       <p class="vf-sig-t"><b>${esc(traduit(f.properties.nom))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
       <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}</p>
       <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d.slice(0, 160))}` : ''}</p>
