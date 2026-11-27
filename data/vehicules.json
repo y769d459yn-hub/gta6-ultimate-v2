@@ -52,7 +52,12 @@
    "detonated-cars"
   ],
   "color": "#ff3d6e",
-  "gtadb": "Boone Speedway"
+  "gtadb": "Boone Speedway",
+  "chercher": [
+   "Va à la casse du gang M7, à l'est du Boone Speedway, à Hamlet.",
+   "Regarde au fond de la casse : c'est l'endroit indiqué par Detonated.",
+   "Si elle n'y est pas, consulte les autres signalements ci-dessus."
+  ]
  },
  {
   "slug": "maibatsu-penumbra-ff",
@@ -702,6 +707,11 @@
   "sourcesPlus": [
    "gtabase-tempesta",
    "ogm-carte"
+  ],
+  "chercher": [
+   "Va devant l'entrée des hôtels Eden Grove, à Vice Beach.",
+   "Regarde parmi les voitures garées : c'est l'endroit indiqué par Sportskeeda.",
+   "Si elle n'y est pas, consulte les autres signalements ci-dessus."
   ]
  },
  {
