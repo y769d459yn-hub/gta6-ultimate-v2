@@ -65,7 +65,6 @@
 "astuces/preteurs-sur-gages/":{"h":"f62c81bfeb104f4f","d":"2026-11-25"},
 "astuces/ou-vendre-butin/":{"h":"f205353382130e38","d":"2026-11-25"},
 "vehicules/":{"h":"8f07d63c78a049e8","d":"2026-11-27"},
-"vehicules/pegassi-infernus/":{"h":"35e0cca69959d98e","d":"2026-11-27"},
 "vehicules/bravado-gauntlet-hellfire/":{"h":"33a305c0f26e128d","d":"2026-11-26"},
 "vehicules/maibatsu-penumbra-ff/":{"h":"4e0f6c16e97089ad","d":"2026-11-26"},
 "vehicules/progen-emerus-royal-ruby/":{"h":"0868f7f777966898","d":"2026-11-26"},
@@ -496,8 +495,8 @@
 "dossiers/":{"h":"97ae651f13e6e4b4","d":"2026-11-23"},
 "codes/":{"h":"b892c0413330f4de","d":"2026-11-25"},
 "glitchs/":{"h":"993c3a06af8c12fd","d":"2026-11-23"},
-"glitchs/argent-infini-grange-rouge/":{"h":"301bc9fc6f8d26c8","d":"2026-11-26"},
-"glitchs/vue-premiere-personne/":{"h":"90b8bb7be45e9f06","d":"2026-11-26"},
+"glitchs/argent-infini-grange-rouge/":{"h":"301bc9fc6f8d26c8","d":"2026-11-27"},
+"glitchs/vue-premiere-personne/":{"h":"90b8bb7be45e9f06","d":"2026-11-27"},
 "carte/":{"h":"144df3b9a0ce5ae6","d":"2026-11-26"},
 "lieux/":{"h":"2c60ead156994482","d":"2026-11-23"},
 "lieux/vice-city/":{"h":"10daf79d6236707d","d":"2026-11-25"},
@@ -616,4 +615,5 @@
 "actualites/report-mai-2026/":{"h":"e7cdd729876e2f10","d":"2025-05-02"},
 "actualites/bande-annonce-1/":{"h":"699a645f64dbdcd8","d":"2023-12-05"},
 "a-propos/":{"h":"6a4446bb55f9ce40","d":"2026-11-27"},
-"mentions-legales/":{"h":"71b1706309f73f5d","d":"2026-11-26"}}
+"mentions-legales/":{"h":"71b1706309f73f5d","d":"2026-11-26"},
+"vehicules/pegassi-infernus/":{"h":"52ca70a2f359490c","d":"2026-11-27"}}
