@@ -6914,14 +6914,13 @@
     }
    ],
    "img": "maibatsu-sanchez.webp",
-   "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Sanchez-GTAVI-LaunchTrailer.png",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/sanchez",
    "taille": [
-    1920,
-    1080
+    832,
+    468
    ],
-   "source": "https://gta.wiki/images/Sanchez-GTAVI-LaunchTrailer.png",
-   "hd": "maibatsu-sanchez.webp"
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/motorcycles/maibatsu-sanchez.jpg"
   },
   {
    "slug": "vapid-sandking-xl",
