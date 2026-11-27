@@ -283,6 +283,8 @@ for (const l of LIEUX) {
 }
 // Éléments connus seulement à l'échelle d'une région : disposés en couronne autour du repère de la région
 const ring = {};
+const OGM_POS = fs.existsSync(path.join(ROOT, 'data', 'carte-ogm.json')) ? Object.fromEntries(read('carte-ogm.json').lieux.map((x) => [x.id, [x.x, x.y]])) : {};
+function ancrePos(id) { const p = OGM_POS[id]; if (!p) throw new Error(`vehicules.json : ancre inconnue ${id}`); return p; }
 function autour(id, rayon) {
   const c = POS[id]; if (!c) return null;
   const k = (ring[id] = (ring[id] || 0) + 1);
@@ -304,9 +306,11 @@ for (const l of LIEUX) {
 for (const v of VEHICULES) {
   const l = v.lieu && L[v.lieu];
   if (!l) continue;
-  const pos = v.gtadb ? gtadbCentre(v.gtadb) : autour(l.id, l.type === 'region' ? 420 : 110);
+  // « ancre » : repère précis d'une carte de joueurs qui concorde avec l'emplacement décrit par les guides (même endroit)
+  const pos = v.ancre ? ancrePos(v.ancre) : v.gtadb ? gtadbCentre(v.gtadb) : autour(l.id, l.type === 'region' ? 420 : 110);
   if (!pos) continue;
-  const precision = l.type === 'region' ? 'region' : 'zone';
+  // ancré sur le repère du même véhicule relevé par une carte de joueurs : position précise (guides et carte concordent)
+  const precision = v.ancre && /^vehicle-/.test(v.ancre) ? 'exacte' : l.type === 'region' ? 'region' : 'zone';
   features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: pos }, properties: { id: 'v-' + v.slug, nom: v.nom, cat: 'vehicules', sous: v.type, region: l.type === 'region' ? l.id : l.region, statut: v.dispo, precision, icon: cat('vehicules', v.type).icon, desc: v.emplacement, url: `vehicules/${v.slug}/`, lieuNom: l.nom, ...(PHOTOS[v.slug] ? { img: `photos/${PHOTOS[v.slug].fichier}`, imgNote: PHOTOS[v.slug].note || undefined, imgCredit: PHOTOS[v.slug].credit || undefined } : RENDUS.has(v.slug) ? { img: `rendus/${v.slug}.webp`, imgNote: MODELES[v.slug] && MODELES[v.slug].indicatif ? 'Modèle 3D indicatif' : 'Modèle 3D', imgCredit: undefined, img3d: true } : {}), tip: { type: `Véhicule · ${cat('vehicules', v.type).nom.toLowerCase()}`, titre: `Comment obtenir : ${v.nom} ?`, reponse: v.emplacement, etapes: v.obtenir.slice(0, 3), lien: `vehicules/${v.slug}/`, libelle: 'Voir la fiche du véhicule' } } });
 }
 // Commerces, armes, argent et services repérés par la communauté GTADB : par étiquette « # » ou par le nom

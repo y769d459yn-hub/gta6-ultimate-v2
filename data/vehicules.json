@@ -6,7 +6,7 @@
   "sous": "Supercar",
   "dispo": "a-verifier",
   "lieu": "commissariat-crosstown",
-  "emplacement": "Dernier niveau du parking du commissariat de Crosstown, NW 9th St, Vice City.",
+  "emplacement": "Dans le parking à étages du commissariat de Crosstown (NW 9th St, Vice City), au 7e niveau selon la plupart des guides (d'autres disent le 8e, le 9e ou le dernier niveau).",
   "obtenir": [
    "Va au commissariat de Crosstown à Vice City.",
    "Monte au dernier niveau du parking.",
@@ -19,14 +19,18 @@
    "rare"
   ],
   "sources": [
-   "detonated-cars"
+   "detonated-cars",
+   "gamesradar-infernus",
+   "gamerant-infernus",
+   "allthingshow-infernus"
   ],
   "color": "#ff9a1f",
   "chercher": [
-   "Va au commissariat de Crosstown, à Vice City.",
-   "Vérifie le dernier niveau du parking : c'est l'endroit indiqué par Detonated.",
-   "Si elle n'y est pas, consulte les autres signalements ci-dessus."
-  ]
+   "Va au parking à étages du commissariat de Crosstown (NW 9th St), à Vice City : le bouton « Voir sur la carte » montre l'endroit.",
+   "Monte au 7e niveau, celui indiqué par la plupart des guides. Si elle n'y est pas, regarde aux niveaux 8 et 9.",
+   "Pour repartir, plusieurs guides conseillent de monter tout en haut et de prendre le saut de cascade du parking."
+  ],
+  "ancre": "vehicle-request-011"
  },
  {
   "slug": "bravado-gauntlet-hellfire",
@@ -35,7 +39,7 @@
   "sous": "Muscle car",
   "dispo": "a-verifier",
   "lieu": "hamlet",
-  "emplacement": "Au fond de la casse du gang M7, à l'est du Boone Speedway, à Hamlet.",
+  "emplacement": "Au fond de la casse Nova Auto Junkyard, repaire du gang M7, à l'est du Boone Speedway, à Hamlet.",
   "obtenir": [
    "Va à la casse à l'est du Boone Speedway.",
    "Entre discrètement par le côté droit.",
@@ -49,15 +53,17 @@
    "m7"
   ],
   "sources": [
-   "detonated-cars"
+   "detonated-cars",
+   "sportskeeda-hellfire",
+   "gamerhour-hellfire"
   ],
   "color": "#ff3d6e",
-  "gtadb": "Boone Speedway",
   "chercher": [
-   "Va à la casse du gang M7, à l'est du Boone Speedway, à Hamlet.",
-   "Regarde au fond de la casse : c'est l'endroit indiqué par Detonated.",
+   "Va à la casse Nova Auto Junkyard, à l'est du Boone Speedway, à Hamlet : le bouton « Voir sur la carte » montre l'endroit.",
+   "Elle est au fond de la casse, selon les guides. Attention : la casse est gardée par des membres armés du gang M7.",
    "Si elle n'y est pas, consulte les autres signalements ci-dessus."
-  ]
+  ],
+  "ancre": "vehicle-request-016"
  },
  {
   "slug": "maibatsu-penumbra-ff",
@@ -688,7 +694,7 @@
   "sous": "Supercar",
   "dispo": "provisoire",
   "lieu": "ocean-beach",
-  "emplacement": "Garée souvent devant l'entrée des hôtels Eden Grove, à Vice Beach.",
+  "emplacement": "Souvent garée devant les hôtels Eden Grove, à Vice Beach. Son apparition n'est pas garantie.",
   "obtenir": [
    "Va devant les hôtels Eden Grove de Vice Beach.",
    "Attends qu'elle apparaisse.",
@@ -701,7 +707,9 @@
    "hotel"
   ],
   "sources": [
-   "sportskeeda-cars"
+   "sportskeeda-cars",
+   "game8-tempesta",
+   "gamesgg-tempesta"
   ],
   "color": "#ff2bd6",
   "sourcesPlus": [
@@ -709,10 +717,11 @@
    "ogm-carte"
   ],
   "chercher": [
-   "Va devant l'entrée des hôtels Eden Grove, à Vice Beach.",
-   "Regarde parmi les voitures garées : c'est l'endroit indiqué par Sportskeeda.",
-   "Si elle n'y est pas, consulte les autres signalements ci-dessus."
-  ]
+   "Va devant les hôtels Eden Grove, à Vice Beach : le bouton « Voir sur la carte » montre l'endroit.",
+   "Regarde parmi les voitures garées devant l'entrée. Si elle n'y est pas, sauvegarde puis recharge la partie, comme le conseillent les guides.",
+   "Sinon, essaie les autres signalements ci-dessus, dont un point où une carte de joueurs la dit toujours présente."
+  ],
+  "ancre": "bar-059"
  },
  {
   "slug": "granforma-zorrusso",
