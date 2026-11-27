@@ -2125,20 +2125,21 @@
   "icon": "money",
   "titre": "Que faire des billets marqués ?",
   "court": "Billets marqués",
-  "reponse": "Les billets marqués ne se dépensent pas tels quels : blanchis-les au Lockup de Brian. Les packs d'encre des banques et prêteurs gâchent aussi le butin tant que tu n'as pas le brouilleur.",
+  "reponse": "Revends-les à un receleur, comme le Lockup de Brian (Key Lento). Pour voler ceux des banques, prends le brouilleur de la mission « Vérification de crédit ».",
   "etapes": [
    "Repère les billets marqués dans ton inventaire.",
-   "Va les blanchir au Lockup de Brian.",
-   "Avant les banques, obtiens le brouilleur de packs d'encre."
+   "Dépose-les au Lockup de Brian, à Key Lento (bouton « Voir sur la carte »).",
+   "Après la mission « L'heure de Boobie » (chapitre 3), Yasmani rachète aussi les billets marqués, et il paie mieux.",
+   "Pour les banques, récupère le brouilleur de packs d'encre pendant la mission « Vérification de crédit » (chapitre 3)."
   ],
-  "asavoir": "Le brouilleur se débloque avec l'histoire (vers le chapitre 3, selon les guides).",
+  "asavoir": "Selon une carte de joueurs, Brian paie très peu les billets marqués : garde-les pour Yasmani si tu l'as débloqué. Ces infos viennent de guides et n'ont pas encore été vérifiées en jeu par GTA 6 Facile.",
   "duree": 2,
   "niveau": "intermediaire",
   "statut": "a-verifier",
   "sources": [
    "vicepulse-cash",
-   "pcgamer-money",
-   "gamespot-robberies"
+   "gamespot-robberies",
+   "ogm-carte"
   ],
   "kw": [
    "billets",
@@ -2151,6 +2152,10 @@
    "brouilleur"
   ],
   "voir": [
+   "mission:credit-check",
+   "mission:boobie-time",
+   "preteurs-sur-gages",
+   "dossier:codes-coffres",
    "caches-argent",
    "braquer-bijouteries"
   ]

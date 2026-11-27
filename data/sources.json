@@ -357,5 +357,14 @@
  "gtawiki-100": {
   "n": "GTA Wiki : 100% Completion in GTA VI",
   "u": "https://gta.wiki/wiki/100%25_Completion_in_GTA_VI"
+ },
+ "ogm-carte": {
+  "n": "Open GTA 6 Map (carte de joueurs)",
+  "u": "https://github.com/fbritoferreira/gta6",
+  "fiabilite": "faible"
+ },
+ "gtabase-tempesta": {
+  "n": "GTABase : Pegassi Tempesta",
+  "u": "https://www.gtabase.com/vehicles/gta-6/tempesta"
  }
 }
