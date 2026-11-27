@@ -8954,13 +8954,13 @@
     }
    ],
    "img": "buckingham-windsor-drop.webp",
-   "credit": "Rockstar Games, via GTABase",
-   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/windsor-drop",
+   "credit": "Rockstar Games",
    "nettete": 114,
    "taille": [
-    832,
-    467
-   ]
+    1920,
+    1080
+   ],
+   "hd": "buckingham-windsor-drop.webp"
   },
   {
    "slug": "schyster-woodland-85",
