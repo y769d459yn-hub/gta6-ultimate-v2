@@ -93,16 +93,27 @@
    "principal": "o-landmark-014",
    "lieuPrecis": "Pegassi Residences",
    "noteCarte": "Le repère est sur les Pegassi Residences : la Toros est garée devant l'immeuble, près du dépose-minute couvert.",
-   "emplacement": "Garée devant les Pegassi Residences, sur Bayside Drive, à Tequesta Retreat (Vice City). Des agents de sécurité surveillent l'entrée.",
+   "emplacement": "Garée devant l'entrée des Pegassi Residences, sur Bayside Drive, à Tequesta Retreat (Vice City). Autres lieux cités : les allées des maisons huppées du nord de Capri, et le parking devant le bar du vignoble Paradise Wines (comté de North Kelly).",
    "chercher": [
     "Il te faut le cloneur de clés, obtenu au chapitre 3 : la Toros fait partie de la liste de Randy.",
-    "Va aux Pegassi Residences, sur Bayside Drive à Tequesta Retreat : la Toros est garée devant l'immeuble.",
-    "Agis vite, la sécurité peut te repérer. Si elle n'y est pas, cherche-la le long de la route à Vice Beach (autres signalements)."
+    "Va d'abord aux Pegassi Residences, sur Bayside Drive à Tequesta Retreat : elle est souvent garée devant l'entrée du bâtiment, mais pas à chaque visite. Agis vite, la sécurité peut te repérer.",
+    "Sinon, regarde dans les allées devant les maisons huppées du nord de Capri (notamment une maison beige), ou sur le parking devant le bar du vignoble Paradise Wines, dans le comté de North Kelly."
    ],
    "sources": [
     "vice-toros",
     "insider-toros",
-    "game8-toros"
+    "game8-toros",
+    "gamesgg-toros"
+   ],
+   "pistes": [
+    [
+     "Bar du vignoble Paradise Wines (North Kelly)",
+     "o-bar-112"
+    ],
+    [
+     "Maisons huppées du nord de Capri",
+     null
+    ]
    ]
   },
   "sirius-transgressor-67": {

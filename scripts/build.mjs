@@ -1104,6 +1104,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     <p class="vf-sous">${esc(v.emplacement)}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
+    ${(v.pistes || []).length ? `<p class="muted small vf-pistes">${icon('pin')}Autres lieux cités : ${v.pistes.map(([n, id]) => (id && mapIndex[id] ? `<a href="${R}carte/?focus=${id}">${esc(n)}</a>` : esc(n))).join(' · ')}</p>` : ''}
     ${principal && (v.noteCarte || principal.properties.precision === 'zone') ? `<p class="muted small vf-note">${icon('info')}${esc(v.noteCarte || 'Le repère de la carte indique le lieu, pas la place exacte.')}</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
