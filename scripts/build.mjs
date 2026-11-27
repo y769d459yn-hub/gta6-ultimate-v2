@@ -1332,7 +1332,6 @@ const COLL = (() => {
   const body = `<section class="wrap section missions" data-missions>
   <h1 class="h1">Missions et solutions</h1>
   <p class="lead">L'histoire par chapitre : <b>${vraies} missions principales</b> et <b>${taches} petites tâches</b> (envoyer de l'argent, faire les courses…), plus <b>${fac} missions facultatives</b>. Pour chacune : ce qu'il faut faire, étape par étape, et quoi faire si tu bloques.</p>
-  <p class="note">${icon('alert')}<span><b>Ordre des missions :</b> nos numéros suivent la liste publiée par GTABase le 22/11/2026. Depuis, GTABase et GTA Wiki donnent un ordre différent pour ${MS.filter(ordreAVerifier).length} missions, marquées « ordre à vérifier ». ${ORDRE_NOTE}</span></p>
   <div class="mis-now" data-mnow>
     <div class="mis-now-h">${icon('flag')}<div><b>Que faire maintenant ?</b><span data-mnow-txt>Touche « J'en suis là » sur ta mission actuelle : on t'indique la suivante.</span></div></div>
     <div class="mis-bar" aria-hidden="true"><i data-mbar></i></div>
