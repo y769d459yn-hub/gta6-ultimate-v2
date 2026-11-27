@@ -1077,7 +1077,7 @@ function ficheV2(v, { p, R, c, l, onM }) {
   <header class="fiche-head fiche-head--veh" data-reveal-group>
     <div class="veh-hero vf-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl').replace(' loading="lazy"', ' fetchpriority="high"')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${icon('pin')}${esc(l.nom)}</span>` : ''}</div>
     ${vehCredit(v)}
-    <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a>${badge(v.dispo)}${recoupee ? `<span class="badge vf-pres" title="${esc(pres)}">${icon('shield')}Présence recoupée</span>` : ''}</div>
+    <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a></div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
     <p class="vf-resume">${l ? `Emplacement principal signalé à ${esc(reg || l.nom)}` : 'Emplacement'} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}</p>
   </header>
@@ -1090,7 +1090,6 @@ function ficheV2(v, { p, R, c, l, onM }) {
     <h2 id="ou-t" class="vf-k">${icon('pin')}Où ${la} trouver ?</h2>
     ${l ? `<p class="vf-lieu"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}
     <p class="vf-sous">${esc(v.emplacement)}</p>
-    <p class="vf-alerte${sur ? ' vf-alerte--ok' : ''}">${icon(sur ? 'check' : 'alert')}${esc(srcTxt)} · ${sur ? 'emplacement confirmé' : 'emplacement à vérifier'}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
     ${principal && principal.properties.precision === 'zone' ? `<p class="muted small vf-note">${icon('info')}Le repère de la carte indique le lieu, pas la place exacte.</p>` : ''}
@@ -1104,18 +1103,14 @@ function ficheV2(v, { p, R, c, l, onM }) {
     </li>`; }).join('')}</ul>
   </details>` : ''}
   <section class="vf-bloc" aria-labelledby="ch-t">
-    <h2 id="ch-t" class="vf-h">${icon(sur ? 'list' : 'target')}${sur ? `Comment l'obtenir` : `Comment ${la} chercher`}${sur ? '' : `<span class="vf-tag">${icon('info')}Méthode indicative</span>`}</h2>
+    <h2 id="ch-t" class="vf-h">${icon(sur ? 'list' : 'target')}${sur ? `Comment l'obtenir` : `Comment ${la} chercher`}</h2>
     <ol class="vf-steps">${pas.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
-  </section>
-  <section class="vf-bloc" aria-labelledby="fi-t">
-    <h2 id="fi-t" class="vf-h">${icon('shield')}Fiabilité</h2>
-    <dl class="vf-fiab">
-      <div><dt>${icon(recoupee ? 'check' : 'question')}Présence dans GTA 6</dt><dd>${esc(pres)}</dd></div>
-      <div><dt>${icon(sur ? 'check' : 'alert')}Emplacement précis</dt><dd>${esc(statut(v.dispo).nom)} · ${esc(srcTxt)}</dd></div>
-      <div><dt>${icon('info')}Méthode d'obtention</dt><dd>${sur ? 'Étapes tirées des mêmes sources' : 'Non confirmée'}</dd></div>
-    </dl>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : ''}
   </section>
+  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2>
+    <div class="vf-sim">${sim.map((x) => `<a href="${R}vehicules/${x.slug}/"><span class="vf-sim-i">${vehVisuel(x, R)}</span><b>${esc(x.nom)}</b>${icon('chevron')}</a>`).join('')}</div></section>` : ''}
+  ${memeReg.length ? `<p class="vf-reg">${icon('pin')}Dans la même région : ${memeReg.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
+  ${memeType.length ? `<p class="vf-reg">${icon(c.icon)}Autres ${esc(c.nom.toLowerCase())} du guide : ${memeType.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
   <section class="vf-bloc" aria-labelledby="in-t">
     <h2 id="in-t" class="vf-h">${icon('info')}Infos utiles</h2>
     <dl class="vf-infos">
@@ -1127,10 +1122,6 @@ function ficheV2(v, { p, R, c, l, onM }) {
     </dl>
     ${(fx.sources || []).length ? `<p class="muted small">${icon('info')}Infos techniques relevées par ${fx.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="nofollow noopener">${esc(s.nom)}</a>`).join(', ')}, base de données de joueurs : pas encore vérifiées en jeu.</p>` : ''}
   </section>
-  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2>
-    <div class="vf-sim">${sim.map((x) => `<a href="${R}vehicules/${x.slug}/"><span class="vf-sim-i">${vehVisuel(x, R)}</span><b>${esc(x.nom)}</b>${icon('chevron')}</a>`).join('')}</div></section>` : ''}
-  ${memeReg.length ? `<p class="vf-reg">${icon('pin')}Dans la même région : ${memeReg.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
-  ${memeType.length ? `<p class="vf-reg">${icon(c.icon)}Autres ${esc(c.nom.toLowerCase())} du guide : ${memeType.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
   ${sourcesBlock([...v.sources, ...(v.sourcesPlus || [])])}
 </article>`;
 }
