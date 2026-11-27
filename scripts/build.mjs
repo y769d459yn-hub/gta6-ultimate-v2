@@ -2495,3 +2495,4 @@ write('assets/publication.json', JSON.stringify({ sha: process.env.CONTENU_SHA |
 if (!site.url.includes('github.io')) write('CNAME', new URL(site.url).hostname + '\n');
 
 console.log(`✓ ${pages.length} pages · ${index.length} entrées de recherche · ${features.length} repères carte → docs/`);
+write('ads.txt', 'google.com, pub-5400900635133774, DIRECT, f08c47fec0942fa0\n');
