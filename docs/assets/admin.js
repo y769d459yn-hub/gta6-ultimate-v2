@@ -78,9 +78,9 @@
     const { data: s, error } = await sb.rpc('admin_stats');
     if (error || !s) { v.innerHTML = `<p class="adm-err">${ic('x')}<span>Statistiques indisponibles.</span></p>`; return; }
     const titre = (col, id) => { const b = BASE[col]; const x = b && b.items.find((i) => String(i[b.cle]) === String(id)); return x ? x[b.titre] : id; };
-    const top = (t, l, f) => `<section class="adm-card"><h2 class="h3">${t}</h2>${l.length ? `<ol class="adm-top">${l.map((x) => `<li><span>${f(x)}</span><b>${x.n}</b></li>`).join('')}</ol>` : '<p class="muted">Pas encore de données.</p>'}</section>`;
+    const top = (t, l, f) => `<section class="adm-card"><h2 class="h3">${t}</h2>${(l = (l || []).filter((x) => x && (x.t || x.id) && x.n)).length ? `<ol class="adm-top">${l.map((x) => `<li><span>${f(x)}</span><b>${x.n}</b></li>`).join('')}</ol>` : '<p class="muted">Pas encore de données.</p>'}</section>`;
     const TYPES = { astuce: 'Astuce', vehicule: 'Véhicule', lieu: 'Lieu', mission: 'Mission', code: 'Code', encyclopedie: 'Encyclopédie', dossier: 'Dossier' };
-    v.innerHTML = `<div class="adm-nums">
+    v.innerHTML = `${GC ? `<a class="btn btn--primary btn--wide adm-visites" href="https://${GC}.goatcounter.com/" target="_blank" rel="noopener">${ic('bolt')}Voir les visites du site (GoatCounter)</a><p class="muted small">Les chiffres ci-dessous comptent les comptes créés sur le site, pas les visiteurs.</p>` : ''}<div class="adm-nums">
       ${[['Comptes', s.comptes, 'user'], ['Nouveaux (7 j)', s.nouveaux_7j, 'plus'], ['Nouveaux (30 j)', s.nouveaux_30j, 'star'], ['Actifs (7 j)', s.actifs_7j, 'bolt'], ['E-mails confirmés', s.confirmes, 'check'], ['Favoris enregistrés', s.favoris, 'heart']]
         .map(([t, n, i]) => `<div class="adm-num">${ic(i)}<b>${n}</b><small>${t}</small></div>`).join('')}
     </div>
