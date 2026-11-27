@@ -694,11 +694,11 @@
   "sous": "Supercar",
   "dispo": "provisoire",
   "lieu": "ocean-beach",
-  "emplacement": "Souvent garée devant les hôtels Eden Grove, à Vice Beach. Son apparition n'est pas garantie.",
+  "emplacement": "Sur le parking devant les hôtels Eden Grove Marina, à Vice Beach. Elle y apparaît régulièrement, mais pas à chaque visite.",
   "obtenir": [
-   "Va devant les hôtels Eden Grove de Vice Beach.",
-   "Attends qu'elle apparaisse.",
-   "Vole-la et éloigne-toi vite."
+   "Va au parking devant les hôtels Eden Grove Marina, à Vice Beach.",
+   "Inspecte les places à l'extérieur de l'hôtel.",
+   "Si elle n'y est pas, reviens plus tard."
   ],
   "kw": [
    "tempesta",
@@ -717,9 +717,9 @@
    "ogm-carte"
   ],
   "chercher": [
-   "Va devant les hôtels Eden Grove, à Vice Beach : le bouton « Voir sur la carte » montre l'endroit.",
-   "Regarde parmi les voitures garées devant l'entrée. Si elle n'y est pas, sauvegarde puis recharge la partie, comme le conseillent les guides.",
-   "Sinon, essaie les autres signalements ci-dessus, dont un point où une carte de joueurs la dit toujours présente."
+   "Va au parking devant les hôtels Eden Grove Marina, à Vice Beach : le bouton « Voir sur la carte » montre l'endroit.",
+   "Inspecte les places à l'extérieur de l'hôtel : la Tempesta y est souvent garée. Pas besoin d'attendre la demande de Randy.",
+   "Une place vide ne veut pas dire que tu t'es trompé d'hôtel : les voitures changent d'une visite à l'autre. Reviens plus tard, ou sauvegarde puis recharge la partie."
   ],
   "ancre": "bar-059"
  },
