@@ -1061,6 +1061,8 @@ function ficheV2(v, { p, R, c, l, onM }) {
   const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
   const srcTxt = srcN.length > 1 ? `${srcN.length} sources (${srcN.join(', ')})` : `1 seule source (${srcN[0] || 'non citée'})`;
   const reg = l ? (L[l.region] || l).nom : '';
+  // lieu plus précis que le quartier de la fiche (ex. « Hôtels Eden Grove Marina »), quand les sources le nomment
+  const lieuT = v.lieuPrecis || (l ? l.nom : '');
   const fx = CATALOGUE.fiches[v.slug] || {};
   const pres = presenceTxt(v.slug, v.sources);
   const recoupee = /^(Recoupée|Confirmée)/.test(pres);
@@ -1079,24 +1081,24 @@ function ficheV2(v, { p, R, c, l, onM }) {
   const memeType = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).slice(0, 2).filter((x) => !sim.includes(x) && !memeReg.includes(x));
   return `<article class="wrap fiche vf" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
-    <div class="veh-hero vf-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl').replace(' loading="lazy"', ' fetchpriority="high"')}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${icon('pin')}${esc(l.nom)}</span>` : ''}</div>
+    <div class="veh-hero vf-hero"${vign('v-' + v.slug, R) ? ` style="--img:url(${vign('v-' + v.slug, R)})"` : ''}>${vehVisuel(v, R, 'veh-svg--xl').replace(' loading="lazy"', ' fetchpriority="high"')}<span class="veh-type">${esc(v.sous)}</span>${lieuT ? `<span class="veh-pin">${icon('pin')}${esc(lieuT)}</span>` : ''}</div>
     ${vehCredit(v)}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a></div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
     <p class="vf-resume">${l ? `Emplacement principal signalé à ${esc(reg || l.nom)}` : 'Emplacement'} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}</p>
   </header>
   <nav class="vf-bref" aria-label="En bref">
-    <a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(l ? l.nom.replace(/^Commissariat de /, '') : '—')}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>
+    <a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(v.lieuPrecis || (l ? l.nom.replace(/^Commissariat de /, '') : '—'))}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>
     ${mapHref ? `<a href="${mapHref}">${icon('map')}<span><small>Carte</small><b>Voir le point</b></span></a>` : ''}
     ${autres.length ? `<a href="#autres" data-ouvre>${icon('layers')}<span><small>Signalements</small><b>${1 + autres.length} au total</b></span></a>` : ''}
   </nav>
   <section class="vf-ou" id="ou" aria-labelledby="ou-t">
     <h2 id="ou-t" class="vf-k">${icon('pin')}Où ${la} trouver ?</h2>
-    ${l ? `<p class="vf-lieu"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}
+    ${v.lieuPrecis ? `<p class="vf-lieu">${esc(v.lieuPrecis)}</p>${l ? `<p class="muted small vf-quartier">Quartier : <a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}` : l ? `<p class="vf-lieu"><a href="${R}lieux/${l.id}/">${esc(l.nom)}</a></p>` : ''}
     <p class="vf-sous">${esc(v.emplacement)}</p>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : `<p class="muted small">${icon('info')}Pas encore de repère sur la carte pour cet emplacement.</p>`}
     ${fav}
-    ${principal && principal.properties.precision === 'zone' ? `<p class="muted small vf-note">${icon('info')}Le repère de la carte indique le lieu, pas la place exacte.</p>` : ''}
+    ${principal && principal.properties.precision === 'zone' ? `<p class="muted small vf-note">${icon('info')}${v.lieuPrecis ? `Le repère de la carte est sur ${esc(v.lieuPrecis.replace(/^H/, 'les h'))} ; la place exacte sur le parking n'est pas relevée.` : 'Le repère de la carte indique le lieu, pas la place exacte.'}</p>` : ''}
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
     <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig">

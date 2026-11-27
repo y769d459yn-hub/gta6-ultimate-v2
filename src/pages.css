@@ -810,6 +810,7 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .vf-k .ic { width: 20px; height: 20px; color: var(--pink); }
 .vf-lieu { margin: 6px 0 2px; font-family: var(--f-d); font-size: clamp(1.5rem, 6.4vw, 2rem); line-height: 1.1; letter-spacing: .01em; }
 .vf-lieu a { color: var(--tx); text-decoration: none; }
+.vf-quartier { margin: 0 0 6px; } .vf-quartier a { text-decoration: underline; text-underline-offset: 3px; }
 .vf-sous { margin: 0 0 10px; color: var(--tx2); line-height: 1.4; }
 .vf-alerte { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 6px; padding: 6px 12px; border-radius: 999px; font-size: .84rem; font-weight: 700; color: #ffe07a; background: rgba(255, 210, 63, .1); border: 1px solid rgba(255, 210, 63, .55); }
 .vf-alerte .ic { width: 16px; height: 16px; flex: none; }
