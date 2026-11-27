@@ -1779,14 +1779,11 @@
     }
    ],
    "img": "bottcher-buzzard-attack-chopper.webp",
-   "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:BuzzardAttackChopper-GTAVI-Trailer2.png",
+   "credit": "Rockstar Games",
    "taille": [
-    1920,
-    1080
-   ],
-   "source": "https://gta.wiki/images/BuzzardAttackChopper-GTAVI-Trailer2.png",
-   "hd": "bottcher-buzzard-attack-chopper.webp"
+    1200,
+    675
+   ]
   },
   {
    "slug": "calder-cb69",
