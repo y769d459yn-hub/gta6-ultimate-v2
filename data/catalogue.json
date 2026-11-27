@@ -485,6 +485,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/ambulance-annees-90"
     }
+   ],
+   "img": "declasse-ambulance-90s.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/ambulance-annees-90",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/emergency/ambulance-90s.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -3461,6 +3469,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/gta-6/vehicules/gauntlet-classic"
     }
+   ],
+   "img": "bravado-gauntlet-custom-69.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/gta-6/vehicules/gauntlet-classic",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/muscle/gauntlet-custom-69.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
@@ -4504,6 +4520,14 @@
      "nom": "GTABase",
      "url": "https://www.gtabase.com/fr/vehicules/gta-6/buick-reatta-convertible"
     }
+   ],
+   "img": "willard-lasso-90.webp",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/vehicles/gta-6/buick-reatta-convertible",
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/coupes/lasso-90.jpg",
+   "taille": [
+    832,
+    468
    ]
   },
   {
