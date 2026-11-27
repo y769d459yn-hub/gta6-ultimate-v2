@@ -38,6 +38,11 @@
     const li = document.getElementById(a.getAttribute('href').slice(1)); if (!li) return;
     const d = li.closest('details'); if (d) d.open = true;
   });
+  // lien vers un bloc dépliable fermé (fiche véhicule : « Autres signalements ») : l'ouvre avant d'y aller
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[data-ouvre][href^="#"]'); if (!a) return;
+    const d = document.getElementById(a.getAttribute('href').slice(1)); if (d && d.tagName === 'DETAILS') d.open = true;
+  });
   if (/^#src-/.test(location.hash)) { const li = document.getElementById(location.hash.slice(1)); const d = li && li.closest('details'); if (d) d.open = true; }
 
   // ---------- application installable (PWA) : hors connexion ----------

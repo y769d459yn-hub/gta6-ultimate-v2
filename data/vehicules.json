@@ -21,7 +21,12 @@
   "sources": [
    "detonated-cars"
   ],
-  "color": "#ff9a1f"
+  "color": "#ff9a1f",
+  "chercher": [
+   "Va au commissariat de Crosstown, à Vice City.",
+   "Vérifie le dernier niveau du parking : c'est l'endroit indiqué par Detonated.",
+   "Si elle n'y est pas, consulte les autres signalements ci-dessus."
+  ]
  },
  {
   "slug": "bravado-gauntlet-hellfire",
