@@ -7273,13 +7273,14 @@
     }
    ],
    "img": "buckingham-shamal.webp",
-   "credit": "Rockstar Games, via GTA Wiki",
-   "creditUrl": "https://gta.wiki/w/File:Shamal-GTAVI-OfficialScreenshot-ViceCity01.png",
+   "credit": "Rockstar Games, via GTABase",
+   "creditUrl": "https://www.gtabase.com/fr/vehicules/gta-6/shamal",
    "nettete": 112,
    "taille": [
-    1596,
-    898
-   ]
+    832,
+    468
+   ],
+   "source": "https://www.gtabase.com/images/gta-6/vehicles/planes/buckingham-shamal.jpg"
   },
   {
    "slug": "shasa",
