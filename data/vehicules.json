@@ -721,7 +721,8 @@
    "Inspecte les places à l'extérieur de l'hôtel : la Tempesta y est souvent garée. Pas besoin d'attendre la demande de Randy.",
    "Une place vide ne veut pas dire que tu t'es trompé d'hôtel : les voitures changent d'une visite à l'autre. Reviens plus tard, ou sauvegarde puis recharge la partie."
   ],
-  "ancre": "bar-059"
+  "ancre": "bar-059",
+  "lieuPrecis": "Hôtels Eden Grove Marina"
  },
  {
   "slug": "granforma-zorrusso",
