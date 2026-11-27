@@ -194,6 +194,8 @@ const dureeBucket = (d) => (d <= 2 ? 'court' : d <= 5 ? 'moyen' : 'long');
 // titre SEO : le premier choix de 62 caractères ou moins (Google coupe vers 60-65)
 function titreSEO(...choix) { const l = choix.filter(Boolean); return l.find((t) => t.length <= 62) || l[l.length - 1]; }
 // description : phrases réelles, coupées à un mot entier sous 158 caractères
+// minuscule en début de morceau placé après « : » (« Garée souvent… » → « garée souvent… »), sauf sigle ou mot en capitales
+const minDebut = (t) => (t && /^[A-ZÀ-Ý][a-zà-ÿ'’]/.test(t) && !/^[A-ZÀ-Ý][a-zà-ÿ]+(?: [A-ZÀ-Ý]|['’])/.test(t) ? t[0].toLowerCase() + t.slice(1) : t);
 function descSEO(...morceaux) {
   const t = morceaux.filter(Boolean).join(' ').replace(/\s+/g, ' ').trim();
   if (t.length <= 158) return t;
@@ -222,6 +224,8 @@ function ref(slug) {
   if (V[slug]) { const c = cat('vehicules', V[slug].type); return { t: V[slug].nom, u: `vehicules/${slug}/`, i: c.icon, c: c.color, k: 'Véhicule' }; }
   if (E[slug]) { const c = cat('encyclopedie', E[slug].cat); return { t: E[slug].nom, u: `encyclopedie/${slug}/`, i: E[slug].icon, c: c.color, k: c.nom }; }
   if (N[slug]) return { t: N[slug].titre, u: `actualites/${slug}/`, i: 'news', c: '#19d3e3', k: 'Actu' };
+  const Mi = slug.startsWith('mission:') && MIS[slug.slice(8)];
+  if (Mi) return { t: Mi.nom, u: `missions/${Mi.id}/`, i: 'flag', c: '#ff3d6e', k: Mi.chapitre === 'prologue' ? 'Mission · prologue' : `Mission · chapitre ${Mi.chapitre}` };
   const D = slug.startsWith('dossier:') && DOSSIERS.find((d) => d.slug === slug.slice(8));
   if (D) return { t: D.court, u: `dossiers/${D.slug}/`, i: D.icon, c: D.couleur, k: 'Dossier complet' };
   return null;
@@ -490,7 +494,7 @@ function gCarte(g, R, grand = false) {
 // astuce → repères carte liés
 const astuceMap = {};
 for (const l of LIEUX) if (l.astuce && onMap(l.id)) (astuceMap[l.astuce] ||= []).push(l.id);
-const ASTUCE_MAP_EXTRA = { 'voiture-rare': 'cat=vehicules', 'activites-eau': 'cat=activites', 'vendre-voitures-moses': 'cat=vehicules', 'stocker-vehicules': 'cat=vehicules' };
+const ASTUCE_MAP_EXTRA = { 'billets-marques': 'focus=o-fence-005', 'voiture-rare': 'cat=vehicules', 'activites-eau': 'cat=activites', 'vendre-voitures-moses': 'cat=vehicules', 'stocker-vehicules': 'cat=vehicules' };
 
 // ---------- layout ----------
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
@@ -678,7 +682,8 @@ function concorde(slug, ids = []) {
   const v = mapIndex['v-' + slug]; if (!v) return null;
   const dm = DOUBLONS.doublons['v-' + slug]; if (dm && mapIndex[dm.garde]) return { d: 0, f: mapIndex[dm.garde] };
   let best = null;
-  for (const id of ids) { const f = mapIndex[id]; if (!f || !/^o-/.test(id)) continue; const d = Math.hypot(f.geometry.coordinates[0] - v.geometry.coordinates[0], f.geometry.coordinates[1] - v.geometry.coordinates[1]); if (d < 400 && (!best || d < best.d)) best = { d, f }; }
+  const dist = (DOUBLONS.distincts || {})['v-' + slug] || {};
+  for (const id of ids) { const f = mapIndex[id]; if (!f || !/^o-/.test(id) || dist[id]) continue; const d = Math.hypot(f.geometry.coordinates[0] - v.geometry.coordinates[0], f.geometry.coordinates[1] - v.geometry.coordinates[1]); if (d < 400 && (!best || d < best.d)) best = { d, f }; }
   return best;
 }
 const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
@@ -692,7 +697,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     <h2 id="ou-t" class="h3">${icon('pin')}Où le trouver ?</h2>
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
     ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
-    ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits :</p>` : ''}
+    ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits${lieux.length > 8 ? ` (les 8 premiers ci-dessous, tous sur la carte)` : ''} :</p>` : ''}
     ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
     ${lieux.length && (plusieurs || !texte) ? `<ul class="vdlg-lo">${lieux.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}<br><small>${esc(natureLieu(f))} · source : ${esc(sourceLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
@@ -1043,7 +1048,7 @@ for (const v of VEHICULES) {
   const l = v.lieu && L[v.lieu];
   const onM = vehOnMap(v.slug);
   const similar = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).slice(0, 2);
-  const sameReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id) && !similar.includes(x)).slice(0, 2) : [];
+  const sameReg = l ? VEHICULES.filter((x) => x.slug !== v.slug && L[x.lieu] && (L[x.lieu].region || L[x.lieu].id) === (l.region || l.id) && !similar.includes(x)).sort((a, b) => (a.type === v.type ? 0 : 1) - (b.type === v.type ? 0 : 1)).slice(0, 2) : [];
   const body = `<article class="wrap fiche" style="--c:${v.color || c.color}">
   <header class="fiche-head fiche-head--veh" data-reveal-group>
     ${MODELES[v.slug] ? `<div class="veh-hero veh-hero--3d${PHOTOS[v.slug] ? ' is-photo' : ''}" data-v3d="${esc(JSON.stringify({ ...MODELES[v.slug], ...(GLB.has(v.slug) ? { glb: `modeles/${v.slug}.glb` } : {}) }))}"${PHOTOS[v.slug] ? ' data-v3d-attente' : ''}>${rendu(v, R).replace(' loading="lazy"', '')}<div class="v3d-stage"></div>${PHOTOS[v.slug] ? photoJeu(v, R, ' veh-jeu').replace(' loading="lazy"', '') : ''}<span class="veh-type">${esc(v.sous)}</span>${l ? `<span class="veh-pin">${esc(l.nom)}</span>` : ''}
@@ -1057,7 +1062,8 @@ for (const v of VEHICULES) {
   ${(() => {
     const cc = concorde(v.slug, CAT_CARTE[v.slug]);
     // même véhicule, même endroit : le repère précis de la carte de joueurs passe en premier, la zone approximative de la fiche n'est plus listée (doublon)
-    const lieux = [cc && cc.f, onM && !cc && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).filter((id) => !cc || id !== cc.f.properties.id).map((id) => mapIndex[id])].filter(Boolean);
+    const rangL = (f) => (unique(f) ? 2 : 0) + (f.properties.fi === 'probable' || f.properties.fi === 'confirme' ? 0 : 1);
+    const lieux = [cc && cc.f, onM && !cc && mapIndex['v-' + v.slug], ...(CAT_CARTE[v.slug] || []).filter((id) => !cc || id !== cc.f.properties.id).map((id) => mapIndex[id]).filter(Boolean).sort((a, b) => rangL(a) - rangL(b))].filter(Boolean);
     const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
     const fiab = { statut: v.dispo, texte: `${srcN.length > 1 ? `${srcN.length} sources` : '1 seule source'} : ${srcN.join(', ')}${cc ? ` · même endroit sur Open GTA 6 Map (carte de joueurs, à ~${Math.max(10, Math.round(cc.d / 10) * 10)} m) : deux sources concordent, non vérifié en jeu` : ''}` };
     return blocOu({ nom: v.nom, R, lieux, texte: v.emplacement, lien: l, fiab, etapes: v.obtenir, conseil: !!v.conseil, fav: favBtn({ id: v.slug, type: 'vehicule', t: v.nom, u: p, i: c.icon, c: v.color || c.color }), signaler: p })
@@ -1071,9 +1077,9 @@ for (const v of VEHICULES) {
   </dl>
   ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Même type</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
-  ${sourcesBlock(v.sources)}
+  ${sourcesBlock([...v.sources, ...(v.sourcesPlus || [])])}
 </article>`;
-  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(['confirme', 'teste'].includes(v.dispo) ? `Où trouver ${v.nom} dans GTA 6 :` : `Où trouver ${v.nom} dans GTA 6 (emplacement signalé, à vérifier) :`, v.emplacement, v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article',
+  emit(p, layout({ p, title: titreSEO(`${v.nom} GTA 6 : où le trouver et comment l'obtenir`, `${v.nom} GTA 6 : où le trouver`, `${v.nom} dans GTA 6`), desc: descSEO(['confirme', 'teste'].includes(v.dispo) ? `Où trouver ${v.nom} dans GTA 6 :` : `Où trouver ${v.nom} dans GTA 6 (emplacement signalé, à vérifier) :`, minDebut(v.emplacement), v.obtenir[0] || ''), body, cls: 'p-fiche', ogType: 'article',
     image: PHOTOS[v.slug] ? `photos/${PHOTOS[v.slug].fichier}` : '',
     schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${v.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(PHOTOS[v.slug] ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/photos/${PHOTOS[v.slug].fichier}`, ...(PHOTOS[v.slug].credit ? { creditText: PHOTOS[v.slug].credit } : {}) } } : {}) }], scripts: MODELES[v.slug] ? ['v3d-init.js'] : [], crumbs: [['Accueil', ''], ['Véhicules', 'vehicules/'], [v.nom, p]] }));
 }
@@ -2214,7 +2220,7 @@ function noterVehicules(lie) {
     if (!p.hv && prouve && ((kind === 'unique' && p.cap) || e === 3)) { p.ru = 1; p.icon = 'diamond'; }
   }
   // doublon : la zone approximative d'une fiche du guide est masquée quand un repère précis et fortement probable du même véhicule est à moins de 400 m
-  for (const f of vfeat) { const p = f.properties; if (p.fi === 'approx' && p.vs && proche(f, (g) => g.properties.vs === p.vs && g.properties.fi === 'probable', 400)) { p.hv = 1; p.dbl = 1; } }
+  for (const f of vfeat) { const p = f.properties; if (p.fi === 'approx' && p.vs && proche(f, (g) => g.properties.vs === p.vs && g.properties.fi === 'probable' && !((DOUBLONS.distincts || {})[p.id] || {})[g.properties.id], 400)) { p.hv = 1; p.dbl = 1; } }
 }
 const ATTRIBUTION = { carte: TUILES.source, lieux: { nom: 'GTA VI Landmarks Data', diffuseur: 'GTADB', url: 'https://map.gtadb.org', licence: 'CC BY 4.0', licenceUrl: 'https://creativecommons.org/licenses/by/4.0/', modifications: 'Filtrage des lieux nommés et positionnés, champs raccourcis.' } };
 // intitulés génériques encore en anglais : traduits à l'affichage (les données d'origine ne changent pas ; l'original reste cherchable)

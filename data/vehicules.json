@@ -693,7 +693,11 @@
   "sources": [
    "sportskeeda-cars"
   ],
-  "color": "#ff2bd6"
+  "color": "#ff2bd6",
+  "sourcesPlus": [
+   "gtabase-tempesta",
+   "ogm-carte"
+  ]
  },
  {
   "slug": "granforma-zorrusso",

@@ -43,5 +43,11 @@
   "o-vehicle-spawn-046": "Mammoth Dodo (hydravion)",
   "o-vehicle-spawn-077": "Mammoth Dodo (hydravion)",
   "o-vehicle-spawn-079": "Mammoth Dodo (hydravions)"
+ },
+ "distincts": {
+  "_note": "Repère de fiche et repère de carte proches mais pas le même véhicule (ex. modèle de série et version unique) : ils ne sont pas fusionnés.",
+  "v-pegassi-tempesta": {
+   "o-standout-vehicle-240": "La fiche décrit la Tempesta de série devant les hôtels Eden Grove ; le repère à ~370 m est la version unique « Gold Rush »."
+  }
  }
 }
