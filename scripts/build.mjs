@@ -1596,8 +1596,6 @@ b.querySelectorAll('[data-tg-f]').forEach((c)=>c.addEventListener('click',()=>{f
     <p class="kicker">${icon('bolt')}Rubrique Astuces</p>
     <h1 class="h1 gl-h1">Glitchs GTA 6</h1>
     <p class="lead">Les meilleurs glitchs, leurs tutoriels et leur état de fonctionnement.</p>
-    <p class="gl-info">${icon('check')}Sources vérifiées le ${fmtDate(GLX.verifieLe)}${VDERN ? ` · Dernière version connue : ${esc(VDERN.id)} (${fmtDate(VDERN.date)})` : ''} · ${actifs.length} glitch${actifs.length > 1 ? 's' : ''} documenté${actifs.length > 1 ? 's' : ''}</p>
-    ${aRevoir.length ? `<p class="gl-maj" role="status">${icon('bell')}<span>Une nouvelle mise à jour est disponible (${esc(VDERN.id)}). Certains glitchs nécessitent une nouvelle vérification.</span></p>` : ''}
   </header>
   <label class="field gl-q">${icon('search')}<span class="sr-only">Rechercher un glitch</span><input type="search" placeholder="Rechercher un glitch…" data-gl-q autocomplete="off" enterkeyhint="search"></label>
   <div class="gl-filtres" role="group" aria-label="Filtrer les glitchs">
