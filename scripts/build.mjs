@@ -694,8 +694,23 @@ const R_ = (p) => { const d = p.split('/').filter(Boolean).length; return d ? '.
 function tile({ href, ic, label, sub = '', color, big = false, attrs = '' }) {
   return `<a class="tile${big ? ' tile--big' : ''}" href="${href}" style="--c:${color}" ${attrs}><span class="tile-ico">${icon(ic)}</span><span class="tile-txt"><span class="tile-label">${esc(label)}</span>${sub ? `<span class="tile-sub">${esc(sub)}</span>` : ''}</span><span class="tile-go">${icon('arrow-right')}</span></a>`;
 }
+// Miniatures des véhicules recommandés : réutiliser uniquement les photos du modèle exact.
+function vehRelatedThumb(v, R) {
+  const ph = PHOTOS[v.slug];
+  const f = v.img || CATALOGUE.vehicules.find(x => x.slug === v.slug)?.img;
+  const rel = ph && fs.existsSync(path.join(ROOT, 'src', 'photos', ph.fichier)) ? 'photos/' + ph.fichier
+    : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', f)) ? 'catalogue-mini/' + f
+    : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue', f)) ? 'catalogue/' + f : '';
+  return rel ? `<span class="veh-related-thumb"><img src="${R}${esc(rel)}" alt=""${wh(rel)} loading="lazy" decoding="async"></span>`
+    : `<span class="mini-ico" aria-hidden="true">${icon(cat('vehicules', v.type).icon)}</span>`;
+}
+function vehRelatedCard(v, R) {
+  const c = cat('vehicules', v.type);
+  return `<a class="mini mini--veh" href="${R}vehicules/${v.slug}/" style="--c:${c.color}">${vehRelatedThumb(v, R)}<span><small>${esc(v.classe || CATALOGUE.fiches[v.slug]?.classe || v.sous || c.nom)}</small><b>${esc(v.nom)}</b></span>${icon('arrow-right')}</a>`;
+}
 function relCard(slug, R) {
   const r = ref(slug); if (!r) return '';
+  if (V[slug] && r.u.startsWith('vehicules/')) return vehRelatedCard(V[slug], R);
   return `<a class="mini" href="${R}${r.u}" style="--c:${r.c}"><span class="mini-ico">${icon(r.i)}</span><span><small>${esc(r.k)}</small><b>${esc(r.t)}</b></span>${icon('arrow-right')}</a>`;
 }
 function sourcesBlock(ids) {
@@ -1192,10 +1207,9 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     <ol class="vf-steps">${pas.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : ''}
   </section>
-  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2>
-    <div class="vf-sim">${sim.map((x) => `<a href="${R}vehicules/${x.slug}/"><span class="vf-sim-i">${vehVisuel(x, R)}</span><b>${esc(x.nom)}</b>${icon('chevron')}</a>`).join('')}</div></section>` : ''}
+  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${sim.map(x => vehRelatedCard(x, R)).join('')}</div></section>` : ''}
   ${memeReg.length ? `<p class="vf-reg">${icon('pin')}Dans la même région : ${memeReg.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
-${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<p class="vf-reg">${icon(c.icon)}${esc(t)} : ${xs.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>`).join('')}
+${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<section class="related"><h2 class="h3">${icon(c.icon)}${esc(t)}</h2><div class="minis">${xs.map(x => vehRelatedCard(x, R)).join('')}</div></section>`).join('')}
   ${memeType.length ? `<p class="vf-reg">${icon(c.icon)}Autres ${esc(c.nom.toLowerCase())} du guide : ${memeType.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
   <section class="vf-bloc" aria-labelledby="in-t">
     <h2 id="in-t" class="vf-h">${icon('info')}Infos utiles</h2>
@@ -1269,7 +1283,7 @@ for (const x of CATALOGUE.vehicules) {
   const memeGroupe = voisinsDe(grpListe, x, 4);
   const mqListe = x.fabricant ? parNom(CATALOGUE.vehicules.filter((y) => y.fabricant === x.fabricant && (y === x || (VERIF[y.slug] || {}).statut === 'confirme'))) : [];
   const memeMarque = x.fabricant ? voisinsDe(mqListe, x, 6).filter((y) => !memeGroupe.includes(y)).slice(0, 4) : [];
-  const mini = (y) => `<a class="mini" href="${R}vehicules/${y.slug}/" style="--c:${c.color}"><span class="mini-ico">${icon(cat('vehicules', y.type).icon)}</span><span><small>${esc(y.classe)}</small><b>${esc(y.nom)}</b></span>${icon('arrow-right')}</a>`;
+  const mini = (y) => vehRelatedCard(y, R);
   const faits = [
     x.fabricant && ['badge', 'Marque', esc(x.fabricant)],
     ['sparkle', 'Catégorie', `<a href="${R}vehicules/#cat-${x.groupe}">${esc(x.classe)}</a>`],
