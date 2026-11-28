@@ -895,3 +895,10 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 @media (min-width: 760px) { .v2 .veh-locations { grid-template-columns: repeat(2,minmax(0,1fr)); } .v2 .veh-tech-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
 @media (max-width: 359px) { .v2 .veh-tech-grid { grid-template-columns: 1fr; } }
 .v2 .actions--ou > .btn { white-space: normal; text-align: center; }
+
+/* Fiches véhicules : dernières finitions, limitées aux fiches */
+.v2 .veh-map-first { display:flex; width:100%; box-sizing:border-box; min-height:48px; align-items:center; justify-content:center; gap:8px; margin:12px 0; white-space:normal; text-align:center; }
+.v2 .veh-fiab-fold { padding:12px 14px; border:1px solid var(--hair2); border-radius:14px; background:var(--card2,#141220); }
+.v2 .veh-fiab-fold summary { cursor:pointer; font-weight:600; line-height:1.5; }
+.v2 .veh-fiab-fold summary .ic { display:inline-block; vertical-align:middle; width:18px; height:18px; margin:0 6px; color:var(--pk); }
+.v2 .veh-fiab-fold[open] > dl { margin-top:12px; }
