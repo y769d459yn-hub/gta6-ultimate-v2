@@ -1,4 +1,4 @@
-/* V195 — enrichissement visuel des favoris, sans écriture dans le stockage. */
+/* V197 — enrichissement visuel des favoris, sans écriture dans le stockage. */
 (() => {
   'use strict';
   const page = document.querySelector('[data-favs][data-vehicle-images]');
@@ -20,7 +20,8 @@
       const img = document.createElement('img');
       img.className = 'fav-vehicle-thumb';
       img.alt = '';
-      img.loading = 'lazy';
+      // A hidden lazy image may never load on Safari.
+      img.loading = 'eager';
       img.decoding = 'async';
       const row = link.closest('.card--row');
       const old = row?.querySelector(':scope > .card-ico');
