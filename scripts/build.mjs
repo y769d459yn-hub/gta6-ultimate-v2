@@ -695,7 +695,16 @@ function concorde(slug, ids = []) {
 const sourceLieu = (f) => (f.properties.id.startsWith('w-') ? 'GTA Wiki (wiki de joueurs)' : f.properties.id.startsWith('o-') ? 'Open GTA 6 Map (carte de joueurs)' : f.properties.id.startsWith('v-') ? 'fiche GTA 6 Facile' : 'GTADB (carte de joueurs)');
 // Un seul bloc en haut de fiche : la réponse, l'action principale, les favoris.
 // lieux : repères de la carte ; texte : emplacement décrit ; fiab : fiabilité de l'emplacement ; etapes : méthode d'obtention vérifiée par les sources de la fiche
+// Ordre d’affichage uniquement : modèle courant, variantes, demandes ; coordonnées intactes.
+const rangLieuVeh = (f) => /vehicle-request/.test(f.properties.id) ? 3 : /vehicle-spawn/.test(f.properties.id) ? 0 : unique(f) ? 2 : 1;
+const ordreLieuxVeh = (lieux) => [...lieux].sort((a, b) => rangLieuVeh(a) - rangLieuVeh(b));
+function titreLieuVeh(f, nom) {
+  const titre = f.properties.nom;
+  const marque = nom.split(' ')[0];
+  return titre.startsWith(marque + ' ') ? titre.slice(marque.length + 1) : titre;
+}
 function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conseil = false }) {
+  lieux = ordreLieuxVeh(lieux);
   const connu = lieux.length || texte;
   const plusieurs = lieux.length > 1;
   const spoil = (s) => /chapitre|«|mission/i.test(s);
@@ -705,10 +714,11 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
     ${plusieurs ? `<p class="ou-n">${lieux.length} emplacements recensés :</p>` : ''}
     ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
-    ${lieux.length ? `<ol class="veh-locations">${lieux.map((f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(f.properties.nom)}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}${new Set(lieux.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`).join('')}</ol><p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
+    ${lieux.length ? `<a class="btn btn--primary veh-map-first" href="${R}carte/?focus=${esc(lieux[0].properties.id)}">${icon('map')}${plusieurs ? 'Voir le premier emplacement' : 'Voir l’emplacement'}</a>` : ''}
+    ${lieux.length ? `<ol class="veh-locations">${lieux.map((f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(titreLieuVeh(f, nom))}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}${new Set(lieux.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`).join('')}</ol><p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
-      ${lieux.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lieux[0].properties.id}">${icon('map')}${plusieurs ? 'Ouvrir la carte (premier repère)' : 'Voir l’emplacement'}</a>` : ''}
+
       ${fav}
       ${connu ? '' : `<a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Emplacement : ${nom}`)}&amp;body=${encodeURIComponent(`Véhicule : ${nom} (${site.url}/${signaler})\nOù je l'ai trouvé :\nSource ou capture, si tu en as une :\n`)}">${icon('mail')}Signaler un emplacement</a>`}
     </div>
@@ -717,11 +727,11 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
 }
 // Fiabilité : trois questions séparées (le véhicule est-il dans le jeu ? l'emplacement est-il sûr ? comment l'obtenir ?)
 function blocFiab({ presence, emplacement, obtention }) {
-  return `<section class="fiab-veh" aria-labelledby="fi-t"><h2 id="fi-t" class="h3">${icon('shield')}Fiabilité</h2><dl class="facts facts--fiab">
+  return `<details class="fiab-veh veh-fiab-fold"><summary>${icon('shield')}Fiabilité des informations</summary><dl class="facts facts--fiab">
     <div><dt>${icon('check')}Présence dans GTA 6</dt><dd>${presence}</dd></div>
     <div><dt>${icon('pin')}Emplacement</dt><dd>${emplacement}</dd></div>
     <div><dt>${icon('list')}Méthode d'obtention</dt><dd>${obtention}</dd></div>
-  </dl></section>`;
+  </dl></details>`;
 }
 // présence : une page de wiki ou de base de données de joueurs n'est pas une confirmation officielle de Rockstar
 const presenceTxt = (slug, srcIds = []) => {
@@ -1064,7 +1074,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   const cc = v.ancre ? null : concorde(v.slug, CAT_CARTE[v.slug]);
   if (v.principal && !mapIndex[v.principal]) throw new Error(`fiches-v2.json : repère principal inconnu ${v.principal}`);
   const principal = v.principal ? mapIndex[v.principal] : (cc && cc.f) || (onM ? mapIndex['v-' + v.slug] : null);
-  const autres = (CAT_CARTE[v.slug] || []).map((id) => mapIndex[id]).filter((f) => f && f !== principal && !f.properties.dbl && !DOUBLONS.doublons[f.properties.id]);
+  const autres = ordreLieuxVeh((CAT_CARTE[v.slug] || []).map((id) => mapIndex[id]).filter((f) => f && f !== principal && !f.properties.dbl && !DOUBLONS.doublons[f.properties.id]));
   const srcN = v.sources.map((id) => SRC[id] && SRC[id].n).filter(Boolean);
   const srcTxt = srcN.length > 1 ? `${srcN.length} sources (${srcN.join(', ')})` : `1 seule source (${srcN[0] || 'non citée'})`;
   const reg = l ? (L[l.region] || l).nom : '';
@@ -1113,7 +1123,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   </section>
   ${autres.length ? `<details class="vf-autres" id="autres" open><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
     <ul>${autres.map((f, i) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig" id="sig-${esc(f.properties.id)}">
-      <p class="vf-sig-t"><span class="veh-location-n" aria-hidden="true">${String(i + (principal ? 2 : 1)).padStart(2, '0')}</span><b>${esc(traduit(f.properties.nom))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
+      <p class="vf-sig-t"><span class="veh-location-n" aria-hidden="true">${String(i + (principal ? 2 : 1)).padStart(2, '0')}</span><b>${esc(traduit(titreLieuVeh(f, v.nom)))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
       <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}${new Set(autres.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</p>
       <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d)}` : ''}</p>
       <p class="vf-sig-s"><a class="btn veh-location-map" href="${R}carte/?focus=${f.properties.id}">${icon('map')}Voir sur la carte</a></p>
@@ -1222,7 +1232,7 @@ for (const x of CATALOGUE.vehicules) {
     })() : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${x.type}">${icon(c.icon)}${esc(c.nom)}</a>${grp ? `<a class="pill" href="${R}vehicules/#cat-${x.groupe}">${esc(grp.nom)}</a>` : ''}</div>
     <h1 class="h1 h1--fiche">${esc(x.nom)}</h1>
-    ${x.resume ? `<div class="veh-summary">${String(x.resume).split(/\n+/).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join('')}</div>` : ''}
+    ${x.resume ? `<div class="veh-summary">${(x.slug === 'benefactor-dubsta' ? ['Le Benefactor Dubsta est un SUV inspiré du Mercedes-Benz Classe G. Six emplacements sont recensés sur notre carte, dont quatre variantes spéciales et une demande de Randy. Ces signalements restent à vérifier en jeu.'] : String(x.resume).split(/\n+/).filter(Boolean)).map((t) => `<p>${esc(t)}</p>`).join('')}</div>` : ''}
   </header>
   ${(() => {
     const srcL = [...new Set(lo.map(sourceLieu))];
