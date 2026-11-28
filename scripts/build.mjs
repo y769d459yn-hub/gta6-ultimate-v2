@@ -527,6 +527,49 @@ const ASTUCE_MAP_EXTRA = { 'billets-marques': 'focus=o-fence-005', 'voiture-rare
 const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547"/><stop offset=".55" stop-color="#ff2bd6"/><stop offset="1" stop-color="#2de2e6"/></linearGradient></defs><path d="M5 17a11 11 0 0 1 22 0" fill="none" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/><path d="M3 20.5h26M6 24h20M10 27.5h12" stroke="url(#mk-g)" stroke-width="1.3" stroke-linecap="round"/></svg>`;
 const NOUVEAU = ACTUS.length && (new Date(site.majLe) - new Date(ACTUS[0].date)) / 864e5 <= 7;
 const BRAND_PALM = `<svg class="mark mark--palm" viewBox="0 0 48 40" aria-hidden="true"><defs><linearGradient id="pm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#ff2bd6"/><stop offset="1" stop-color="#b44dff"/></linearGradient></defs><path fill="url(#pm-g)" d="M23 13c-5-6-13-7-19-3 6-1 11 0 16 4-7-1-13 2-16 8 5-4 11-5 16-3-4 3-6 8-5 14l2 .5c-.5-6 1.5-10 5-13 .7 6 1 12 .2 19h3.4c.6-8 .2-14-1-20 4 2 7 6 7.5 11 2-6-1-11-6-14 6-1 11 1 15 5-2-7-9-10-16-8 4-4 10-5 15-3-5-5-13-4-18 1-1-4-4-7-8-8 3 2 5 5 5 8z"/></svg>`;
+// V198 : métadonnées ciblées, sans modification du contenu ni de l’indexation.
+const SEO_V198 = {
+  "astuces/billets-marques/": {
+    "title": "Billets marqués GTA 6 : que faire et où les revendre ?",
+    "desc": "Que faire des billets marqués dans GTA 6 ? Découvrez les receleurs signalés, les méthodes de revente et le rôle du brouilleur."
+  },
+  "vehicules/benefactor-dubsta/": {
+    "title": "Benefactor Dubsta GTA 6 : emplacements et variantes",
+    "desc": "Découvrez les 6 emplacements signalés du Benefactor Dubsta dans GTA 6, ses variantes rares, ses photos et ses caractéristiques."
+  },
+  "vehicules/obey-tailgater-s/": {
+    "title": "Obey Tailgater S GTA 6 : photo et caractéristiques",
+    "desc": "Retrouvez l’Obey Tailgater S dans GTA 6 : photo, catégorie, caractéristiques disponibles et indications sur sa présence en ville."
+  },
+  "vehicules/bravado-banshee/": {
+    "title": "Bravado Banshee GTA 6 : emplacements et variantes",
+    "desc": "Découvrez la Bravado Banshee dans GTA 6, ses 6 emplacements signalés, sa variante DriveShaft et ses caractéristiques."
+  },
+  "vehicules/declasse-vigero-zx-convertible/": {
+    "title": "Vigero ZX Convertible GTA 6 : photo et fiche",
+    "desc": "Découvrez la Vigero ZX Convertible dans GTA 6 : photo, inspiration Chevrolet Camaro et caractéristiques disponibles."
+  },
+  "vehicules/ubermacht-rebla-gts/": {
+    "title": "Übermacht Rebla GTS GTA 6 : photo et caractéristiques",
+    "desc": "Retrouvez l’Übermacht Rebla GTS dans GTA 6 : photo, inspiration BMW X5, transmission et caractéristiques du SUV."
+  },
+  "vehicules/piccia-furia/": {
+    "title": "Piccia Furia GTA 6 : emplacements et caractéristiques",
+    "desc": "Découvrez la Piccia Furia dans GTA 6 : photo, 3 emplacements signalés et caractéristiques de cette supercar."
+  },
+  "vehicules/ocelot-jugular/": {
+    "title": "Ocelot Jugular GTA 6 : emplacements et fiche",
+    "desc": "Retrouvez l’Ocelot Jugular dans GTA 6, ses 2 emplacements signalés, sa photo et ses caractéristiques techniques."
+  },
+  "vehicules/maibatsu-manchez/": {
+    "title": "Maibatsu Manchez GTA 6 : photo et emplacements",
+    "desc": "Découvrez la Maibatsu Manchez dans GTA 6 : photo, caractéristiques et 3 emplacements signalés de cette moto."
+  },
+  "vehicules/maibatsu-sanchez/": {
+    "title": "Sanchez GTA 6 : emplacements de la moto tout-terrain",
+    "desc": "Retrouvez la Sanchez dans GTA 6 : moto tout-terrain, variantes et 5 repères communautaires pour la localiser."
+  }
+};
 function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [], image = '' }) {
   // Limité aux fiches individuelles : conserve les autres pages et leurs références.
   const vehSlug = /^vehicules\/([^/]+)\/$/.exec(p)?.[1];
@@ -562,6 +605,9 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
       const label = content.replace(/<[^>]*>/g, '').trim();
       return palette[label] ? `<dt class="veh-label--${palette[label]}">${content}</dt>` : whole;
     }));
+  }
+  if (!noindex && Object.hasOwn(SEO_V198, p)) {
+    ({ title, desc } = SEO_V198[p]);
   }
   if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
   if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
