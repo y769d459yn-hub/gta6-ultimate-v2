@@ -947,9 +947,12 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .v2 .veh-locations-fold[open] > summary .ic { transform:rotate(-90deg); }
 .v2 .veh-locations-fold:not([open]) .veh-locations-hide, .v2 .veh-locations-fold[open] .veh-locations-show { display:none; }
 
-/* V195 — photos compactes dans les favoris, sans toucher aux autres catégories. */
-[data-fav-list] .fav-vehicle-photo { display: flex; align-items: center; gap: 10px; min-width: 0; }
-[data-fav-list] .fav-vehicle-thumb { display: block; flex: 0 0 96px; width: 96px; height: 60px; object-fit: cover; object-position: center; border-radius: 9px; background: var(--card2,#141220); }
-[data-fav-list] .fav-vehicle-photo > [hidden] { display: none !important; }
-[data-fav-list] .fav-vehicle-photo > :not(img) { min-width: 0; overflow-wrap: anywhere; }
-@media (max-width: 359px) { [data-fav-list] .fav-vehicle-thumb { flex-basis: 76px; width: 76px; height: 50px; } }
+/* V196 — miniature dans la carte, jamais dans le bouton. */
+[data-fav-list] .fav-vehicle-thumb[hidden], [data-fav-list] .fav-vehicle-photo > [hidden] { display:none !important; }
+.v2 [data-fav-list] .card--row.fav-vehicle-photo { display:grid; grid-template-columns: 96px minmax(0,1fr) auto; gap: 6px 12px; align-items:center; }
+.v2 [data-fav-list] .fav-vehicle-photo > .fav-vehicle-thumb { grid-column:1; grid-row:1 / 3; display:block; width:96px; height:72px; object-fit:cover; object-position:center; border-radius:9px; }
+.v2 [data-fav-list] .fav-vehicle-photo > .card-body { grid-column:2; grid-row:1; min-width:0; margin:0; }
+.v2 [data-fav-list] .fav-vehicle-photo .card-title { white-space:normal; overflow-wrap:anywhere; }
+.v2 [data-fav-list] .fav-vehicle-photo > a.btn { grid-column:2; grid-row:2; justify-self:start; margin:0; min-width:0; padding:6px 12px; min-height:36px; }
+.v2 [data-fav-list] .fav-vehicle-photo > button[data-rm] { grid-column:3; grid-row:1 / 3; margin:0; width:44px; min-width:44px; padding:0; }
+@media(max-width:359px) { .v2 [data-fav-list] .card--row.fav-vehicle-photo { grid-template-columns:76px minmax(0,1fr) auto; gap:6px 8px; } .v2 [data-fav-list] .fav-vehicle-photo > .fav-vehicle-thumb { width:76px;height:62px; } }

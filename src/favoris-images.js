@@ -22,12 +22,14 @@
       img.alt = '';
       img.loading = 'lazy';
       img.decoding = 'async';
-      const old = Array.from(link.children).find(el => el.matches('.mini-ico,.card-ico,.tile-ico,.list-ico,.fav-ico,.row-ico,svg:first-child'));
+      const row = link.closest('.card--row');
+      const old = row?.querySelector(':scope > .card-ico');
+      if (!row || !old) continue;
       link.dataset.favImageDone = '1';
-      img.addEventListener('error', () => { img.remove(); if (old) old.hidden = false; link.classList.remove('fav-vehicle-photo'); }, { once: true });
-      img.addEventListener('load', () => { if (old) old.hidden = true; }, { once: true });
-      link.classList.add('fav-vehicle-photo');
-      link.prepend(img);
+      img.addEventListener('error', () => { img.remove(); if (old) old.hidden = false; row.classList.remove('fav-vehicle-photo'); }, { once: true });
+      img.addEventListener('load', () => { old.hidden = true; img.hidden = false; row.classList.add('fav-vehicle-photo'); }, { once: true });
+      img.hidden = true;
+      old.before(img);
       img.src = new URL(rel, base).href;
     }
   }
