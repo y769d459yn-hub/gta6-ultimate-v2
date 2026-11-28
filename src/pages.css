@@ -927,3 +927,12 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .v2 .p-vehicle-detail .veh-price > h2 {color:#a9eacb;}
 .v2 .p-vehicle-detail .veh-special .veh-variant b {color:#ffc0e9;font-size:1rem;font-weight:700;}
 .v2 .p-vehicle-detail .veh-special .veh-variant-title {color:#ffa4dc;}
+
+/* V193 — photos dans les cartes de recommandation, sans modifier les autres liens. */
+.v2 .mini--veh { gap: 12px; padding: 8px 12px 8px 8px; min-height: 76px; }
+.v2 .mini--veh .veh-related-thumb, .v2 .mini--veh > .mini-ico { flex: 0 0 100px; width: 100px; height: 64px; border-radius: 9px; overflow: hidden; }
+.v2 .mini--veh .veh-related-thumb { display: block; background: var(--card2); border: 1px solid var(--line); }
+.v2 .mini--veh .veh-related-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.v2 .mini--veh > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+.v2 .mini--veh > .ic { flex: none; }
+@media (max-width: 359px) { .v2 .mini--veh .veh-related-thumb, .v2 .mini--veh > .mini-ico { flex-basis: 78px; width: 78px; height: 54px; } .v2 .mini--veh { gap: 8px; } }
