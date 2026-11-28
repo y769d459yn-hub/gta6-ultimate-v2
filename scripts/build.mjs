@@ -695,12 +695,16 @@ function tile({ href, ic, label, sub = '', color, big = false, attrs = '' }) {
   return `<a class="tile${big ? ' tile--big' : ''}" href="${href}" style="--c:${color}" ${attrs}><span class="tile-ico">${icon(ic)}</span><span class="tile-txt"><span class="tile-label">${esc(label)}</span>${sub ? `<span class="tile-sub">${esc(sub)}</span>` : ''}</span><span class="tile-go">${icon('arrow-right')}</span></a>`;
 }
 // Miniatures des véhicules recommandés : réutiliser uniquement les photos du modèle exact.
-function vehRelatedThumb(v, R) {
+function vehImagePath(v) {
   const ph = PHOTOS[v.slug];
   const f = v.img || CATALOGUE.vehicules.find(x => x.slug === v.slug)?.img;
   const rel = ph && fs.existsSync(path.join(ROOT, 'src', 'photos', ph.fichier)) ? 'photos/' + ph.fichier
     : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', f)) ? 'catalogue-mini/' + f
     : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue', f)) ? 'catalogue/' + f : '';
+  return rel;
+}
+function vehRelatedThumb(v, R) {
+  const rel = vehImagePath(v);
   return rel ? `<span class="veh-related-thumb"><img src="${R}${esc(rel)}" alt=""${wh(rel)} loading="lazy" decoding="async"></span>`
     : `<span class="mini-ico" aria-hidden="true">${icon(cat('vehicules', v.type).icon)}</span>`;
 }
@@ -781,6 +785,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
   const connu = lieux.length || texte;
   const plusieurs = lieux.length > 1;
   const spoil = (s) => /chapitre|«|mission/i.test(s);
+  const carteLieu = (f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(titreLieuVeh(f, nom))}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`;
   return `<section class="ou-veh" id="ou" aria-labelledby="ou-t">
     <h2 id="ou-t" class="h3">${icon('pin')}Où le trouver ?</h2>
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
@@ -788,7 +793,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     ${plusieurs ? `<p class="ou-n">${lieux.length} emplacements recensés :</p>` : ''}
     ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
     ${lieux.length ? `<a class="btn btn--primary veh-map-first" href="${R}carte/?focus=${esc(lieux[0].properties.id)}">${icon('map')}${plusieurs ? 'Voir le premier emplacement' : 'Voir l’emplacement'}</a>` : ''}
-    ${lieux.length ? `<ol class="veh-locations">${lieux.map((f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(titreLieuVeh(f, nom))}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`).join('')}</ol><p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
+    ${lieux.length ? `<ol class="veh-locations veh-locations--first">${carteLieu(lieux[0], 0)}</ol>${plusieurs ? `<details class="veh-locations-fold"><summary><span class="veh-locations-show">Voir ${lieux.length === 2 ? 'l’autre emplacement' : `les ${lieux.length - 1} autres emplacements`}</span><span class="veh-locations-hide">Masquer ${lieux.length === 2 ? 'l’autre emplacement' : 'les autres emplacements'}</span>${icon('chevron')}</summary><ol class="veh-locations" start="2">${lieux.slice(1).map((f, i) => carteLieu(f, i + 1)).join('')}</ol></details>` : ''}<p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
 
@@ -2017,7 +2022,8 @@ for (const a of ACTUS) {
 // ---------- FAVORIS ----------
 {
   const p = 'favoris/', R = R_(p);
-  const body = `<section class="wrap section" data-favs>
+  const favImages = Object.fromEntries([...CATALOGUE.vehicules, ...VEHICULES].map(v => [v.slug, vehImagePath(v)]).filter(([, rel]) => rel));
+  const body = `<section class="wrap section" data-favs data-vehicle-images='${esc(JSON.stringify(favImages))}'>
   <h1 class="h1">Mes favoris</h1>
   <p class="lead">Retrouve ce que tu as enregistré.</p>
   <div class="doors doors--4" role="group" aria-label="Type" data-fav-filter>
@@ -2031,7 +2037,7 @@ for (const a of ACTUS) {
   <div class="list" data-fav-list></div>
   <div class="empty" data-fav-empty hidden>${icon('heart', 'ic-xl')}<p>Rien ici pour le moment</p><a class="btn btn--primary" href="${R}astuces/">${icon('bolt')}Explorer les astuces</a></div>
 </section>`;
-  emit(p, layout({ p, title: `Mes favoris | ${M}`, desc: 'Retrouvez vos guides et véhicules favoris.', body, noindex: true, cls: 'p-favs' }));
+  emit(p, layout({ p, title: `Mes favoris | ${M}`, desc: 'Retrouvez vos guides et véhicules favoris.', body, noindex: true, cls: 'p-favs', scripts: ['favoris-images.js'] }));
 }
 
 // ---------- COMPTE ----------
