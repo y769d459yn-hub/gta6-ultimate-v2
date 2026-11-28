@@ -1,0 +1,1874 @@
+{
+  "version": 170,
+  "correctifs": [
+    {
+      "slug": "albany-cavalcade-xl",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 28250,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "albany-emperor-85",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5650,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "albany-manana-77",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4900,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "albany-v-str",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 14750,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "annis-hellion-95",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4400,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "benefactor-dubsta",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 20750,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "benefactor-schafter-v12",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10650,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "benefactor-xls",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 16000,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bf-greta",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2900,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-banshee",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 24500,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-bison",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 9000,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-bison-900-95",
+      "observation_exemplaire": {
+        "traceur": "aucun",
+        "immatriculation_affichee": 7400,
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-bogan",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2150,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-buffalo-19",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 11250,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-dorado",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4000,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "bravado-gresley-xt",
+      "observation_exemplaire": {
+        "traceur": "standard",
+        "immatriculation_affichee": 14500,
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "brute-boxville",
+      "observation_exemplaire": {
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "canis-crawler-82",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 7900,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "coil-raiden",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 27750,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-bobcat-xl-84",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 7250,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-burrito-98",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8000,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-granger",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6400,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-granger-3600lx",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8150,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-impaler-20",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5400,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-rancher-86",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4750,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-vigero-zx-convertible",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 28750,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-walton-81",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3400,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-yosemite-1500",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5750,
+        "traceur": "aucun",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "declasse-yosemite-67",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6250,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "dinka-blista-85",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2750,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "dinka-sugoi",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 11650,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "dundreary-landstalker-xl",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 15500,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "emperor-sultan",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5400,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "emperor-vectre",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 14750,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "fathom-fr36",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3650,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "gallivanter-baller-st-d",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 27600,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "grotti-carbonizzare",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 28300,
+        "traceur": "avancé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "grotti-itali-rsx",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 40650,
+        "traceur": "avancé",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "interstate-benson-97",
+      "observation_exemplaire": {
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "invetero-coquette",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 24000,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "invetero-coquette-d10",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 28150,
+        "traceur": "avancé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "jacksheepe-fieldmaster-99",
+      "observation_exemplaire": {
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-allander",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2650,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-asterope-gz",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 1650,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-contender",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 29150,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-feroci-98",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3150,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-intruder",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2750,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "karin-rebel-84",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6750,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "maibatsu-manchez",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2700,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "maibatsu-sanchez",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3950,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "mer-can-blast",
+      "observation_exemplaire": {
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "mer-can-outlaw",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8150,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "obey-8f-drafter",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 18650,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "obey-animus",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8650,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "ocelot-jugular",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 28550,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "osprey-journey-78",
+      "observation_exemplaire": {
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "pegassi-toros",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 29900,
+        "traceur": "avancé",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "pegassi-vitello",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 43750,
+        "traceur": "avancé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "pfister-astron",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 15500,
+        "traceur": "standard",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "pfister-growler",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 29450,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "pfister-neon",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 24250,
+        "traceur": "avancé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "piccia-furia",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 66250,
+        "traceur": "avancé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "schyster-pmp-700",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5400,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "shifter",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 7250,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "taci-ragno",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2250,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "ubermacht-apoc",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6000,
+        "traceur": "aucun",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "ubermacht-cypher",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 23000,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "ubermacht-sentinel-85",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6000
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-aleutian",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8150,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-caracara",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 18500,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-caracara-4x4",
+      "observation_exemplaire": {
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-dominator-asp",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 11250,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-dominator-gt",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10750,
+        "traceur": "standard",
+        "acces": "déverrouillé",
+        "alarme": "désactivée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-montagne",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 2650,
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-montagne-xl",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3400,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-reclaimer",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10750,
+        "traceur": "standard"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-sandking-xl",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 14750,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-sandking-xt",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 21000,
+        "traceur": "standard",
+        "alarme": "activée",
+        "outil_acces_signale": "cloneur de clé"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "vapid-speedo",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6750,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "western-sovereign-107",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 6150,
+        "traceur": "aucun",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "willard-grouse-92",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 1400,
+        "acces": "variable",
+        "traceur": "aucun"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "willard-lasso-90",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 13750,
+        "traceur": "standard",
+        "acces": "verrouillé",
+        "alarme": "activée"
+      },
+      "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    }
+  ],
+  "variantes_et_exemplaires": [
+    {
+      "slug_parent": "ubermacht-fcr-1000",
+      "nom_exemplaire": "Booty FCR 1000",
+      "informations": {
+        "secteur_signale": "Aéroport international de Vice City"
+      },
+      "description_candidate": "Booty FCR 1000 : secteur signalé — Aéroport international de Vice City. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "lapwing-nimbus",
+      "nom_exemplaire": "Booty Bang Nimbus",
+      "informations": {
+        "secteur_signale": "Aéroport international de Vice City, hangar"
+      },
+      "description_candidate": "Booty Bang Nimbus : secteur signalé — Aéroport international de Vice City, hangar. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "buckingham-shamal",
+      "nom_exemplaire": "Love Fist Shamal",
+      "informations": {
+        "secteur_signale": "Hangar de l’aéroport international de Vice City"
+      },
+      "description_candidate": "Love Fist Shamal : secteur signalé — Hangar de l’aéroport international de Vice City. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "rugger-rhode",
+      "nom_exemplaire": "Henshaw Rhode",
+      "informations": {
+        "secteur_signale": "Lac Leonida, Ambrosia"
+      },
+      "description_candidate": "Henshaw Rhode : secteur signalé — Lac Leonida, Ambrosia. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "bravado-gauntlet-custom-69",
+      "nom_exemplaire": "Revenant Gauntlet",
+      "informations": {
+        "secteur_signale": "Grange à Ambrosia"
+      },
+      "description_candidate": "Revenant Gauntlet : secteur signalé — Grange à Ambrosia. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "willard-moocher-83",
+      "nom_exemplaire": "Preacher’s Moocher",
+      "informations": {
+        "secteur_signale": "Route de montagne à Moreau"
+      },
+      "description_candidate": "Preacher’s Moocher : secteur signalé — Route de montagne à Moreau. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "mammoth-patriot-92",
+      "nom_exemplaire": "Mammoth Patriot '92",
+      "informations": {
+        "secteur_signale": "Mariana County, au fond du bâtiment abandonné"
+      },
+      "description_candidate": "Mammoth Patriot '92 : secteur signalé — Mariana County, au fond du bâtiment abandonné. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "swamp-blaster",
+      "nom_exemplaire": "Bravado Swamp Blaster",
+      "informations": {
+        "secteur_signale": "Mariana County"
+      },
+      "description_candidate": "Bravado Swamp Blaster : secteur signalé — Mariana County. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "vapid-dominator-65",
+      "nom_exemplaire": "Vapid Dominator '65",
+      "informations": {
+        "secteur_signale": "Circuit international de Gellhorn"
+      },
+      "description_candidate": "Vapid Dominator '65 : secteur signalé — Circuit international de Gellhorn. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "principe-esskey",
+      "nom_exemplaire": "Thicc Esskey",
+      "informations": {
+        "secteur_signale": "Peacock Bay, environ 400 m de Lombank"
+      },
+      "description_candidate": "Thicc Esskey : secteur signalé — Peacock Bay, environ 400 m de Lombank. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "calder-cb69",
+      "nom_exemplaire": "Ocean Pearl CB69",
+      "informations": {
+        "secteur_signale": "Tequesta, Vice City"
+      },
+      "description_candidate": "Ocean Pearl CB69 : secteur signalé — Tequesta, Vice City. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "lure-predator-l35p",
+      "nom_exemplaire": "Cold Case L35P",
+      "informations": {
+        "secteur_signale": "Mariana County"
+      },
+      "description_candidate": "Cold Case L35P : secteur signalé — Mariana County. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "sea-sparrow",
+      "nom_exemplaire": "Bogskimmer Sea Sparrow",
+      "informations": {
+        "description_obtention": "Quai de Buckskin Swamp; collection Swamp Style"
+      },
+      "description_candidate": "Bogskimmer Sea Sparrow : secteur signalé — Quai de Buckskin Swamp; collection Swamp Style. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "buckingham-windsor-drop",
+      "nom_exemplaire": "Gold Scarab Windsor",
+      "informations": {
+        "description_obtention": "Waning Sands; collection Blinged Up"
+      },
+      "description_candidate": "Gold Scarab Windsor : secteur signalé — Waning Sands; collection Blinged Up. L’apparition peut varier."
+    },
+    {
+      "slug_parent": "maibatsu-caddy-82",
+      "nom_exemplaire": "Lowrider Caddy",
+      "informations": {
+        "description_obtention": "Waning Sands; collection Leonida Man"
+      },
+      "description_candidate": "Lowrider Caddy : secteur signalé — Waning Sands; collection Leonida Man. L’apparition peut varier."
+    }
+  ],
+  "seo_brouillon": [
+    {
+      "slug": "obey-8f-drafter",
+      "titre_seo_candidat": "Obey 8F Drafter – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Obey 8F Drafter dans GTA 6 : frais d’immatriculation relevés : 18 650 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "hauners-apc",
+      "titre_seo_candidat": "Hauners APC – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un traceur militaire est signalé sur le Hauners APC."
+    },
+    {
+      "slug": "airgator-airboat-09",
+      "titre_seo_candidat": "Airgator Airboat 09 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Dr Sheehan’s Airboat est signalée au quai de l’ancien centre de recherche de Pelican Valley."
+    },
+    {
+      "slug": "hvy-airtug",
+      "titre_seo_candidat": "HVY Airtug – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le HVY Airtug est signalé à l’aéroport international de Vice City."
+    },
+    {
+      "slug": "declasse-akane",
+      "titre_seo_candidat": "Declasse Akane – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Akane dans GTA 6 : frais d’immatriculation relevés à 5 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-aleutian",
+      "titre_seo_candidat": "Vapid Aleutian – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Aleutian dans GTA 6 : frais d’immatriculation relevés : 8 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-allander",
+      "titre_seo_candidat": "Karin Allander – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Allander dans GTA 6 : frais d’immatriculation relevés : 2 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "principe-alvino-v1",
+      "titre_seo_candidat": "Principe Alvino V1 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Principe Alvino V1 dans GTA 6 : frais d’immatriculation relevés à 9 150 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-ambulance-90s",
+      "titre_seo_candidat": "Declasse Ambulance '90s – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un exemplaire de la Declasse Ambulance des années 90 est signalé sans traceur."
+    },
+    {
+      "slug": "amloco",
+      "titre_seo_candidat": "Amloco – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Amloco dans GTA 6 : Locomotive inspirée de la GE Genesis. Possibilité de conduite non établie."
+    },
+    {
+      "slug": "obey-animus",
+      "titre_seo_candidat": "Obey Animus – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Obey Animus dans GTA 6 : frais d’immatriculation relevés : 8 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "ubermacht-apoc",
+      "titre_seo_candidat": "Übermacht Apoc – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Apoc dans GTA 6 : frais d’immatriculation relevés : 6 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "ubermacht-apoc-cabrio",
+      "titre_seo_candidat": "Übermacht Apoc (Cabrio) – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Apoc (Cabrio) dans GTA 6 : Coupé cabriolet répertorié dans le catalogue."
+    },
+    {
+      "slug": "dundreary-arcturus-93",
+      "titre_seo_candidat": "Dundreary Arcturus '93 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dundreary Arcturus '93 dans GTA 6 : frais d’immatriculation relevés à 3 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-asterope-gz",
+      "titre_seo_candidat": "Karin Asterope GZ – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Asterope GZ dans GTA 6 : frais d’immatriculation relevés : 1 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "pfister-astron",
+      "titre_seo_candidat": "Pfister Astron – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pfister Astron dans GTA 6 : frais d’immatriculation relevés : 15 500 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "lcc-avarus",
+      "titre_seo_candidat": "LCC Avarus – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "LCC Avarus dans GTA 6 : exemplaire LCC Midnight Sun Avarus signalé à Hamlet. Son apparition peut varier."
+    },
+    {
+      "slug": "dinka-b3000-excavator",
+      "titre_seo_candidat": "Dinka B3000 Excavator – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Dinka B3000 Excavator est une pelleteuse industrielle."
+    },
+    {
+      "slug": "tuff-bmx",
+      "titre_seo_candidat": "Tuff BMX – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Tuff BMX dans GTA 6 : exemplaire Tuff Immortal BMX signalé à Hamlet. Son apparition peut varier."
+    },
+    {
+      "slug": "gallivanter-baller-st-d",
+      "titre_seo_candidat": "Gallivanter Baller ST-D – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Gallivanter Baller ST-D dans GTA 6 : frais d’immatriculation relevés : 27 600 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-banshee",
+      "titre_seo_candidat": "Bravado Banshee – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Banshee dans GTA 6 : frais d’immatriculation relevés : 24 500 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "interstate-benson-97",
+      "titre_seo_candidat": "Interstate Benson '97 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Interstate Benson '97 dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-bison",
+      "titre_seo_candidat": "Bravado Bison – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Bison dans GTA 6 : frais d’immatriculation relevés : 9 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-bison-1800",
+      "titre_seo_candidat": "Bravado Bison 1800 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Bison 1800 dans GTA 6 : frais d’immatriculation relevés à 8 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-bison-900-95",
+      "titre_seo_candidat": "Bravado Bison 900 '95 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Bison 900 '95 dans GTA 6 : frais d’immatriculation relevés : 7 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-bison-900-95-lifted",
+      "titre_seo_candidat": "Bravado Bison 900 '95 (Lifted) – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Bison 900 '95 (Lifted) dans GTA 6 : Pick-up tout-terrain surélevé inspiré du Dodge Ram de deuxième génération."
+    },
+    {
+      "slug": "mer-can-blast",
+      "titre_seo_candidat": "Mer-Can Blast – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Mer-Can Blast dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "nagasaki-blazer",
+      "titre_seo_candidat": "Nagasaki Blazer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Tormentor Street Blazer appartient à la collection Mudder et est signalée près d’une cabane de pêche à Bonanza."
+    },
+    {
+      "slug": "dinka-blista-85",
+      "titre_seo_candidat": "Dinka Blista '85 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dinka Blista '85 dans GTA 6 : frais d’immatriculation relevés : 2 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-bobcat-xl-84",
+      "titre_seo_candidat": "Declasse Bobcat XL '84 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Bobcat XL '84 dans GTA 6 : frais d’immatriculation relevés : 7 250 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-bogan",
+      "titre_seo_candidat": "Bravado Bogan – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Bogan dans GTA 6 : frais d’immatriculation relevés : 2 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "maibatsu-boomazoom",
+      "titre_seo_candidat": "Maibatsu Boomazoom – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Speedy Boomazoom est signalée dans Little Cuba, à Vice City."
+    },
+    {
+      "slug": "brute-boxville",
+      "titre_seo_candidat": "Brute Boxville – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Brute Boxville dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-buccaneer-65",
+      "titre_seo_candidat": "Albany Buccaneer '65 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany Buccaneer '65 dans GTA 6 : frais d’immatriculation relevés à 9 400 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-buffalo-07",
+      "titre_seo_candidat": "Bravado Buffalo '07 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Buffalo '07 dans GTA 6 : frais d’immatriculation relevés à 8 000 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-buffalo-19",
+      "titre_seo_candidat": "Bravado Buffalo '19 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Buffalo '19 dans GTA 6 : frais d’immatriculation relevés : 11 250 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "hvy-bulldozer",
+      "titre_seo_candidat": "HVY Bulldozer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le HVY Bulldozer est signalé dans le secteur de Millport."
+    },
+    {
+      "slug": "declasse-burrito-98",
+      "titre_seo_candidat": "Declasse Burrito '98 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Burrito '98 dans GTA 6 : frais d’immatriculation relevés : 8 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "calder-cb69",
+      "titre_seo_candidat": "Calder CB69 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Calder CB69 dans GTA 6 : emplacement signalé de Ocean Pearl CB69 — Tequesta, Vice City."
+    },
+    {
+      "slug": "maibatsu-caddy-82",
+      "titre_seo_candidat": "Maibatsu Caddy '82 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Maibatsu Caddy '82 dans GTA 6 : emplacement signalé de Lowrider Caddy — Waning Sands; collection Leonida Man."
+    },
+    {
+      "slug": "vapid-caracara",
+      "titre_seo_candidat": "Vapid Caracara – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Caracara dans GTA 6 : frais d’immatriculation relevés : 18 500 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-caracara-4x4",
+      "titre_seo_candidat": "Vapid Caracara 4x4 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Caracara 4x4 dans GTA 6 : traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "nagasaki-carbon-rs",
+      "titre_seo_candidat": "Nagasaki Carbon RS – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Hung Carbon RS est signalée à Belville, près d’un bar de motards."
+    },
+    {
+      "slug": "grotti-carbonizzare",
+      "titre_seo_candidat": "Grotti Carbonizzare – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Grotti Carbonizzare dans GTA 6 : frais d’immatriculation relevés : 28 300 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-cavalcade-xl",
+      "titre_seo_candidat": "Albany Cavalcade XL – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany Cavalcade XL dans GTA 6 : frais d’immatriculation relevés : 28 250 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "dundreary-chino-65",
+      "titre_seo_candidat": "Dundreary Chino '65 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dundreary Chino '65 dans GTA 6 : frais d’immatriculation relevés à 17 750 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "clarion",
+      "titre_seo_candidat": "Clarion – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Clarion dans GTA 6 : Bateau répertorié dans le catalogue nautique."
+    },
+    {
+      "slug": "western-cliffhanger",
+      "titre_seo_candidat": "Western Cliffhanger – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Western Cliffhanger dans GTA 6 : exemplaire Western Magma Cliffhanger signalé à Watson Bay. Son apparition peut varier."
+    },
+    {
+      "slug": "pfister-comet-88",
+      "titre_seo_candidat": "Pfister Comet '88 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pfister Comet '88 dans GTA 6 : frais d’immatriculation relevés à 34 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-contender",
+      "titre_seo_candidat": "Karin Contender – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Contender dans GTA 6 : frais d’immatriculation relevés : 29 150 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "invetero-coquette",
+      "titre_seo_candidat": "Invetero Coquette – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Invetero Coquette dans GTA 6 : frais d’immatriculation relevés : 24 000 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "invetero-coquette-64",
+      "titre_seo_candidat": "Invetero Coquette '64 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Invetero Coquette ’64 dans GTA 6 : variante Oubliette signalée dans un conteneur maritime à La Perle."
+    },
+    {
+      "slug": "invetero-coquette-d10",
+      "titre_seo_candidat": "Invetero Coquette D10 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Invetero Coquette D10 dans GTA 6 : frais d’immatriculation relevés : 28 150 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "canis-crawler-82",
+      "titre_seo_candidat": "Canis Crawler '82 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Canis Crawler '82 dans GTA 6 : frais d’immatriculation relevés : 7 900 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "cruise-ship",
+      "titre_seo_candidat": "Cruise Ship – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Cruise Ship dans GTA 6 : Paquebot répertorié. Possibilité de pilotage non établie."
+    },
+    {
+      "slug": "walter-cruiser",
+      "titre_seo_candidat": "Walter Cruiser – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Walter Cruiser dans GTA 6 : exemplaire Walter Ghost Cruiser signalé à Port Gellhorn. Son apparition peut varier."
+    },
+    {
+      "slug": "ubermacht-cypher",
+      "titre_seo_candidat": "Übermacht Cypher – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Cypher dans GTA 6 : frais d’immatriculation relevés : 23 000 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-d7700",
+      "titre_seo_candidat": "Declasse D7700 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse D7700 dans GTA 6 : Traceur standard signalé sur un exemplaire au sud de Hamlet. Emplacement exact non établi."
+    },
+    {
+      "slug": "albany-devanity-59",
+      "titre_seo_candidat": "Albany DeVanity '59 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany DeVanity ’59 : la variante Driveshaft a été signalée verrouillée. Les caractéristiques peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "schyster-deviant-72",
+      "titre_seo_candidat": "Schyster Deviant '72 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La Deviant ’72 est le cinquième véhicule de la collection Wyman, sans épave à rechercher."
+    },
+    {
+      "slug": "vapid-dominator",
+      "titre_seo_candidat": "Vapid Dominator – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Dominator : la variante Firebug a été signalée verrouillée. Les conditions d’accès varient selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-dominator-65",
+      "titre_seo_candidat": "Vapid Dominator '65 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Dominator '65 dans GTA 6 : emplacement signalé de Vapid Dominator '65 — Circuit international de Gellhorn."
+    },
+    {
+      "slug": "vapid-dominator-asp",
+      "titre_seo_candidat": "Vapid Dominator ASP – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Dominator ASP dans GTA 6 : frais d’immatriculation relevés : 11 250 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-dominator-gt",
+      "titre_seo_candidat": "Vapid Dominator GT – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Dominator GT dans GTA 6 : frais d’immatriculation relevés : 10 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-dorado",
+      "titre_seo_candidat": "Bravado Dorado – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Dorado dans GTA 6 : frais d’immatriculation relevés : 4 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "dinka-double-t",
+      "titre_seo_candidat": "Dinka Double-T – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dinka Double-T dans GTA 6 : frais d’immatriculation relevés à 6 250 $. Le tarif peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "benefactor-dubsta",
+      "titre_seo_candidat": "Benefactor Dubsta – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Benefactor Dubsta dans GTA 6 : frais d’immatriculation relevés : 20 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "annis-elegy-90",
+      "titre_seo_candidat": "Annis Elegy '90 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Annis Elegy '90 dans GTA 6 : frais d’immatriculation relevés à 14 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-emperor-85",
+      "titre_seo_candidat": "Albany Emperor '85 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany Emperor '85 dans GTA 6 : frais d’immatriculation relevés : 5 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "endurex-race-bike",
+      "titre_seo_candidat": "Endurex Race Bike – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Endurex Race Bike dans GTA 6 : Vélo de course inspiré du Pinarello Dogma."
+    },
+    {
+      "slug": "principe-esskey",
+      "titre_seo_candidat": "Principe Esskey – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Principe Esskey dans GTA 6 : emplacement signalé de Thicc Esskey — Peacock Bay, environ 400 m de Lombank."
+    },
+    {
+      "slug": "ubermacht-fcr-1000",
+      "titre_seo_candidat": "Übermacht FCR 1000 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht FCR 1000 dans GTA 6 : emplacement signalé de Booty FCR 1000 — Aéroport international de Vice City."
+    },
+    {
+      "slug": "fathom-fr36",
+      "titre_seo_candidat": "Fathom FR36 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Fathom FR36 dans GTA 6 : frais d’immatriculation relevés : 3 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "willard-faction-custom-donk",
+      "titre_seo_candidat": "Willard Faction Custom Donk – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Willard Faction Custom Donk dans GTA 6 : Muscle car signalée dans une bande-annonce. Disponibilité en jeu non confirmée."
+    },
+    {
+      "slug": "karin-feroci-98",
+      "titre_seo_candidat": "Karin Feroci '98 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Feroci '98 dans GTA 6 : frais d’immatriculation relevés : 3 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "ferry",
+      "titre_seo_candidat": "Ferry – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le ferry est répertorié sous les appellations Flamingo et Pelican. Sa disponibilité pilotable n’est pas confirmée."
+    },
+    {
+      "slug": "jacksheepe-fieldmaster-99",
+      "titre_seo_candidat": "Jacksheepe Fieldmaster '99 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Jacksheepe Fieldmaster '99 dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "fishing-boat",
+      "titre_seo_candidat": "Fishing Boat – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Fishing Boat dans GTA 6 : Bateau de pêche répertorié. Conditions d’obtention non établies."
+    },
+    {
+      "slug": "piccia-furia",
+      "titre_seo_candidat": "Piccia Furia – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Piccia Furia dans GTA 6 : frais d’immatriculation relevés : 66 250 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-futo-85",
+      "titre_seo_candidat": "Karin Futo '85 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Futo '85 dans GTA 6 : frais d’immatriculation relevés à 4 750 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-gauntlet-custom-69",
+      "titre_seo_candidat": "Bravado Gauntlet Custom '69 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Gauntlet Custom '69 dans GTA 6 : emplacement signalé de Revenant Gauntlet — Grange à Ambrosia."
+    },
+    {
+      "slug": "vapid-golfer",
+      "titre_seo_candidat": "Vapid Golfer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un exemplaire du Vapid Golfer est signalé sans traceur."
+    },
+    {
+      "slug": "declasse-granger",
+      "titre_seo_candidat": "Declasse Granger – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Granger dans GTA 6 : frais d’immatriculation relevés : 6 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-granger-3600lx",
+      "titre_seo_candidat": "Declasse Granger 3600LX – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Granger 3600LX dans GTA 6 : frais d’immatriculation relevés : 8 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-gresley-xt",
+      "titre_seo_candidat": "Bravado Gresley XT – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Gresley XT dans GTA 6 : frais d’immatriculation relevés : 14 500 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bf-greta",
+      "titre_seo_candidat": "BF Greta – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "BF Greta dans GTA 6 : frais d’immatriculation relevés : 2 900 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "willard-grouse-92",
+      "titre_seo_candidat": "Willard Grouse '92 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Willard Grouse '92 dans GTA 6 : frais d’immatriculation relevés : 1 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "pfister-growler",
+      "titre_seo_candidat": "Pfister Growler – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pfister Growler dans GTA 6 : frais d’immatriculation relevés : 29 450 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "annis-hellion-95",
+      "titre_seo_candidat": "Annis Hellion '95 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Annis Hellion '95 dans GTA 6 : frais d’immatriculation relevés : 4 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-hermes-50",
+      "titre_seo_candidat": "Albany Hermes '50 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany Hermes '50 dans GTA 6 : frais d’immatriculation relevés à 21 650 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-hustler-32",
+      "titre_seo_candidat": "Vapid Hustler '32 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Hustler '32 dans GTA 6 : exemplaire Vapid Red Hot Hustler signalé à Capri. Son apparition peut varier."
+    },
+    {
+      "slug": "seashark-hydroblast",
+      "titre_seo_candidat": "Seashark Hydroblast – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Seashark Hydroblast est signalé dans un hangar flottant au centre de Pelican Valley."
+    },
+    {
+      "slug": "declasse-impaler-20",
+      "titre_seo_candidat": "Declasse Impaler '20 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Impaler '20 dans GTA 6 : frais d’immatriculation relevés : 5 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-impaler-80",
+      "titre_seo_candidat": "Declasse Impaler '80 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Impaler '80 dans GTA 6 : frais d’immatriculation relevés à 3 500 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bf-injection-73",
+      "titre_seo_candidat": "BF Injection '73 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "BF Injection '73 dans GTA 6 : frais d’immatriculation relevés à 4 650 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-intruder",
+      "titre_seo_candidat": "Karin Intruder – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Intruder dans GTA 6 : frais d’immatriculation relevés : 2 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "maibatsu-iota",
+      "titre_seo_candidat": "Maibatsu Iota – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Maibatsu Iota est un camion proposé en plusieurs configurations, signalé à Watson Bay."
+    },
+    {
+      "slug": "grotti-itali-rsx",
+      "titre_seo_candidat": "Grotti Itali RSX – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Grotti Itali RSX dans GTA 6 : frais d’immatriculation relevés : 40 650 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "osprey-journey-78",
+      "titre_seo_candidat": "Osprey Journey '78 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Osprey Journey '78 dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "buckingham-jubilee",
+      "titre_seo_candidat": "Buckingham Jubilee – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Buckingham Jubilee dans GTA 6 : frais d’immatriculation relevés à 34 900 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "ocelot-jugular",
+      "titre_seo_candidat": "Ocelot Jugular – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Ocelot Jugular dans GTA 6 : frais d’immatriculation relevés : 28 550 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "canis-kamacho",
+      "titre_seo_candidat": "Canis Kamacho – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Black Moth Kamacho est signalée près de La Polilla Negra, au nord de Watson Bay."
+    },
+    {
+      "slug": "lure-predator-l35p",
+      "titre_seo_candidat": "Lure Predator L35P – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Lure Predator L35P dans GTA 6 : emplacement signalé de Cold Case L35P — Mariana County."
+    },
+    {
+      "slug": "dundreary-landstalker-xl",
+      "titre_seo_candidat": "Dundreary Landstalker XL – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dundreary Landstalker XL dans GTA 6 : frais d’immatriculation relevés : 15 500 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "willard-lasso-90",
+      "titre_seo_candidat": "Willard Lasso '90 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Willard Lasso '90 dans GTA 6 : frais d’immatriculation relevés : 13 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "principe-lectro",
+      "titre_seo_candidat": "Principe Lectro – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Principe Lectro dans GTA 6 : frais d’immatriculation relevés à 5 400 $. Le tarif peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-liberator",
+      "titre_seo_candidat": "Vapid Liberator – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Liberator dans GTA 6 : Tout-terrain aperçu dans une bande-annonce. Disponibilité en jeu non confirmée."
+    },
+    {
+      "slug": "hvy-lifta",
+      "titre_seo_candidat": "HVY Lifta – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "HVY Lifta dans GTA 6 : Véhicule utilitaire répertorié. Conditions d’obtention non établies."
+    },
+    {
+      "slug": "lombike",
+      "titre_seo_candidat": "Lombike – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Lombike dans GTA 6 : Vélo électrique en libre-service répertorié dans le catalogue."
+    },
+    {
+      "slug": "buckingham-luxor",
+      "titre_seo_candidat": "Buckingham Luxor – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Buckingham Luxor dans GTA 6 : Avion de transport répertorié avec dix places."
+    },
+    {
+      "slug": "declasse-mamba-gt",
+      "titre_seo_candidat": "Declasse Mamba GT – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La restauration de la Mamba GT dans la collection Wyman nécessite quatre épaves, pour un tarif relevé de 1 500 $."
+    },
+    {
+      "slug": "lapwing-mammatus",
+      "titre_seo_candidat": "Lapwing Mammatus – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Pussycat Mammatus est signalée dans un hangar abandonné au sud de Hamlet."
+    },
+    {
+      "slug": "albany-manana-77",
+      "titre_seo_candidat": "Albany Manana '77 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany Manana '77 dans GTA 6 : frais d’immatriculation relevés : 4 900 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "maibatsu-manchez",
+      "titre_seo_candidat": "Maibatsu Manchez – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Maibatsu Manchez dans GTA 6 : frais d’immatriculation relevés : 2 700 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-marshall",
+      "titre_seo_candidat": "Vapid Marshall – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Venomous Marshall est signalée à l’exposition automobile de Boone Speedway, à Hamlet."
+    },
+    {
+      "slug": "buckingham-maverick",
+      "titre_seo_candidat": "Buckingham Maverick – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un point d’apparition du Buckingham Maverick est signalé à Watson Bay."
+    },
+    {
+      "slug": "canis-mesa",
+      "titre_seo_candidat": "Canis Mesa – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Canis Mesa dans GTA 6 : frais d’immatriculation relevés à 8 000 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-minivan",
+      "titre_seo_candidat": "Vapid Minivan – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Minivan dans GTA 6 : Monospace répertorié dans la catégorie des fourgons."
+    },
+    {
+      "slug": "vapid-montagne",
+      "titre_seo_candidat": "Vapid Montagne – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Montagne dans GTA 6 : frais d’immatriculation relevés : 2 650 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-montagne-pickup",
+      "titre_seo_candidat": "Vapid Montagne Pickup – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un exemplaire du Vapid Montagne Pickup est signalé sans traceur ni alarme active."
+    },
+    {
+      "slug": "vapid-montagne-xl",
+      "titre_seo_candidat": "Vapid Montagne XL – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Montagne XL dans GTA 6 : frais d’immatriculation relevés : 3 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "willard-moocher-83",
+      "titre_seo_candidat": "Willard Moocher '83 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Willard Moocher '83 dans GTA 6 : emplacement signalé de Preacher’s Moocher — Route de montagne à Moreau."
+    },
+    {
+      "slug": "maibatsu-mule",
+      "titre_seo_candidat": "Maibatsu Mule – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Maibatsu Mule est signalé à Gloriana Key."
+    },
+    {
+      "slug": "pfister-neon",
+      "titre_seo_candidat": "Pfister Neon – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pfister Neon dans GTA 6 : frais d’immatriculation relevés : 24 250 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "western-nightblade",
+      "titre_seo_candidat": "Western Nightblade – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La Western Nightblade est associée à une demande de véhicule au club Final Chapter MC, à Ambrosia."
+    },
+    {
+      "slug": "lapwing-nimbus",
+      "titre_seo_candidat": "Lapwing Nimbus – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Lapwing Nimbus dans GTA 6 : emplacement signalé de Booty Bang Nimbus — Aéroport international de Vice City, hangar."
+    },
+    {
+      "slug": "mer-can-outlaw",
+      "titre_seo_candidat": "Mer-Can Outlaw – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Mer-Can Outlaw dans GTA 6 : frais d’immatriculation relevés : 8 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "schyster-pmp-700",
+      "titre_seo_candidat": "Schyster PMP 700 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Schyster PMP 700 dans GTA 6 : frais d’immatriculation relevés : 5 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "mtl-packer",
+      "titre_seo_candidat": "MTL Packer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le MTL Packer est signalé dans le secteur de Capri."
+    },
+    {
+      "slug": "ascot-paragon",
+      "titre_seo_candidat": "Ascot Paragon – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Ascot Paragon : un exemplaire figure dans la liste de Randy, avec traceur avancé et accès par cloneur de clé signalés."
+    },
+    {
+      "slug": "declasse-parkland-71",
+      "titre_seo_candidat": "Declasse Parkland '71 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Parkland '71 dans GTA 6 : frais d’immatriculation relevés à 10 500 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "mammoth-patriot-92",
+      "titre_seo_candidat": "Mammoth Patriot '92 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Mammoth Patriot '92 dans GTA 6 : emplacement signalé de Mammoth Patriot '92 — Mariana County, au fond du bâtiment abandonné."
+    },
+    {
+      "slug": "jobuilt-phantom",
+      "titre_seo_candidat": "JoBuilt Phantom – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante 1776 Phantom, de la collection Patriot, est signalée à Allied Crystal, Ambrosia."
+    },
+    {
+      "slug": "jobuilt-phantom-custom-81",
+      "titre_seo_candidat": "JoBuilt Phantom Custom '81 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le JoBuilt Phantom Custom ’81 est signalé à Catalan Key."
+    },
+    {
+      "slug": "taci-ragno",
+      "titre_seo_candidat": "Taci Ragno – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Taci Ragno dans GTA 6 : frais d’immatriculation relevés : 2 250 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "coil-raiden",
+      "titre_seo_candidat": "Coil Raiden – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Coil Raiden dans GTA 6 : frais d’immatriculation relevés : 27 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-rancher-86",
+      "titre_seo_candidat": "Declasse Rancher '86 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Rancher '86 dans GTA 6 : frais d’immatriculation relevés : 4 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-rebel-84",
+      "titre_seo_candidat": "Karin Rebel '84 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Karin Rebel '84 dans GTA 6 : frais d’immatriculation relevés : 6 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "ubermacht-rebla-gts",
+      "titre_seo_candidat": "Übermacht Rebla GTS – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Rebla GTS dans GTA 6 : SUV à quatre places et transmission intégrale. Apparitions signalées à Peacock Bay et La Perle."
+    },
+    {
+      "slug": "vapid-reclaimer",
+      "titre_seo_candidat": "Vapid Reclaimer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Reclaimer dans GTA 6 : frais d’immatriculation relevés : 10 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "hauners-rhino-tank",
+      "titre_seo_candidat": "Hauners Rhino Tank – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Hauners Rhino Tank dans GTA 6 : Véhicule militaire répertorié. Possibilité de conduite non établie."
+    },
+    {
+      "slug": "rugger-rhode",
+      "titre_seo_candidat": "Rugger Rhode – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Rugger Rhode dans GTA 6 : emplacement signalé de Henshaw Rhode — Lac Leonida, Ambrosia."
+    },
+    {
+      "slug": "vapid-riata-classic",
+      "titre_seo_candidat": "Vapid Riata Classic – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Riata Classic dans GTA 6 : frais d’immatriculation relevés à 11 250 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "jobuilt-rubble",
+      "titre_seo_candidat": "JoBuilt Rubble – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le JoBuilt Rubble est signalé à Watson Bay."
+    },
+    {
+      "slug": "vapid-rumpo",
+      "titre_seo_candidat": "Vapid Rumpo – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Rumpo : un exemplaire a été signalé déverrouillé, sans alarme active ni traceur. Ces caractéristiques peuvent varier."
+    },
+    {
+      "slug": "maibatsu-sanchez",
+      "titre_seo_candidat": "Maibatsu Sanchez – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Maibatsu Sanchez dans GTA 6 : frais d’immatriculation relevés : 3 950 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-sandking-xl",
+      "titre_seo_candidat": "Vapid Sandking XL – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Sandking XL dans GTA 6 : frais d’immatriculation relevés : 14 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-sandking-xt",
+      "titre_seo_candidat": "Vapid Sandking XT – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Sandking XT dans GTA 6 : frais d’immatriculation relevés : 21 000 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "benefactor-schafter-v12",
+      "titre_seo_candidat": "Benefactor Schafter V12 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Benefactor Schafter V12 dans GTA 6 : frais d’immatriculation relevés : 10 650 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "sea-sparrow",
+      "titre_seo_candidat": "Sea Sparrow – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Sea Sparrow dans GTA 6 : emplacement signalé de Bogskimmer Sea Sparrow — Quai de Buckskin Swamp; collection Swamp Style."
+    },
+    {
+      "slug": "seashark-sedna",
+      "titre_seo_candidat": "Seashark Sedna – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Seashark Sedna est signalé près du quai des maisons isolées le long de la rivière Moreau."
+    },
+    {
+      "slug": "canis-seminole-frontier",
+      "titre_seo_candidat": "Canis Seminole Frontier – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Canis Seminole Frontier dans GTA 6 : SUV à quatre places, transmission intégrale et boîte à quatre rapports."
+    },
+    {
+      "slug": "ubermacht-sentinel-85",
+      "titre_seo_candidat": "Übermacht Sentinel '85 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Sentinel '85 dans GTA 6 : frais d’immatriculation relevés : 6 000 $. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "ubermacht-sentinel-xs",
+      "titre_seo_candidat": "Übermacht Sentinel XS – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Übermacht Sentinel XS dans GTA 6 : Coupé inspiré de la BMW M3 E92."
+    },
+    {
+      "slug": "buckingham-shamal",
+      "titre_seo_candidat": "Buckingham Shamal – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Buckingham Shamal dans GTA 6 : emplacement signalé de Love Fist Shamal — Hangar de l’aéroport international de Vice City."
+    },
+    {
+      "slug": "shifter",
+      "titre_seo_candidat": "Shifter – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Shifter dans GTA 6 : frais d’immatriculation relevés : 7 250 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-slamvan-56",
+      "titre_seo_candidat": "Vapid Slamvan '56 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Slamvan '56 dans GTA 6 : frais d’immatriculation relevés à 17 500 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "western-sovereign-107",
+      "titre_seo_candidat": "Western Sovereign 107 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Western Sovereign 107 dans GTA 6 : frais d’immatriculation relevés : 6 150 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-speedo",
+      "titre_seo_candidat": "Vapid Speedo – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Speedo dans GTA 6 : frais d’immatriculation relevés : 6 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "classique-stallion-68",
+      "titre_seo_candidat": "Classique Stallion '68 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Classique Stallion '68 dans GTA 6 : frais d’immatriculation relevés à 10 650 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-stanier-98",
+      "titre_seo_candidat": "Vapid Stanier '98 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Vapid Stanier '98 dans GTA 6 : frais d’immatriculation relevés à 3 400 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "dinka-sugoi",
+      "titre_seo_candidat": "Dinka Sugoi – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Dinka Sugoi dans GTA 6 : frais d’immatriculation relevés : 11 650 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "emperor-sultan",
+      "titre_seo_candidat": "Emperor Sultan – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Emperor Sultan dans GTA 6 : frais d’immatriculation relevés : 5 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "sirius-sungrazer-61",
+      "titre_seo_candidat": "Sirius Sungrazer '61 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Sirius Sungrazer '61 dans GTA 6 : frais d’immatriculation relevés à 15 500 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "buckingham-supervolito",
+      "titre_seo_candidat": "Buckingham SuperVolito – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Buckingham SuperVolito est signalé à l’héliport de Hamlet, avec une apparition variable."
+    },
+    {
+      "slug": "bf-surfer",
+      "titre_seo_candidat": "BF Surfer – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "BF Surfer dans GTA 6 : Fourgon répertorié dans le catalogue."
+    },
+    {
+      "slug": "swamp-blaster",
+      "titre_seo_candidat": "Swamp Blaster – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Swamp Blaster dans GTA 6 : emplacement signalé de Bravado Swamp Blaster — Mariana County."
+    },
+    {
+      "slug": "buckingham-swift",
+      "titre_seo_candidat": "Buckingham Swift – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Buckingham Swift est signalé sur le paquebot Lazaretto, à Port Vice City."
+    },
+    {
+      "slug": "nagasaki-tao",
+      "titre_seo_candidat": "Nagasaki Tao – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Nagasaki Tao est signalé près du quai des maisons isolées le long de la rivière Moreau."
+    },
+    {
+      "slug": "truffade-thrax",
+      "titre_seo_candidat": "Truffade Thrax – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Pour la mission de Randy, la Truffade Thrax est signalée au parking du club de Dalton Island."
+    },
+    {
+      "slug": "declasse-tornado",
+      "titre_seo_candidat": "Declasse Tornado – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Tornado : modèle répertorié dans le catalogue GTA 6. Son emplacement et sa disponibilité pilotable restent à confirmer."
+    },
+    {
+      "slug": "pegassi-toros",
+      "titre_seo_candidat": "Pegassi Toros – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pegassi Toros dans GTA 6 : frais d’immatriculation relevés : 29 900 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "sirius-transgressor-67",
+      "titre_seo_candidat": "Sirius Transgressor '67 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Dans la collection Wyman, la Transgressor ’67 nécessite trois épaves et une restauration à 1 500 $, selon les relevés."
+    },
+    {
+      "slug": "willard-transient",
+      "titre_seo_candidat": "Willard Transient – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Willard Transient dans GTA 6 : frais d’immatriculation relevés à 7 150 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-tulip-72",
+      "titre_seo_candidat": "Declasse Tulip '72 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Tulip ’72 : la variante Pink Gin a été signalée déverrouillée. Le type de traceur n’est pas confirmé."
+    },
+    {
+      "slug": "declasse-tulip-m-100-78",
+      "titre_seo_candidat": "Declasse Tulip M-100 '78 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Tulip M-100 '78 dans GTA 6 : frais d’immatriculation relevés à 8 200 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-v-str",
+      "titre_seo_candidat": "Albany V-STR – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Albany V-STR dans GTA 6 : frais d’immatriculation relevés : 14 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "emperor-vectre",
+      "titre_seo_candidat": "Emperor Vectre – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Emperor Vectre dans GTA 6 : frais d’immatriculation relevés : 14 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "annis-venturas-blvd-elegy-90",
+      "titre_seo_candidat": "Annis Venturas BLVD Elegy '90 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Annis Venturas BLVD Elegy ’90 dans GTA 6 : variante signalée comme récompense GTA+, dont la disponibilité peut évoluer."
+    },
+    {
+      "slug": "dinka-verus",
+      "titre_seo_candidat": "Dinka Verus – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Un exemplaire du Dinka Verus est signalé sans traceur."
+    },
+    {
+      "slug": "declasse-vigero-zx-convertible",
+      "titre_seo_candidat": "Declasse Vigero ZX Convertible – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Vigero ZX Convertible dans GTA 6 : frais d’immatriculation relevés : 28 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "pegassi-vitello",
+      "titre_seo_candidat": "Pegassi Vitello – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Pegassi Vitello dans GTA 6 : frais d’immatriculation relevés : 43 750 $, traceur avancé relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-walton-81",
+      "titre_seo_candidat": "Declasse Walton '81 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Walton '81 dans GTA 6 : frais d’immatriculation relevés : 3 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "water-taxi",
+      "titre_seo_candidat": "Water Taxi – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Water Taxi dans GTA 6 : Taxi fluvial répertorié. Possibilité de pilotage non établie."
+    },
+    {
+      "slug": "buckingham-windsor-drop",
+      "titre_seo_candidat": "Buckingham Windsor Drop – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Buckingham Windsor Drop dans GTA 6 : emplacement signalé de Gold Scarab Windsor — Waning Sands; collection Blinged Up."
+    },
+    {
+      "slug": "schyster-woodland-85",
+      "titre_seo_candidat": "Schyster Woodland '85 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Schyster Woodland '85 dans GTA 6 : frais d’immatriculation relevés à 7 400 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "benefactor-xls",
+      "titre_seo_candidat": "Benefactor XLS – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Benefactor XLS dans GTA 6 : frais d’immatriculation relevés : 16 000 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "calder-yakuruna",
+      "titre_seo_candidat": "Calder Yakuruna – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : Le Calder Yakuruna est signalé à Gambit Bay, à l’ouest du Rusty Anchor."
+    },
+    {
+      "slug": "declasse-yosemite-67",
+      "titre_seo_candidat": "Declasse Yosemite '67 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Yosemite '67 dans GTA 6 : frais d’immatriculation relevés : 6 250 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-yosemite-1500",
+      "titre_seo_candidat": "Declasse Yosemite 1500 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Declasse Yosemite 1500 dans GTA 6 : frais d’immatriculation relevés : 5 750 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-youga",
+      "titre_seo_candidat": "Bravado Youga – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "GTA 6 : La variante Elven Queen Youga est signalée à Fort Acid, au nord de Capri, près du circuit de Gellhorn."
+    },
+    {
+      "slug": "bravado-youga-74",
+      "titre_seo_candidat": "Bravado Youga '74 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Youga '74 dans GTA 6 : frais d’immatriculation relevés à 5 400 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-youga-xl-79",
+      "titre_seo_candidat": "Bravado Youga XL '79 – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Bravado Youga XL '79 dans GTA 6 : frais d’immatriculation relevés à 10 650 $. Le montant peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "zoot",
+      "titre_seo_candidat": "Zoot – GTA 6 | GTA6Facile",
+      "meta_description_candidate": "Zoot dans GTA 6 : Trottinette électrique répertoriée dans le catalogue."
+    }
+  ],
+  "collection_wyman": [
+    {
+      "nom_collection": "Riata 70",
+      "emplacements_epaves": [
+        "Sous une maison sur pilotis au nord de la supérette de Key Lento",
+        "Sous une maison sur pilotis près de Xero Gas à Southwind",
+        "Derrière la station-service abandonnée près de Grassrivers Cafe & Deli, Shoeless Keys"
+      ],
+      "slug_parent": "vapid-riata-classic"
+    },
+    {
+      "nom_collection": "Transgressor 67",
+      "emplacements_epaves": [
+        "Parc de mobil-homes au nord de Sarena’s Bargain Store",
+        "Garage en face de Kolt & Associates Stash House",
+        "Derrière Dirt Merchants"
+      ],
+      "slug_parent": "sirius-transgressor-67"
+    },
+    {
+      "nom_collection": "Mamba GT 64",
+      "emplacements_epaves": [
+        "Garage de ferme au nord de Leonida State Prison",
+        "Garage près de Xero Gas à Ambrosia",
+        "Piscine du Thrillbilly Mud Club",
+        "Pont effondré près de Bonanza"
+      ],
+      "slug_parent": "declasse-mamba-gt"
+    }
+  ]
+}
