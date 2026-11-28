@@ -936,3 +936,20 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .v2 .mini--veh > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
 .v2 .mini--veh > .ic { flex: none; }
 @media (max-width: 359px) { .v2 .mini--veh .veh-related-thumb, .v2 .mini--veh > .mini-ico { flex-basis: 78px; width: 78px; height: 54px; } .v2 .mini--veh { gap: 8px; } }
+
+/* V194 — emplacements supplémentaires repliables, sans JavaScript */
+.v2 .veh-locations--first { grid-template-columns: minmax(0,1fr); }
+.v2 .veh-locations-fold { margin: 12px 0; }
+.v2 .veh-locations-fold > summary { display:flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:10px 14px; box-sizing:border-box; list-style:none; cursor:pointer; border:1px solid var(--hair3); border-radius:14px; background:var(--card2,#141220); color:var(--tx); font-weight:700; text-align:center; }
+.v2 .veh-locations-fold > summary::-webkit-details-marker { display:none; }
+.v2 .veh-locations-fold > summary:focus-visible { outline:2px solid var(--teal,#66dce8); outline-offset:3px; }
+.v2 .veh-locations-fold > summary .ic { width:18px; height:18px; flex:none; color:var(--teal,#66dce8); transform:rotate(90deg); }
+.v2 .veh-locations-fold[open] > summary .ic { transform:rotate(-90deg); }
+.v2 .veh-locations-fold:not([open]) .veh-locations-hide, .v2 .veh-locations-fold[open] .veh-locations-show { display:none; }
+
+/* V195 — photos compactes dans les favoris, sans toucher aux autres catégories. */
+[data-fav-list] .fav-vehicle-photo { display: flex; align-items: center; gap: 10px; min-width: 0; }
+[data-fav-list] .fav-vehicle-thumb { display: block; flex: 0 0 96px; width: 96px; height: 60px; object-fit: cover; object-position: center; border-radius: 9px; background: var(--card2,#141220); }
+[data-fav-list] .fav-vehicle-photo > [hidden] { display: none !important; }
+[data-fav-list] .fav-vehicle-photo > :not(img) { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 359px) { [data-fav-list] .fav-vehicle-thumb { flex-basis: 76px; width: 76px; height: 50px; } }
