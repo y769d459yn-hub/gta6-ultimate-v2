@@ -90,7 +90,7 @@ const PATCH_VEH = fs.existsSync(PATCH_VEH_F) ? JSON.parse(fs.readFileSync(PATCH_
 const PATCH_VEH_OBS = new Map((PATCH_VEH.correctifs || []).map(x => [x.slug, x.observation_exemplaire]));
 const PATCH_VEH_SEO = new Map((PATCH_VEH.seo_brouillon || []).map(x => [x.slug, x]));
 const PATCH_WYMAN = new Map((PATCH_VEH.collection_wyman || []).map(x => [x.slug_parent, x]));
-function complementVehicule(slug) {
+function complementVehicule(slug, partie) {
   const wyman = PATCH_WYMAN.get(slug);
   const o = PATCH_VEH_OBS.get(slug);
   const variantes = (PATCH_VEH.variantes_et_exemplaires || []).filter(x => x.slug_parent === slug);
@@ -98,10 +98,13 @@ function complementVehicule(slug) {
     ['Prix d’immatriculation', Number.isFinite(o.immatriculation_affichee) ? o.immatriculation_affichee.toLocaleString('fr-FR') + ' $' : ''],
     ['Type de traceur', o.traceur], ['Alarme', o.alarme], ['État d’accès', o.acces], ['Outil d’accès', o.outil_acces_signale]
   ].filter(([,v]) => typeof v === 'string' && v.trim()) : [];
-  if (!lignes.length && !variantes.length && !wyman) return '';
-  return `<section class="veh-tech" aria-labelledby="veh-complement-t"><h2 class="h3" id="veh-complement-t">Informations complémentaires</h2>
-    ${lignes.length ? `<dl class="facts veh-tech-grid">${lignes.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><p class="muted small">Informations indicatives : les caractéristiques et les outils d’accès peuvent varier selon l’exemplaire.</p>` : ''}
-    ${variantes.length ? `<h3 class="h3 veh-variant-title">${icon('star')}Variantes spéciales</h3><div class="veh-variants">${variantes.map(v => `<div class="veh-variant"><b>${esc(v.nom_exemplaire)}</b><p>${esc([v.informations?.secteur_signale, v.informations?.description_obtention].filter(Boolean).join(' · '))}</p></div>`).join('')}</div>` : ''}${wyman ? `<h3 class="h3">Épaves de la collection Wyman</h3><p class="muted small">Emplacements signalés pour la restauration ; aucun nouveau repère exact ajouté à la carte.</p><ol>${wyman.emplacements_epaves.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</section>`;
+  if (partie === 'prix') {
+    if (!lignes.length) return '';
+    return `<section class="veh-tech veh-price" aria-labelledby="veh-complement-t"><h2 class="h3" id="veh-complement-t">Prix et conditions d’obtention</h2>
+    <dl class="facts veh-tech-grid">${lignes.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v.charAt(0).toLocaleUpperCase('fr-FR') + v.slice(1))}</dd></div>`).join('')}</dl><p class="muted small">Informations indicatives : les caractéristiques et les outils d’accès peuvent varier selon l’exemplaire.</p></section>`;
+  }
+  if (!variantes.length && !wyman) return '';
+  return `<section class="veh-tech veh-special" aria-label="Variantes et collections">${variantes.length ? `<h2 class="h3 veh-variant-title">${icon('star')}Variantes rares</h2><div class="veh-variants">${variantes.map(v => `<div class="veh-variant"><b>${esc(v.nom_exemplaire)}</b><p>${esc([v.informations?.secteur_signale, v.informations?.description_obtention].filter(Boolean).join(' · '))}</p></div>`).join('')}</div>` : ''}${wyman ? `<h2 class="h3">Épaves de la collection Wyman</h2><p class="muted small">Emplacements signalés pour la restauration ; aucun nouveau repère exact ajouté à la carte.</p><ol>${wyman.emplacements_epaves.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</section>`;
 }
 
 // Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
@@ -537,11 +540,22 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
       .replace(/<p class="muted small">(?:(?!<\/p>)[\s\S])*?Infos techniques relevées par (?:(?!<\/p>)[\s\S])*?<\/p>/g, '');
     const seo = PATCH_VEH_SEO.get(vehSlug);
     if (seo && typeof seo.meta_description_candidate === 'string' && seo.meta_description_candidate.length <= 160) desc = seo.meta_description_candidate;
-    const complement = complementVehicule(vehSlug);
-    const anchors = ['<section class="veh-tech" aria-labelledby="veh-tech-t"', '<dl class="facts">', '<section class="vf-bloc" aria-labelledby="si-t"', '<section class="vf-bloc" aria-labelledby="in-t"', '<section class="related"'];
-    const positions = anchors.map(a => body.indexOf(a)).filter(i => i >= 0);
-    const at = positions.length ? Math.min(...positions) : body.lastIndexOf('</article>');
-    if (at >= 0) body = body.slice(0, at) + complement + body.slice(at);
+    // Trois formats de fiches : conserver les ancres et les fonctionnalités existantes.
+    const infos = /<section class="vf-bloc" aria-labelledby="in-t">[\s\S]*?<\/section>/.exec(body);
+    if (infos) {
+      body = body.replace(infos[0], '');
+      const related = ['<section class="vf-bloc" aria-labelledby="si-t"', '<p class="vf-reg"'].map(a => body.indexOf(a)).filter(i => i >= 0);
+      const pos = related.length ? Math.min(...related) : body.lastIndexOf('</article>');
+      if (pos >= 0) body = body.slice(0,pos) + infos[0].replace('Infos utiles','Caractéristiques techniques') + body.slice(pos);
+    }
+    const insererAvant = (fragment, anchors) => {
+      if (!fragment) return;
+      const positions = anchors.map(a => body.indexOf(a)).filter(i => i >= 0);
+      const at = positions.length ? Math.min(...positions) : body.lastIndexOf('</article>');
+      if (at >= 0) body = body.slice(0,at) + fragment + body.slice(at);
+    };
+    insererAvant(complementVehicule(vehSlug, 'prix'), ['<section class="ou-veh" id="ou"', '<section class="vf-ou" id="ou"']);
+    insererAvant(complementVehicule(vehSlug, 'variantes'), ['<section class="veh-tech" aria-labelledby="veh-tech-t"', '<dl class="facts">', '<section class="vf-bloc" aria-labelledby="in-t"', '<section class="related"', '<section class="vf-bloc" aria-labelledby="si-t"']);
     cls += ' p-vehicle-detail';
     const palette = {'Marque':'identity','Catégorie':'identity','Type':'identity','Inspiré de':'identity','Inspirée de':'identity','Places':'technical','Transmission':'technical','Poids':'technical','Caractéristiques':'technical','Fiche technique':'technical','Déjà présent dans':'history','Ancien GTA':'history','Prix d’immatriculation':'price','Type de traceur':'tracker','Alarme':'alarm','État d’accès':'access','Outil d’accès':'tool'};
     body = body.replace(/<dl class="(?:facts(?: veh-tech-grid)?|vf-infos)">[\s\S]*?<\/dl>/g, block => block.replace(/<dt>([\s\S]*?)<\/dt>/g, (whole, content) => {
@@ -1230,7 +1244,7 @@ for (const v of VEHICULES) {
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
   </dl>
-  ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Même type</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
+  ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sourcesBlock([...v.sources, ...(v.sourcesPlus || [])])}
 </article>`;
@@ -1291,7 +1305,7 @@ for (const x of CATALOGUE.vehicules) {
   <dl class="facts veh-tech-grid">
     ${faits.map(([i, k, v]) => `<div><dt>${icon(i)}${k}</dt><dd>${v}</dd></div>`).join('')}
   </dl></section>
-  ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
+  ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
   ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
   ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
 </article>`;
@@ -1305,7 +1319,7 @@ for (const x of CATALOGUE.vehicules) {
   };
   const o2 = FICHES_V2_CAT[x.slug];
   if (o2) { const v2 = { slug: x.slug, nom: x.nom, type: x.type, sous: x.classe.replace(/s$/, ''), obtenir: o2.chercher, kw: [], ...o2, catImg: x.img, catCredit: x.credit, catCreditUrl: x.creditUrl };
-    V2_A_FAIRE.push(() => emit(p, layout({ ...argsC, body: ficheV2(v2, { p, R, c, l: L[o2.lieu], onM: false, liens: [[`Autres ${(grp ? grp.nom : x.classe).toLowerCase()}`, memeGroupe], [`Autres véhicules ${x.fabricant || ''}`.trim(), memeMarque]] }), cls: 'p-fiche p-vfiche' }))); }
+    V2_A_FAIRE.push(() => emit(p, layout({ ...argsC, body: ficheV2(v2, { p, R, c, l: L[o2.lieu], onM: false, liens: [[`Véhicules similaires`, memeGroupe], [`Autres véhicules ${x.fabricant || ''}`.trim(), memeMarque]] }), cls: 'p-fiche p-vfiche' }))); }
   else emit(p, layout(argsC));
 }
 
