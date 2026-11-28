@@ -902,3 +902,22 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .v2 .veh-fiab-fold summary { cursor:pointer; font-weight:600; line-height:1.5; }
 .v2 .veh-fiab-fold summary .ic { display:inline-block; vertical-align:middle; width:18px; height:18px; margin:0 6px; color:var(--pk); }
 .v2 .veh-fiab-fold[open] > dl { margin-top:12px; }
+
+/* V181 : lisibilité des fiches individuelles, palette sémantique */
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt {font-family:var(--fd,sans-serif);font-size:.82rem;letter-spacing:.015em;text-transform:none;line-height:1.35;color:#c7d1e5;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--identity {color:#66dce8;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--technical {color:#c5b3ff;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--history {color:#b9c8db;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--price {color:#83e9b0;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--tracker {color:#8fd4ff;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--alarm {color:#ffa4c1;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--access {color:#b9c8db;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt.veh-label--tool {color:#f5d28c;}
+:root.v2 body.p-vehicle-detail :is(.facts, .vf-infos) dt .ic {color:inherit;flex:none;}
+.v2 .p-vehicle-detail :is(.facts, .vf-infos) dd {font-size:1rem;line-height:1.4;overflow-wrap:anywhere;}
+.v2 .p-vehicle-detail .veh-tech-grid {margin-bottom:10px;}
+.v2 .p-vehicle-detail .veh-variant-title {color:#ffa4dc;margin-top:20px;}
+.v2 .p-vehicle-detail .veh-variants {display:grid;gap:8px;margin:10px 0 18px;}
+.v2 .p-vehicle-detail .veh-variant {border:1px solid #69415f;border-radius:14px;padding:12px;background:#18101e;}
+.v2 .p-vehicle-detail .veh-variant b {color:#ffd0ef;}
+.v2 .p-vehicle-detail .veh-variant p {margin:5px 0 0;line-height:1.45;overflow-wrap:anywhere;}
