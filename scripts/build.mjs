@@ -703,12 +703,12 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     <h2 id="ou-t" class="h3">${icon('pin')}Où le trouver ?</h2>
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
     ${texte ? `<p class="ou-txt">${lien ? `<a href="${R}lieux/${lien.id}/"><b>${esc(lien.nom)}</b></a> — ` : ''}${esc(texte)}</p>` : ''}
-    ${plusieurs ? `<p class="ou-n">Repéré à ${lieux.length} endroits${lieux.length > 8 ? ` (les 8 premiers ci-dessous, tous sur la carte)` : ''} :</p>` : ''}
+    ${plusieurs ? `<p class="ou-n">${lieux.length} emplacements recensés :</p>` : ''}
     ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
-    ${lieux.length && (plusieurs || !texte) ? `<ul class="vdlg-lo">${lieux.slice(0, 8).map((f) => `<li><a href="${R}carte/?focus=${f.properties.id}"><b>${esc(f.properties.nom)}</b></a>${f.properties.zone ? ` · ${esc(f.properties.zone)}` : ''}<br><small>${esc(natureLieu(f))} · source : ${esc(sourceLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<br><small>${esc(f.properties.desc.slice(0, 160))}</small>` : ''}</li>`).join('')}</ul>` : ''}
+    ${lieux.length ? `<ol class="veh-locations">${lieux.map((f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(f.properties.nom)}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}${new Set(lieux.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`).join('')}</ol><p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
-      ${lieux.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lieux[0].properties.id}">${icon('map')}Voir l'emplacement</a>` : ''}
+      ${lieux.length ? `<a class="btn btn--primary" href="${R}carte/?focus=${lieux[0].properties.id}">${icon('map')}${plusieurs ? 'Ouvrir la carte (premier repère)' : 'Voir l’emplacement'}</a>` : ''}
       ${fav}
       ${connu ? '' : `<a class="btn btn--ghost" href="mailto:${site.editeur.email}?subject=${encodeURIComponent(`Emplacement : ${nom}`)}&amp;body=${encodeURIComponent(`Véhicule : ${nom} (${site.url}/${signaler})\nOù je l'ai trouvé :\nSource ou capture, si tu en as une :\n`)}">${icon('mail')}Signaler un emplacement</a>`}
     </div>
@@ -1099,7 +1099,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   <nav class="vf-bref" aria-label="En bref">
     ${l || v.lieuPrecis ? `<a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(v.lieuPrecis || (l ? l.nom.replace(/^Commissariat de /, '') : '—'))}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>` : ''}
     ${mapHref ? `<a href="${mapHref}">${icon('map')}<span><small>Carte</small><b>Voir le point</b></span></a>` : ''}
-    ${autres.length ? `<a href="#autres" data-ouvre>${icon('layers')}<span><small>Signalements</small><b>${1 + autres.length} au total</b></span></a>` : ''}
+    ${autres.length ? `<a href="#autres" data-ouvre>${icon('layers')}<span><small>Signalements</small><b>${(principal ? 1 : 0) + autres.length} au total</b></span></a>` : ''}
   </nav>
   <section class="vf-ou" id="ou" aria-labelledby="ou-t">
     <h2 id="ou-t" class="vf-k">${icon('pin')}Où ${la} trouver ?</h2>
@@ -1111,13 +1111,13 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     ${(v.pistes || []).length ? `<p class="muted small vf-pistes">${icon('pin')}Autres lieux cités : ${v.pistes.map(([n, id]) => (id && mapIndex[id] ? `<a href="${R}carte/?focus=${id}">${esc(n)}</a>` : esc(n))).join(' · ')}</p>` : ''}
     ${principal && (v.noteCarte || principal.properties.precision === 'zone') ? `<p class="muted small vf-note">${icon('info')}${esc(v.noteCarte || 'Le repère de la carte indique le lieu, pas la place exacte.')}</p>` : ''}
   </section>
-  ${autres.length ? `<details class="vf-autres" id="autres"><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
-    <ul>${autres.map((f) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig" id="sig-${esc(f.properties.id)}">
-      <p class="vf-sig-t"><b>${esc(traduit(f.properties.nom))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
-      <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}</p>
-      <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d.slice(0, 160))}` : ''}</p>
-      <p class="vf-sig-s">Source : ${esc(sourceLieu(f))} · <a href="${R}carte/?focus=${f.properties.id}">${icon('map')}Voir sur la carte</a></p>
-    </li>`; }).join('')}</ul>
+  ${autres.length ? `<details class="vf-autres" id="autres" open><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
+    <ul>${autres.map((f, i) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig" id="sig-${esc(f.properties.id)}">
+      <p class="vf-sig-t"><span class="veh-location-n" aria-hidden="true">${String(i + (principal ? 2 : 1)).padStart(2, '0')}</span><b>${esc(traduit(f.properties.nom))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
+      <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}${new Set(autres.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</p>
+      <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d)}` : ''}</p>
+      <p class="vf-sig-s"><a class="btn veh-location-map" href="${R}carte/?focus=${f.properties.id}">${icon('map')}Voir sur la carte</a></p>
+    </li>`; }).join('')}</ul><p class="veh-location-sources muted small">Sources des signalements : ${[...new Set(autres.map(sourceLieu))].map(esc).join(' · ')}</p>
   </details>` : ''}
   <section class="vf-bloc" aria-labelledby="ch-t">
     <h2 id="ch-t" class="vf-h">${icon(sur ? 'list' : 'target')}${sur ? `Comment l'obtenir` : `Comment ${la} chercher`}</h2>
@@ -1222,6 +1222,7 @@ for (const x of CATALOGUE.vehicules) {
     })() : `<div class="veh-hero">${silhouette({ slug: '', type: x.type }, 'veh-svg--xl')}</div>`}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${x.type}">${icon(c.icon)}${esc(c.nom)}</a>${grp ? `<a class="pill" href="${R}vehicules/#cat-${x.groupe}">${esc(grp.nom)}</a>` : ''}</div>
     <h1 class="h1 h1--fiche">${esc(x.nom)}</h1>
+    ${x.resume ? `<div class="veh-summary">${String(x.resume).split(/\n+/).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join('')}</div>` : ''}
   </header>
   ${(() => {
     const srcL = [...new Set(lo.map(sourceLieu))];
@@ -1230,13 +1231,13 @@ for (const x of CATALOGUE.vehicules) {
       + blocFiab({
         presence: esc(presenceTxt(x.slug)),
         emplacement: lo.length || x.obtenir ? `À vérifier · ${esc(fiab.texte)}` : 'Aucun emplacement relevé',
-        obtention: x.obtenir ? 'Décrite par GTA Wiki (wiki de joueurs), à vérifier en jeu' : 'Non documentée : on n’indique rien tant que ce n’est pas sourcé'
+        obtention: x.obtenir ? 'Décrite par GTA Wiki (wiki de joueurs), à vérifier en jeu' : 'Conditions d’obtention à confirmer'
       });
   })()}
-  <section class="answer"><span class="answer-k">${icon('bolt')}En bref</span><p>${esc(x.resume)}</p></section>
-  <dl class="facts">
+  <section class="veh-tech" aria-labelledby="veh-tech-t"><h2 id="veh-tech-t" class="h3">${icon('sliders')}Caractéristiques techniques</h2>
+  <dl class="facts veh-tech-grid">
     ${faits.map(([i, k, v]) => `<div><dt>${icon(i)}${k}</dt><dd>${v}</dd></div>`).join('')}
-  </dl>
+  </dl></section>
   ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
   ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
   ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
