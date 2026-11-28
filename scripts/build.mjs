@@ -535,7 +535,7 @@ const BRAND_PALM = `<svg class="mark mark--palm" viewBox="0 0 48 40" aria-hidden
 const SEO_V198 = {
   "astuces/billets-marques/": {
     "title": "Billets marqués GTA 6 : que faire et où les revendre ?",
-    "desc": "Que faire des billets marqués dans GTA 6 ? Découvrez les receleurs signalés, les méthodes de revente et le rôle du brouilleur."
+    "desc": "Où vendre les billets marqués dans GTA 6 ? Compare les receleurs signalés, dont Yasmani, leurs missions de déblocage et le rôle du brouilleur."
   },
   "vehicules/benefactor-dubsta/": {
     "title": "Benefactor Dubsta GTA 6 : emplacements et variantes",
@@ -651,6 +651,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : `<link rel="canon
 <meta property="og:image" content="${image ? site.url + '/' + image : site.url + '/assets/og.png'}">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
+${p === 'astuces/billets-marques/' ? `<style>.actions-billets-v1991 > .btn{flex:0 1 auto;min-width:0;min-height:44px;white-space:normal;text-align:center;justify-content:center}@media(max-width:600px){.actions-billets-v1991 > .btn{flex:1 1 100%;width:100%;box-sizing:border-box}}</style>` : ''}
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${R}manifest.webmanifest">
 <link rel="apple-touch-icon" href="${R}assets/apple-touch-icon.png">
@@ -1061,9 +1062,10 @@ function palms() {
 
 // V199 : bloc spécifique, rendu statique et liens uniquement vers les repères effectivement exportés.
 function guideBilletsV199(R) {
-  const receleurs = [["Yasmani", "Little Cuba, Vice City", "3", "Élevé", "Boobie Time", "o-fence-013"], ["Tyrone", "La Perle, Vice City", "3", "Moyen", "Here, Kitty Kitty", ""], ["Dunk", "Port Gellhorn", "2", "Faible", "Slam Dunk", "o-fence-008"], ["Donnie", "Key Lento", "1", "Faible", "Clean Up After Donnie", ""], ["Brian", "Key Lento", "1", "Faible", "Lab Fees", "o-fence-005"]];
-  const faq = [["Peut-on dépenser directement les billets marqués ?", "Non, les guides indiquent qu’ils doivent être revendus à un receleur."], ["Quel receleur privilégier ?", "Yasmani est le mieux rémunéré pour les billets marqués selon les guides consultés."], ["À quoi sert le brouilleur ?", "Il neutralise les packs d’encre dans le jeu. Il est obtenu pendant Credit Check, au chapitre 3."], ["Peut-on revendre avant le chapitre 3 ?", "Les sources ne permettent pas de garantir les conditions exactes. Vérifie les options disponibles dans le jeu."]];
-  return `<section class="steps-wrap" aria-labelledby="receleurs-v199"><h2 class="h3" id="receleurs-v199">Où vendre les billets marqués ?</h2><p class="muted">Tarifs relatifs rapportés par les guides, pas des montants garantis.</p><ol class="steps">${receleurs.map(([nom,lieu,chap,tarif,mission,repere],i)=>`<li class="step"><span class="step-n">${i+1}</span><span class="step-t"><b>${esc(nom)} — ${esc(lieu)}</b><br>Chapitre ${chap} · Tarif ${esc(tarif.toLowerCase())}<br>Mission : ${esc(mission)}${repere && onMap(repere) ? `<br><a href="${R}carte/?focus=${repere}">Voir le repère communautaire (approximatif)</a>` : ''}</span></li>`).join('')}</ol></section><section class="steps-wrap" aria-labelledby="faq-v199"><h2 class="h3" id="faq-v199">Questions fréquentes</h2>${faq.map(([q,a])=>`<details class="sources"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>`;
+  const receleurs = [["Yasmani", "Little Cuba, Vice City", "3", "Élevé", "Boobie Time", "o-fence-013"], ["Tyrone", "La Perle, Vice City", "3", "Moyen", "Here, Kitty Kitty", ""], ["Dunk", "Port Gellhorn", "2", "Très faible", "Slam Dunk", "o-fence-008"], ["Donnie", "Key Lento", "1", "Très faible", "Clean Up After Donnie", ""], ["Brian", "Key Lento", "1", "Très faible", "Lab Fees", "o-fence-005"]];
+  const faq = [["Peut-on dépenser directement les billets marqués ?", "Non, les guides indiquent qu’ils doivent être revendus à un receleur."], ["Quel est le meilleur receleur pour les billets marqués dans GTA 6 ?", "Yasmani est le mieux rémunéré pour les billets marqués selon les guides consultés, une fois débloqué."], ["Comment blanchir les billets marqués dans GTA 6 ?", "Les guides indiquent de les revendre à un receleur disponible. Les conditions exactes avant le chapitre 3 restent à confirmer."], ["À quoi sert le brouilleur de packs d’encre ?", "Il neutralise les packs d’encre dans le jeu selon les guides. Il est obtenu pendant Credit Check, au chapitre 3."], ["Peut-on revendre avant le chapitre 3 ?", "Les sources ne permettent pas de garantir les conditions exactes. Vérifie les options disponibles dans le jeu."]];
+  const missionLien = nom => { const m = MISSIONS.missions.find(m => m.nomEn === nom); return m ? `<a href="${R}missions/${esc(m.id)}/">${esc(m.nom)} (${esc(nom)})</a>` : esc(nom); };
+  return `<section class="steps-wrap" aria-labelledby="receleurs-v199"><h2 class="h3" id="receleurs-v199">Où vendre les billets marqués dans GTA 6 ?</h2><p class="muted">Tarifs relatifs rapportés par les guides, pas des montants garantis. Positions communautaires approximatives.</p><div style="display:grid;gap:12px">${receleurs.map(([nom,lieu,chap,tarif,mission,repere],i)=>`<article class="step" style="display:grid;gap:8px;min-width:0;${i===0?'border-color:#83e9b0;':''}"><div><b>${esc(nom)}</b>${i===0?' <span style="color:#83e9b0;font-weight:600">· Meilleur prix signalé</span>':''}</div><span>${esc(lieu)} · Chapitre ${chap}</span><span>Tarif signalé : ${esc(tarif.toLowerCase())}</span><span>Mission : ${missionLien(mission)}</span>${repere && onMap(repere) ? `<a class="btn" style="justify-self:start;white-space:normal;min-height:44px" href="${R}carte/?focus=${repere}">${icon('map')}Voir sur la carte</a>` : '<small class="muted">Repère exact non validé.</small>'}</article>`).join('')}</div></section><section class="steps-wrap" aria-labelledby="brouilleur-v199"><h2 class="h3" id="brouilleur-v199">Comment obtenir le brouilleur de packs d’encre ?</h2><p>Les guides situent son obtention au chapitre 3, pendant la mission ${missionLien('Credit Check')}. Les conditions précises de revente restent à confirmer en jeu.</p></section><section class="steps-wrap" aria-labelledby="faq-v199"><h2 class="h3" id="faq-v199">Questions fréquentes sur les billets marqués</h2>${faq.map(([q,a])=>`<details class="sources"><summary style="white-space:normal;min-height:44px;cursor:pointer">${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>`;
 }
 
 // ---------- FICHE ASTUCE ----------
@@ -1071,7 +1073,7 @@ for (const a of ASTUCES) {
   const p = `astuces/${a.slug}/`, R = R_(p);
   const c = cat('astuces', a.cat);
   const mapIds = astuceMap[a.slug] || [];
-  const mapHref = a.slug === 'billets-marques' ? (onMap('o-fence-005') ? `${R}carte/?focus=o-fence-005` : null) : mapIds.length ? `${R}carte/?focus=${mapIds[0]}` : ASTUCE_MAP_EXTRA[a.slug] ? `${R}carte/?${ASTUCE_MAP_EXTRA[a.slug]}` : null;
+  const mapHref = a.slug === 'billets-marques' ? null : mapIds.length ? `${R}carte/?focus=${mapIds[0]}` : ASTUCE_MAP_EXTRA[a.slug] ? `${R}carte/?${ASTUCE_MAP_EXTRA[a.slug]}` : null;
   const body = `<article class="wrap fiche" style="--c:${c.color}">
   <header class="fiche-head" data-reveal-group>
     <div class="fiche-ico">${icon(a.icon, 'ic-xl')}</div>
@@ -1085,7 +1087,7 @@ for (const a of ASTUCES) {
     <p>${esc(a.reponse)}</p>
     ${!['confirme', 'teste'].includes(a.statut) && /\d/.test(a.reponse) ? `<p class="muted small">${icon('info')}Les chiffres de cette réponse viennent des guides cités et n'ont pas encore été vérifiés en jeu.</p>` : ''}
   </section>
-  <div class="actions">
+  <div class="actions${a.slug === 'billets-marques' ? ' actions-billets-v1991' : ''}"${a.slug === 'billets-marques' ? ' style="display:flex;flex-wrap:wrap;gap:10px;align-items:stretch"' : ''}> 
     <a class="btn btn--primary" href="#etapes">${icon('list')}Voir les étapes</a>
     ${mapHref ? `<a class="btn" href="${mapHref}">${icon('map')}${esc(a.carteLibelle || 'Voir sur la carte')}</a>` : ''}
     <button class="btn btn--ghost" type="button" data-copy>${icon('link')}Copier le lien</button>
