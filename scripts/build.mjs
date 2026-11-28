@@ -56,6 +56,10 @@ const read = (f) => appliquerAdmin(f, lireBrut(f));
 const site = read('site.json');
 const SRC = read('sources.json');
 const ASTUCES = read('astuces.json');
+// V199 : enrichissement ciblé du guide des billets marqués.
+Object.assign(SRC, {"v199-pcgamer": {"n": "PC Gamer – receleurs et missions", "u": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-fence-locations/"}, "v199-gtabase": {"n": "GTABase – receleurs et billets marqués", "u": "https://www.gtabase.com/gta-6/articles/gta-6-fence-locations-all-fences-what-they-buy"}, "v199-gamesradar": {"n": "GamesRadar+ – emplacements et tarifs", "u": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-fences/"}});
+const billetsV199 = ASTUCES.find(a => a.slug === "billets-marques");
+if (billetsV199) Object.assign(billetsV199, {"titre": "Billets marqués GTA 6 : où les vendre ?", "reponse": "Dans GTA 6, privilégie Yasmani à Little Cuba, dans Vice City, après son déblocage au chapitre 3 : les guides concordent sur sa rémunération avantageuse pour les billets marqués.", "etapes": ["Avance dans le chapitre 3 jusqu’à la mission Vérification de crédit (Credit Check), qui fournit le brouilleur de packs d’encre.", "Termine L’heure de Boobie (Boobie Time) pour débloquer Yasmani.", "Consulte le tarif affiché sur la carte du jeu et apporte les billets à un receleur disponible."], "asavoir": "Les conditions de revente avant le chapitre 3 ne sont pas clairement établies. Brian et Donnie deviennent indisponibles au cours de l’histoire. Aucun taux fixe de revente n’est garanti. Informations recoupées dans des guides, non testées en jeu par GTA6Facile.", "statut": "a-verifier", "sources": ["v199-pcgamer", "v199-gtabase", "v199-gamesradar", "ogm-carte"], "carteLibelle": "Brian : repère communautaire"});
 // ---------- GLITCHS : données (data/glitchs.json, data/versions-jeu.json, modifiables depuis l'administration) ----------
 const GLX = read('glitchs.json');
 const VERSIONS = read('versions-jeu.json').slice().sort((a, b) => a.date.localeCompare(b.date));
@@ -1055,12 +1059,19 @@ function palms() {
   }));
 }
 
+// V199 : bloc spécifique, rendu statique et liens uniquement vers les repères effectivement exportés.
+function guideBilletsV199(R) {
+  const receleurs = [["Yasmani", "Little Cuba, Vice City", "3", "Élevé", "Boobie Time", "o-fence-013"], ["Tyrone", "La Perle, Vice City", "3", "Moyen", "Here, Kitty Kitty", ""], ["Dunk", "Port Gellhorn", "2", "Faible", "Slam Dunk", "o-fence-008"], ["Donnie", "Key Lento", "1", "Faible", "Clean Up After Donnie", ""], ["Brian", "Key Lento", "1", "Faible", "Lab Fees", "o-fence-005"]];
+  const faq = [["Peut-on dépenser directement les billets marqués ?", "Non, les guides indiquent qu’ils doivent être revendus à un receleur."], ["Quel receleur privilégier ?", "Yasmani est le mieux rémunéré pour les billets marqués selon les guides consultés."], ["À quoi sert le brouilleur ?", "Il neutralise les packs d’encre dans le jeu. Il est obtenu pendant Credit Check, au chapitre 3."], ["Peut-on revendre avant le chapitre 3 ?", "Les sources ne permettent pas de garantir les conditions exactes. Vérifie les options disponibles dans le jeu."]];
+  return `<section class="steps-wrap" aria-labelledby="receleurs-v199"><h2 class="h3" id="receleurs-v199">Où vendre les billets marqués ?</h2><p class="muted">Tarifs relatifs rapportés par les guides, pas des montants garantis.</p><ol class="steps">${receleurs.map(([nom,lieu,chap,tarif,mission,repere],i)=>`<li class="step"><span class="step-n">${i+1}</span><span class="step-t"><b>${esc(nom)} — ${esc(lieu)}</b><br>Chapitre ${chap} · Tarif ${esc(tarif.toLowerCase())}<br>Mission : ${esc(mission)}${repere && onMap(repere) ? `<br><a href="${R}carte/?focus=${repere}">Voir le repère communautaire (approximatif)</a>` : ''}</span></li>`).join('')}</ol></section><section class="steps-wrap" aria-labelledby="faq-v199"><h2 class="h3" id="faq-v199">Questions fréquentes</h2>${faq.map(([q,a])=>`<details class="sources"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>`;
+}
+
 // ---------- FICHE ASTUCE ----------
 for (const a of ASTUCES) {
   const p = `astuces/${a.slug}/`, R = R_(p);
   const c = cat('astuces', a.cat);
   const mapIds = astuceMap[a.slug] || [];
-  const mapHref = mapIds.length ? `${R}carte/?focus=${mapIds[0]}` : ASTUCE_MAP_EXTRA[a.slug] ? `${R}carte/?${ASTUCE_MAP_EXTRA[a.slug]}` : null;
+  const mapHref = a.slug === 'billets-marques' ? (onMap('o-fence-005') ? `${R}carte/?focus=o-fence-005` : null) : mapIds.length ? `${R}carte/?focus=${mapIds[0]}` : ASTUCE_MAP_EXTRA[a.slug] ? `${R}carte/?${ASTUCE_MAP_EXTRA[a.slug]}` : null;
   const body = `<article class="wrap fiche" style="--c:${c.color}">
   <header class="fiche-head" data-reveal-group>
     <div class="fiche-ico">${icon(a.icon, 'ic-xl')}</div>
@@ -1085,6 +1096,7 @@ for (const a of ASTUCES) {
     <h2 id="et-t" class="h3">${icon('list')}Étapes</h2>
     <ol class="steps">${a.etapes.map((s, i) => `<li class="step"><span class="step-n">${i + 1}</span><span class="step-t">${esc(s)}</span></li>`).join('')}</ol>
   </section>
+  ${a.slug === 'billets-marques' ? guideBilletsV199(R) : ''}
   ${a.asavoir ? `<aside class="note">${icon('alert')}<p><b>À savoir :</b> ${esc(a.asavoir)}</p></aside>` : ''}
   ${a.slug === 'collection' ? `<a class="btn btn--primary btn--wide" href="${R}collection/">${icon('badge')}Voir les listes d'objets à collectionner</a>` : ''}
   ${listeRepères(a.slug, R)}
