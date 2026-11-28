@@ -84,6 +84,29 @@ const gScore = (g) => GSTATUTS[gStatut(g).id].poids * 10 + (g.utilite || 0) * 10
 const GLITCHS = GLX.glitchs.filter((g) => g.publie && (g.sources || []).some((x) => x.lu)).sort((a, b) => gScore(b) - gScore(a));
 const GL_RECO = GLITCHS.filter((g) => ['fonctionnel', 'documente', 'a-reverifier'].includes(gStatut(g).id));
 const VEHICULES = read('vehicules.json');
+// Correctif véhicules : complément éditorial optionnel, sans modification des données de carte.
+const PATCH_VEH_F = path.join(ROOT, 'data', 'vehicules-complements.json');
+const PATCH_VEH = fs.existsSync(PATCH_VEH_F) ? JSON.parse(fs.readFileSync(PATCH_VEH_F, 'utf8')) : {};
+const PATCH_VEH_OBS = new Map((PATCH_VEH.correctifs || []).map(x => [x.slug, x.observation_exemplaire]));
+const PATCH_VEH_SEO = new Map((PATCH_VEH.seo_brouillon || []).map(x => [x.slug, x]));
+const PATCH_WYMAN = new Map((PATCH_VEH.collection_wyman || []).map(x => [x.slug_parent, x]));
+function complementVehicule(slug, partie) {
+  const wyman = PATCH_WYMAN.get(slug);
+  const o = PATCH_VEH_OBS.get(slug);
+  const variantes = (PATCH_VEH.variantes_et_exemplaires || []).filter(x => x.slug_parent === slug);
+  const lignes = o ? [
+    ['Prix d’immatriculation', Number.isFinite(o.immatriculation_affichee) ? o.immatriculation_affichee.toLocaleString('fr-FR') + ' $' : ''],
+    ['Type de traceur', o.traceur], ['Alarme', o.alarme], ['État d’accès', o.acces], ['Outil d’accès', o.outil_acces_signale]
+  ].filter(([,v]) => typeof v === 'string' && v.trim()) : [];
+  if (partie === 'prix') {
+    if (!lignes.length) return '';
+    return `<section class="veh-tech veh-price" aria-labelledby="veh-complement-t"><h2 class="h3" id="veh-complement-t">Prix et conditions d’obtention</h2>
+    <dl class="facts veh-tech-grid">${lignes.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v.charAt(0).toLocaleUpperCase('fr-FR') + v.slice(1))}</dd></div>`).join('')}</dl><p class="muted small">Informations indicatives : les caractéristiques et les outils d’accès peuvent varier selon l’exemplaire.</p></section>`;
+  }
+  if (!variantes.length && !wyman) return '';
+  return `<section class="veh-tech veh-special" aria-label="Variantes et collections">${variantes.length ? `<h2 class="h3 veh-variant-title">${icon('star')}Variantes rares</h2><div class="veh-variants">${variantes.map(v => `<div class="veh-variant"><b>${esc(v.nom_exemplaire)}</b><p>${esc([v.informations?.secteur_signale, v.informations?.description_obtention].filter(Boolean).join(' · '))}</p></div>`).join('')}</div>` : ''}${wyman ? `<h2 class="h3">Épaves de la collection Wyman</h2><p class="muted small">Emplacements signalés pour la restauration ; aucun nouveau repère exact ajouté à la carte.</p><ol>${wyman.emplacements_epaves.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</section>`;
+}
+
 // Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
 // Vérification de présence dans GTA 6 (tools/verification.py : site officiel, GTA Wiki, GTABase, gta6guide.fr)
 const VERIF = fs.existsSync(path.join(ROOT, 'data', 'verification.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'verification.json'), 'utf8')).vehicules : {};
@@ -505,6 +528,41 @@ const BRAND_MARK = `<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><de
 const NOUVEAU = ACTUS.length && (new Date(site.majLe) - new Date(ACTUS[0].date)) / 864e5 <= 7;
 const BRAND_PALM = `<svg class="mark mark--palm" viewBox="0 0 48 40" aria-hidden="true"><defs><linearGradient id="pm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#ff2bd6"/><stop offset="1" stop-color="#b44dff"/></linearGradient></defs><path fill="url(#pm-g)" d="M23 13c-5-6-13-7-19-3 6-1 11 0 16 4-7-1-13 2-16 8 5-4 11-5 16-3-4 3-6 8-5 14l2 .5c-.5-6 1.5-10 5-13 .7 6 1 12 .2 19h3.4c.6-8 .2-14-1-20 4 2 7 6 7.5 11 2-6-1-11-6-14 6-1 11 1 15 5-2-7-9-10-16-8 4-4 10-5 15-3-5-5-13-4-18 1-1-4-4-7-8-8 3 2 5 5 5 8z"/></svg>`;
 function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', scripts = [], crumbs = null, ogType = 'website', v2 = true, styles = [], image = '' }) {
+  // Limité aux fiches individuelles : conserve les autres pages et leurs références.
+  const vehSlug = /^vehicules\/([^/]+)\/$/.exec(p)?.[1];
+  if (vehSlug && fs.existsSync(PATCH_VEH_F)) {
+    body = body.replace(/<details class="sources">[\s\S]*?<\/details>/g, '')
+      .replace(/<p class="veh-location-sources muted small">[\s\S]*?<\/p>/g, '');
+    // Préserver les crédits d'images, les liens internes et les indications d'incertitude.
+    body = body.replace(/<section class="fiab-veh"[\s\S]*?<\/section>/g, '')
+      .replace(/<details class="fiab-veh veh-fiab-fold"[\s\S]*?<\/details>/g, '')
+      .replace(/(<p class="ou-fiab">[\s\S]*?)<small>[\s\S]*?<\/small>(<\/p>)/g, '$1$2')
+      .replace(/<p class="muted small">(?:(?!<\/p>)[\s\S])*?Infos techniques relevées par (?:(?!<\/p>)[\s\S])*?<\/p>/g, '');
+    const seo = PATCH_VEH_SEO.get(vehSlug);
+    if (seo && typeof seo.meta_description_candidate === 'string' && seo.meta_description_candidate.length <= 160) desc = seo.meta_description_candidate;
+    // Trois formats de fiches : conserver les ancres et les fonctionnalités existantes.
+    const infos = /<section class="vf-bloc" aria-labelledby="in-t">[\s\S]*?<\/section>/.exec(body);
+    if (infos) {
+      body = body.replace(infos[0], '');
+      const related = ['<section class="vf-bloc" aria-labelledby="si-t"', '<p class="vf-reg"'].map(a => body.indexOf(a)).filter(i => i >= 0);
+      const pos = related.length ? Math.min(...related) : body.lastIndexOf('</article>');
+      if (pos >= 0) body = body.slice(0,pos) + infos[0].replace('Infos utiles','Caractéristiques techniques') + body.slice(pos);
+    }
+    const insererAvant = (fragment, anchors) => {
+      if (!fragment) return;
+      const positions = anchors.map(a => body.indexOf(a)).filter(i => i >= 0);
+      const at = positions.length ? Math.min(...positions) : body.lastIndexOf('</article>');
+      if (at >= 0) body = body.slice(0,at) + fragment + body.slice(at);
+    };
+    insererAvant(complementVehicule(vehSlug, 'prix'), ['<section class="ou-veh" id="ou"', '<section class="vf-ou" id="ou"']);
+    insererAvant(complementVehicule(vehSlug, 'variantes'), ['<section class="veh-tech" aria-labelledby="veh-tech-t"', '<dl class="facts">', '<section class="vf-bloc" aria-labelledby="in-t"', '<section class="related"', '<section class="vf-bloc" aria-labelledby="si-t"']);
+    cls += ' p-vehicle-detail';
+    const palette = {'Marque':'identity','Catégorie':'identity','Type':'identity','Inspiré de':'identity','Inspirée de':'identity','Places':'technical','Transmission':'technical','Poids':'technical','Caractéristiques':'technical','Fiche technique':'technical','Déjà présent dans':'history','Ancien GTA':'history','Prix d’immatriculation':'price','Type de traceur':'tracker','Alarme':'alarm','État d’accès':'access','Outil d’accès':'tool'};
+    body = body.replace(/<dl class="(?:facts(?: veh-tech-grid)?|vf-infos)">[\s\S]*?<\/dl>/g, block => block.replace(/<dt>([\s\S]*?)<\/dt>/g, (whole, content) => {
+      const label = content.replace(/<[^>]*>/g, '').trim();
+      return palette[label] ? `<dt class="veh-label--${palette[label]}">${content}</dt>` : whole;
+    }));
+  }
   if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
   if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
   const deco = v2 && cls !== 'home' && cls !== 'p-atlas' ? `<div class="pg-deco" aria-hidden="true">${homeSun()}${homePalms()}</div>` : '';
@@ -636,8 +694,27 @@ const R_ = (p) => { const d = p.split('/').filter(Boolean).length; return d ? '.
 function tile({ href, ic, label, sub = '', color, big = false, attrs = '' }) {
   return `<a class="tile${big ? ' tile--big' : ''}" href="${href}" style="--c:${color}" ${attrs}><span class="tile-ico">${icon(ic)}</span><span class="tile-txt"><span class="tile-label">${esc(label)}</span>${sub ? `<span class="tile-sub">${esc(sub)}</span>` : ''}</span><span class="tile-go">${icon('arrow-right')}</span></a>`;
 }
+// Miniatures des véhicules recommandés : réutiliser uniquement les photos du modèle exact.
+function vehImagePath(v) {
+  const ph = PHOTOS[v.slug];
+  const f = v.img || CATALOGUE.vehicules.find(x => x.slug === v.slug)?.img;
+  const rel = ph && fs.existsSync(path.join(ROOT, 'src', 'photos', ph.fichier)) ? 'photos/' + ph.fichier
+    : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue-mini', f)) ? 'catalogue-mini/' + f
+    : f && fs.existsSync(path.join(ROOT, 'src', 'catalogue', f)) ? 'catalogue/' + f : '';
+  return rel;
+}
+function vehRelatedThumb(v, R) {
+  const rel = vehImagePath(v);
+  return rel ? `<span class="veh-related-thumb"><img src="${R}${esc(rel)}" alt=""${wh(rel)} loading="lazy" decoding="async"></span>`
+    : `<span class="mini-ico" aria-hidden="true">${icon(cat('vehicules', v.type).icon)}</span>`;
+}
+function vehRelatedCard(v, R) {
+  const c = cat('vehicules', v.type);
+  return `<a class="mini mini--veh" href="${R}vehicules/${v.slug}/" style="--c:${c.color}">${vehRelatedThumb(v, R)}<span><small>${esc(v.classe || CATALOGUE.fiches[v.slug]?.classe || v.sous || c.nom)}</small><b>${esc(v.nom)}</b></span>${icon('arrow-right')}</a>`;
+}
 function relCard(slug, R) {
   const r = ref(slug); if (!r) return '';
+  if (V[slug] && r.u.startsWith('vehicules/')) return vehRelatedCard(V[slug], R);
   return `<a class="mini" href="${R}${r.u}" style="--c:${r.c}"><span class="mini-ico">${icon(r.i)}</span><span><small>${esc(r.k)}</small><b>${esc(r.t)}</b></span>${icon('arrow-right')}</a>`;
 }
 function sourcesBlock(ids) {
@@ -708,6 +785,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
   const connu = lieux.length || texte;
   const plusieurs = lieux.length > 1;
   const spoil = (s) => /chapitre|«|mission/i.test(s);
+  const carteLieu = (f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(titreLieuVeh(f, nom))}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`;
   return `<section class="ou-veh" id="ou" aria-labelledby="ou-t">
     <h2 id="ou-t" class="h3">${icon('pin')}Où le trouver ?</h2>
     ${connu ? `<p class="ou-fiab">${badge(fiab.statut)}<small>${esc(fiab.texte)}</small></p>` : `<p class="ou-fiab"><span class="badge b-a-verifier">${icon('question')}Emplacement à vérifier</span></p>`}
@@ -715,7 +793,7 @@ function blocOu({ nom, R, lieux, texte, lien, fiab, etapes, fav, signaler, conse
     ${plusieurs ? `<p class="ou-n">${lieux.length} emplacements recensés :</p>` : ''}
     ${!texte && lieux.length && lieux.every(unique) ? `<p class="muted small">${icon('info')}${lieux.length > 1 ? 'Ces emplacements sont ceux de versions uniques' : 'Cet emplacement est celui d\u2019une version unique'} (livrée ou préparation spéciale). Aucun emplacement du modèle de série n'est relevé.</p>` : ''}
     ${lieux.length ? `<a class="btn btn--primary veh-map-first" href="${R}carte/?focus=${esc(lieux[0].properties.id)}">${icon('map')}${plusieurs ? 'Voir le premier emplacement' : 'Voir l’emplacement'}</a>` : ''}
-    ${lieux.length ? `<ol class="veh-locations">${lieux.map((f, i) => `<li class="veh-location"><span class="veh-location-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="veh-location-body"><b>${esc(titreLieuVeh(f, nom))}</b>${f.properties.zone ? `<span class="veh-location-zone">${icon('pin')}${esc(f.properties.zone)}</span>` : ''}<small>${esc(natureLieu(f))}${new Set(lieux.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</small>${f.properties.desc && f.properties.desc !== texte ? `<p>${esc(f.properties.desc)}</p>` : ''}<a class="btn veh-location-map" href="${R}carte/?focus=${esc(f.properties.id)}" aria-label="Voir ${esc(f.properties.nom)} sur la carte">${icon('map')}Voir sur la carte</a></div></li>`).join('')}</ol><p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
+    ${lieux.length ? `<ol class="veh-locations veh-locations--first">${carteLieu(lieux[0], 0)}</ol>${plusieurs ? `<details class="veh-locations-fold"><summary><span class="veh-locations-show">Voir ${lieux.length === 2 ? 'l’autre emplacement' : `les ${lieux.length - 1} autres emplacements`}</span><span class="veh-locations-hide">Masquer ${lieux.length === 2 ? 'l’autre emplacement' : 'les autres emplacements'}</span>${icon('chevron')}</summary><ol class="veh-locations" start="2">${lieux.slice(1).map((f, i) => carteLieu(f, i + 1)).join('')}</ol></details>` : ''}<p class="veh-location-sources muted small">Sources des repères : ${[...new Set(lieux.map(sourceLieu))].map(esc).join(' · ')}</p>` : ''}
     ${connu ? '' : `<p class="ou-txt">Aucun emplacement fiable n'a encore été relevé pour ${esc(nom)}. Rien n'est indiqué tant qu'il n'est pas vérifié.</p>`}
     <div class="actions actions--ou">
 
@@ -1088,8 +1166,8 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   // nature de chaque autre signalement : même modèle, variante (livrée spéciale) ou véhicule peut-être différent
   const base = (n) => n.replace(/\s*\([^)]*\)\s*$/, '').trim();
   const genre = (f) => (base(f.properties.nom) === v.nom ? ['ok', unique(f) ? 'Même modèle, version unique' : 'Même modèle'] : unique(f) ? ['var', 'Variante : livrée spéciale'] : ['doute', 'Modèle à confirmer : peut-être un autre véhicule']);
-  const statutF = (f) => `Repère ${(FI_TXT[f.properties.fi] || 'Non vérifié').toLowerCase()}${f.properties.cap ? ' (capture prise en jeu, GTABase)' : ''}`;
-  const pas = sur ? v.obtenir : v.chercher || [`Va dans la zone signalée : ${l ? l.nom : 'voir la carte'}${reg && (!l || reg !== l.nom) ? `, à ${reg}` : ''}.`, `Vérifie l'endroit indiqué par la source : ${minDebut(v.emplacement)}`, `Si ${elle} n'y est pas, consulte les autres signalements ci-dessus.`];
+  const statutF = (f) => `Repère ${(FI_TXT[f.properties.fi] || 'Non vérifié').toLowerCase()}${f.properties.cap ? ' (capture prise en jeu)' : ''}`;
+  const pas = sur ? v.obtenir : v.chercher || [`Va dans la zone signalée : ${l ? l.nom : 'voir la carte'}${reg && (!l || reg !== l.nom) ? `, à ${reg}` : ''}.`, `Vérifie cet emplacement : ${minDebut(v.emplacement)}`, `Si ${elle} n'y est pas, consulte les autres signalements ci-dessus.`];
   // véhicules similaires : même type, même catégorie, même marque ou même famille (pas de bateau pour une voiture)
   const score = (x) => { const fy = CATALOGUE.fiches[x.slug] || {}; return (x.sous === v.sous ? 3 : 0) + (fy.fabricant && fy.fabricant === fx.fabricant ? 2 : 0) + (fy.groupe && fy.groupe === fx.groupe ? 2 : 0); };
   const sim = VEHICULES.filter((x) => x.slug !== v.slug && x.type === v.type).map((x) => [score(x) + (PHOTOS[x.slug] ? 0.5 : 0), x]).filter(([s]) => s >= 3).sort((a, b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom, 'fr')).slice(0, 3).map(([, x]) => x);
@@ -1104,7 +1182,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     ${!PHOTOS[v.slug] && v.catImg ? (v.catCredit ? `<p class="veh-credit">Image : ${v.catCreditUrl ? `<a href="${esc(v.catCreditUrl)}" target="_blank" rel="noopener">${esc(v.catCredit)}</a>` : esc(v.catCredit)}</p>` : '') : vehCredit(v)}
     <div class="fiche-tags"><a class="pill pill--cat" href="${R}vehicules/?cat=${v.type}">${icon(c.icon)}${esc(c.nom)}</a></div>
     <h1 class="h1 h1--fiche">${esc(v.nom)}</h1>
-    <p class="vf-resume">${l || principal ? `Emplacement principal signalé à ${esc(reg || (l ? l.nom : ''))} par ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}${sur ? '.' : ', encore à vérifier.'}` : `Aucun emplacement fixe connu pour l'instant, selon ${esc(srcN.length > 1 ? `${srcN.length} sources` : `une seule source (${srcN[0]})`)}.`}</p>
+    <p class="vf-resume">${l || principal ? `Emplacement principal signalé à ${esc(reg || (l ? l.nom : ''))}${sur ? '.' : ', encore à vérifier.'}` : `Aucun emplacement fixe connu pour l'instant.`}</p>
   </header>
   <nav class="vf-bref" aria-label="En bref">
     ${l || v.lieuPrecis ? `<a href="#ou">${icon('pin')}<span><small>Emplacement</small><b>${esc(v.lieuPrecis || (l ? l.nom.replace(/^Commissariat de /, '') : '—'))}</b>${reg && l && reg !== l.nom ? `<i>${esc(reg)}</i>` : ''}</span></a>` : ''}
@@ -1124,7 +1202,7 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
   ${autres.length ? `<details class="vf-autres" id="autres" open><summary>${icon('layers')}<span>Autres signalements (${autres.length})</span>${icon('chevron')}</summary>
     <ul>${autres.map((f, i) => { const [g, gt] = genre(f); const d = f.properties.desc && f.properties.desc !== v.emplacement ? traduit(f.properties.desc) : ''; return `<li class="vf-sig" id="sig-${esc(f.properties.id)}">
       <p class="vf-sig-t"><span class="veh-location-n" aria-hidden="true">${String(i + (principal ? 2 : 1)).padStart(2, '0')}</span><b>${esc(traduit(titreLieuVeh(f, v.nom)))}</b><span class="vf-genre vf-genre--${g}">${esc(gt)}</span></p>
-      <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}${new Set(autres.map(sourceLieu)).size > 1 ? ` · ${esc(sourceLieu(f))}` : ''}</p>
+      <p class="vf-sig-m">${f.properties.zone ? `${icon('pin')}${esc(f.properties.zone)} · ` : ''}${esc(statutF(f))}</p>
       <p class="vf-sig-d">${esc(natureLieu(f))}${d ? ` — ${esc(d)}` : ''}</p>
       <p class="vf-sig-s"><a class="btn veh-location-map" href="${R}carte/?focus=${f.properties.id}">${icon('map')}Voir sur la carte</a></p>
     </li>`; }).join('')}</ul><p class="veh-location-sources muted small">Sources des signalements : ${[...new Set(autres.map(sourceLieu))].map(esc).join(' · ')}</p>
@@ -1134,10 +1212,9 @@ function ficheV2(v, { p, R, c, l, onM, liens = [] }) {
     <ol class="vf-steps">${pas.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
     ${mapHref ? `<a class="btn btn--primary btn--wide" href="${mapHref}">${icon('map')}Voir sur la carte</a>` : ''}
   </section>
-  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2>
-    <div class="vf-sim">${sim.map((x) => `<a href="${R}vehicules/${x.slug}/"><span class="vf-sim-i">${vehVisuel(x, R)}</span><b>${esc(x.nom)}</b>${icon('chevron')}</a>`).join('')}</div></section>` : ''}
+  ${sim.length ? `<section class="vf-bloc" aria-labelledby="si-t"><h2 id="si-t" class="vf-h">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${sim.map(x => vehRelatedCard(x, R)).join('')}</div></section>` : ''}
   ${memeReg.length ? `<p class="vf-reg">${icon('pin')}Dans la même région : ${memeReg.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
-${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<p class="vf-reg">${icon(c.icon)}${esc(t)} : ${xs.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>`).join('')}
+${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<section class="related"><h2 class="h3">${icon(c.icon)}${esc(t)}</h2><div class="minis">${xs.map(x => vehRelatedCard(x, R)).join('')}</div></section>`).join('')}
   ${memeType.length ? `<p class="vf-reg">${icon(c.icon)}Autres ${esc(c.nom.toLowerCase())} du guide : ${memeType.map((x) => `<a href="${R}vehicules/${x.slug}/">${esc(x.nom)}</a>`).join(', ')}</p>` : ''}
   <section class="vf-bloc" aria-labelledby="in-t">
     <h2 id="in-t" class="vf-h">${icon('info')}Infos utiles</h2>
@@ -1148,7 +1225,6 @@ ${liens.filter(([, xs]) => xs.length).map(([t, xs]) => `<p class="vf-reg">${icon
       ${fx.transmission || fx.poids || fx.places ? `<div><dt>${icon('sliders')}Fiche technique</dt><dd>${[fx.places ? `${fx.places} places` : '', fx.transmission, fx.poids].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
       ${fx.aussi ? `<div class="vf-infos-l"><dt>${icon('gamepad')}Ancien GTA</dt><dd>Déjà présente dans ${esc(fx.aussi)}</dd></div>` : ''}
     </dl>
-    ${(fx.sources || []).length ? `<p class="muted small">${icon('info')}Infos techniques relevées par ${fx.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="nofollow noopener">${esc(s.nom)}</a>`).join(', ')}, base de données de joueurs : pas encore vérifiées en jeu.</p>` : ''}
   </section>
   ${sourcesBlock([...v.sources, ...(v.sourcesPlus || [])])}
 </article>`;
@@ -1187,7 +1263,7 @@ for (const v of VEHICULES) {
     ${CATALOGUE.fiches[v.slug] && CATALOGUE.fiches[v.slug].inspiration ? `<div><dt>${icon('car')}Inspiré de</dt><dd>${esc(CATALOGUE.fiches[v.slug].inspiration)}${CATALOGUE.fiches[v.slug].places ? ` · ${esc(CATALOGUE.fiches[v.slug].places)} places` : ''}</dd></div>` : ''}
     ${CATALOGUE.fiches[v.slug] && (CATALOGUE.fiches[v.slug].transmission || CATALOGUE.fiches[v.slug].poids) ? `<div><dt>${icon('sliders')}Caractéristiques</dt><dd>${[CATALOGUE.fiches[v.slug].transmission, CATALOGUE.fiches[v.slug].poids, CATALOGUE.fiches[v.slug].aussi ? 'déjà dans ' + CATALOGUE.fiches[v.slug].aussi : ''].filter(Boolean).map(esc).join(' · ')}</dd></div>` : ''}
   </dl>
-  ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Même type</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
+  ${similar.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${similar.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sameReg.length ? `<section class="related"><h2 class="h3">${icon('pin')}Même région</h2><div class="minis">${sameReg.map((x) => relCard(x.slug, R)).join('')}</div></section>` : ''}
   ${sourcesBlock([...v.sources, ...(v.sourcesPlus || [])])}
 </article>`;
@@ -1212,7 +1288,7 @@ for (const x of CATALOGUE.vehicules) {
   const memeGroupe = voisinsDe(grpListe, x, 4);
   const mqListe = x.fabricant ? parNom(CATALOGUE.vehicules.filter((y) => y.fabricant === x.fabricant && (y === x || (VERIF[y.slug] || {}).statut === 'confirme'))) : [];
   const memeMarque = x.fabricant ? voisinsDe(mqListe, x, 6).filter((y) => !memeGroupe.includes(y)).slice(0, 4) : [];
-  const mini = (y) => `<a class="mini" href="${R}vehicules/${y.slug}/" style="--c:${c.color}"><span class="mini-ico">${icon(cat('vehicules', y.type).icon)}</span><span><small>${esc(y.classe)}</small><b>${esc(y.nom)}</b></span>${icon('arrow-right')}</a>`;
+  const mini = (y) => vehRelatedCard(y, R);
   const faits = [
     x.fabricant && ['badge', 'Marque', esc(x.fabricant)],
     ['sparkle', 'Catégorie', `<a href="${R}vehicules/#cat-${x.groupe}">${esc(x.classe)}</a>`],
@@ -1248,13 +1324,13 @@ for (const x of CATALOGUE.vehicules) {
   <dl class="facts veh-tech-grid">
     ${faits.map(([i, k, v]) => `<div><dt>${icon(i)}${k}</dt><dd>${v}</dd></div>`).join('')}
   </dl></section>
-  ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Autres ${esc((grp ? grp.nom : x.classe).toLowerCase())}</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
+  ${memeGroupe.length ? `<section class="related"><h2 class="h3">${icon(c.icon)}Véhicules similaires</h2><div class="minis">${memeGroupe.map(mini).join('')}</div></section>` : ''}
   ${memeMarque.length ? `<section class="related"><h2 class="h3">${icon('badge')}Autres véhicules ${esc(x.fabricant)}</h2><div class="minis">${memeMarque.map(mini).join('')}</div></section>` : ''}
   ${x.sources && x.sources.length ? `<details class="sources"><summary>${icon('shield')}Sources (${x.sources.length})</summary><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.nom)}</a></li>`).join('')}</ul></details>` : ''}
 </article>`;
   const argsC = {
     p, title: lo.length || x.obtenir ? titreSEO(`${x.nom} GTA 6 : où le trouver et caractéristiques`, `${x.nom} GTA 6 : où le trouver`, `${x.nom} dans GTA 6`) : titreSEO(`${x.nom} GTA 6 : fiche, photo et caractéristiques`, `${x.nom} GTA 6 : fiche et photo`, `${x.nom} dans GTA 6`),
-    desc: descSEO(`${x.nom} dans GTA 6${x.fabricant ? ` (${x.fabricant})` : ''} : ${x.classe.toLowerCase()}${x.inspiration && x.inspiration !== x.nom && x.inspiration !== x.modele ? `, inspiré de ${x.inspiration}` : ''}${x.places ? `, ${x.places} places` : ''}${x.transmission ? `, ${x.transmission}` : ''}${x.poids ? `, ${x.poids}` : ''}.`, lo.length ? `Repéré à ${lo.length} endroit${lo.length > 1 ? 's' : ''} sur la carte.` : x.obtenir ? 'Comment l’obtenir.' : '', x.img ? 'Photo et caractéristiques.' : 'Caractéristiques et sources.'),
+    desc: descSEO(`${x.nom} dans GTA 6${x.fabricant ? ` (${x.fabricant})` : ''} : ${x.classe.toLowerCase()}${x.inspiration && x.inspiration !== x.nom && x.inspiration !== x.modele ? `, inspiré de ${x.inspiration}` : ''}${x.places ? `, ${x.places} places` : ''}${x.transmission ? `, ${x.transmission}` : ''}${x.poids ? `, ${x.poids}` : ''}.`, lo.length ? `Repéré à ${lo.length} endroit${lo.length > 1 ? 's' : ''} sur la carte.` : x.obtenir ? 'Comment l’obtenir.' : '', x.img ? 'Photo et caractéristiques.' : 'Caractéristiques du véhicule.'),
     body, cls: 'p-fiche', ogType: 'article', noindex: !sur, image: x.img ? `catalogue/${x.img}` : '',
     // la page décrit un véhicule du jeu : WebPage + image principale avec son crédit (pas de « Product », ce n'est pas un objet à vendre)
     schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: `${x.nom} dans GTA 6`, url: `${site.url}/${p}`, inLanguage: 'fr', about: { '@type': 'VideoGame', name: 'Grand Theft Auto VI' }, ...(x.img ? { primaryImageOfPage: { '@type': 'ImageObject', contentUrl: `${site.url}/catalogue/${x.img}`, ...(x.credit ? { creditText: x.credit } : {}) } } : {}) }],
@@ -1262,7 +1338,7 @@ for (const x of CATALOGUE.vehicules) {
   };
   const o2 = FICHES_V2_CAT[x.slug];
   if (o2) { const v2 = { slug: x.slug, nom: x.nom, type: x.type, sous: x.classe.replace(/s$/, ''), obtenir: o2.chercher, kw: [], ...o2, catImg: x.img, catCredit: x.credit, catCreditUrl: x.creditUrl };
-    V2_A_FAIRE.push(() => emit(p, layout({ ...argsC, body: ficheV2(v2, { p, R, c, l: L[o2.lieu], onM: false, liens: [[`Autres ${(grp ? grp.nom : x.classe).toLowerCase()}`, memeGroupe], [`Autres véhicules ${x.fabricant || ''}`.trim(), memeMarque]] }), cls: 'p-fiche p-vfiche' }))); }
+    V2_A_FAIRE.push(() => emit(p, layout({ ...argsC, body: ficheV2(v2, { p, R, c, l: L[o2.lieu], onM: false, liens: [[`Véhicules similaires`, memeGroupe], [`Autres véhicules ${x.fabricant || ''}`.trim(), memeMarque]] }), cls: 'p-fiche p-vfiche' }))); }
   else emit(p, layout(argsC));
 }
 
@@ -1946,7 +2022,8 @@ for (const a of ACTUS) {
 // ---------- FAVORIS ----------
 {
   const p = 'favoris/', R = R_(p);
-  const body = `<section class="wrap section" data-favs>
+  const favImages = Object.fromEntries([...CATALOGUE.vehicules, ...VEHICULES].map(v => [v.slug, vehImagePath(v)]).filter(([, rel]) => rel));
+  const body = `<section class="wrap section" data-favs data-vehicle-images='${esc(JSON.stringify(favImages))}'>
   <h1 class="h1">Mes favoris</h1>
   <p class="lead">Retrouve ce que tu as enregistré.</p>
   <div class="doors doors--4" role="group" aria-label="Type" data-fav-filter>
@@ -1960,7 +2037,7 @@ for (const a of ACTUS) {
   <div class="list" data-fav-list></div>
   <div class="empty" data-fav-empty hidden>${icon('heart', 'ic-xl')}<p>Rien ici pour le moment</p><a class="btn btn--primary" href="${R}astuces/">${icon('bolt')}Explorer les astuces</a></div>
 </section>`;
-  emit(p, layout({ p, title: `Mes favoris | ${M}`, desc: 'Retrouvez vos guides et véhicules favoris.', body, noindex: true, cls: 'p-favs' }));
+  emit(p, layout({ p, title: `Mes favoris | ${M}`, desc: 'Retrouvez vos guides et véhicules favoris.', body, noindex: true, cls: 'p-favs', scripts: ['favoris-images.js'] }));
 }
 
 // ---------- COMPTE ----------
