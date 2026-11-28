@@ -1,5 +1,5 @@
 {
-  "version": 170,
+  "version": "V190",
   "correctifs": [
     {
       "slug": "albany-cavalcade-xl",
@@ -268,8 +268,7 @@
     {
       "slug": "declasse-yosemite-67",
       "observation_exemplaire": {
-        "immatriculation_affichee": 6250,
-        "traceur": "aucun"
+        "immatriculation_affichee": 6250
       },
       "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
     },
@@ -745,6 +744,132 @@
         "alarme": "activée"
       },
       "portee": "Relevés possiblement issus de plusieurs exemplaires : ne pas présenter ces champs comme un scan unique ni comme des caractéristiques garanties du modèle."
+    },
+    {
+      "slug": "principe-alvino-v1",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 9150
+      },
+      "portee": "Tarif rapporté pour le modèle standard ; peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "karin-futo-85",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4750
+      },
+      "portee": "Tarif rapporté pour le modèle standard ; peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-stanier-98",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3400
+      },
+      "portee": "Tarif rapporté pour le modèle standard ; peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "vapid-slamvan-56",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 17500
+      },
+      "portee": "Tarif rapporté pour le modèle standard ; peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-akane",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5250
+      },
+      "portee": "Tarif rapporté par plusieurs sources documentaires, non vérifié en jeu. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-impaler-80",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3500
+      },
+      "portee": "Tarif rapporté par plusieurs sources documentaires, non vérifié en jeu. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-tulip-m-100-78",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 8200
+      },
+      "portee": "Tarif rapporté par plusieurs sources documentaires, non vérifié en jeu. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "schyster-woodland-85",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 7400
+      },
+      "portee": "Tarif rapporté par plusieurs sources documentaires, non vérifié en jeu. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "annis-elegy-90",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 14250
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-buccaneer-65",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 9400
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "dundreary-chino-65",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 17750
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "declasse-parkland-71",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10500
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-youga-74",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 5400
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "bravado-youga-xl-79",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10650
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "albany-hermes-50",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 21650
+      },
+      "portee": "Tarif rapporté dans des relevés documentaires concordants, non vérifié directement en jeu ; montant indicatif pouvant varier selon l’exemplaire."
+    },
+    {
+      "slug": "dundreary-arcturus-93",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 3250
+      },
+      "portee": "Montant indicatif issu de compilations documentaires concordantes ; indépendance des sources et validation en jeu non établies. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "bf-injection-73",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 4650
+      },
+      "portee": "Montant indicatif issu de compilations documentaires concordantes ; indépendance des sources et validation en jeu non établies. Peut varier selon l’exemplaire."
+    },
+    {
+      "slug": "classique-stallion-68",
+      "observation_exemplaire": {
+        "immatriculation_affichee": 10650
+      },
+      "portee": "Montant indicatif issu de compilations documentaires concordantes ; indépendance des sources et validation en jeu non établies. Peut varier selon l’exemplaire."
     }
   ],
   "variantes_et_exemplaires": [
@@ -986,11 +1111,6 @@
       "meta_description_candidate": "Bravado Bison dans GTA 6 : frais d’immatriculation relevés : 9 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
     },
     {
-      "slug": "bravado-bison-1800",
-      "titre_seo_candidat": "Bravado Bison 1800 – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Bravado Bison 1800 dans GTA 6 : frais d’immatriculation relevés à 8 250 $. Le montant peut varier selon l’exemplaire."
-    },
-    {
       "slug": "bravado-bison-900-95",
       "titre_seo_candidat": "Bravado Bison 900 '95 – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Bravado Bison 900 '95 dans GTA 6 : frais d’immatriculation relevés : 7 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
@@ -1039,11 +1159,6 @@
       "slug": "albany-buccaneer-65",
       "titre_seo_candidat": "Albany Buccaneer '65 – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Albany Buccaneer '65 dans GTA 6 : frais d’immatriculation relevés à 9 400 $. Le montant peut varier selon l’exemplaire."
-    },
-    {
-      "slug": "bravado-buffalo-07",
-      "titre_seo_candidat": "Bravado Buffalo '07 – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Bravado Buffalo '07 dans GTA 6 : frais d’immatriculation relevés à 8 000 $. Le montant peut varier selon l’exemplaire."
     },
     {
       "slug": "bravado-buffalo-19",
@@ -1109,11 +1224,6 @@
       "slug": "western-cliffhanger",
       "titre_seo_candidat": "Western Cliffhanger – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Western Cliffhanger dans GTA 6 : exemplaire Western Magma Cliffhanger signalé à Watson Bay. Son apparition peut varier."
-    },
-    {
-      "slug": "pfister-comet-88",
-      "titre_seo_candidat": "Pfister Comet '88 – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Pfister Comet '88 dans GTA 6 : frais d’immatriculation relevés à 34 250 $. Le montant peut varier selon l’exemplaire."
     },
     {
       "slug": "karin-contender",
@@ -1194,11 +1304,6 @@
       "slug": "bravado-dorado",
       "titre_seo_candidat": "Bravado Dorado – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Bravado Dorado dans GTA 6 : frais d’immatriculation relevés : 4 000 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
-    },
-    {
-      "slug": "dinka-double-t",
-      "titre_seo_candidat": "Dinka Double-T – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Dinka Double-T dans GTA 6 : frais d’immatriculation relevés à 6 250 $. Le tarif peut varier selon l’exemplaire."
     },
     {
       "slug": "benefactor-dubsta",
@@ -1366,11 +1471,6 @@
       "meta_description_candidate": "Osprey Journey '78 dans GTA 6 : exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
     },
     {
-      "slug": "buckingham-jubilee",
-      "titre_seo_candidat": "Buckingham Jubilee – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Buckingham Jubilee dans GTA 6 : frais d’immatriculation relevés à 34 900 $. Le montant peut varier selon l’exemplaire."
-    },
-    {
       "slug": "ocelot-jugular",
       "titre_seo_candidat": "Ocelot Jugular – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Ocelot Jugular dans GTA 6 : frais d’immatriculation relevés : 28 550 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
@@ -1394,11 +1494,6 @@
       "slug": "willard-lasso-90",
       "titre_seo_candidat": "Willard Lasso '90 – GTA 6 | GTA6Facile",
       "meta_description_candidate": "Willard Lasso '90 dans GTA 6 : frais d’immatriculation relevés : 13 750 $, traceur standard relevé. Ces données peuvent varier selon l’exemplaire."
-    },
-    {
-      "slug": "principe-lectro",
-      "titre_seo_candidat": "Principe Lectro – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Principe Lectro dans GTA 6 : frais d’immatriculation relevés à 5 400 $. Le tarif peut varier selon l’exemplaire."
     },
     {
       "slug": "vapid-liberator",
@@ -1449,11 +1544,6 @@
       "slug": "buckingham-maverick",
       "titre_seo_candidat": "Buckingham Maverick – GTA 6 | GTA6Facile",
       "meta_description_candidate": "GTA 6 : Un point d’apparition du Buckingham Maverick est signalé à Watson Bay."
-    },
-    {
-      "slug": "canis-mesa",
-      "titre_seo_candidat": "Canis Mesa – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Canis Mesa dans GTA 6 : frais d’immatriculation relevés à 8 000 $. Le montant peut varier selon l’exemplaire."
     },
     {
       "slug": "vapid-minivan",
@@ -1581,11 +1671,6 @@
       "meta_description_candidate": "Rugger Rhode dans GTA 6 : emplacement signalé de Henshaw Rhode — Lac Leonida, Ambrosia."
     },
     {
-      "slug": "vapid-riata-classic",
-      "titre_seo_candidat": "Vapid Riata Classic – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Vapid Riata Classic dans GTA 6 : frais d’immatriculation relevés à 11 250 $. Le montant peut varier selon l’exemplaire."
-    },
-    {
       "slug": "jobuilt-rubble",
       "titre_seo_candidat": "JoBuilt Rubble – GTA 6 | GTA6Facile",
       "meta_description_candidate": "GTA 6 : Le JoBuilt Rubble est signalé à Watson Bay."
@@ -1686,11 +1771,6 @@
       "meta_description_candidate": "Emperor Sultan dans GTA 6 : frais d’immatriculation relevés : 5 400 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
     },
     {
-      "slug": "sirius-sungrazer-61",
-      "titre_seo_candidat": "Sirius Sungrazer '61 – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Sirius Sungrazer '61 dans GTA 6 : frais d’immatriculation relevés à 15 500 $. Le montant peut varier selon l’exemplaire."
-    },
-    {
       "slug": "buckingham-supervolito",
       "titre_seo_candidat": "Buckingham SuperVolito – GTA 6 | GTA6Facile",
       "meta_description_candidate": "GTA 6 : Le Buckingham SuperVolito est signalé à l’héliport de Hamlet, avec une apparition variable."
@@ -1734,11 +1814,6 @@
       "slug": "sirius-transgressor-67",
       "titre_seo_candidat": "Sirius Transgressor '67 – GTA 6 | GTA6Facile",
       "meta_description_candidate": "GTA 6 : Dans la collection Wyman, la Transgressor ’67 nécessite trois épaves et une restauration à 1 500 $, selon les relevés."
-    },
-    {
-      "slug": "willard-transient",
-      "titre_seo_candidat": "Willard Transient – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Willard Transient dans GTA 6 : frais d’immatriculation relevés à 7 150 $. Le montant peut varier selon l’exemplaire."
     },
     {
       "slug": "declasse-tulip-72",
@@ -1813,7 +1888,7 @@
     {
       "slug": "declasse-yosemite-67",
       "titre_seo_candidat": "Declasse Yosemite '67 – GTA 6 | GTA6Facile",
-      "meta_description_candidate": "Declasse Yosemite '67 dans GTA 6 : frais d’immatriculation relevés : 6 250 $, exemplaire sans traceur. Ces données peuvent varier selon l’exemplaire."
+      "meta_description_candidate": "Declasse Yosemite '67 dans GTA 6 : frais d’immatriculation relevés à 6 250 $. Le montant peut varier selon l’exemplaire."
     },
     {
       "slug": "declasse-yosemite-1500",
