@@ -95,13 +95,13 @@ function complementVehicule(slug) {
   const o = PATCH_VEH_OBS.get(slug);
   const variantes = (PATCH_VEH.variantes_et_exemplaires || []).filter(x => x.slug_parent === slug);
   const lignes = o ? [
-    ['Immatriculation relevée', Number.isFinite(o.immatriculation_affichee) ? o.immatriculation_affichee.toLocaleString('fr-FR') + ' $' : ''],
-    ['Traceur observé', o.traceur], ['Alarme observée', o.alarme], ['Accès observé', o.acces], ['Outil signalé', o.outil_acces_signale]
+    ['Prix d’immatriculation', Number.isFinite(o.immatriculation_affichee) ? o.immatriculation_affichee.toLocaleString('fr-FR') + ' $' : ''],
+    ['Type de traceur', o.traceur], ['Alarme', o.alarme], ['État d’accès', o.acces], ['Outil d’accès', o.outil_acces_signale]
   ].filter(([,v]) => typeof v === 'string' && v.trim()) : [];
   if (!lignes.length && !variantes.length && !wyman) return '';
   return `<section class="veh-tech" aria-labelledby="veh-complement-t"><h2 class="h3" id="veh-complement-t">Informations complémentaires</h2>
-    ${lignes.length ? `<dl class="facts veh-tech-grid">${lignes.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><p class="muted small">Ces relevés peuvent concerner des exemplaires différents. Les caractéristiques peuvent varier.</p>` : ''}
-    ${variantes.length ? `<h3 class="h3">Variantes spéciales</h3>${variantes.map(v => `<p><b>${esc(v.nom_exemplaire)}</b> — ${esc([v.informations?.secteur_signale, v.informations?.description_obtention].filter(Boolean).join(' · '))}</p>`).join('')}` : ''}${wyman ? `<h3 class="h3">Épaves de la collection Wyman</h3><p class="muted small">Emplacements signalés pour la restauration ; aucun nouveau repère exact ajouté à la carte.</p><ol>${wyman.emplacements_epaves.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</section>`;
+    ${lignes.length ? `<dl class="facts veh-tech-grid">${lignes.map(([k,v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl><p class="muted small">Informations indicatives : les caractéristiques et les outils d’accès peuvent varier selon l’exemplaire.</p>` : ''}
+    ${variantes.length ? `<h3 class="h3 veh-variant-title">${icon('star')}Variantes spéciales</h3><div class="veh-variants">${variantes.map(v => `<div class="veh-variant"><b>${esc(v.nom_exemplaire)}</b><p>${esc([v.informations?.secteur_signale, v.informations?.description_obtention].filter(Boolean).join(' · '))}</p></div>`).join('')}</div>` : ''}${wyman ? `<h3 class="h3">Épaves de la collection Wyman</h3><p class="muted small">Emplacements signalés pour la restauration ; aucun nouveau repère exact ajouté à la carte.</p><ol>${wyman.emplacements_epaves.map(t => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</section>`;
 }
 
 // Catalogue complet (GTABase + gta6guide.fr, tools/catalogue.py) : véhicules sans fiche détaillée + infos des fiches
@@ -538,8 +538,16 @@ function layout({ p, title, desc, body, schema = [], noindex = false, cls = '', 
     const seo = PATCH_VEH_SEO.get(vehSlug);
     if (seo && typeof seo.meta_description_candidate === 'string' && seo.meta_description_candidate.length <= 160) desc = seo.meta_description_candidate;
     const complement = complementVehicule(vehSlug);
-    const related = body.indexOf('<section class="related"');
-    body = related >= 0 ? body.slice(0, related) + complement + body.slice(related) : body.replace('</article>', complement + '</article>');
+    const anchors = ['<section class="veh-tech" aria-labelledby="veh-tech-t"', '<dl class="facts">', '<section class="vf-bloc" aria-labelledby="si-t"', '<section class="vf-bloc" aria-labelledby="in-t"', '<section class="related"'];
+    const positions = anchors.map(a => body.indexOf(a)).filter(i => i >= 0);
+    const at = positions.length ? Math.min(...positions) : body.lastIndexOf('</article>');
+    if (at >= 0) body = body.slice(0, at) + complement + body.slice(at);
+    cls += ' p-vehicle-detail';
+    const palette = {'Marque':'identity','Catégorie':'identity','Type':'identity','Inspiré de':'identity','Inspirée de':'identity','Places':'technical','Transmission':'technical','Poids':'technical','Caractéristiques':'technical','Fiche technique':'technical','Déjà présent dans':'history','Ancien GTA':'history','Prix d’immatriculation':'price','Type de traceur':'tracker','Alarme':'alarm','État d’accès':'access','Outil d’accès':'tool'};
+    body = body.replace(/<dl class="(?:facts(?: veh-tech-grid)?|vf-infos)">[\s\S]*?<\/dl>/g, block => block.replace(/<dt>([\s\S]*?)<\/dt>/g, (whole, content) => {
+      const label = content.replace(/<[^>]*>/g, '').trim();
+      return palette[label] ? `<dt class="veh-label--${palette[label]}">${content}</dt>` : whole;
+    }));
   }
   if (v2 && cls !== 'home' && !styles.includes('pages.css')) styles = [...styles, 'pages.css'];
   if (v2 && cls !== 'home' && cls !== 'p-atlas' && !scripts.includes('pages.js')) scripts = [...scripts, 'pages.js'];
