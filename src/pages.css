@@ -921,3 +921,9 @@ html[data-spoil="off"] .spoil:not(.is-vu) { filter: blur(6px); user-select: none
 .v2 .p-vehicle-detail .veh-variant {border:1px solid #69415f;border-radius:14px;padding:12px;background:#18101e;}
 .v2 .p-vehicle-detail .veh-variant b {color:#ffd0ef;}
 .v2 .p-vehicle-detail .veh-variant p {margin:5px 0 0;line-height:1.45;overflow-wrap:anywhere;}
+
+/* V182 : priorité aux informations utiles, palette V181 conservée. */
+.v2 .p-vehicle-detail .veh-price {margin:18px 0 24px;}
+.v2 .p-vehicle-detail .veh-price > h2 {color:#a9eacb;}
+.v2 .p-vehicle-detail .veh-special .veh-variant b {color:#ffc0e9;font-size:1rem;font-weight:700;}
+.v2 .p-vehicle-detail .veh-special .veh-variant-title {color:#ffa4dc;}
